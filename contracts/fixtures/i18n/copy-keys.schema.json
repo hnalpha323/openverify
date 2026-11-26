@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:openverify:fixtures:copy-keys:1",
+  "title": "The built-in copy keys an operator may override (C162.2, C199.7)",
+  "description": "Written by an assert-only test of api-android-10a from COPY_KEYS (packages/flow-spec/src/v2/copy-keys.ts), only under UPDATE_CONTRACT_FIXTURES=1; Android runs every key through its key map, and an unmapped legal key renders the step unsupported.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "description",
+    "legalKinds",
+    "componentAttributes",
+    "componentMaxLength",
+    "placeholderPattern",
+    "keys"
+  ],
+  "properties": {
+    "format": {
+      "const": 1
+    },
+    "description": {
+      "type": "string"
+    },
+    "legalKinds": {
+      "const": ["consent", "notice", "decision", "retention"]
+    },
+    "componentAttributes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "componentMaxLength": {
+      "type": "integer"
+    },
+    "placeholderPattern": {
+      "type": "string"
+    },
+    "keys": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["maxLength", "placeholders", "consent", "multiline", "legal"],
+        "properties": {
+          "maxLength": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "placeholders": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]{0,39}$"
+            }
+          },
+          "consent": {
+            "type": "boolean"
+          },
+          "multiline": {
+            "type": "boolean"
+          },
+          "legal": {
+            "enum": ["consent", "notice", "decision", "retention", null]
+          }
+        }
+      }
+    }
+  }
+}

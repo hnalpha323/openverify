@@ -1,0 +1,10 @@
+{
+  "type": "about:blank",
+  "title": "Unauthorized",
+  "status": 401,
+  "detail": "Your session reached its maximum length. Sign in again.",
+  "instance": "/api/v1/dashboard/me",
+  "requestId": "00000000-0000-4000-8000-00000011b002",
+  "code": "session_expired",
+  "reason": "absolute"
+}

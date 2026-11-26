@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "The scanner found malware in this attachment, so it is not served.",
+  "instance": "/api/v1/cases/case_01M5CK3190XEVBM5ZXA76E1JSN/attachments/catt_01M5CK3190XEVBM5ZXA76E1JSN/content",
+  "requestId": "00000000-0000-4000-8000-000000001209",
+  "code": "attachment_infected"
+}

@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Too Many Requests",
+  "status": 429,
+  "detail": "Too many handoff messages were sent; use the code on this screen instead.",
+  "instance": "/api/v1/flow/handoffs",
+  "requestId": "00000000-0000-4000-8000-000000000720",
+  "code": "handoff_send_limited"
+}

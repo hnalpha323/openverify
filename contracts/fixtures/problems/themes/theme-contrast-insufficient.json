@@ -1,0 +1,25 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "A palette pair is below its contrast minimum.",
+  "instance": "/api/v1/theme-sets/theset_01M5CN00000000000000009A40",
+  "requestId": "00000000-0000-4000-8000-000000009a40",
+  "code": "theme_contrast_insufficient",
+  "pairs": [
+    {
+      "pointer": "/data/attributes/styles/light/palette/ink-muted",
+      "foreground": "ink-muted",
+      "background": "canvas",
+      "ratio": 4.218749213,
+      "required": 4.5
+    },
+    {
+      "pointer": "/data/attributes/styles/dark/palette/focus",
+      "foreground": "focus",
+      "background": "primary",
+      "ratio": 1.0412,
+      "required": 3
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "format": 1,
+  "description": "C203, C219.5: synthetic AAMVA PDF417 images for the SDK's zxing-cpp device test, written by services/vision/tests/test_android_pdf417_assets.py from services/vision/tools/synthetic_aamva.py (ZC-marked synthetic data, never a real licence), at the generator's full size and downscaled (box) to the document analysis width of C201.2.",
+  "analysis-width-px": 640,
+  "assets": [
+    {
+      "file": "dl-636014-real-id-full.png",
+      "vector": "dl-636014-real-id",
+      "scale": "full",
+      "width": 950,
+      "height": 269,
+      "aamva-header": true,
+      "payload-sha256": "f9ebce052488c748b917e407acf869bbce147647368368ea0ffd35266f04162f"
+    },
+    {
+      "file": "dl-636014-real-id-w640.png",
+      "vector": "dl-636014-real-id",
+      "scale": "analysis",
+      "width": 640,
+      "height": 181,
+      "aamva-header": true,
+      "payload-sha256": "f9ebce052488c748b917e407acf869bbce147647368368ea0ffd35266f04162f"
+    },
+    {
+      "file": "id-636020-not-real-id-full.png",
+      "vector": "id-636020-not-real-id",
+      "scale": "full",
+      "width": 950,
+      "height": 260,
+      "aamva-header": true,
+      "payload-sha256": "6528b422c51c0194012c1b73239446fef6f7ccca553b823e9269a3494c0bfe9c"
+    },
+    {
+      "file": "id-636020-not-real-id-w640.png",
+      "vector": "id-636020-not-real-id",
+      "scale": "analysis",
+      "width": 640,
+      "height": 175,
+      "aamva-header": true,
+      "payload-sha256": "6528b422c51c0194012c1b73239446fef6f7ccca553b823e9269a3494c0bfe9c"
+    },
+    {
+      "file": "file-type-not-ansi-full.png",
+      "vector": "file-type-not-ansi",
+      "scale": "full",
+      "width": 950,
+      "height": 269,
+      "aamva-header": false,
+      "payload-sha256": "bbb05fb451d44515ca54e34e9fc966ce142a31418d5bc7a1bfc8caa86833b3a2"
+    },
+    {
+      "file": "file-type-not-ansi-w640.png",
+      "vector": "file-type-not-ansi",
+      "scale": "analysis",
+      "width": 640,
+      "height": 181,
+      "aamva-header": false,
+      "payload-sha256": "bbb05fb451d44515ca54e34e9fc966ce142a31418d5bc7a1bfc8caa86833b3a2"
+    }
+  ]
+}

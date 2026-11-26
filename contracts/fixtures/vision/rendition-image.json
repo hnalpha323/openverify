@@ -1,0 +1,15 @@
+{
+  "source": "image",
+  "page_count": 1,
+  "truncated": false,
+  "pages": [
+    {
+      "page": 1,
+      "media_type": "image/png",
+      "width": 4,
+      "height": 3,
+      "byte_size": 107,
+      "data_b64": "iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAIAAAA7ljmRAAAAMklEQVR4AQEnANj/ANTe7NTe7NTe7NTe7ADU3uzU3uzU3uzU3uwA1N7s1N7s1N7s1N7sY5EfaRRdK6wAAAAASUVORK5CYII="
+    }
+  ]
+}

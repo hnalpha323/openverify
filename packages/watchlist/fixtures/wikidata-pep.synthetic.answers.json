@@ -1,0 +1,566 @@
+{
+  "format": "openverify/wikidata-pep-answers/v1",
+  "positions": {
+    "Q2285706": {
+      "head": {
+        "vars": []
+      },
+      "results": {
+        "bindings": [
+          {
+            "statement": {
+              "type": "uri",
+              "value": "http://www.wikidata.org/entity/statement/synthetic-1"
+            },
+            "person": {
+              "type": "uri",
+              "value": "http://www.wikidata.org/entity/Q-test-1001"
+            },
+            "position": {
+              "type": "uri",
+              "value": "http://www.wikidata.org/entity/Q-test-2001"
+            },
+            "positionLabel": {
+              "type": "literal",
+              "value": "Synthetic Head of Government",
+              "xml:lang": "en"
+            },
+            "start": {
+              "type": "literal",
+              "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+              "value": "2023-05-01T00:00:00Z"
+            },
+            "startPrecision": {
+              "type": "literal",
+              "datatype": "http://www.w3.org/2001/XMLSchema#integer",
+              "value": "11"
+            },
+            "jurisdiction": {
+              "type": "literal",
+              "value": "GB"
+            },
+            "country": {
+              "type": "literal",
+              "value": "GB"
+            }
+          }
+        ]
+      }
+    },
+    "Q121998": {
+      "head": {
+        "vars": []
+      },
+      "results": {
+        "bindings": [
+          {
+            "statement": {
+              "type": "uri",
+              "value": "http://www.wikidata.org/entity/statement/synthetic-2"
+            },
+            "person": {
+              "type": "uri",
+              "value": "http://www.wikidata.org/entity/Q-test-1004"
+            },
+            "position": {
+              "type": "uri",
+              "value": "http://www.wikidata.org/entity/Q-test-2003"
+            },
+            "positionLabel": {
+              "type": "literal",
+              "value": "Synthetic Ambassador",
+              "xml:lang": "en"
+            },
+            "start": {
+              "type": "literal",
+              "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+              "value": "2022-09-01T00:00:00Z"
+            },
+            "startPrecision": {
+              "type": "literal",
+              "datatype": "http://www.w3.org/2001/XMLSchema#integer",
+              "value": "11"
+            },
+            "jurisdiction": {
+              "type": "literal",
+              "value": "FR"
+            },
+            "country": {
+              "type": "literal",
+              "value": "FR"
+            }
+          },
+          {
+            "statement": {
+              "type": "uri",
+              "value": "http://www.wikidata.org/entity/statement/synthetic-3"
+            },
+            "person": {
+              "type": "uri",
+              "value": "http://www.wikidata.org/entity/Q-test-1005"
+            },
+            "position": {
+              "type": "uri",
+              "value": "http://www.wikidata.org/entity/Q-test-2004"
+            },
+            "positionLabel": {
+              "type": "literal",
+              "value": "Synthetic Secretary-General of an International Organisation",
+              "xml:lang": "en"
+            },
+            "start": {
+              "type": "literal",
+              "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+              "value": "2024-01-15T00:00:00Z"
+            },
+            "startPrecision": {
+              "type": "literal",
+              "datatype": "http://www.w3.org/2001/XMLSchema#integer",
+              "value": "11"
+            },
+            "jurisdiction": {
+              "type": "literal",
+              "value": "IE"
+            },
+            "country": {
+              "type": "literal",
+              "value": "IE"
+            }
+          }
+        ]
+      }
+    },
+    "Q270791": {
+      "head": {
+        "vars": []
+      },
+      "results": {
+        "bindings": [
+          {
+            "statement": {
+              "type": "uri",
+              "value": "http://www.wikidata.org/entity/statement/synthetic-4"
+            },
+            "person": {
+              "type": "uri",
+              "value": "http://www.wikidata.org/entity/Q-test-1006"
+            },
+            "position": {
+              "type": "uri",
+              "value": "http://www.wikidata.org/entity/Q-test-2005"
+            },
+            "positionLabel": {
+              "type": "literal",
+              "value": "Synthetic State Enterprise Board Member",
+              "xml:lang": "en"
+            },
+            "start": {
+              "type": "literal",
+              "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+              "value": "2021-06-01T00:00:00Z"
+            },
+            "startPrecision": {
+              "type": "literal",
+              "datatype": "http://www.w3.org/2001/XMLSchema#integer",
+              "value": "11"
+            },
+            "jurisdiction": {
+              "type": "literal",
+              "value": "NL"
+            },
+            "country": {
+              "type": "literal",
+              "value": "NL"
+            }
+          }
+        ]
+      }
+    },
+    "Q30185": {
+      "head": {
+        "vars": []
+      },
+      "results": {
+        "bindings": [
+          {
+            "statement": {
+              "type": "uri",
+              "value": "http://www.wikidata.org/entity/statement/synthetic-5"
+            },
+            "person": {
+              "type": "uri",
+              "value": "http://www.wikidata.org/entity/Q-test-1007"
+            },
+            "position": {
+              "type": "uri",
+              "value": "http://www.wikidata.org/entity/Q-test-2006"
+            },
+            "positionLabel": {
+              "type": "literal",
+              "value": "Synthetic Mayor",
+              "xml:lang": "en"
+            },
+            "start": {
+              "type": "literal",
+              "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+              "value": "2024-07-01T00:00:00Z"
+            },
+            "startPrecision": {
+              "type": "literal",
+              "datatype": "http://www.w3.org/2001/XMLSchema#integer",
+              "value": "11"
+            },
+            "jurisdiction": {
+              "type": "literal",
+              "value": "NZ"
+            },
+            "country": {
+              "type": "literal",
+              "value": "NZ"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "persons": {
+    "head": {
+      "vars": []
+    },
+    "results": {
+      "bindings": [
+        {
+          "person": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q-test-1001"
+          },
+          "fact": {
+            "type": "literal",
+            "value": "label"
+          },
+          "value": {
+            "type": "literal",
+            "value": "Marlowe Testerton",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "person": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q-test-1001"
+          },
+          "fact": {
+            "type": "literal",
+            "value": "birth"
+          },
+          "value": {
+            "type": "literal",
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "value": "1968-03-14T00:00:00Z"
+          },
+          "precision": {
+            "type": "literal",
+            "datatype": "http://www.w3.org/2001/XMLSchema#integer",
+            "value": "11"
+          }
+        },
+        {
+          "person": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q-test-1001"
+          },
+          "fact": {
+            "type": "literal",
+            "value": "citizenship"
+          },
+          "value": {
+            "type": "literal",
+            "value": "GB"
+          }
+        },
+        {
+          "person": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q-test-1004"
+          },
+          "fact": {
+            "type": "literal",
+            "value": "label"
+          },
+          "value": {
+            "type": "literal",
+            "value": "Tamsin Samplewick",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "person": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q-test-1004"
+          },
+          "fact": {
+            "type": "literal",
+            "value": "birth"
+          },
+          "value": {
+            "type": "literal",
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "value": "1972-05-19T00:00:00Z"
+          },
+          "precision": {
+            "type": "literal",
+            "datatype": "http://www.w3.org/2001/XMLSchema#integer",
+            "value": "11"
+          }
+        },
+        {
+          "person": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q-test-1004"
+          },
+          "fact": {
+            "type": "literal",
+            "value": "citizenship"
+          },
+          "value": {
+            "type": "literal",
+            "value": "FR"
+          }
+        },
+        {
+          "person": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q-test-1005"
+          },
+          "fact": {
+            "type": "literal",
+            "value": "label"
+          },
+          "value": {
+            "type": "literal",
+            "value": "Orla Mockfield",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "person": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q-test-1005"
+          },
+          "fact": {
+            "type": "literal",
+            "value": "birth"
+          },
+          "value": {
+            "type": "literal",
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "value": "1965-12-08T00:00:00Z"
+          },
+          "precision": {
+            "type": "literal",
+            "datatype": "http://www.w3.org/2001/XMLSchema#integer",
+            "value": "11"
+          }
+        },
+        {
+          "person": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q-test-1005"
+          },
+          "fact": {
+            "type": "literal",
+            "value": "citizenship"
+          },
+          "value": {
+            "type": "literal",
+            "value": "IE"
+          }
+        },
+        {
+          "person": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q-test-1006"
+          },
+          "fact": {
+            "type": "literal",
+            "value": "label"
+          },
+          "value": {
+            "type": "literal",
+            "value": "Idris Sandmoor",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "person": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q-test-1006"
+          },
+          "fact": {
+            "type": "literal",
+            "value": "birth"
+          },
+          "value": {
+            "type": "literal",
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "value": "1977-01-25T00:00:00Z"
+          },
+          "precision": {
+            "type": "literal",
+            "datatype": "http://www.w3.org/2001/XMLSchema#integer",
+            "value": "11"
+          }
+        },
+        {
+          "person": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q-test-1006"
+          },
+          "fact": {
+            "type": "literal",
+            "value": "citizenship"
+          },
+          "value": {
+            "type": "literal",
+            "value": "NL"
+          }
+        },
+        {
+          "person": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q-test-1007"
+          },
+          "fact": {
+            "type": "literal",
+            "value": "label"
+          },
+          "value": {
+            "type": "literal",
+            "value": "Wren Stubhollow",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "person": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q-test-1007"
+          },
+          "fact": {
+            "type": "literal",
+            "value": "birth"
+          },
+          "value": {
+            "type": "literal",
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "value": "1981-08-30T00:00:00Z"
+          },
+          "precision": {
+            "type": "literal",
+            "datatype": "http://www.w3.org/2001/XMLSchema#integer",
+            "value": "11"
+          }
+        },
+        {
+          "person": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q-test-1007"
+          },
+          "fact": {
+            "type": "literal",
+            "value": "citizenship"
+          },
+          "value": {
+            "type": "literal",
+            "value": "NZ"
+          }
+        },
+        {
+          "person": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q-test-1002"
+          },
+          "fact": {
+            "type": "literal",
+            "value": "label"
+          },
+          "value": {
+            "type": "literal",
+            "value": "Imogen Testerton",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "person": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q-test-1002"
+          },
+          "fact": {
+            "type": "literal",
+            "value": "birth"
+          },
+          "value": {
+            "type": "literal",
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "value": "1970-07-22T00:00:00Z"
+          },
+          "precision": {
+            "type": "literal",
+            "datatype": "http://www.w3.org/2001/XMLSchema#integer",
+            "value": "11"
+          }
+        },
+        {
+          "person": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q-test-1002"
+          },
+          "fact": {
+            "type": "literal",
+            "value": "sex"
+          },
+          "value": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q6581072"
+          }
+        },
+        {
+          "person": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q-test-1002"
+          },
+          "fact": {
+            "type": "literal",
+            "value": "citizenship"
+          },
+          "value": {
+            "type": "literal",
+            "value": "GB"
+          }
+        }
+      ]
+    }
+  },
+  "relatives": {
+    "head": {
+      "vars": []
+    },
+    "results": {
+      "bindings": [
+        {
+          "person": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q-test-1001"
+          },
+          "relation": {
+            "type": "literal",
+            "value": "spouse"
+          },
+          "relative": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q-test-1002"
+          }
+        }
+      ]
+    }
+  }
+}

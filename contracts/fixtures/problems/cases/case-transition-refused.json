@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The template does not allow this status change.",
+  "instance": "/api/v1/cases/case_01M5CK3190XEVBM5ZXA76E1JSN/set-status",
+  "requestId": "00000000-0000-4000-8000-000000001200",
+  "code": "case_transition_refused",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/meta/status",
+      "detail": "not reachable from the current status"
+    }
+  ]
+}

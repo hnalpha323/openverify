@@ -1,0 +1,8 @@
+{
+  "data": {
+    "type": "consent-record",
+    "attributes": {
+      "withdrawal-reason": "subject-request"
+    }
+  }
+}

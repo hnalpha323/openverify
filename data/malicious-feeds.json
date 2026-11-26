@@ -1,0 +1,5 @@
+{
+  "schema_version": 1,
+  "description": "The operator's malicious-website feeds (plan C61.5), read by the feed-list provider and refreshed by the worker's repeatable job. It ships with no feed: none is both licensed for this use and useful worldwide (URLhaus needs an Auth-Key and may need a paid subscription; Google Safe Browsing and the OpenPhish Community feed are non-commercial; THIRD_PARTY_LICENSES.md section 4.2). Add a feed only under terms you accept: { id, url (https), format (domains or urls), category (malware, phishing or spam_source), refresh_interval_seconds (300 to 604800), terms }.",
+  "feeds": []
+}

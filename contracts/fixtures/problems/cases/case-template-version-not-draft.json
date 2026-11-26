@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "A published version never changes.",
+  "instance": "/api/v1/case-template-versions/ctmplv_01M5CK3190XEVBM5ZXA76E1JSN",
+  "requestId": "00000000-0000-4000-8000-000000001219",
+  "code": "case_template_version_not_draft"
+}

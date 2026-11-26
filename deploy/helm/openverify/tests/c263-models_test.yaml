@@ -1,0 +1,294 @@
+# C263.5 (Workflow 11C Stage 2, chart-11c; checkpoint models; decision 5, reviews P05 and F05,
+# verification V03): the models claim and the models-fetch hook Job in job mode, the operator's claim
+# in pvc mode, the digest directory, and vision reading it read-only and never fetching.
+suite: c263 models (job mode)
+release:
+  name: ov
+  namespace: verify
+templates:
+  - templates/models-pvc.yaml
+  - templates/models-fetch-job.yaml
+  - templates/vision/deployment.yaml
+  - templates/configmap.yaml
+tests:
+  - it: renders the claim as a pre-install hook kept across upgrades and uninstall, before the Job
+    template: templates/models-pvc.yaml
+    asserts:
+      - isKind:
+          of: PersistentVolumeClaim
+      - equal:
+          path: metadata.name
+          value: ov-openverify-models
+      - equal:
+          path: metadata.annotations
+          value:
+            helm.sh/hook: pre-install
+            helm.sh/hook-weight: '-10'
+            helm.sh/resource-policy: keep
+      - equal:
+          path: spec.accessModes
+          value: [ReadWriteOnce]
+      - equal:
+          path: spec.resources.requests.storage
+          value: 2Gi
+      - notExists:
+          path: spec.storageClassName
+  - it: names the claim's storage class and access mode when given
+    template: templates/models-pvc.yaml
+    set:
+      models.storageClass: fast
+      models.accessMode: ReadWriteMany
+      models.size: 5Gi
+    asserts:
+      - equal:
+          path: spec.storageClassName
+          value: fast
+      - equal:
+          path: spec.accessModes
+          value: [ReadWriteMany]
+      - equal:
+          path: spec.resources.requests.storage
+          value: 5Gi
+  - it: renders no claim when the operator gives one
+    template: templates/models-pvc.yaml
+    set:
+      models.existingClaim: weights
+    asserts:
+      - hasDocuments:
+          count: 0
+
+  - it: runs the fetch as a pre-install,pre-upgrade hook after the claim, deleted before a new one and on success
+    template: templates/models-fetch-job.yaml
+    asserts:
+      - isKind:
+          of: Job
+      - equal:
+          path: metadata.name
+          value: ov-openverify-models-fetch
+      - equal:
+          path: metadata.annotations
+          value:
+            helm.sh/hook: pre-install,pre-upgrade
+            helm.sh/hook-weight: '-5'
+            helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
+      - equal:
+          path: spec.template.metadata.labels["app.kubernetes.io/component"]
+          value: models-fetch
+      - equal:
+          path: spec.template.spec.restartPolicy
+          value: Never
+  - it: runs fetch_models.py through the program into /models/<manifest digest> with the vision image
+    template: templates/models-fetch-job.yaml
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].image
+          value: openverify/vision:0.1.0
+      - equal:
+          path: spec.template.spec.containers[0].command[0]
+          value: python3
+      - equal:
+          path: spec.template.spec.containers[0].command[1]
+          value: -I
+      - equal:
+          path: spec.template.spec.containers[0].command[2]
+          value: -c
+      - matchRegex:
+          path: spec.template.spec.containers[0].command[3]
+          pattern: The models-fetch Job's program
+      - equal:
+          path: spec.template.spec.containers[0].command[4]
+          value: 09989269558f7aa87f481b37f537422e3967b7475f4adf0c23fda30354c1bcca
+      - equal:
+          path: spec.template.spec.containers[0].command[5]
+          value: /app/models/manifest.json
+      - equal:
+          path: spec.template.spec.containers[0].command[6]
+          value: /app/scripts/fetch_models.py
+  - it: references the fetch image by digest when given
+    template: templates/models-fetch-job.yaml
+    set:
+      modelsFetch.image.digest: sha256:4444444444444444444444444444444444444444444444444444444444444444
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].image
+          value: openverify/vision:0.1.0@sha256:4444444444444444444444444444444444444444444444444444444444444444
+  - it: mounts the chart's claim writable at /models and no Secret, in a restricted pod with no token
+    template: templates/models-fetch-job.yaml
+    asserts:
+      - equal:
+          path: spec.template.spec.automountServiceAccountToken
+          value: false
+      - contains:
+          path: spec.template.spec.volumes
+          content:
+            name: models
+            persistentVolumeClaim:
+              claimName: ov-openverify-models
+      - contains:
+          path: spec.template.spec.containers[0].volumeMounts
+          content:
+            name: models
+            mountPath: /models
+      - lengthEqual:
+          path: spec.template.spec.volumes
+          count: 2
+      - notExists:
+          path: spec.template.spec.containers[0].env
+      - isSubset:
+          path: spec.template.spec.containers[0].securityContext
+          content:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+      - isSubset:
+          path: spec.template.spec.securityContext
+          content:
+            runAsUser: 10001
+            fsGroup: 10001
+  - it: mounts the operator's claim when given
+    template: templates/models-fetch-job.yaml
+    set:
+      models.existingClaim: weights
+    asserts:
+      - contains:
+          path: spec.template.spec.volumes
+          content:
+            name: models
+            persistentVolumeClaim:
+              claimName: weights
+  - it: carries no affinity on install
+    template: templates/models-fetch-job.yaml
+    asserts:
+      - notExists:
+          path: spec.template.spec.affinity
+  - it: runs on the vision pods' node on upgrade, where a ReadWriteOnce claim is attached
+    template: templates/models-fetch-job.yaml
+    release:
+      upgrade: true
+    asserts:
+      - equal:
+          path: spec.template.spec.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution
+          value:
+            - labelSelector:
+                matchLabels:
+                  app.kubernetes.io/name: openverify
+                  app.kubernetes.io/instance: ov
+                  app.kubernetes.io/component: vision
+              topologyKey: kubernetes.io/hostname
+  - it: needs no node on upgrade when the claim is ReadWriteMany
+    template: templates/models-fetch-job.yaml
+    release:
+      upgrade: true
+    set:
+      models.accessMode: ReadWriteMany
+    asserts:
+      - notExists:
+          path: spec.template.spec.affinity
+
+  - it: mounts the claim read-only in vision at /models
+    template: templates/vision/deployment.yaml
+    asserts:
+      - contains:
+          path: spec.template.spec.volumes
+          content:
+            name: models
+            persistentVolumeClaim:
+              claimName: ov-openverify-models
+              readOnly: true
+      - contains:
+          path: spec.template.spec.containers[0].volumeMounts
+          content:
+            name: models
+            mountPath: /models
+            readOnly: true
+  - it: never fetches in the vision pod
+    template: templates/vision/deployment.yaml
+    asserts:
+      - notExists:
+          path: spec.template.spec.initContainers
+      - lengthEqual:
+          path: spec.template.spec.containers
+          count: 1
+      - notExists:
+          path: spec.template.spec.containers[0].command
+  - it: points vision at the digest directory
+    template: templates/configmap.yaml
+    documentSelector:
+      path: metadata.name
+      value: ov-openverify-vision
+    asserts:
+      - equal:
+          path: data.OPENVERIFY_VISION_MODELS_DIR
+          value: /models/09989269558f7aa87f481b37f537422e3967b7475f4adf0c23fda30354c1bcca
+---
+suite: c263 models (pvc mode)
+release:
+  name: ov
+  namespace: verify
+templates:
+  - templates/models-pvc.yaml
+  - templates/models-fetch-job.yaml
+  - templates/vision/deployment.yaml
+  - templates/configmap.yaml
+tests:
+  - it: renders neither the claim nor the fetch Job
+    template: templates/models-pvc.yaml
+    set:
+      models.source: pvc
+      models.existingClaim: weights
+    asserts:
+      - hasDocuments:
+          count: 0
+  - it: renders no fetch Job
+    template: templates/models-fetch-job.yaml
+    set:
+      models.source: pvc
+      models.existingClaim: weights
+    asserts:
+      - hasDocuments:
+          count: 0
+  - it: mounts the operator's claim read-only in vision
+    template: templates/vision/deployment.yaml
+    set:
+      models.source: pvc
+      models.existingClaim: weights
+    asserts:
+      - contains:
+          path: spec.template.spec.volumes
+          content:
+            name: models
+            persistentVolumeClaim:
+              claimName: weights
+              readOnly: true
+      - notExists:
+          path: spec.template.spec.initContainers
+  - it: points vision at the same digest directory, which the operator filled
+    template: templates/configmap.yaml
+    set:
+      models.source: pvc
+      models.existingClaim: weights
+    documentSelector:
+      path: metadata.name
+      value: ov-openverify-vision
+    asserts:
+      - equal:
+          path: data.OPENVERIFY_VISION_MODELS_DIR
+          value: /models/09989269558f7aa87f481b37f537422e3967b7475f4adf0c23fda30354c1bcca
+---
+suite: c263 models (checks)
+release:
+  name: ov
+templates:
+  - templates/configmap.yaml
+tests:
+  - it: refuses pvc mode without the operator's claim
+    set:
+      models.source: pvc
+    asserts:
+      - failedTemplate:
+          errorPattern: models.source pvc needs models.existingClaim
+  - it: refuses a ReadOnlyMany claim in job mode, which the fetch writes
+    set:
+      models.accessMode: ReadOnlyMany
+    asserts:
+      - failedTemplate:
+          errorPattern: models.accessMode ReadOnlyMany fits only models.source pvc

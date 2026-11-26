@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "No device handoff step is waiting in this flow.",
+  "instance": "/api/v1/flow/handoffs",
+  "requestId": "00000000-0000-4000-8000-000000000715",
+  "code": "handoff_not_available"
+}

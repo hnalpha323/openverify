@@ -1,0 +1,24 @@
+{
+  "data": {
+    "type": "account-export",
+    "id": "aexp_01M5CN0000000000000011B100",
+    "attributes": {
+      "status": "pending",
+      "schema-version": "openverify.account-export.v1",
+      "created-at": "2026-11-13T12:00:00.000Z",
+      "ready-at": null,
+      "expires-at": null,
+      "item-count": null,
+      "byte-count": null,
+      "error-code": null
+    },
+    "relationships": {
+      "account": {
+        "data": {
+          "type": "account",
+          "id": "acc_01M5CJXJF84MR3PHJHBHKQ4ZC8"
+        }
+      }
+    }
+  }
+}

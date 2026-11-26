@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "A saved view cannot filter on personal data.",
+  "instance": "/api/v1/dashboard/saved-views",
+  "requestId": "00000000-0000-4000-8000-000000009b01",
+  "code": "saved_view_pii_filter",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/filters/filter[reference-id]",
+      "detail": "reference-id is personal data, so no saved view may filter on it."
+    }
+  ]
+}

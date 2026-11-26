@@ -1,0 +1,90 @@
+{
+  "data": {
+    "type": "analytics-cases",
+    "id": "83db642fc85d0186be0dd8b8a2d5a97e458892175c81367a198167d248865d59",
+    "attributes": {
+      "time-zone": "Europe/Paris",
+      "time-zones": ["Europe/Paris"],
+      "from": "2026-10-27",
+      "to": "2026-10-29",
+      "bucket": "day",
+      "threshold": 11,
+      "suppressed-cells": 1,
+      "settle-days": 30,
+      "freshness": {
+        "rolled-up-through": "2026-10-29T13:55:00.000Z",
+        "outcomes-as-of": "2026-10-28T23:05:00.000Z"
+      },
+      "buckets": [
+        {
+          "start": "2026-10-27",
+          "end": "2026-10-27",
+          "time-zone": "Europe/Paris",
+          "live": false,
+          "counts": {
+            "created": 44,
+            "resolved": 31,
+            "sla-met": 27,
+            "sla-missed": {
+              "suppressed": "small-count"
+            }
+          }
+        },
+        {
+          "start": "2026-10-28",
+          "end": "2026-10-28",
+          "time-zone": "Europe/Paris",
+          "live": false,
+          "counts": {
+            "created": 39
+          }
+        },
+        {
+          "start": "2026-10-29",
+          "end": "2026-10-29",
+          "time-zone": "Europe/Paris",
+          "live": true,
+          "counts": {
+            "created": 12
+          }
+        }
+      ],
+      "totals": {
+        "counts": {
+          "created": 95,
+          "resolved": 31,
+          "sla-met": 27,
+          "sla-missed": {
+            "suppressed": "small-count"
+          }
+        },
+        "resolution-time": {
+          "median": {
+            "lower": 14400.0,
+            "upper": 21600.0
+          },
+          "p90": {
+            "lower": 86400.0,
+            "upper": 129600.0
+          }
+        },
+        "assignees": [
+          {
+            "user-id": "usr_01M5CN00000000000000009B21",
+            "counts": {
+              "assigned": 52,
+              "resolved": 17
+            }
+          },
+          {
+            "user-id": null,
+            "counts": {
+              "assigned": 43,
+              "resolved": 14
+            }
+          }
+        ]
+      }
+    }
+  }
+}

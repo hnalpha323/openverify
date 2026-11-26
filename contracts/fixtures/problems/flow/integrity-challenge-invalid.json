@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "The integrity challenge is unknown, used or expired; the session may ask for a new one.",
+  "instance": "/api/v1/flow/integrity-tokens",
+  "requestId": "00000000-0000-4000-8000-000000010b01",
+  "code": "integrity_challenge_invalid"
+}

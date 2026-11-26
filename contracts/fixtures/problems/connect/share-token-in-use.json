@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "An inquiry was already created for this share token.",
+  "instance": "/api/v1/inquiries",
+  "requestId": "00000000-0000-4000-8000-00000011a027",
+  "code": "share_token_in_use"
+}

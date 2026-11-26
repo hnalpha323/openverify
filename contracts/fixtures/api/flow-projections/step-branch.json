@@ -1,0 +1,28 @@
+{
+  "metadata": {
+    "specVersion": 1,
+    "id": "projection-branch-step",
+    "version": 1,
+    "name": "Projection: branch step"
+  },
+  "steps": [
+    {
+      "id": "consent",
+      "type": "consent",
+      "textKeys": ["consent.biometric"],
+      "required": true
+    },
+    {
+      "id": "id_card",
+      "type": "government_id",
+      "sides": "front",
+      "maxAttempts": 1,
+      "captureMethods": ["camera"]
+    },
+    {
+      "id": "continue-1",
+      "type": "server-continuation"
+    }
+  ],
+  "transitions": []
+}

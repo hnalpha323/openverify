@@ -1,0 +1,9 @@
+{
+  "values": {
+    "nickname": "Sam",
+    "household_size": 3.5,
+    "newsletter": true,
+    "interests": ["cycling", "reading"],
+    "middle_name": null
+  }
+}

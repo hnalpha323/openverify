@@ -1,0 +1,57 @@
+{
+  "data": [
+    {
+      "type": "report-action",
+      "id": "ract_01M5Y5Z4003ZHHNS59F1VMEPT4",
+      "attributes": {
+        "action-type": "review",
+        "actor": "usr_01M5CJXHG03PHEQZPRWAH2RXM5",
+        "created-at": "2026-10-27T10:00:00.000Z",
+        "reason": null,
+        "comment": "Synthetic review note: the sandbox entry is the subject.",
+        "match-ids": ["rpm_01M5Y5Z4000JENGH3PCW0AWCA2"],
+        "review-status": "true_positive",
+        "risk-level": "material"
+      },
+      "relationships": {
+        "report": {
+          "data": {
+            "type": "report/watchlist",
+            "id": "rep_01M5Y5Z4002GV576EACWSHT2BK"
+          }
+        }
+      }
+    },
+    {
+      "type": "report-run",
+      "id": "rpr_01M5Y5Z400GEABT3VJDCS4CSVV",
+      "attributes": {
+        "run-type": "initial",
+        "status": "ready",
+        "scheduled-for": "2026-10-27T09:00:00.000Z",
+        "started-at": "2026-10-27T09:00:00.400Z",
+        "completed-at": "2026-10-27T09:00:01.250Z",
+        "match-count": 1,
+        "new-match-count": 1,
+        "notes": [],
+        "errors": [],
+        "coverage": {
+          "complete": true,
+          "limits": []
+        },
+        "created-at": "2026-10-27T09:00:00.000Z"
+      },
+      "relationships": {
+        "report": {
+          "data": {
+            "type": "report/watchlist",
+            "id": "rep_01M5Y5Z4002GV576EACWSHT2BK"
+          }
+        }
+      }
+    }
+  ],
+  "links": {
+    "next": null
+  }
+}

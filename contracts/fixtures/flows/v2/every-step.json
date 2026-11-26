@@ -1,0 +1,723 @@
+{
+  "metadata": {
+    "specVersion": 2,
+    "id": "every-step",
+    "version": 1,
+    "name": "Every v2 step, component and action",
+    "description": "Golden: one of every v2 step type, component kind and action kind (C147-C152)."
+  },
+  "entry": "consent",
+  "steps": [
+    {
+      "id": "consent",
+      "type": "consent",
+      "textKeys": ["consent.biometric", "consent.data-processing"],
+      "optionalTextKeys": ["consent.biometric-matching"],
+      "required": true
+    },
+    {
+      "id": "handoff",
+      "type": "device_handoff",
+      "methods": ["qr"]
+    },
+    {
+      "id": "about_you",
+      "type": "screen",
+      "name": "About you",
+      "components": [
+        {
+          "id": "heading",
+          "kind": "text",
+          "variant": "title",
+          "copyKey": "about_you.heading.body"
+        },
+        {
+          "id": "logo",
+          "kind": "image",
+          "assetId": "tsa_01M5CN00000000000000009A10",
+          "decorative": true
+        },
+        {
+          "id": "gap",
+          "kind": "spacer",
+          "size": "m"
+        },
+        {
+          "id": "progress",
+          "kind": "stepper",
+          "labelKeys": ["about_you.progress.title", "id_card.progress.title"],
+          "current": 0
+        },
+        {
+          "id": "names",
+          "kind": "container",
+          "direction": "horizontal",
+          "children": [
+            {
+              "id": "first_name",
+              "kind": "text_input",
+              "field": "name_first",
+              "labelKey": "about_you.first_name.label",
+              "required": true,
+              "maxLength": 100,
+              "pattern": "^[^0-9]+$"
+            },
+            {
+              "id": "last_name",
+              "kind": "text_input",
+              "field": "name_last",
+              "labelKey": "about_you.last_name.label",
+              "required": true
+            }
+          ]
+        },
+        {
+          "id": "bio",
+          "kind": "text_area",
+          "field": "occupation",
+          "labelKey": "about_you.bio.label",
+          "minLength": 2,
+          "maxLength": 500
+        },
+        {
+          "id": "income",
+          "kind": "number",
+          "field": "income",
+          "labelKey": "about_you.income.label",
+          "min": 0,
+          "max": 10000000
+        },
+        {
+          "id": "born",
+          "kind": "date",
+          "field": "birthdate",
+          "labelKey": "about_you.born.label",
+          "max": "2026-11-04"
+        },
+        {
+          "id": "email",
+          "kind": "email",
+          "field": "email",
+          "labelKey": "about_you.email.label"
+        },
+        {
+          "id": "phone",
+          "kind": "phone",
+          "field": "phone",
+          "labelKey": "about_you.phone.label",
+          "allowedCountries": ["US", "GB"]
+        },
+        {
+          "id": "purpose",
+          "kind": "select",
+          "field": "purpose",
+          "labelKey": "about_you.purpose.label",
+          "options": [
+            {
+              "key": "o1",
+              "value": "personal",
+              "labelKey": "about_you.purpose.option.o1"
+            },
+            {
+              "key": "o2",
+              "value": "business",
+              "labelKey": "about_you.purpose.option.o2"
+            }
+          ]
+        },
+        {
+          "id": "source",
+          "kind": "radio_group",
+          "field": "funds_source",
+          "labelKey": "about_you.source.label",
+          "options": [
+            {
+              "key": "o1",
+              "value": "salary",
+              "labelKey": "about_you.source.option.o1"
+            },
+            {
+              "key": "o2",
+              "value": "savings",
+              "labelKey": "about_you.source.option.o2"
+            }
+          ]
+        },
+        {
+          "id": "terms",
+          "kind": "checkbox",
+          "field": "accepts_terms",
+          "labelKey": "about_you.terms.label",
+          "required": true
+        },
+        {
+          "id": "products",
+          "kind": "checkbox_group",
+          "field": "products",
+          "labelKey": "about_you.products.label",
+          "options": [
+            {
+              "key": "o1",
+              "value": "card",
+              "labelKey": "about_you.products.option.o1"
+            }
+          ]
+        },
+        {
+          "id": "markets",
+          "kind": "multi_select",
+          "field": "markets",
+          "labelKey": "about_you.markets.label",
+          "options": [
+            {
+              "key": "o1",
+              "value": "eu",
+              "labelKey": "about_you.markets.option.o1"
+            }
+          ]
+        },
+        {
+          "id": "citizenship",
+          "kind": "country_select",
+          "field": "citizenship",
+          "labelKey": "about_you.citizenship.label",
+          "allowedCountries": ["US", "GB", "FR"]
+        },
+        {
+          "id": "website",
+          "kind": "url",
+          "field": "website",
+          "labelKey": "about_you.website.label"
+        },
+        {
+          "id": "tax_number",
+          "kind": "masked_text",
+          "field": "tax_number",
+          "labelKey": "about_you.tax_number.label",
+          "maxLength": 20,
+          "visibleWhen": {
+            "===": [
+              {
+                "var": "screen.purpose"
+              },
+              "business"
+            ]
+          }
+        },
+        {
+          "id": "home",
+          "kind": "address",
+          "labelKey": "about_you.home.label",
+          "fields": {
+            "street1": "street_1",
+            "city": "city",
+            "postalCode": "postal_code",
+            "country": "country"
+          }
+        },
+        {
+          "id": "footer",
+          "kind": "footer",
+          "children": [
+            {
+              "id": "help",
+              "kind": "button",
+              "labelKey": "about_you.help.button",
+              "action": "link",
+              "link": "help-url"
+            }
+          ]
+        },
+        {
+          "id": "later",
+          "kind": "button",
+          "labelKey": "about_you.later.button",
+          "action": "submit",
+          "port": "later"
+        },
+        {
+          "id": "cancel",
+          "kind": "button",
+          "labelKey": "about_you.cancel.button",
+          "action": "cancel"
+        },
+        {
+          "id": "submit",
+          "kind": "button",
+          "labelKey": "about_you.submit.button",
+          "action": "submit",
+          "enabledWhen": {
+            "!!": [
+              {
+                "var": "screen.accepts_terms"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "id_card",
+      "type": "government_id",
+      "sides": "both",
+      "maxAttempts": 3,
+      "captureMethods": ["camera", "upload"],
+      "captureMethodsByDevice": {
+        "desktop-web": ["upload"],
+        "mobile-web": ["camera"],
+        "native": ["camera"]
+      },
+      "onFallback": "review"
+    },
+    {
+      "id": "face",
+      "type": "selfie",
+      "poses": ["center", "left", "right"],
+      "liveness": "active",
+      "maxAttempts": 3
+    },
+    {
+      "id": "age_route",
+      "type": "branch",
+      "name": "Age",
+      "routes": [
+        {
+          "key": "minor",
+          "label": "Under 18",
+          "condition": {
+            "<": [
+              {
+                "var": "verifications.id_card.age-years"
+              },
+              18
+            ]
+          },
+          "onNull": "review"
+        },
+        {
+          "key": "risky",
+          "label": "Risky network",
+          "condition": {
+            "===": [
+              {
+                "var": "signals.inquiry/network_threat_level"
+              },
+              "high"
+            ]
+          },
+          "onNull": "skip-route"
+        }
+      ],
+      "waitFor": {
+        "facts": ["signals.inquiry/network_threat_level"],
+        "maxSeconds": 10
+      }
+    },
+    {
+      "id": "screening",
+      "type": "action",
+      "action": {
+        "kind": "run_workflow",
+        "workflowId": "wfl_01M5CN00000000000000009A11",
+        "version": "latest-published",
+        "inputs": {
+          "country": {
+            "path": "verifications.id_card.country-code"
+          },
+          "tier": {
+            "literal": "standard"
+          }
+        },
+        "timeoutSeconds": 30
+      }
+    },
+    {
+      "id": "copy_id",
+      "type": "action",
+      "action": {
+        "kind": "copy_extractions",
+        "fromStep": "id_card",
+        "mapping": {
+          "id_country": "country-code"
+        }
+      }
+    },
+    {
+      "id": "account_sync",
+      "type": "action",
+      "action": {
+        "kind": "update_account_fields",
+        "mapping": {
+          "segment": {
+            "literal": "retail"
+          }
+        }
+      }
+    },
+    {
+      "id": "tagging",
+      "type": "action",
+      "action": {
+        "kind": "tag_inquiry",
+        "add": ["flow-v2"],
+        "remove": ["legacy"]
+      }
+    },
+    {
+      "id": "review_flag",
+      "type": "action",
+      "action": {
+        "kind": "flag_for_review",
+        "reasonCode": "minor_applicant"
+      }
+    },
+    {
+      "id": "proof",
+      "type": "document",
+      "documentTypes": ["utility_bill", "bank_statement"],
+      "captureMethods": ["upload"],
+      "captureMethodsByDevice": {
+        "native": ["upload"]
+      },
+      "onFallback": "continue"
+    },
+    {
+      "id": "phone_check",
+      "type": "phone_otp",
+      "allowedCountries": ["US"],
+      "prefillFrom": "phone"
+    },
+    {
+      "id": "email_check",
+      "type": "email_otp",
+      "prefillFrom": "email"
+    },
+    {
+      "id": "records",
+      "type": "database",
+      "fields": ["name_first", "name_last", "address_country_code", "birthdate"],
+      "prefillFrom": {
+        "name_first": "name_first",
+        "birthdate": "birthdate"
+      }
+    },
+    {
+      "id": "licence",
+      "type": "aamva",
+      "source": "form",
+      "prefillFrom": {
+        "name-first": "name_first"
+      }
+    },
+    {
+      "id": "chip",
+      "type": "nfc",
+      "androidOnly": true
+    },
+    {
+      "id": "wallet",
+      "type": "crypto_wallet",
+      "chains": ["eip155:1"],
+      "signing": ["paste"]
+    },
+    {
+      "id": "business",
+      "type": "database_business",
+      "collectAssociatedPersons": true
+    },
+    {
+      "id": "business_site",
+      "type": "business_website"
+    },
+    {
+      "id": "share_back",
+      "type": "share_consent",
+      "side": "destination",
+      "withdrawalContact": "Write to privacy@example.com"
+    },
+    {
+      "id": "done",
+      "type": "completion",
+      "messageKey": "flow.completion"
+    },
+    {
+      "id": "failed_minor",
+      "type": "failure",
+      "messageKey": "flow.failure",
+      "decisionBasis": "contract",
+      "contestRoute": {
+        "url": "https://help.example.com/contest",
+        "contact": "support@example.com"
+      },
+      "biometricBasis": "explicit-consent"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "from": "consent",
+      "port": "next",
+      "to": "handoff"
+    },
+    {
+      "id": "e2",
+      "from": "handoff",
+      "port": "next",
+      "to": "about_you"
+    },
+    {
+      "id": "e3",
+      "from": "about_you",
+      "port": "next",
+      "to": "id_card"
+    },
+    {
+      "id": "e4",
+      "from": "id_card",
+      "port": "next",
+      "to": "face"
+    },
+    {
+      "id": "e5",
+      "from": "face",
+      "port": "next",
+      "to": "age_route"
+    },
+    {
+      "id": "e6",
+      "from": "screening",
+      "port": "next",
+      "to": "copy_id"
+    },
+    {
+      "id": "e7",
+      "from": "copy_id",
+      "port": "next",
+      "to": "account_sync"
+    },
+    {
+      "id": "e8",
+      "from": "account_sync",
+      "port": "next",
+      "to": "tagging"
+    },
+    {
+      "id": "e9",
+      "from": "tagging",
+      "port": "next",
+      "to": "proof"
+    },
+    {
+      "id": "e10",
+      "from": "proof",
+      "port": "next",
+      "to": "phone_check"
+    },
+    {
+      "id": "e11",
+      "from": "phone_check",
+      "port": "next",
+      "to": "email_check"
+    },
+    {
+      "id": "e12",
+      "from": "email_check",
+      "port": "next",
+      "to": "records"
+    },
+    {
+      "id": "e13",
+      "from": "records",
+      "port": "next",
+      "to": "licence"
+    },
+    {
+      "id": "e14",
+      "from": "licence",
+      "port": "next",
+      "to": "chip"
+    },
+    {
+      "id": "e15",
+      "from": "chip",
+      "port": "next",
+      "to": "wallet"
+    },
+    {
+      "id": "e16",
+      "from": "wallet",
+      "port": "next",
+      "to": "business"
+    },
+    {
+      "id": "e17",
+      "from": "business",
+      "port": "next",
+      "to": "business_site"
+    },
+    {
+      "id": "e18",
+      "from": "business_site",
+      "port": "next",
+      "to": "share_back"
+    },
+    {
+      "id": "e19",
+      "from": "about_you",
+      "port": "button:later",
+      "to": "done"
+    },
+    {
+      "id": "e20",
+      "from": "id_card",
+      "port": "exhausted",
+      "to": "proof"
+    },
+    {
+      "id": "e21",
+      "from": "age_route",
+      "port": "route:minor",
+      "to": "review_flag"
+    },
+    {
+      "id": "e22",
+      "from": "age_route",
+      "port": "route:risky",
+      "to": "review_flag"
+    },
+    {
+      "id": "e23",
+      "from": "age_route",
+      "port": "else",
+      "to": "screening"
+    },
+    {
+      "id": "e24",
+      "from": "review_flag",
+      "port": "next",
+      "to": "failed_minor"
+    },
+    {
+      "id": "e25",
+      "from": "review_flag",
+      "port": "error",
+      "to": "failed_minor"
+    },
+    {
+      "id": "e26",
+      "from": "screening",
+      "port": "error",
+      "to": "proof"
+    },
+    {
+      "id": "e27",
+      "from": "copy_id",
+      "port": "error",
+      "to": "proof"
+    },
+    {
+      "id": "e28",
+      "from": "account_sync",
+      "port": "error",
+      "to": "proof"
+    },
+    {
+      "id": "e29",
+      "from": "tagging",
+      "port": "error",
+      "to": "proof"
+    },
+    {
+      "id": "e30",
+      "from": "share_back",
+      "port": "next",
+      "to": "done"
+    }
+  ],
+  "layout": {
+    "consent": {
+      "x": 0,
+      "y": 0
+    },
+    "handoff": {
+      "x": 0,
+      "y": 120
+    },
+    "about_you": {
+      "x": 0,
+      "y": 240
+    },
+    "id_card": {
+      "x": 0,
+      "y": 360
+    },
+    "face": {
+      "x": 0,
+      "y": 480
+    },
+    "age_route": {
+      "x": 0,
+      "y": 600
+    },
+    "screening": {
+      "x": 0,
+      "y": 720
+    },
+    "copy_id": {
+      "x": 0,
+      "y": 840
+    },
+    "account_sync": {
+      "x": 0,
+      "y": 960
+    },
+    "tagging": {
+      "x": 0,
+      "y": 1080
+    },
+    "proof": {
+      "x": 0,
+      "y": 1200
+    },
+    "phone_check": {
+      "x": 0,
+      "y": 1320
+    },
+    "email_check": {
+      "x": 0,
+      "y": 1440
+    },
+    "records": {
+      "x": 0,
+      "y": 1560
+    },
+    "licence": {
+      "x": 0,
+      "y": 1680
+    },
+    "chip": {
+      "x": 0,
+      "y": 1800
+    },
+    "wallet": {
+      "x": 0,
+      "y": 1920
+    },
+    "business": {
+      "x": 0,
+      "y": 2040
+    },
+    "business_site": {
+      "x": 0,
+      "y": 2160
+    },
+    "share_back": {
+      "x": 0,
+      "y": 2200
+    },
+    "done": {
+      "x": 0,
+      "y": 2280
+    }
+  }
+}

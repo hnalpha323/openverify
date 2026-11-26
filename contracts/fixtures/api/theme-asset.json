@@ -1,0 +1,16 @@
+{
+  "data": {
+    "type": "theme-asset",
+    "id": "tsa_01M5CN00000000000000009A42",
+    "attributes": {
+      "kind": "logo",
+      "media-type": "image/png",
+      "byte-size": 18342,
+      "width": 640,
+      "height": 160,
+      "licence-attestation": null,
+      "unicode-range": null,
+      "created-at": "2026-10-20T11:55:00.000Z"
+    }
+  }
+}

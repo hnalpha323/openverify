@@ -1,0 +1,6 @@
+# Verified review findings (Phase 11, Workflow 11F)
+
+This is the Stage 3 verifier's table of the Phase 11 review's findings (C284.2, review H17), owned by the 11F verifier and then by fix-records, which sets Fixed to `yes` with the commits only for a finding a fixer reports fixed with its regression test, and adds a `confirmed` row for every other CRITICAL or HIGH item 11F handles (DAST open highs, HIGH known items and CI failures; decision 13 before 11F). `pnpm release:check` reads it in both modes and fails on any CRITICAL or HIGH row whose Verdict is not `refuted` and whose Fixed is not `yes`. Verdict is `refuted` only at a confidence of 0.8 or more, `confirmed` for a confirmed finding or a duplicate (its Summary names the original), and `plausible` for an uncertain finding or one refuted below 0.8. On 2026-11-21 the verifier received no review findings, so the table has no rows; dast-11f's complete run reported no open high finding (`docs/security/dast-2026-11-21.md`). On 2026-11-21 fix-records added no row, because 11F handled no CRITICAL or HIGH item outside the review. The known items the fixers took were MEDIUM or LOW (KP11-70, KP11-71 and KP11-78 MEDIUM, by decision 25 before 11F). No completed CI run had a failed job. The DAST runs left no open high finding.
+
+| Finding | Severity | Verdict | Fixed | Commits | Summary |
+|---|---|---|---|---|---|

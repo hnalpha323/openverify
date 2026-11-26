@@ -1,0 +1,105 @@
+{
+  "data": {
+    "type": "verification/crypto-wallet",
+    "id": "ver_01M5CKJ8K5G4T7N3DPAEH5XR2G",
+    "attributes": {
+      "status": "passed",
+      "checks": [
+        {
+          "name": "crypto_wallet_validity_detection",
+          "status": "passed",
+          "reasons": [],
+          "requirement": "required",
+          "metadata": {
+            "checksum": "absent",
+            "address-type": "evm"
+          },
+          "stage": "ga",
+          "confidence": null,
+          "provenance": {
+            "implementation-version": 1,
+            "thresholds": {
+              "require-evm-checksum": false
+            },
+            "threshold-basis": {
+              "require-evm-checksum": "provisional"
+            }
+          },
+          "category": "fraud"
+        },
+        {
+          "name": "crypto_wallet_disallowed_chain_detection",
+          "status": "not_applicable",
+          "reasons": ["no_allowlist"],
+          "requirement": "required",
+          "metadata": {},
+          "stage": "ga",
+          "confidence": null,
+          "provenance": {
+            "implementation-version": 1,
+            "thresholds": {}
+          },
+          "category": "fraud"
+        },
+        {
+          "name": "crypto_wallet_address_comparison",
+          "status": "passed",
+          "reasons": [],
+          "requirement": "required",
+          "metadata": {
+            "scheme": "eip191",
+            "high-s": false
+          },
+          "stage": "ga",
+          "confidence": null,
+          "provenance": {
+            "implementation-version": 1,
+            "thresholds": {
+              "bip137-mode": "loose",
+              "allow-high-s": true,
+              "allow-contract-wallets": false
+            },
+            "threshold-basis": {
+              "bip137-mode": "provisional",
+              "allow-high-s": "provisional",
+              "allow-contract-wallets": "provisional"
+            }
+          },
+          "category": "fraud"
+        },
+        {
+          "name": "crypto_wallet_statement_comparison",
+          "status": "passed",
+          "reasons": [],
+          "requirement": "required",
+          "metadata": {},
+          "stage": "ga",
+          "confidence": null,
+          "provenance": {
+            "implementation-version": 1,
+            "thresholds": {}
+          },
+          "category": "fraud"
+        }
+      ],
+      "wallet-address": "0x52908400098527886E0F7030069857D2E4169EE7",
+      "expected-address": null,
+      "chain-id": "eip155:1",
+      "signature-scheme": "eip191",
+      "from-rejected-handoff": false,
+      "created-at": "2026-10-20T12:05:00.000Z",
+      "updated-at": "2026-10-20T12:05:30.000Z"
+    },
+    "relationships": {
+      "inquiry": {
+        "data": {
+          "type": "inquiry",
+          "id": "inq_01M5CJXHG07XPHF3HRM6NREDH7"
+        }
+      },
+      "files": {
+        "data": []
+      }
+    }
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "data": {
+    "type": "inquiry-template-preview",
+    "id": "itmplv_01M5CN00000000000000009A01",
+    "attributes": {
+      "locale": "en-XA",
+      "spec-version": 2,
+      "steps": [
+        {
+          "id": "consent",
+          "type": "consent",
+          "textKeys": ["consent.biometric"],
+          "required": true
+        },
+        {
+          "id": "id_card",
+          "type": "government_id",
+          "sides": "front",
+          "maxAttempts": 1,
+          "captureMethods": ["camera"]
+        },
+        {
+          "id": "extra_details",
+          "type": "screen",
+          "components": [
+            {
+              "id": "title",
+              "kind": "text",
+              "variant": "title",
+              "copyKey": "extra_details.title.body"
+            },
+            {
+              "id": "nickname",
+              "kind": "text_input",
+              "field": "nickname",
+              "labelKey": "extra_details.nickname.label"
+            },
+            {
+              "id": "continue",
+              "kind": "button",
+              "labelKey": "extra_details.continue.button",
+              "action": "submit"
+            }
+          ]
+        },
+        {
+          "id": "done",
+          "type": "completion"
+        }
+      ],
+      "theme": {
+        "theme-set-id": null,
+        "revision": null,
+        "mode": "light",
+        "light": {
+          "primary": "#1f4fd1",
+          "primary-hover": "#1a43b3",
+          "on-primary": "#ffffff",
+          "danger": "#b42318",
+          "danger-hover": "#9a1e14",
+          "surface": "#ffffff",
+          "canvas": "#f6f7f9",
+          "ink": "#14171f",
+          "ink-muted": "#4b5262",
+          "line": "#d5d9e0",
+          "control": "#6b7280",
+          "focus": "#1f4fd1"
+        },
+        "dark": null,
+        "radius": 8,
+        "font": {
+          "kind": "system",
+          "platforms": ["web", "android"]
+        },
+        "logo": null,
+        "placement": "header"
+      },
+      "contrast": {
+        "status": "passed",
+        "findings": [
+          {
+            "pointer": "/data/attributes/styles/light/palette/ink-muted",
+            "foreground": "ink-muted",
+            "background": "surface",
+            "ratio": 6.98,
+            "required": 4.5,
+            "level": "warn"
+          }
+        ]
+      },
+      "copy": {
+        "extra_details.title.body": "[Á ƒéŵ ɱöŕé ðéţåîļš]"
+      },
+      "guidance": {
+        "id_card": {
+          "sides": ["front"]
+        }
+      }
+    }
+  }
+}

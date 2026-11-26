@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "A production wildcard origin needs its acknowledgement.",
+  "instance": "/api/v1/dashboard/settings",
+  "requestId": "00000000-0000-4000-8000-000000009a10",
+  "code": "embed_wildcard_unacknowledged",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/meta/acknowledge-wildcards",
+      "detail": "Required for a wildcard origin in production."
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  German copy of values/strings_business.xml, machine-drafted by android-i18n (Workflow 10A, C199.1;
+  i18n/review-status.json): where the hosted web flow has the same English text, its
+  German words are used, so both clients say the same thing. Compose Multiplatform resources:
+  positional placeholders only, ' and " written as they are, no isolate or other bidi control
+  (ResourcesTest).
+-->
+<resources>
+    <string name="openverify_business_title">Angaben zu Ihrem Unternehmen</string>
+    <string name="openverify_business_intro">Wir suchen diese Angaben in amtlichen Unternehmensregistern. Geben Sie sie so ein, wie das Unternehmen eingetragen ist.</string>
+    <string name="openverify_website_title">Geben Sie die Website Ihres Unternehmens ein</string>
+    <string name="openverify_website_intro">Wir prüfen, ob die Adresse der Website existiert. Die Website selbst öffnen wir nie.</string>
+    <string name="openverify_field_business_name">Name des Unternehmens</string>
+    <string name="openverify_field_country_code">Land der Eintragung</string>
+    <string name="openverify_field_registration_number">Registernummer</string>
+    <string name="openverify_field_lei">Rechtsträgerkennung (LEI)</string>
+    <string name="openverify_field_website_url">Adresse der Website</string>
+    <string name="openverify_field_registration_hint_gb">Für ein Unternehmen im Vereinigten Königreich die 8-stellige Companies-House-Nummer, zum Beispiel 01234567 oder SC123456.</string>
+    <string name="openverify_field_registration_hint_us">Bei einem US-Unternehmen sein SEC Central Index Key (CIK), bis zu 10 Ziffern.</string>
+    <string name="openverify_field_registration_hint">Die Nummer, die das Register dem Unternehmen gibt: bis zu 20 Buchstaben und Ziffern.</string>
+    <string name="openverify_field_lei_hint">Der 20-stellige Code aus dem weltweiten LEI-Register. Lassen Sie das Feld leer, wenn das Unternehmen keinen hat.</string>
+    <string name="openverify_field_website_hint">Mit https:// oder http://, zum Beispiel https://www.example.com.</string>
+    <string name="openverify_field_error_registration_gb">Geben Sie die 8-stellige Unternehmensnummer ein, zum Beispiel 01234567 oder SC123456.</string>
+    <string name="openverify_field_error_registration_us">Geben Sie den CIK ein: bis zu 10 Ziffern.</string>
+    <string name="openverify_field_error_registration">Geben Sie bis zu 20 Buchstaben und Ziffern ohne Leerzeichen ein.</string>
+    <string name="openverify_field_error_lei">Geben Sie die 20-stellige LEI genau so ein, wie sie eingetragen ist.</string>
+    <string name="openverify_field_error_url">Geben Sie die vollständige Webadresse ein, beginnend mit https:// oder http://.</string>
+    <string name="openverify_persons_title">Personen, denen das Unternehmen gehört oder die es leiten</string>
+    <string name="openverify_persons_intro">Sie können bis zu %1$d Personen aus Geschäftsführung, Vorstand oder Eigentümerkreis zur Prüfung im Register hinzufügen.</string>
+    <string name="openverify_person_title">Person %1$d</string>
+    <string name="openverify_person_add">Person hinzufügen</string>
+    <string name="openverify_person_remove">Person %1$d entfernen</string>
+    <string name="openverify_persons_full">Sie haben die höchstmögliche Zahl von Personen hinzugefügt.</string>
+    <string name="openverify_field_person_birthdate">Geburtsmonat oder Geburtsdatum</string>
+    <string name="openverify_field_person_birthdate_hint">Jahr und Monat, zum Beispiel 1980-04, oder das vollständige Datum.</string>
+    <string name="openverify_field_error_birth_month">Geben Sie Jahr und Monat ein, zum Beispiel 1980-04, oder das vollständige Datum, zum Beispiel 1980-04-23.</string>
+</resources>

@@ -1,0 +1,42 @@
+{
+  "metadata": {
+    "specVersion": 2,
+    "id": "projection-custom-consent",
+    "version": 1,
+    "name": "Projection: custom consent copy"
+  },
+  "entry": "consent",
+  "steps": [
+    {
+      "id": "consent",
+      "type": "consent",
+      "textKeys": ["consent.biometric"],
+      "required": true
+    },
+    {
+      "id": "id_card",
+      "type": "government_id",
+      "sides": "front",
+      "maxAttempts": 1,
+      "captureMethods": ["camera"]
+    },
+    {
+      "id": "done",
+      "type": "completion"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "from": "consent",
+      "port": "next",
+      "to": "id_card"
+    },
+    {
+      "id": "e2",
+      "from": "id_card",
+      "port": "next",
+      "to": "done"
+    }
+  ]
+}

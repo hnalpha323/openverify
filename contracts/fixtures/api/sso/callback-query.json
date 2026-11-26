@@ -1,0 +1,5 @@
+{
+  "code": "synthetic-authorization-code",
+  "state": "synthetic-state",
+  "iss": "https://idp.example.com/oauth2/default"
+}

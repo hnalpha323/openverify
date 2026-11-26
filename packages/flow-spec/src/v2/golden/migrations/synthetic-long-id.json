@@ -1,0 +1,78 @@
+{
+  "source": "synthetic: a step id so long that its branch id needs the hash suffix",
+  "flow": {
+    "metadata": {
+      "specVersion": 2,
+      "id": "long-id",
+      "version": 1,
+      "name": "Synthetic long-id"
+    },
+    "entry": "consent",
+    "steps": [
+      {
+        "id": "consent",
+        "type": "consent",
+        "textKeys": ["consent.biometric"],
+        "required": true
+      },
+      {
+        "id": "id_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "type": "government_id",
+        "sides": "front",
+        "maxAttempts": 2,
+        "captureMethods": ["camera"]
+      },
+      {
+        "id": "done",
+        "type": "completion",
+        "messageKey": "flow.completion"
+      },
+      {
+        "id": "id_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-02gdr5g",
+        "type": "branch",
+        "routes": [
+          {
+            "key": "r1",
+            "label": "Transition 1",
+            "condition": {
+              "==": [
+                {
+                  "var": "inquiry.status"
+                },
+                "pending"
+              ]
+            },
+            "onNull": "else"
+          }
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "consent",
+        "port": "next",
+        "to": "id_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      },
+      {
+        "id": "e2",
+        "from": "id_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "port": "next",
+        "to": "id_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-02gdr5g"
+      },
+      {
+        "id": "e3",
+        "from": "id_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-02gdr5g",
+        "port": "route:r1",
+        "to": "done"
+      },
+      {
+        "id": "e4",
+        "from": "id_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-02gdr5g",
+        "port": "else",
+        "to": "done"
+      }
+    ]
+  },
+  "notes": []
+}

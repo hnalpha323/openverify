@@ -1,0 +1,28 @@
+Eigen in this flow
+==================
+
+The WebAssembly file this flow serves for its on-device face guidance
+(guidance/ort-wasm-simd-threaded.wasm, from the npm package onnxruntime-web
+1.30.0) has the Eigen linear-algebra library compiled into it. Eigen is
+licensed under the Mozilla Public License, version 2.0 (MPL-2.0). The text
+of that licence is in ThirdPartyNotices.txt, beside this file, under "Eigen".
+
+Eigen is used unmodified, as ONNX Runtime's own build compiled it.
+
+Where its source is (MPL-2.0, section 3.2(a)):
+
+  The revision ONNX Runtime 1.30.0 builds, as its cmake/deps.txt at the tag
+  v1.30.0 names it:
+
+    revision  1d8b82b0740839c0de7f1242a3585e3390ff5f33
+    archive   https://github.com/eigen-mirror/eigen/archive/1d8b82b0740839c0de7f1242a3585e3390ff5f33/eigen-1d8b82b0740839c0de7f1242a3585e3390ff5f33.zip
+    mirror    https://github.com/eigen-mirror/eigen
+    upstream  https://gitlab.com/libeigen/eigen
+
+ONNX Runtime's own source, which says how Eigen is built into it:
+
+    https://github.com/microsoft/onnxruntime/tree/v1.30.0
+
+This file is OpenVerify's, not ONNX Runtime's. Keep it, LICENSE.txt and
+ThirdPartyNotices.txt with the WebAssembly file wherever the flow is
+distributed.

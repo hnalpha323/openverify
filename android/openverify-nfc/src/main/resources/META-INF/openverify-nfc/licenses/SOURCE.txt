@@ -1,0 +1,12 @@
+The licence texts in this folder were copied by a command, unchanged, from SPDX's licence list:
+
+  https://github.com/spdx/license-list-data, release v3.27.0, folder text/
+
+  LGPL-2.1-or-later.txt        JMRTD, SCUBA, cert-cvc
+  LGPL-3.0-or-later.txt        this module's own code; the file holds the GNU General Public
+                               License version 3 it is written as an addition to
+  GPL-2.0-only.txt             SCUBA's CommandAPDU.java and ResponseAPDU.java, together with
+  Classpath-exception-2.0.txt  the exception those two files come under
+
+The module's tests hold each file to its SHA-256 (LicenceTextsTest). NOTICE, beside this folder,
+says which library comes under which licence and where the two SCUBA files' source is.

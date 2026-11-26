@@ -1,0 +1,141 @@
+{{- /*
+C264.2, C263.5, C263.6 (Workflow 11C Stage 2, chart-policy-11c; B10-I1, H8, H9, review P19): default
+deny both ways for the release's pods, then one allow list per component. A policy selects pods and
+names CIDRs, never hosts, and does nothing without a network plugin that enforces it (C264.6).
+
+  api           in: its http port from any client (the ingress controller's namespace is the
+                operator's), its internal listener (C250.3) only from the flow server.
+                out: DNS, vision, the data stores, SMTP, the private identity providers, the
+                public internet (webhooks, providers, list syncs) and the listed extras.
+  worker        in: nothing. out: DNS, vision, the runner, the data stores, SMTP, the public
+                internet (webhooks, providers with Play Integrity's oauth2.googleapis.com and
+                playintegrity.googleapis.com, list syncs, Workflow 7A's publisher downloads) and the
+                listed extras.
+  migrate       in: nothing. out: DNS and Postgres (or networkPolicy.egress.dataStores).
+  vision        in: the API and the worker on its port. out: nothing, not even DNS, in every
+                models mode (Phase 5 C60.2, H9).
+  code-runner   in: the worker on its port. out: nothing (Phase 8 P17, H8).
+  dashboard     in: its port from any client. out: DNS and the API's http port only.
+  flow          in: its port from any client. out: DNS and the API's internal listener only (its
+                embed-policy lookup, Phase 9 C157).
+  models-fetch  (models.source job only) in: nothing. out: DNS and the public internet, or only
+                networkPolicy.egress.modelHosts when listed (C263.5).
+
+The public-internet rule is 0.0.0.0/0 and ::/0, each without its family's entries of
+networkPolicy.publicInternetExcept (private, loopback, link-local with the cloud metadata address,
+CGNAT, IPv6 unique-local and link-local): the SSRF guard's second layer (B10-I1). Data stores are
+reached in the cluster by selector (networkPolicy.dataStoresInCluster) and outside it by
+networkPolicy.egress.dataStores; SMTP by egress.smtp; private identity providers by
+egress.identityProviders (review P19).
+*/ -}}
+{{- if .Values.networkPolicy.enabled }}
+{{- $root := . -}}
+{{- $v := .Values -}}
+{{- $np := .Values.networkPolicy -}}
+{{- $pods := dict -}}
+{{- range $c := list "api" "worker" "vision" "flow" "dashboard" "code-runner" "migrate" "models-fetch" -}}
+{{- $_ := set $pods $c (dict "podSelector" (dict "matchLabels" (fromYaml (include "openverify.selectorLabels" (dict "root" $root "component" $c))))) -}}
+{{- end -}}
+{{- $tcp := dict -}}
+{{- range $name, $port := dict "api" $v.api.port "internal" $v.api.internalListen.port "vision" $v.vision.port "runner" $v.codeRunner.port "dashboard" $v.dashboard.port "flow" $v.flow.port -}}
+{{- $_ := set $tcp $name (list (dict "protocol" "TCP" "port" (int $port))) -}}
+{{- end -}}
+{{- $dns := dict "to" (list (dict "namespaceSelector" (dict "matchLabels" $np.dns.namespaceSelector) "podSelector" (dict "matchLabels" $np.dns.podSelector))) "ports" (list (dict "protocol" "UDP" "port" 53) (dict "protocol" "TCP" "port" 53)) -}}
+{{- $v4 := list -}}
+{{- $v6 := list -}}
+{{- range $cidr := $np.publicInternetExcept -}}
+{{- if contains ":" $cidr }}{{ $v6 = append $v6 $cidr }}{{ else }}{{ $v4 = append $v4 $cidr }}{{ end -}}
+{{- end -}}
+{{- $internet := dict "to" (list (dict "ipBlock" (dict "cidr" "0.0.0.0/0" "except" $v4)) (dict "ipBlock" (dict "cidr" "::/0" "except" $v6))) -}}
+{{- /* Each listed {cidr, ports} as one rule. */ -}}
+{{- $listed := dict -}}
+{{- range $key := list "webhooks" "providers" "listSyncs" "modelHosts" "dataStores" "smtp" "identityProviders" -}}
+{{- $rules := list -}}
+{{- range $entry := (index $np.egress $key | default list) -}}
+{{- $ports := list -}}
+{{- range $port := $entry.ports }}{{ $ports = append $ports (dict "protocol" "TCP" "port" (int $port)) }}{{ end -}}
+{{- $rules = append $rules (dict "to" (list (dict "ipBlock" (dict "cidr" $entry.cidr))) "ports" $ports) -}}
+{{- end -}}
+{{- $_ := set $listed $key $rules -}}
+{{- end -}}
+{{- /* The in-cluster stores by selector. */ -}}
+{{- $inCluster := dict "postgres" list "valkey" list "s3" list -}}
+{{- if $np.dataStoresInCluster.enabled -}}
+{{- range $store := list "postgres" "valkey" "s3" -}}
+{{- $block := index $np.dataStoresInCluster $store -}}
+{{- $_ := set $inCluster $store (list (dict "to" (list (dict "namespaceSelector" (dict "matchLabels" ($np.dataStoresInCluster.namespaceSelector | default dict)) "podSelector" (dict "matchLabels" ($block.podSelector | default dict)))) "ports" (list (dict "protocol" "TCP" "port" (int $block.port))))) -}}
+{{- end -}}
+{{- end -}}
+{{- $stores := concat $inCluster.postgres $inCluster.valkey $inCluster.s3 $listed.dataStores -}}
+{{- $extras := concat $listed.webhooks $listed.providers $listed.listSyncs -}}
+{{- $runner := list -}}
+{{- if $v.codeRunner.enabled -}}
+{{- $runner = list (dict "to" (list (index $pods "code-runner")) "ports" $tcp.runner) -}}
+{{- end -}}
+{{- $toVision := dict "to" (list $pods.vision) "ports" $tcp.vision -}}
+
+{{- $policies := list
+  (list "api"
+    (list (dict "ports" $tcp.api) (dict "from" (list $pods.flow) "ports" $tcp.internal))
+    (concat (list $dns $toVision) $stores $listed.smtp $listed.identityProviders (list $internet) $extras))
+  (list "worker"
+    list
+    (concat (list $dns $toVision) $runner $stores $listed.smtp (list $internet) $extras))
+  (list "migrate"
+    list
+    (concat (list $dns) $inCluster.postgres $listed.dataStores))
+  (list "vision"
+    (list (dict "from" (list $pods.api $pods.worker) "ports" $tcp.vision))
+    list)
+  (list "dashboard"
+    (list (dict "ports" $tcp.dashboard))
+    (list $dns (dict "to" (list $pods.api) "ports" $tcp.api)))
+  (list "flow"
+    (list (dict "ports" $tcp.flow))
+    (list $dns (dict "to" (list $pods.api) "ports" $tcp.internal))) -}}
+{{- if $v.codeRunner.enabled -}}
+{{- $policies = append $policies (list "code-runner" (list (dict "from" (list $pods.worker) "ports" $tcp.runner)) list) -}}
+{{- end -}}
+{{- if eq $v.models.source "job" -}}
+{{- $policies = append $policies (list "models-fetch" list (concat (list $dns) (ternary $listed.modelHosts (list $internet) (gt (len $listed.modelHosts) 0)))) -}}
+{{- end }}
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ include "openverify.componentName" (dict "root" $root "component" "default-deny") }}
+  labels:
+    {{- include "openverify.labels" (dict "root" $root "component" "network-policy") | nindent 4 }}
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "openverify.name" $root }}
+      app.kubernetes.io/instance: {{ $root.Release.Name }}
+  policyTypes:
+    - Ingress
+    - Egress
+{{- range $policy := $policies }}
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ include "openverify.componentName" (dict "root" $root "component" (index $policy 0)) }}
+  labels:
+    {{- include "openverify.labels" (dict "root" $root "component" "network-policy") | nindent 4 }}
+spec:
+  podSelector:
+    {{- toYaml (index $pods (index $policy 0)).podSelector | nindent 4 }}
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    {{- with (index $policy 1) }}
+    {{- toYaml . | nindent 4 }}
+    {{- else }} []
+    {{- end }}
+  egress:
+    {{- with (index $policy 2) }}
+    {{- toYaml . | nindent 4 }}
+    {{- else }} []
+    {{- end }}
+{{- end }}
+{{- end }}

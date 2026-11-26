@@ -1,0 +1,12 @@
+- main:
+    - region "Upload a document":
+        - heading "Upload a document" [level=1]
+        - paragraph: Upload a document that shows your full name and your address.
+        - paragraph: Attempt 1 of 3
+        - paragraph: 'You can upload one of these:'
+        - list "You can upload one of these:":
+            - listitem: /A utility bill dated within the last \d+ days/
+        - paragraph: /Upload it as a PDF, JPEG, PNG, or WebP file of up to \d+ MB\./
+        - paragraph: /A PDF can have up to \d+ pages\./
+        - button "Choose a file"
+        - button "Take a photo"

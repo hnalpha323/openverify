@@ -1,0 +1,132 @@
+# ct install's values on kind (Workflow 11C chart-policy-11c; C265.4, review F14, verification V15),
+# installed by ci/kind.sh install into the namespace openverify, which enforces the restricted Pod
+# Security Standard, over the stores of ci/fixtures/ (Postgres with the migration and runtime roles,
+# Valkey, RustFS) and the Secrets kind.sh fixtures generates at random per run. The images are the
+# local builds kind.sh load put on the node (tag 11c-local, never pulled). models.source pvc: the
+# weights come from kind.sh models, so nothing is downloaded inside the run. Non-production mode,
+# because the smoke seeds a sandbox API key with the image's compiled seed command, which refuses
+# production mode. One replica each, smaller requests, for one kind node.
+install:
+  mode: development
+publicUrls:
+  api: http://api.openverify.test
+  flow: http://verify.openverify.test
+  dashboard: http://console.openverify.test
+external:
+  postgres:
+    existingSecret: openverify-ci-postgres
+    migrationSecret: openverify-ci-postgres-migration
+    runtimeRole: openverify_runtime
+  valkey:
+    existingSecret: openverify-ci-valkey
+  s3:
+    endpoint: http://rustfs.openverify-fixtures.svc:9000
+    region: us-east-1
+    bucket: openverify-files
+    forcePathStyle: true
+    existingSecret: openverify-ci-s3
+secrets:
+  api:
+    existingSecret: openverify-ci-api
+    keys:
+      - OPENVERIFY_KEK
+      - OPENVERIFY_BLIND_INDEX_KEY
+      - OPENVERIFY_API_KEY_PEPPER
+      - OPENVERIFY_VISION_SERVICE_TOKEN
+      - OPENVERIFY_DASHBOARD_BFF_TOKEN
+      - OPENVERIFY_FLOW_SERVER_TOKEN
+  worker:
+    existingSecret: openverify-ci-worker
+    keys:
+      - OPENVERIFY_KEK
+      - OPENVERIFY_BLIND_INDEX_KEY
+      - OPENVERIFY_API_KEY_PEPPER
+      - OPENVERIFY_VISION_SERVICE_TOKEN
+      - OPENVERIFY_CODE_RUNNER_TOKEN
+  migrate:
+    existingSecret: openverify-ci-migrate
+    keys:
+      - OPENVERIFY_KEK
+  dashboard:
+    existingSecret: openverify-ci-dashboard
+    keys:
+      - OPENVERIFY_DASHBOARD_BFF_TOKEN
+  flow:
+    existingSecret: openverify-ci-flow
+    keys:
+      - OPENVERIFY_FLOW_SERVER_TOKEN
+  codeRunner:
+    existingSecret: openverify-ci-code-runner
+    keys:
+      - OPENVERIFY_CODE_RUNNER_TOKEN
+  vision:
+    existingSecret: openverify-ci-vision
+    keys:
+      - OPENVERIFY_VISION_SERVICE_TOKEN
+ingress:
+  enabled: false
+networkPolicy:
+  enabled: true
+  dataStoresInCluster:
+    enabled: true
+    namespaceSelector:
+      kubernetes.io/metadata.name: openverify-fixtures
+    postgres:
+      podSelector: { app: postgres }
+      port: 5432
+    valkey:
+      podSelector: { app: valkey }
+      port: 6379
+    s3:
+      podSelector: { app: rustfs }
+      port: 9000
+models:
+  source: pvc
+  existingClaim: openverify-models
+  accessMode: ReadWriteOnce
+migrate:
+  image: { repository: openverify/api, tag: 11c-local, pullPolicy: Never }
+modelsFetch:
+  image: { repository: openverify/vision, tag: 11c-local, pullPolicy: Never }
+api:
+  image: { repository: openverify/api, tag: 11c-local, pullPolicy: Never }
+  replicaCount: 1
+  podDisruptionBudget: { enabled: false, minAvailable: 1 }
+  resources:
+    requests: { cpu: 50m, memory: 128Mi }
+    limits: { memory: 1Gi }
+worker:
+  image: { repository: openverify/api, tag: 11c-local, pullPolicy: Never }
+  replicaCount: 1
+  podDisruptionBudget: { enabled: false, minAvailable: 1 }
+  resources:
+    requests: { cpu: 50m, memory: 128Mi }
+    limits: { memory: 1536Mi }
+dashboard:
+  image: { repository: openverify/dashboard, tag: 11c-local, pullPolicy: Never }
+  replicaCount: 1
+  podDisruptionBudget: { enabled: false, minAvailable: 1 }
+  resources:
+    requests: { cpu: 50m, memory: 128Mi }
+    limits: { memory: 1Gi }
+flow:
+  image: { repository: openverify/flow, tag: 11c-local, pullPolicy: Never }
+  replicaCount: 1
+  podDisruptionBudget: { enabled: false, minAvailable: 1 }
+  resources:
+    requests: { cpu: 50m, memory: 128Mi }
+    limits: { memory: 1Gi }
+vision:
+  image: { repository: openverify/vision, tag: 11c-local, pullPolicy: Never }
+  replicaCount: 1
+  podDisruptionBudget: { enabled: false, minAvailable: 1 }
+  resources:
+    requests: { cpu: 100m, memory: 512Mi }
+    limits: { memory: 4Gi }
+codeRunner:
+  image: { repository: openverify/code-runner, tag: 11c-local, pullPolicy: Never }
+  replicaCount: 1
+  podDisruptionBudget: { enabled: false, minAvailable: 1 }
+  resources:
+    requests: { cpu: 50m, memory: 128Mi }
+    limits: { memory: 1Gi }

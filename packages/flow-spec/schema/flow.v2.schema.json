@@ -1,0 +1,1657 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:openverify:flow-spec:2",
+  "title": "OpenVerify verification flow, spec 2",
+  "description": "A graph of steps and port-labelled edges. The graph, component, field and publish rules are enforced by checkFlowGraph() in @openverify/flow-spec.",
+  "$ref": "#/$defs/FlowV2",
+  "$defs": {
+    "FlowV2": {
+      "type": "object",
+      "properties": {
+        "metadata": { "$ref": "#/$defs/FlowMetadataV2" },
+        "entry": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "steps": {
+          "minItems": 1,
+          "maxItems": 200,
+          "type": "array",
+          "items": {
+            "oneOf": [
+              { "$ref": "#/$defs/ConsentStep" },
+              { "$ref": "#/$defs/GovernmentIdStepV2" },
+              { "$ref": "#/$defs/SelfieStepV2" },
+              { "$ref": "#/$defs/DocumentStepV2" },
+              { "$ref": "#/$defs/PhoneOtpStepV2" },
+              { "$ref": "#/$defs/EmailOtpStepV2" },
+              { "$ref": "#/$defs/DatabaseStepV2" },
+              { "$ref": "#/$defs/AamvaStepV2" },
+              { "$ref": "#/$defs/NfcStepV2" },
+              { "$ref": "#/$defs/CryptoWalletStepV2" },
+              { "$ref": "#/$defs/DatabaseBusinessStepV2" },
+              { "$ref": "#/$defs/BusinessWebsiteStepV2" },
+              { "$ref": "#/$defs/DeviceHandoffStep" },
+              { "$ref": "#/$defs/CompletionStep" },
+              { "$ref": "#/$defs/FailureStepV2" },
+              { "$ref": "#/$defs/ScreenStep" },
+              { "$ref": "#/$defs/BranchStep" },
+              { "$ref": "#/$defs/ActionStep" },
+              { "$ref": "#/$defs/ShareConsentStep" }
+            ]
+          }
+        },
+        "edges": { "maxItems": 400, "type": "array", "items": { "$ref": "#/$defs/Edge" } },
+        "layout": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+            "description": "Step identifier, unique within the flow."
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "x": { "type": "number", "minimum": -1000000, "maximum": 1000000 },
+              "y": { "type": "number", "minimum": -1000000, "maximum": 1000000 }
+            },
+            "required": ["x", "y"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["metadata", "entry", "steps", "edges"],
+      "additionalProperties": false
+    },
+    "FlowMetadataV2": {
+      "type": "object",
+      "properties": {
+        "specVersion": { "type": "number", "const": 2 },
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+        "version": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 },
+        "name": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "description": { "type": "string", "maxLength": 2000 }
+      },
+      "required": ["specVersion", "id", "version", "name"],
+      "additionalProperties": false
+    },
+    "ConsentStep": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": { "type": "string", "const": "consent" },
+        "textKeys": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 200,
+            "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+          }
+        },
+        "optionalTextKeys": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 200,
+            "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+          },
+          "uniqueItems": true
+        },
+        "required": { "type": "boolean" }
+      },
+      "required": ["id", "type", "textKeys", "required"],
+      "additionalProperties": false
+    },
+    "GovernmentIdStepV2": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": { "type": "string", "const": "government_id" },
+        "sides": { "type": "string", "enum": ["front", "back", "both"] },
+        "allowedCountries": {
+          "minItems": 1,
+          "type": "array",
+          "items": { "type": "string", "pattern": "^[A-Z]{2}$" },
+          "uniqueItems": true
+        },
+        "allowedIdClasses": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "passport",
+              "passport_card",
+              "drivers_license",
+              "national_id",
+              "residence_permit",
+              "visa",
+              "work_permit",
+              "military_id",
+              "voter_id",
+              "travel_document"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "maxAttempts": { "type": "integer", "minimum": 1, "maximum": 10 },
+        "captureMethods": {
+          "minItems": 1,
+          "type": "array",
+          "items": { "type": "string", "enum": ["upload", "camera"] },
+          "uniqueItems": true
+        },
+        "onFallback": { "type": "string", "enum": ["review", "continue"] },
+        "captureMethodsByDevice": {
+          "type": "object",
+          "properties": {
+            "desktop-web": {
+              "minItems": 1,
+              "type": "array",
+              "items": { "type": "string", "enum": ["upload", "camera"] },
+              "uniqueItems": true
+            },
+            "mobile-web": {
+              "minItems": 1,
+              "type": "array",
+              "items": { "type": "string", "enum": ["upload", "camera"] },
+              "uniqueItems": true
+            },
+            "native": {
+              "minItems": 1,
+              "type": "array",
+              "items": { "type": "string", "enum": ["upload", "camera"] },
+              "uniqueItems": true
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": ["id", "type", "sides", "maxAttempts", "captureMethods"],
+      "additionalProperties": false
+    },
+    "SelfieStepV2": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": { "type": "string", "const": "selfie" },
+        "poses": {
+          "minItems": 1,
+          "type": "array",
+          "items": { "type": "string", "enum": ["center", "left", "right"] },
+          "uniqueItems": true
+        },
+        "liveness": { "type": "string", "enum": ["passive", "active"] },
+        "maxAttempts": { "type": "integer", "minimum": 1, "maximum": 10 },
+        "onFallback": { "type": "string", "enum": ["review", "continue"] }
+      },
+      "required": ["id", "type", "poses", "liveness", "maxAttempts"],
+      "additionalProperties": false
+    },
+    "DocumentStepV2": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": { "type": "string", "const": "document" },
+        "documentTypes": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["utility_bill", "bank_statement", "lease", "pay_stub", "tax_document"]
+          },
+          "uniqueItems": true
+        },
+        "captureMethods": {
+          "minItems": 1,
+          "type": "array",
+          "items": { "type": "string", "enum": ["upload", "camera"] },
+          "uniqueItems": true
+        },
+        "maxAttempts": { "type": "integer", "minimum": 1, "maximum": 10 },
+        "onFallback": { "type": "string", "enum": ["review", "continue"] },
+        "captureMethodsByDevice": {
+          "type": "object",
+          "properties": {
+            "desktop-web": {
+              "minItems": 1,
+              "type": "array",
+              "items": { "type": "string", "enum": ["upload", "camera"] },
+              "uniqueItems": true
+            },
+            "mobile-web": {
+              "minItems": 1,
+              "type": "array",
+              "items": { "type": "string", "enum": ["upload", "camera"] },
+              "uniqueItems": true
+            },
+            "native": {
+              "minItems": 1,
+              "type": "array",
+              "items": { "type": "string", "enum": ["upload", "camera"] },
+              "uniqueItems": true
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": ["id", "type", "documentTypes", "captureMethods"],
+      "additionalProperties": false
+    },
+    "PhoneOtpStepV2": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": { "type": "string", "const": "phone_otp" },
+        "allowedCountries": {
+          "minItems": 1,
+          "type": "array",
+          "items": { "type": "string", "pattern": "^[A-Z]{2}$" },
+          "uniqueItems": true
+        },
+        "codeLength": { "type": "integer", "minimum": 6, "maximum": 10 },
+        "allowVoip": { "type": "boolean" },
+        "maxAttempts": { "type": "integer", "minimum": 1, "maximum": 10 },
+        "onFallback": { "type": "string", "enum": ["review", "continue"] },
+        "prefillFrom": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$" }
+      },
+      "required": ["id", "type", "allowedCountries"],
+      "additionalProperties": false
+    },
+    "EmailOtpStepV2": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": { "type": "string", "const": "email_otp" },
+        "codeLength": { "type": "integer", "minimum": 6, "maximum": 10 },
+        "maxAttempts": { "type": "integer", "minimum": 1, "maximum": 10 },
+        "onFallback": { "type": "string", "enum": ["review", "continue"] },
+        "prefillFrom": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$" }
+      },
+      "required": ["id", "type"],
+      "additionalProperties": false
+    },
+    "DatabaseStepV2": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": { "type": "string", "const": "database" },
+        "fields": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "name_first",
+              "name_middle",
+              "name_last",
+              "birthdate",
+              "address_street_1",
+              "address_street_2",
+              "address_city",
+              "address_subdivision",
+              "address_postal_code",
+              "address_country_code",
+              "identification_number",
+              "phone_number",
+              "email_address"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "requiredFields": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "name_first",
+              "name_middle",
+              "name_last",
+              "birthdate",
+              "address_street_1",
+              "address_street_2",
+              "address_city",
+              "address_subdivision",
+              "address_postal_code",
+              "address_country_code",
+              "identification_number",
+              "phone_number",
+              "email_address"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "maxAttempts": { "type": "integer", "minimum": 1, "maximum": 10 },
+        "onFallback": { "type": "string", "enum": ["review", "continue"] },
+        "prefillFrom": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "enum": [
+              "name_first",
+              "name_middle",
+              "name_last",
+              "birthdate",
+              "address_street_1",
+              "address_street_2",
+              "address_city",
+              "address_subdivision",
+              "address_postal_code",
+              "address_country_code",
+              "identification_number",
+              "phone_number",
+              "email_address"
+            ]
+          },
+          "additionalProperties": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$" }
+        }
+      },
+      "required": ["id", "type", "fields"],
+      "additionalProperties": false
+    },
+    "AamvaStepV2": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": { "type": "string", "const": "aamva" },
+        "source": { "type": "string", "enum": ["government_id", "form"] },
+        "maxAttempts": { "type": "integer", "minimum": 1, "maximum": 10 },
+        "onFallback": { "type": "string", "enum": ["review", "continue"] },
+        "prefillFrom": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "enum": [
+              "name-first",
+              "name-last",
+              "birthdate",
+              "identification-number",
+              "issuing-authority",
+              "issue-date",
+              "expiration-date",
+              "address-postal-code"
+            ]
+          },
+          "additionalProperties": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$" }
+        }
+      },
+      "required": ["id", "type", "source"],
+      "additionalProperties": false
+    },
+    "NfcStepV2": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": { "type": "string", "const": "nfc" },
+        "androidOnly": { "type": "boolean", "const": true },
+        "maxAttempts": { "type": "integer", "minimum": 1, "maximum": 10 },
+        "onFallback": { "type": "string", "enum": ["review", "continue"] }
+      },
+      "required": ["id", "type", "androidOnly"],
+      "additionalProperties": false
+    },
+    "CryptoWalletStepV2": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": { "type": "string", "const": "crypto_wallet" },
+        "chains": {
+          "minItems": 1,
+          "type": "array",
+          "items": { "type": "string", "maxLength": 64 },
+          "uniqueItems": true
+        },
+        "signing": {
+          "minItems": 1,
+          "type": "array",
+          "items": { "type": "string", "enum": ["wallet", "paste"] },
+          "uniqueItems": true
+        },
+        "maxAttempts": { "type": "integer", "minimum": 1, "maximum": 10 },
+        "onFallback": { "type": "string", "enum": ["review", "continue"] }
+      },
+      "required": ["id", "type", "chains", "signing"],
+      "additionalProperties": false
+    },
+    "DatabaseBusinessStepV2": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": { "type": "string", "const": "database_business" },
+        "collectAssociatedPersons": { "type": "boolean" },
+        "maxAttempts": { "type": "integer", "minimum": 1, "maximum": 10 },
+        "onFallback": { "type": "string", "enum": ["review", "continue"] }
+      },
+      "required": ["id", "type"],
+      "additionalProperties": false
+    },
+    "BusinessWebsiteStepV2": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": { "type": "string", "const": "business_website" },
+        "maxAttempts": { "type": "integer", "minimum": 1, "maximum": 10 },
+        "onFallback": { "type": "string", "enum": ["review", "continue"] }
+      },
+      "required": ["id", "type"],
+      "additionalProperties": false
+    },
+    "DeviceHandoffStep": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": { "type": "string", "const": "device_handoff" },
+        "methods": {
+          "minItems": 1,
+          "maxItems": 3,
+          "type": "array",
+          "items": { "type": "string", "enum": ["qr", "email", "sms"] }
+        },
+        "qrTtlSeconds": { "type": "integer", "minimum": 120, "maximum": 900 },
+        "linkTtlSeconds": { "type": "integer", "minimum": 300, "maximum": 3600 },
+        "confirmationCode": { "type": "boolean" },
+        "skipOnMobile": { "type": "boolean" },
+        "allowContinueHere": { "type": "boolean" }
+      },
+      "required": ["id", "type"],
+      "additionalProperties": false
+    },
+    "CompletionStep": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": { "type": "string", "const": "completion" },
+        "messageKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        }
+      },
+      "required": ["id", "type"],
+      "additionalProperties": false
+    },
+    "FailureStepV2": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": { "type": "string", "const": "failure" },
+        "messageKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "decisionBasis": { "type": "string", "enum": ["contract", "law", "explicit-consent"] },
+        "contestRoute": {
+          "type": "object",
+          "properties": {
+            "url": { "type": "string", "maxLength": 2048, "format": "uri" },
+            "contact": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^\\P{Cc}+$"
+            },
+            "caseTemplateId": { "type": "string", "pattern": "^ctmpl_[0-7][0-9A-HJKMNP-TV-Z]{25}$" }
+          },
+          "additionalProperties": false
+        },
+        "biometricBasis": {
+          "type": "string",
+          "enum": ["explicit-consent", "substantial-public-interest"]
+        }
+      },
+      "required": ["id", "type"],
+      "additionalProperties": false
+    },
+    "ScreenStep": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": { "type": "string", "const": "screen" },
+        "name": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "components": {
+          "minItems": 1,
+          "maxItems": 40,
+          "type": "array",
+          "items": { "$ref": "#/$defs/FlowComponent" }
+        }
+      },
+      "required": ["id", "type", "components"],
+      "additionalProperties": false
+    },
+    "FlowComponent": {
+      "oneOf": [
+        { "$ref": "#/$defs/TextComponent" },
+        { "$ref": "#/$defs/ImageComponent" },
+        { "$ref": "#/$defs/SpacerComponent" },
+        { "$ref": "#/$defs/ContainerComponent" },
+        { "$ref": "#/$defs/FooterComponent" },
+        { "$ref": "#/$defs/StepperComponent" },
+        { "$ref": "#/$defs/TextInputComponent" },
+        { "$ref": "#/$defs/TextAreaComponent" },
+        { "$ref": "#/$defs/NumberComponent" },
+        { "$ref": "#/$defs/DateComponent" },
+        { "$ref": "#/$defs/EmailComponent" },
+        { "$ref": "#/$defs/PhoneComponent" },
+        { "$ref": "#/$defs/SelectComponent" },
+        { "$ref": "#/$defs/RadioGroupComponent" },
+        { "$ref": "#/$defs/CheckboxComponent" },
+        { "$ref": "#/$defs/CheckboxGroupComponent" },
+        { "$ref": "#/$defs/MultiSelectComponent" },
+        { "$ref": "#/$defs/CountrySelectComponent" },
+        { "$ref": "#/$defs/UrlComponent" },
+        { "$ref": "#/$defs/MaskedTextComponent" },
+        { "$ref": "#/$defs/AddressComponent" },
+        { "$ref": "#/$defs/ButtonComponent" }
+      ]
+    },
+    "TextComponent": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+        "visibleWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "enabledWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "kind": { "type": "string", "const": "text" },
+        "variant": { "type": "string", "enum": ["title", "body", "caption"] },
+        "copyKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        }
+      },
+      "required": ["id", "kind", "variant", "copyKey"],
+      "additionalProperties": false
+    },
+    "ImageComponent": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+        "visibleWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "enabledWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "kind": { "type": "string", "const": "image" },
+        "assetId": { "type": "string", "pattern": "^tsa_[0-7][0-9A-HJKMNP-TV-Z]{25}$" },
+        "altKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "decorative": { "type": "boolean" }
+      },
+      "required": ["id", "kind", "assetId", "decorative"],
+      "additionalProperties": false
+    },
+    "SpacerComponent": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+        "visibleWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "enabledWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "kind": { "type": "string", "const": "spacer" },
+        "size": { "type": "string", "enum": ["s", "m", "l"] }
+      },
+      "required": ["id", "kind", "size"],
+      "additionalProperties": false
+    },
+    "ContainerComponent": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+        "visibleWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "enabledWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "kind": { "type": "string", "const": "container" },
+        "direction": { "type": "string", "enum": ["vertical", "horizontal"] },
+        "children": {
+          "minItems": 1,
+          "maxItems": 40,
+          "type": "array",
+          "items": { "$ref": "#/$defs/FlowComponent" }
+        }
+      },
+      "required": ["id", "kind", "direction", "children"],
+      "additionalProperties": false
+    },
+    "FooterComponent": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+        "visibleWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "enabledWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "kind": { "type": "string", "const": "footer" },
+        "children": {
+          "minItems": 1,
+          "maxItems": 40,
+          "type": "array",
+          "items": { "$ref": "#/$defs/FlowComponent" }
+        }
+      },
+      "required": ["id", "kind", "children"],
+      "additionalProperties": false
+    },
+    "StepperComponent": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+        "visibleWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "enabledWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "kind": { "type": "string", "const": "stepper" },
+        "labelKeys": {
+          "minItems": 1,
+          "maxItems": 20,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 200,
+            "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+          }
+        },
+        "current": { "type": "integer", "minimum": 0, "maximum": 9007199254740991 }
+      },
+      "required": ["id", "kind", "labelKeys", "current"],
+      "additionalProperties": false
+    },
+    "TextInputComponent": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+        "visibleWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "enabledWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "field": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$" },
+        "labelKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "hintKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "required": { "type": "boolean" },
+        "kind": { "type": "string", "const": "text_input" },
+        "minLength": { "type": "integer", "minimum": 0, "maximum": 10000 },
+        "maxLength": { "type": "integer", "minimum": 1, "maximum": 10000 },
+        "pattern": { "type": "string", "minLength": 1, "maxLength": 500 }
+      },
+      "required": ["id", "field", "labelKey", "kind"],
+      "additionalProperties": false
+    },
+    "TextAreaComponent": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+        "visibleWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "enabledWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "field": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$" },
+        "labelKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "hintKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "required": { "type": "boolean" },
+        "kind": { "type": "string", "const": "text_area" },
+        "minLength": { "type": "integer", "minimum": 0, "maximum": 10000 },
+        "maxLength": { "type": "integer", "minimum": 1, "maximum": 10000 },
+        "pattern": { "type": "string", "minLength": 1, "maxLength": 500 }
+      },
+      "required": ["id", "field", "labelKey", "kind"],
+      "additionalProperties": false
+    },
+    "NumberComponent": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+        "visibleWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "enabledWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "field": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$" },
+        "labelKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "hintKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "required": { "type": "boolean" },
+        "kind": { "type": "string", "const": "number" },
+        "min": { "type": "number" },
+        "max": { "type": "number" }
+      },
+      "required": ["id", "field", "labelKey", "kind"],
+      "additionalProperties": false
+    },
+    "DateComponent": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+        "visibleWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "enabledWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "field": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$" },
+        "labelKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "hintKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "required": { "type": "boolean" },
+        "kind": { "type": "string", "const": "date" },
+        "min": {
+          "type": "string",
+          "format": "date",
+          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+        },
+        "max": {
+          "type": "string",
+          "format": "date",
+          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+        }
+      },
+      "required": ["id", "field", "labelKey", "kind"],
+      "additionalProperties": false
+    },
+    "EmailComponent": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+        "visibleWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "enabledWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "field": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$" },
+        "labelKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "hintKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "required": { "type": "boolean" },
+        "kind": { "type": "string", "const": "email" }
+      },
+      "required": ["id", "field", "labelKey", "kind"],
+      "additionalProperties": false
+    },
+    "PhoneComponent": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+        "visibleWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "enabledWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "field": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$" },
+        "labelKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "hintKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "required": { "type": "boolean" },
+        "kind": { "type": "string", "const": "phone" },
+        "allowedCountries": {
+          "minItems": 1,
+          "type": "array",
+          "items": { "type": "string", "pattern": "^[A-Z]{2}$" },
+          "uniqueItems": true
+        }
+      },
+      "required": ["id", "field", "labelKey", "kind"],
+      "additionalProperties": false
+    },
+    "SelectComponent": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+        "visibleWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "enabledWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "field": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$" },
+        "labelKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "hintKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "required": { "type": "boolean" },
+        "kind": { "type": "string", "const": "select" },
+        "options": {
+          "minItems": 1,
+          "maxItems": 1000,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": { "type": "string", "pattern": "^[a-z0-9_]{1,40}$" },
+              "value": { "type": "string", "minLength": 1, "maxLength": 200 },
+              "labelKey": {
+                "type": "string",
+                "maxLength": 200,
+                "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+              }
+            },
+            "required": ["key", "value", "labelKey"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["id", "field", "labelKey", "kind", "options"],
+      "additionalProperties": false
+    },
+    "RadioGroupComponent": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+        "visibleWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "enabledWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "field": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$" },
+        "labelKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "hintKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "required": { "type": "boolean" },
+        "kind": { "type": "string", "const": "radio_group" },
+        "options": {
+          "minItems": 1,
+          "maxItems": 1000,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": { "type": "string", "pattern": "^[a-z0-9_]{1,40}$" },
+              "value": { "type": "string", "minLength": 1, "maxLength": 200 },
+              "labelKey": {
+                "type": "string",
+                "maxLength": 200,
+                "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+              }
+            },
+            "required": ["key", "value", "labelKey"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["id", "field", "labelKey", "kind", "options"],
+      "additionalProperties": false
+    },
+    "CheckboxComponent": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+        "visibleWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "enabledWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "field": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$" },
+        "labelKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "hintKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "required": { "type": "boolean" },
+        "kind": { "type": "string", "const": "checkbox" }
+      },
+      "required": ["id", "field", "labelKey", "kind"],
+      "additionalProperties": false
+    },
+    "CheckboxGroupComponent": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+        "visibleWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "enabledWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "field": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$" },
+        "labelKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "hintKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "required": { "type": "boolean" },
+        "kind": { "type": "string", "const": "checkbox_group" },
+        "options": {
+          "minItems": 1,
+          "maxItems": 1000,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": { "type": "string", "pattern": "^[a-z0-9_]{1,40}$" },
+              "value": { "type": "string", "minLength": 1, "maxLength": 200 },
+              "labelKey": {
+                "type": "string",
+                "maxLength": 200,
+                "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+              }
+            },
+            "required": ["key", "value", "labelKey"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["id", "field", "labelKey", "kind", "options"],
+      "additionalProperties": false
+    },
+    "MultiSelectComponent": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+        "visibleWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "enabledWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "field": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$" },
+        "labelKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "hintKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "required": { "type": "boolean" },
+        "kind": { "type": "string", "const": "multi_select" },
+        "options": {
+          "minItems": 1,
+          "maxItems": 1000,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": { "type": "string", "pattern": "^[a-z0-9_]{1,40}$" },
+              "value": { "type": "string", "minLength": 1, "maxLength": 200 },
+              "labelKey": {
+                "type": "string",
+                "maxLength": 200,
+                "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+              }
+            },
+            "required": ["key", "value", "labelKey"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["id", "field", "labelKey", "kind", "options"],
+      "additionalProperties": false
+    },
+    "CountrySelectComponent": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+        "visibleWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "enabledWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "field": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$" },
+        "labelKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "hintKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "required": { "type": "boolean" },
+        "kind": { "type": "string", "const": "country_select" },
+        "allowedCountries": {
+          "minItems": 1,
+          "type": "array",
+          "items": { "type": "string", "pattern": "^[A-Z]{2}$" },
+          "uniqueItems": true
+        }
+      },
+      "required": ["id", "field", "labelKey", "kind"],
+      "additionalProperties": false
+    },
+    "UrlComponent": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+        "visibleWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "enabledWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "field": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$" },
+        "labelKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "hintKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "required": { "type": "boolean" },
+        "kind": { "type": "string", "const": "url" }
+      },
+      "required": ["id", "field", "labelKey", "kind"],
+      "additionalProperties": false
+    },
+    "MaskedTextComponent": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+        "visibleWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "enabledWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "field": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$" },
+        "labelKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "hintKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "required": { "type": "boolean" },
+        "kind": { "type": "string", "const": "masked_text" },
+        "minLength": { "type": "integer", "minimum": 0, "maximum": 10000 },
+        "maxLength": { "type": "integer", "minimum": 1, "maximum": 10000 },
+        "pattern": { "type": "string", "minLength": 1, "maxLength": 500 }
+      },
+      "required": ["id", "field", "labelKey", "kind"],
+      "additionalProperties": false
+    },
+    "AddressComponent": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+        "visibleWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "enabledWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "kind": { "type": "string", "const": "address" },
+        "labelKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "hintKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "required": { "type": "boolean" },
+        "fields": {
+          "type": "object",
+          "properties": {
+            "street1": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$" },
+            "street2": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$" },
+            "city": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$" },
+            "subdivision": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$" },
+            "postalCode": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$" },
+            "country": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$" }
+          },
+          "required": ["street1", "city", "postalCode", "country"],
+          "additionalProperties": false
+        },
+        "allowedCountries": {
+          "minItems": 1,
+          "type": "array",
+          "items": { "type": "string", "pattern": "^[A-Z]{2}$" },
+          "uniqueItems": true
+        }
+      },
+      "required": ["id", "kind", "labelKey", "fields"],
+      "additionalProperties": false
+    },
+    "ButtonComponent": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+        "visibleWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "enabledWhen": {
+          "type": "object",
+          "propertyNames": { "type": "string" },
+          "additionalProperties": {}
+        },
+        "kind": { "type": "string", "const": "button" },
+        "labelKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        },
+        "action": { "type": "string", "enum": ["submit", "cancel", "link"] },
+        "port": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,39}$" },
+        "link": { "type": "string", "enum": ["help-url", "privacy-url"] }
+      },
+      "required": ["id", "kind", "labelKey", "action"],
+      "additionalProperties": false
+    },
+    "BranchStep": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": { "type": "string", "const": "branch" },
+        "name": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "routes": {
+          "minItems": 1,
+          "maxItems": 20,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,39}$" },
+              "label": { "type": "string", "minLength": 1, "maxLength": 200 },
+              "condition": {
+                "type": "object",
+                "propertyNames": { "type": "string" },
+                "additionalProperties": {}
+              },
+              "onNull": {
+                "type": "string",
+                "pattern": "^(?:else|skip-route|review|route:[a-z][a-z0-9_]{0,39})$"
+              }
+            },
+            "required": ["key", "label", "condition"],
+            "additionalProperties": false
+          }
+        },
+        "waitFor": {
+          "type": "object",
+          "properties": {
+            "facts": {
+              "minItems": 1,
+              "maxItems": 20,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 300,
+                "pattern": "^[a-z][a-z0-9_-]*(?:\\.[A-Za-z0-9_/-]+)*$"
+              }
+            },
+            "maxSeconds": { "type": "integer", "minimum": 1, "maximum": 30 }
+          },
+          "required": ["facts", "maxSeconds"],
+          "additionalProperties": false
+        }
+      },
+      "required": ["id", "type", "routes"],
+      "additionalProperties": false
+    },
+    "ActionStep": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": { "type": "string", "const": "action" },
+        "name": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "action": {
+          "oneOf": [
+            { "$ref": "#/$defs/RunWorkflowAction" },
+            { "$ref": "#/$defs/CopyExtractionsAction" },
+            { "$ref": "#/$defs/UpdateAccountFieldsAction" },
+            { "$ref": "#/$defs/TagInquiryAction" },
+            { "$ref": "#/$defs/FlagForReviewAction" }
+          ]
+        }
+      },
+      "required": ["id", "type", "action"],
+      "additionalProperties": false
+    },
+    "RunWorkflowAction": {
+      "type": "object",
+      "properties": {
+        "kind": { "type": "string", "const": "run_workflow" },
+        "workflowId": { "type": "string", "pattern": "^wfl_[0-7][0-9A-HJKMNP-TV-Z]{25}$" },
+        "version": {
+          "anyOf": [
+            { "type": "string", "const": "latest-published" },
+            { "type": "string", "pattern": "^wfv_[0-7][0-9A-HJKMNP-TV-Z]{25}$" }
+          ]
+        },
+        "inputs": {
+          "type": "object",
+          "propertyNames": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$" },
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 300,
+                    "pattern": "^[a-z][a-z0-9_-]*(?:\\.[A-Za-z0-9_/-]+)*$"
+                  }
+                },
+                "required": ["path"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "literal": {
+                    "anyOf": [
+                      { "type": "string", "maxLength": 10000 },
+                      { "type": "number" },
+                      { "type": "boolean" },
+                      { "type": "null" }
+                    ]
+                  }
+                },
+                "required": ["literal"],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "timeoutSeconds": { "type": "integer", "minimum": 1, "maximum": 300 }
+      },
+      "required": ["kind", "workflowId", "version"],
+      "additionalProperties": false
+    },
+    "CopyExtractionsAction": {
+      "type": "object",
+      "properties": {
+        "kind": { "type": "string", "const": "copy_extractions" },
+        "fromStep": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "mapping": {
+          "type": "object",
+          "propertyNames": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$" },
+          "additionalProperties": { "type": "string", "pattern": "^[a-z][a-z0-9-]{0,63}$" }
+        }
+      },
+      "required": ["kind", "fromStep", "mapping"],
+      "additionalProperties": false
+    },
+    "UpdateAccountFieldsAction": {
+      "type": "object",
+      "properties": {
+        "kind": { "type": "string", "const": "update_account_fields" },
+        "mapping": {
+          "type": "object",
+          "propertyNames": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$" },
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 300,
+                    "pattern": "^[a-z][a-z0-9_-]*(?:\\.[A-Za-z0-9_/-]+)*$"
+                  }
+                },
+                "required": ["path"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "literal": {
+                    "anyOf": [
+                      { "type": "string", "maxLength": 10000 },
+                      { "type": "number" },
+                      { "type": "boolean" },
+                      { "type": "null" }
+                    ]
+                  }
+                },
+                "required": ["literal"],
+                "additionalProperties": false
+              }
+            ]
+          }
+        }
+      },
+      "required": ["kind", "mapping"],
+      "additionalProperties": false
+    },
+    "TagInquiryAction": {
+      "type": "object",
+      "properties": {
+        "kind": { "type": "string", "const": "tag_inquiry" },
+        "add": {
+          "maxItems": 50,
+          "type": "array",
+          "items": { "type": "string", "minLength": 1, "maxLength": 64 }
+        },
+        "remove": {
+          "maxItems": 50,
+          "type": "array",
+          "items": { "type": "string", "minLength": 1, "maxLength": 64 }
+        }
+      },
+      "required": ["kind"],
+      "additionalProperties": false
+    },
+    "FlagForReviewAction": {
+      "type": "object",
+      "properties": {
+        "kind": { "type": "string", "const": "flag_for_review" },
+        "reasonCode": {
+          "type": "string",
+          "maxLength": 64,
+          "pattern": "^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$"
+        }
+      },
+      "required": ["kind", "reasonCode"],
+      "additionalProperties": false
+    },
+    "ShareConsentStep": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": { "type": "string", "const": "share_consent" },
+        "name": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "side": { "type": "string", "enum": ["source", "destination"] },
+        "connectionId": { "type": "string", "pattern": "^cxn_[0-7][0-9A-HJKMNP-TV-Z]{25}$" },
+        "consentValidSeconds": { "type": "integer", "minimum": 60, "maximum": 1814400 },
+        "withdrawalContact": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500,
+          "pattern": "^\\P{Cc}+$"
+        }
+      },
+      "required": ["id", "type", "side"],
+      "additionalProperties": false
+    },
+    "Edge": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$" },
+        "from": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "port": {
+          "type": "string",
+          "pattern": "^(?:next|exhausted|error|else|button:[a-z][a-z0-9_]{0,39}|route:[a-z][a-z0-9_]{0,39})$"
+        },
+        "to": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        }
+      },
+      "required": ["id", "from", "port", "to"],
+      "additionalProperties": false
+    }
+  }
+}

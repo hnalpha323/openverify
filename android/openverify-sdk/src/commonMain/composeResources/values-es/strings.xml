@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Spanish copy for the verification flow. It follows the hosted web flow's Spanish
+  (apps/flow/src/i18n/locales/es.ts) so both clients say the same thing. The consent texts
+  are recorded by key, with openverify_locale, so a key means the same here as in English.
+-->
+<resources>
+    <string name="openverify_locale">es</string>
+
+    <string name="openverify_loading">Cargando tu verificación…</string>
+    <string name="openverify_cancel">Cancelar</string>
+    <string name="openverify_close">Cerrar</string>
+    <string name="openverify_done">Listo</string>
+    <string name="openverify_try_again">Volver a intentarlo</string>
+
+    <string name="openverify_camera_title">Acceso a la cámara</string>
+    <string name="openverify_camera_rationale">A continuación necesitamos tu cámara para fotografiar tu documento de identidad y tomar un selfi. Las fotos se usan solo para esta verificación.</string>
+    <string name="openverify_camera_allow">Permitir acceso a la cámara</string>
+    <string name="openverify_camera_denied">El acceso a la cámara está desactivado. Para continuar, permite el acceso a la cámara para esta aplicación en Ajustes.</string>
+    <string name="openverify_camera_open_settings">Abrir Ajustes</string>
+    <string name="openverify_camera_unavailable">No pudimos iniciar la cámara en este dispositivo.</string>
+
+    <string name="openverify_capture_progress">Foto %1$d de %2$d</string>
+    <string name="openverify_capture_take">Tomar foto</string>
+    <string name="openverify_capture_preview">Vista previa de la cámara</string>
+    <string name="openverify_capture_failed">No pudimos tomar la foto. Vuelve a intentarlo.</string>
+    <string name="openverify_capture_check">Comprueba que la foto sea nítida, tenga buena luz y muestre todo lo que pedimos.</string>
+    <string name="openverify_capture_retake">Repetir</string>
+    <string name="openverify_capture_use">Usar esta foto</string>
+    <string name="openverify_capture_upload">Subir una foto en su lugar</string>
+    <string name="openverify_capture_upload_failed">No pudimos usar este archivo. Elige una foto JPEG, PNG o WebP.</string>
+    <!-- C40.3: each selfie pose is sent before the next prompt. -->
+    <string name="openverify_capture_sending">Enviando tu foto…</string>
+
+    <string name="openverify_id_front_title">Parte delantera del documento</string>
+    <string name="openverify_id_front_instruction">Encuadra la parte delantera de tu documento dentro del marco.</string>
+    <string name="openverify_id_front_photo">Tu foto de la parte delantera del documento</string>
+    <string name="openverify_id_back_title">Parte trasera del documento</string>
+    <string name="openverify_id_back_instruction">Da la vuelta al documento y encuadra la parte trasera dentro del marco.</string>
+    <string name="openverify_id_back_photo">Tu foto de la parte trasera del documento</string>
+    <string name="openverify_id_portrait_title">Página del documento con tu foto</string>
+    <string name="openverify_id_portrait_instruction">Encuadra la página con tu foto dentro del marco.</string>
+    <string name="openverify_id_portrait_photo">Tu foto de la página del documento donde aparece tu foto</string>
+
+    <string name="openverify_selfie_center_title">Mira al frente</string>
+    <string name="openverify_selfie_center_instruction">Encaja tu cara dentro del óvalo y mira directamente a la cámara.</string>
+    <string name="openverify_selfie_center_photo">Tu selfi, mirando al frente</string>
+    <string name="openverify_selfie_left_title">Gira la cabeza a la izquierda</string>
+    <string name="openverify_selfie_left_instruction">Mantén tu cara dentro del óvalo y gira la cabeza despacio hacia la izquierda.</string>
+    <string name="openverify_selfie_left_photo">Tu selfi, con la cabeza girada a la izquierda</string>
+    <string name="openverify_selfie_right_title">Gira la cabeza a la derecha</string>
+    <string name="openverify_selfie_right_instruction">Mantén tu cara dentro del óvalo y gira la cabeza despacio hacia la derecha.</string>
+    <string name="openverify_selfie_right_photo">Tu selfi, con la cabeza girada a la derecha</string>
+    <!-- C40.4: a new selfie capture after the previous one could not be used (it expired or was refused). -->
+    <string name="openverify_selfie_capture_restarted">Necesitamos volver a tomar tus selfis. Sigue cada indicación en el orden en que aparece.</string>
+    <!-- Workflow 4B H015: the selfie capture's lifetime (C40.2, 180 s), in whole minutes. -->
+    <plurals name="openverify_selfie_time_limit">
+        <item quantity="one">Toma todos tus selfis en un plazo de %1$d minuto. Si se acaba el tiempo, volvemos a empezar desde la primera foto.</item>
+        <item quantity="many">Toma todos tus selfis en un plazo de %1$d minutos. Si se acaba el tiempo, volvemos a empezar desde la primera foto.</item>
+        <item quantity="other">Toma todos tus selfis en un plazo de %1$d minutos. Si se acaba el tiempo, volvemos a empezar desde la primera foto.</item>
+    </plurals>
+
+    <string name="openverify_retry_title">No pudimos usar tus últimas fotos</string>
+    <string name="openverify_retry_generic">Algo en la foto no se veía con claridad. Vuelve a intentarlo con buena luz.</string>
+    <string name="openverify_retry_image_blurry">La foto salió borrosa. Sujeta el dispositivo sin moverlo y espera a que la imagen se enfoque.</string>
+    <string name="openverify_retry_glare_present">Había reflejos en tu documento. Aléjate de la luz directa o inclina un poco el documento.</string>
+    <string name="openverify_retry_portrait_not_present">No encontramos la foto de tu documento. Asegúrate de que toda la parte delantera quede dentro del marco.</string>
+    <string name="openverify_retry_front_not_present">Necesitamos una foto de la parte delantera de tu documento.</string>
+    <string name="openverify_retry_back_not_present">Necesitamos una foto de la parte trasera de tu documento.</string>
+    <string name="openverify_retry_image_too_dark">La foto salió demasiado oscura. Busca un lugar con más luz.</string>
+    <string name="openverify_retry_image_too_bright">La foto salió demasiado clara. Aléjate de la luz intensa.</string>
+    <string name="openverify_retry_face_not_present">No pudimos ver tu cara. Encájala dentro del óvalo.</string>
+    <string name="openverify_retry_multiple_faces_present">Había más de una cara en la foto. Asegúrate de que solo aparezcas tú.</string>
+    <string name="openverify_retry_image_unreadable">No pudimos abrir la foto. Toma una nueva o elige una imagen JPEG, PNG o WebP.</string>
+    <string name="openverify_retry_document_not_found">No encontramos tu documento en la foto. Colócalo sobre una superficie lisa que contraste con él y asegúrate de que se vean las cuatro esquinas.</string>
+    <string name="openverify_retry_insufficient_text">No pudimos leer el texto de tu documento. Asegúrate de que la foto sea nítida, tenga buena luz, no tenga reflejos y muestre todo el documento.</string>
+    <string name="openverify_retry_identity_features_not_found">No encontramos tu foto ni las líneas de letras y números de tu documento. Fotografía la cara que tiene tu foto, con todo el documento dentro del marco.</string>
+    <string name="openverify_retry_resolution_too_low">Tu documento se veía demasiado pequeño en la foto. Acerca el dispositivo para que el documento ocupe casi todo el marco.</string>
+    <string name="openverify_retry_back_feature_not_found">No pudimos leer la parte trasera de tu documento. Dale la vuelta y fotografía la parte trasera, nítida y sin reflejos, para que se pueda leer su código de barras o sus líneas de letras y números.</string>
+    <string name="openverify_retry_portrait_too_small">La foto de tu cara en el documento se veía demasiado pequeña. Acerca el dispositivo para que el documento ocupe casi todo el marco.</string>
+    <string name="openverify_retry_portrait_blurry">La foto de tu cara en el documento no se veía nítida. Sujeta el dispositivo sin moverlo y espera a que la imagen se enfoque.</string>
+    <string name="openverify_retry_portrait_obstructed">Algo tapaba la foto de tu cara en el documento. Mantén los dedos y los reflejos lejos de ella.</string>
+    <string name="openverify_retry_mrz_not_found">No encontramos las líneas de letras, números y signos &lt;&lt;&lt; de tu documento. Asegúrate de que todo el documento quede dentro del marco, incluido el borde inferior.</string>
+    <string name="openverify_retry_mrz_unreadable">No pudimos leer las líneas de letras, números y signos &lt;&lt;&lt; de tu documento. Sujeta el dispositivo sin moverlo y evita los reflejos para que esas líneas se vean nítidas.</string>
+    <string name="openverify_retry_barcode_not_found">No encontramos el código de barras de tu documento. Fotografía la cara que tiene el código de barras, con todo el documento dentro del marco y sin reflejos sobre el código.</string>
+    <string name="openverify_retry_required_fields_missing">No pudimos leer todos los datos de tu documento. Asegúrate de que todo el documento quede dentro del marco, nítido y sin reflejos.</string>
+    <!-- Phase 4 selfie reasons (C39.2): what to do differently. -->
+    <string name="openverify_retry_face_too_small">Tu cara se veía demasiado pequeña en la foto. Acércate para que tu cara llene el óvalo.</string>
+    <string name="openverify_retry_face_glare">La luz se reflejaba en tu cara. Aléjate de la luz directa e inténtalo de nuevo.</string>
+    <string name="openverify_retry_pose_not_center">Mira directamente a la cámara en la primera foto, con la cara en el centro del óvalo.</string>
+    <string name="openverify_retry_pose_not_left">No giraste la cabeza lo suficiente hacia la izquierda. Cuando se te pida, gira la cabeza despacio hacia la izquierda y mantenla así.</string>
+    <string name="openverify_retry_pose_not_right">No giraste la cabeza lo suficiente hacia la derecha. Cuando se te pida, gira la cabeza despacio hacia la derecha y mantenla así.</string>
+    <string name="openverify_retry_face_covered">Parte de tu cara estaba cubierta. Quítate la mascarilla o la bufanda y aparta las manos de la cara.</string>
+    <string name="openverify_retry_glasses_detected">Quítate las gafas e inténtalo de nuevo.</string>
+
+    <string name="openverify_processing_title">Comprobando tus fotos</string>
+    <string name="openverify_processing_verification_title">Comprobando tu verificación</string>
+    <string name="openverify_processing_message">Suele tardar unos segundos. Mantén esta pantalla abierta.</string>
+
+    <string name="openverify_completion_title">Verificación enviada</string>
+    <string name="openverify_flow_completion">Gracias. Tu verificación se ha enviado.</string>
+    <string name="openverify_failure_title">Verificación no completada</string>
+    <string name="openverify_flow_failure">No pudimos verificar tu identidad. Contacta con la organización que te pidió la verificación.</string>
+    <string name="openverify_expired_title">Esta verificación ha caducado</string>
+    <string name="openverify_expired_message">Contacta con la organización que te pidió la verificación para empezar una nueva.</string>
+
+    <string name="openverify_session_expired_title">Tu sesión de verificación ha caducado</string>
+    <string name="openverify_session_expired_message">Por seguridad, las sesiones de verificación terminan al cabo de un tiempo. Vuelve a empezar la verificación.</string>
+    <string name="openverify_session_canceled_title">Esta sesión de verificación ha terminado</string>
+    <string name="openverify_session_canceled_message">La sesión se cerró, por ejemplo porque la verificación se terminó o se retiró. Si todavía necesitas verificarte, contacta con la organización que te pidió la verificación.</string>
+    <string name="openverify_redacted_title">Esta verificación ya no está disponible</string>
+    <string name="openverify_redacted_message">Los datos de esta verificación se han eliminado, así que no puede continuar. Si todavía necesitas verificarte, contacta con la organización que te pidió la verificación.</string>
+    <string name="openverify_link_refused_title">No pudimos abrir tu verificación</string>
+    <string name="openverify_link_refused_message">Este enlace ya se ha usado o ha caducado. Cada enlace funciona una sola vez. Pide uno nuevo a la organización que te lo envió.</string>
+
+    <string name="openverify_sandbox_label">Entorno de pruebas</string>
+    <string name="openverify_sandbox_message">Esta es una verificación de prueba. Usa solo datos de prueba, nunca un documento real.</string>
+
+    <string name="openverify_error_title">Algo salió mal</string>
+    <string name="openverify_error_network">No pudimos conectar con el servidor. Comprueba tu conexión y vuelve a intentarlo.</string>
+    <string name="openverify_error_session_expired">Esta sesión de verificación ha caducado. Vuelve a empezar la verificación.</string>
+    <string name="openverify_error_inquiry_mismatch">Esta sesión pertenece a otra verificación. Vuelve a empezar la verificación.</string>
+    <string name="openverify_error_rejected">El servidor no pudo aceptar esta solicitud. Contacta con la organización que te pidió la verificación.</string>
+    <string name="openverify_error_out_of_sync">Tu verificación cambió en otro lugar. Vuelve a intentarlo para continuar desde donde está.</string>
+    <string name="openverify_error_server">El servidor tuvo un problema. Vuelve a intentarlo en un momento.</string>
+    <string name="openverify_error_invalid_response">Recibimos una respuesta que no pudimos leer. Vuelve a intentarlo en un momento.</string>
+    <string name="openverify_error_still_processing">Está tardando más de lo habitual. Vuelve a comprobarlo en un momento.</string>
+
+    <string name="openverify_unsupported_title">Este paso no está disponible aquí</string>
+    <string name="openverify_unsupported_message">Esta verificación incluye un paso que esta versión de la aplicación todavía no admite. Contacta con la organización que te pidió la verificación.</string>
+</resources>

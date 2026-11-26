@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  German copy of values/strings_retry.xml, machine-drafted by android-i18n (Workflow 10A, C199.1;
+  i18n/review-status.json): where the hosted web flow has the same English text, its
+  German words are used, so both clients say the same thing. Compose Multiplatform resources:
+  positional placeholders only, ' and " written as they are, no isolate or other bidi control
+  (ResourcesTest).
+-->
+<resources>
+    <string name="openverify_retry_document_type_not_accepted">Diese Dokumentart wird hier nicht akzeptiert. Laden Sie eine der Dokumentarten hoch, die dieser Schritt nennt.</string>
+    <string name="openverify_retry_document_unreadable">Wir konnten Ihr Dokument nicht öffnen oder lesen. Laden Sie ein deutliches Foto oder ein PDF des ganzen Dokuments hoch.</string>
+    <string name="openverify_retry_document_password_protected">Ihr PDF ist mit einem Passwort geschützt. Laden Sie eine Kopie ohne Passwort oder ein Foto des Dokuments hoch.</string>
+    <string name="openverify_retry_document_too_large">Ihre Datei ist zu groß. Laden Sie eine kleinere Datei hoch, etwa ein Foto des Dokuments oder ein PDF mit weniger Seiten.</string>
+    <string name="openverify_retry_document_too_many_pages">Ihr PDF hat zu viele Seiten. Laden Sie nur die Seiten hoch, auf denen Ihr Name, Ihre Adresse und das Datum stehen.</string>
+    <string name="openverify_retry_name_not_found">Wir konnten auf Ihrem Dokument keinen Namen finden. Laden Sie ein Dokument hoch, auf dem Ihr vollständiger Name steht.</string>
+    <string name="openverify_retry_address_not_found">Wir konnten auf Ihrem Dokument keine Adresse finden. Laden Sie ein Dokument hoch, auf dem Ihre vollständige Adresse steht.</string>
+    <string name="openverify_retry_issue_date_not_found">Wir konnten das Ausstellungsdatum Ihres Dokuments nicht finden. Laden Sie ein Dokument hoch, auf dem das Ausstellungsdatum steht.</string>
+    <string name="openverify_retry_issuer_not_found">Wir konnten nicht erkennen, wer Ihr Dokument ausgestellt hat. Laden Sie ein Dokument hoch, auf dem das ausstellende Unternehmen oder die ausstellende Behörde steht.</string>
+    <string name="openverify_retry_document_expired">Ihr Dokument ist abgelaufen. Laden Sie eines hoch, das noch gültig ist.</string>
+    <string name="openverify_retry_document_too_old">Ihr Dokument ist zu alt. Laden Sie ein neueres hoch.</string>
+    <string name="openverify_retry_po_box_detected">Ein Postfach kann nicht als Ihre Adresse verwendet werden. Geben Sie die Adresse ein, unter der Sie wohnen.</string>
+    <string name="openverify_retry_otp_attempts_exhausted">Es wurden zu viele falsche Codes eingegeben. Beginnen Sie von vorn, um einen neuen Code zu erhalten.</string>
+    <string name="openverify_retry_otp_not_confirmed">Der Code wurde nicht rechtzeitig bestätigt. Beginnen Sie von vorn, um einen neuen Code zu erhalten.</string>
+    <string name="openverify_retry_domain_not_found">Der Teil Ihrer E-Mail-Adresse nach dem @ existiert nicht. Prüfen Sie ihn auf Tippfehler.</string>
+    <string name="openverify_retry_domain_rejects_mail">Diese E-Mail-Domain nimmt keine E-Mails an. Verwenden Sie eine andere E-Mail-Adresse.</string>
+    <string name="openverify_retry_no_mail_server">An diese Adresse kann keine E-Mail zugestellt werden. Prüfen Sie sie oder verwenden Sie eine andere E-Mail-Adresse.</string>
+    <string name="openverify_retry_address_invalid">Diese Wallet-Adresse ist für das gewählte Netzwerk nicht gültig. Prüfen Sie, ob Sie die ganze Adresse kopiert haben.</string>
+    <string name="openverify_retry_address_checksum_invalid">Diese Wallet-Adresse enthält einen Tippfehler. Kopieren Sie sie erneut aus Ihrer Wallet, statt sie abzutippen.</string>
+    <string name="openverify_retry_signature_invalid">Die Signatur konnte nicht gelesen werden. Signieren Sie die Nachricht erneut in Ihrer Wallet und fügen Sie die ganze Signatur ein.</string>
+    <string name="openverify_retry_signature_address_mismatch">Die Nachricht wurde von einer anderen Wallet-Adresse signiert. Signieren Sie sie mit der Adresse, die Sie eingegeben haben.</string>
+    <string name="openverify_retry_expected_address_mismatch">Das ist nicht die Wallet-Adresse, die Sie verifizieren sollen. Verwenden Sie die erwartete Wallet-Adresse.</string>
+    <string name="openverify_retry_country_not_enabled">Unternehmen aus diesem Land können hier nicht verifiziert werden. Prüfen Sie das gewählte Land.</string>
+    <string name="openverify_retry_domain_not_resolving">Wir konnten diese Website nicht finden. Prüfen Sie die Webadresse auf Tippfehler.</string>
+    <string name="openverify_retry_document_name_mismatch">Der Name auf Ihrem Dokument stimmt nicht mit Ihrem überein. Laden Sie ein Dokument auf Ihren eigenen Namen hoch.</string>
+</resources>

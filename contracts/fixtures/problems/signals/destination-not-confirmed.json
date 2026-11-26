@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "A handoff link is sent only to a destination this inquiry has confirmed.",
+  "instance": "/api/v1/flow/handoffs",
+  "requestId": "00000000-0000-4000-8000-000000000713",
+  "code": "destination_not_confirmed"
+}

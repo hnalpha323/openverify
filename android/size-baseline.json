@@ -1,0 +1,97 @@
+{
+  "tool": "bundletool (the version scripts/fetch_bundletool.py pins), over :demo-app:bundleRelease (minified, resources shrunk, R8 full mode)",
+  "download_bytes": "measured: bundletool get-size total --dimensions=ABI, the MAX column (the largest compressed download for that ABI)",
+  "install_bytes": "measured: the bytes of the APK files bundletool extract-apks selects for the reference device of that ABI, as stored on the device; without ART's compiled code and the app's data",
+  "reference_device": {
+    "sdkVersion": 34,
+    "screenDensity": 480,
+    "locale": "en"
+  },
+  "tolerance_percent": 10,
+  "configurations": {
+    "sdk": {
+      "label": "the demo with openverify-sdk only",
+      "abis": {
+        "arm64-v8a": {
+          "download_bytes": 3379437,
+          "install_bytes": 7070770
+        },
+        "armeabi-v7a": {
+          "download_bytes": 3291894,
+          "install_bytes": 6554682
+        },
+        "x86": {
+          "download_bytes": 3448225,
+          "install_bytes": 7193626
+        },
+        "x86_64": {
+          "download_bytes": 3422726,
+          "install_bytes": 7173158
+        }
+      }
+    },
+    "sdk,face": {
+      "label": "the demo with openverify-sdk and openverify-face (YuNet through ONNX Runtime)",
+      "abis": {
+        "arm64-v8a": {
+          "download_bytes": 16606831,
+          "install_bytes": 41797462
+        },
+        "armeabi-v7a": {
+          "download_bytes": 15267288,
+          "install_bytes": 31221602
+        },
+        "x86": {
+          "download_bytes": 18911915,
+          "install_bytes": 48441138
+        },
+        "x86_64": {
+          "download_bytes": 18751320,
+          "install_bytes": 48502596
+        }
+      }
+    },
+    "sdk,nfc": {
+      "label": "the demo with openverify-sdk and openverify-nfc (the JMRTD reader with Bouncy Castle)",
+      "abis": {
+        "arm64-v8a": {
+          "download_bytes": 4904062,
+          "install_bytes": 10893264
+        },
+        "armeabi-v7a": {
+          "download_bytes": 4816519,
+          "install_bytes": 10377176
+        },
+        "x86": {
+          "download_bytes": 4972850,
+          "install_bytes": 11016120
+        },
+        "x86_64": {
+          "download_bytes": 4947351,
+          "install_bytes": 10995652
+        }
+      }
+    },
+    "sdk,nfc,face": {
+      "label": "the demo with openverify-sdk, openverify-nfc (the JMRTD reader with Bouncy Castle) and openverify-face (YuNet through ONNX Runtime)",
+      "abis": {
+        "arm64-v8a": {
+          "download_bytes": 18136158,
+          "install_bytes": 45615860
+        },
+        "armeabi-v7a": {
+          "download_bytes": 16796615,
+          "install_bytes": 35040000
+        },
+        "x86": {
+          "download_bytes": 20441242,
+          "install_bytes": 52259536
+        },
+        "x86_64": {
+          "download_bytes": 20280647,
+          "install_bytes": 52320994
+        }
+      }
+    }
+  }
+}

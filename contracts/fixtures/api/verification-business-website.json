@@ -1,0 +1,70 @@
+{
+  "data": {
+    "type": "verification/business-website",
+    "id": "ver_01M5CKMAN7J6W9Q5FRCGK7ZT4J",
+    "attributes": {
+      "status": "passed",
+      "checks": [
+        {
+          "name": "business_website_resolution_detection",
+          "status": "passed",
+          "reasons": [],
+          "requirement": "required",
+          "metadata": {
+            "route": "reserved"
+          },
+          "stage": "ga",
+          "confidence": null,
+          "provenance": {
+            "implementation-version": 1,
+            "thresholds": {}
+          },
+          "category": "user_action_required"
+        },
+        {
+          "name": "business_website_domain_age_detection",
+          "status": "failed",
+          "reasons": ["domain_recently_registered"],
+          "requirement": "not_required",
+          "metadata": {
+            "registered-at": "2026-10-17",
+            "age-days": 3
+          },
+          "stage": "ga",
+          "confidence": null,
+          "provenance": {
+            "implementation-version": 1,
+            "provider": {
+              "id": "sandbox",
+              "sandbox": true
+            },
+            "thresholds": {
+              "min-domain-age-days": 90
+            },
+            "threshold-basis": {
+              "min-domain-age-days": "provisional"
+            }
+          },
+          "category": "fraud"
+        }
+      ],
+      "website-url": "https://new.example",
+      "website-domain": "new.example",
+      "domain-registered-at": "2026-10-17T00:00:00.000Z",
+      "from-rejected-handoff": false,
+      "created-at": "2026-10-20T12:05:00.000Z",
+      "updated-at": "2026-10-20T12:05:30.000Z"
+    },
+    "relationships": {
+      "inquiry": {
+        "data": {
+          "type": "inquiry",
+          "id": "inq_01M5CJXHG07XPHF3HRM6NREDH7"
+        }
+      },
+      "files": {
+        "data": []
+      }
+    }
+  }
+}

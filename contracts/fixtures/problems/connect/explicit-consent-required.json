@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "This share carries biometric data, which needs its own explicit consent.",
+  "instance": "/api/v1/flow/share-consents/share/accept",
+  "requestId": "00000000-0000-4000-8000-00000011a025",
+  "code": "explicit_consent_required",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/explicit-biometric",
+      "detail": "must be true for a share that carries biometric data"
+    }
+  ]
+}

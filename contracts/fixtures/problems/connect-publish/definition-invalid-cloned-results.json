@@ -1,0 +1,17 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The flow breaks a rule it must meet.",
+  "instance": "/api/v1/inquiry-template-versions/itmplv_01M5CN0000000000000011A700",
+  "requestId": "00000000-0000-4000-8000-00000011a701",
+  "code": "definition_invalid",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/settings/accept-cloned-results/verification-types/0",
+      "detail": "A cloned government ID is relied on, and no live selfie step matches the person against its portrait.",
+      "code": "cloned_results_without_binding"
+    }
+  ]
+}

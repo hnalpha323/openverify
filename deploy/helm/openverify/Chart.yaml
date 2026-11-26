@@ -1,0 +1,17 @@
+# C263.1 (Workflow 11C Stage 1a, contracts-11c; frozen after Stage 1a, the 11C shared-file list).
+apiVersion: v2
+name: openverify
+description: >-
+  A Helm chart for a self-hosted OpenVerify install: the API, the worker, the hosted flow, the
+  operator console, the vision service and the code runner, as restricted pods with default-deny
+  network policies, over data stores and a mail relay the operator runs. A secure default, whose
+  effect depends on the cluster it runs in and its network plugin.
+type: application
+# The release's version string (as android/gradle.properties' openverifyVersion); 11E's
+# `pnpm release:check` holds them equal.
+version: 0.1.0
+appVersion: '0.1.0'
+kubeVersion: '>=1.35.0-0'
+keywords:
+  - identity-verification
+  - self-hosted

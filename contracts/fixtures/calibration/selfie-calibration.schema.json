@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openverify.dev/contracts/selfie-calibration.schema.json",
+  "title": "Selfie calibration measurements (C49)",
+  "description": "What services/vision/tools/calibrate_selfie.py writes and packages/checks/scripts/calibration-report.ts --selfie reads. Scores only: never an embedding, a landmark set, a face crop or a name. Identities are pseudonymous (p0001).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "generated_at",
+    "domain",
+    "models",
+    "set",
+    "pairs",
+    "skew",
+    "provisional"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "domain": {
+      "type": "string",
+      "minLength": 1,
+      "description": "For example \"studio portrait pairs\"; never selfie against an ID card photo."
+    },
+    "models": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["detector", "recognizer"],
+      "properties": {
+        "detector": { "type": "string", "minLength": 1 },
+        "recognizer": { "type": "string", "minLength": 1 }
+      }
+    },
+    "set": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["manifest_sha256", "identities", "images", "excluded"],
+      "properties": {
+        "manifest_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "identities": { "type": "integer", "minimum": 0 },
+        "images": { "type": "integer", "minimum": 0 },
+        "excluded": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["image", "reason"],
+            "properties": {
+              "image": { "type": "string", "pattern": "^p[0-9]{4}-[0-9]+$" },
+              "reason": {
+                "enum": [
+                  "near_duplicate",
+                  "different_person_per_metadata",
+                  "misattribution",
+                  "no_face",
+                  "fetch_failed"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "pairs": {
+      "type": "array",
+      "description": "Every scored pair: genuine (same identity) or impostor (different identities).",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["a", "b", "genuine", "cosine"],
+        "properties": {
+          "a": { "type": "string", "pattern": "^p[0-9]{4}-[0-9]+$" },
+          "b": { "type": "string", "pattern": "^p[0-9]{4}-[0-9]+$" },
+          "genuine": { "type": "boolean" },
+          "cosine": { "type": "number", "minimum": -1, "maximum": 1 },
+          "age_gap_years": { "type": ["number", "null"], "minimum": 0 }
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "description": "C49.1: the tails review. excluded_images counts the images the manifest's pinned review excludes; genuine_pairs_before holds the genuine pairs of the same rules without those exclusions, so the report gives FRR before and after the review.",
+      "additionalProperties": false,
+      "required": ["excluded_images", "genuine_pairs_before"],
+      "properties": {
+        "excluded_images": { "type": "integer", "minimum": 0 },
+        "genuine_pairs_before": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["a", "b", "genuine", "cosine"],
+            "properties": {
+              "a": { "type": "string", "pattern": "^p[0-9]{4}-[0-9]+$" },
+              "b": { "type": "string", "pattern": "^p[0-9]{4}-[0-9]+$" },
+              "genuine": { "const": true },
+              "cosine": { "type": "number", "minimum": -1, "maximum": 1 },
+              "age_gap_years": { "type": ["number", "null"], "minimum": 0 }
+            }
+          }
+        }
+      }
+    },
+    "skew": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sex", "ita_degrees", "per_group_frr_measured"],
+      "properties": {
+        "sex": { "type": "object", "additionalProperties": { "type": "integer", "minimum": 0 } },
+        "ita_degrees": {
+          "type": "array",
+          "items": { "type": "number" },
+          "description": "Per identity, the ITA angle of face skin pixels: a proxy, stated as one."
+        },
+        "per_group_frr_measured": { "const": false }
+      }
+    },
+    "provisional": {
+      "type": "object",
+      "description": "Distributions on the synthetic fixtures (pose, planarity, passive liveness, covering, glasses), labelled provisional: simulated spoofs do not measure APCER/BPCER.",
+      "additionalProperties": { "type": "array", "items": { "type": "number" } }
+    },
+    "genuine_cues": {
+      "type": "object",
+      "description": "The heuristic cues on genuine photos, a false-positive proxy, not a selfie measurement: portraits holds the calibration set's kept portraits scaled to a 2,000-px long side; re_encodings the 45 re-encodings of the public-domain test faces (vision-integrity's 4A stability set). One value per measured image, by cue.",
+      "additionalProperties": false,
+      "required": ["portraits", "re_encodings"],
+      "properties": {
+        "portraits": {
+          "type": "object",
+          "additionalProperties": { "type": "array", "items": { "type": "number" } }
+        },
+        "re_encodings": {
+          "type": "object",
+          "additionalProperties": { "type": "array", "items": { "type": "number" } }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+public final class dev/openverify/face/OpenVerifyFace {
+	public static final field INSTANCE Ldev/openverify/face/OpenVerifyFace;
+	public final fun detectorFactory (Landroid/content/Context;)Ldev/openverify/sdk/face/FaceDetectorFactory;
+}
+

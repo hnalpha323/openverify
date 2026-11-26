@@ -1,0 +1,91 @@
+{
+  "format": 1,
+  "description": "C161.4, C196.3: normalizeDigits (packages/flow-spec/src/v2/digits.ts): U+0660-U+0669 and U+06F0-U+06F9 to ASCII before validation and submission, every other character unchanged, the digits of other scripts included. Written by packages/flow-spec/src/export-vectors.test.ts with UPDATE_CONTRACT_FIXTURES=1; never edited by hand.",
+  "cases": [
+    {
+      "name": "every Arabic-Indic digit",
+      "input": "٠١٢٣٤٥٦٧٨٩",
+      "output": "0123456789"
+    },
+    {
+      "name": "every Extended Arabic-Indic digit",
+      "input": "۰۱۲۳۴۵۶۷۸۹",
+      "output": "0123456789"
+    },
+    {
+      "name": "mixed with text, the decimal separator kept",
+      "input": "code ١٢-۳۴ 56 ٫ x",
+      "output": "code 12-34 56 ٫ x"
+    },
+    {
+      "name": "empty",
+      "input": "",
+      "output": ""
+    },
+    {
+      "name": "no digits",
+      "input": "no digits",
+      "output": "no digits"
+    },
+    {
+      "name": "Devanagari and fullwidth digits kept",
+      "input": "६７",
+      "output": "६７"
+    },
+    {
+      "name": "a phone number",
+      "input": "+٩٦٦ ٥٠ ١٢٣٤٥٦٧",
+      "output": "+966 50 1234567"
+    },
+    {
+      "name": "a date",
+      "input": "٢٠٢٦-١١-٠٨",
+      "output": "2026-11-08"
+    },
+    {
+      "name": "a code in Persian digits",
+      "input": "۰۴۸۲۱۳",
+      "output": "048213"
+    },
+    {
+      "name": "Arabic letters around a digit kept",
+      "input": "رقم ٣",
+      "output": "رقم 3"
+    },
+    {
+      "name": "the Arabic thousands separator kept",
+      "input": "١٬٠٠٠",
+      "output": "1٬000"
+    },
+    {
+      "name": "the code points beside both ranges kept",
+      "input": "ٟ٪ۯۺ",
+      "output": "ٟ٪ۯۺ"
+    },
+    {
+      "name": "Bengali digits kept",
+      "input": "০১৯",
+      "output": "০১৯"
+    },
+    {
+      "name": "Myanmar digits kept",
+      "input": "၀၉",
+      "output": "၀၉"
+    },
+    {
+      "name": "Marathi (Devanagari) digits kept",
+      "input": "०९",
+      "output": "०९"
+    },
+    {
+      "name": "an astral digit kept",
+      "input": "𝟎",
+      "output": "𝟎"
+    },
+    {
+      "name": "ASCII digits kept",
+      "input": "0123456789",
+      "output": "0123456789"
+    }
+  ]
+}

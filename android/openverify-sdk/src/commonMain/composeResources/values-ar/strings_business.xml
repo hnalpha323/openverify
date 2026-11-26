@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Arabic copy of values/strings_business.xml, machine-drafted by android-i18n (Workflow 10A, C199.1;
+  i18n/review-status.json): where the hosted web flow has the same English text, its
+  Arabic words are used, so both clients say the same thing. Compose Multiplatform resources:
+  positional placeholders only, ' and " written as they are, no isolate or other bidi control
+  (ResourcesTest).
+-->
+<resources>
+    <string name="openverify_business_title">معلومات عن النشاط التجاري</string>
+    <string name="openverify_business_intro">نبحث عن هذه البيانات في سجلات الأعمال الرسمية. يُرجى إدخالها كما هي مسجلة للنشاط التجاري.</string>
+    <string name="openverify_website_title">إدخال الموقع الإلكتروني للنشاط التجاري</string>
+    <string name="openverify_website_intro">نتحقق من وجود عنوان الموقع الإلكتروني. لا نفتح الموقع نفسه أبدًا.</string>
+    <string name="openverify_field_business_name">اسم النشاط التجاري</string>
+    <string name="openverify_field_country_code">بلد التسجيل</string>
+    <string name="openverify_field_registration_number">رقم التسجيل</string>
+    <string name="openverify_field_lei">معرّف الكيان القانوني (LEI)</string>
+    <string name="openverify_field_website_url">عنوان الموقع الإلكتروني</string>
+    <string name="openverify_field_registration_hint_gb">لشركة في المملكة المتحدة، رقم Companies House المكوّن من 8 خانات، مثل 01234567 أو SC123456.</string>
+    <string name="openverify_field_registration_hint_us">لشركة أمريكية، رقم CIK الخاص بها لدى SEC، حتى 10 أرقام.</string>
+    <string name="openverify_field_registration_hint">الرقم الذي يمنحه السجل للنشاط التجاري: حتى 20 حرفًا ورقمًا.</string>
+    <string name="openverify_field_lei_hint">الرمز المكوّن من 20 خانة من السجل العالمي لمعرّفات LEI. يُترك فارغًا إن لم يكن للنشاط التجاري رمز.</string>
+    <string name="openverify_field_website_hint">يُرجى تضمين https:// أو http://، مثل https://www.example.com.</string>
+    <string name="openverify_field_error_registration_gb">يُرجى إدخال رقم الشركة المكوّن من 8 خانات، مثل 01234567 أو SC123456.</string>
+    <string name="openverify_field_error_registration_us">يُرجى إدخال رقم CIK: حتى 10 أرقام.</string>
+    <string name="openverify_field_error_registration">يُرجى إدخال ما يصل إلى 20 حرفًا ورقمًا، دون مسافات.</string>
+    <string name="openverify_field_error_lei">يُرجى إدخال معرّف LEI المكوّن من 20 خانة تمامًا كما هو مسجل.</string>
+    <string name="openverify_field_error_url">يُرجى إدخال عنوان الويب كاملًا، بدءًا بـ https:// أو http://.</string>
+    <string name="openverify_persons_title">الأشخاص الذين يملكون النشاط التجاري أو يديرونه</string>
+    <string name="openverify_persons_intro">يمكن إضافة ما يصل إلى %1$d من المديرين أو المسؤولين أو المالكين للتحقق منهم في السجل.</string>
+    <string name="openverify_person_title">الشخص %1$d</string>
+    <string name="openverify_person_add">إضافة شخص</string>
+    <string name="openverify_person_remove">إزالة الشخص %1$d</string>
+    <string name="openverify_persons_full">تمت إضافة الحد الأقصى من الأشخاص.</string>
+    <string name="openverify_field_person_birthdate">شهر الميلاد أو تاريخه</string>
+    <string name="openverify_field_person_birthdate_hint">السنة والشهر، مثل 1980-04، أو التاريخ كاملًا.</string>
+    <string name="openverify_field_error_birth_month">يُرجى إدخال السنة والشهر، مثل 1980-04، أو التاريخ كاملًا، مثل 1980-04-23.</string>
+</resources>

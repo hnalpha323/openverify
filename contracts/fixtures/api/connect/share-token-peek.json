@@ -1,0 +1,137 @@
+{
+  "data": {
+    "type": "connect/share-token",
+    "id": "cnst_01M5CN0000000000000011A200",
+    "attributes": {
+      "status": "created",
+      "direction": "inbound",
+      "source-type": "inquiry",
+      "environment-kind": "sandbox",
+      "share-policy-version": 1,
+      "data-categories": [
+        "identity-fields",
+        "contact-fields",
+        "document-images",
+        "biometric",
+        "check-results"
+      ],
+      "source-consent": {
+        "method": "flow",
+        "witnessed": true,
+        "categories": [
+          "identity-fields",
+          "contact-fields",
+          "document-images",
+          "biometric",
+          "check-results"
+        ],
+        "explicit-biometric": true,
+        "text-sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "redeem-mode": null,
+      "redeem-summary": null,
+      "peek-count": 1,
+      "failure-reason": null,
+      "expiry-reason": null,
+      "created-at": "2026-10-20T12:10:00.000Z",
+      "updated-at": "2026-10-20T12:15:00.000Z",
+      "expires-at": "2026-11-03T12:10:00.000Z",
+      "pending-at": null,
+      "redeemed-at": null,
+      "expired-at": null,
+      "failed-at": null,
+      "source-data": {
+        "type": "connect/source-data/inquiry",
+        "attributes": {
+          "status": {
+            "visibility": "full",
+            "value": "approved"
+          },
+          "created-at": {
+            "visibility": "full",
+            "value": "2026-10-20T11:00:00.000Z"
+          }
+        },
+        "fields": {
+          "name_first": {
+            "visibility": "full",
+            "value": "Alex"
+          },
+          "name_last": {
+            "visibility": "presence",
+            "value": true
+          },
+          "birthdate": {
+            "visibility": "presence",
+            "value": true
+          },
+          "email_address": {
+            "visibility": "presence",
+            "value": true
+          }
+        },
+        "related-objects": [
+          {
+            "type": "connect/source-data/verification/government-id",
+            "attributes": {
+              "status": {
+                "visibility": "full",
+                "value": "passed"
+              },
+              "name-first": {
+                "visibility": "full",
+                "value": "Alex"
+              },
+              "name-last": {
+                "visibility": "presence",
+                "value": true
+              },
+              "id-class": {
+                "visibility": "full",
+                "value": "dl"
+              }
+            },
+            "files": {
+              "visibility": "presence",
+              "value": true
+            }
+          },
+          {
+            "type": "connect/source-data/verification/selfie",
+            "attributes": {
+              "status": {
+                "visibility": "full",
+                "value": "passed"
+              }
+            },
+            "files": {
+              "visibility": "presence",
+              "value": true
+            }
+          },
+          {
+            "type": "connect/source-data/verification/database",
+            "attributes": {
+              "status": {
+                "visibility": "full",
+                "value": "passed"
+              },
+              "name-first": {
+                "visibility": "presence",
+                "value": true
+              }
+            }
+          }
+        ]
+      }
+    },
+    "relationships": {
+      "connection": {
+        "data": {
+          "type": "connect/connection",
+          "id": "cxn_01M5CN0000000000000011A100"
+        }
+      }
+    }
+  }
+}

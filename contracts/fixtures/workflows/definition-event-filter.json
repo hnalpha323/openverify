@@ -1,0 +1,33 @@
+{
+  "schema-version": 1,
+  "trigger": {
+    "type": "trigger-event",
+    "config": {
+      "events": ["inquiry.completed", "case.resolved"],
+      "filter": {
+        "inquiry-template-ids": ["itmpl_01M5A0GTG0RSTVX9PHA0V7P3X6"],
+        "case-template-ids": ["ctmpl_01M5A0GTG0RSTVX9PHA0V7P3X7"]
+      }
+    }
+  },
+  "inputs": [],
+  "variables": [],
+  "steps": [
+    {
+      "id": "output",
+      "type": "output",
+      "name": "Output",
+      "mappings": {}
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "from": "trigger",
+      "from-port": "next",
+      "to": "output"
+    }
+  ],
+  "outputs": [],
+  "layout": {}
+}

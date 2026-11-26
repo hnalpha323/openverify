@@ -1,0 +1,169 @@
+# C263.6 (Workflow 11C Stage 2, chart-11c; checkpoint runner; decision 51, hardening H8): Phase 8
+# P17's code runner as its own Deployment and Service, reached by the worker over the tcp: transport
+# with a token both processes hold.
+suite: c263 runner
+release:
+  name: ov
+  namespace: verify
+templates:
+  - templates/code-runner/deployment.yaml
+  - templates/code-runner/service.yaml
+  - templates/worker/deployment.yaml
+  - templates/configmap.yaml
+tests:
+  - it: runs the runner as its own Deployment, never a sidecar of the worker
+    template: templates/code-runner/deployment.yaml
+    asserts:
+      - isKind:
+          of: Deployment
+      - equal:
+          path: metadata.name
+          value: ov-openverify-code-runner
+      - equal:
+          path: spec.selector.matchLabels["app.kubernetes.io/component"]
+          value: code-runner
+      - equal:
+          path: spec.template.spec.containers[0].ports
+          value:
+            - name: runner
+              containerPort: 7700
+              protocol: TCP
+      - equal:
+          path: spec.template.spec.containers[0].envFrom
+          value:
+            - configMapRef:
+                name: ov-openverify-code-runner
+  - it: keeps the worker's pod to the worker alone
+    template: templates/worker/deployment.yaml
+    asserts:
+      - lengthEqual:
+          path: spec.template.spec.containers
+          count: 1
+      - notContains:
+          path: spec.template.spec.volumes
+          any: true
+          content:
+            name: code-runner-socket
+  - it: gives the runner a Service on its port, selecting only its pods
+    template: templates/code-runner/service.yaml
+    asserts:
+      - equal:
+          path: spec.ports
+          value:
+            - name: runner
+              port: 7700
+              targetPort: runner
+              protocol: TCP
+      - equal:
+          path: spec.selector
+          value:
+            app.kubernetes.io/name: openverify
+            app.kubernetes.io/instance: ov
+            app.kubernetes.io/component: code-runner
+  - it: points the worker at the runner's Service over the tcp transport
+    template: templates/configmap.yaml
+    documentSelector:
+      path: metadata.name
+      value: ov-openverify-worker
+    asserts:
+      - equal:
+          path: data.OPENVERIFY_WORKFLOW_CODE_RUNNER
+          value: tcp:ov-openverify-code-runner:7700
+      - notExists:
+          path: data.OPENVERIFY_CODE_RUNNER_TOKEN
+  - it: gives the API the same setting, which it parses and never connects to
+    template: templates/configmap.yaml
+    documentSelector:
+      path: metadata.name
+      value: ov-openverify-api
+    asserts:
+      - equal:
+          path: data.OPENVERIFY_WORKFLOW_CODE_RUNNER
+          value: tcp:ov-openverify-code-runner:7700
+  - it: makes the runner listen on its port instead of its socket
+    template: templates/configmap.yaml
+    documentSelector:
+      path: metadata.name
+      value: ov-openverify-code-runner
+    asserts:
+      - equal:
+          path: data
+          value:
+            OPENVERIFY_CODE_RUNNER_LISTEN: 0.0.0.0:7700
+  - it: passes the pool size when one is given
+    template: templates/configmap.yaml
+    set:
+      codeRunner.poolSize: 3
+    documentSelector:
+      path: metadata.name
+      value: ov-openverify-code-runner
+    asserts:
+      - equal:
+          path: data.OPENVERIFY_CODE_RUNNER_POOL_SIZE
+          value: '3'
+  - it: follows a changed port on both ends
+    template: templates/configmap.yaml
+    set:
+      codeRunner.port: 7801
+    asserts:
+      - equal:
+          path: data.OPENVERIFY_WORKFLOW_CODE_RUNNER
+          value: tcp:ov-openverify-code-runner:7801
+        documentSelector:
+          path: metadata.name
+          value: ov-openverify-worker
+      - equal:
+          path: data.OPENVERIFY_CODE_RUNNER_LISTEN
+          value: 0.0.0.0:7801
+        documentSelector:
+          path: metadata.name
+          value: ov-openverify-code-runner
+  - it: renders no runner and no tcp target when the runner is off
+    template: templates/configmap.yaml
+    set:
+      codeRunner.enabled: false
+    asserts:
+      - hasDocuments:
+          count: 5
+      - notExists:
+          path: data.OPENVERIFY_WORKFLOW_CODE_RUNNER
+        documentSelector:
+          path: metadata.name
+          value: ov-openverify-worker
+  - it: renders no runner Deployment when it is off
+    template: templates/code-runner/deployment.yaml
+    set:
+      codeRunner.enabled: false
+    asserts:
+      - hasDocuments:
+          count: 0
+---
+suite: c263 runner (checks)
+release:
+  name: ov
+templates:
+  - templates/configmap.yaml
+tests:
+  - it: refuses a runner whose token is not in the worker's Secret
+    set:
+      secrets.worker.keys:
+        - OPENVERIFY_KEK
+        - OPENVERIFY_BLIND_INDEX_KEY
+        - OPENVERIFY_API_KEY_PEPPER
+        - OPENVERIFY_VISION_SERVICE_TOKEN
+    asserts:
+      - failedTemplate:
+          errorPattern: OPENVERIFY_CODE_RUNNER_TOKEN must be in secrets.worker.keys and secrets.codeRunner.keys
+  - it: refuses a runner whose token is not in its own Secret
+    set:
+      secrets.codeRunner.keys: []
+    asserts:
+      - failedTemplate:
+          errorPattern: OPENVERIFY_CODE_RUNNER_TOKEN must be in secrets.worker.keys and secrets.codeRunner.keys
+  - it: needs no token while the runner is off
+    set:
+      codeRunner.enabled: false
+      secrets.codeRunner.keys: []
+    asserts:
+      - hasDocuments:
+          count: 5

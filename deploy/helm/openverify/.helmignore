@@ -1,0 +1,10 @@
+# Kept out of the packaged chart: the chart's own tests and CI fixtures, and editor files.
+.prettierrc.json
+tests/
+ci/
+# The models-fetch program's own tests (files/models-fetch.py ships; its tests do not).
+files/test_*.py
+__pycache__/
+*.orig
+*.swp
+.DS_Store

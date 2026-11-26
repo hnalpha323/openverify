@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "A later match of the same entry replaced this one; review that match.",
+  "instance": "/api/v1/reports/rep_01M5Y5Z4002GV576EACWSHT2BK/review",
+  "requestId": "00000000-0000-4000-8000-000000000607",
+  "code": "report_match_superseded"
+}

@@ -1,0 +1,28 @@
+{{- /*
+C263.5 (Workflow 11C Stage 2, chart-11c; verification V03): the models claim in job mode when the
+operator gives none. Helm runs pre-install hooks before the release's ordinary resources, so the
+claim is itself a pre-install hook, weighted below the models-fetch Job, kept by
+helm.sh/resource-policy across upgrades and uninstall, and with no hook-delete policy: it is created
+once. Delete it by hand after an uninstall (kubectl delete pvc <release>-openverify-models).
+*/ -}}
+{{- if and (eq .Values.models.source "job") (not .Values.models.existingClaim) }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "openverify.modelsClaim" . }}
+  labels:
+    {{- include "openverify.labels" (dict "root" . "component" "models") | nindent 4 }}
+  annotations:
+    helm.sh/hook: pre-install
+    helm.sh/hook-weight: '-10'
+    helm.sh/resource-policy: keep
+spec:
+  accessModes:
+    - {{ .Values.models.accessMode }}
+  {{- with .Values.models.storageClass }}
+  storageClassName: {{ . }}
+  {{- end }}
+  resources:
+    requests:
+      storage: {{ .Values.models.size }}
+{{- end }}

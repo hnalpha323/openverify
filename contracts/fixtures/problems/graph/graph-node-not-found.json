@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Not Found",
+  "status": 404,
+  "detail": "The result holds no such node.",
+  "instance": "/api/v1/graph-queries/grphq_01M5CK3190XEVBM5ZXA76E1JSN/nodes/gn_0123456789abcdefghijkl/value",
+  "requestId": "00000000-0000-4000-8000-000000001010",
+  "code": "graph_node_not_found"
+}

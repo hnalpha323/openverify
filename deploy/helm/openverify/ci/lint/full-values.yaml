@@ -1,0 +1,118 @@
+# A values set rendered and checked by ci/chart-checks.sh (lint on both Helms, kubeconform, Trivy
+# config) and never installed (Workflow 11C chart-policy-11c; C265.1-C265.3): production mode with
+# every optional part on, so the checks see the Ingresses with TLS and HSTS, the per-process Secrets
+# and the stores' Secrets as files, the CA files, the external stores, SMTP and a private identity
+# provider by CIDR, the models-fetch hook Job, the GitOps migrate Job, the IP-reputation claim, the
+# HPAs and images by digest. Every name and address is synthetic (documentation ranges and
+# example.com); the Gateway API example is left to helm-unittest, because the Kubernetes bundles
+# carry no HTTPRoute schema.
+install:
+  mode: production
+  connectEnabled: false
+  watchlistUnOptInAllowed: false
+publicUrls:
+  api: https://api.example.com
+  flow: https://verify.example.com
+  dashboard: https://console.example.com
+external:
+  postgres:
+    existingSecret: ov-postgres
+    migrationSecret: ov-postgres-migration
+    maxConnections: 200
+    ca: { configMap: ov-store-ca, key: postgres.pem }
+  valkey:
+    existingSecret: ov-valkey
+    ca: { secret: ov-valkey-ca }
+  s3:
+    endpoint: https://s3.example.com
+    region: eu-west-1
+    bucket: openverify-files
+    existingSecret: ov-s3
+    ca: { configMap: ov-store-ca, key: s3.pem }
+  smtp:
+    existingSecret: ov-smtp
+    mailFrom: no-reply@example.com
+secrets:
+  api:
+    existingSecret: ov-api
+    keys:
+      - OPENVERIFY_KEK
+      - OPENVERIFY_KEK_PREVIOUS
+      - OPENVERIFY_BLIND_INDEX_KEY
+      - OPENVERIFY_API_KEY_PEPPER
+      - OPENVERIFY_API_KEY_PEPPER_PREVIOUS
+      - OPENVERIFY_VISION_SERVICE_TOKEN
+      - OPENVERIFY_DASHBOARD_BFF_TOKEN
+      - OPENVERIFY_FLOW_SERVER_TOKEN
+  worker:
+    existingSecret: ov-worker
+    keys:
+      - OPENVERIFY_KEK
+      - OPENVERIFY_BLIND_INDEX_KEY
+      - OPENVERIFY_API_KEY_PEPPER
+      - OPENVERIFY_VISION_SERVICE_TOKEN
+      - OPENVERIFY_CODE_RUNNER_TOKEN
+      - OPENVERIFY_PLAY_INTEGRITY_SERVICE_ACCOUNT_JSON
+  migrate:
+    existingSecret: ov-migrate
+    keys: [OPENVERIFY_KEK]
+  dashboard:
+    existingSecret: ov-dashboard
+    keys: [OPENVERIFY_DASHBOARD_BFF_TOKEN]
+  flow:
+    existingSecret: ov-flow
+    keys: [OPENVERIFY_FLOW_SERVER_TOKEN]
+  codeRunner:
+    existingSecret: ov-code-runner
+    keys: [OPENVERIFY_CODE_RUNNER_TOKEN]
+  vision:
+    existingSecret: ov-vision
+    keys: [OPENVERIFY_VISION_SERVICE_TOKEN]
+ingress:
+  enabled: true
+  className: nginx
+  hosts:
+    api: api.example.com
+    flow: verify.example.com
+    dashboard: console.example.com
+  tls:
+    - secretName: ov-tls
+      hosts: [api.example.com, verify.example.com, console.example.com]
+networkPolicy:
+  enabled: true
+  egress:
+    dataStores:
+      - cidr: 10.20.0.0/16
+        ports: [5432, 6379, 443]
+    smtp:
+      - cidr: 10.30.0.25/32
+        ports: [587]
+    identityProviders:
+      - cidr: 10.40.0.0/24
+        ports: [443]
+    webhooks:
+      - cidr: 192.0.2.10/32
+        ports: [8443]
+models:
+  source: job
+migrate:
+  gitOps: true
+ipReputation:
+  existingClaim: ov-ip-reputation
+  path: /var/lib/openverify/ip-reputation/anonymous-ip.mmdb
+api:
+  image:
+    repository: openverify/api
+    tag: 0.1.0
+    digest: sha256:0000000000000000000000000000000000000000000000000000000000000001
+  autoscaling: { enabled: true, minReplicas: 2, maxReplicas: 4, targetCPUUtilizationPercentage: 70 }
+  ssoPrivateIssuers: [https://idp.internal.example.com]
+  trustProxy: '1'
+worker:
+  playIntegrity:
+    packageName: com.example.verify
+    certificateDigests: AA:BB
+dashboard:
+  autoscaling: { enabled: true, minReplicas: 2, maxReplicas: 4, targetCPUUtilizationPercentage: 70 }
+flow:
+  autoscaling: { enabled: true, minReplicas: 2, maxReplicas: 4, targetCPUUtilizationPercentage: 70 }

@@ -1,0 +1,5 @@
+public final class dev/openverify/nfc/OpenVerifyNfc {
+	public static final field INSTANCE Ldev/openverify/nfc/OpenVerifyNfc;
+	public final fun chipReader (Landroid/content/Context;)Ldev/openverify/sdk/chip/ChipReader;
+}
+

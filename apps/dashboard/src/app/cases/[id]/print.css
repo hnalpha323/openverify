@@ -1,0 +1,39 @@
+/*
+ * C142.5 (editor note 6.4): the case page prints as itself. Every rule waits for print media and
+ * reads the case page's own mark (`data-case-print`), so no other page's printout changes. The
+ * navigation, the header, the toasts and every control are left out; each image stays with its
+ * caption; the footer names the environment, the case, who printed it and when, and whether the
+ * page holds personal data. Closed `<details>` are opened by the page itself as the browser prints.
+ */
+@media print {
+  @page {
+    size: auto;
+    margin: 16mm 14mm;
+  }
+
+  body:has([data-case-print]) nav,
+  body:has([data-case-print]) header,
+  body:has([data-case-print]) [data-live-region],
+  body:has([data-case-print]) button,
+  body:has([data-case-print]) form,
+  body:has([data-case-print]) input,
+  body:has([data-case-print]) select,
+  body:has([data-case-print]) textarea {
+    display: none !important;
+  }
+
+  [data-case-print] figure,
+  [data-case-print] img,
+  [data-case-print] tr {
+    break-inside: avoid;
+  }
+
+  [data-case-print] {
+    color: #000;
+  }
+
+  [data-case-print-footer] {
+    display: block !important;
+    break-inside: avoid;
+  }
+}

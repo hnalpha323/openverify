@@ -1,0 +1,21 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "A step needs an acknowledgement this publish does not carry.",
+  "instance": "/api/v1/inquiry-template-versions/itmplv_01M5CN00000000000000009A01/publish",
+  "requestId": "00000000-0000-4000-8000-000000009a12",
+  "code": "publish_acknowledgement_missing",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/meta/acknowledgements",
+      "detail": "adverse-path:failed_minor"
+    },
+    {
+      "location": "body",
+      "pointer": "/meta/acknowledgements",
+      "detail": "fallback:id_card"
+    }
+  ]
+}

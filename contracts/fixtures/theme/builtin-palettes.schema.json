@@ -1,0 +1,169 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:openverify:fixtures:builtin-palettes:1",
+  "title": "The built-in light and dark palettes (C160.3, C198.2)",
+  "description": "Written by packages/ui/src/export-palettes.test.ts (api-android-10a) from packages/ui/src/styles.css and the contrast gate's BUILTIN_PALETTES, only under UPDATE_CONTRACT_FIXTURES=1; the SDK's defaults, so web and Android start from the same colours.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format", "description", "tokens", "light", "dark"],
+  "properties": {
+    "format": {
+      "const": 1
+    },
+    "description": {
+      "type": "string"
+    },
+    "tokens": {
+      "const": [
+        "primary",
+        "primary-hover",
+        "on-primary",
+        "danger",
+        "danger-hover",
+        "surface",
+        "canvas",
+        "ink",
+        "ink-muted",
+        "line",
+        "control",
+        "focus"
+      ]
+    },
+    "light": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "primary",
+        "primary-hover",
+        "on-primary",
+        "danger",
+        "danger-hover",
+        "surface",
+        "canvas",
+        "ink",
+        "ink-muted",
+        "line",
+        "control",
+        "focus"
+      ],
+      "properties": {
+        "primary": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "primary-hover": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "on-primary": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "danger": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "danger-hover": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "surface": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "canvas": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "ink": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "ink-muted": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "line": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "control": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "focus": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        }
+      }
+    },
+    "dark": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "primary",
+        "primary-hover",
+        "on-primary",
+        "danger",
+        "danger-hover",
+        "surface",
+        "canvas",
+        "ink",
+        "ink-muted",
+        "line",
+        "control",
+        "focus"
+      ],
+      "properties": {
+        "primary": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "primary-hover": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "on-primary": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "danger": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "danger-hover": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "surface": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "canvas": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "ink": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "ink-muted": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "line": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "control": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "focus": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        }
+      }
+    }
+  }
+}

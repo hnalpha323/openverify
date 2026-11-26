@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The query leaves a parameter of the template without a value.",
+  "instance": "/api/v1/graph-queries",
+  "requestId": "00000000-0000-4000-8000-000000001002",
+  "code": "graph_parameter_missing",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/parameter-map",
+      "detail": "leaves a parameter out"
+    }
+  ]
+}

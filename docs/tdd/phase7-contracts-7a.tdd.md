@@ -1,0 +1,180 @@
+# TDD evidence: Workflow 7A Stage 1a, `contracts-7a` (Phase 7)
+
+- **Slice owner:** the Workflow 7A Stage 1a `contracts-7a` agent, running alone (it may touch any path its deliverables need).
+- **Date:** 2026-10-30.
+- **Base:** `0a8d60ed`; this stage's commits run from `2af58e0e` to the commit that adds the final gates below.
+- **Input:** the "Stage 1a: contracts-7a" bullet of `docs/plans/phase-7.plan.md` (C90-C96, C106.1, C107.3, C109; F01, F06, F07, F14, F19, F38), committed in the bullet's order: common, then (N), then (S), then (H). The drift and the decisions are in the plan's "Workflow 7A Stage 1a amendments (contracts-7a)".
+
+Each change follows the same cycle:
+1. A stub (`chore`) only when a test needs a name that does not exist yet, so the RED commit compiles and type-checks.
+2. The test, run to see it fail for the intended reason (RED, `test` commit).
+3. The smallest change that passes it (GREEN, `feat` commit), then a refactor with the suite green where one was worth making.
+
+All commands ran after `source scripts/env.sh`. Output is trimmed to the lines that matter. Every address, ASN, point, name and token in these tests and fixtures is synthetic: addresses from 192.0.2.0/24, 198.51.100.0/24, 203.0.113.0/24 and 2001:db8::/32, ASNs from 64496-64511 and 65536-65551.
+
+## 0. Starting point, re-verified (`2af58e0e`)
+
+Re-checked before any change (`grep`, `ls` and the files named); the full list is amendments 1-9. In short:
+- **Drift:** `REDACTION_SUBJECT_ID_PREFIXES` also holds `rep` (Phase 6 C73.5).
+- **As stated:** `dev`, `net` and `ovh_` are free; 15 flow step types; no `worker-src`; 50 manifest entries; migrations end at `0022`.
+- **Phase 6 interfaces:** the watchlist sync files and their exports; the C85.1 stream client and `followableRedirect`; `PROCESS_PROVIDER_KINDS` (`api`: sms, database, aamva); the report registry (nine types, review models, the derived `none` events), the ten unavailable reasons and eight query sources; `report_type` is text with two CHECK constraints over `REPORT_TYPES`, which every layer walks; one transition hook (`createInquiryReportsInTx`) and `LifecycleDeps = { events, clock }`.
+
+## 1. Common: the registry, the reasons, the ids, the token, the windows, the problems (C90.1-C90.3, C90.5, C90.7, C96.2, C107.3)
+
+Stubs 45748377, f1c90978; RED b9970ebe; GREEN cbcac55f.
+
+RED:
+```
+$ (cd packages/core && pnpm exec vitest run src/signal-registry.test.ts src/permissions.test.ts --coverage.enabled=false)
+     × is every API scope plus the operator permissions
+     × gives settings:privacy to admin only (C90.8, C107.7)
+     × holds the thirteen 7A signals in the catalogue order
+     × records the catalogue table: tier, stage and collection tier of each signal
+     × types the never-false flags true-or-null (C90.3) · × hold the plan values
+     × pins every entry and the collector by version (golden)      (14 failed in all)
+      Tests  14 failed | 21 passed (35)
+$ (cd packages/contracts && pnpm exec vitest run src/signals.test.ts src/tokens.test.ts src/rate-limits.test.ts src/ids.test.ts src/fixtures.test.ts --coverage.enabled=false)
+     × have the ovh_ prefix and 43 base64url characters
+     × have their policies with their default limits per window (C72.5, C107.3)
+     × give each policy its window: 60 s by default, an hour for the handoff issues (F09)
+     × maps every C1 object to its prefix
+     × classifies every null reason, and nothing else
+     × derives sessions_not_evaluated from the sessions' own reasons
+     × requires a confidence, reasons and thresholds of an H-tier entry
+     × refuses a false for a never-false flag
+     × freezes the signal, session and handoff problem codes with their statuses
+     × carries code unknown_signal with status 422   (and the other 20 codes: no fixture yet)
+      Tests  45 failed | 277 passed (322)
+$ (cd packages/db && pnpm exec vitest run src/ids.test.ts --coverage.enabled=false)
+     × holds the Phase 7 device and network prefixes (C91.2, C91.3)      Tests  1 failed | 2 passed (3)
+$ (cd apps/api && pnpm exec vitest run src/plugins/rate-limit.test.ts --coverage.enabled=false)
+     × uses the C12 defaults, each in its policy window · × keeps a configured limit within its policy window
+      Tests  2 failed | 16 passed (18)
+```
+
+GREEN (same commands): core 35 passed; contracts 322 passed; db 3 passed; api 18 passed. Then the whole contracts package (one failure, the browser-safety rule: a comment in `signals.ts` read `apart from "hidden"`, which the import scan took for an import; reworded), 2,136 passed; core 787 passed; dashboard operators and integrations 146 passed; API plugins, roles and dashboard routes 335 passed. The golden digests of the registry were computed once from the canonical JSON of each constant table (an independent Python script in the scratch area) and pinned in the RED test; they matched at GREEN.
+
+The 21 problem fixtures were generated by a scratch script from a table of code, status, detail, instance and pointer, then formatted. No detail carries a digit run of four, an `@`, a token or an address.
+
+## 2. Dependencies (C94.1, C94.5, C96.5, F14, F38)
+
+RED 0561988f (`packages/checks/src/user-agent-dependencies.test.ts`); GREEN da112dc6.
+
+```
+$ (cd packages/checks && pnpm exec vitest run src/user-agent-dependencies.test.ts --coverage.enabled=false)
+     × takes bowser 2.14.1 from the catalog, as a direct dependency of checks      Tests  1 failed | 1 passed (2)
+$ flock /tmp/openverify-pnpm.lock pnpm install
+     Packages: +2   (uqr 0.1.3, lean-qr 2.7.4; bowser, qrcode, esbuild and jsdom were already locked)
+```
+
+GREEN: the same test 2 passed; `packages/config` (workspace conventions) 93 passed; `apps/flow` typechecks; the dashboard's lockfile test 2 passed. No `minimumReleaseAgeExclude` entry was written and `allowBuilds` is unchanged. `mmdb-lib` and `esbuild` have catalog entries here and join `packages/signals` in (N), the package that uses them.
+
+## 3. Records (C109)
+
+b7c31d51: ADR 0006; PLAN §2 Signals, §3 browser fingerprint and IP intel rows, §4.4 and §6 Phase 7; `THIRD_PARTY_LICENSES.md` §2.1.11 (the dependencies, da112dc6), the FingerprintJS v5 row, the §4.2 network rows (DB-IP, Tor, cloud ranges, Azure, Apple Private Relay, X4BNet, bad-asn-list) and the excluded sources; the surface index's signal, session, device and network identifiers.
+
+## 4. (N) network: the network resource, the session network facts, the ip-address report, `packages/signals`, the ASN seeds (C91.1, C91.3, C91.6, C92.6, C94.1, C106.1)
+
+Stub d13d05bc; RED 51005dfb; GREEN 1559b658; refactor 1e57ef69.
+
+RED:
+```
+$ (cd packages/core && pnpm exec vitest run src/report-registry.test.ts --coverage.enabled=false)
+     × lists the nine Phase 6 types in the plan order, then the Phase 7 ip-address (C106.1)
+     × records the plan table: tiers, recurrence, review and needs
+     × lists each type in order with its own actions, 48 names in all, never .submitted
+      Tests  3 failed | 8 passed (11)
+$ (cd packages/contracts && pnpm exec vitest run src/networks.test.ts src/inquiry-sessions.test.ts src/report-ip-address.test.ts --coverage.enabled=false)
+     × builds the public attributes and ours, linked to its session
+     × never serves false for the hosting-ASN or privacy-relay flags (C90.3, H13)
+     × holds the public names, with is-datacenter and is-vpn true or null (C93.3)
+     × includes the network, needing only inquiry-sessions:read (C107.6)
+     × refuses ranges, netmasks, zone indexes and anything that is not an address
+     × answers CLEARED only for an IPv4 address (no exit list has IPv6 exits)
+     × lists tor-exit-node in unavailable-fields whenever it is null, once the run ended
+     × freezes the causes of each field (golden)          (21 failed in all)
+      Tests  21 failed | 15 passed (36)
+$ (cd packages/db && pnpm exec vitest run src/phase7-report-types.test.ts src/migrate.test.ts --coverage.enabled=false)
+     × recreates the two report_type CHECK constraints in 0023 with the ip-address type (C106.1)
+     × accepts a template and a report of the ip-address type
+      Tests  2 failed | 23 passed (25)
+$ (cd packages/signals && pnpm exec vitest run --coverage.enabled=false)
+     × names the package and resolves to its sources without a build
+     × exposes the network and testing areas as their own entries (F06)      Tests  2 failed (2)
+$ (cd services/vision && uv run --frozen pytest tests/test_fetch_data.py -q --no-cov -k asn_seeds)
+     tests/test_fetch_data.py:369: KeyError      1 failed, 37 deselected
+```
+
+GREEN (same commands): core 11; contracts 39, then the whole package 2,189 passed (99.12% statements, 95.27% branches); db 25; signals 2 (100%); vision 38. The API suites the family touches (`src/routes src/services/reports src/jobs src/webhooks src/events src/openapi.test.ts src/seed src/auth src/services/api-logs.test.ts src/report-docs.test.ts`): 150 files, 2,491 passed. Dashboard `src/lib src/components src/app`: 3,858 passed. Android `ContractFixturesTest`: 80 tests, 0 failures. `pnpm --filter @openverify/api openapi:write` twice: the second run changed nothing.
+
+Two RED tests were corrected at GREEN: `getInquirySessionQuerySchema` keeps `include` as the comma-separated string the API splits (the test expected an array), and the refused-reason case of `networks.test.ts` builds its bad reason through `JSON.parse`, because the real type refuses the literal at compile time. Existing tests changed with the plan (C106.1, C107.5), each pinning a list that gains a Phase 7 member: the unavailable reasons, `PII_REPORT_ATTRIBUTES` (city, region, latitude, longitude), the query sources, `RESOURCE_TYPES`, `REPORT_EVENT_NAMES` (48), the fixture list, the seeded template counts (20 and 14), and the dashboard's report-event regex, which now allows an acronym (`IP address report ready`).
+
+`drizzle-kit generate` reads `@openverify/core` from its `dist`: the first run found no change until `pnpm --filter @openverify/core build` refreshed it; then it wrote `0023_phase7a.sql` (two drops, two adds). The seeds were fetched with `python3 scripts/fetch_data.py --only …`: 947 lines and 933 distinct ASNs (X4BNet datacenter), 16 and 16 (VPN), 742 rows and 723 distinct (bad-asn-list).
+
+## 5. (S) signals and devices: the device resource, the session device fields, the flow signals body, `signal-config`, the inquiry signals, the stubs of F06 and F07 (C90.5, C90.6, C90.8, C91.1, C91.2, C94.2, C94.6, C94.7)
+
+Fix before the family: ab81fee7 (`fix(node)`: (the node client reads a session with its included network, which (N)'s fixture now carries; found by running the node suite after (N), 2 failed of 250). Stub 1fe9af5a; RED 8ddf72be; GREEN 006cae1c.
+
+RED:
+```
+$ (cd packages/contracts && pnpm exec vitest run src/devices.test.ts src/flow-signals.test.ts src/inquiry-signals.test.ts --coverage.enabled=false)
+     × builds a web device: the strict fingerprint and our device class, no vendor id
+     × never serves the web device class as the device fingerprint, or an Android one on web
+     × refuses unknown members, so raw keystrokes, coordinates or timings cannot pass
+     × takes recognition, the Android members and the sandbox outcome where each belongs
+     × refuses a false for a never-false flag, and a null without its reason (H12)
+     × serves the parsed device and the device relationship, and includes the device
+      Tests  22 failed | 3 passed (25)
+$ (cd packages/signals && pnpm exec vitest run --coverage.enabled=false)
+     × exposes the browser collector as its own entry, for the flow alone (C94.1, F06)   Tests  1 failed | 2 passed (3)
+$ (cd apps/flow && pnpm exec vitest run src/signals --coverage.enabled=false)
+     × sends nothing and reads nothing while the session may not collect
+     × returns a handle the renderer can stop twice        Tests  2 failed (2)
+$ (cd packages/node && pnpm exec vitest run src/resources.test.ts --coverage.enabled=false)
+     × devices.list · × devices.retrieve · × covers every resource group of C2 and C10-C14   Tests  3 failed | 106 passed (109)
+```
+The checks entry test (`['signals', signals]`) passed at RED: the stub's area constant is re-exported, which is what the test guards; the folder's logic is `signal-logic`'s.
+
+GREEN: contracts 2,241 passed (99% statements, 94.9% branches); node 252 (98.87%); signals 3; checks entry 12; flow signals 2; API (`src/routes src/webhooks src/events src/openapi.test.ts src/services/inquiry-templates.test.ts src/services/flow.test.ts src/auth src/services/api-logs.test.ts`) 1,650 passed; the flow, flow-spec and e2e-helper suites pass; the dashboard typechecks; Android `ContractFixturesTest` and the coordinator tests: 83 fixture tests, 0 failures. `openapi:write` twice: the second changed nothing.
+
+One RED test was corrected before GREEN: the Android members of the flow signals body. The contract first carried `android-id` inside the browser `recognition` member, whose other members are required, so an Android body would have had to send browser nulls; Android now has its own `android-integrity` (the debugger facts of C94.7) and `android-recognition` members, and each platform sends only its own (contractDeviations).
+
+## 6. (H) handoff: the `device_handoff` step and its typecheck minimum, the handoff bodies and members, the session cap settings (C91.5, C96.1, C96.3, C96.4, F01)
+
+Stub f38e9041; RED 625f9541; GREEN e27788d7.
+
+RED:
+```
+$ (cd packages/flow-spec && pnpm exec vitest run --coverage.enabled=false)
+     × is a step type, snake case like the other fifteen · × takes its config, every member optional with the plan defaults
+     × parses a flow that uses every step type   (and the other tests sharing the every-step fixture)
+      Tests  15 failed | 102 passed (117)
+$ (cd packages/contracts && pnpm exec vitest run src/handoffs.test.ts src/ids.test.ts --coverage.enabled=false)
+      Tests  11 failed | 52 passed (63)   (states, bodies, answers, fragment, session fields, step lists, settings, hnd)
+$ (cd packages/db && pnpm exec vitest run src/ids.test.ts --coverage.enabled=false)      Tests  1 failed | 2 passed (3)
+$ (cd apps/flow && pnpm exec vitest run src/handoff src/flow/flow-position.test.ts --coverage.enabled=false)
+     × reads the inquiry and the handoff token of a handoff link, and nothing else
+     × is done once the handoff is redeemed, and the flow moves on   (and continued_here, skipped)
+     × stops at the step while the handoff is pending; Stage 1b adds its screen   (and issued, rejected, declined)
+      Tests  8 failed | 72 passed (80)
+$ (cd android && ./gradlew --no-daemon -q :openverify-sdk:testAndroidHostTest --tests 'dev.openverify.sdk.model.ContractFixturesTest')
+      84 tests completed, 1 failed   (a device handoff step decodes and is done only from a done state)
+```
+
+GREEN: flow-spec 117 (100% statements; the JSON schema re-exported with `pnpm schema:export`); contracts 2,272; flow 1,022 (96.36%); dashboard 3,945; the API's `src/routes src/seed src/services src/webhooks src/events src/openapi.test.ts` 2,101 after the pinned settings expectations gained the cap; Android host tests 1,268, 0 failures. `openapi:write` twice: the second changed nothing.
+
+## 7. Final gates (foreground, on the commit before this record)
+
+| Gate | Result |
+|---|---|
+| `pnpm install --frozen-lockfile` | lockfile up to date |
+| `pnpm typecheck && pnpm lint && pnpm format:check` | 15 of 15 typecheck tasks, 15 of 15 lint tasks; Prettier found one file the refactor left unformatted (`report-registry.test.ts`), formatted in its own commit, then clean |
+| `pnpm turbo run test --filter='!@openverify/api'` | every package above its 80% gate: contracts 2,272 (99.03% statements, 94.53% branches), dashboard 3,945 (98.71 / 93.5), checks 3,310, flow 1,022 (96.36 / 89.93), db 1,020, core 787 (99.85 / 97.33), watchlist 718, emrtd 318, node 252 (98.87 / 94.06), flow-spec 117 (100 / 94.44), e2e helpers 97, config 96, ui 54, **signals 3 (100%)**; 5 min 44 s at loads 10 to 18 |
+| API suite (two blob shards and a merge) | 323 files, 4,566 passed; 96.41% statements, 88.54% branches, 98.12% functions, 96.45% lines (shards 3 min 53 s and 4 min 8 s) |
+| `pnpm test:integration` | db 63 in 13 files (1 min 31 s); API 159 in 28 files (3 min 39 s) |
+| Android (`testDebugUnitTest testAndroidHostTest koverVerify assembleDebug :openverify-sdk:assemble lint`) | BUILD SUCCESSFUL in 2 min 42 s; SDK host tests 1,268 (0 skipped, 0 failures), demo 18 |
+| `pnpm --filter @openverify/api openapi:write` twice | no diff after the second run |
+| `python3 scripts/fetch_data.py` | every entry present at its pin, the three ASN seeds among them |
+| `bash infra/tests/ci-workflow.test.sh` | 207 passed, 0 failed |
+| `benchmark:typecheck`, `benchmark:test` | pass; 119 helper tests |
+| e2e (under `/tmp/openverify-e2e.lock`) | mocked flow 69 passed (23.5 s, load 5.1); full stack shard 1/3: 31 passed (2.8 min, load 6.7), 2/3: 31 passed (4.8 min, load 3.6), 3/3: 29 passed (4.5 min, load 3.1); 91 in all |

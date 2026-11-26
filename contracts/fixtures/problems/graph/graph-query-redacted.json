@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Gone",
+  "status": 410,
+  "detail": "The graph query was redacted.",
+  "instance": "/api/v1/graph-queries/grphq_01M5CK3190XEVBM5ZXA76E1JSN",
+  "requestId": "00000000-0000-4000-8000-000000001008",
+  "code": "graph_query_redacted"
+}

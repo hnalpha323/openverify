@@ -1,0 +1,40 @@
+/*
+ * C173.3 under C142.5's rules (8C Stage 1 amendment 32): the report page prints as itself. Every
+ * rule waits for print media and reads the page's own mark (`data-report-print`), so no other
+ * page's printout changes. The navigation, the header, the toasts and every control are left out;
+ * each image stays with its caption; the footer names the environment, the report, who printed it
+ * and when, and whether the page holds personal data. Masked and redacted values print as the
+ * page shows them ("Hidden", "Redacted"), never as empty.
+ */
+@media print {
+  @page {
+    size: auto;
+    margin: 16mm 14mm;
+  }
+
+  body:has([data-report-print]) nav,
+  body:has([data-report-print]) header,
+  body:has([data-report-print]) [data-live-region],
+  body:has([data-report-print]) button,
+  body:has([data-report-print]) form,
+  body:has([data-report-print]) input,
+  body:has([data-report-print]) select,
+  body:has([data-report-print]) textarea {
+    display: none !important;
+  }
+
+  [data-report-print] figure,
+  [data-report-print] img,
+  [data-report-print] tr {
+    break-inside: avoid;
+  }
+
+  [data-report-print] {
+    color: #000;
+  }
+
+  [data-report-print-footer] {
+    display: block !important;
+    break-inside: avoid;
+  }
+}

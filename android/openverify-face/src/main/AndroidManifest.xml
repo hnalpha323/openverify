@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application>
+        <!-- C205.2, first layer (Phase 4 decision 1; review P09). ONNX Runtime's own library manifest
+             (package ai.onnxruntime, read from the 1.31.0 AAR) declares a telemetry content provider,
+             which Android would create when the host's process starts. It is removed here, for every
+             host that adds this module: no other library declares this provider.
+
+             No tools:selector: measured on AGP 9.4.1 (Workflow 10E Stage 1a), a remove marker that
+             carries a selector rejects the named library's element but stays in the merged manifest
+             itself, as a provider with no authorities, which no device installs.
+
+             ONNX Runtime's manifest also asks for ACCESS_NETWORK_STATE. This module does NOT remove it
+             (review P10): a marker without a selector would also take the permission from any library
+             of the host merged after this one, and a marker with a selector keeps it declared. A host
+             with no other use for it removes it in its own manifest; the README says how. -->
+        <provider
+            android:name="ai.onnxruntime.TelemetryInitializer"
+            tools:node="remove" />
+    </application>
+
+</manifest>

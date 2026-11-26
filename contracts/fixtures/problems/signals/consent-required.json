@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "This session may not send signals before consent is recorded.",
+  "instance": "/api/v1/flow/signals",
+  "requestId": "00000000-0000-4000-8000-000000000706",
+  "code": "consent_required"
+}

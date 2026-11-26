@@ -1,0 +1,19 @@
+.venv
+**/__pycache__
+.pytest_cache
+.mypy_cache
+.ruff_cache
+.coverage
+htmlcov
+tests
+tools
+.env
+.env.*
+Dockerfile
+.dockerignore
+# Phase 11, Workflow 11C (ADR 0006, C257.1): no model weight and no network database in the context;
+# the image reads the weights from a mounted directory and never bakes one.
+models
+**/*.onnx
+**/*.mmdb
+**/*.mmdb.gz

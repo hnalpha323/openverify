@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "Face and background lists stay disabled until the environment records its basis.",
+  "instance": "/api/v1/list/faces",
+  "requestId": "00000000-0000-4000-8000-000000000800",
+  "code": "biometric_lists_not_acknowledged"
+}

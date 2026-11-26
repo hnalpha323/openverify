@@ -1,0 +1,231 @@
+{
+  "$schema": "./index.schema.json",
+  "format": 1,
+  "description": "C224.4 (review H02): the Android SDK's request fixtures by file, with the route each is sent to and the zod schema of @openverify/contracts that parses it. 10A's are below; 10B adds the multipart uploads with capture-method and capture-trigger and the integrity calls, 10C the chip uploads and submit, client-unable and sandbox-chip, each Stage 1a in its own commit; 11A (clients-connect) the three share-consent exits, with their files and their docs/android/privacy.md rows in one commit. A file is written by its client owner's MockEngine test with UPDATE_CONTRACT_FIXTURES=1, never by hand. A .multipart.json file holds {fields, file} (multipart.schema.json); its schema parses fields.",
+  "entries": [
+    {
+      "file": "consent-built-in.json",
+      "method": "POST",
+      "route": "/api/v1/flow/consent",
+      "schema": "flowConsentBodySchema",
+      "workflow": "10A",
+      "owner": "android-sdk-api"
+    },
+    {
+      "file": "consent-optional.json",
+      "method": "POST",
+      "route": "/api/v1/flow/consent",
+      "schema": "flowConsentBodySchema",
+      "workflow": "10A",
+      "owner": "android-sdk-api"
+    },
+    {
+      "file": "consent-custom.json",
+      "method": "POST",
+      "route": "/api/v1/flow/consent",
+      "schema": "flowConsentBodySchema",
+      "workflow": "10A",
+      "owner": "android-sdk-api"
+    },
+    {
+      "file": "screen-submit.json",
+      "method": "POST",
+      "route": "/api/v1/flow/screens/:stepId/submit",
+      "schema": "submitFlowScreenBodySchema",
+      "workflow": "10A",
+      "owner": "android-driver"
+    },
+    {
+      "file": "screen-submit-button.json",
+      "method": "POST",
+      "route": "/api/v1/flow/screens/:stepId/submit",
+      "schema": "submitFlowScreenBodySchema",
+      "workflow": "10A",
+      "owner": "android-driver"
+    },
+    {
+      "file": "verification-government-id.json",
+      "method": "POST",
+      "route": "/api/v1/flow/verifications",
+      "schema": "createFlowVerificationBodySchema",
+      "workflow": "10A",
+      "owner": "android-driver"
+    },
+    {
+      "file": "signals.json",
+      "method": "POST",
+      "route": "/api/v1/flow/signals",
+      "schema": "flowSignalsSchema",
+      "workflow": "10A",
+      "owner": "android-driver"
+    },
+    {
+      "file": "upload-government-id-camera.multipart.json",
+      "method": "POST",
+      "route": "/api/v1/flow/verifications/:id/files",
+      "schema": "flowFileUploadFieldsSchema",
+      "workflow": "10B",
+      "owner": "capture-pipeline"
+    },
+    {
+      "file": "upload-selfie-pose-auto.multipart.json",
+      "method": "POST",
+      "route": "/api/v1/flow/verifications/:id/files",
+      "schema": "flowFileUploadFieldsSchema",
+      "workflow": "10B",
+      "owner": "capture-pipeline"
+    },
+    {
+      "file": "upload-document.multipart.json",
+      "method": "POST",
+      "route": "/api/v1/flow/verifications/:id/files",
+      "schema": "flowFileUploadFieldsSchema",
+      "workflow": "10B",
+      "owner": "capture-pipeline"
+    },
+    {
+      "file": "signals-android-integrity.json",
+      "method": "POST",
+      "route": "/api/v1/flow/signals",
+      "schema": "flowSignalsSchema",
+      "workflow": "10B",
+      "owner": "device-integrity-android"
+    },
+    {
+      "file": "integrity-challenge.json",
+      "method": "POST",
+      "route": "/api/v1/flow/integrity-challenges",
+      "schema": "flowIntegrityChallengeBodySchema",
+      "workflow": "10B",
+      "owner": "device-integrity-android"
+    },
+    {
+      "file": "integrity-token.json",
+      "method": "POST",
+      "route": "/api/v1/flow/integrity-tokens",
+      "schema": "flowIntegrityTokenBodySchema",
+      "workflow": "10B",
+      "owner": "device-integrity-android"
+    },
+    {
+      "file": "chip-challenge.json",
+      "method": "POST",
+      "route": "/api/v1/flow/verifications/:id/chip-challenges",
+      "schema": "createChipChallengeBodySchema",
+      "workflow": "10C",
+      "owner": "nfc-sdk"
+    },
+    {
+      "file": "upload-chip-sod.multipart.json",
+      "method": "POST",
+      "route": "/api/v1/flow/verifications/:id/files",
+      "schema": "flowFileUploadFieldsSchema",
+      "workflow": "10C",
+      "owner": "nfc-sdk"
+    },
+    {
+      "file": "upload-chip-dg1.multipart.json",
+      "method": "POST",
+      "route": "/api/v1/flow/verifications/:id/files",
+      "schema": "flowFileUploadFieldsSchema",
+      "workflow": "10C",
+      "owner": "nfc-sdk"
+    },
+    {
+      "file": "upload-chip-dg2.multipart.json",
+      "method": "POST",
+      "route": "/api/v1/flow/verifications/:id/files",
+      "schema": "flowFileUploadFieldsSchema",
+      "workflow": "10C",
+      "owner": "nfc-sdk"
+    },
+    {
+      "file": "upload-chip-dg14.multipart.json",
+      "method": "POST",
+      "route": "/api/v1/flow/verifications/:id/files",
+      "schema": "flowFileUploadFieldsSchema",
+      "workflow": "10C",
+      "owner": "nfc-sdk"
+    },
+    {
+      "file": "upload-chip-dg15.multipart.json",
+      "method": "POST",
+      "route": "/api/v1/flow/verifications/:id/files",
+      "schema": "flowFileUploadFieldsSchema",
+      "workflow": "10C",
+      "owner": "nfc-sdk"
+    },
+    {
+      "file": "upload-chip-card-security.multipart.json",
+      "method": "POST",
+      "route": "/api/v1/flow/verifications/:id/files",
+      "schema": "flowFileUploadFieldsSchema",
+      "workflow": "10C",
+      "owner": "nfc-sdk"
+    },
+    {
+      "file": "upload-chip-card-access.multipart.json",
+      "method": "POST",
+      "route": "/api/v1/flow/verifications/:id/files",
+      "schema": "flowFileUploadFieldsSchema",
+      "workflow": "10C",
+      "owner": "nfc-sdk"
+    },
+    {
+      "file": "upload-chip-com.multipart.json",
+      "method": "POST",
+      "route": "/api/v1/flow/verifications/:id/files",
+      "schema": "flowFileUploadFieldsSchema",
+      "workflow": "10C",
+      "owner": "nfc-sdk"
+    },
+    {
+      "file": "chip-submit.json",
+      "method": "POST",
+      "route": "/api/v1/flow/verifications/:id/submit",
+      "schema": "flowSubmitVerificationBodySchema",
+      "workflow": "10C",
+      "owner": "nfc-sdk"
+    },
+    {
+      "file": "client-unable.json",
+      "method": "POST",
+      "route": "/api/v1/flow/verifications/:id/client-unable",
+      "schema": "flowClientUnableBodySchema",
+      "workflow": "10C",
+      "owner": "nfc-sdk"
+    },
+    {
+      "file": "sandbox-chip.json",
+      "method": "POST",
+      "route": "/api/v1/flow/verifications/:id/sandbox-chip",
+      "schema": "flowSandboxChipBodySchema",
+      "workflow": "10C",
+      "owner": "nfc-sdk"
+    },
+    {
+      "file": "share-consent-accept.json",
+      "method": "POST",
+      "route": "/api/v1/flow/share-consents/:stepId/accept",
+      "schema": "flowShareConsentAcceptBodySchema",
+      "workflow": "11A",
+      "owner": "clients-connect"
+    },
+    {
+      "file": "share-consent-decline.json",
+      "method": "POST",
+      "route": "/api/v1/flow/share-consents/:stepId/decline",
+      "schema": "flowShareConsentDeclineBodySchema",
+      "workflow": "11A",
+      "owner": "clients-connect"
+    },
+    {
+      "file": "share-consent-withdraw.json",
+      "method": "POST",
+      "route": "/api/v1/flow/share-consents/:stepId/withdraw",
+      "schema": "flowShareConsentWithdrawBodySchema",
+      "workflow": "11A",
+      "owner": "clients-connect"
+    }
+  ]
+}

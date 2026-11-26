@@ -1,0 +1,8 @@
+{{- /*
+C263, C250.3 (Workflow 11C Stage 2, chart-11c): the API's public Service (the ingress's backend) and
+its internal Service, the only way to /api/v1/internal/*: the flow server reaches it for each
+embed's policy; no ingress routes it, and chart-policy-11c's policy lets only the flow server in.
+*/ -}}
+{{- include "openverify.service" (dict "root" . "component" "api" "name" (include "openverify.componentName" (dict "root" . "component" "api")) "ports" (printf "- name: http\n  port: %v\n  targetPort: http\n  protocol: TCP" .Values.api.port)) }}
+---
+{{ include "openverify.service" (dict "root" . "component" "api" "name" (include "openverify.componentName" (dict "root" . "component" "api-internal")) "ports" (printf "- name: internal\n  port: %v\n  targetPort: internal\n  protocol: TCP" .Values.api.internalListen.port)) }}

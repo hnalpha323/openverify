@@ -1,0 +1,69 @@
+# C261.2, C265.3 (Workflow 11C Stage 1a, contracts-11c): the Python environment for the supply-chain
+# scripts, which themselves run with `python3 -I` and the standard library only:
+#   security/check-sbom-licences.py (sbom-release-11c), tested in security/tests/;
+#   security/gitleaks-pii-filter.py (sast-pii-11c), tested in security/tests/;
+#   security/zap/dast-zap.py (dast-11f, Workflow 11F; C283), tested in security/tests/;
+#   scripts/fetch_k8s_schemas.py (chart-policy-11c), tested in scripts/tests/.
+# PyYAML is here only for kubeconform's pinned openapi2jsonschema.py, which imports it; the scripts
+# run that converter as a separate process with this environment's interpreter. Every transitive
+# licence of uv.lock is recorded in THIRD_PARTY_LICENSES.md (section 2.1.22). From the repository root:
+#   uv run --project security/python --frozen pytest -c security/python/pyproject.toml --rootdir .
+#   uv run --project security/python --frozen ruff check security scripts/fetch_k8s_schemas.py scripts/tests
+#   uv run --project security/python --frozen ruff format --check security scripts/fetch_k8s_schemas.py scripts/tests
+#   uv run --project security/python --frozen mypy --strict security/check-sbom-licences.py scripts/fetch_k8s_schemas.py
+#   uv run --project security/python --frozen mypy --strict security/gitleaks-pii-filter.py
+#   uv run --project security/python --frozen mypy --strict security/zap/dast-zap.py security/zap/zap-hooks.py
+[project]
+name = "openverify-supply-chain-python"
+version = "0.0.0"
+description = "The tool and test environment of the supply-chain scripts"
+requires-python = ">=3.12,<3.13"
+dependencies = ["pyyaml==6.0.3"]
+
+[dependency-groups]
+dev = [
+    "mypy==2.4.0",
+    "pytest==9.1.1",
+    "pytest-cov==7.1.0",
+    "ruff==0.17.1",
+]
+
+[tool.uv]
+# Every resolution takes only releases at least 14 days old (Phase 9 decision 62).
+package = false
+exclude-newer = "14 days"
+
+[tool.pytest.ini_options]
+minversion = "9.0"
+testpaths = ["security/tests", "scripts/tests"]
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "--cov",
+    "--cov-config=security/python/pyproject.toml",
+    "--cov-report=term-missing",
+    "--cov-fail-under=80",
+]
+filterwarnings = ["error"]
+
+[tool.coverage.run]
+branch = true
+# Only the scripts this environment serves; the fetch scripts the vision suite tests are not counted here.
+# security/gitleaks-pii-filter.py is sast-pii-11c's (C260.3), tested in security/tests/.
+# security/zap/dast-zap.py is dast-11f's (C283.2), tested in security/tests/ (Workflow 11F); its
+# sibling zap-hooks.py runs only inside ZAP's container and is held by mypy --strict and zap.test.sh.
+include = ["*/security/check-sbom-licences.py", "*/scripts/fetch_k8s_schemas.py", "*/security/gitleaks-pii-filter.py", "*/security/zap/dast-zap.py"]
+
+[tool.coverage.report]
+show_missing = true
+exclude_also = ["if TYPE_CHECKING:", "if __name__ == .__main__.:"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "S"]
+
+[tool.ruff.lint.per-file-ignores]
+"*/tests/*" = ["S101"]

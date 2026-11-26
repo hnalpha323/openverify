@@ -1,0 +1,15 @@
+{
+  "type": "connect/source-data/transaction",
+  "attributes": {
+    "status": {
+      "visibility": "full",
+      "value": "approved"
+    }
+  },
+  "fields": {
+    "amount-currency": {
+      "visibility": "full",
+      "value": "EUR"
+    }
+  }
+}

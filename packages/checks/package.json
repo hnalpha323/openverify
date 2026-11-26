@@ -1,0 +1,45 @@
+{
+  "name": "@openverify/checks",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Pure check logic (MRZ, AAMVA, dates, name/address matching, ID-number formats)",
+  "type": "module",
+  "exports": {
+    ".": {
+      "@openverify/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --coverage",
+    "calibration:report": "node --experimental-transform-types --no-warnings --conditions=@openverify/source --import ./scripts/register-ts.mjs scripts/calibration-report.ts"
+  },
+  "devDependencies": {
+    "@openverify/config": "workspace:*",
+    "@types/node": "catalog:",
+    "@vitest/coverage-v8": "catalog:",
+    "bitcoin-address-validation": "4.0.0",
+    "micro-eth-signer": "0.20.1",
+    "mrz": "5.0.2",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  },
+  "dependencies": {
+    "@noble/curves": "catalog:",
+    "@noble/hashes": "catalog:",
+    "@openverify/core": "workspace:*",
+    "@openverify/emrtd": "workspace:*",
+    "@openverify/signals": "workspace:*",
+    "@scure/base": "catalog:",
+    "@scure/btc-signer": "catalog:",
+    "bowser": "catalog:",
+    "csv-parse": "catalog:",
+    "csv-stringify": "catalog:",
+    "libphonenumber-js": "catalog:",
+    "zod": "^4.6.7"
+  }
+}

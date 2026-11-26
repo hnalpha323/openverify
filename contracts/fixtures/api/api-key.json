@@ -1,0 +1,23 @@
+{
+  "data": {
+    "type": "api-key",
+    "id": "key_01M5CJXHG0RVK7X4H9941FSM5K",
+    "attributes": {
+      "name": "Sandbox backend",
+      "scopes": [
+        "inquiries:read",
+        "inquiries:write",
+        "inquiry-templates:read",
+        "accounts:read",
+        "events:read"
+      ],
+      "allowed-ips": ["203.0.113.0/24"],
+      "api-version": "2026-10-01",
+      "token-prefix": "ov_sbx_Test",
+      "expires-at": null,
+      "last-used-at": "2026-10-20T12:00:05.000Z",
+      "created-at": "2026-10-20T11:00:00.000Z",
+      "pii-masked": false
+    }
+  }
+}

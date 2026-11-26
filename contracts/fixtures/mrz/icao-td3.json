@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "description": "TD3 (passport data page, 2 x 44 characters).",
+  "source": {
+    "citation": "ICAO Doc 9303, Eighth Edition (2021), Part 4, the TD3 passport example of the specimen state Utopia",
+    "url": "https://www.icao.int/sites/default/files/publications/DocSeries/9303_p4_cons_en.pdf"
+  },
+  "vectors": [
+    {
+      "id": "icao-9303-p4-td3",
+      "format": "TD3",
+      "lines": [
+        "P<UTOERIKSSON<<ANNA<MARIA<<<<<<<<<<<<<<<<<<<",
+        "L898902C36UTO7408122F1204159ZE184226B<<<<<10"
+      ],
+      "note": "The published example, unchanged.",
+      "valid": true,
+      "check_digits": {
+        "document_number": {
+          "input": "L898902C3",
+          "printed": "6",
+          "computed": 6,
+          "valid": true
+        },
+        "birth_date": {
+          "input": "740812",
+          "printed": "2",
+          "computed": 2,
+          "valid": true
+        },
+        "expiration_date": {
+          "input": "120415",
+          "printed": "9",
+          "computed": 9,
+          "valid": true
+        },
+        "optional_data": {
+          "input": "ZE184226B<<<<<",
+          "printed": "1",
+          "computed": 1,
+          "valid": true
+        },
+        "composite": {
+          "input": "L898902C3674081221204159ZE184226B<<<<<1",
+          "printed": "0",
+          "computed": 0,
+          "valid": true
+        }
+      },
+      "fields": {
+        "document_code": "P",
+        "issuing_state": "UTO",
+        "surname": "ERIKSSON",
+        "given_names": "ANNA MARIA",
+        "document_number": "L898902C3",
+        "nationality": "UTO",
+        "birth_date": "740812",
+        "sex": "F",
+        "expiration_date": "120415",
+        "optional_data_1": "ZE184226B",
+        "optional_data_2": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,422 @@
+{
+  "$comment": "C92.1 (ADR 0006): where the operator's network:sync fetches each network source. Live network data never comes from git: this file names the publications, their caps and their terms. No change signal is read (owner decision 10 after Workflow 6B): every check downloads and compares the SHA-256.",
+  "format": "openverify/network-sources/v1",
+  "guards": {
+    "mass_removal_share": 0.25,
+    "mass_addition_share": 0.25,
+    "mmdb_min_size_share": 0.5,
+    "basis": "provisional (C92.2): a range or exit set may lose or a range set gain at most a quarter of its addresses, higher than the watchlists' 10% because exit lists churn hourly; an MMDB may shrink to half its applied size. Unmeasured on live churn; to be calibrated."
+  },
+  "sources": [
+    {
+      "id": "dbip-country-lite",
+      "publisher": "DB-IP (Eris Networks S.A.S)",
+      "role": "geo-country",
+      "parser": "mmdb-country",
+      "provider": null,
+      "urls": [],
+      "url_template": "https://download.db-ip.com/free/dbip-country-lite-{yyyy-mm}.mmdb.gz",
+      "redirect_host": null,
+      "content_types": ["application/octet-stream", "application/gzip", "application/x-gzip"],
+      "max_bytes": {
+        "compressed": 33554432,
+        "inflated": 67108864
+      },
+      "timeout_seconds": 300,
+      "decompress": "gzip",
+      "digest": {
+        "page_url": "https://db-ip.com/db/download/ip-to-country-lite",
+        "algorithm": "sha1"
+      },
+      "min_prefix": null,
+      "refresh_interval_hours": 24,
+      "stale_after_hours": 1080,
+      "enabled_by_default": true,
+      "sandbox_only": false,
+      "terms": {
+        "note": "CC BY 4.0 (DB-IP Lite, the free downloads outside the paid-licence clauses): credit DB-IP and link back to https://db-ip.com on every page that shows a result. The Lite editions are subsets of the paid ones, with reduced coverage and accuracy; a city is a coarse point. Synced by the operator, never committed or shipped (ADR 0006).",
+        "url": "https://db-ip.com/tos.php"
+      },
+      "attribution": "IP geolocation by DB-IP",
+      "link_back": "https://db-ip.com"
+    },
+    {
+      "id": "dbip-asn-lite",
+      "publisher": "DB-IP (Eris Networks S.A.S)",
+      "role": "asn",
+      "parser": "mmdb-asn",
+      "provider": null,
+      "urls": [],
+      "url_template": "https://download.db-ip.com/free/dbip-asn-lite-{yyyy-mm}.mmdb.gz",
+      "redirect_host": null,
+      "content_types": ["application/octet-stream", "application/gzip", "application/x-gzip"],
+      "max_bytes": {
+        "compressed": 33554432,
+        "inflated": 67108864
+      },
+      "timeout_seconds": 300,
+      "decompress": "gzip",
+      "digest": {
+        "page_url": "https://db-ip.com/db/download/ip-to-asn-lite",
+        "algorithm": "sha1"
+      },
+      "min_prefix": null,
+      "refresh_interval_hours": 24,
+      "stale_after_hours": 1080,
+      "enabled_by_default": true,
+      "sandbox_only": false,
+      "terms": {
+        "note": "CC BY 4.0 (DB-IP Lite, the free downloads outside the paid-licence clauses): credit DB-IP and link back to https://db-ip.com on every page that shows a result. The Lite editions are subsets of the paid ones, with reduced coverage and accuracy; a city is a coarse point. Synced by the operator, never committed or shipped (ADR 0006).",
+        "url": "https://db-ip.com/tos.php"
+      },
+      "attribution": "IP geolocation by DB-IP",
+      "link_back": "https://db-ip.com"
+    },
+    {
+      "id": "dbip-city-lite",
+      "publisher": "DB-IP (Eris Networks S.A.S)",
+      "role": "geo-city",
+      "parser": "mmdb-city",
+      "provider": null,
+      "urls": [],
+      "url_template": "https://download.db-ip.com/free/dbip-city-lite-{yyyy-mm}.mmdb.gz",
+      "redirect_host": null,
+      "content_types": ["application/octet-stream", "application/gzip", "application/x-gzip"],
+      "max_bytes": {
+        "compressed": 134217728,
+        "inflated": 268435456
+      },
+      "timeout_seconds": 600,
+      "decompress": "gzip",
+      "digest": {
+        "page_url": "https://db-ip.com/db/download/ip-to-city-lite",
+        "algorithm": "sha1"
+      },
+      "min_prefix": null,
+      "refresh_interval_hours": 24,
+      "stale_after_hours": 1080,
+      "enabled_by_default": false,
+      "sandbox_only": false,
+      "terms": {
+        "note": "CC BY 4.0 (DB-IP Lite, the free downloads outside the paid-licence clauses): credit DB-IP and link back to https://db-ip.com on every page that shows a result. The Lite editions are subsets of the paid ones, with reduced coverage and accuracy; a city is a coarse point. Synced by the operator, never committed or shipped (ADR 0006).",
+        "url": "https://db-ip.com/tos.php"
+      },
+      "attribution": "IP geolocation by DB-IP",
+      "link_back": "https://db-ip.com"
+    },
+    {
+      "id": "tor-exit-addresses",
+      "publisher": "The Tor Project (TorDNSEL)",
+      "role": "tor",
+      "parser": "tordnsel-exit-addresses",
+      "provider": null,
+      "urls": ["https://check.torproject.org/exit-addresses"],
+      "url_template": null,
+      "redirect_host": null,
+      "content_types": ["text/plain", "none"],
+      "max_bytes": {
+        "compressed": 8388608,
+        "inflated": 8388608
+      },
+      "timeout_seconds": 120,
+      "decompress": null,
+      "digest": null,
+      "min_prefix": null,
+      "refresh_interval_hours": 1,
+      "stale_after_hours": 6,
+      "enabled_by_default": true,
+      "sandbox_only": false,
+      "terms": {
+        "note": "CC0 (Tor Metrics data). IPv4 exits only, as published: an IPv6 address is never checked. The list is served without a Content-Type.",
+        "url": "https://metrics.torproject.org/collector.html"
+      },
+      "attribution": "Tor exit list: The Tor Project (TorDNSEL, CC0)",
+      "link_back": null
+    },
+    {
+      "id": "aws-ip-ranges",
+      "publisher": "Amazon Web Services",
+      "role": "cloud-ranges",
+      "parser": "aws-ip-ranges",
+      "provider": null,
+      "urls": ["https://ip-ranges.amazonaws.com/ip-ranges.json"],
+      "url_template": null,
+      "redirect_host": null,
+      "content_types": ["application/json"],
+      "max_bytes": {
+        "compressed": 33554432,
+        "inflated": 33554432
+      },
+      "timeout_seconds": 120,
+      "decompress": null,
+      "digest": null,
+      "min_prefix": {
+        "ipv4": 8,
+        "ipv6": 16
+      },
+      "refresh_interval_hours": 6,
+      "stale_after_hours": 168,
+      "enabled_by_default": true,
+      "sandbox_only": false,
+      "terms": {
+        "note": "No licence is stated: factual ranges the provider publishes for programmatic use. Synced by the operator, never redistributed (ADR 0006, decision 3).",
+        "url": "https://docs.aws.amazon.com/vpc/latest/userguide/aws-ip-ranges.html"
+      },
+      "attribution": "IP ranges published by Amazon Web Services",
+      "link_back": null
+    },
+    {
+      "id": "gcp-cloud",
+      "publisher": "Google Cloud",
+      "role": "cloud-ranges",
+      "parser": "gcp-cloud-json",
+      "provider": null,
+      "urls": ["https://www.gstatic.com/ipranges/cloud.json"],
+      "url_template": null,
+      "redirect_host": null,
+      "content_types": ["application/json"],
+      "max_bytes": {
+        "compressed": 8388608,
+        "inflated": 8388608
+      },
+      "timeout_seconds": 120,
+      "decompress": null,
+      "digest": null,
+      "min_prefix": {
+        "ipv4": 8,
+        "ipv6": 16
+      },
+      "refresh_interval_hours": 6,
+      "stale_after_hours": 168,
+      "enabled_by_default": true,
+      "sandbox_only": false,
+      "terms": {
+        "note": "No licence is stated: factual ranges the provider publishes for programmatic use. Synced by the operator, never redistributed (ADR 0006, decision 3).",
+        "url": "https://docs.cloud.google.com/compute/docs/faq"
+      },
+      "attribution": "IP ranges published by Google Cloud",
+      "link_back": null
+    },
+    {
+      "id": "oracle-public-ip-ranges",
+      "publisher": "Oracle Cloud Infrastructure",
+      "role": "cloud-ranges",
+      "parser": "oracle-public-ip-ranges",
+      "provider": null,
+      "urls": ["https://docs.oracle.com/en-us/iaas/tools/public_ip_ranges.json"],
+      "url_template": null,
+      "redirect_host": null,
+      "content_types": ["application/json"],
+      "max_bytes": {
+        "compressed": 8388608,
+        "inflated": 8388608
+      },
+      "timeout_seconds": 120,
+      "decompress": null,
+      "digest": null,
+      "min_prefix": {
+        "ipv4": 8,
+        "ipv6": 16
+      },
+      "refresh_interval_hours": 24,
+      "stale_after_hours": 336,
+      "enabled_by_default": true,
+      "sandbox_only": false,
+      "terms": {
+        "note": "No licence is stated: factual ranges the provider publishes for programmatic use. Synced by the operator, never redistributed (ADR 0006, decision 3).",
+        "url": null
+      },
+      "attribution": "IP ranges published by Oracle Cloud Infrastructure",
+      "link_back": null
+    },
+    {
+      "id": "cloudflare-ips",
+      "publisher": "Cloudflare",
+      "role": "cloud-ranges",
+      "parser": "cloudflare-ips-api",
+      "provider": null,
+      "urls": ["https://api.cloudflare.com/client/v4/ips"],
+      "url_template": null,
+      "redirect_host": null,
+      "content_types": ["application/json"],
+      "max_bytes": {
+        "compressed": 1048576,
+        "inflated": 1048576
+      },
+      "timeout_seconds": 120,
+      "decompress": null,
+      "digest": null,
+      "min_prefix": {
+        "ipv4": 8,
+        "ipv6": 16
+      },
+      "refresh_interval_hours": 24,
+      "stale_after_hours": 336,
+      "enabled_by_default": true,
+      "sandbox_only": false,
+      "terms": {
+        "note": "No licence is stated: factual ranges the provider publishes for programmatic use. Synced by the operator, never redistributed (ADR 0006, decision 3). These are Cloudflare's proxy edge: traffic from them took a proxied path.",
+        "url": null
+      },
+      "attribution": "IP ranges published by Cloudflare",
+      "link_back": null
+    },
+    {
+      "id": "digitalocean-geofeed",
+      "publisher": "DigitalOcean",
+      "role": "cloud-ranges",
+      "parser": "rfc8805-geofeed",
+      "provider": "digitalocean",
+      "urls": ["https://www.digitalocean.com/geo/google.csv"],
+      "url_template": null,
+      "redirect_host": null,
+      "content_types": ["application/csv", "text/csv", "text/plain"],
+      "max_bytes": {
+        "compressed": 8388608,
+        "inflated": 8388608
+      },
+      "timeout_seconds": 120,
+      "decompress": null,
+      "digest": null,
+      "min_prefix": {
+        "ipv4": 8,
+        "ipv6": 16
+      },
+      "refresh_interval_hours": 24,
+      "stale_after_hours": 336,
+      "enabled_by_default": true,
+      "sandbox_only": false,
+      "terms": {
+        "note": "No licence is stated: factual ranges the provider publishes for programmatic use. Synced by the operator, never redistributed (ADR 0006, decision 3).",
+        "url": null
+      },
+      "attribution": "IP ranges published by DigitalOcean",
+      "link_back": null
+    },
+    {
+      "id": "linode-geofeed",
+      "publisher": "Akamai (Linode)",
+      "role": "cloud-ranges",
+      "parser": "rfc8805-geofeed",
+      "provider": "linode",
+      "urls": ["https://geoip.linode.com/"],
+      "url_template": null,
+      "redirect_host": null,
+      "content_types": ["text/plain", "text/csv"],
+      "max_bytes": {
+        "compressed": 8388608,
+        "inflated": 8388608
+      },
+      "timeout_seconds": 120,
+      "decompress": null,
+      "digest": null,
+      "min_prefix": {
+        "ipv4": 8,
+        "ipv6": 16
+      },
+      "refresh_interval_hours": 24,
+      "stale_after_hours": 336,
+      "enabled_by_default": true,
+      "sandbox_only": false,
+      "terms": {
+        "note": "No licence is stated: factual ranges the provider publishes for programmatic use. Synced by the operator, never redistributed (ADR 0006, decision 3).",
+        "url": null
+      },
+      "attribution": "IP ranges published by Akamai (Linode)",
+      "link_back": null
+    },
+    {
+      "id": "azure-service-tags",
+      "publisher": "Microsoft Azure",
+      "role": "cloud-ranges",
+      "parser": "azure-service-tags",
+      "provider": null,
+      "urls": [],
+      "url_template": null,
+      "redirect_host": null,
+      "content_types": [],
+      "max_bytes": {
+        "compressed": 67108864,
+        "inflated": 67108864
+      },
+      "timeout_seconds": 120,
+      "decompress": null,
+      "digest": null,
+      "min_prefix": {
+        "ipv4": 8,
+        "ipv6": 16
+      },
+      "refresh_interval_hours": null,
+      "stale_after_hours": 504,
+      "enabled_by_default": false,
+      "sandbox_only": false,
+      "terms": {
+        "note": "Import only (decision 4): the file's name changes weekly under a download page, so no fixed URL exists, and Microsoft's default site terms are personal and non-commercial. Read them before importing with network:sync --import.",
+        "url": "https://www.microsoft.com/en-us/legal/terms-of-use"
+      },
+      "attribution": "IP ranges published by Microsoft Azure",
+      "link_back": null
+    },
+    {
+      "id": "apple-private-relay",
+      "publisher": "Apple (iCloud Private Relay)",
+      "role": "relay",
+      "parser": "rfc8805-geofeed",
+      "provider": "apple-private-relay",
+      "urls": ["https://mask-api.icloud.com/egress-ip-ranges.csv"],
+      "url_template": null,
+      "redirect_host": null,
+      "content_types": ["text/plain", "text/csv"],
+      "max_bytes": {
+        "compressed": 67108864,
+        "inflated": 67108864
+      },
+      "timeout_seconds": 120,
+      "decompress": null,
+      "digest": null,
+      "min_prefix": {
+        "ipv4": 8,
+        "ipv6": 16
+      },
+      "refresh_interval_hours": 24,
+      "stale_after_hours": 168,
+      "enabled_by_default": false,
+      "sandbox_only": false,
+      "terms": {
+        "note": "Disabled by default (decision 5). Sets only privacy-relay, which never raises a threat level. No licence is stated; synced by the operator, never redistributed.",
+        "url": "https://developer.apple.com/icloud/prepare-your-network-for-icloud-private-relay/"
+      },
+      "attribution": "IP ranges published by Apple (iCloud Private Relay)",
+      "link_back": null
+    },
+    {
+      "id": "openverify-sandbox-network",
+      "publisher": "OpenVerify (synthetic)",
+      "role": "sandbox",
+      "parser": "openverify-sandbox-network",
+      "provider": null,
+      "urls": [],
+      "url_template": null,
+      "redirect_host": null,
+      "content_types": [],
+      "max_bytes": {
+        "compressed": 4194304,
+        "inflated": 4194304
+      },
+      "timeout_seconds": null,
+      "decompress": null,
+      "digest": null,
+      "min_prefix": null,
+      "refresh_interval_hours": null,
+      "stale_after_hours": null,
+      "enabled_by_default": true,
+      "sandbox_only": true,
+      "terms": {
+        "note": "Our own synthetic data: documentation ranges and fictional ASNs only (C93.6), imported by seed:dev and read only by sandbox environments.",
+        "url": null
+      },
+      "attribution": "OpenVerify synthetic sandbox network data",
+      "link_back": null
+    }
+  ]
+}

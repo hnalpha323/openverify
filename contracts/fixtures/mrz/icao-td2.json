@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "description": "TD2 (ID-2 size card, 2 x 36 characters).",
+  "source": {
+    "citation": "ICAO Doc 9303, Eighth Edition (2021), Part 6, the TD2 example of the specimen state Utopia",
+    "url": "https://www.icao.int/sites/default/files/publications/DocSeries/9303_p6_cons_en.pdf"
+  },
+  "vectors": [
+    {
+      "id": "icao-9303-p6-td2",
+      "format": "TD2",
+      "lines": ["I<UTOERIKSSON<<ANNA<MARIA<<<<<<<<<<<", "D231458907UTO7408122F1204159<<<<<<<6"],
+      "note": "The published example, unchanged.",
+      "valid": true,
+      "check_digits": {
+        "document_number": {
+          "input": "D23145890",
+          "printed": "7",
+          "computed": 7,
+          "valid": true
+        },
+        "birth_date": {
+          "input": "740812",
+          "printed": "2",
+          "computed": 2,
+          "valid": true
+        },
+        "expiration_date": {
+          "input": "120415",
+          "printed": "9",
+          "computed": 9,
+          "valid": true
+        },
+        "optional_data": null,
+        "composite": {
+          "input": "D23145890774081221204159<<<<<<<",
+          "printed": "6",
+          "computed": 6,
+          "valid": true
+        }
+      },
+      "fields": {
+        "document_code": "I",
+        "issuing_state": "UTO",
+        "surname": "ERIKSSON",
+        "given_names": "ANNA MARIA",
+        "document_number": "D23145890",
+        "nationality": "UTO",
+        "birth_date": "740812",
+        "sex": "F",
+        "expiration_date": "120415",
+        "optional_data_1": "",
+        "optional_data_2": null
+      }
+    }
+  ]
+}

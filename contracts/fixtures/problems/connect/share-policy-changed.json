@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "The share policy changed since it was shown. Read the current version and accept that one.",
+  "instance": "/api/v1/dashboard/connect/connections/cxn_01M5CN0000000000000011A100/activate",
+  "requestId": "00000000-0000-4000-8000-00000011a004",
+  "code": "share_policy_changed"
+}

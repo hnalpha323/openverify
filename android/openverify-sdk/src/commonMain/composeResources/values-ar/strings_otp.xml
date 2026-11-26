@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Arabic copy of values/strings_otp.xml, machine-drafted by android-i18n (Workflow 10A, C199.1;
+  i18n/review-status.json): where the hosted web flow has the same English text, its
+  Arabic words are used, so both clients say the same thing. Compose Multiplatform resources:
+  positional placeholders only, ' and " written as they are, no isolate or other bidi control
+  (ResourcesTest).
+-->
+<resources>
+    <string name="openverify_otp_phone_title">تأكيد رقم الهاتف</string>
+    <string name="openverify_otp_phone_intro">سنرسل رمزًا إلى هاتفك في رسالة نصية. قد تُطبَّق رسوم الرسائل المعتادة.</string>
+    <string name="openverify_otp_country">البلد</string>
+    <string name="openverify_otp_phone_number">رقم الهاتف</string>
+    <string name="openverify_otp_phone_hint">يُرجى اختيار البلد ثم إدخال الرقم. يمكن أيضًا كتابة الرقم كاملًا بدءًا بعلامة + ورمز البلد.</string>
+    <string name="openverify_otp_email_title">تأكيد عنوان البريد الإلكتروني</string>
+    <string name="openverify_otp_email_intro">سنرسل رمزًا إلى عنوان بريدك الإلكتروني.</string>
+    <string name="openverify_otp_email_address">عنوان البريد الإلكتروني</string>
+    <string name="openverify_otp_send">إرسال الرمز</string>
+    <string name="openverify_otp_sending">جارٍ إرسال الرمز…</string>
+    <string name="openverify_otp_phone_required">يُرجى إدخال رقم الهاتف.</string>
+    <string name="openverify_otp_email_invalid">يُرجى إدخال عنوان بريد إلكتروني بالصيغة الصحيحة، مثل name@example.com.</string>
+    <string name="openverify_otp_code_title">إدخال الرمز</string>
+    <string name="openverify_otp_sent_to">أرسلنا رمزًا إلى %1$s.</string>
+    <string name="openverify_otp_sent_again">أرسلنا رمزًا جديدًا إلى %1$s.</string>
+    <string name="openverify_otp_sent">أرسلنا رمزًا.</string>
+    <string name="openverify_otp_code">الرمز</string>
+    <string name="openverify_otp_code_hint">يتكون الرمز من %1$d أرقام.</string>
+    <string name="openverify_otp_confirm">تأكيد</string>
+    <string name="openverify_otp_checking">جارٍ التحقق من الرمز…</string>
+    <plurals name="openverify_otp_attempts_left">
+        <item quantity="zero">تبقّت %1$d محاولة لهذا الرمز.</item>
+        <item quantity="one">تبقّت محاولة واحدة لهذا الرمز.</item>
+        <item quantity="two">تبقّت محاولتان لهذا الرمز.</item>
+        <item quantity="few">تبقّت %1$d محاولات لهذا الرمز.</item>
+        <item quantity="many">تبقّت %1$d محاولة لهذا الرمز.</item>
+        <item quantity="other">تبقّت %1$d محاولة لهذا الرمز.</item>
+    </plurals>
+    <plurals name="openverify_otp_expires_in">
+        <item quantity="zero">تنتهي صلاحية الرمز بعد %1$d دقيقة.</item>
+        <item quantity="one">تنتهي صلاحية الرمز بعد دقيقة واحدة.</item>
+        <item quantity="two">تنتهي صلاحية الرمز بعد دقيقتين.</item>
+        <item quantity="few">تنتهي صلاحية الرمز بعد %1$d دقائق.</item>
+        <item quantity="many">تنتهي صلاحية الرمز بعد %1$d دقيقة.</item>
+        <item quantity="other">تنتهي صلاحية الرمز بعد %1$d دقيقة.</item>
+    </plurals>
+    <string name="openverify_otp_code_expired">انتهت صلاحية هذا الرمز. يُرجى طلب رمز جديد.</string>
+    <string name="openverify_otp_resend">إرسال رمز جديد</string>
+    <plurals name="openverify_otp_resend_in">
+        <item quantity="zero">يمكن طلب رمز جديد بعد %1$d ثانية.</item>
+        <item quantity="one">يمكن طلب رمز جديد بعد ثانية واحدة.</item>
+        <item quantity="two">يمكن طلب رمز جديد بعد ثانيتين.</item>
+        <item quantity="few">يمكن طلب رمز جديد بعد %1$d ثوانٍ.</item>
+        <item quantity="many">يمكن طلب رمز جديد بعد %1$d ثانية.</item>
+        <item quantity="other">يمكن طلب رمز جديد بعد %1$d ثانية.</item>
+    </plurals>
+    <plurals name="openverify_otp_sends_left">
+        <item quantity="zero">يمكن طلب %1$d رمز إضافي.</item>
+        <item quantity="one">يمكن طلب رمز واحد إضافي.</item>
+        <item quantity="two">يمكن طلب رمزين إضافيين.</item>
+        <item quantity="few">يمكن طلب %1$d رموز إضافية.</item>
+        <item quantity="many">يمكن طلب %1$d رمزًا إضافيًا.</item>
+        <item quantity="other">يمكن طلب %1$d رمز إضافي.</item>
+    </plurals>
+    <string name="openverify_otp_no_sends_left">لا يمكن إرسال المزيد من الرموز.</string>
+    <string name="openverify_otp_finish">المتابعة دون رمز</string>
+    <string name="openverify_otp_change_phone">تغيير رقم الهاتف</string>
+    <string name="openverify_otp_change_email">تغيير عنوان البريد الإلكتروني</string>
+    <string name="openverify_otp_error_destination_invalid_phone">لا يمكن لهذا الرقم استقبال رمز. يُرجى التحقق منه أو استخدام رقم هاتف آخر.</string>
+    <string name="openverify_otp_error_destination_invalid_email">لا يمكن لعنوان البريد الإلكتروني هذا استقبال رمز. يُرجى التحقق منه أو استخدام عنوان آخر.</string>
+    <string name="openverify_otp_error_not_allowed_phone">لا يمكن إرسال الرموز إلى هذا الرقم هنا. يُرجى استخدام رقم من أحد البلدان المدرجة.</string>
+    <string name="openverify_otp_error_not_allowed_email">لا يمكن إرسال الرموز إلى عنوان البريد الإلكتروني هذا هنا. يُرجى استخدام عنوان بريد إلكتروني آخر.</string>
+    <string name="openverify_otp_error_delivery_failed_phone">تعذّر إرسال رمز إلى هذا الرقم. يُرجى التحقق منه والمحاولة مرة أخرى، أو استخدام رقم آخر.</string>
+    <string name="openverify_otp_error_delivery_failed_email">تعذّر إرسال رمز إلى عنوان البريد الإلكتروني هذا. يُرجى التحقق منه والمحاولة مرة أخرى، أو استخدام عنوان آخر.</string>
+    <string name="openverify_otp_error_incorrect">هذا الرمز غير صحيح. يُرجى التحقق منه والمحاولة مرة أخرى.</string>
+    <string name="openverify_otp_error_exhausted">محاولات خاطئة كثيرة لهذا الرمز. يُرجى طلب رمز جديد.</string>
+    <string name="openverify_otp_error_not_sent">يُرجى طلب رمز أولًا.</string>
+    <string name="openverify_otp_error_too_soon">يُرجى الانتظار قليلًا قبل طلب رمز جديد.</string>
+    <string name="openverify_otp_error_too_long_phone">هذا الرقم طويل جدًا. يُرجى إدخال رقم الهاتف فقط دون أي نص آخر.</string>
+    <string name="openverify_otp_error_too_long_email">عنوان البريد الإلكتروني هذا طويل جدًا. يُرجى التحقق منه والمحاولة مرة أخرى.</string>
+    <string name="openverify_otp_limited_title">لا يمكننا إرسال رمز الآن</string>
+    <string name="openverify_otp_limited_message">تعذّر إرسال رمز أو التحقق منه الآن. يمكن المتابعة، وستراجع الجهة التي طلبت التحقق عملية التحقق هذه.</string>
+    <string name="openverify_otp_limited_continue">متابعة</string>
+    <string name="openverify_otp_limited_continuing">جارٍ إرسال عملية التحقق…</string>
+    <string name="openverify_otp_limited_refused">تعذّرت المتابعة. يُرجى الانتظار بعض الوقت ثم المحاولة مرة أخرى.</string>
+    <string name="openverify_retry_title_attempt">لم تكتمل المحاولة الأخيرة</string>
+</resources>

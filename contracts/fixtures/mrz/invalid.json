@@ -1,0 +1,244 @@
+{
+  "schema_version": 1,
+  "description": "MRZs that must not validate: check-digit failures (the fields still parse) and structural errors (they do not).",
+  "source": {
+    "citation": "Derived from the ICAO Doc 9303 examples above by OpenVerify",
+    "url": "https://www.icao.int/sites/default/files/publications/DocSeries/9303_p3_cons_en.pdf"
+  },
+  "vectors": [
+    {
+      "id": "td3-document-number-check-digit",
+      "format": "TD3",
+      "lines": [
+        "P<UTOERIKSSON<<ANNA<MARIA<<<<<<<<<<<<<<<<<<<",
+        "L898902C35UTO7408122F1204159ZE184226B<<<<<10"
+      ],
+      "note": "The TD3 example with its document number check digit changed from 6 to 5; the composite, which covers it, fails too.",
+      "valid": false,
+      "check_digits": {
+        "document_number": {
+          "input": "L898902C3",
+          "printed": "5",
+          "computed": 6,
+          "valid": false
+        },
+        "birth_date": {
+          "input": "740812",
+          "printed": "2",
+          "computed": 2,
+          "valid": true
+        },
+        "expiration_date": {
+          "input": "120415",
+          "printed": "9",
+          "computed": 9,
+          "valid": true
+        },
+        "optional_data": {
+          "input": "ZE184226B<<<<<",
+          "printed": "1",
+          "computed": 1,
+          "valid": true
+        },
+        "composite": {
+          "input": "L898902C3574081221204159ZE184226B<<<<<1",
+          "printed": "0",
+          "computed": 3,
+          "valid": false
+        }
+      },
+      "fields": {
+        "document_code": "P",
+        "issuing_state": "UTO",
+        "surname": "ERIKSSON",
+        "given_names": "ANNA MARIA",
+        "document_number": "L898902C3",
+        "nationality": "UTO",
+        "birth_date": "740812",
+        "sex": "F",
+        "expiration_date": "120415",
+        "optional_data_1": "ZE184226B",
+        "optional_data_2": null
+      }
+    },
+    {
+      "id": "td1-composite-check-digit",
+      "format": "TD1",
+      "lines": [
+        "I<UTOD231458907<<<<<<<<<<<<<<<",
+        "7408122F1204159UTO<<<<<<<<<<<3",
+        "ERIKSSON<<ANNA<MARIA<<<<<<<<<<"
+      ],
+      "note": "The TD1 example with only its composite check digit changed from 6 to 3.",
+      "valid": false,
+      "check_digits": {
+        "document_number": {
+          "input": "D23145890",
+          "printed": "7",
+          "computed": 7,
+          "valid": true
+        },
+        "birth_date": {
+          "input": "740812",
+          "printed": "2",
+          "computed": 2,
+          "valid": true
+        },
+        "expiration_date": {
+          "input": "120415",
+          "printed": "9",
+          "computed": 9,
+          "valid": true
+        },
+        "optional_data": null,
+        "composite": {
+          "input": "D231458907<<<<<<<<<<<<<<<74081221204159<<<<<<<<<<<",
+          "printed": "3",
+          "computed": 6,
+          "valid": false
+        }
+      },
+      "fields": {
+        "document_code": "I",
+        "issuing_state": "UTO",
+        "surname": "ERIKSSON",
+        "given_names": "ANNA MARIA",
+        "document_number": "D23145890",
+        "nationality": "UTO",
+        "birth_date": "740812",
+        "sex": "F",
+        "expiration_date": "120415",
+        "optional_data_1": "",
+        "optional_data_2": ""
+      }
+    },
+    {
+      "id": "td2-birth-date-check-digit",
+      "format": "TD2",
+      "lines": ["I<UTOERIKSSON<<ANNA<MARIA<<<<<<<<<<<", "D231458907UTO7408125F1204159<<<<<<<6"],
+      "note": "The TD2 example with its birth date check digit changed from 2 to 5; the composite, which covers it, fails too.",
+      "valid": false,
+      "check_digits": {
+        "document_number": {
+          "input": "D23145890",
+          "printed": "7",
+          "computed": 7,
+          "valid": true
+        },
+        "birth_date": {
+          "input": "740812",
+          "printed": "5",
+          "computed": 2,
+          "valid": false
+        },
+        "expiration_date": {
+          "input": "120415",
+          "printed": "9",
+          "computed": 9,
+          "valid": true
+        },
+        "optional_data": null,
+        "composite": {
+          "input": "D23145890774081251204159<<<<<<<",
+          "printed": "6",
+          "computed": 5,
+          "valid": false
+        }
+      },
+      "fields": {
+        "document_code": "I",
+        "issuing_state": "UTO",
+        "surname": "ERIKSSON",
+        "given_names": "ANNA MARIA",
+        "document_number": "D23145890",
+        "nationality": "UTO",
+        "birth_date": "740812",
+        "sex": "F",
+        "expiration_date": "120415",
+        "optional_data_1": "",
+        "optional_data_2": null
+      }
+    },
+    {
+      "id": "td1-lower-case",
+      "format": null,
+      "lines": [
+        "I<UTOD231458907<<<<<<<<<<<<<<<",
+        "7408122F1204159UTO<<<<<<<<<<<6",
+        "Eriksson<<ANNA<MARIA<<<<<<<<<<"
+      ],
+      "note": "A lower-case letter: outside A-Z, 0-9 and the filler.",
+      "valid": false,
+      "error": "mrz_invalid_characters"
+    },
+    {
+      "id": "td1-stray-character",
+      "format": null,
+      "lines": [
+        "I<UTOD231458907<<<<<<<<<<<<<<<",
+        "7408122F1204159UTO<<<<<<<<<<?6",
+        "ERIKSSON<<ANNA<MARIA<<<<<<<<<<"
+      ],
+      "note": "A '?' where OCR read nothing it could name.",
+      "valid": false,
+      "error": "mrz_invalid_characters"
+    },
+    {
+      "id": "td1-short-line",
+      "format": null,
+      "lines": [
+        "I<UTOD231458907<<<<<<<<<<<<<<",
+        "7408122F1204159UTO<<<<<<<<<<<6",
+        "ERIKSSON<<ANNA<MARIA<<<<<<<<<<"
+      ],
+      "note": "A first line of 29 characters: no ICAO layout matches.",
+      "valid": false,
+      "error": "mrz_unrecognized_format"
+    },
+    {
+      "id": "mrva-document-number-check-digit",
+      "format": "MRVA",
+      "lines": [
+        "V<UTOERIKSSON<<ANNA<MARIA<<<<<<<<<<<<<<<<<<<",
+        "L8998901C4XXX4009078F96121096ZE184226B<<<<<<"
+      ],
+      "note": "The MRV-A example with its document number changed from L8988901C to L8998901C; visas have no composite check digit to catch it twice.",
+      "valid": false,
+      "check_digits": {
+        "document_number": {
+          "input": "L8998901C",
+          "printed": "4",
+          "computed": 1,
+          "valid": false
+        },
+        "birth_date": {
+          "input": "400907",
+          "printed": "8",
+          "computed": 8,
+          "valid": true
+        },
+        "expiration_date": {
+          "input": "961210",
+          "printed": "9",
+          "computed": 9,
+          "valid": true
+        },
+        "optional_data": null,
+        "composite": null
+      },
+      "fields": {
+        "document_code": "V",
+        "issuing_state": "UTO",
+        "surname": "ERIKSSON",
+        "given_names": "ANNA MARIA",
+        "document_number": "L8998901C",
+        "nationality": "XXX",
+        "birth_date": "400907",
+        "sex": "F",
+        "expiration_date": "961210",
+        "optional_data_1": "6ZE184226B",
+        "optional_data_2": null
+      }
+    }
+  ]
+}

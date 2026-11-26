@@ -1,0 +1,563 @@
+# C264.1, C264.3, C264.4, C249.1, C249.2 (Workflow 11C Stage 2, chart-policy-11c): every pod under the
+# restricted Pod Security Standard, one Secret per process mounted as files at 0440 with the pod's
+# fsGroup and read through <NAME>_FILE, no Secret created by the chart, the CA files per store, and
+# vision's controls one by one (Phase 5 C60.2).
+suite: c264 security
+release:
+  name: ov
+  namespace: verify
+templates:
+  - templates/api/deployment.yaml
+  - templates/worker/deployment.yaml
+  - templates/vision/deployment.yaml
+  - templates/flow/deployment.yaml
+  - templates/dashboard/deployment.yaml
+  - templates/code-runner/deployment.yaml
+  - templates/migrate-job.yaml
+tests:
+  # C264.1: the restricted profile, pod by pod.
+  - it: runs the API's pod restricted
+    template: templates/api/deployment.yaml
+    asserts: &restricted
+      - equal:
+          path: spec.template.spec.securityContext
+          value:
+            runAsNonRoot: true
+            runAsUser: 10001
+            runAsGroup: 10001
+            fsGroup: 10001
+            seccompProfile:
+              type: RuntimeDefault
+      - equal:
+          path: spec.template.spec.containers[0].securityContext
+          value:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            privileged: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            seccompProfile:
+              type: RuntimeDefault
+      - equal:
+          path: spec.template.spec.automountServiceAccountToken
+          value: false
+      - contains:
+          path: spec.template.spec.volumes
+          content:
+            name: tmp
+            emptyDir: {}
+      - contains:
+          path: spec.template.spec.containers[0].volumeMounts
+          content:
+            name: tmp
+            mountPath: /tmp
+  - it: runs the worker's pod restricted
+    template: templates/worker/deployment.yaml
+    asserts: *restricted
+  - it: runs vision's pod restricted
+    template: templates/vision/deployment.yaml
+    asserts: *restricted
+  - it: runs the flow server's pod restricted
+    template: templates/flow/deployment.yaml
+    asserts: *restricted
+  - it: runs the console's pod restricted
+    template: templates/dashboard/deployment.yaml
+    asserts: *restricted
+  - it: runs the runner's pod restricted
+    template: templates/code-runner/deployment.yaml
+    asserts: *restricted
+  - it: runs the migrate Job's pod and both its containers restricted
+    template: templates/migrate-job.yaml
+    asserts:
+      - equal:
+          path: spec.template.spec.securityContext
+          value:
+            runAsNonRoot: true
+            runAsUser: 10001
+            runAsGroup: 10001
+            fsGroup: 10001
+            seccompProfile:
+              type: RuntimeDefault
+      - equal:
+          path: spec.template.spec.initContainers[0].securityContext
+          value: &containerRestricted
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            privileged: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            seccompProfile:
+              type: RuntimeDefault
+      - equal:
+          path: spec.template.spec.containers[0].securityContext
+          value: *containerRestricted
+      - equal:
+          path: spec.template.spec.automountServiceAccountToken
+          value: false
+
+  # C264.3: no Secret by default.
+  - it: creates no Secret in any template
+    asserts:
+      - not: true
+        isKind:
+          of: Secret
+  - it: mounts no secret volume and sets no _FILE variable while no Secret is named
+    template: templates/api/deployment.yaml
+    asserts:
+      - equal:
+          path: spec.template.spec.volumes
+          value:
+            - name: tmp
+              emptyDir: {}
+      - notExists:
+          path: spec.template.spec.containers[0].env
+
+  # C264.3, C249.2: one Secret per process, as files, 0440, read through <NAME>_FILE.
+  - it: mounts the API's Secret and the data stores it reads as files at 0440
+    template: templates/api/deployment.yaml
+    set: &stores
+      secrets.api.existingSecret: ov-api
+      secrets.worker.existingSecret: ov-worker
+      secrets.migrate.existingSecret: ov-migrate
+      secrets.dashboard.existingSecret: ov-dashboard
+      secrets.flow.existingSecret: ov-flow
+      secrets.codeRunner.existingSecret: ov-runner
+      secrets.vision.existingSecret: ov-vision
+      external.postgres.existingSecret: ov-postgres
+      external.postgres.migrationSecret: ov-postgres-migration
+      external.valkey.existingSecret: ov-valkey
+      external.s3.existingSecret: ov-s3
+      external.smtp.existingSecret: ov-smtp
+      networkPolicy.dataStoresInCluster.enabled: true
+      networkPolicy.egress.smtp:
+        - cidr: 198.51.100.25/32
+          ports: [587]
+    asserts:
+      - contains:
+          path: spec.template.spec.volumes
+          content:
+            name: secrets
+            projected:
+              defaultMode: 288
+              sources:
+                - secret:
+                    name: ov-api
+                    items:
+                      - { key: OPENVERIFY_KEK, path: OPENVERIFY_KEK }
+                      - { key: OPENVERIFY_BLIND_INDEX_KEY, path: OPENVERIFY_BLIND_INDEX_KEY }
+                      - { key: OPENVERIFY_API_KEY_PEPPER, path: OPENVERIFY_API_KEY_PEPPER }
+                      - {
+                          key: OPENVERIFY_VISION_SERVICE_TOKEN,
+                          path: OPENVERIFY_VISION_SERVICE_TOKEN,
+                        }
+                      - {
+                          key: OPENVERIFY_DASHBOARD_BFF_TOKEN,
+                          path: OPENVERIFY_DASHBOARD_BFF_TOKEN,
+                        }
+                      - { key: OPENVERIFY_FLOW_SERVER_TOKEN, path: OPENVERIFY_FLOW_SERVER_TOKEN }
+                - secret:
+                    name: ov-postgres
+                    items:
+                      - { key: DATABASE_URL, path: DATABASE_URL }
+                - secret:
+                    name: ov-valkey
+                    items:
+                      - { key: REDIS_URL, path: REDIS_URL }
+                - secret:
+                    name: ov-s3
+                    items:
+                      - { key: S3_SECRET_ACCESS_KEY, path: S3_SECRET_ACCESS_KEY }
+                - secret:
+                    name: ov-smtp
+                    items:
+                      - { key: OPENVERIFY_SMTP_URL, path: OPENVERIFY_SMTP_URL }
+      - contains:
+          path: spec.template.spec.containers[0].volumeMounts
+          content:
+            name: secrets
+            mountPath: /run/secrets/openverify
+            readOnly: true
+      - contains:
+          path: spec.template.spec.containers[0].env
+          content:
+            name: OPENVERIFY_KEK_FILE
+            value: /run/secrets/openverify/OPENVERIFY_KEK
+      - contains:
+          path: spec.template.spec.containers[0].env
+          content:
+            name: OPENVERIFY_FLOW_SERVER_TOKEN_FILE
+            value: /run/secrets/openverify/OPENVERIFY_FLOW_SERVER_TOKEN
+      - contains:
+          path: spec.template.spec.containers[0].env
+          content:
+            name: DATABASE_URL_FILE
+            value: /run/secrets/openverify/DATABASE_URL
+      - contains:
+          path: spec.template.spec.containers[0].env
+          content:
+            name: REDIS_URL_FILE
+            value: /run/secrets/openverify/REDIS_URL
+      - contains:
+          path: spec.template.spec.containers[0].env
+          content:
+            name: S3_SECRET_ACCESS_KEY_FILE
+            value: /run/secrets/openverify/S3_SECRET_ACCESS_KEY
+      - contains:
+          path: spec.template.spec.containers[0].env
+          content:
+            name: OPENVERIFY_SMTP_URL_FILE
+            value: /run/secrets/openverify/OPENVERIFY_SMTP_URL
+      # The access key id is not a secret and has no _FILE form (the registry), so it is the one
+      # value read from the S3 Secret as a variable.
+      - contains:
+          path: spec.template.spec.containers[0].env
+          content:
+            name: S3_ACCESS_KEY_ID
+            valueFrom:
+              secretKeyRef:
+                name: ov-s3
+                key: S3_ACCESS_KEY_ID
+      - notContains:
+          path: spec.template.spec.containers[0].env
+          content:
+            name: OPENVERIFY_KEK
+          any: true
+      - notContains:
+          path: spec.template.spec.containers[0].env
+          content:
+            name: OPENVERIFY_MIGRATION_DATABASE_URL_FILE
+            value: /run/secrets/openverify/OPENVERIFY_MIGRATION_DATABASE_URL
+  - it: names the Secret key of a data store by external.<store>.key and mounts it under the variable's name
+    template: templates/worker/deployment.yaml
+    set:
+      external.postgres.existingSecret: ov-postgres
+      external.postgres.key: url
+      networkPolicy.dataStoresInCluster.enabled: true
+    asserts:
+      - contains:
+          path: spec.template.spec.volumes
+          content:
+            name: secrets
+            projected:
+              defaultMode: 288
+              sources:
+                - secret:
+                    name: ov-postgres
+                    items:
+                      - { key: url, path: DATABASE_URL }
+  - it: mounts the worker's Secret with Play Integrity's key and the runner token
+    template: templates/worker/deployment.yaml
+    set:
+      <<: *stores
+      secrets.worker.keys:
+        - OPENVERIFY_KEK
+        - OPENVERIFY_BLIND_INDEX_KEY
+        - OPENVERIFY_API_KEY_PEPPER
+        - OPENVERIFY_API_KEY_PEPPER_PREVIOUS
+        - OPENVERIFY_VISION_SERVICE_TOKEN
+        - OPENVERIFY_CODE_RUNNER_TOKEN
+        - OPENVERIFY_PLAY_INTEGRITY_SERVICE_ACCOUNT_JSON
+    asserts:
+      - contains:
+          path: spec.template.spec.containers[0].env
+          content:
+            name: OPENVERIFY_PLAY_INTEGRITY_SERVICE_ACCOUNT_JSON_FILE
+            value: /run/secrets/openverify/OPENVERIFY_PLAY_INTEGRITY_SERVICE_ACCOUNT_JSON
+      - contains:
+          path: spec.template.spec.containers[0].env
+          content:
+            name: OPENVERIFY_API_KEY_PEPPER_PREVIOUS_FILE
+            value: /run/secrets/openverify/OPENVERIFY_API_KEY_PEPPER_PREVIOUS
+      - contains:
+          path: spec.template.spec.containers[0].env
+          content:
+            name: OPENVERIFY_CODE_RUNNER_TOKEN_FILE
+            value: /run/secrets/openverify/OPENVERIFY_CODE_RUNNER_TOKEN
+      - contains:
+          path: spec.template.spec.containers[0].volumeMounts
+          content:
+            name: secrets
+            mountPath: /run/secrets/openverify
+            readOnly: true
+  - it: gives migrate the migration role's URL, DATABASE_URL and its KEK, and no other store
+    template: templates/migrate-job.yaml
+    set: *stores
+    asserts:
+      - contains:
+          path: spec.template.spec.volumes
+          content:
+            name: secrets
+            projected:
+              defaultMode: 288
+              sources:
+                - secret:
+                    name: ov-migrate
+                    items:
+                      - { key: OPENVERIFY_KEK, path: OPENVERIFY_KEK }
+                - secret:
+                    name: ov-postgres
+                    items:
+                      - { key: DATABASE_URL, path: DATABASE_URL }
+                - secret:
+                    name: ov-postgres-migration
+                    items:
+                      - {
+                          key: OPENVERIFY_MIGRATION_DATABASE_URL,
+                          path: OPENVERIFY_MIGRATION_DATABASE_URL,
+                        }
+      - contains:
+          path: spec.template.spec.initContainers[0].env
+          content:
+            name: OPENVERIFY_MIGRATION_DATABASE_URL_FILE
+            value: /run/secrets/openverify/OPENVERIFY_MIGRATION_DATABASE_URL
+      - contains:
+          path: spec.template.spec.containers[0].env
+          content:
+            name: OPENVERIFY_MIGRATION_DATABASE_URL_FILE
+            value: /run/secrets/openverify/OPENVERIFY_MIGRATION_DATABASE_URL
+      - contains:
+          path: spec.template.spec.containers[0].env
+          content:
+            name: OPENVERIFY_KEK_FILE
+            value: /run/secrets/openverify/OPENVERIFY_KEK
+      - notContains:
+          path: spec.template.spec.containers[0].env
+          content:
+            name: REDIS_URL_FILE
+            value: /run/secrets/openverify/REDIS_URL
+      - contains:
+          path: spec.template.spec.containers[0].volumeMounts
+          content:
+            name: secrets
+            mountPath: /run/secrets/openverify
+            readOnly: true
+  - it: gives the console only its BFF token, whatever stores are set
+    template: templates/dashboard/deployment.yaml
+    set: *stores
+    asserts: &onlyOwnToken
+      - lengthEqual:
+          path: spec.template.spec.volumes[1].projected.sources
+          count: 1
+      - equal:
+          path: spec.template.spec.volumes[1]
+          value:
+            name: secrets
+            projected:
+              defaultMode: 288
+              sources:
+                - secret:
+                    name: ov-dashboard
+                    items:
+                      - {
+                          key: OPENVERIFY_DASHBOARD_BFF_TOKEN,
+                          path: OPENVERIFY_DASHBOARD_BFF_TOKEN,
+                        }
+      - equal:
+          path: spec.template.spec.containers[0].env
+          value:
+            - name: OPENVERIFY_DASHBOARD_BFF_TOKEN_FILE
+              value: /run/secrets/openverify/OPENVERIFY_DASHBOARD_BFF_TOKEN
+  - it: gives the flow server only its token
+    template: templates/flow/deployment.yaml
+    set: *stores
+    asserts:
+      - equal:
+          path: spec.template.spec.volumes[1]
+          value:
+            name: secrets
+            projected:
+              defaultMode: 288
+              sources:
+                - secret:
+                    name: ov-flow
+                    items:
+                      - { key: OPENVERIFY_FLOW_SERVER_TOKEN, path: OPENVERIFY_FLOW_SERVER_TOKEN }
+      - equal:
+          path: spec.template.spec.containers[0].env
+          value:
+            - name: OPENVERIFY_FLOW_SERVER_TOKEN_FILE
+              value: /run/secrets/openverify/OPENVERIFY_FLOW_SERVER_TOKEN
+  - it: gives vision only its token
+    template: templates/vision/deployment.yaml
+    set: *stores
+    asserts:
+      - equal:
+          path: spec.template.spec.volumes[1]
+          value:
+            name: secrets
+            projected:
+              defaultMode: 288
+              sources:
+                - secret:
+                    name: ov-vision
+                    items:
+                      - {
+                          key: OPENVERIFY_VISION_SERVICE_TOKEN,
+                          path: OPENVERIFY_VISION_SERVICE_TOKEN,
+                        }
+      - equal:
+          path: spec.template.spec.containers[0].env
+          value:
+            - name: OPENVERIFY_VISION_SERVICE_TOKEN_FILE
+              value: /run/secrets/openverify/OPENVERIFY_VISION_SERVICE_TOKEN
+  - it: gives the runner only its token
+    template: templates/code-runner/deployment.yaml
+    set: *stores
+    asserts:
+      - equal:
+          path: spec.template.spec.volumes[1]
+          value:
+            name: secrets
+            projected:
+              defaultMode: 288
+              sources:
+                - secret:
+                    name: ov-runner
+                    items:
+                      - { key: OPENVERIFY_CODE_RUNNER_TOKEN, path: OPENVERIFY_CODE_RUNNER_TOKEN }
+      - equal:
+          path: spec.template.spec.containers[0].env
+          value:
+            - name: OPENVERIFY_CODE_RUNNER_TOKEN_FILE
+              value: /run/secrets/openverify/OPENVERIFY_CODE_RUNNER_TOKEN
+  - it: refuses a key the process does not read (the configuration registry's processes)
+    template: templates/worker/deployment.yaml
+    set:
+      secrets.worker.existingSecret: ov-worker
+      secrets.worker.keys:
+        [OPENVERIFY_KEK, OPENVERIFY_CODE_RUNNER_TOKEN, OPENVERIFY_FLOW_SERVER_TOKEN]
+    asserts:
+      - failedTemplate:
+          errorPattern: 'secrets.worker.keys names OPENVERIFY_FLOW_SERVER_TOKEN, which the worker does not read'
+  - it: refuses a data store's variable in a process's own keys (it comes from external.<store>)
+    template: templates/api/deployment.yaml
+    set:
+      secrets.api.existingSecret: ov-api
+      secrets.api.keys: [OPENVERIFY_KEK, DATABASE_URL]
+    asserts:
+      - failedTemplate:
+          errorPattern: 'secrets.api.keys names DATABASE_URL, which comes from external.postgres'
+  - it: accepts a seeded operator's password in migrate's Secret (a pattern entry)
+    template: templates/migrate-job.yaml
+    set:
+      secrets.migrate.existingSecret: ov-migrate
+      secrets.migrate.keys: [OPENVERIFY_KEK, OPENVERIFY_SEED_ADMIN_PASSWORD]
+    asserts:
+      - contains:
+          path: spec.template.spec.containers[0].env
+          content:
+            name: OPENVERIFY_SEED_ADMIN_PASSWORD_FILE
+            value: /run/secrets/openverify/OPENVERIFY_SEED_ADMIN_PASSWORD
+
+  # C249.1: a CA per store, mounted at /etc/openverify/ca/<store>.pem, on the processes that read it.
+  - it: mounts the API's store CAs and names each file
+    template: templates/api/deployment.yaml
+    set: &cas
+      external.postgres.ca: { configMap: ov-ca, key: postgres.pem }
+      external.valkey.ca: { secret: ov-valkey-ca }
+      external.s3.ca: { configMap: ov-ca, key: s3.pem }
+    asserts:
+      - contains:
+          path: spec.template.spec.volumes
+          content:
+            name: ca
+            projected:
+              defaultMode: 292
+              sources:
+                - configMap:
+                    name: ov-ca
+                    items:
+                      - { key: postgres.pem, path: postgres.pem }
+                - secret:
+                    name: ov-valkey-ca
+                    items:
+                      - { key: ca.crt, path: valkey.pem }
+                - configMap:
+                    name: ov-ca
+                    items:
+                      - { key: s3.pem, path: s3.pem }
+      - contains:
+          path: spec.template.spec.containers[0].volumeMounts
+          content:
+            name: ca
+            mountPath: /etc/openverify/ca
+            readOnly: true
+      - contains:
+          path: spec.template.spec.containers[0].env
+          content:
+            name: OPENVERIFY_POSTGRES_CA_FILE
+            value: /etc/openverify/ca/postgres.pem
+      - contains:
+          path: spec.template.spec.containers[0].env
+          content:
+            name: OPENVERIFY_REDIS_CA_FILE
+            value: /etc/openverify/ca/valkey.pem
+      - contains:
+          path: spec.template.spec.containers[0].env
+          content:
+            name: OPENVERIFY_S3_CA_FILE
+            value: /etc/openverify/ca/s3.pem
+  - it: gives migrate the Postgres and Valkey CAs but not S3's
+    template: templates/migrate-job.yaml
+    set: *cas
+    asserts:
+      - contains:
+          path: spec.template.spec.containers[0].env
+          content:
+            name: OPENVERIFY_POSTGRES_CA_FILE
+            value: /etc/openverify/ca/postgres.pem
+      - notContains:
+          path: spec.template.spec.containers[0].env
+          content:
+            name: OPENVERIFY_S3_CA_FILE
+            value: /etc/openverify/ca/s3.pem
+  - it: gives the flow server no store CA
+    template: templates/flow/deployment.yaml
+    set: *cas
+    asserts:
+      - notExists:
+          path: spec.template.spec.containers[0].env
+      - equal:
+          path: spec.template.spec.volumes
+          value:
+            - name: tmp
+              emptyDir: {}
+
+  # C264.4 (Phase 5 C60.2): vision's controls, one by one.
+  - it: runs vision as uid 10001
+    template: templates/vision/deployment.yaml
+    asserts:
+      - equal:
+          path: spec.template.spec.securityContext.runAsUser
+          value: 10001
+  - it: gives vision a read-only root
+    template: templates/vision/deployment.yaml
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].securityContext.readOnlyRootFilesystem
+          value: true
+  - it: gives vision no capability
+    template: templates/vision/deployment.yaml
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].securityContext.capabilities
+          value:
+            drop: [ALL]
+      - notExists:
+          path: spec.template.spec.containers[0].securityContext.capabilities.add
+  - it: forbids vision privilege escalation
+    template: templates/vision/deployment.yaml
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].securityContext.allowPrivilegeEscalation
+          value: false
+  - it: limits vision to 4 GiB of memory
+    template: templates/vision/deployment.yaml
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].resources.limits.memory
+          value: 4Gi

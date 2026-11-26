@@ -1,0 +1,201 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:openverify:android:flow-spec-members:1",
+  "title": "Android treatment of flow-spec client-view members (C194.4)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "description",
+    "session",
+    "steps",
+    "components"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "format": {
+      "const": 1
+    },
+    "description": {
+      "type": "string"
+    },
+    "session": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/sessionMember"
+      }
+    },
+    "steps": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/$defs/treatment"
+        }
+      }
+    },
+    "components": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/$defs/treatment"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "treatment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "treatment",
+        "contract"
+      ],
+      "properties": {
+        "treatment": {
+          "enum": [
+            "honoured",
+            "ignored",
+            "server-only"
+          ]
+        },
+        "contract": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "addedAfterSpec2": {
+          "type": "boolean"
+        },
+        "appearanceOnly": {
+          "type": "boolean"
+        },
+        "appearanceReason": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "treatment": {
+                "enum": [
+                  "ignored",
+                  "server-only"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "reason"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "addedAfterSpec2": {
+                "const": true
+              }
+            },
+            "required": [
+              "addedAfterSpec2"
+            ]
+          },
+          "then": {
+            "required": [
+              "appearanceOnly",
+              "appearanceReason"
+            ]
+          }
+        }
+      ]
+    },
+    "sessionMember": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "treatment",
+        "contract"
+      ],
+      "properties": {
+        "treatment": {
+          "enum": [
+            "honoured",
+            "ignored",
+            "server-only"
+          ]
+        },
+        "contract": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "addedAfterSpec2": {
+          "type": "boolean"
+        },
+        "appearanceOnly": {
+          "type": "boolean"
+        },
+        "appearanceReason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "members": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/treatment"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "treatment": {
+                "enum": [
+                  "ignored",
+                  "server-only"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "reason"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "addedAfterSpec2": {
+                "const": true
+              }
+            },
+            "required": [
+              "addedAfterSpec2"
+            ]
+          },
+          "then": {
+            "required": [
+              "appearanceOnly",
+              "appearanceReason"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

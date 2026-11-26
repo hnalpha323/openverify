@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The document step (C60, C64.2); values-es holds its Spanish. A picked file is named by its own
+  file name and size, shown on the device only; no text shows its contents. Compose Multiplatform
+  resources: positional placeholders only, ' and " written as they are (ResourcesTest).
+-->
+<resources>
+    <string name="openverify_document_title">Upload a document</string>
+    <string name="openverify_document_intro">Upload a document that shows your full name and your address.</string>
+    <string name="openverify_document_accepted">You can upload one of these:</string>
+    <!-- C52.2: the window is the guidance's max-age-days; a lease and a tax document follow their own rules (C60.6). -->
+    <plurals name="openverify_document_type_utility_bill">
+        <item quantity="one">A utility bill dated within the last %1$d day</item>
+        <item quantity="other">A utility bill dated within the last %1$d days</item>
+    </plurals>
+    <plurals name="openverify_document_type_bank_statement">
+        <item quantity="one">A bank statement dated within the last %1$d day</item>
+        <item quantity="other">A bank statement dated within the last %1$d days</item>
+    </plurals>
+    <plurals name="openverify_document_type_pay_stub">
+        <item quantity="one">A pay stub dated within the last %1$d day</item>
+        <item quantity="other">A pay stub dated within the last %1$d days</item>
+    </plurals>
+    <string name="openverify_document_type_lease">A lease or rental agreement that is still in force</string>
+    <string name="openverify_document_type_tax_document">A tax document from the latest tax year</string>
+    <!-- Before the guidance is known: the step's own documents, without their window. -->
+    <string name="openverify_document_name_utility_bill">A utility bill</string>
+    <string name="openverify_document_name_bank_statement">A bank statement</string>
+    <string name="openverify_document_name_lease">A lease or rental agreement</string>
+    <string name="openverify_document_name_pay_stub">A pay stub</string>
+    <string name="openverify_document_name_tax_document">A tax document</string>
+    <string name="openverify_document_formats">Upload it in one of these formats: %1$s, of up to %2$d MB.</string>
+    <plurals name="openverify_document_pages">
+        <item quantity="one">A PDF can have only %1$d page.</item>
+        <item quantity="other">A PDF can have up to %1$d pages.</item>
+    </plurals>
+
+    <string name="openverify_document_choose">Choose a file</string>
+    <string name="openverify_document_photo">Take a photo</string>
+    <string name="openverify_document_unavailable">This device cannot provide a document here. Use another device to continue.</string>
+    <string name="openverify_document_picked">Your file: %1$s, %2$s</string>
+    <string name="openverify_document_unnamed">a file without a name</string>
+    <string name="openverify_decimal_separator">.</string>
+    <string name="openverify_document_picked_hint">Check that it is the right document, then upload it.</string>
+    <string name="openverify_document_upload">Upload this file</string>
+    <string name="openverify_document_choose_another">Choose another file</string>
+    <string name="openverify_document_uploading">Uploading your document…</string>
+
+    <string name="openverify_document_error_empty">This file is empty. Choose another file.</string>
+    <string name="openverify_document_error_too_large">This file is larger than 10 MB. Choose a smaller file, such as a photo of the document or a PDF with fewer pages.</string>
+    <string name="openverify_document_error_unsupported">We cannot use this type of file. Choose a file in one of the formats above.</string>
+    <string name="openverify_document_error_unreadable">We could not read this file. Choose another file.</string>
+
+    <!-- The camera path (C64.2): a photo of the document from the back camera. -->
+    <string name="openverify_document_capture_title">Photograph your document</string>
+    <string name="openverify_document_capture_instruction">Fit the whole page inside the frame, in good light, with nothing covering it.</string>
+    <string name="openverify_document_capture_photo">Your photo of the document</string>
+    <string name="openverify_document_capture_back">Back to the document step</string>
+
+    <!-- C202.3, C202.4 (Workflow 10B document-guidance): the capture guidance's hints, one at a time, in this order, and the auto-capture note. Guidance only: none says a photo passed. -->
+    <string name="openverify_document_guidance_move_closer">Move closer</string>
+    <string name="openverify_document_guidance_hold_still">Hold still</string>
+    <string name="openverify_document_guidance_tilt_away">Tilt away from the light</string>
+    <string name="openverify_document_guidance_more_light">Find more light</string>
+    <string name="openverify_document_guidance_fit_card">Fit the card in the frame</string>
+    <string name="openverify_document_guidance_fit_page">Fit the page in the frame</string>
+    <string name="openverify_document_guidance_show_mrz">Show the lines of code at the bottom of the page</string>
+    <string name="openverify_document_guidance_auto">The photo is taken by itself when your ID is clear. You can also take it yourself at any time.</string>
+</resources>

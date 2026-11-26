@@ -1,0 +1,16 @@
+pnpm-lock.yaml
+**/node_modules/
+**/dist/
+**/build/
+**/coverage/
+**/.next/
+**/.turbo/
+**/next-env.d.ts
+# e2e run output: service logs, the e2e flow build, Playwright reports and traces.
+e2e/.artifacts/
+# Hand-authored docs and non-JS toolchains are formatted by their owners.
+**/*.md
+android/
+services/
+models/
+data/

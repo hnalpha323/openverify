@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "A write-once field that holds a value cannot change.",
+  "instance": "/api/v1/flow/screens/s_k3m9qv2a/submit",
+  "requestId": "00000000-0000-4000-8000-000000009a03",
+  "code": "field_write_once",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/values/birth_country",
+      "detail": "This field is write-once and already holds a value."
+    }
+  ]
+}

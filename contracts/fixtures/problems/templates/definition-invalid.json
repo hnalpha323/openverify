@@ -1,0 +1,59 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The flow breaks a rule it must meet.",
+  "instance": "/api/v1/inquiry-template-versions/itmplv_01M5CN00000000000000009A01",
+  "requestId": "00000000-0000-4000-8000-000000009a07",
+  "code": "definition_invalid",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/flow/edges/6",
+      "detail": "A cycle may pass only through screens and branches.",
+      "code": "cycle_not_allowed"
+    },
+    {
+      "location": "body",
+      "pointer": "/data/attributes/flow/steps/4",
+      "detail": "An action step needs an error edge.",
+      "code": "action_error_edge_missing"
+    },
+    {
+      "location": "body",
+      "pointer": "/data/attributes/flow/steps/2/components/1/pattern",
+      "detail": "The pattern uses a construct outside the allowed grammar.",
+      "code": "pattern_refused"
+    },
+    {
+      "location": "body",
+      "pointer": "/data/attributes/flow/steps/2/components/3/visibleWhen",
+      "detail": "A visibility rule may read only fields of its own screen.",
+      "code": "visibility_scope_invalid"
+    },
+    {
+      "location": "body",
+      "pointer": "/data/attributes/flow/steps/3/routes/0/condition",
+      "detail": "The scope has no such path.",
+      "code": "scope_path_unknown"
+    },
+    {
+      "location": "body",
+      "pointer": "/data/attributes/flow/steps/3/routes/1/condition",
+      "detail": "This path is not available while the flow runs.",
+      "code": "scope_path_unavailable_in_flow"
+    },
+    {
+      "location": "body",
+      "pointer": "/data/attributes/flow/steps/3/routes/0/onNull",
+      "detail": "A route that reads a nullable path needs onNull.",
+      "code": "on_null_missing"
+    },
+    {
+      "location": "body",
+      "pointer": "/data/attributes/flow/steps/3/waitFor",
+      "detail": "A branch that reads a signal must wait for it.",
+      "code": "signal_wait_missing"
+    }
+  ]
+}

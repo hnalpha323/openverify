@@ -1,0 +1,325 @@
+{
+  "$schema": "./key-map.schema.json",
+  "format": 1,
+  "description": "C199.1 (reviews V07, F08, H16): each SDK string whose meaning is a key of the web catalogs (contracts/fixtures/i18n/<locale>.json). resource: the SDK's resource name; flowKey: the COPY_KEYS key a template lists, operator copy overrides and a consent row is keyed by (null when an operator cannot override it); catalogKey: the dotted catalog key the words come from, in every locale; legal: the text's legal kind (COPY_KEYS' mark for a flowKey). :openverify-sdk:generateLocaleStrings (android-i18n) writes every mapped resource, and nothing else, into the generated strings_catalog.xml of each locale folder; no hand-written file defines one (KeyMapCatalogTest). The contest words (Phase 9 K9-33, C128.7) are decision texts that no operator copy targets, so their flowKey is null; their {{host}} and {{contact}} are filled by name by the failure screen that shows them. The nativeApp keys are the native clients' own wording (Workflow 10A Stage 1a): the web words a page, the app a screen and a debugger. serverComposed (Workflow 11A; C238.3, C238.7; orchestrator decision 18): the legal copy keys whose texts the server composes into a step's client view, operator copy included (the share_consent step's); the SDK shows the served text and its digest check, so no SDK string, catalog text or drafted translation exists for them, and generateLocaleStrings never reads them. The share_consent step's screen (Workflow 11A, clients-connect; C238.7): its title, accept, decline and withdraw labels are the web's built-in share.consent.* words with flowKey null (the served text is the server's; an operator's override of these four labels is not placed on Android), and its own words (share.step.*, share.categories.*) are the web's, never drafted here.",
+  "entries": [
+    {
+      "resource": "openverify_consent_title",
+      "flowKey": "consent.title",
+      "catalogKey": "consent.title",
+      "legal": null
+    },
+    {
+      "resource": "openverify_consent_biometric",
+      "flowKey": "consent.biometric",
+      "catalogKey": "consent.biometric",
+      "legal": "consent"
+    },
+    {
+      "resource": "openverify_consent_processing",
+      "flowKey": "consent.processing",
+      "catalogKey": "nativeApp.consent.processing",
+      "legal": "consent"
+    },
+    {
+      "resource": "openverify_consent_biometric_matching",
+      "flowKey": "consent.biometric-matching",
+      "catalogKey": "consent.biometric-matching",
+      "legal": "consent"
+    },
+    {
+      "resource": "openverify_consent_checkbox",
+      "flowKey": "consent.checkbox",
+      "catalogKey": "consent.checkbox",
+      "legal": "consent"
+    },
+    {
+      "resource": "openverify_consent_biometric_matching_checkbox",
+      "flowKey": null,
+      "catalogKey": "nativeApp.consent.biometric-matching-checkbox",
+      "legal": "consent"
+    },
+    {
+      "resource": "openverify_notice_session_integrity",
+      "flowKey": "notice.session-integrity",
+      "catalogKey": "nativeApp.notice.session-integrity",
+      "legal": "notice"
+    },
+    {
+      "resource": "openverify_notice_device_recognition",
+      "flowKey": "notice.device-recognition",
+      "catalogKey": "notice.device-recognition",
+      "legal": "notice"
+    },
+    {
+      "resource": "openverify_notice_play_integrity",
+      "flowKey": "notice.play-integrity",
+      "catalogKey": "notice.play-integrity",
+      "legal": "notice"
+    },
+    {
+      "resource": "openverify_consent_device_recognition",
+      "flowKey": "consent.device-recognition",
+      "catalogKey": "consent.device-recognition",
+      "legal": "consent"
+    },
+    {
+      "resource": "openverify_consent_device_recognition_checkbox",
+      "flowKey": null,
+      "catalogKey": "nativeApp.consent.device-recognition-checkbox",
+      "legal": "consent"
+    },
+    {
+      "resource": "openverify_consent_automated_decision",
+      "flowKey": "consent.automated-decision",
+      "catalogKey": "consent.automated-decision",
+      "legal": "consent"
+    },
+    {
+      "resource": "openverify_consent_automated_decision_checkbox",
+      "flowKey": null,
+      "catalogKey": "nativeApp.consent.automated-decision-checkbox",
+      "legal": "consent"
+    },
+    {
+      "resource": "openverify_consent_continue",
+      "flowKey": "consent.continue",
+      "catalogKey": "consent.continue",
+      "legal": null
+    },
+    {
+      "resource": "openverify_consent_saving",
+      "flowKey": null,
+      "catalogKey": "consent.saving",
+      "legal": null
+    },
+    {
+      "resource": "openverify_contest_heading",
+      "flowKey": null,
+      "catalogKey": "contest.heading",
+      "legal": "decision"
+    },
+    {
+      "resource": "openverify_contest_intro",
+      "flowKey": null,
+      "catalogKey": "contest.intro",
+      "legal": "decision"
+    },
+    {
+      "resource": "openverify_contest_host",
+      "flowKey": null,
+      "catalogKey": "contest.host",
+      "legal": "decision"
+    },
+    {
+      "resource": "openverify_contest_link",
+      "flowKey": null,
+      "catalogKey": "contest.link",
+      "legal": "decision"
+    },
+    {
+      "resource": "openverify_contest_contact",
+      "flowKey": null,
+      "catalogKey": "contest.contact",
+      "legal": "decision"
+    },
+    {
+      "resource": "openverify_screen_continue",
+      "flowKey": "screen.continue",
+      "catalogKey": "screen.continue",
+      "legal": null
+    },
+    {
+      "resource": "openverify_waiting_title",
+      "flowKey": "screen.waiting.title",
+      "catalogKey": "screen.waiting.title",
+      "legal": null
+    },
+    {
+      "resource": "openverify_waiting_message",
+      "flowKey": "screen.waiting.message",
+      "catalogKey": "screen.waiting.message",
+      "legal": null
+    },
+    {
+      "resource": "openverify_halted_title",
+      "flowKey": "screen.halted.title",
+      "catalogKey": "screen.halted.title",
+      "legal": null
+    },
+    {
+      "resource": "openverify_halted_message",
+      "flowKey": "screen.halted.message",
+      "catalogKey": "screen.halted.message",
+      "legal": null
+    },
+    {
+      "resource": "openverify_help_link",
+      "flowKey": "screen.helpLink",
+      "catalogKey": "screen.helpLink",
+      "legal": null
+    },
+    {
+      "resource": "openverify_privacy_link",
+      "flowKey": "screen.privacyLink",
+      "catalogKey": "screen.privacyLink",
+      "legal": null
+    },
+    {
+      "resource": "openverify_share_consent_title",
+      "flowKey": null,
+      "catalogKey": "share.consent.title",
+      "legal": "consent"
+    },
+    {
+      "resource": "openverify_share_consent_accept",
+      "flowKey": null,
+      "catalogKey": "share.consent.accept",
+      "legal": "consent"
+    },
+    {
+      "resource": "openverify_share_consent_decline",
+      "flowKey": null,
+      "catalogKey": "share.consent.decline",
+      "legal": "consent"
+    },
+    {
+      "resource": "openverify_share_consent_withdraw",
+      "flowKey": null,
+      "catalogKey": "share.consent.withdraw",
+      "legal": "consent"
+    },
+    {
+      "resource": "openverify_share_shared_by",
+      "flowKey": null,
+      "catalogKey": "share.step.sharedBy",
+      "legal": null
+    },
+    {
+      "resource": "openverify_share_shared_with",
+      "flowKey": null,
+      "catalogKey": "share.step.sharedWith",
+      "legal": null
+    },
+    {
+      "resource": "openverify_share_what_is_shared",
+      "flowKey": null,
+      "catalogKey": "share.step.whatIsShared",
+      "legal": null
+    },
+    {
+      "resource": "openverify_share_saving",
+      "flowKey": null,
+      "catalogKey": "share.step.saving",
+      "legal": null
+    },
+    {
+      "resource": "openverify_share_biometric_required",
+      "flowKey": null,
+      "catalogKey": "share.step.biometricRequired",
+      "legal": null
+    },
+    {
+      "resource": "openverify_share_withdraw_heading",
+      "flowKey": null,
+      "catalogKey": "share.step.withdrawHeading",
+      "legal": null
+    },
+    {
+      "resource": "openverify_share_withdraw_intro",
+      "flowKey": null,
+      "catalogKey": "share.step.withdrawIntro",
+      "legal": null
+    },
+    {
+      "resource": "openverify_share_withdrawing",
+      "flowKey": null,
+      "catalogKey": "share.step.withdrawing",
+      "legal": null
+    },
+    {
+      "resource": "openverify_share_withdrawn",
+      "flowKey": null,
+      "catalogKey": "share.step.withdrawn",
+      "legal": null
+    },
+    {
+      "resource": "openverify_share_category_identity_fields",
+      "flowKey": null,
+      "catalogKey": "share.categories.identity-fields",
+      "legal": null
+    },
+    {
+      "resource": "openverify_share_category_contact_fields",
+      "flowKey": null,
+      "catalogKey": "share.categories.contact-fields",
+      "legal": null
+    },
+    {
+      "resource": "openverify_share_category_other_fields",
+      "flowKey": null,
+      "catalogKey": "share.categories.other-fields",
+      "legal": null
+    },
+    {
+      "resource": "openverify_share_category_document_images",
+      "flowKey": null,
+      "catalogKey": "share.categories.document-images",
+      "legal": null
+    },
+    {
+      "resource": "openverify_share_category_biometric",
+      "flowKey": null,
+      "catalogKey": "share.categories.biometric",
+      "legal": null
+    },
+    {
+      "resource": "openverify_share_category_check_results",
+      "flowKey": null,
+      "catalogKey": "share.categories.check-results",
+      "legal": null
+    }
+  ],
+  "serverComposed": [
+    {
+      "flowKey": "share.consent.title",
+      "legal": "consent",
+      "contract": "C238.3, C238.7, C238.10 (Workflow 11A; orchestrator decision 18)"
+    },
+    {
+      "flowKey": "share.consent.source",
+      "legal": "consent",
+      "contract": "C238.3, C238.7, C238.10 (Workflow 11A; orchestrator decision 18)"
+    },
+    {
+      "flowKey": "share.consent.destination",
+      "legal": "consent",
+      "contract": "C238.3, C238.7, C238.10 (Workflow 11A; orchestrator decision 18)"
+    },
+    {
+      "flowKey": "share.consent.biometric-source",
+      "legal": "consent",
+      "contract": "C238.3, C238.7, C238.10 (Workflow 11A; orchestrator decision 18)"
+    },
+    {
+      "flowKey": "share.consent.biometric-destination",
+      "legal": "consent",
+      "contract": "C238.3, C238.7, C238.10 (Workflow 11A; orchestrator decision 18)"
+    },
+    {
+      "flowKey": "share.consent.accept",
+      "legal": "consent",
+      "contract": "C238.3, C238.7, C238.10 (Workflow 11A; orchestrator decision 18)"
+    },
+    {
+      "flowKey": "share.consent.decline",
+      "legal": "consent",
+      "contract": "C238.3, C238.7, C238.10 (Workflow 11A; orchestrator decision 18)"
+    },
+    {
+      "flowKey": "share.consent.withdraw",
+      "legal": "consent",
+      "contract": "C238.3, C238.7, C238.10 (Workflow 11A; orchestrator decision 18)"
+    }
+  ]
+}

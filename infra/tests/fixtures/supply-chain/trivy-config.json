@@ -1,0 +1,53 @@
+{
+  "SchemaVersion": 2,
+  "ArtifactType": "filesystem",
+  "Results": [
+    {
+      "Target": "docker/synthetic.Dockerfile",
+      "Class": "config",
+      "Misconfigurations": [
+        {
+          "Type": "synthetic",
+          "ID": "DS-0002",
+          "Title": "synthetic check",
+          "Severity": "HIGH",
+          "Status": "FAIL"
+        },
+        {
+          "Type": "synthetic",
+          "ID": "DS-0013",
+          "Title": "synthetic check",
+          "Severity": "MEDIUM",
+          "Status": "FAIL"
+        },
+        {
+          "Type": "synthetic",
+          "ID": "DS-0026",
+          "Title": "synthetic check",
+          "Severity": "LOW",
+          "Status": "FAIL"
+        },
+        {
+          "Type": "synthetic",
+          "ID": "DS-0001",
+          "Title": "synthetic check",
+          "Severity": "CRITICAL",
+          "Status": "PASS"
+        }
+      ]
+    },
+    {
+      "Target": "templates/synthetic.yaml",
+      "Class": "config",
+      "Misconfigurations": [
+        {
+          "Type": "synthetic",
+          "ID": "KSV-0014",
+          "Title": "synthetic check",
+          "Severity": "CRITICAL",
+          "Status": "FAIL"
+        }
+      ]
+    }
+  ]
+}

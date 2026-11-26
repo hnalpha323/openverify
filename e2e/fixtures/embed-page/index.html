@@ -1,0 +1,25 @@
+<!doctype html>
+<!--
+  C159.7 (Workflow 9A, flow-server-embed): a customer's page that embeds the flow with @openverify/js,
+  for the e2e suites only. It loads the client's IIFE build (`openverify.iife.js`, served beside this
+  file by whoever serves the page: the mocked flow suite builds it, integration-9a's stack copies
+  packages/sdk-js/dist/openverify.iife.js) and `embed-page.js`, which reads its options from the
+  page's fragment: #flow-url=<flow origin>&inquiry-id=<inq_...>&session-token=<ovs_...>[&language=<tag>]
+  (or one-time-token=<ovo_...>). Every value a test passes is synthetic.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Example shop: verify your identity</title>
+  </head>
+  <body>
+    <main>
+      <h1>Example shop</h1>
+      <p>Verify your identity to finish opening your account.</p>
+      <div id="verify"></div>
+    </main>
+    <script src="./openverify.iife.js"></script>
+    <script src="./embed-page.js"></script>
+  </body>
+</html>

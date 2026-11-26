@@ -1,0 +1,208 @@
+{
+  "rows": {
+    "cases": [
+      {
+        "environmentId": "env_synthetic0000000000000001",
+        "day": "2026-03-02",
+        "timeZone": "Europe/Paris",
+        "source": "facts",
+        "caseTemplateId": "ctmpl_synthetic00000000000001",
+        "created": 4,
+        "resolved": 2,
+        "slaMet": 1,
+        "slaMissed": 2,
+        "resolutionSecondsHistogram": [
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        ]
+      },
+      {
+        "environmentId": "env_synthetic0000000000000001",
+        "day": "2026-03-03",
+        "timeZone": "Europe/Paris",
+        "source": "facts",
+        "caseTemplateId": "ctmpl_synthetic00000000000001",
+        "created": 3,
+        "resolved": 3,
+        "slaMet": 3,
+        "slaMissed": 0,
+        "resolutionSecondsHistogram": [
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 1, 1, 0, 0
+        ]
+      },
+      {
+        "environmentId": "env_synthetic0000000000000001",
+        "day": "2026-03-03",
+        "timeZone": "Europe/Paris",
+        "source": "redacted",
+        "caseTemplateId": "ctmpl_synthetic00000000000001",
+        "created": 1,
+        "resolved": 1,
+        "slaMet": 1,
+        "slaMissed": 0,
+        "resolutionSecondsHistogram": [
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        ]
+      },
+      {
+        "environmentId": "env_synthetic0000000000000001",
+        "day": "2026-03-04",
+        "timeZone": "Europe/Paris",
+        "source": "redacted",
+        "caseTemplateId": "ctmpl_synthetic00000000000001",
+        "created": 2,
+        "resolved": 2,
+        "slaMet": 1,
+        "slaMissed": 1,
+        "resolutionSecondsHistogram": [
+          0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        ]
+      },
+      {
+        "environmentId": "env_synthetic0000000000000001",
+        "day": "2026-03-04",
+        "timeZone": "Europe/Paris",
+        "source": "facts",
+        "caseTemplateId": "ctmpl_synthetic00000000000001",
+        "created": 2,
+        "resolved": 2,
+        "slaMet": 1,
+        "slaMissed": 1,
+        "resolutionSecondsHistogram": [
+          1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 1, 0, 0, 0
+        ]
+      },
+      {
+        "environmentId": "env_synthetic0000000000000001",
+        "day": "2026-03-05",
+        "timeZone": "Europe/Paris",
+        "source": "facts",
+        "caseTemplateId": "ctmpl_synthetic00000000000001",
+        "created": 4,
+        "resolved": 2,
+        "slaMet": 2,
+        "slaMissed": 1,
+        "resolutionSecondsHistogram": [
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 1, 0, 0, 0, 0, 0, 0, 0
+        ]
+      }
+    ],
+    "assignees": [
+      {
+        "environmentId": "env_synthetic0000000000000001",
+        "day": "2026-03-02",
+        "timeZone": "Europe/Paris",
+        "source": "facts",
+        "caseTemplateId": "ctmpl_synthetic00000000000001",
+        "userId": "usr_synthetic00000000000000002",
+        "assigned": 2,
+        "resolved": 1
+      },
+      {
+        "environmentId": "env_synthetic0000000000000001",
+        "day": "2026-03-02",
+        "timeZone": "Europe/Paris",
+        "source": "facts",
+        "caseTemplateId": "ctmpl_synthetic00000000000001",
+        "userId": "usr_synthetic00000000000000001",
+        "assigned": 2,
+        "resolved": 1
+      },
+      {
+        "environmentId": "env_synthetic0000000000000001",
+        "day": "2026-03-03",
+        "timeZone": "Europe/Paris",
+        "source": "facts",
+        "caseTemplateId": "ctmpl_synthetic00000000000001",
+        "userId": "usr_synthetic00000000000000002",
+        "assigned": 1,
+        "resolved": 1
+      },
+      {
+        "environmentId": "env_synthetic0000000000000001",
+        "day": "2026-03-03",
+        "timeZone": "Europe/Paris",
+        "source": "redacted",
+        "caseTemplateId": "ctmpl_synthetic00000000000001",
+        "userId": "usr_synthetic00000000000000001",
+        "assigned": 1,
+        "resolved": 1
+      },
+      {
+        "environmentId": "env_synthetic0000000000000001",
+        "day": "2026-03-04",
+        "timeZone": "Europe/Paris",
+        "source": "redacted",
+        "caseTemplateId": "ctmpl_synthetic00000000000001",
+        "userId": "usr_synthetic00000000000000001",
+        "assigned": 1,
+        "resolved": 1
+      },
+      {
+        "environmentId": "env_synthetic0000000000000001",
+        "day": "2026-03-05",
+        "timeZone": "Europe/Paris",
+        "source": "facts",
+        "caseTemplateId": "ctmpl_synthetic00000000000001",
+        "userId": "usr_synthetic00000000000000002",
+        "assigned": 1,
+        "resolved": 0
+      },
+      {
+        "environmentId": "env_synthetic0000000000000001",
+        "day": "2026-03-05",
+        "timeZone": "Europe/Paris",
+        "source": "facts",
+        "caseTemplateId": "ctmpl_synthetic00000000000001",
+        "userId": "usr_synthetic00000000000000001",
+        "assigned": 2,
+        "resolved": 1
+      }
+    ]
+  },
+  "figures": {
+    "counts": {
+      "created": 16,
+      "resolved": 12,
+      "sla-met": 9,
+      "sla-missed": 5,
+      "assigned": 10
+    },
+    "rates": {},
+    "histograms": {
+      "resolution-time": [
+        1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0,
+        0, 1, 0, 0, 0, 2, 1, 0, 0
+      ]
+    }
+  },
+  "assignees": [
+    {
+      "userId": "usr_synthetic00000000000000001",
+      "figures": {
+        "counts": {
+          "assigned": 6,
+          "resolved": 4
+        },
+        "rates": {},
+        "histograms": {}
+      }
+    },
+    {
+      "userId": "usr_synthetic00000000000000002",
+      "figures": {
+        "counts": {
+          "assigned": 4,
+          "resolved": 2
+        },
+        "rates": {},
+        "histograms": {}
+      }
+    }
+  ]
+}

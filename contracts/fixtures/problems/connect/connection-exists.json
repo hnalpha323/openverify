@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "These two organisations already have a connection.",
+  "instance": "/api/v1/connect/connections",
+  "requestId": "00000000-0000-4000-8000-00000011a002",
+  "code": "connection_exists"
+}

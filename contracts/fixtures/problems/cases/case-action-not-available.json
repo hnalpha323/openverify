@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Forbidden",
+  "status": 403,
+  "detail": "That action is not available for this case.",
+  "instance": "/api/v1/cases/case_01M5CN00000000000000009B02/run-action",
+  "requestId": "00000000-0000-4000-8000-000000009b09",
+  "code": "case_action_not_available"
+}

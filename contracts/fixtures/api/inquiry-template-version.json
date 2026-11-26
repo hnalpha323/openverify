@@ -1,0 +1,149 @@
+{
+  "data": {
+    "type": "inquiry-template-version",
+    "id": "itmplv_01M5CKS0D00R8HR9SJ7N456QK9",
+    "attributes": {
+      "version-number": 2,
+      "status": "published",
+      "flow": {
+        "metadata": {
+          "specVersion": 1,
+          "id": "default-gov-id-selfie",
+          "version": 1,
+          "name": "Government ID and selfie",
+          "description": "Consent, a two-sided government ID, then a selfie compared with the ID portrait."
+        },
+        "steps": [
+          {
+            "id": "consent",
+            "type": "consent",
+            "textKeys": ["consent.biometric", "consent.processing"],
+            "required": true
+          },
+          {
+            "id": "government_id",
+            "type": "government_id",
+            "sides": "both",
+            "maxAttempts": 3,
+            "captureMethods": ["upload", "camera"]
+          },
+          {
+            "id": "selfie",
+            "type": "selfie",
+            "poses": ["center"],
+            "liveness": "passive",
+            "maxAttempts": 3
+          },
+          {
+            "id": "completion",
+            "type": "completion",
+            "messageKey": "flow.completion"
+          },
+          {
+            "id": "failure",
+            "type": "failure",
+            "messageKey": "flow.failure"
+          }
+        ],
+        "transitions": [
+          {
+            "from": "government_id",
+            "to": "failure",
+            "condition": {
+              "==": [
+                {
+                  "var": "inquiry.status"
+                },
+                "failed"
+              ]
+            }
+          },
+          {
+            "from": "selfie",
+            "to": "failure",
+            "condition": {
+              "==": [
+                {
+                  "var": "inquiry.status"
+                },
+                "failed"
+              ]
+            }
+          }
+        ]
+      },
+      "verification-config": {
+        "government-id": {
+          "checks": {
+            "id_blur_detection": {
+              "enabled": true,
+              "required": true,
+              "config": {
+                "min-blur-score": 120
+              }
+            },
+            "id_glare_detection": {
+              "enabled": true,
+              "required": true,
+              "config": {
+                "max-glare-ratio": 0.04
+              }
+            },
+            "id_portrait_detection": {
+              "enabled": true,
+              "required": true
+            },
+            "id_double_side_detection": {
+              "enabled": true,
+              "required": true
+            }
+          },
+          "allowed-countries": ["US", "CA", "MX"],
+          "allowed-id-classes": ["drivers_license", "passport", "national_id"]
+        },
+        "selfie": {
+          "checks": {
+            "selfie_image_quality_detection": {
+              "enabled": true,
+              "required": true,
+              "config": {
+                "min-blur-score": 80,
+                "min-brightness": 0.2,
+                "max-brightness": 0.85
+              }
+            },
+            "selfie_multiple_faces_detection": {
+              "enabled": true,
+              "required": true
+            },
+            "selfie_id_comparison": {
+              "enabled": true,
+              "required": true,
+              "config": {
+                "threshold": 0.4
+              }
+            }
+          }
+        }
+      },
+      "settings": {
+        "inquiry-expiration-seconds": 172800,
+        "session-expiration-seconds": 86400,
+        "one-time-link-expiration-seconds": 3600,
+        "retention-days": 365,
+        "max-sessions": 25,
+        "expire-inquiry-on-session-limit": false
+      },
+      "created-at": "2026-10-20T12:20:00.000Z",
+      "published-at": "2026-10-20T12:25:00.000Z"
+    },
+    "relationships": {
+      "inquiry-template": {
+        "data": {
+          "type": "inquiry-template",
+          "id": "itmpl_01M5A0GTG0RSTVX9PHA0V7P3X6"
+        }
+      }
+    }
+  }
+}

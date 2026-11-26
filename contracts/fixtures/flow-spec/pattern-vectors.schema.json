@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:openverify:fixtures:pattern-vectors:1",
+  "title": "Pattern matcher vectors (C196.2, C196.4)",
+  "description": "Written by packages/flow-spec/src/export-vectors.test.ts (api-android-10a) from compilePattern and matchPattern over its own case table, only under UPDATE_CONTRACT_FIXTURES=1; the Kotlin matcher passes every case. An input is `input`, or `prefix` + `repeat.text` repeated `repeat.count` times + `suffix`, so the 10,000-character pathological inputs stay short in the file.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format", "description", "matches", "refusals"],
+  "properties": {
+    "format": {
+      "const": 1
+    },
+    "description": {
+      "type": "string"
+    },
+    "matches": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["pattern", "matches"],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "pattern": {
+            "type": "string",
+            "minLength": 1
+          },
+          "input": {
+            "type": "string"
+          },
+          "prefix": {
+            "type": "string"
+          },
+          "repeat": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["text", "count"],
+            "properties": {
+              "text": {
+                "type": "string",
+                "minLength": 1
+              },
+              "count": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 10000
+              }
+            }
+          },
+          "suffix": {
+            "type": "string"
+          },
+          "matches": {
+            "type": "boolean"
+          },
+          "pathological": {
+            "type": "boolean",
+            "description": "Held to the Kotlin suite's step budget (C196.4)."
+          }
+        },
+        "oneOf": [
+          {
+            "required": ["input"],
+            "not": {
+              "anyOf": [
+                {
+                  "required": ["repeat"]
+                },
+                {
+                  "required": ["prefix"]
+                },
+                {
+                  "required": ["suffix"]
+                }
+              ]
+            }
+          },
+          {
+            "required": ["repeat"],
+            "not": {
+              "required": ["input"]
+            }
+          }
+        ]
+      }
+    },
+    "refusals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["pattern", "reason"],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "pattern": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string",
+            "description": "compilePattern's reason (PatternRefusalReason)."
+          }
+        }
+      }
+    }
+  }
+}

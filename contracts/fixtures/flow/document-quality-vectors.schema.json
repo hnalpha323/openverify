@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:openverify:fixtures:document-quality-vectors:1",
+  "title": "Document quality vectors (C202.1, review F10)",
+  "description": "Workflow 10B Stage 1a (contracts-10b) freezes this shape; document-guidance's assert-only Python test (services/vision/tests/test_document_quality_vectors.py) writes the file from services/vision/src/openverify_vision/quality.py's own functions over small synthetic renders (96 x 60, raw RGBA in base64), only under UPDATE_CONTRACT_FIXTURES=1; the Kotlin port (commonMain capture/document/) reproduces each measure within its tolerance.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format", "description", "conversions", "tolerances", "cases"],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "format": {
+      "const": 1
+    },
+    "description": {
+      "type": "string"
+    },
+    "conversions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["grey", "hsv", "border"],
+      "properties": {
+        "grey": {
+          "type": "string",
+          "description": "cvtColor's grey coefficients and fixed-point rounding, as the port must reproduce them."
+        },
+        "hsv": {
+          "type": "string",
+          "description": "The HSV scale (OpenCV's 8-bit: H 0-179, S and V 0-255)."
+        },
+        "border": {
+          "const": "BORDER_REFLECT_101"
+        }
+      }
+    },
+    "tolerances": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "laplacian-variance",
+        "tenengrad",
+        "glare-share",
+        "brightness-mean",
+        "framing-edge-ratio"
+      ],
+      "properties": {
+        "laplacian-variance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "tenengrad": {
+          "type": "number",
+          "minimum": 0
+        },
+        "glare-share": {
+          "type": "number",
+          "minimum": 0
+        },
+        "brightness-mean": {
+          "type": "number",
+          "minimum": 0
+        },
+        "framing-edge-ratio": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "width", "height", "layout", "rgba-base64", "guide", "measures"],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "width": {
+            "const": 96
+          },
+          "height": {
+            "const": 60
+          },
+          "layout": {
+            "const": "RGBA_8888"
+          },
+          "rgba-base64": {
+            "type": "string",
+            "contentEncoding": "base64",
+            "description": "width * height * 4 bytes, rows packed; synthetic renders only."
+          },
+          "guide": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["left", "top", "right", "bottom"],
+            "properties": {
+              "left": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "top": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "right": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "bottom": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "description": "The card or page guide in pixels, for the framing measure."
+          },
+          "measures": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "laplacian-variance",
+              "tenengrad",
+              "glare-share",
+              "brightness-mean",
+              "framing-edge-ratio"
+            ],
+            "properties": {
+              "laplacian-variance": {
+                "type": "number"
+              },
+              "tenengrad": {
+                "type": "number"
+              },
+              "glare-share": {
+                "type": "number"
+              },
+              "brightness-mean": {
+                "type": "number"
+              },
+              "framing-edge-ratio": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

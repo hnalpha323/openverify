@@ -1,0 +1,505 @@
+# C264.2, C263.5, C263.6 (Workflow 11C Stage 2, chart-policy-11c; B10-I1, H8, H9, review P19):
+# default deny both ways for the release's pods, then each component's allow list. Vision and the
+# runner have no egress in every models mode; the data stores are reached only from the API, the
+# worker and migrate; the console reaches only the API and the flow server only the API's internal
+# listener; the public-internet rule leaves out the private, loopback, link-local (metadata), CGNAT
+# and IPv6 local ranges.
+suite: c264 network policies
+release:
+  name: ov
+  namespace: verify
+templates:
+  - templates/networkpolicies.yaml
+tests:
+  - it: renders no policy when networkPolicy.enabled is false
+    set:
+      networkPolicy.enabled: false
+    asserts:
+      - hasDocuments:
+          count: 0
+  - it: denies every ingress and egress of the release's pods by default
+    documentSelector:
+      path: metadata.name
+      value: ov-openverify-default-deny
+    asserts:
+      - isKind:
+          of: NetworkPolicy
+      - equal:
+          path: spec
+          value:
+            podSelector:
+              matchLabels:
+                app.kubernetes.io/name: openverify
+                app.kubernetes.io/instance: ov
+            policyTypes: [Ingress, Egress]
+  - it: renders the default deny and one policy per component, models-fetch in job mode
+    asserts:
+      - hasDocuments:
+          count: 9
+  - it: leaves the models-fetch policy out in pvc mode and the runner's when it is off
+    set:
+      models.source: pvc
+      models.existingClaim: ov-models
+      codeRunner.enabled: false
+    asserts:
+      - hasDocuments:
+          count: 7
+
+  # H9, Phase 5 C60.2: vision accepts only the API and the worker and has no egress, in every mode.
+  - it: lets only the API and the worker reach vision, on its port
+    documentSelector: &vision
+      path: metadata.name
+      value: ov-openverify-vision
+    asserts:
+      - equal:
+          path: spec.podSelector.matchLabels
+          value:
+            app.kubernetes.io/name: openverify
+            app.kubernetes.io/instance: ov
+            app.kubernetes.io/component: vision
+      - equal:
+          path: spec.policyTypes
+          value: [Ingress, Egress]
+      - equal:
+          path: spec.ingress
+          value:
+            - from:
+                - podSelector:
+                    matchLabels:
+                      app.kubernetes.io/name: openverify
+                      app.kubernetes.io/instance: ov
+                      app.kubernetes.io/component: api
+                - podSelector:
+                    matchLabels:
+                      app.kubernetes.io/name: openverify
+                      app.kubernetes.io/instance: ov
+                      app.kubernetes.io/component: worker
+              ports:
+                - { protocol: TCP, port: 8000 }
+  - it: gives vision no egress in job mode, not even DNS
+    documentSelector: *vision
+    set:
+      models.source: job
+    asserts:
+      - equal:
+          path: spec.egress
+          value: []
+  - it: gives vision no egress in pvc mode either
+    documentSelector: *vision
+    set:
+      models.source: pvc
+      models.existingClaim: ov-models
+    asserts:
+      - equal:
+          path: spec.egress
+          value: []
+  - it: gives vision no egress whatever extra destinations are listed
+    documentSelector: *vision
+    set:
+      networkPolicy.egress.webhooks: [{ cidr: 203.0.113.0/24, ports: [443] }]
+      networkPolicy.egress.modelHosts: [{ cidr: 198.51.100.0/24, ports: [443] }]
+    asserts:
+      - equal:
+          path: spec.egress
+          value: []
+
+  # H8, C263.6: the runner accepts only the worker and has no egress.
+  - it: lets only the worker reach the runner, on its port, and gives the runner no egress
+    documentSelector:
+      path: metadata.name
+      value: ov-openverify-code-runner
+    asserts:
+      - equal:
+          path: spec.ingress
+          value:
+            - from:
+                - podSelector:
+                    matchLabels:
+                      app.kubernetes.io/name: openverify
+                      app.kubernetes.io/instance: ov
+                      app.kubernetes.io/component: worker
+              ports:
+                - { protocol: TCP, port: 7700 }
+      - equal:
+          path: spec.egress
+          value: []
+
+  # The API: public on its http port; its internal listener only from the flow server (C250.3).
+  - it: opens the API's http port to every client and its internal port to the flow server only
+    documentSelector: &api
+      path: metadata.name
+      value: ov-openverify-api
+    asserts:
+      - equal:
+          path: spec.ingress
+          value:
+            - ports:
+                - { protocol: TCP, port: 3000 }
+            - from:
+                - podSelector:
+                    matchLabels:
+                      app.kubernetes.io/name: openverify
+                      app.kubernetes.io/instance: ov
+                      app.kubernetes.io/component: flow
+              ports:
+                - { protocol: TCP, port: 3101 }
+  - it: lets the API resolve names, reach vision and the public internet without its private ranges
+    documentSelector: *api
+    asserts:
+      - contains:
+          path: spec.egress
+          content: &dns
+            to:
+              - namespaceSelector:
+                  matchLabels:
+                    kubernetes.io/metadata.name: kube-system
+                podSelector:
+                  matchLabels:
+                    k8s-app: kube-dns
+            ports:
+              - { protocol: UDP, port: 53 }
+              - { protocol: TCP, port: 53 }
+      - contains:
+          path: spec.egress
+          content:
+            to:
+              - podSelector:
+                  matchLabels:
+                    app.kubernetes.io/name: openverify
+                    app.kubernetes.io/instance: ov
+                    app.kubernetes.io/component: vision
+            ports:
+              - { protocol: TCP, port: 8000 }
+      - contains:
+          path: spec.egress
+          content: &internet
+            to:
+              - ipBlock:
+                  cidr: 0.0.0.0/0
+                  except:
+                    - 0.0.0.0/8
+                    - 10.0.0.0/8
+                    - 100.64.0.0/10
+                    - 127.0.0.0/8
+                    - 169.254.0.0/16
+                    - 172.16.0.0/12
+                    - 192.168.0.0/16
+              - ipBlock:
+                  cidr: ::/0
+                  except:
+                    - ::1/128
+                    - fc00::/7
+                    - fe80::/10
+      - notContains:
+          path: spec.egress
+          content:
+            to:
+              - podSelector:
+                  matchLabels:
+                    app.kubernetes.io/name: openverify
+                    app.kubernetes.io/instance: ov
+                    app.kubernetes.io/component: code-runner
+            ports:
+              - { protocol: TCP, port: 7700 }
+
+  # The worker: DNS, vision, the runner, the public internet (webhooks, providers with Play
+  # Integrity's Google hosts, list syncs, network publisher downloads), no ingress.
+  - it: gives the worker no ingress and lets it reach vision, the runner and the public internet
+    documentSelector: &worker
+      path: metadata.name
+      value: ov-openverify-worker
+    asserts:
+      - equal:
+          path: spec.ingress
+          value: []
+      - contains:
+          path: spec.egress
+          content: *dns
+      - contains:
+          path: spec.egress
+          content: *internet
+      - contains:
+          path: spec.egress
+          content:
+            to:
+              - podSelector:
+                  matchLabels:
+                    app.kubernetes.io/name: openverify
+                    app.kubernetes.io/instance: ov
+                    app.kubernetes.io/component: code-runner
+            ports:
+              - { protocol: TCP, port: 7700 }
+  - it: drops the worker's way to the runner when the runner is off
+    documentSelector: *worker
+    set:
+      codeRunner.enabled: false
+    asserts:
+      - notContains:
+          path: spec.egress
+          content:
+            to:
+              - podSelector:
+                  matchLabels:
+                    app.kubernetes.io/name: openverify
+                    app.kubernetes.io/instance: ov
+                    app.kubernetes.io/component: code-runner
+            ports:
+              - { protocol: TCP, port: 7700 }
+  - it: adds the listed webhook, provider and list-sync destinations to the worker
+    documentSelector: *worker
+    set:
+      networkPolicy.egress.webhooks: [{ cidr: 192.0.2.10/32, ports: [8443] }]
+      networkPolicy.egress.providers: [{ cidr: 198.51.100.0/24, ports: [443] }]
+      networkPolicy.egress.listSyncs: [{ cidr: 203.0.113.0/24, ports: [443, 80] }]
+    asserts:
+      - contains:
+          path: spec.egress
+          content:
+            to:
+              - ipBlock: { cidr: 192.0.2.10/32 }
+            ports:
+              - { protocol: TCP, port: 8443 }
+      - contains:
+          path: spec.egress
+          content:
+            to:
+              - ipBlock: { cidr: 198.51.100.0/24 }
+            ports:
+              - { protocol: TCP, port: 443 }
+      - contains:
+          path: spec.egress
+          content:
+            to:
+              - ipBlock: { cidr: 203.0.113.0/24 }
+            ports:
+              - { protocol: TCP, port: 443 }
+              - { protocol: TCP, port: 80 }
+
+  # The data stores (review P19): in the cluster by selector, or external by CIDR, only from the API,
+  # the worker and migrate.
+  - it: reaches in-cluster Postgres, Valkey and S3 from the API by selector
+    documentSelector: *api
+    set: &inCluster
+      networkPolicy.dataStoresInCluster.enabled: true
+      networkPolicy.dataStoresInCluster.namespaceSelector:
+        kubernetes.io/metadata.name: stores
+      networkPolicy.dataStoresInCluster.postgres.podSelector: { app: postgres }
+      networkPolicy.dataStoresInCluster.valkey.podSelector: { app: valkey }
+      networkPolicy.dataStoresInCluster.s3.podSelector: { app: rustfs }
+    asserts:
+      - contains:
+          path: spec.egress
+          content: &postgres
+            to:
+              - namespaceSelector:
+                  matchLabels:
+                    kubernetes.io/metadata.name: stores
+                podSelector:
+                  matchLabels:
+                    app: postgres
+            ports:
+              - { protocol: TCP, port: 5432 }
+      - contains:
+          path: spec.egress
+          content: &valkey
+            to:
+              - namespaceSelector:
+                  matchLabels:
+                    kubernetes.io/metadata.name: stores
+                podSelector:
+                  matchLabels:
+                    app: valkey
+            ports:
+              - { protocol: TCP, port: 6379 }
+      - contains:
+          path: spec.egress
+          content: &s3
+            to:
+              - namespaceSelector:
+                  matchLabels:
+                    kubernetes.io/metadata.name: stores
+                podSelector:
+                  matchLabels:
+                    app: rustfs
+            ports:
+              - { protocol: TCP, port: 9000 }
+  - it: reaches the in-cluster stores from the worker too
+    documentSelector: *worker
+    set: *inCluster
+    asserts:
+      - contains:
+          path: spec.egress
+          content: *postgres
+      - contains:
+          path: spec.egress
+          content: *valkey
+      - contains:
+          path: spec.egress
+          content: *s3
+  - it: lets migrate reach only DNS and Postgres
+    documentSelector: &migrate
+      path: metadata.name
+      value: ov-openverify-migrate
+    set: *inCluster
+    asserts:
+      - equal:
+          path: spec.podSelector.matchLabels["app.kubernetes.io/component"]
+          value: migrate
+      - equal:
+          path: spec.ingress
+          value: []
+      - equal:
+          path: spec.egress
+          value:
+            - *dns
+            - *postgres
+  - it: reaches external stores by networkPolicy.egress.dataStores from the API, the worker and migrate
+    documentSelector: *migrate
+    set: &external
+      external.postgres.existingSecret: ov-postgres
+      networkPolicy.egress.dataStores: [{ cidr: 10.20.0.0/16, ports: [5432, 6379] }]
+    asserts:
+      - contains:
+          path: spec.egress
+          content: &dataStoreCidr
+            to:
+              - ipBlock: { cidr: 10.20.0.0/16 }
+            ports:
+              - { protocol: TCP, port: 5432 }
+              - { protocol: TCP, port: 6379 }
+  - it: reaches external stores from the API
+    documentSelector: *api
+    set: *external
+    asserts:
+      - contains:
+          path: spec.egress
+          content: *dataStoreCidr
+  - it: sends mail from the API and the worker only, through networkPolicy.egress.smtp
+    documentSelector: *worker
+    set:
+      external.smtp.existingSecret: ov-smtp
+      networkPolicy.egress.smtp: [{ cidr: 10.30.0.25/32, ports: [587] }]
+    asserts:
+      - contains:
+          path: spec.egress
+          content:
+            to:
+              - ipBlock: { cidr: 10.30.0.25/32 }
+            ports:
+              - { protocol: TCP, port: 587 }
+  - it: reaches private identity providers from the API only
+    documentSelector: *api
+    set:
+      api.ssoPrivateIssuers: [https://idp.internal.example.com]
+      networkPolicy.egress.identityProviders: [{ cidr: 10.40.0.0/24, ports: [443] }]
+    asserts:
+      - contains:
+          path: spec.egress
+          content:
+            to:
+              - ipBlock: { cidr: 10.40.0.0/24 }
+            ports:
+              - { protocol: TCP, port: 443 }
+  - it: never lets the worker reach the identity providers' ranges
+    documentSelector: *worker
+    set:
+      api.ssoPrivateIssuers: [https://idp.internal.example.com]
+      networkPolicy.egress.identityProviders: [{ cidr: 10.40.0.0/24, ports: [443] }]
+    asserts:
+      - notContains:
+          path: spec.egress
+          content:
+            to:
+              - ipBlock: { cidr: 10.40.0.0/24 }
+            ports:
+              - { protocol: TCP, port: 443 }
+
+  # The console reaches only the API; the flow server only the API's internal listener; neither a store.
+  - it: lets every client reach the console and the console reach only DNS and the API
+    documentSelector:
+      path: metadata.name
+      value: ov-openverify-dashboard
+    set:
+      <<: [*inCluster, *external]
+    asserts:
+      - equal:
+          path: spec.ingress
+          value:
+            - ports:
+                - { protocol: TCP, port: 3001 }
+      - equal:
+          path: spec.egress
+          value:
+            - *dns
+            - to:
+                - podSelector:
+                    matchLabels:
+                      app.kubernetes.io/name: openverify
+                      app.kubernetes.io/instance: ov
+                      app.kubernetes.io/component: api
+              ports:
+                - { protocol: TCP, port: 3000 }
+  - it: lets every client reach the flow server and the flow server reach only DNS and the internal listener
+    documentSelector:
+      path: metadata.name
+      value: ov-openverify-flow
+    set:
+      <<: [*inCluster, *external]
+    asserts:
+      - equal:
+          path: spec.ingress
+          value:
+            - ports:
+                - { protocol: TCP, port: 4173 }
+      - equal:
+          path: spec.egress
+          value:
+            - *dns
+            - to:
+                - podSelector:
+                    matchLabels:
+                      app.kubernetes.io/name: openverify
+                      app.kubernetes.io/instance: ov
+                      app.kubernetes.io/component: api
+              ports:
+                - { protocol: TCP, port: 3101 }
+
+  # C263.5: the models-fetch Job alone reaches the model hosts.
+  - it: lets the models-fetch Job reach the public internet without its private ranges by default
+    documentSelector: &modelsFetch
+      path: metadata.name
+      value: ov-openverify-models-fetch
+    asserts:
+      - equal:
+          path: spec.podSelector.matchLabels["app.kubernetes.io/component"]
+          value: models-fetch
+      - equal:
+          path: spec.ingress
+          value: []
+      - equal:
+          path: spec.egress
+          value:
+            - *dns
+            - *internet
+  - it: narrows the models-fetch Job to networkPolicy.egress.modelHosts when listed
+    documentSelector: *modelsFetch
+    set:
+      networkPolicy.egress.modelHosts: [{ cidr: 198.51.100.0/24, ports: [443] }]
+    asserts:
+      - equal:
+          path: spec.egress
+          value:
+            - *dns
+            - to:
+                - ipBlock: { cidr: 198.51.100.0/24 }
+              ports:
+                - { protocol: TCP, port: 443 }
+  - it: never gives a public-internet rule to the console, the flow server, vision, the runner or migrate
+    set: *inCluster
+    documentSelector:
+      path: metadata.name
+      value: ov-openverify-migrate
+    asserts:
+      - notContains:
+          path: spec.egress
+          content: *internet

@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "That status needs fields the case does not hold yet.",
+  "instance": "/api/v1/cases/case_01M5CN00000000000000009B02/set-status",
+  "requestId": "00000000-0000-4000-8000-000000009b08",
+  "code": "case_fields_required",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/meta/status",
+      "detail": "The field resolution-notes is required for resolved."
+    }
+  ]
+}

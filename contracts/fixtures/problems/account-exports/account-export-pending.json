@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "An export of this account is already being prepared.",
+  "instance": "/api/v1/accounts/acc_01M5CJXJF84MR3PHJHBHKQ4ZC8/export",
+  "requestId": "00000000-0000-4000-8000-00000011b010",
+  "code": "account_export_pending"
+}

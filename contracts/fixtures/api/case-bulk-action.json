@@ -1,0 +1,28 @@
+{
+  "data": {
+    "type": "case-bulk-action",
+    "id": "cblk_01M5CN00000000000000000015",
+    "attributes": {
+      "action": "set-status",
+      "status": "completed",
+      "requested-count": 2,
+      "applied-count": 1,
+      "no-change-count": 0,
+      "refused-count": 1,
+      "outcomes": [
+        {
+          "case-id": "case_01M5CN00000000000000000001",
+          "outcome": "applied",
+          "code": null
+        },
+        {
+          "case-id": "case_01M5CN00000000000000000017",
+          "outcome": "refused",
+          "code": "case_transition_refused"
+        }
+      ],
+      "created-at": "2026-10-20T12:00:00.000Z",
+      "completed-at": "2026-10-20T12:05:00.000Z"
+    }
+  }
+}

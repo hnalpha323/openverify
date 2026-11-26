@@ -1,0 +1,17 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The consent record does not cover this share.",
+  "instance": "/api/v1/connect/share-tokens",
+  "requestId": "00000000-0000-4000-8000-00000011a012",
+  "code": "consent_required",
+  "reason": "categories",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/consent-record-id",
+      "detail": "does not cover every category the share carries"
+    }
+  ]
+}

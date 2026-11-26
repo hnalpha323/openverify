@@ -1,0 +1,23 @@
+{
+  "source": "pdf",
+  "page_count": 2,
+  "truncated": false,
+  "pages": [
+    {
+      "page": 1,
+      "media_type": "image/png",
+      "width": 3,
+      "height": 4,
+      "byte_size": 108,
+      "data_b64": "iVBORw0KGgoAAAANSUhEUgAAAAMAAAAECAIAAADETxJQAAAAM0lEQVR4AQEoANf/AP///////////wD///////////8A////////////AP///////////812I900SVVDAAAAAElFTkSuQmCC"
+    },
+    {
+      "page": 2,
+      "media_type": "image/png",
+      "width": 3,
+      "height": 4,
+      "byte_size": 108,
+      "data_b64": "iVBORw0KGgoAAAANSUhEUgAAAAMAAAAECAIAAADETxJQAAAAM0lEQVR4AQEoANf/APX19fX19fX19QD19fX19fX19fUA9fX19fX19fX1APX19fX19fX19bFWInW9eRTFAAAAAElFTkSuQmCC"
+    }
+  ]
+}

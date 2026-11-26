@@ -1,0 +1,21 @@
+{
+  "data": {
+    "type": "connect/share-token",
+    "attributes": {
+      "destination-id": "acc_01M5CN0000000000000011A630"
+    }
+  },
+  "meta": {
+    "field-mappings": [
+      {
+        "source-field-name": "name_first",
+        "destination-field-name": "name.first"
+      },
+      {
+        "source-field-name": "birthdate",
+        "destination-field-name": "birthdate"
+      }
+    ],
+    "destination-consent-record-id": "cnsr_01M5CN0000000000000011A412"
+  }
+}

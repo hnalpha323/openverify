@@ -1,0 +1,527 @@
+{
+  "description": "C157.2, C158.1 (verification round V04): golden vectors of matchesOriginPattern, the origin grammar and parseEmbedPolicyAnswer, shared by the contracts test, the flow server and the embed bridge. Synthetic origins in reserved names and documentation ranges only.",
+  "matches": [
+    {
+      "origin": "https://shop.example.com",
+      "entry": "https://shop.example.com",
+      "expected": true
+    },
+    {
+      "origin": "https://shop.example.com:443",
+      "entry": "https://shop.example.com",
+      "expected": true
+    },
+    {
+      "origin": "https://shop.example.com",
+      "entry": "https://shop.example.com:443",
+      "expected": true
+    },
+    {
+      "origin": "https://shop.example.com:8443",
+      "entry": "https://shop.example.com",
+      "expected": false
+    },
+    {
+      "origin": "https://shop.example.com:8443",
+      "entry": "https://shop.example.com:8443",
+      "expected": true
+    },
+    {
+      "origin": "http://shop.example.com",
+      "entry": "https://shop.example.com",
+      "expected": false
+    },
+    {
+      "origin": "https://a.shop.example.com",
+      "entry": "https://shop.example.com",
+      "expected": false
+    },
+    {
+      "origin": "https://a.example.com",
+      "entry": "https://*.example.com",
+      "expected": true
+    },
+    {
+      "origin": "https://a.b.example.com",
+      "entry": "https://*.example.com",
+      "expected": true
+    },
+    {
+      "origin": "https://example.com",
+      "entry": "https://*.example.com",
+      "expected": false
+    },
+    {
+      "origin": "https://evilhost.com",
+      "entry": "https://*.host.com",
+      "expected": false
+    },
+    {
+      "origin": "https://evil-host.com",
+      "entry": "https://*.host.com",
+      "expected": false
+    },
+    {
+      "origin": "https://hostXcom.attacker.example",
+      "entry": "https://*.host.com",
+      "expected": false
+    },
+    {
+      "origin": "https://a.host.com.attacker.example",
+      "entry": "https://*.host.com",
+      "expected": false
+    },
+    {
+      "origin": "https://a.host.com",
+      "entry": "https://*.host.com",
+      "expected": true
+    },
+    {
+      "origin": "https://a.example.com:444",
+      "entry": "https://*.example.com",
+      "expected": false
+    },
+    {
+      "origin": "https://a.example.com:444",
+      "entry": "https://*.example.com:444",
+      "expected": true
+    },
+    {
+      "origin": "http://localhost:3000",
+      "entry": "http://localhost:3000",
+      "expected": true
+    },
+    {
+      "origin": "http://localhost:3001",
+      "entry": "http://localhost:3000",
+      "expected": false
+    },
+    {
+      "origin": "http://localhost",
+      "entry": "http://localhost",
+      "expected": true
+    },
+    {
+      "origin": "http://127.0.0.1:8080",
+      "entry": "http://127.0.0.1:8080",
+      "expected": true
+    },
+    {
+      "origin": "null",
+      "entry": "https://example.com",
+      "expected": false
+    },
+    {
+      "origin": "",
+      "entry": "https://example.com",
+      "expected": false
+    },
+    {
+      "origin": "https://example.com/path",
+      "entry": "https://example.com",
+      "expected": false
+    },
+    {
+      "origin": "https://user@example.com",
+      "entry": "https://example.com",
+      "expected": false
+    },
+    {
+      "origin": "HTTPS://EXAMPLE.COM",
+      "entry": "https://example.com",
+      "expected": false
+    },
+    {
+      "origin": "https://example.com",
+      "entry": "https://*",
+      "expected": false
+    }
+  ],
+  "entries": [
+    {
+      "entry": "https://shop.example.com",
+      "environment": "production",
+      "refusal": null
+    },
+    {
+      "entry": "https://shop.example.com:8443",
+      "environment": "production",
+      "refusal": null
+    },
+    {
+      "entry": "https://*.example.com",
+      "environment": "production",
+      "refusal": null
+    },
+    {
+      "entry": "https://*.shop.example.co.uk",
+      "environment": "production",
+      "refusal": null
+    },
+    {
+      "entry": "https://xn--bcher-kva.example",
+      "environment": "production",
+      "refusal": null
+    },
+    {
+      "entry": "http://shop.example.com",
+      "environment": "production",
+      "refusal": "scheme"
+    },
+    {
+      "entry": "http://shop.example.com",
+      "environment": "sandbox",
+      "refusal": "scheme"
+    },
+    {
+      "entry": "ftp://shop.example.com",
+      "environment": "sandbox",
+      "refusal": "scheme"
+    },
+    {
+      "entry": "http://localhost:3000",
+      "environment": "sandbox",
+      "refusal": null
+    },
+    {
+      "entry": "http://localhost",
+      "environment": "sandbox",
+      "refusal": null
+    },
+    {
+      "entry": "http://127.0.0.1:5173",
+      "environment": "sandbox",
+      "refusal": null
+    },
+    {
+      "entry": "https://localhost:3000",
+      "environment": "sandbox",
+      "refusal": null
+    },
+    {
+      "entry": "http://localhost:3000",
+      "environment": "production",
+      "refusal": "localhost_in_production"
+    },
+    {
+      "entry": "https://localhost",
+      "environment": "production",
+      "refusal": "localhost_in_production"
+    },
+    {
+      "entry": "http://127.0.0.1",
+      "environment": "production",
+      "refusal": "localhost_in_production"
+    },
+    {
+      "entry": "https://192.0.2.10",
+      "environment": "sandbox",
+      "refusal": "ip_literal"
+    },
+    {
+      "entry": "https://[2001:db8::1]",
+      "environment": "sandbox",
+      "refusal": "ip_literal"
+    },
+    {
+      "entry": "https://shop.example.com/",
+      "environment": "production",
+      "refusal": "path"
+    },
+    {
+      "entry": "https://shop.example.com/embed",
+      "environment": "production",
+      "refusal": "path"
+    },
+    {
+      "entry": "https://shop.example.com?x=1",
+      "environment": "production",
+      "refusal": "path"
+    },
+    {
+      "entry": "https://shop.example.com#top",
+      "environment": "production",
+      "refusal": "path"
+    },
+    {
+      "entry": "https://user@shop.example.com",
+      "environment": "production",
+      "refusal": "userinfo"
+    },
+    {
+      "entry": "*",
+      "environment": "production",
+      "refusal": "bare_wildcard"
+    },
+    {
+      "entry": "https://*",
+      "environment": "production",
+      "refusal": "bare_wildcard"
+    },
+    {
+      "entry": "https://shop.example.com:*",
+      "environment": "production",
+      "refusal": "wildcard_port"
+    },
+    {
+      "entry": "https://*.com",
+      "environment": "production",
+      "refusal": "wildcard_too_short"
+    },
+    {
+      "entry": "https://*.vercel.app",
+      "environment": "production",
+      "refusal": "shared_hosting_suffix"
+    },
+    {
+      "entry": "https://*.github.io",
+      "environment": "production",
+      "refusal": "shared_hosting_suffix"
+    },
+    {
+      "entry": "https://*.co.uk",
+      "environment": "production",
+      "refusal": "shared_hosting_suffix"
+    },
+    {
+      "entry": "https://a.*.example.com",
+      "environment": "production",
+      "refusal": "not_an_origin"
+    },
+    {
+      "entry": "https://Shop.Example.com",
+      "environment": "production",
+      "refusal": "not_lowercase_ascii"
+    },
+    {
+      "entry": "https://bücher.example",
+      "environment": "production",
+      "refusal": "not_lowercase_ascii"
+    },
+    {
+      "entry": "https://shop.example.com:0",
+      "environment": "production",
+      "refusal": "not_an_origin"
+    },
+    {
+      "entry": "https://shop.example.com:65536",
+      "environment": "production",
+      "refusal": "not_an_origin"
+    },
+    {
+      "entry": "https://shop..example.com",
+      "environment": "production",
+      "refusal": "not_an_origin"
+    },
+    {
+      "entry": "https://-shop.example.com",
+      "environment": "production",
+      "refusal": "not_an_origin"
+    },
+    {
+      "entry": "https://shop.example.com'; script-src *",
+      "environment": "production",
+      "refusal": "not_an_origin"
+    },
+    {
+      "entry": "https://shop.example.com frame-ancestors *",
+      "environment": "production",
+      "refusal": "not_an_origin"
+    },
+    {
+      "entry": "",
+      "environment": "production",
+      "refusal": "not_an_origin"
+    }
+  ],
+  "answers": [
+    {
+      "answer": {
+        "inquiry-id": "inq_01M5CJXHG07XPHF3HRM6NREDH7",
+        "template-id": "itmpl_01M5A0GTG0RSTVX9PHA0V7P3X6",
+        "environment-id": "env_01M5CJZC30W7PFE0GD30HJWEC5",
+        "frame-ancestors": ["https://shop.example.com", "https://*.example.org"]
+      },
+      "valid": true
+    },
+    {
+      "answer": {
+        "inquiry-id": "inq_01M5CJXHG07XPHF3HRM6NREDH7",
+        "template-id": "itmpl_01M5A0GTG0RSTVX9PHA0V7P3X6",
+        "environment-id": "env_01M5CJZC30W7PFE0GD30HJWEC5",
+        "frame-ancestors": []
+      },
+      "valid": true
+    },
+    {
+      "answer": {
+        "inquiry-id": "inq_01M5CJXHG07XPHF3HRM6NREDH7",
+        "template-id": "itmpl_01M5A0GTG0RSTVX9PHA0V7P3X6",
+        "environment-id": "env_01M5CJZC30W7PFE0GD30HJWEC5",
+        "frame-ancestors": ["http://localhost:3000"]
+      },
+      "valid": true
+    },
+    {
+      "answer": {
+        "inquiry-id": "inq_01M5CJXHG07XPHF3HRM6NREDH7",
+        "template-id": "itmpl_01M5A0GTG0RSTVX9PHA0V7P3X6",
+        "environment-id": "env_01M5CJZC30W7PFE0GD30HJWEC5",
+        "frame-ancestors": ["https://shop.example.com; script-src *"]
+      },
+      "valid": false
+    },
+    {
+      "answer": {
+        "inquiry-id": "inq_01M5CJXHG07XPHF3HRM6NREDH7",
+        "template-id": "itmpl_01M5A0GTG0RSTVX9PHA0V7P3X6",
+        "environment-id": "env_01M5CJZC30W7PFE0GD30HJWEC5",
+        "frame-ancestors": ["https://shop.example.com\r\nSet-Cookie: x=1"]
+      },
+      "valid": false
+    },
+    {
+      "answer": {
+        "inquiry-id": "inq_01M5CJXHG07XPHF3HRM6NREDH7",
+        "template-id": "itmpl_01M5A0GTG0RSTVX9PHA0V7P3X6",
+        "environment-id": "env_01M5CJZC30W7PFE0GD30HJWEC5",
+        "frame-ancestors": ["*"]
+      },
+      "valid": false
+    },
+    {
+      "answer": {
+        "inquiry-id": "inq_01M5CJXHG07XPHF3HRM6NREDH7",
+        "template-id": "itmpl_01M5A0GTG0RSTVX9PHA0V7P3X6",
+        "environment-id": "env_01M5CJZC30W7PFE0GD30HJWEC5",
+        "frame-ancestors": "https://shop.example.com"
+      },
+      "valid": false
+    },
+    {
+      "answer": {
+        "inquiry-id": "inq_01M5CJXHG07XPHF3HRM6NREDH7",
+        "template-id": "itmpl_01M5A0GTG0RSTVX9PHA0V7P3X6",
+        "environment-id": "env_01M5CJZC30W7PFE0GD30HJWEC5",
+        "frame-ancestors": [
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com",
+          "https://shop.example.com"
+        ]
+      },
+      "valid": false
+    },
+    {
+      "answer": {
+        "inquiry-id": "inq_../../admin",
+        "template-id": "itmpl_01M5A0GTG0RSTVX9PHA0V7P3X6",
+        "environment-id": "env_01M5CJZC30W7PFE0GD30HJWEC5",
+        "frame-ancestors": ["https://shop.example.com", "https://*.example.org"]
+      },
+      "valid": false
+    },
+    {
+      "answer": {
+        "inquiry-id": "inq_01M5CJXHG07XPHF3HRM6NREDH7",
+        "template-id": "itmplv_01M5A0GTG0RSTVX9PHA0V7P3X6",
+        "environment-id": "env_01M5CJZC30W7PFE0GD30HJWEC5",
+        "frame-ancestors": ["https://shop.example.com", "https://*.example.org"]
+      },
+      "valid": false
+    },
+    {
+      "answer": {
+        "inquiry-id": "inq_01M5CJXHG07XPHF3HRM6NREDH7",
+        "template-id": "itmpl_01M5A0GTG0RSTVX9PHA0V7P3X6",
+        "environment-id": null,
+        "frame-ancestors": ["https://shop.example.com", "https://*.example.org"]
+      },
+      "valid": false
+    },
+    {
+      "answer": {
+        "inquiry-id": "inq_01M5CJXHG07XPHF3HRM6NREDH7",
+        "template-id": "itmpl_01M5A0GTG0RSTVX9PHA0V7P3X6",
+        "environment-id": "env_01M5CJZC30W7PFE0GD30HJWEC5",
+        "frame-ancestors": ["https://shop.example.com", "https://*.example.org"],
+        "extra": true
+      },
+      "valid": false
+    },
+    {
+      "answer": {
+        "inquiry-id": "inq_01M5CJXHG07XPHF3HRM6NREDH7",
+        "template-id": "itmpl_01M5A0GTG0RSTVX9PHA0V7P3X6",
+        "frame-ancestors": ["https://shop.example.com", "https://*.example.org"]
+      },
+      "valid": false
+    },
+    {
+      "answer": null,
+      "valid": false
+    },
+    {
+      "answer": [
+        {
+          "inquiry-id": "inq_01M5CJXHG07XPHF3HRM6NREDH7",
+          "template-id": "itmpl_01M5A0GTG0RSTVX9PHA0V7P3X6",
+          "environment-id": "env_01M5CJZC30W7PFE0GD30HJWEC5",
+          "frame-ancestors": ["https://shop.example.com", "https://*.example.org"]
+        }
+      ],
+      "valid": false
+    },
+    {
+      "answer": "ok",
+      "valid": false
+    }
+  ]
+}

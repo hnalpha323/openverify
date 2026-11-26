@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "No provider is bound for a step of this template in this environment.",
+  "instance": "/api/v1/inquiry-template-versions/itmplv_01M5CKS0D00R8HR9SJ7N456QK9/publish",
+  "requestId": "00000000-0000-4000-8000-000000000121",
+  "code": "provider_not_configured"
+}

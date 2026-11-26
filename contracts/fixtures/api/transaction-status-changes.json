@@ -1,0 +1,27 @@
+{
+  "data": [
+    {
+      "type": "transaction-status-change",
+      "id": "42",
+      "attributes": {
+        "from-status": "created",
+        "to-status": "approved",
+        "actor-type": "api-key",
+        "created-at": "2026-10-20T12:30:00.000Z",
+        "redacted-at": null
+      }
+    },
+    {
+      "type": "transaction-status-change",
+      "id": "41",
+      "attributes": {
+        "from-status": null,
+        "to-status": null,
+        "actor-type": "system",
+        "created-at": "2026-10-20T12:20:00.000Z",
+        "redacted-at": "2026-10-21T00:00:00.000Z"
+      }
+    }
+  ],
+  "links": { "next": null }
+}

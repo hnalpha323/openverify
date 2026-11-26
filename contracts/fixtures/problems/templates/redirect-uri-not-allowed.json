@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The redirect URI is outside the allowed redirect origins and schemes.",
+  "instance": "/api/v1/inquiries",
+  "requestId": "00000000-0000-4000-8000-000000009a11",
+  "code": "redirect_uri_not_allowed",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/redirect-uri",
+      "detail": "No allowed redirect origin or scheme matches."
+    }
+  ]
+}

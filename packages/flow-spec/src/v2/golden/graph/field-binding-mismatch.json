@@ -1,0 +1,244 @@
+{
+  "rule": "C148.3 a component binds a field of its type",
+  "description": "A text input bound to an integer field.",
+  "flow": {
+    "metadata": {
+      "specVersion": 2,
+      "id": "graph-base",
+      "version": 1,
+      "name": "Graph base"
+    },
+    "entry": "consent",
+    "steps": [
+      {
+        "id": "consent",
+        "type": "consent",
+        "textKeys": ["consent.biometric"],
+        "required": true
+      },
+      {
+        "id": "details",
+        "type": "screen",
+        "components": [
+          {
+            "id": "title",
+            "kind": "text",
+            "variant": "title",
+            "copyKey": "details.title.title"
+          },
+          {
+            "id": "nickname",
+            "kind": "text_input",
+            "field": "nickname",
+            "labelKey": "nickname.label",
+            "pattern": "^[a-z]+$"
+          },
+          {
+            "id": "has_middle",
+            "kind": "checkbox",
+            "field": "has_middle",
+            "labelKey": "has_middle.label"
+          },
+          {
+            "id": "middle_name",
+            "kind": "text_input",
+            "field": "middle_name",
+            "labelKey": "middle_name.label",
+            "visibleWhen": {
+              "!!": [
+                {
+                  "var": "screen.has_middle"
+                }
+              ]
+            }
+          },
+          {
+            "id": "continue",
+            "kind": "button",
+            "labelKey": "continue.button",
+            "action": "submit"
+          },
+          {
+            "id": "skip",
+            "kind": "button",
+            "labelKey": "skip.button",
+            "action": "submit",
+            "port": "skip"
+          }
+        ]
+      },
+      {
+        "id": "id_card",
+        "type": "government_id",
+        "sides": "front",
+        "maxAttempts": 2,
+        "captureMethods": ["camera"]
+      },
+      {
+        "id": "proof",
+        "type": "document",
+        "documentTypes": ["utility_bill"],
+        "captureMethods": ["upload"]
+      },
+      {
+        "id": "age_route",
+        "type": "branch",
+        "routes": [
+          {
+            "key": "minor",
+            "label": "Under 18",
+            "condition": {
+              "<": [
+                {
+                  "var": "verifications.id_card.age-years"
+                },
+                18
+              ]
+            },
+            "onNull": "review"
+          }
+        ]
+      },
+      {
+        "id": "guardian",
+        "type": "screen",
+        "components": [
+          {
+            "id": "guardian_name",
+            "kind": "text_input",
+            "field": "guardian_name",
+            "labelKey": "guardian_name.label"
+          },
+          {
+            "id": "continue",
+            "kind": "button",
+            "labelKey": "continue.button",
+            "action": "submit"
+          }
+        ]
+      },
+      {
+        "id": "face",
+        "type": "selfie",
+        "poses": ["center"],
+        "liveness": "passive",
+        "maxAttempts": 2
+      },
+      {
+        "id": "tag",
+        "type": "action",
+        "action": {
+          "kind": "tag_inquiry",
+          "add": ["checked"]
+        }
+      },
+      {
+        "id": "done",
+        "type": "completion"
+      },
+      {
+        "id": "rejected",
+        "type": "failure"
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "consent",
+        "port": "next",
+        "to": "details"
+      },
+      {
+        "id": "e2",
+        "from": "details",
+        "port": "next",
+        "to": "id_card"
+      },
+      {
+        "id": "e3",
+        "from": "details",
+        "port": "button:skip",
+        "to": "id_card"
+      },
+      {
+        "id": "e4",
+        "from": "id_card",
+        "port": "next",
+        "to": "age_route"
+      },
+      {
+        "id": "e5",
+        "from": "id_card",
+        "port": "exhausted",
+        "to": "proof"
+      },
+      {
+        "id": "e6",
+        "from": "proof",
+        "port": "next",
+        "to": "age_route"
+      },
+      {
+        "id": "e7",
+        "from": "age_route",
+        "port": "route:minor",
+        "to": "guardian"
+      },
+      {
+        "id": "e8",
+        "from": "age_route",
+        "port": "else",
+        "to": "face"
+      },
+      {
+        "id": "e9",
+        "from": "guardian",
+        "port": "next",
+        "to": "face"
+      },
+      {
+        "id": "e10",
+        "from": "face",
+        "port": "next",
+        "to": "tag"
+      },
+      {
+        "id": "e11",
+        "from": "tag",
+        "port": "next",
+        "to": "done"
+      },
+      {
+        "id": "e12",
+        "from": "tag",
+        "port": "error",
+        "to": "rejected"
+      }
+    ]
+  },
+  "options": {
+    "fieldSchemas": [
+      {
+        "key": "nickname",
+        "type": "integer",
+        "pii": false
+      },
+      {
+        "key": "has_middle",
+        "type": "boolean",
+        "pii": false
+      },
+      {
+        "key": "middle_name",
+        "type": "string",
+        "pii": true
+      },
+      {
+        "key": "guardian_name",
+        "type": "string",
+        "pii": true
+      }
+    ]
+  },
+  "added": [["error", "field_binding_mismatch", "/steps/1/components/1/field"]]
+}

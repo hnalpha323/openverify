@@ -1,0 +1,22 @@
+{
+  "dependencies": [
+    {
+      "name": "synthetic-py",
+      "version": "1.0.0",
+      "vulns": [
+        {
+          "id": "PYSEC-2099-7",
+          "aliases": ["GHSA-syn3-pypi-0007"],
+          "fix_versions": ["1.0.1"],
+          "description": "synthetic"
+        }
+      ]
+    },
+    {
+      "name": "synthetic-clean",
+      "version": "2.0.0",
+      "vulns": []
+    }
+  ],
+  "fixes": []
+}

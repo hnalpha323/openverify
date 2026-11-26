@@ -1,0 +1,31 @@
+{
+  "data": [
+    {
+      "type": "case-action",
+      "id": "cact_01M5CN00000000000000000009",
+      "attributes": {
+        "label": "Request a new document",
+        "placement": "header",
+        "form": [
+          {
+            "name": "reason",
+            "type": "string",
+            "required": true,
+            "prefilled-value": "Synthetic review note"
+          }
+        ]
+      },
+      "relationships": {
+        "workflow": {
+          "data": {
+            "type": "workflow",
+            "id": "wfl_01M5CM00000000000000000001"
+          }
+        }
+      }
+    }
+  ],
+  "links": {
+    "next": null
+  }
+}

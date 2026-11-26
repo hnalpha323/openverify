@@ -1,0 +1,33 @@
+{
+  "configuration": "sdk-nfc-face",
+  "build-type": "release",
+  "permissions": [
+    "android.permission.CAMERA",
+    "android.permission.HIDE_OVERLAY_WINDOWS",
+    "android.permission.INTERNET",
+    "android.permission.NFC",
+    "dev.openverify.demo.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+  ],
+  "declared-permissions": [
+    { "name": "dev.openverify.demo.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION", "protection-level": "signature" }
+  ],
+  "features": [
+    { "name": "android.hardware.camera.any", "required": false },
+    { "name": "android.hardware.nfc", "required": false }
+  ],
+  "queries": [],
+  "activities": [
+    { "name": "dev.openverify.demo.MainActivity", "exported": true, "permission": null },
+    { "name": "dev.openverify.sdk.OpenVerifyInquiryActivity", "exported": false, "permission": null }
+  ],
+  "providers": [
+    { "name": "androidx.startup.InitializationProvider", "exported": false, "permission": null },
+    { "name": "org.jetbrains.compose.resources.AndroidContextProvider", "exported": false, "permission": null }
+  ],
+  "services": [
+    { "name": "androidx.camera.core.impl.MetadataHolderService", "exported": false, "permission": null }
+  ],
+  "receivers": [
+    { "name": "androidx.profileinstaller.ProfileInstallReceiver", "exported": true, "permission": "android.permission.DUMP" }
+  ]
+}

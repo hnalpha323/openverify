@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The query does not fit the report type.",
+  "instance": "/api/v1/reports",
+  "requestId": "00000000-0000-4000-8000-000000000600",
+  "code": "report_query_invalid",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/query/name-last",
+      "detail": "must contain a letter"
+    }
+  ]
+}

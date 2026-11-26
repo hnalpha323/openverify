@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  android-theme (Workflow 10A, C197.4, C198.3, C199.3): the help slot, the language selector and the
+  logo's fallback description; English, the source. "Language" is the web flow's own word (app.language
+  in contracts/fixtures/i18n/); the help and privacy links' words are key-mapped into strings_catalog.xml
+  (screen.helpLink, screen.privacyLink; KP10-10); the rest is drafted. No placeholders, no legal text.
+-->
+<resources>
+    <string name="openverify_language">Language</string>
+    <string name="openverify_language_change">Change language</string>
+    <string name="openverify_logo_description">Organization logo</string>
+</resources>

@@ -1,0 +1,44 @@
+{
+  "data": [
+    {
+      "type": "simulation-preset",
+      "id": "builtin:government-id-passed",
+      "attributes": {
+        "name": "Government ID passes",
+        "label": "synthetic values only",
+        "built-in": true,
+        "scope": {
+          "verifications": {
+            "id_card": {
+              "status": "passed"
+            }
+          }
+        },
+        "created-at": null
+      }
+    },
+    {
+      "type": "simulation-preset",
+      "id": "ssp_01M5CN00000000000000009A50",
+      "attributes": {
+        "name": "A minor",
+        "label": "synthetic values only",
+        "built-in": false,
+        "scope": {
+          "verifications": {
+            "id_card": {
+              "status": "passed",
+              "extractions": {
+                "age-years": 16
+              }
+            }
+          }
+        },
+        "created-at": "2026-10-20T12:00:00.000Z"
+      }
+    }
+  ],
+  "links": {
+    "next": null
+  }
+}

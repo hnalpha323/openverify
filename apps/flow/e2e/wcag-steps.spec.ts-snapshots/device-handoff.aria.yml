@@ -1,0 +1,11 @@
+- main:
+    - region "Continue on your phone":
+        - heading "Continue on your phone" [level=1]
+        - paragraph: Scan this code with your phone's camera to continue this verification on your phone. Your progress here carries over.
+        - img "QR code that opens this verification on your phone"
+        - text: Or open this link on your phone
+        - textbox "Or open this link on your phone": /http:\/\/\d+\.\d+\.0\.1:\d+\/#inquiry-id=inq_01M5CJXHG07XPHF3HRM6NREDH7&handoff-token=ovh_E2eSyntheticHandoffTokenxxxxxxxxxxxxxxxxxxx/
+        - button "Copy link"
+        - paragraph: /This code expires in \d+:\d\d\./
+        - button "Get a new code"
+        - button "Continue on this device"

@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The phone number does not parse.",
+  "instance": "/api/v1/list-item/phone-numbers",
+  "requestId": "00000000-0000-4000-8000-000000000810",
+  "code": "unparseable_phone",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/value",
+      "detail": "does not parse"
+    }
+  ]
+}

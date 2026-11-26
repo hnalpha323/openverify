@@ -1,0 +1,13 @@
+{
+  "kind": "choose",
+  "providers": [
+    {
+      "id": "ssop_01M5CN0000000000000011B200",
+      "display-name": "Example Bank staff"
+    },
+    {
+      "id": "ssop_01M5CN0000000000000011B201",
+      "display-name": "Example Bank contractors"
+    }
+  ]
+}

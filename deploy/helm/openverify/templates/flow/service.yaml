@@ -1,0 +1,2 @@
+{{- /* C263 (Workflow 11C Stage 2, chart-11c): the flow server's Service, the flow host's ingress backend. */ -}}
+{{ include "openverify.service" (dict "root" . "component" "flow" "name" (include "openverify.componentName" (dict "root" . "component" "flow")) "ports" (printf "- name: http\n  port: %v\n  targetPort: http\n  protocol: TCP" .Values.flow.port)) }}

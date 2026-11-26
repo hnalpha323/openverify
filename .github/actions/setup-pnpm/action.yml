@@ -1,0 +1,43 @@
+name: Set up Node.js and pnpm
+description: >-
+  Node.js plus pnpm from corepack (the version comes from the "packageManager" field in
+  package.json), a cached pnpm store, and a frozen-lockfile install.
+inputs:
+  node-version:
+    # Phase 5 (C62.9, F22): the apps image's Node (infra/docker/apps.Dockerfile), not the
+    # floating major, so the brainpool and other crypto behaviour CI tests is the shipped one.
+    description: Node.js version, pinned to the apps image's build (22.23.4).
+    required: false
+    default: '22.23.4'
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+      with:
+        node-version: ${{ inputs.node-version }}
+        package-manager-cache: false
+
+    # Workflow 11C (zizmor github-env, scanners-11c): nothing is written to $GITHUB_ENV. The store
+    # path is this step's output, and each workflow switches the corepack prompt off in its own env.
+    - name: Enable corepack and resolve the pnpm store
+      id: pnpm
+      shell: bash
+      env:
+        COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
+      run: |
+        corepack enable
+        echo "pnpm $(pnpm --version)"
+        echo "store-path=$(pnpm store path --silent)" >> "$GITHUB_OUTPUT"
+
+    - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+      with:
+        path: ${{ steps.pnpm.outputs.store-path }}
+        key: pnpm-store-${{ runner.os }}-node${{ inputs.node-version }}-${{ hashFiles('pnpm-lock.yaml') }}
+        restore-keys: |
+          pnpm-store-${{ runner.os }}-node${{ inputs.node-version }}-
+
+    - name: Install dependencies
+      shell: bash
+      env:
+        COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
+      run: pnpm install --frozen-lockfile

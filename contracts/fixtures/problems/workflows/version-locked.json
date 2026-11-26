@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "The draft changed since it was read, or a rollout holds it.",
+  "instance": "/api/v1/workflows/wfl_01M5CK3190XEVBM5ZXA76E1JSN/draft",
+  "requestId": "00000000-0000-4000-8000-000000001101",
+  "code": "version_locked"
+}

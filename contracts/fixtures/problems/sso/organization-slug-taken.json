@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "Another organization already uses this sign-in name.",
+  "instance": "/api/v1/dashboard/settings",
+  "requestId": "00000000-0000-4000-8000-00000011b009",
+  "code": "organization_slug_taken"
+}

@@ -1,0 +1,46 @@
+{
+  "format": 1,
+  "description": "C160.3, C198.2: the built-in light and dark palettes of packages/ui/src/styles.css as hex (light: @theme static; dark: :root[data-openverify-variant='dark'], the flow's), the twelve tokens in order; BUILTIN_PALETTES of @openverify/core is held to the same stylesheet. Written by packages/ui/src/export-palettes.test.ts with UPDATE_CONTRACT_FIXTURES=1; never edited by hand. The Android SDK's default theme.",
+  "tokens": [
+    "primary",
+    "primary-hover",
+    "on-primary",
+    "danger",
+    "danger-hover",
+    "surface",
+    "canvas",
+    "ink",
+    "ink-muted",
+    "line",
+    "control",
+    "focus"
+  ],
+  "light": {
+    "primary": "#1447e6",
+    "primary-hover": "#193cb8",
+    "on-primary": "#ffffff",
+    "danger": "#c10007",
+    "danger-hover": "#9f0712",
+    "surface": "#ffffff",
+    "canvas": "#f9fafb",
+    "ink": "#101828",
+    "ink-muted": "#4a5565",
+    "line": "#d1d5dc",
+    "control": "#6a7282",
+    "focus": "#000000"
+  },
+  "dark": {
+    "primary": "#3b8bff",
+    "primary-hover": "#8ec5ff",
+    "on-primary": "#030712",
+    "danger": "#ff6467",
+    "danger-hover": "#ffa2a2",
+    "surface": "#101828",
+    "canvas": "#030712",
+    "ink": "#f9fafb",
+    "ink-muted": "#99a1af",
+    "line": "#364153",
+    "control": "#6a7282",
+    "focus": "#ffffff"
+  }
+}

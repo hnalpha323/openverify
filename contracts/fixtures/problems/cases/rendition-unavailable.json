@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "This file cannot be shown: no rendition of it could be made.",
+  "instance": "/api/v1/cases/case_01M5CK3190XEVBM5ZXA76E1JSN/attachments/catt_01M5CK3190XEVBM5ZXA76E1JSN/content",
+  "requestId": "00000000-0000-4000-8000-000000001222",
+  "code": "rendition_unavailable"
+}

@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:openverify:fixtures:android-consent-digests:1",
+  "title": "Android consent digest vectors (C200.4)",
+  "description": "Written by an assert-only TypeScript test of api-android-10a with the server's own fill and hash (apps/api/src/services/templates/consent-texts.ts), only under UPDATE_CONTRACT_FIXTURES=1: for each Android row at two retention values, the text-sha256 the server expects; the Kotlin host test renders each text through the real consent screen and asserts the same digest. values are the placeholders' fills; organization is supplied as the server serves it (NFC). A custom-copy case (KP10-9, copy-source custom) holds an operator's text with {name} placeholders, as the session's copy serves it in that locale, and the digest of that text filled with values; the Kotlin test sets it as the session's copy.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format", "description", "cases"],
+  "properties": {
+    "format": {
+      "const": 1
+    },
+    "description": {
+      "type": "string"
+    },
+    "cases": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["catalog-version", "key", "locale", "values", "text-sha256"],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "catalog-version": {
+                "type": "string"
+              },
+              "key": {
+                "type": "string"
+              },
+              "locale": {
+                "enum": ["en", "es", "fr", "de", "ar"]
+              },
+              "values": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["days"],
+                "properties": {
+                  "days": {
+                    "type": "string",
+                    "pattern": "^[0-9]+$"
+                  },
+                  "organization": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text-sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["copy-source", "key", "locale", "text", "values", "text-sha256"],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "copy-source": {
+                "const": "custom"
+              },
+              "key": {
+                "type": "string"
+              },
+              "locale": {
+                "enum": ["en", "es", "fr", "de", "ar"]
+              },
+              "text": {
+                "type": "string",
+                "description": "The operator's text as the session's copy serves it, its {name} placeholders unfilled."
+              },
+              "values": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["days"],
+                "properties": {
+                  "days": {
+                    "type": "string",
+                    "pattern": "^[0-9]+$"
+                  },
+                  "organization": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text-sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

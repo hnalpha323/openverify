@@ -1,0 +1,12 @@
+{{- /*
+C263 (Workflow 11C Stage 2, chart-11c): the API (node dist/server.js), public on its http port and
+serving /api/v1/internal/* only on its internal listener (OPENVERIFY_INTERNAL_LISTEN, C250.3), which
+the flow server reaches through the api-internal Service and no ingress routes. Readiness on /ready
+(Postgres and Valkey, 1 s each), liveness and start on /health (C263.4); the operator's IP-reputation
+claim read-only (Workflow 7A); an HPA may own its replica count (templates/hpa.yaml).
+*/ -}}
+{{- include "openverify.checks" . -}}
+{{- $v := .Values.api -}}
+{{- $ports := printf "- name: http\n  containerPort: %v\n  protocol: TCP\n- name: internal\n  containerPort: %v\n  protocol: TCP" $v.port $v.internalListen.port -}}
+{{- $probes := include "openverify.httpProbes" (dict "path" "/health" "readyPath" "/ready" "startupFailures" 60) -}}
+{{ include "openverify.deployment" (dict "root" . "component" "api" "process" "api" "c" $v "command" (list "node" "dist/server.js") "ports" $ports "probes" $probes "volumes" (include "openverify.ipReputationVolume" (dict "root" .) | trim) "mounts" (include "openverify.ipReputationMount" (dict "root" .) | trim) "hpa" true) }}

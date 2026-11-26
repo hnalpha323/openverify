@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The template version declares no such field.",
+  "instance": "/api/v1/flow/screens/s_k3m9qv2a/submit",
+  "requestId": "00000000-0000-4000-8000-000000009a02",
+  "code": "field_unknown",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/values/nickname",
+      "detail": "No field schema has this key."
+    }
+  ]
+}

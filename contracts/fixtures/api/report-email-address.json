@@ -1,0 +1,146 @@
+{
+  "data": {
+    "type": "report/email-address",
+    "id": "rep_01M5Y5Z40027M5S7J5RW92QQXE",
+    "attributes": {
+      "status": "ready",
+      "created-at": "2026-10-27T09:00:00.000Z",
+      "completed-at": "2026-10-27T09:00:01.250Z",
+      "redacted-at": null,
+      "report-template-version-name": "v1",
+      "has-match": false,
+      "is-continuous": false,
+      "is-recurring": false,
+      "tags": ["onboarding"],
+      "query": {
+        "email-address": "avery.sandbox-breached@example.test"
+      },
+      "origin": "api",
+      "errors": [],
+      "unavailable-fields": [
+        {
+          "field": "email-domain-age-days",
+          "reason": "undetermined"
+        },
+        {
+          "field": "email-mx-provider",
+          "reason": "undetermined"
+        },
+        {
+          "field": "email-spf-policy",
+          "reason": "undetermined"
+        },
+        {
+          "field": "email-dmarc-policy",
+          "reason": "undetermined"
+        },
+        {
+          "field": "email-is-deliverable",
+          "reason": "not_linked"
+        },
+        {
+          "field": "email-is-spam",
+          "reason": "no_adapter"
+        },
+        {
+          "field": "email-malicious-activity-detected-recent",
+          "reason": "no_adapter"
+        },
+        {
+          "field": "email-estimated-age-days",
+          "reason": "no_adapter"
+        },
+        {
+          "field": "age-estimated-13-plus",
+          "reason": "no_documented_method"
+        },
+        {
+          "field": "age-estimated-16-plus",
+          "reason": "no_documented_method"
+        },
+        {
+          "field": "age-estimated-18-plus",
+          "reason": "no_documented_method"
+        }
+      ],
+      "coverage": null,
+      "next-run-at": null,
+      "paused-at": null,
+      "paused-reason": null,
+      "sources": [],
+      "query-sources": {
+        "email-address": "request"
+      },
+      "matcher-version": null,
+      "provider": {
+        "id": "sandbox",
+        "sandbox": true
+      },
+      "thresholds": {
+        "min-domain-age-days": 30,
+        "young-domain-days": 365
+      },
+      "notices": [],
+      "email-domain": "example.test",
+      "email-domain-kind": "custom",
+      "email-domain-exists": true,
+      "email-is-valid-mx": true,
+      "email-is-disposable": false,
+      "email-domain-age-days": null,
+      "email-is-free-provider": false,
+      "email-is-relay": false,
+      "email-is-role-account": false,
+      "email-mx-provider": null,
+      "email-spf-policy": null,
+      "email-dmarc-policy": null,
+      "email-is-deliverable": null,
+      "email-domain-typo-suggestion": null,
+      "email-reputation": "medium",
+      "email-is-suspicious": false,
+      "email-reputation-confidence": 0.5,
+      "email-reputation-reasons": ["recent_breach"],
+      "email-credentials-leaked-recent": true,
+      "email-breach-count": 1,
+      "email-is-spam": null,
+      "email-malicious-activity-detected-recent": null,
+      "email-estimated-age-days": null,
+      "age-estimated-13-plus": null,
+      "age-estimated-16-plus": null,
+      "age-estimated-18-plus": null
+    },
+    "relationships": {
+      "inquiry": {
+        "data": null
+      },
+      "account": {
+        "data": {
+          "type": "account",
+          "id": "acc_01M5CJXJF84MR3PHJHBHKQ4ZC8"
+        }
+      },
+      "accounts": {
+        "data": [
+          {
+            "type": "account",
+            "id": "acc_01M5CJXJF84MR3PHJHBHKQ4ZC8"
+          }
+        ]
+      },
+      "report-template": {
+        "data": {
+          "type": "report-template",
+          "id": "rptp_01M5Y5Z400WFAHNA3WAP7K8ZPQ"
+        }
+      },
+      "report-template-version": {
+        "data": {
+          "type": "report-template-version",
+          "id": "rptpv_01M5Y5Z400TWCFKYG7R45XG211"
+        }
+      },
+      "transaction": {
+        "data": null
+      }
+    }
+  }
+}

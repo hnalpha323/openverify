@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Content Too Large",
+  "status": 413,
+  "detail": "The file is larger than this field allows.",
+  "instance": "/api/v1/transactions/txn_01M5CK3190XEVBM5ZXA76E1JSN/files/invoice",
+  "requestId": "00000000-0000-4000-8000-000000000911",
+  "code": "transaction_file_too_large"
+}

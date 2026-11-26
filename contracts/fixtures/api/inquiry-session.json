@@ -1,0 +1,159 @@
+{
+  "data": {
+    "type": "inquiry-session",
+    "id": "iqse_01M5CJZC30W7PFE0GD30HJWEA4",
+    "attributes": {
+      "status": "active",
+      "created-at": "2026-10-20T12:00:10.000Z",
+      "started-at": "2026-10-20T12:00:20.000Z",
+      "expires-at": "2026-10-21T12:00:10.000Z",
+      "ip-address": "203.0.113.7",
+      "user-agent": "Mozilla/5.0 (Linux; Android 14) OpenVerifyTest/1.0",
+      "is-tor": false,
+      "is-datacenter": null,
+      "is-vpn": null,
+      "is-proxy": null,
+      "hosting-asn": null,
+      "threat-level": "low",
+      "country-code": "ZZ",
+      "country-name": "Unknown or unspecified country",
+      "region-code": null,
+      "region-name": null,
+      "latitude": null,
+      "longitude": null,
+      "gps-latitude": null,
+      "gps-longitude": null,
+      "gps-precision": null,
+      "gps-country-code": null,
+      "ip-connection-type": null,
+      "ip-isp": "Example Residential",
+      "network-organization": "Example Residential",
+      "os-name": "Linux",
+      "os-full-version": null,
+      "browser-name": "Chrome",
+      "browser-full-version": "140.0.0.0",
+      "device-type": "desktop",
+      "device-name": null,
+      "mobile-sdk-name": null,
+      "mobile-sdk-full-version": null,
+      "signals-collected": ["session-integrity", "device-recognition"],
+      "device-handoff-method": null,
+      "handoff-from-session-id": null,
+      "handoff-redeemed-at": null,
+      "handoff-rejected-at": null,
+      "handoff-distance-meters": null,
+      "handoff-country-changed": null,
+      "handoff-asn-changed": null
+    },
+    "relationships": {
+      "inquiry": {
+        "data": {
+          "type": "inquiry",
+          "id": "inq_01M5CJXHG07XPHF3HRM6NREDH7"
+        }
+      },
+      "device": {
+        "data": {
+          "type": "device",
+          "id": "dev_01M5CJZC30W7PFE0GD30HJWEC6"
+        }
+      },
+      "network": {
+        "data": {
+          "type": "network",
+          "id": "net_01M5CJZC30W7PFE0GD30HJWEB5"
+        }
+      }
+    }
+  },
+  "included": [
+    {
+      "type": "device",
+      "id": "dev_01M5CJZC30W7PFE0GD30HJWEC6",
+      "attributes": {
+        "created-at": "2026-10-20T12:00:20.000Z",
+        "device-vendor-id": null,
+        "device-fingerprint": null,
+        "browser-fingerprint": "3c1f000000000000000000000000000000000000000000000000000000009a2d",
+        "device-class": "7b2e0000000000000000000000000000000000000000000000000000000041c8",
+        "platform": "web",
+        "collector-version": 1,
+        "fingerprint-randomised": false,
+        "key-id": "Qm9xZXN0ZXI",
+        "session-count": 1,
+        "first-seen-at": "2026-10-20T12:00:20.000Z",
+        "last-seen-at": "2026-10-20T12:00:20.000Z",
+        "trusted-at": null,
+        "trusted-by": null,
+        "trust-reason": null
+      }
+    },
+    {
+      "type": "network",
+      "id": "net_01M5CJZC30W7PFE0GD30HJWEB5",
+      "attributes": {
+        "created-at": "2026-10-20T12:00:20.000Z",
+        "ip-address": "203.0.113.7",
+        "service-provider": "Example Residential",
+        "service-type": null,
+        "proxy-type": null,
+        "threat-level": "low",
+        "country-code": "ZZ",
+        "country-name": "Unknown or unspecified country",
+        "region-code": null,
+        "region-name": null,
+        "latitude": null,
+        "longitude": null,
+        "asn": 64502,
+        "hosting-asn": null,
+        "hosting-asn-confidence": null,
+        "privacy-relay": null,
+        "client-address-source": "socket",
+        "evaluated-at": "2026-10-20T12:00:20.000Z",
+        "reasons": [
+          {
+            "field": "is-datacenter",
+            "reason": "not_in_known_ranges"
+          },
+          {
+            "field": "is-vpn",
+            "reason": "not_in_known_ranges"
+          },
+          {
+            "field": "is-proxy",
+            "reason": "provider_not_configured"
+          },
+          {
+            "field": "threat-level",
+            "reason": "vpn_list_not_exhaustive"
+          },
+          {
+            "field": "threat-level",
+            "reason": "proxy_not_evaluated"
+          },
+          {
+            "field": "location",
+            "reason": "list_unavailable"
+          }
+        ],
+        "sources": [
+          {
+            "kind": "sync",
+            "source-id": "openverify-sandbox-network",
+            "sync-id": "3",
+            "published-at": "2026-10-20T08:00:00.000Z",
+            "sha256": "5f1c00000000000000000000000000000000000000000000000000000000e2a7"
+          }
+        ]
+      },
+      "relationships": {
+        "inquiry-session": {
+          "data": {
+            "type": "inquiry-session",
+            "id": "iqse_01M5CJZC30W7PFE0GD30HJWEA4"
+          }
+        }
+      }
+    }
+  ]
+}

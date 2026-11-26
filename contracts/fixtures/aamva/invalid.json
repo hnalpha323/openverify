@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "description": "AAMVA payloads that must not validate, each with the error a parser reports.",
+  "source": {
+    "citation": "AAMVA DL/ID Card Design Standard (2020), Version 1.0, Annex D (normative), Tables D.1-D.4: the layout only. The payloads and the people in them are OpenVerify's own and fictional; no jurisdiction issued them.",
+    "url": "https://www.aamva.org/getmedia/99ac7057-0f4d-4461-b0a2-3a5532e1b35c/AAMVA-2020-DLID-Card-Design-Standard.pdf"
+  },
+  "vectors": [
+    {
+      "id": "file-type-not-ansi",
+      "note": "The DL vector with the file type ANSX instead of 'ANSI ': not an AAMVA payload.",
+      "payload": "@\n\u001e\rANSX 636014100002DL00410232ZC02730036DLDCAC\nDCBNONE\nDCDNONE\nDBA02142031\nDCSTESTWORTH\nDACJORDAN\nDADNONE\nDBD02142023\nDBB02141990\nDBC2\nDAYBRO\nDAU067 IN\nDAG1200 VERIFICATION AVE\nDAISACRAMENTO\nDAJCA\nDAK958140000  \nDAQY9876543\nDCF20230214SYNTH0001\nDCGUSA\nDDEN\nDDFN\nDDGN\nDDAF\rZCZCAOPENVERIFY SYNTHETIC TEST DATA\r",
+      "valid": false,
+      "error": "aamva_header_invalid",
+      "details": {
+        "field": "file_type"
+      }
+    },
+    {
+      "id": "subfile-offset-past-the-end",
+      "note": "The DL vector whose DL designator points past the end of the payload.",
+      "payload": "@\n\u001e\rANSI 636014100002DL90000232ZC02730036DLDCAC\nDCBNONE\nDCDNONE\nDBA02142031\nDCSTESTWORTH\nDACJORDAN\nDADNONE\nDBD02142023\nDBB02141990\nDBC2\nDAYBRO\nDAU067 IN\nDAG1200 VERIFICATION AVE\nDAISACRAMENTO\nDAJCA\nDAK958140000  \nDAQY9876543\nDCF20230214SYNTH0001\nDCGUSA\nDDEN\nDDFN\nDDGN\nDDAF\rZCZCAOPENVERIFY SYNTHETIC TEST DATA\r",
+      "valid": false,
+      "error": "aamva_subfile_designator_invalid",
+      "details": {
+        "subfile": "DL"
+      }
+    },
+    {
+      "id": "mandatory-element-missing",
+      "note": "The DL vector without DAQ (the customer identifier, mandatory in Annex D Table D.3). Its structure still reads.",
+      "payload": "@\n\u001e\rANSI 636014100002DL00410220ZC02610036DLDCAC\nDCBNONE\nDCDNONE\nDBA02142031\nDCSTESTWORTH\nDACJORDAN\nDADNONE\nDBD02142023\nDBB02141990\nDBC2\nDAYBRO\nDAU067 IN\nDAG1200 VERIFICATION AVE\nDAISACRAMENTO\nDAJCA\nDAK958140000  \nDCF20230214SYNTH0001\nDCGUSA\nDDEN\nDDFN\nDDGN\nDDAF\rZCZCAOPENVERIFY SYNTHETIC TEST DATA\r",
+      "valid": false,
+      "error": "aamva_mandatory_element_missing",
+      "details": {
+        "elements": ["DAQ"]
+      }
+    },
+    {
+      "id": "birth-date-not-a-date",
+      "note": "The DL vector with DBB 02301990 (30 February).",
+      "payload": "@\n\u001e\rANSI 636014100002DL00410232ZC02730036DLDCAC\nDCBNONE\nDCDNONE\nDBA02142031\nDCSTESTWORTH\nDACJORDAN\nDADNONE\nDBD02142023\nDBB02301990\nDBC2\nDAYBRO\nDAU067 IN\nDAG1200 VERIFICATION AVE\nDAISACRAMENTO\nDAJCA\nDAK958140000  \nDAQY9876543\nDCF20230214SYNTH0001\nDCGUSA\nDDEN\nDDFN\nDDGN\nDDAF\rZCZCAOPENVERIFY SYNTHETIC TEST DATA\r",
+      "valid": false,
+      "error": "aamva_date_invalid",
+      "details": {
+        "element": "DBB"
+      }
+    },
+    {
+      "id": "compliance-indicator-not-at",
+      "note": "The DL vector starting with # instead of the @ compliance indicator.",
+      "payload": "#\n\u001e\rANSI 636014100002DL00410232ZC02730036DLDCAC\nDCBNONE\nDCDNONE\nDBA02142031\nDCSTESTWORTH\nDACJORDAN\nDADNONE\nDBD02142023\nDBB02141990\nDBC2\nDAYBRO\nDAU067 IN\nDAG1200 VERIFICATION AVE\nDAISACRAMENTO\nDAJCA\nDAK958140000  \nDAQY9876543\nDCF20230214SYNTH0001\nDCGUSA\nDDEN\nDDFN\nDDGN\nDDAF\rZCZCAOPENVERIFY SYNTHETIC TEST DATA\r",
+      "valid": false,
+      "error": "aamva_header_invalid",
+      "details": {
+        "field": "compliance_indicator"
+      }
+    },
+    {
+      "id": "iin-not-listed",
+      "note": "The DL vector under 636099, an IIN AAMVA does not list. Its structure reads.",
+      "payload": "@\n\u001e\rANSI 636099100002DL00410232ZC02730036DLDCAC\nDCBNONE\nDCDNONE\nDBA02142031\nDCSTESTWORTH\nDACJORDAN\nDADNONE\nDBD02142023\nDBB02141990\nDBC2\nDAYBRO\nDAU067 IN\nDAG1200 VERIFICATION AVE\nDAISACRAMENTO\nDAJCA\nDAK958140000  \nDAQY9876543\nDCF20230214SYNTH0001\nDCGUSA\nDDEN\nDDFN\nDDGN\nDDAF\rZCZCAOPENVERIFY SYNTHETIC TEST DATA\r",
+      "valid": false,
+      "error": "aamva_iin_unknown",
+      "details": {
+        "field": "iin"
+      }
+    },
+    {
+      "id": "aamva-version-11",
+      "note": "The DL vector claiming AAMVA version 11, which no edition of the standard has (01 to 10).",
+      "payload": "@\n\u001e\rANSI 636014110002DL00410232ZC02730036DLDCAC\nDCBNONE\nDCDNONE\nDBA02142031\nDCSTESTWORTH\nDACJORDAN\nDADNONE\nDBD02142023\nDBB02141990\nDBC2\nDAYBRO\nDAU067 IN\nDAG1200 VERIFICATION AVE\nDAISACRAMENTO\nDAJCA\nDAK958140000  \nDAQY9876543\nDCF20230214SYNTH0001\nDCGUSA\nDDEN\nDDFN\nDDGN\nDDAF\rZCZCAOPENVERIFY SYNTHETIC TEST DATA\r",
+      "valid": false,
+      "error": "aamva_version_unsupported",
+      "details": {
+        "field": "aamva_version"
+      }
+    },
+    {
+      "id": "subfile-offset-misplaced",
+      "note": "The DL vector whose DL designator points four bytes into the subfile, so the subfile there does not start with DL.",
+      "payload": "@\n\u001e\rANSI 636014100002DL00450232ZC02730036DLDCAC\nDCBNONE\nDCDNONE\nDBA02142031\nDCSTESTWORTH\nDACJORDAN\nDADNONE\nDBD02142023\nDBB02141990\nDBC2\nDAYBRO\nDAU067 IN\nDAG1200 VERIFICATION AVE\nDAISACRAMENTO\nDAJCA\nDAK958140000  \nDAQY9876543\nDCF20230214SYNTH0001\nDCGUSA\nDDEN\nDDFN\nDDGN\nDDAF\rZCZCAOPENVERIFY SYNTHETIC TEST DATA\r",
+      "valid": false,
+      "error": "aamva_subfile_designator_invalid",
+      "details": {
+        "subfile": "DL"
+      }
+    }
+  ]
+}

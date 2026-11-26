@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The list is of another kind than this route.",
+  "instance": "/api/v1/list-item/strings",
+  "requestId": "00000000-0000-4000-8000-000000000804",
+  "code": "list_kind_mismatch",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/list-id",
+      "detail": "is a list of another kind"
+    }
+  ]
+}

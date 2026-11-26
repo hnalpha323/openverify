@@ -1,0 +1,11 @@
+{
+  "fields": {
+    "kind": "chip-sod"
+  },
+  "file": {
+    "name": "file",
+    "filename": "chip-sod.bin",
+    "content-type": "application/octet-stream",
+    "size": 7
+  }
+}

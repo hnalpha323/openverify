@@ -1,0 +1,2 @@
+DROP INDEX "transaction_files_one_live_per_field_key";--> statement-breakpoint
+CREATE UNIQUE INDEX "transaction_files_one_live_per_field_key" ON "transaction_files" USING btree ("environment_id","transaction_id","field_key") WHERE "transaction_files"."deleted_at" is null and "transaction_files"."redacted_at" is null;

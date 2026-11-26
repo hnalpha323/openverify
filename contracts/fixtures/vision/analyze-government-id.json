@@ -1,0 +1,307 @@
+{
+  "model_versions": {
+    "detector": "yunet-2026may",
+    "recognizer": "sface-2021dec",
+    "text_detector": "pp-ocrv6-small-det",
+    "text_recognizer": "pp-ocrv6-small-rec"
+  },
+  "sides": {
+    "front": {
+      "quality": {
+        "blur_score": 2214.73,
+        "is_blurry": false,
+        "glare_ratio": 0.0013,
+        "has_glare": false,
+        "brightness": 0.6418,
+        "is_too_dark": false,
+        "is_too_bright": false
+      },
+      "faces": [
+        {
+          "bbox": [61.37, 158.04, 205.42, 275.18],
+          "score": 0.9312
+        }
+      ],
+      "portrait": {
+        "bbox": [61.37, 158.04, 205.42, 275.18],
+        "score": 0.9312,
+        "embedding": [
+          0.08973357, -0.01297823, -0.10565757, 0.11639324, -0.14630185, -0.03521745, 0.00842516,
+          -0.06482507, -0.03004849, 0.06272933, 0.009806, 0.20388348, -0.01681542, -0.00510323,
+          0.11334622, 0.09952647, 0.13061384, -0.0253573, 0.06317228, -0.10115945, -0.02840808,
+          -0.0580963, 0.04115275, 0.1120407, -0.01766076, -0.00668989, 0.09302887, -0.05947318,
+          0.12580669, -0.17413556, -0.02368601, 0.00456573, -0.01661448, -0.04105303, -0.08290414,
+          -0.18138105, -0.08109321, 0.04761102, 0.04298123, 0.17868834, 0.07147785, 0.16002156,
+          -0.07165861, -0.08420908, -0.01354082, 0.04736489, -0.02265376, -0.02242495, 0.09820681,
+          -0.03802696, 0.15271596, 0.07498221, 0.05856043, -0.07455907, 0.04952835, 0.02894913,
+          0.09913953, -0.03744812, 0.11456792, -0.23001445, -0.0219252, 0.17139744, 0.00507478,
+          -0.02796819, 0.15092673, -0.03274626, -0.05683219, 0.03804539, 0.0399589, 0.03606653,
+          -0.06142412, -0.03982691, -0.03738378, 0.08912228, -0.05668456, -0.01262929, 0.00082748,
+          0.01162324, 0.0223721, 0.01166121, 0.06744797, -0.10608013, -0.01998202, 0.10238174,
+          0.04156738, 0.04990484, -0.01228687, 0.00022848, 0.0314591, 0.15152263, -0.04791721,
+          0.11269264, -0.10883752, -0.04885541, 0.03521619, 0.01141598, -0.06856343, 0.01499331,
+          0.13243913, -0.0820187, -0.09541938, -0.0594006, 0.03473128, 0.06985525, 0.06783552,
+          0.08244058, 0.10594268, -0.05167003, 0.04714179, 0.18619167, 0.05885502, 0.24502975,
+          0.08129149, -0.0478948, -0.06332194, 0.01485622, -0.1188928, -0.15311018, -0.13096526,
+          0.04765448, -0.14721865, 0.00224374, 0.1450007, -0.09985195, 0.06171747, 0.13649825,
+          0.04687085, -0.1142578
+        ]
+      },
+      "document": {
+        "found": true,
+        "quad": [
+          [8.0, 6.5],
+          [1015.5, 9.0],
+          [1013.0, 640.5],
+          [6.5, 637.0]
+        ],
+        "method": "contour",
+        "rectified_size": [1012, 638],
+        "aspect_ratio": 1.5862,
+        "area_ratio": 0.9488
+      },
+      "document_quality": {
+        "blur_score": 1543.21,
+        "tenengrad": 2876.45,
+        "width_px": 1012,
+        "height_px": 638,
+        "glare_ratio_text": 0.0021,
+        "glare_ratio_portrait": 0.0
+      },
+      "text": [
+        {
+          "text": "UTOPIA",
+          "confidence": 0.9921,
+          "box": [402.0, 22.0, 208.0, 38.0],
+          "stroke_width_mean": 5.12,
+          "stroke_width_cv": 0.14
+        },
+        {
+          "text": "IDENTITY CARD",
+          "confidence": 0.9874,
+          "box": [376.0, 66.0, 262.0, 26.0],
+          "stroke_width_mean": 3.41,
+          "stroke_width_cv": 0.14
+        },
+        {
+          "text": "SURNAME",
+          "confidence": 0.9512,
+          "box": [318.0, 148.0, 104.0, 16.0],
+          "stroke_width_mean": 2.05,
+          "stroke_width_cv": 0.14
+        },
+        {
+          "text": "VALEMONT",
+          "confidence": 0.9733,
+          "box": [318.0, 170.0, 168.0, 26.0],
+          "stroke_width_mean": 3.37,
+          "stroke_width_cv": 0.14
+        },
+        {
+          "text": "GIVEN NAMES",
+          "confidence": 0.9488,
+          "box": [318.0, 214.0, 140.0, 16.0],
+          "stroke_width_mean": 2.01,
+          "stroke_width_cv": 0.14
+        },
+        {
+          "text": "QUINN",
+          "confidence": 0.9806,
+          "box": [318.0, 236.0, 104.0, 26.0],
+          "stroke_width_mean": 3.29,
+          "stroke_width_cv": 0.14
+        },
+        {
+          "text": "DATE OF BIRTH",
+          "confidence": 0.9415,
+          "box": [318.0, 280.0, 166.0, 16.0],
+          "stroke_width_mean": 2.08,
+          "stroke_width_cv": 0.14
+        },
+        {
+          "text": "14 02 1990",
+          "confidence": 0.9658,
+          "box": [318.0, 302.0, 150.0, 26.0],
+          "stroke_width_mean": 3.31,
+          "stroke_width_cv": 0.14
+        },
+        {
+          "text": "DOCUMENT NO.",
+          "confidence": 0.9377,
+          "box": [318.0, 346.0, 158.0, 16.0],
+          "stroke_width_mean": 2.04,
+          "stroke_width_cv": 0.14
+        },
+        {
+          "text": "X12K45P78",
+          "confidence": 0.9712,
+          "box": [318.0, 368.0, 166.0, 26.0],
+          "stroke_width_mean": 3.35,
+          "stroke_width_cv": 0.14
+        },
+        {
+          "text": "EXPIRY",
+          "confidence": 0.9539,
+          "box": [636.0, 346.0, 82.0, 16.0],
+          "stroke_width_mean": 2.02,
+          "stroke_width_cv": 0.14
+        },
+        {
+          "text": "28 02 2034",
+          "confidence": 0.9601,
+          "box": [636.0, 368.0, 150.0, 26.0],
+          "stroke_width_mean": 3.33,
+          "stroke_width_cv": 0.14
+        },
+        {
+          "text": "OPENVERIFY SYNTHETIC TEST CARD",
+          "confidence": 0.9055,
+          "box": [262.0, 598.0, 488.0, 20.0],
+          "stroke_width_mean": null,
+          "stroke_width_cv": null
+        }
+      ],
+      "mrz": {
+        "found": false,
+        "format_guess": null,
+        "lines": [],
+        "line_confidences": [],
+        "box": null
+      },
+      "barcodes": [],
+      "portrait_clarity": {
+        "face_width_px": 205.42,
+        "sharpness": 187.36,
+        "landmarks_score": 0.9312
+      },
+      "forensics": {
+        "exif": {
+          "software": null,
+          "make": null,
+          "model": null,
+          "has_gps": false
+        },
+        "jpeg": {
+          "quality_estimate": 92,
+          "standard_tables": true,
+          "double_compression_score": 0.031
+        },
+        "ela_score": 0.042,
+        "moire_score": 0.013,
+        "screen_grid_score": 0.008,
+        "chroma": {
+          "mean_saturation": 0.284,
+          "colorfulness": 38.72
+        },
+        "color_cast_score": 0.021,
+        "copy_move_score": 0.0,
+        "portrait_boundary_score": 0.057,
+        "star_glyph": {
+          "found": false,
+          "score": 0.012,
+          "box": null
+        }
+      },
+      "phash": "c3a59e1f0b6d7248"
+    },
+    "back": {
+      "quality": {
+        "blur_score": 1876.05,
+        "is_blurry": false,
+        "glare_ratio": 0.0,
+        "has_glare": false,
+        "brightness": 0.6902,
+        "is_too_dark": false,
+        "is_too_bright": false
+      },
+      "faces": [],
+      "portrait": null,
+      "document": {
+        "found": true,
+        "quad": [
+          [8.0, 6.5],
+          [1015.5, 9.0],
+          [1013.0, 640.5],
+          [6.5, 637.0]
+        ],
+        "method": "contour",
+        "rectified_size": [1012, 638],
+        "aspect_ratio": 1.5862,
+        "area_ratio": 0.9488
+      },
+      "document_quality": {
+        "blur_score": 1398.64,
+        "tenengrad": 2512.09,
+        "width_px": 1012,
+        "height_px": 638,
+        "glare_ratio_text": 0.0021,
+        "glare_ratio_portrait": null
+      },
+      "text": [
+        {
+          "text": "ADDRESS",
+          "confidence": 0.9466,
+          "box": [36.0, 40.0, 104.0, 16.0],
+          "stroke_width_mean": 2.03,
+          "stroke_width_cv": 0.14
+        },
+        {
+          "text": "12 LANTERN ROW",
+          "confidence": 0.9702,
+          "box": [36.0, 62.0, 236.0, 26.0],
+          "stroke_width_mean": 3.28,
+          "stroke_width_cv": 0.14
+        },
+        {
+          "text": "NORTH HAVEN",
+          "confidence": 0.9688,
+          "box": [36.0, 96.0, 190.0, 26.0],
+          "stroke_width_mean": 3.3,
+          "stroke_width_cv": 0.14
+        }
+      ],
+      "mrz": {
+        "found": true,
+        "format_guess": "TD1",
+        "lines": [
+          "I<UTOX12K45P787<<<<<<<<<<<<<<<",
+          "9002144F3402281UTO<<<<<<<<<<<2",
+          "VALEMONT<<QUINN<<<<<<<<<<<<<<<"
+        ],
+        "line_confidences": [0.9821, 0.9753, 0.9688],
+        "box": [24.0, 452.0, 964.0, 170.0]
+      },
+      "barcodes": [],
+      "portrait_clarity": null,
+      "forensics": {
+        "exif": {
+          "software": null,
+          "make": null,
+          "model": null,
+          "has_gps": false
+        },
+        "jpeg": {
+          "quality_estimate": 92,
+          "standard_tables": true,
+          "double_compression_score": 0.031
+        },
+        "ela_score": 0.042,
+        "moire_score": 0.013,
+        "screen_grid_score": 0.008,
+        "chroma": {
+          "mean_saturation": 0.284,
+          "colorfulness": 38.72
+        },
+        "color_cast_score": 0.021,
+        "copy_move_score": 0.0,
+        "portrait_boundary_score": null,
+        "star_glyph": {
+          "found": false,
+          "score": 0.012,
+          "box": null
+        }
+      },
+      "phash": "5e1f0b6d7248c3a9"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "valid": false,
+    "errors": [
+      {
+        "pointer": "/steps/6/routes/0",
+        "code": "on_null_missing",
+        "detail": "This route reads a value that can be null."
+      }
+    ],
+    "warnings": [
+      {
+        "pointer": "/variables/2",
+        "code": "unused_variable"
+      }
+    ]
+  }
+}

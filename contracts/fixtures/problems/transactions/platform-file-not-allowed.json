@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Forbidden",
+  "status": 403,
+  "detail": "Writing this file needs the scope that reads it.",
+  "instance": "/api/v1/transactions",
+  "requestId": "00000000-0000-4000-8000-000000000913",
+  "code": "platform_file_not_allowed",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/fields/invoice",
+      "detail": "needs its reading scope"
+    }
+  ]
+}

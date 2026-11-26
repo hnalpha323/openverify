@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- C209.6 (decision 48): the manifest of the demo's reader-check mode, merged into the debug build
+     type only, and only when openverifyDemoArtifacts includes nfc (android/demo-app/build.gradle.kts).
+     The mode is one screen with its own launcher entry, so the owner opens it without a flow.
+     release and minifiedSmoke never hold it, so no manifest allowlist changes. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+        <activity
+            android:name="dev.openverify.demo.readercheck.ReaderCheckActivity"
+            android:exported="true"
+            android:label="@string/reader_check_title">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

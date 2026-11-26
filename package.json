@@ -1,0 +1,40 @@
+{
+  "name": "@openverify/root",
+  "version": "0.0.0",
+  "private": true,
+  "description": "OpenVerify monorepo root",
+  "license": "Apache-2.0",
+  "type": "module",
+  "packageManager": "pnpm@12.14.0",
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "test:coverage": "turbo run test --force",
+    "test:integration": "turbo run test:integration",
+    "e2e": "turbo run e2e",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "release:check": "pnpm --filter @openverify/docs-tools release:check"
+  },
+  "devDependencies": {
+    "@eslint/js": "catalog:",
+    "@types/node": "catalog:",
+    "@vitest/coverage-v8": "catalog:",
+    "eslint": "catalog:",
+    "eslint-config-prettier": "catalog:",
+    "eslint-plugin-react-hooks": "catalog:",
+    "eslint-plugin-regexp": "3.3.1",
+    "eslint-plugin-security": "4.2.0",
+    "globals": "catalog:",
+    "prettier": "catalog:",
+    "turbo": "catalog:",
+    "typescript": "catalog:",
+    "typescript-eslint": "catalog:",
+    "vitest": "catalog:"
+  }
+}

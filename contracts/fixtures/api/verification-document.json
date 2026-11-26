@@ -1,0 +1,377 @@
+{
+  "data": {
+    "type": "verification/document",
+    "id": "ver_01M5CKC2D0AXM1F7XG3YB9QK6Z",
+    "attributes": {
+      "status": "passed",
+      "checks": [
+        {
+          "name": "document_type_detection",
+          "status": "passed",
+          "reasons": [],
+          "requirement": "required",
+          "metadata": {
+            "classification": "utility_bill",
+            "language": "en",
+            "script": "latin",
+            "identity-document": false,
+            "features": [],
+            "accepted-types": ["utility_bill", "bank_statement"],
+            "probabilities": {
+              "utility_bill": 0.9999194722176333,
+              "bank_statement": 1.670035583931927e-5,
+              "lease": 6.143717573533006e-6,
+              "pay_stub": 6.143717573533006e-6,
+              "tax_document": 6.143717573533006e-6,
+              "other": 4.539627380682147e-5
+            }
+          },
+          "stage": "beta",
+          "confidence": 0.9999194722176333,
+          "provenance": {
+            "implementation-version": 1,
+            "models": [
+              {
+                "id": "pp-ocrv6-small-det",
+                "sha256": "d73e0058b7a8086bbd57f3d10b8bcd4ff95363f67e06e2762b5e814fe9c9410e"
+              },
+              {
+                "id": "pp-ocrv6-small-rec",
+                "sha256": "5435fd747c9e0efe15a96d0b378d5bd157e9492ed8fd80edf08f30d02fa24634"
+              }
+            ],
+            "thresholds": {
+              "min-confidence": 0.5,
+              "temperature": 1,
+              "other-score": 2,
+              "min-margin": 0.15
+            },
+            "threshold-basis": {
+              "min-confidence": "provisional",
+              "temperature": "provisional",
+              "other-score": "provisional",
+              "min-margin": "provisional"
+            }
+          },
+          "category": "validity"
+        },
+        {
+          "name": "document_extracted_properties_detection",
+          "status": "passed",
+          "reasons": [],
+          "requirement": "required",
+          "metadata": {
+            "required-properties": ["name", "address", "issue-date"],
+            "missing": []
+          },
+          "stage": "beta",
+          "confidence": null,
+          "provenance": {
+            "implementation-version": 1,
+            "models": [
+              {
+                "id": "pp-ocrv6-small-det",
+                "sha256": "d73e0058b7a8086bbd57f3d10b8bcd4ff95363f67e06e2762b5e814fe9c9410e"
+              },
+              {
+                "id": "pp-ocrv6-small-rec",
+                "sha256": "5435fd747c9e0efe15a96d0b378d5bd157e9492ed8fd80edf08f30d02fa24634"
+              }
+            ],
+            "thresholds": {
+              "required-properties": ["name", "address", "issue-date"]
+            },
+            "threshold-basis": {
+              "required-properties": "provisional"
+            }
+          },
+          "category": "validity"
+        },
+        {
+          "name": "document_expired_detection",
+          "status": "not_applicable",
+          "reasons": ["feature_absent"],
+          "requirement": "required",
+          "metadata": {
+            "document-class": "utility_bill"
+          },
+          "stage": "ga",
+          "confidence": null,
+          "provenance": {
+            "implementation-version": 1,
+            "thresholds": {
+              "grace-days": 0
+            },
+            "threshold-basis": {
+              "grace-days": "provisional"
+            }
+          },
+          "category": "validity"
+        },
+        {
+          "name": "document_recency_detection",
+          "status": "passed",
+          "reasons": [],
+          "requirement": "required",
+          "metadata": {
+            "document-class": "utility_bill",
+            "date-source": "label"
+          },
+          "stage": "ga",
+          "confidence": null,
+          "provenance": {
+            "implementation-version": 1,
+            "thresholds": {
+              "max-age-days": 90
+            },
+            "threshold-basis": {
+              "max-age-days": "provisional"
+            }
+          },
+          "category": "validity"
+        },
+        {
+          "name": "document_fabrication_detection",
+          "status": "failed",
+          "reasons": ["pdf_hidden_text"],
+          "requirement": "not_required",
+          "metadata": {
+            "score": 0.7,
+            "components": [
+              {
+                "id": "incremental-revisions",
+                "strength": "weak",
+                "weight": 0.15,
+                "signal": 0,
+                "contribution": 0
+              },
+              {
+                "id": "xref-repaired",
+                "strength": "weak",
+                "weight": 0.1,
+                "signal": 0,
+                "contribution": 0
+              },
+              {
+                "id": "editor-producer",
+                "strength": "weak",
+                "weight": 0.2,
+                "signal": 0,
+                "contribution": 0
+              },
+              {
+                "id": "created-before-issue-date",
+                "strength": "weak",
+                "weight": 0.15,
+                "signal": 0,
+                "contribution": 0
+              },
+              {
+                "id": "metadata-inconsistent",
+                "strength": "weak",
+                "weight": 0.1,
+                "signal": 0,
+                "contribution": 0
+              },
+              {
+                "id": "amount-line-font",
+                "strength": "medium",
+                "weight": 0.45,
+                "signal": 0,
+                "contribution": 0
+              },
+              {
+                "id": "mixed-font-subsets",
+                "strength": "medium",
+                "weight": 0.4,
+                "signal": 0,
+                "contribution": 0
+              },
+              {
+                "id": "text-layer-mismatch",
+                "strength": "medium",
+                "weight": 0.45,
+                "signal": 0,
+                "contribution": 0
+              },
+              {
+                "id": "hidden-text-over-field",
+                "strength": "strong",
+                "weight": 0.7,
+                "signal": 1,
+                "contribution": 0.7
+              },
+              {
+                "id": "edits-after-signature",
+                "strength": "strong",
+                "weight": 0.7,
+                "signal": 0,
+                "contribution": 0
+              },
+              {
+                "id": "active-content",
+                "strength": "strong",
+                "weight": 0.6,
+                "signal": 0,
+                "contribution": 0
+              }
+            ]
+          },
+          "stage": "beta",
+          "confidence": 0.3999999999999999,
+          "provenance": {
+            "implementation-version": 1,
+            "thresholds": {
+              "max-fabrication-score": 0.5,
+              "weak-cue-cap": 0.45
+            },
+            "threshold-basis": {
+              "max-fabrication-score": "provisional",
+              "weak-cue-cap": "provisional"
+            }
+          },
+          "category": "fraud"
+        },
+        {
+          "name": "document_name_comparison",
+          "status": "passed",
+          "reasons": [],
+          "requirement": "required",
+          "metadata": {
+            "level": "full",
+            "methods": [],
+            "flags": [],
+            "reference-source": "inquiry",
+            "holders": 1
+          },
+          "stage": "ga",
+          "confidence": null,
+          "provenance": {
+            "implementation-version": 1,
+            "thresholds": {
+              "min-match-level": "partial"
+            },
+            "threshold-basis": {
+              "min-match-level": "provisional"
+            }
+          },
+          "category": "fraud"
+        },
+        {
+          "name": "document_address_comparison",
+          "status": "passed",
+          "reasons": [],
+          "requirement": "not_required",
+          "metadata": {
+            "level": "full",
+            "methods": [],
+            "flags": [],
+            "components": {
+              "country": "exact",
+              "postal-code": "exact",
+              "house-number": "exact",
+              "street": "exact",
+              "unit": "absent",
+              "city": "exact",
+              "subdivision": "exact"
+            },
+            "reference-source": "inquiry"
+          },
+          "stage": "ga",
+          "confidence": null,
+          "provenance": {
+            "implementation-version": 1,
+            "thresholds": {
+              "min-match-level": "partial"
+            },
+            "threshold-basis": {
+              "min-match-level": "provisional"
+            }
+          },
+          "category": "fraud"
+        }
+      ],
+      "document-type": "utility_bill",
+      "document-type-confidence": 0.9999194722176333,
+      "page-count": 2,
+      "mime-type": "application/pdf",
+      "fields": {
+        "name": "QUINN VALEMONT",
+        "address-street-1": "14 LANTERN ROW",
+        "address-street-2": null,
+        "address-city": "MERIDALE",
+        "address-subdivision": "UT",
+        "address-postal-code": "00000",
+        "address-country-code": "US",
+        "issue-date": "2026-09-30",
+        "issuer": "UTOPIA WATER BOARD",
+        "expiration-date": null
+      },
+      "from-rejected-handoff": false,
+      "created-at": "2026-10-20T12:05:00.000Z",
+      "updated-at": "2026-10-20T12:05:30.000Z"
+    },
+    "relationships": {
+      "inquiry": {
+        "data": {
+          "type": "inquiry",
+          "id": "inq_01M5CJXHG07XPHF3HRM6NREDH7"
+        }
+      },
+      "files": {
+        "data": [
+          {
+            "type": "file",
+            "id": "file_01M5CKC2E8R3D9F2YQ4S6T7V8W"
+          },
+          {
+            "type": "file",
+            "id": "file_01M5CKC2F0K4J5M6N7P8Q9R0S1"
+          }
+        ]
+      }
+    }
+  },
+  "included": [
+    {
+      "type": "file",
+      "id": "file_01M5CKC2E8R3D9F2YQ4S6T7V8W",
+      "attributes": {
+        "kind": "document",
+        "mime-type": "application/pdf",
+        "byte-size": 184204,
+        "created-at": "2026-10-20T12:05:00.000Z",
+        "capture-method": null,
+        "capture-trigger": null
+      },
+      "relationships": {
+        "verification": {
+          "data": {
+            "type": "verification/document",
+            "id": "ver_01M5CKC2D0AXM1F7XG3YB9QK6Z"
+          }
+        }
+      }
+    },
+    {
+      "type": "file",
+      "id": "file_01M5CKC2F0K4J5M6N7P8Q9R0S1",
+      "attributes": {
+        "kind": "document-preview",
+        "mime-type": "image/png",
+        "byte-size": 402117,
+        "created-at": "2026-10-20T12:05:30.000Z",
+        "capture-method": null,
+        "capture-trigger": null
+      },
+      "relationships": {
+        "verification": {
+          "data": {
+            "type": "verification/document",
+            "id": "ver_01M5CKC2D0AXM1F7XG3YB9QK6Z"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,799 @@
+{
+  "locale": "en",
+  "catalog-version": "web-f753624327cec872",
+  "catalog-sha256": "3c17cb151616491753811aaf25364cc14c173ea2f3be92d9feb736cbe6e3b685",
+  "review-status": {
+    "status": "source"
+  },
+  "messages": {
+    "app": {
+      "name": "OpenVerify",
+      "language": "Language"
+    },
+    "loading": "Loading your verification…",
+    "attempt": "Attempt {{current}} of {{max}}",
+    "consent": {
+      "title": "Consent to use your biometric data",
+      "biometric": "To confirm your identity, we compare a selfie with the photo on your ID document. This comparison uses biometric data: measurements of your facial features. Your biometric data is used only to verify your identity for this request.",
+      "processing": "We process the photos of your ID document and your selfie only for this verification. They are deleted when the organization that asked for this verification no longer needs them, in line with its retention policy. You can stop at any time by closing this page.",
+      "biometric-matching": "Optional: we also compare your selfie and its background with earlier selfies submitted to this organization, to stop one person from using several identities. A template of your face is kept for {{days}} days. You can still verify if you leave this unticked.",
+      "device-recognition": "Optional: recognise this device on later visits, to protect my account from misuse.",
+      "automated-decision": "Optional: I agree that automated decisions can be made about this verification from my biometric data, without a person reviewing them first. You can ask for a person to review a decision.",
+      "checkbox": "I agree to the collection and use of my biometric data as described above.",
+      "continue": "Continue",
+      "saving": "Saving your consent…",
+      "unavailable": "This verification asks you to agree to a text that this version cannot show. Contact the organization that asked you to verify."
+    },
+    "notice": {
+      "session-integrity": "To protect your verification against fraud, this page checks how it is being used, such as whether a browser is automated. It does not read your keystrokes or what you type.",
+      "device-recognition": "This service recognises the device you use, to protect accounts from misuse.",
+      "play-integrity": "To protect your verification against fraud, the app you are using asks Google Play to confirm that it is the genuine app on a device that has not been tampered with. For this, Google receives the app's package name, version and signing certificate, its licence status and an attestation of this device's integrity."
+    },
+    "nativeApp": {
+      "consent": {
+        "processing": "We process the photos of your ID document and your selfie only for this verification. They are deleted when the organization that asked for this verification no longer needs them, in line with its retention policy. You can stop at any time by closing this screen.",
+        "biometric-matching-checkbox": "Yes, also compare my selfie with earlier selfies (optional)",
+        "device-recognition-checkbox": "Yes, recognise this device on later visits (optional)",
+        "automated-decision-checkbox": "Yes, allow automated decisions from my biometric data (optional)"
+      },
+      "notice": {
+        "session-integrity": "To protect your verification against fraud, this app checks how it is being used: whether a debugger is attached, and signs of an emulator, a rooted device or a tampering tool. For this it reads the device's build properties, the app's own process (its memory map, thread names and loaded classes), the mount table and whether known files are present, and sends only the names of the signs it finds. It does not read what you type or which other apps you have."
+      }
+    },
+    "camera": {
+      "title": "Camera access",
+      "intro": "Next, we need your camera to take photos of your ID document and a selfie.",
+      "request": "Allow camera access",
+      "requesting": "Waiting for camera permission…",
+      "ready": "Your camera is ready.",
+      "errors": {
+        "permission-denied": "Camera access is blocked. Allow camera access in your browser settings, then try again.",
+        "no-camera": "We could not find a camera. Connect one, or switch to a device that has one.",
+        "constraints-not-satisfied": "Your camera does not support the settings we need. Try another camera or device.",
+        "camera-in-use": "Another app is using your camera. Close that app, then try again.",
+        "insecure-context": "Camera access needs a secure (https) connection.",
+        "unsupported": "This browser cannot use a camera. Try an up-to-date browser.",
+        "unknown": "Something went wrong while starting your camera. Try again."
+      }
+    },
+    "capture": {
+      "progress": "Photo {{current}} of {{total}}",
+      "takePhoto": "Take a photo",
+      "uploadPhoto": "Upload a photo",
+      "startingCamera": "Starting your camera…",
+      "cameraReady": "Your camera is ready. Select Capture to take the photo.",
+      "photoReady": "Your photo is ready to check. Use it, or retake it.",
+      "preview": "Camera preview",
+      "shutter": "Capture",
+      "cancel": "Cancel",
+      "back": "Back",
+      "tryAgain": "Try again",
+      "captureFailed": "We could not take the photo. Try again.",
+      "uploadInstead": "You can also upload a photo instead.",
+      "checkPhoto": "Check that the photo is sharp, well lit and shows everything we asked for.",
+      "retake": "Retake",
+      "usePhoto": "Use this photo",
+      "barcodeHint": "Make sure the barcode is sharp and inside the frame.",
+      "photoCheck": {
+        "blurry": "This photo looks blurry. Hold your ID still in good light, let the camera focus, and take it again.",
+        "too-small": "This photo’s resolution is too low to read your ID. Take it again, or use another camera if this keeps happening.",
+        "useAnyway": "Use this photo anyway"
+      },
+      "fileErrors": {
+        "empty": "This file is empty. Choose another photo.",
+        "too-large": "This photo is larger than 10 MB. Choose a smaller photo.",
+        "unsupported-type": "This file is not a supported image. Choose a JPEG, PNG or WebP photo.",
+        "unreadable": "We could not read this file. Choose another photo."
+      }
+    },
+    "governmentId": {
+      "title": "Photograph your ID",
+      "intro": "Use a valid government-issued ID. Place it on a flat surface in good light and make sure all four corners are visible.",
+      "front": {
+        "title": "Front of your ID",
+        "instruction": "Fit the front of your ID inside the frame.",
+        "alt": "Your photo of the front of your ID",
+        "upload": "Choose a photo of the front of your ID"
+      },
+      "back": {
+        "title": "Back of your ID",
+        "instruction": "Turn your ID over and fit the back inside the frame.",
+        "alt": "Your photo of the back of your ID",
+        "upload": "Choose a photo of the back of your ID"
+      }
+    },
+    "selfie": {
+      "title": "Take a selfie",
+      "intro": "We compare your selfie with the photo on your ID. Take off sunglasses and hats, and find a well-lit spot.",
+      "center": {
+        "title": "Look straight ahead",
+        "instruction": "Fit your face inside the oval and look straight at the camera.",
+        "alt": "Your selfie, looking straight ahead",
+        "upload": "Choose a selfie, looking straight ahead"
+      },
+      "left": {
+        "title": "Turn your head to the left",
+        "instruction": "Keep your face inside the oval and slowly turn your head to the left.",
+        "alt": "Your selfie, with your head turned to the left",
+        "upload": "Choose a selfie, with your head turned to the left"
+      },
+      "right": {
+        "title": "Turn your head to the right",
+        "instruction": "Keep your face inside the oval and slowly turn your head to the right.",
+        "alt": "Your selfie, with your head turned to the right",
+        "upload": "Choose a selfie, with your head turned to the right"
+      },
+      "howItWorks": "We ask you to look straight at the camera, then to turn your head when asked. Each photo is taken automatically once you hold still.",
+      "howItWorksCenter": "Look straight at the camera. The photo is taken automatically once you hold still.",
+      "start": "Start the camera",
+      "uploadInstead": "Upload photos",
+      "preparing": "Getting ready",
+      "opening": "Starting your selfie…",
+      "prompt": "Photo {{current}} of {{total}}: {{title}}",
+      "uploadingPose": "Uploading photo {{current}} of {{total}}…",
+      "submitting": "Sending your photos…",
+      "restarted": "Your selfie session ended before all the photos were sent, so we started again. Follow the prompts once more.",
+      "shutterSoon": "The photo is taken automatically when you hold still. You can also take it yourself in a few seconds.",
+      "shutterReady": "If the photo is not taken automatically, select Capture.",
+      "retakePose": "Retake this photo",
+      "guidance": {
+        "starting": "Getting the face guide ready…",
+        "manual": "Hold the pose, then select Capture.",
+        "no-face": "We cannot see your face. Fit your face inside the oval.",
+        "multiple-faces": "Make sure only your face is in the frame.",
+        "too-far": "Move closer to the camera.",
+        "too-close": "Move back a little.",
+        "off-centre": "Move your face to the middle of the oval.",
+        "look-straight": "Look straight at the camera.",
+        "turn-left": "Slowly turn your head to the left.",
+        "turn-right": "Slowly turn your head to the right.",
+        "hold-still": "Hold still…"
+      }
+    },
+    "otp": {
+      "send": "Send code",
+      "sending": "Sending your code…",
+      "phone": {
+        "title": "Confirm your phone number",
+        "intro": "We will send a code to your phone by text message. Your usual message rates may apply.",
+        "country": "Country",
+        "countryOption": "{{country}} ({{code}})",
+        "number": "Phone number",
+        "numberHint": "You can leave out the country code.",
+        "change": "Change phone number",
+        "errors": {
+          "required": "Enter your phone number.",
+          "invalid": "Enter a valid phone number for the country you chose.",
+          "notAllowed": "Codes cannot be sent to this number here. Use a number from one of the countries listed.",
+          "destinationInvalid": "This number cannot receive a code. Check it, or use another phone number.",
+          "deliveryFailed": "We could not send a code to this number. Check it and try again, or use another number."
+        }
+      },
+      "email": {
+        "title": "Confirm your email address",
+        "intro": "We will send a code to your email address.",
+        "address": "Email address",
+        "change": "Change email address",
+        "errors": {
+          "required": "Enter your email address.",
+          "invalid": "Enter an email address in the correct format, like name@example.com.",
+          "notAllowed": "Codes cannot be sent to this email address here. Use another email address.",
+          "destinationInvalid": "This email address cannot receive a code. Check it, or use another email address.",
+          "deliveryFailed": "We could not send a code to this email address. Check it and try again, or use another email address."
+        }
+      },
+      "code": {
+        "title": "Enter the code",
+        "sentTo": "We sent a code to {{destination}}.",
+        "sentAgain": "We sent a new code to {{destination}}.",
+        "label": "Code",
+        "hint": "The code has {{length}} digits.",
+        "confirm": "Confirm",
+        "checking": "Checking your code…",
+        "attemptsLeft": "Tries left for this code: {{remaining}}",
+        "expiresAt": "The code expires at {{time}}.",
+        "resend": "Send a new code",
+        "resendIn": "You can ask for a new code in {{time}}.",
+        "resendReady": "You can now ask for a new code.",
+        "noResend": "No more codes can be sent.",
+        "expiredFinal": "This code has expired, and no more codes can be sent. Start again to get a new code.",
+        "startAgain": "Start again",
+        "errors": {
+          "required": "Enter the code we sent you.",
+          "format": "Enter the {{length}}-digit code.",
+          "incorrect": "That code is not correct. Check it and try again.",
+          "expired": "This code has expired. Ask for a new code.",
+          "exhausted": "Too many wrong tries for this code. Ask for a new code.",
+          "notSent": "Ask for a code first.",
+          "tooSoon": "Wait a little before you ask for a new code."
+        }
+      },
+      "limited": {
+        "title": "We cannot send you a code right now",
+        "message": "We could not send or check a code for you just now. You can continue, and the organization that asked you to verify will review your verification.",
+        "continue": "Continue",
+        "continuing": "Sending your verification…",
+        "failed": "We could not continue. Wait a while, then try again."
+      },
+      "confirmed": {
+        "title": "Your code was confirmed",
+        "submitting": "Sending your verification…"
+      }
+    },
+    "handoff": {
+      "desktop": {
+        "title": "Continue on your phone",
+        "intro": "Scan this code with your phone's camera to continue this verification on your phone. Your progress here carries over.",
+        "issuing": "Getting a code for your phone…",
+        "qrLabel": "QR code that opens this verification on your phone",
+        "linkLabel": "Or open this link on your phone",
+        "copy": "Copy link",
+        "copied": "Link copied.",
+        "expiresIn": "This code expires in {{time}}.",
+        "expired": "This code has expired. Get a new one to continue on your phone.",
+        "newCode": "Get a new code",
+        "confirmationCode": "When your phone asks for a code, enter: {{code}}",
+        "emailOption": "Send a link by email instead",
+        "smsOption": "Send a link by text message instead",
+        "emailLabel": "Email address",
+        "smsLabel": "Phone number, with its country code",
+        "smsHint": "For example +1 202 555 0123.",
+        "send": "Send link",
+        "sending": "Sending the link…",
+        "sentEmail": "We sent a link to your email address. Open it on your phone within {{minutes}} minutes.",
+        "sentSms": "We sent a link to your phone by text message. Open it within {{minutes}} minutes.",
+        "showQr": "Show a QR code instead",
+        "continueHere": "Continue on this device",
+        "continuing": "Continuing on this device…",
+        "waitingTitle": "Continuing on your phone",
+        "waiting": "You continued on your phone at {{time}}. Finish the verification there; this page updates when you are done.",
+        "waitingDevice": "Your phone: {{device}}",
+        "notMe": "This was not me",
+        "rejecting": "Ending the session on the other device…",
+        "rejected": "We ended the session on the other device and canceled what it had not finished. Get a new code, or continue here.",
+        "declined": "The other device declined to continue. Get a new code, or continue here.",
+        "errors": {
+          "destinationNotConfirmed": "A link can only be sent to an email address or phone number you confirmed earlier in this verification.",
+          "sendLimited": "Too many links were sent. Wait a while, or use the QR code.",
+          "required": "Enter where to send the link."
+        }
+      },
+      "phone": {
+        "title": "Continue your verification",
+        "loading": "Checking your link…",
+        "requester": "{{organization}} asked to verify your identity.",
+        "verifies": "On this phone you will be asked for:",
+        "started": "This verification was started on another device at {{time}}.",
+        "startedIn": "This verification was started on another device in {{country}} at {{time}}.",
+        "adviceQr": "Continue only if you just scanned this code on {{organization}}'s own website. If someone sent you this code, decline.",
+        "adviceLink": "Continue only if you just asked for this link on {{organization}}'s own website. If you did not, decline.",
+        "codeLabel": "Code shown on your other device",
+        "codeHint": "Six digits.",
+        "codeRequired": "Enter the six-digit code shown on your other device.",
+        "checkCode": "Check code",
+        "checking": "Checking the code…",
+        "continue": "Continue",
+        "continuing": "Opening your verification…",
+        "decline": "Decline",
+        "declining": "Declining…",
+        "declinedTitle": "You declined",
+        "declined": "Nothing was shared from this phone. You can close this page.",
+        "invalid": "This link is not valid, has expired or was already used. Go back to the device you started on for a new code.",
+        "limitTitle": "This verification cannot continue here",
+        "limit": "This verification cannot be continued on another device. Return to the device you started on."
+      },
+      "steps": {
+        "form": "a few details about you",
+        "government_id": "a photo of your ID document",
+        "selfie": "a selfie",
+        "document": "a document upload",
+        "phone_otp": "a code sent to your phone",
+        "email_otp": "a code sent to your email",
+        "database": "a check of your details against a database",
+        "aamva": "a check of your driving licence details with its issuer",
+        "nfc": "reading the chip in your ID document",
+        "crypto_wallet": "proving that you control a crypto wallet",
+        "database_business": "a check of your business against business registries",
+        "business_website": "a check of your business website"
+      }
+    },
+    "cryptoWallet": {
+      "title": "Prove that you control your crypto wallet",
+      "intro": "You sign a message with your wallet. Signing a message is free: it sends no transaction and moves no funds.",
+      "network": "Network",
+      "networkIs": "Network: {{network}}",
+      "restarted": "Your last attempt ended because too many messages to sign were asked for. Start again.",
+      "wallet": {
+        "connect": "Connect your wallet",
+        "connectNamed": "Connect {{name}}",
+        "connecting": "Waiting for your wallet…",
+        "signing": "Sign the message in your wallet. It shows this website and why we ask.",
+        "submitting": "Sending your signature…",
+        "pasteInstead": "Paste a signature instead",
+        "declined": "You declined the request in your wallet. Try again when you are ready.",
+        "failed": "Your wallet could not complete the request. Try again, or paste a signature instead.",
+        "failedNoPaste": "Your wallet could not complete the request. Try again.",
+        "needed": "This step needs a browser wallet. Open this page in a browser with a wallet extension, or in your wallet app’s browser."
+      },
+      "paste": {
+        "address": "Wallet address",
+        "addressHint": "Copy it from your wallet, then paste it here.",
+        "getMessage": "Get the message to sign",
+        "gettingMessage": "Getting the message…",
+        "message": "Message to sign",
+        "messageHint": "Sign this exact message in your wallet, then paste the signature below. Sign it before {{time}}.",
+        "copy": "Copy the message",
+        "copied": "Message copied.",
+        "copyFailed": "We could not copy the message. Select it and copy it yourself.",
+        "signature": "Signature",
+        "signedMessage": "Signed message (optional)",
+        "signedMessageHint": "Some Solana wallets show the bytes they signed. If yours does, paste them here.",
+        "submit": "Submit signature",
+        "submitting": "Sending your signature…",
+        "otherAddress": "Use a different address",
+        "walletInstead": "Use your browser wallet instead"
+      },
+      "errors": {
+        "addressRequired": "Enter your wallet address.",
+        "addressInvalid": "This wallet address is not valid for the network you chose. Check that you copied the whole address.",
+        "addressNotExpected": "This is not the wallet address you were asked to verify. Use the expected wallet address.",
+        "chainNotOffered": "This network is not accepted here. Choose another network.",
+        "signatureRequired": "Paste the signature from your wallet.",
+        "signatureTooLong": "This signature is too long. Paste only the signature.",
+        "challengeInvalid": "This message has expired or was already used. Get a new message to sign."
+      },
+      "chains": {
+        "bitcoin": "Bitcoin",
+        "bitcoinTestnet": "Bitcoin testnet",
+        "litecoin": "Litecoin",
+        "dogecoin": "Dogecoin",
+        "solana": "Solana",
+        "tron": "TRON",
+        "xrpl": "XRP Ledger",
+        "ethereum": "Ethereum",
+        "optimism": "OP Mainnet",
+        "bnb": "BNB Smart Chain",
+        "polygon": "Polygon",
+        "base": "Base",
+        "arbitrum": "Arbitrum One",
+        "sepolia": "Sepolia testnet",
+        "evm": "EVM network {{number}}"
+      }
+    },
+    "share": {
+      "consent": {
+        "title": "Share your verified details with {{recipient}}",
+        "source": "{{source}} asks for your agreement to share the details it verified about you with {{recipient}}, so that {{recipient}} can reuse this verification instead of asking you to verify again.\n\nWhat is shared: {{categories}}. Nothing is shared unless you agree, and choosing not to share does not stop your verification.\n\nYour agreement covers one share with {{recipient}} for this purpose only. It ends after {{expires}} if the details have not been shared by then.\n\nTo withdraw your agreement, {{withdraw}}. Withdrawing stops any share that has not happened yet. Details already shared are kept by {{recipient}} under its own privacy notice.",
+        "destination": "{{recipient}} asks for your agreement to receive the details {{source}} verified about you, so that you do not have to verify again.\n\nWhat {{recipient}} receives: {{categories}}. {{recipient}} uses them only to verify your identity for this request and keeps them for {{retention}}. Nothing is received unless you agree, and choosing not to share does not stop your verification: you verify here instead.\n\nYour agreement ends after {{expires}} if the details have not been received by then.\n\nTo withdraw your agreement, {{withdraw}}. Withdrawing stops any transfer that has not happened yet.",
+        "biometric-source": "I agree that {{source}} shares my biometric data with {{recipient}}: the photo of my face on my ID document, my selfie and the results of comparing them.",
+        "biometric-destination": "I agree that {{recipient}} receives my biometric data from {{source}}: the photo of my face on my ID document, my selfie and the results of comparing them. {{recipient}} keeps it for {{retention}}, only to verify my identity.",
+        "accept": "I agree",
+        "decline": "Do not share",
+        "withdraw": "Withdraw my agreement to share with {{recipient}}"
+      },
+      "step": {
+        "sharedBy": "Shared by",
+        "sharedWith": "Shared with",
+        "whatIsShared": "What is shared",
+        "saving": "Saving your choice…",
+        "biometricRequired": "Tick the box to agree to share your biometric data, or choose not to share.",
+        "withdrawHeading": "Your agreement to share",
+        "withdrawIntro": "You agreed to share your verified details with {{recipient}}. You can withdraw that agreement while this verification is open.",
+        "withdrawing": "Withdrawing your agreement…",
+        "withdrawn": "You withdrew your agreement to share with {{recipient}}."
+      },
+      "categories": {
+        "identity-fields": "your identity details, such as your name and date of birth",
+        "contact-fields": "your contact details, such as your email address and phone number",
+        "other-fields": "other details you entered",
+        "document-images": "images of your ID documents",
+        "biometric": "biometric data: photos of your face and the results of comparing them",
+        "check-results": "the results of the checks on your details"
+      }
+    },
+    "nfc": {
+      "title": "This step needs the organization’s app",
+      "needsApp": "Reading a document chip needs the organization’s app; a browser cannot read it.",
+      "otherWay": "You can continue here another way.",
+      "useAnotherWay": "Use another way",
+      "switching": "Switching to another way…",
+      "noOtherWay": "Continue in the organization’s app. If you do not have it, contact the organization that asked you to verify."
+    },
+    "forms": {
+      "requiredNote": "Fields marked * are required.",
+      "continue": "Continue",
+      "sending": "Sending your details…",
+      "received": "We received your details. Send them for checking, or change them below.",
+      "sendReceived": "Send for checking",
+      "invalid": "Check the details marked below.",
+      "refused": "Some details were not accepted. Check them and try again.",
+      "address": "Address",
+      "chooseCountry": "Choose a country",
+      "chooseState": "Choose a state or territory",
+      "database": {
+        "title": "Enter your details",
+        "intro": "We check these details against official records. Enter them as they appear on your official documents."
+      },
+      "database_business": {
+        "title": "Tell us about your business",
+        "intro": "We look these details up in official business registers. Enter them as the business is registered."
+      },
+      "business_website": {
+        "title": "Enter your business website",
+        "intro": "We check that the website’s address exists. We never open the website itself."
+      },
+      "businessAddress": "Registered address",
+      "persons": {
+        "legend": "People who own or run the business",
+        "intro": "You can add up to {{max}} directors, officers or owners for us to check against the register.",
+        "person": "Person {{number}}",
+        "add": "Add a person",
+        "remove": "Remove person {{number}}",
+        "full": "You have added as many people as you can."
+      },
+      "aamva": {
+        "title": "Enter your driver’s license details",
+        "intro": "Enter the details exactly as they are printed on your US driver’s license or state ID card. We check them with the office that issued it."
+      },
+      "silent": {
+        "title": "Checking your license details",
+        "message": "We are checking your driver’s license or ID card with the office that issued it. This usually takes a few seconds. Keep this page open."
+      },
+      "fields": {
+        "name-first": "First name",
+        "name-middle": "Middle name",
+        "name-last": "Last name",
+        "birthdate": "Date of birth",
+        "address-street-1": "Address line 1",
+        "address-street-2": "Address line 2",
+        "address-city": "Town or city",
+        "address-subdivision": "State, province or region",
+        "address-postal-code": "Postal code",
+        "address-country-code": "Country",
+        "identification-number": "Identification number",
+        "phone-number": "Phone number",
+        "email-address": "Email address",
+        "licenseNumber": "Driver’s license or ID card number",
+        "issuingAuthority": "Issuing state or territory",
+        "issueDate": "Issue date",
+        "expirationDate": "Expiration date",
+        "zip": "ZIP code",
+        "business-name": "Business name",
+        "country-code": "Country of registration",
+        "registration-number": "Registration number",
+        "lei": "Legal Entity Identifier (LEI)",
+        "businessStreet1": "Address line 1",
+        "businessStreet2": "Address line 2",
+        "businessCity": "Town or city",
+        "businessSubdivision": "State, province or region",
+        "businessPostalCode": "Postal code",
+        "person-name-first": "First name",
+        "person-name-last": "Last name",
+        "person-birthdate": "Month or date of birth",
+        "website-url": "Website address"
+      },
+      "hints": {
+        "phone-number": "Include your country code.",
+        "registrationGb": "For a UK company, the 8-character Companies House number, like 01234567 or SC123456.",
+        "registrationUs": "For a US company, its SEC Central Index Key (CIK), up to 10 digits.",
+        "registration": "The number the business register gives the business: up to 20 letters and digits.",
+        "lei": "The 20-character code from the global LEI register. Leave it out if the business has none.",
+        "person-birthdate": "As YYYY-MM or YYYY-MM-DD.",
+        "website-url": "Include https:// or http://, like https://www.example.com."
+      },
+      "required": {
+        "name-first": "Enter your first name.",
+        "name-middle": "Enter your middle name.",
+        "name-last": "Enter your last name.",
+        "birthdate": "Enter your date of birth.",
+        "address-street-1": "Enter the first line of your address.",
+        "address-street-2": "Enter the second line of your address.",
+        "address-city": "Enter your town or city.",
+        "address-subdivision": "Enter your state, province or region.",
+        "address-postal-code": "Enter your postal code.",
+        "address-country-code": "Choose your country.",
+        "identification-number": "Enter your identification number.",
+        "phone-number": "Enter your phone number.",
+        "email-address": "Enter your email address.",
+        "licenseNumber": "Enter the number of your license or ID card.",
+        "issuingAuthority": "Choose the state or territory that issued it.",
+        "issueDate": "Enter the issue date.",
+        "expirationDate": "Enter the expiration date.",
+        "zip": "Enter your ZIP code.",
+        "business-name": "Enter the business name.",
+        "country-code": "Choose the country where the business is registered.",
+        "registration-number": "Enter the registration number.",
+        "lei": "Enter the LEI.",
+        "businessStreet1": "Enter the first line of the business address.",
+        "businessStreet2": "Enter the second line of the business address.",
+        "businessCity": "Enter the town or city of the business.",
+        "businessSubdivision": "Enter the state, province or region of the business.",
+        "businessPostalCode": "Enter the postal code of the business.",
+        "person-name-first": "Enter this person’s first name.",
+        "person-name-last": "Enter this person’s last name.",
+        "person-birthdate": "Enter this person’s month or date of birth.",
+        "website-url": "Enter the website address."
+      },
+      "errors": {
+        "tooLong": "Enter no more than {{max}} characters.",
+        "date": "Enter a real date.",
+        "phone": "Enter the number with its country code, like +1 202 555 0143.",
+        "email": "Enter an email address in the correct format, like name@example.com.",
+        "zip": "Enter a 5-digit ZIP code, or a ZIP+4 like 12345-6789.",
+        "url": "Enter the full web address, starting with https:// or http://, like https://www.example.com.",
+        "lei": "Enter the 20-character LEI exactly as it is registered.",
+        "registrationGb": "Enter the 8-character company number, like 01234567 or SC123456.",
+        "registrationUs": "Enter the CIK: up to 10 digits.",
+        "registration": "Enter up to 20 letters and digits, without spaces.",
+        "birthMonth": "Enter the month as YYYY-MM, or the date as YYYY-MM-DD.",
+        "refused": "This was not accepted. Check it and try again."
+      }
+    },
+    "document": {
+      "title": "Upload a document",
+      "intro": "Upload a document that shows your full name and your address.",
+      "accepted": "You can upload one of these:",
+      "types": {
+        "utility_bill_one": "A utility bill dated within the last day",
+        "utility_bill_other": "A utility bill dated within the last {{count}} days",
+        "bank_statement_one": "A bank statement dated within the last day",
+        "bank_statement_other": "A bank statement dated within the last {{count}} days",
+        "pay_stub_one": "A pay stub dated within the last day",
+        "pay_stub_other": "A pay stub dated within the last {{count}} days",
+        "lease": "A lease or rental agreement that is still in force",
+        "tax_document": "A tax document from the latest tax year"
+      },
+      "typeNames": {
+        "utility_bill": "A utility bill",
+        "bank_statement": "A bank statement",
+        "lease": "A lease or rental agreement",
+        "pay_stub": "A pay stub",
+        "tax_document": "A tax document"
+      },
+      "formats": "Upload it as a {{formats}} file of up to {{size}}.",
+      "pages_one": "A PDF can have only {{count}} page.",
+      "pages_other": "A PDF can have up to {{count}} pages.",
+      "chooseFile": "Choose a file",
+      "chooseFileLabel": "Choose a file of your document",
+      "takePhoto": "Take a photo",
+      "takePhotoLabel": "Take a photo of your document",
+      "picked": "Your file: {{name}}, {{size}}",
+      "pickedHint": "Check that it is the right document, then upload it.",
+      "upload": "Upload this file",
+      "chooseAnother": "Choose another file",
+      "takeAnother": "Take another photo",
+      "uploading": "Uploading your document…",
+      "fileErrors": {
+        "empty": "This file is empty. Choose another file.",
+        "too-large": "This file is larger than {{size}}. Choose a smaller file, such as a photo of the document or a PDF with fewer pages.",
+        "unsupported-type": "We cannot use this type of file. Choose a {{formats}} file.",
+        "unreadable": "We could not read this file. Choose another file."
+      }
+    },
+    "screen": {
+      "continue": "Continue",
+      "heading": "Your details",
+      "required": "Fields marked * are required.",
+      "choose": "Choose…",
+      "set": "Already provided. Type a new value to change it.",
+      "summary": "Check these answers:",
+      "errors": {
+        "required": "Enter or choose a value.",
+        "tooShort": "Enter at least {{limit}} characters.",
+        "tooLong": "Enter at most {{limit}} characters.",
+        "pattern": "This is not in the expected format.",
+        "number": "Enter a number.",
+        "tooSmall": "Enter {{limit}} or more.",
+        "tooLarge": "Enter {{limit}} or less.",
+        "date": "Enter a date.",
+        "dateTooEarly": "Enter {{limit}} or later.",
+        "dateTooLate": "Enter {{limit}} or earlier.",
+        "email": "Enter an email address, such as name@example.com.",
+        "phone": "Enter a phone number, with its country code.",
+        "url": "Enter a web address that starts with https://.",
+        "option": "Choose one of the options.",
+        "country": "Choose one of the countries.",
+        "refused": "This value was not accepted. Check it and try again."
+      },
+      "address": {
+        "street1": "Street address",
+        "street2": "Apartment, suite or building (optional)",
+        "city": "City",
+        "subdivision": "State, province or region",
+        "postalCode": "Postal code",
+        "country": "Country"
+      },
+      "saving": "Saving your answers…",
+      "cancel": {
+        "title": "Stop for now?",
+        "message": "Your answers so far are kept. You can come back with the same link to continue.",
+        "confirm": "Yes, stop for now",
+        "keep": "No, keep going",
+        "stopped": "You stopped for now",
+        "stoppedMessage": "You can come back with the same link to continue where you left off."
+      },
+      "unavailable": "This screen cannot be shown in this version.",
+      "help": "Help and privacy",
+      "helpLink": "Get help",
+      "privacyLink": "Privacy notice",
+      "waiting": {
+        "title": "One moment",
+        "message": "We are getting the next step ready…"
+      },
+      "halted": {
+        "title": "This verification cannot continue",
+        "message": "Something stopped this verification from continuing. Contact the organization that asked you to verify."
+      },
+      "redirect": {
+        "announce": "Your part is done. Use Continue to go back to the website you came from.",
+        "continue": "Continue"
+      },
+      "extend": {
+        "warning": "About {{seconds}} seconds left to take your photos. Need more time?",
+        "button": "More time",
+        "extended": "You have more time.",
+        "failed": "We could not add more time. Take your photos now, or start again if the time runs out."
+      }
+    },
+    "submission": {
+      "uploading": "Uploading your photos…",
+      "retry": "Try again",
+      "retake": "Retake photos"
+    },
+    "processing": {
+      "title": "Checking your photos",
+      "verificationTitle": "Checking your verification",
+      "message": "This usually takes a few seconds. Keep this page open.",
+      "slow": "This is taking longer than usual.",
+      "checkAgain": "Check again"
+    },
+    "finalizing": {
+      "title": "Finishing your verification",
+      "message": "This usually takes a few seconds. Keep this page open."
+    },
+    "retry": {
+      "title": "We could not use your last photos",
+      "attemptTitle": "Your last attempt did not go through",
+      "generic": "Something in the photo was not clear enough. Try again in good light.",
+      "reasons": {
+        "image_blurry": "The photo was blurry. Hold your device steady and wait for the image to come into focus.",
+        "glare_present": "There was glare on your ID. Move away from direct light or tilt the ID slightly.",
+        "portrait_not_present": "We could not find the photo on your ID. Make sure the whole front of the ID is in the frame.",
+        "front_not_present": "We need a photo of the front of your ID.",
+        "back_not_present": "We need a photo of the back of your ID.",
+        "image_too_dark": "The photo was too dark. Find a brighter spot.",
+        "image_too_bright": "The photo was too bright. Move away from strong light.",
+        "face_not_present": "We could not see your face. Fit your face inside the oval.",
+        "multiple_faces_present": "More than one face was in the photo. Make sure only you are in the frame.",
+        "image_unreadable": "We could not open the photo. Take a new one, or choose a JPEG, PNG or WebP image.",
+        "document_not_found": "We could not find your ID in the photo. Place it on a plain surface that contrasts with it, and make sure all four corners are in the frame.",
+        "insufficient_text": "We could not read the text on your ID. Make sure the photo is sharp, well lit and free of glare, and shows the whole ID.",
+        "identity_features_not_found": "We could not find your photo, or the lines of letters and numbers, on your ID. Photograph the side with your photo on it, with the whole ID in the frame.",
+        "resolution_too_low": "Your ID was too small in the photo. Move your device closer, so the ID fills most of the frame.",
+        "back_feature_not_found": "We could not read the back of your ID. Turn it over and photograph the back, sharp and without glare, so its barcode or its lines of letters and numbers can be read.",
+        "portrait_too_small": "The photo of your face on the ID was too small to see. Move your device closer, so the ID fills most of the frame.",
+        "portrait_blurry": "The photo of your face on the ID was not sharp. Hold your device steady and wait for the image to come into focus.",
+        "portrait_obstructed": "Something covered the photo of your face on the ID. Keep your fingers and any glare away from it.",
+        "mrz_not_found": "We could not find the lines of letters, numbers and <<< signs on your ID. Make sure the whole ID is in the frame, including its bottom edge.",
+        "mrz_unreadable": "We could not read the lines of letters, numbers and <<< signs on your ID. Hold your device steady and avoid glare, so those lines are sharp.",
+        "barcode_not_found": "We could not find the barcode on your ID. Photograph the side with the barcode, with the whole ID in the frame and no glare on the barcode.",
+        "required_fields_missing": "We could not read all the details on your ID. Make sure the whole ID is in the frame, sharp and without glare.",
+        "face_too_small": "Your face was too small in the photo. Move closer, so your face fills the oval.",
+        "face_glare": "Light was reflecting off your face. Turn away from direct light and try again.",
+        "pose_not_center": "Look straight at the camera for the first photo, with your face in the middle of the oval.",
+        "pose_not_left": "Your head was not turned far enough to the left. When asked, slowly turn your head to the left and hold it there.",
+        "pose_not_right": "Your head was not turned far enough to the right. When asked, slowly turn your head to the right and hold it there.",
+        "face_covered": "Part of your face was covered. Remove any mask or scarf, and keep your hands away from your face.",
+        "glasses_detected": "Take off your glasses, then try again.",
+        "document_type_not_accepted": "This type of document is not accepted here. Upload one of the document types this step lists.",
+        "document_unreadable": "We could not open or read your document. Upload a clear photo or a PDF of the whole document.",
+        "document_password_protected": "Your PDF is protected with a password. Upload a copy without a password, or a photo of the document.",
+        "document_too_large": "Your file is too large. Upload a smaller file, such as a photo of the document or a PDF with fewer pages.",
+        "document_too_many_pages": "Your PDF has too many pages. Upload only the pages that show your name, your address and the date.",
+        "name_not_found": "We could not find a name on your document. Upload a document that shows your full name.",
+        "address_not_found": "We could not find an address on your document. Upload a document that shows your full address.",
+        "issue_date_not_found": "We could not find the date your document was issued. Upload a document that shows its issue date.",
+        "issuer_not_found": "We could not find who issued your document. Upload a document that shows the company or office that issued it.",
+        "document_expired": "Your document has expired. Upload one that is still valid.",
+        "document_too_old": "Your document is too old. Upload a more recent one.",
+        "po_box_detected": "A post office box cannot be used as your address. Enter the address where you live.",
+        "otp_attempts_exhausted": "Too many incorrect codes were entered. Start again to get a new code.",
+        "otp_not_confirmed": "The code was not confirmed in time. Start again to get a new code.",
+        "domain_not_found": "The part of your email address after the @ does not exist. Check it for typing mistakes.",
+        "domain_rejects_mail": "This email domain does not accept email. Use another email address.",
+        "no_mail_server": "No email can be delivered to this address. Check it, or use another email address.",
+        "address_invalid": "This wallet address is not valid for the network you chose. Check that you copied the whole address.",
+        "address_checksum_invalid": "This wallet address has a typing mistake. Copy it again from your wallet instead of typing it.",
+        "signature_invalid": "The signature could not be read. Sign the message again in your wallet and paste the whole signature.",
+        "signature_address_mismatch": "The message was signed by a different wallet address. Sign it with the address you entered.",
+        "expected_address_mismatch": "This is not the wallet address you were asked to verify. Use the expected wallet address.",
+        "country_not_enabled": "Businesses from this country cannot be verified here. Check the country you selected.",
+        "domain_not_resolving": "We could not find this website. Check the web address for typing mistakes.",
+        "document_name_mismatch": "The name on your document does not match yours. Upload a document in your own name."
+      }
+    },
+    "flow": {
+      "completion": "Thank you. Your verification has been submitted, and you can close this page.",
+      "failure": "We could not verify your identity. Contact the organization that asked you to verify."
+    },
+    "completion": {
+      "title": "Verification submitted"
+    },
+    "failure": {
+      "title": "Verification not completed"
+    },
+    "contest": {
+      "heading": "Ask for a review",
+      "intro": "If you disagree with the result, a person can review it.",
+      "host": "This link opens {{host}}",
+      "link": "Ask for a review",
+      "contact": "You can also reach: {{contact}}"
+    },
+    "expired": {
+      "title": "This verification link has expired",
+      "message": "Ask the organization that sent it for a new link."
+    },
+    "ended": {
+      "expired": {
+        "title": "Your verification session has expired",
+        "message": "For your security, a verification session ends after a while. Ask the organization that asked you to verify for a new link."
+      },
+      "canceled": {
+        "title": "This verification session has ended",
+        "message": "The session was closed, for example because the verification was finished or withdrawn. If you still need to verify, ask the organization that asked you to verify for a new link."
+      },
+      "redacted": {
+        "title": "This verification is no longer available",
+        "message": "The information in this verification has been deleted, so it cannot continue. If you still need to verify, contact the organization that asked you to verify."
+      }
+    },
+    "sandbox": {
+      "label": "Sandbox",
+      "message": "This is a test verification. Use test data only, never a real ID."
+    },
+    "unsupported": {
+      "title": "This step is not available here",
+      "step": "This verification includes a step that this version of the web flow does not support yet: {{step}}.",
+      "flow": "This verification uses a rule that this version of the web flow does not support yet.",
+      "contact": "Contact the organization that asked you to verify.",
+      "steps": {
+        "form": "a form",
+        "document": "a document upload",
+        "phone_otp": "a code sent to your phone",
+        "email_otp": "a code sent to your email",
+        "database": "a check of your details against a database",
+        "aamva": "a check of your driving licence details with its issuer",
+        "nfc": "reading the chip in your ID, which needs the mobile app",
+        "crypto_wallet": "proving that you control a crypto wallet",
+        "database_business": "a check of your business against business registries",
+        "business_website": "a check of your business website"
+      }
+    },
+    "link": {
+      "title": "We could not open your verification",
+      "missing": "Open this page from the verification link you received. The link is missing or incomplete.",
+      "invalid": "This verification link is not valid. Check that you opened the whole link, or ask for a new one.",
+      "mismatch": "This link belongs to a different verification. Open the latest link you received.",
+      "used": "This link has already been used or has expired. Each link works only once. Ask the organization that sent it for a new one.",
+      "reloaded": "This page was opened from a one-time link, which works only once, so it cannot be reloaded. Open the link you received again, or ask for a new one if it no longer works."
+    },
+    "errors": {
+      "title": "Something went wrong",
+      "network": "We could not reach the verification service. Check your connection and try again.",
+      "timeout": "The verification service took too long to answer. Check your connection and try again.",
+      "unauthorized": "This verification link is no longer valid. Ask the organization that sent it for a new one.",
+      "conflict": "Your verification changed, perhaps in another window. Try again to continue.",
+      "tooLarge": "This photo is larger than 10 MB. Retake it or choose a smaller photo.",
+      "unsupportedImage": "We could not use this photo. Retake it or choose a JPEG, PNG or WebP photo.",
+      "notAccepted": "This was not accepted. Check what you entered and try again.",
+      "rateLimited": "Too many attempts in a short time. Wait a moment, then try again.",
+      "server": "The verification service is having trouble. Try again in a few minutes.",
+      "unexpected": "Something went wrong. Try again.",
+      "retry": "Try again"
+    },
+    "notFound": {
+      "title": "Page not found",
+      "back": "Start over"
+    }
+  }
+}

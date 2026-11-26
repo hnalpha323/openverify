@@ -1,0 +1,57 @@
+{
+  "data": {
+    "type": "consent-record",
+    "id": "cnsr_01M5CN0000000000000011A310",
+    "attributes": {
+      "side": "destination",
+      "outcome": "accepted",
+      "status": "active",
+      "purpose": "share.reuse-kyc",
+      "recipient-organization-id": "org_01M5CN0000000000000011A020",
+      "recipient-name": "Example Partner",
+      "data-categories": ["identity-fields", "contact-fields", "check-results"],
+      "explicit-biometric": false,
+      "text": {
+        "locale": "en",
+        "keys": [],
+        "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      },
+      "biometric-text-sha256": null,
+      "method": "attested",
+      "witnessed": false,
+      "evidence": {
+        "attested-at": "2026-10-20T12:12:00.000Z"
+      },
+      "evidence-reference": null,
+      "ip-address": null,
+      "user-agent": null,
+      "text-body": null,
+      "expires-at": "2026-11-03T12:08:00.000Z",
+      "withdrawn-at": null,
+      "withdrawn-via": null,
+      "withdrawal-reason": null,
+      "redacted-at": null,
+      "created-at": "2026-10-20T12:12:00.000Z"
+    },
+    "relationships": {
+      "subject": {
+        "data": {
+          "type": "connect/share-token",
+          "id": "cnst_01M5CN0000000000000011A200"
+        }
+      },
+      "connection": {
+        "data": {
+          "type": "connect/connection",
+          "id": "cxn_01M5CN0000000000000011A100"
+        }
+      },
+      "share-token": {
+        "data": {
+          "type": "connect/share-token",
+          "id": "cnst_01M5CN0000000000000011A200"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,266 @@
+{
+  "description": "PEP position classes (plan C80.2): each row names a Wikidata class by QID, a public identifier, and the public PEP class of the positions it reaches. 'subclass' reaches positions that are the class, a subclass of it or an instance of one; 'directs' reaches positions that direct (P2389) an organisation of the class. Where several rows reach one position, the rows no other reached row refines decide and the lowest class wins. Not derivable from a class and so not covered: senior civil servants without a class of their own and the other senior staff of international bodies; the PEP coverage notice says so.",
+  "verified": {
+    "date": "2026-10-27",
+    "method": "Each qid's English label and description read from https://www.wikidata.org/wiki/Special:EntityData/<qid>.json; P2389 read as 'organization directed by the office or position'."
+  },
+  "sources": {
+    "fatf-2013": "FATF Guidance, Politically Exposed Persons (Recommendations 12 and 22), June 2013: foreign, domestic and international organisation PEPs; its examples name heads of state or government, senior politicians, senior government, judicial or military officials, senior executives of state-owned corporations and important political party officials (docs/research/phase6-data-sources.md, section 7.3).",
+    "authored": "OpenVerify's choice following the public PEP class definitions (docs/research/phase6-behaviour.md, PEP classes), with the reason in the row's note."
+  },
+  "classes": [
+    {
+      "qid": "Q48352",
+      "label": "head of state",
+      "pep_class": 1,
+      "selector": "subclass",
+      "single_holder": true,
+      "head_of_state_or_government": true,
+      "refines": [],
+      "source": "fatf-2013",
+      "note": "Heads of state (FATF 2013: heads of state or of government)."
+    },
+    {
+      "qid": "Q2285706",
+      "label": "head of government",
+      "pep_class": 1,
+      "selector": "subclass",
+      "single_holder": true,
+      "head_of_state_or_government": true,
+      "refines": [],
+      "source": "fatf-2013",
+      "note": "Heads of government. Wikidata files mayors under this class; the mayor row refines it."
+    },
+    {
+      "qid": "Q83307",
+      "label": "minister",
+      "pep_class": 1,
+      "selector": "subclass",
+      "single_holder": false,
+      "head_of_state_or_government": false,
+      "refines": [],
+      "source": "fatf-2013",
+      "note": "National and regional ministers (FATF 2013: senior politicians and senior government officials). Ministers without portfolio share a position, so a later holder ends no tenure."
+    },
+    {
+      "qid": "Q4175034",
+      "label": "legislator",
+      "pep_class": 1,
+      "selector": "subclass",
+      "single_holder": false,
+      "head_of_state_or_government": false,
+      "refines": [],
+      "source": "fatf-2013",
+      "note": "Members of national and regional legislatures (FATF 2013: senior politicians); members of parliament and of the European Parliament are subclasses."
+    },
+    {
+      "qid": "Q132050",
+      "label": "governor",
+      "pep_class": 1,
+      "selector": "subclass",
+      "single_holder": true,
+      "head_of_state_or_government": false,
+      "refines": [],
+      "source": "authored",
+      "note": "The executive head of a state or region, counted with the regional ministers the public class 1 names."
+    },
+    {
+      "qid": "Q107363151",
+      "label": "central bank governor",
+      "pep_class": 1,
+      "selector": "subclass",
+      "single_holder": true,
+      "head_of_state_or_government": false,
+      "refines": [],
+      "source": "authored",
+      "note": "The public class 1 names central-bank board members."
+    },
+    {
+      "qid": "Q66344",
+      "label": "central bank",
+      "pep_class": 1,
+      "selector": "directs",
+      "single_holder": false,
+      "head_of_state_or_government": false,
+      "refines": [],
+      "source": "authored",
+      "note": "Positions directing a central bank: its board (the public class 1)."
+    },
+    {
+      "qid": "Q1553195",
+      "label": "party leader",
+      "pep_class": 1,
+      "selector": "subclass",
+      "single_holder": false,
+      "head_of_state_or_government": false,
+      "refines": [],
+      "source": "fatf-2013",
+      "note": "Important political party officials (FATF 2013); co-leaders share a position."
+    },
+    {
+      "qid": "Q5097014",
+      "label": "chief of defence",
+      "pep_class": 1,
+      "selector": "subclass",
+      "single_holder": true,
+      "head_of_state_or_government": false,
+      "refines": [],
+      "source": "fatf-2013",
+      "note": "Heads of the armed forces (FATF 2013: senior military officials)."
+    },
+    {
+      "qid": "Q380782",
+      "label": "commander-in-chief",
+      "pep_class": 1,
+      "selector": "subclass",
+      "single_holder": true,
+      "head_of_state_or_government": false,
+      "refines": [],
+      "source": "fatf-2013",
+      "note": "Supreme commanders of the armed forces (FATF 2013: senior military officials)."
+    },
+    {
+      "qid": "Q3188089",
+      "label": "chief justice",
+      "pep_class": 1,
+      "selector": "subclass",
+      "single_holder": true,
+      "head_of_state_or_government": false,
+      "refines": [],
+      "source": "fatf-2013",
+      "note": "Presiding judges of the highest courts (FATF 2013: senior judicial officials)."
+    },
+    {
+      "qid": "Q117826617",
+      "label": "supreme court judge",
+      "pep_class": 2,
+      "selector": "subclass",
+      "single_holder": false,
+      "head_of_state_or_government": false,
+      "refines": [],
+      "source": "fatf-2013",
+      "note": "Judges of the highest courts below their presidents (FATF 2013: senior judicial officials)."
+    },
+    {
+      "qid": "Q26204040",
+      "label": "deputy minister",
+      "pep_class": 2,
+      "selector": "subclass",
+      "single_holder": false,
+      "head_of_state_or_government": false,
+      "refines": [],
+      "source": "fatf-2013",
+      "note": "Senior government officials below the ministers (FATF 2013)."
+    },
+    {
+      "qid": "Q3368517",
+      "label": "public prosecutor general",
+      "pep_class": 2,
+      "selector": "subclass",
+      "single_holder": true,
+      "head_of_state_or_government": false,
+      "refines": [],
+      "source": "fatf-2013",
+      "note": "Heads of prosecution services, attorneys general among them (FATF 2013: senior judicial officials)."
+    },
+    {
+      "qid": "Q121998",
+      "label": "ambassador",
+      "pep_class": 2,
+      "selector": "subclass",
+      "single_holder": false,
+      "head_of_state_or_government": false,
+      "refines": [],
+      "source": "authored",
+      "note": "Ambassadors (the public class 2: ambassadors and diplomats)."
+    },
+    {
+      "qid": "Q2855502",
+      "label": "chief of police",
+      "pep_class": 2,
+      "selector": "subclass",
+      "single_holder": false,
+      "head_of_state_or_government": false,
+      "refines": [],
+      "source": "authored",
+      "note": "Heads of police are publicly class 1, but Wikidata does not tell a national chief from a city's, so class 2 (ours)."
+    },
+    {
+      "qid": "Q1328760",
+      "label": "police commissioner",
+      "pep_class": 2,
+      "selector": "subclass",
+      "single_holder": false,
+      "head_of_state_or_government": false,
+      "refines": [],
+      "source": "authored",
+      "note": "Senior police officials (the public class 2)."
+    },
+    {
+      "qid": "Q45722",
+      "label": "cardinal",
+      "pep_class": 2,
+      "selector": "subclass",
+      "single_holder": false,
+      "head_of_state_or_government": false,
+      "refines": [],
+      "source": "authored",
+      "note": "Senior religious figures (the public class 2)."
+    },
+    {
+      "qid": "Q49476",
+      "label": "archbishop",
+      "pep_class": 2,
+      "selector": "subclass",
+      "single_holder": false,
+      "head_of_state_or_government": false,
+      "refines": [],
+      "source": "authored",
+      "note": "Senior religious figures (the public class 2)."
+    },
+    {
+      "qid": "Q484652",
+      "label": "international organization",
+      "pep_class": 2,
+      "selector": "directs",
+      "single_holder": false,
+      "head_of_state_or_government": false,
+      "refines": [],
+      "source": "fatf-2013",
+      "note": "Positions directing an international organisation (FATF 2013's third category). Publicly class 4; class 2 here, so the default pep-classes screen them (ours, C80.2)."
+    },
+    {
+      "qid": "Q270791",
+      "label": "state-owned enterprise",
+      "pep_class": 3,
+      "selector": "directs",
+      "single_holder": false,
+      "head_of_state_or_government": false,
+      "refines": [],
+      "source": "fatf-2013",
+      "note": "Positions directing a state-owned enterprise (FATF 2013: senior executives of state-owned corporations)."
+    },
+    {
+      "qid": "Q30185",
+      "label": "mayor",
+      "pep_class": 4,
+      "selector": "subclass",
+      "single_holder": true,
+      "head_of_state_or_government": false,
+      "refines": ["Q2285706"],
+      "source": "authored",
+      "note": "Mayors (the public class 4). Wikidata files a mayor under head of government, which this row refines."
+    },
+    {
+      "qid": "Q708492",
+      "label": "council member",
+      "pep_class": 4,
+      "selector": "subclass",
+      "single_holder": false,
+      "head_of_state_or_government": false,
+      "refines": [],
+      "source": "authored",
+      "note": "Members of local assemblies (the public class 4)."
+    }
+  ]
+}

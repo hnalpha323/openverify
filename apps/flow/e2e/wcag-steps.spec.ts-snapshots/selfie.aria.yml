@@ -1,0 +1,7 @@
+- main:
+    - region "Take a selfie":
+        - heading "Take a selfie" [level=1]
+        - paragraph: We compare your selfie with the photo on your ID. Take off sunglasses and hats, and find a well-lit spot.
+        - paragraph: Look straight at the camera. The photo is taken automatically once you hold still.
+        - paragraph: Attempt 1 of 3
+        - button "Start the camera"

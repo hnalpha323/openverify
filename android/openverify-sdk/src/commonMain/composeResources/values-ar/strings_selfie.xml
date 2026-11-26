@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Arabic copy of values/strings_selfie.xml, machine-drafted by selfie-guidance (Workflow 10B,
+  C199.1; i18n/review-status.json): the web flow's Arabic words where it has the same text
+  (selfie.guidance, screen.extend), drafted here otherwise. Positional placeholders only, ' and "
+  written as they are, no isolate or other bidi control (ResourcesTest).
+-->
+<resources>
+    <!-- C204.3: one hint at a time; the shutter stays on screen (C202.4). -->
+    <string name="openverify_selfie_guidance_starting">جارٍ تجهيز دليل الوجه…</string>
+    <string name="openverify_selfie_guidance_manual">يُرجى الثبات في الوضعية، ثم اختيار «التقاط الصورة».</string>
+    <string name="openverify_selfie_guidance_no_face">لا يظهر الوجه. يُرجى وضع الوجه داخل الشكل البيضاوي.</string>
+    <string name="openverify_selfie_guidance_multiple_faces">يُرجى التأكد من أن وجهك وحده داخل الإطار.</string>
+    <string name="openverify_selfie_guidance_too_far">يُرجى الاقتراب من الكاميرا.</string>
+    <string name="openverify_selfie_guidance_too_close">يُرجى الابتعاد قليلًا.</string>
+    <string name="openverify_selfie_guidance_off_centre">يُرجى نقل الوجه إلى منتصف الشكل البيضاوي.</string>
+    <string name="openverify_selfie_guidance_look_straight">يُرجى النظر مباشرة إلى الكاميرا.</string>
+    <string name="openverify_selfie_guidance_turn_left">يُرجى إدارة الرأس ببطء إلى اليسار.</string>
+    <string name="openverify_selfie_guidance_turn_right">يُرجى إدارة الرأس ببطء إلى اليمين.</string>
+    <string name="openverify_selfie_guidance_hold_still">يُرجى الثبات…</string>
+    <!-- C204.5 (WCAG 2.2.1): 20 s before the capture ends, in a polite live region; the count is shown once. -->
+    <plurals name="openverify_selfie_extend_warning">
+        <item quantity="zero">بقيت نحو %1$d ثانية لالتقاط الصور. هل تحتاج إلى وقت إضافي؟</item>
+        <item quantity="one">بقيت نحو ثانية واحدة لالتقاط الصور. هل تحتاج إلى وقت إضافي؟</item>
+        <item quantity="two">بقيت نحو ثانيتين لالتقاط الصور. هل تحتاج إلى وقت إضافي؟</item>
+        <item quantity="few">بقيت نحو %1$d ثوانٍ لالتقاط الصور. هل تحتاج إلى وقت إضافي؟</item>
+        <item quantity="many">بقيت نحو %1$d ثانية لالتقاط الصور. هل تحتاج إلى وقت إضافي؟</item>
+        <item quantity="other">بقيت نحو %1$d ثانية لالتقاط الصور. هل تحتاج إلى وقت إضافي؟</item>
+    </plurals>
+    <string name="openverify_selfie_extend_more_time">وقت إضافي</string>
+    <string name="openverify_selfie_extend_extended">أُضيف وقت إضافي.</string>
+    <string name="openverify_selfie_extend_failed">تعذّرت إضافة وقت. يُرجى التقاط الصور الآن، أو البدء من جديد إذا انتهى الوقت.</string>
+    <string name="openverify_selfie_extend_already_sent">أُرسلت الصور بالفعل، فلا حاجة إلى وقت إضافي.</string>
+</resources>

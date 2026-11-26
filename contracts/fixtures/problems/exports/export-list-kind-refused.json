@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "This list holds face templates or image layouts, which no export includes.",
+  "instance": "/api/v1/exports",
+  "requestId": "00000000-0000-4000-8000-000000009d29",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/filter/filter[list-id]",
+      "detail": "must name a list whose kind has an importer"
+    }
+  ],
+  "code": "export_list_kind_refused"
+}

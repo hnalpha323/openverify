@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The case template has no published version.",
+  "instance": "/api/v1/cases",
+  "requestId": "00000000-0000-4000-8000-000000001218",
+  "code": "case_template_not_published",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/case-template-id",
+      "detail": "has no published version"
+    }
+  ]
+}

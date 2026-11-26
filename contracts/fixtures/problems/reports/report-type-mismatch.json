@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The report template is of another report type.",
+  "instance": "/api/v1/reports",
+  "requestId": "00000000-0000-4000-8000-000000000602",
+  "code": "report_type_mismatch",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/report-template-id",
+      "detail": "the template is a phone-number template"
+    }
+  ]
+}

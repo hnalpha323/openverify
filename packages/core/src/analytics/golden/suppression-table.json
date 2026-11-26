@@ -1,0 +1,324 @@
+{
+  "day:2026-03-02": {
+    "created": 12,
+    "started": 12,
+    "interacted": {
+      "suppressed": "complementary"
+    },
+    "finished": {
+      "suppressed": "small-count"
+    },
+    "completed": 0,
+    "completed-verified": 0,
+    "completed-with-fallback": 0,
+    "completed-unverified": 0,
+    "failed": {
+      "suppressed": "small-count"
+    },
+    "expired-before-start": 0,
+    "expired-after-start": {
+      "suppressed": "small-count"
+    },
+    "approved": {
+      "suppressed": "small-count"
+    },
+    "declined": {
+      "suppressed": "small-count"
+    },
+    "needs-review": {
+      "suppressed": "small-count"
+    },
+    "marked-for-review": {
+      "suppressed": "small-count"
+    },
+    "decided-automatic": 0,
+    "decided-manual": {
+      "suppressed": "small-count"
+    },
+    "decided-not-declared": {
+      "suppressed": "small-count"
+    }
+  },
+  "day:2026-03-03": {
+    "created": 12,
+    "started": 12,
+    "interacted": 12,
+    "finished": {
+      "suppressed": "small-count"
+    },
+    "completed": {
+      "suppressed": "small-count"
+    },
+    "completed-verified": {
+      "suppressed": "small-count"
+    },
+    "completed-with-fallback": 0,
+    "completed-unverified": {
+      "suppressed": "small-count"
+    },
+    "failed": {
+      "suppressed": "small-count"
+    },
+    "expired-before-start": 0,
+    "expired-after-start": {
+      "suppressed": "small-count"
+    },
+    "approved": {
+      "suppressed": "small-count"
+    },
+    "declined": {
+      "suppressed": "small-count"
+    },
+    "needs-review": {
+      "suppressed": "small-count"
+    },
+    "marked-for-review": {
+      "suppressed": "small-count"
+    },
+    "decided-automatic": {
+      "suppressed": "small-count"
+    },
+    "decided-manual": {
+      "suppressed": "small-count"
+    },
+    "decided-not-declared": 0
+  },
+  "day:2026-03-04": {
+    "created": 12,
+    "started": {
+      "suppressed": "small-count"
+    },
+    "interacted": {
+      "suppressed": "small-count"
+    },
+    "finished": {
+      "suppressed": "small-count"
+    },
+    "completed": {
+      "suppressed": "small-count"
+    },
+    "completed-verified": 0,
+    "completed-with-fallback": {
+      "suppressed": "small-count"
+    },
+    "completed-unverified": 0,
+    "failed": 0,
+    "expired-before-start": {
+      "suppressed": "small-count"
+    },
+    "expired-after-start": {
+      "suppressed": "small-count"
+    },
+    "approved": {
+      "suppressed": "small-count"
+    },
+    "declined": {
+      "suppressed": "small-count"
+    },
+    "needs-review": {
+      "suppressed": "small-count"
+    },
+    "marked-for-review": {
+      "suppressed": "small-count"
+    },
+    "decided-automatic": {
+      "suppressed": "small-count"
+    },
+    "decided-manual": {
+      "suppressed": "small-count"
+    },
+    "decided-not-declared": {
+      "suppressed": "small-count"
+    }
+  },
+  "day:2026-03-05": {
+    "created": 12,
+    "started": {
+      "suppressed": "complementary"
+    },
+    "interacted": 11,
+    "finished": {
+      "suppressed": "complementary"
+    },
+    "completed": {
+      "suppressed": "small-count"
+    },
+    "completed-verified": {
+      "suppressed": "small-count"
+    },
+    "completed-with-fallback": {
+      "suppressed": "small-count"
+    },
+    "completed-unverified": {
+      "suppressed": "small-count"
+    },
+    "failed": {
+      "suppressed": "small-count"
+    },
+    "expired-before-start": {
+      "suppressed": "small-count"
+    },
+    "expired-after-start": 0,
+    "approved": {
+      "suppressed": "small-count"
+    },
+    "declined": 0,
+    "needs-review": {
+      "suppressed": "small-count"
+    },
+    "marked-for-review": {
+      "suppressed": "small-count"
+    },
+    "decided-automatic": {
+      "suppressed": "small-count"
+    },
+    "decided-manual": {
+      "suppressed": "small-count"
+    },
+    "decided-not-declared": 0
+  },
+  "week:2026-03-02": {
+    "created": 48,
+    "started": {
+      "suppressed": "complementary"
+    },
+    "interacted": 43,
+    "finished": 35,
+    "completed": {
+      "suppressed": "small-count"
+    },
+    "completed-verified": {
+      "suppressed": "small-count"
+    },
+    "completed-with-fallback": {
+      "suppressed": "small-count"
+    },
+    "completed-unverified": {
+      "suppressed": "small-count"
+    },
+    "failed": {
+      "suppressed": "small-count"
+    },
+    "expired-before-start": {
+      "suppressed": "small-count"
+    },
+    "expired-after-start": {
+      "suppressed": "small-count"
+    },
+    "approved": 11,
+    "declined": {
+      "suppressed": "small-count"
+    },
+    "needs-review": {
+      "suppressed": "small-count"
+    },
+    "marked-for-review": {
+      "suppressed": "small-count"
+    },
+    "decided-automatic": {
+      "suppressed": "small-count"
+    },
+    "decided-manual": {
+      "suppressed": "small-count"
+    },
+    "decided-not-declared": {
+      "suppressed": "small-count"
+    }
+  },
+  "month:2026-03": {
+    "created": 48,
+    "started": {
+      "suppressed": "complementary"
+    },
+    "interacted": 43,
+    "finished": 35,
+    "completed": {
+      "suppressed": "small-count"
+    },
+    "completed-verified": {
+      "suppressed": "small-count"
+    },
+    "completed-with-fallback": {
+      "suppressed": "small-count"
+    },
+    "completed-unverified": {
+      "suppressed": "small-count"
+    },
+    "failed": {
+      "suppressed": "small-count"
+    },
+    "expired-before-start": {
+      "suppressed": "small-count"
+    },
+    "expired-after-start": {
+      "suppressed": "small-count"
+    },
+    "approved": 11,
+    "declined": {
+      "suppressed": "small-count"
+    },
+    "needs-review": {
+      "suppressed": "small-count"
+    },
+    "marked-for-review": {
+      "suppressed": "small-count"
+    },
+    "decided-automatic": {
+      "suppressed": "small-count"
+    },
+    "decided-manual": {
+      "suppressed": "small-count"
+    },
+    "decided-not-declared": {
+      "suppressed": "small-count"
+    }
+  },
+  "total": {
+    "created": 48,
+    "started": {
+      "suppressed": "complementary"
+    },
+    "interacted": 43,
+    "finished": 35,
+    "completed": {
+      "suppressed": "small-count"
+    },
+    "completed-verified": {
+      "suppressed": "small-count"
+    },
+    "completed-with-fallback": {
+      "suppressed": "small-count"
+    },
+    "completed-unverified": {
+      "suppressed": "small-count"
+    },
+    "failed": {
+      "suppressed": "small-count"
+    },
+    "expired-before-start": {
+      "suppressed": "small-count"
+    },
+    "expired-after-start": {
+      "suppressed": "small-count"
+    },
+    "approved": 11,
+    "declined": {
+      "suppressed": "small-count"
+    },
+    "needs-review": {
+      "suppressed": "small-count"
+    },
+    "marked-for-review": {
+      "suppressed": "small-count"
+    },
+    "decided-automatic": {
+      "suppressed": "small-count"
+    },
+    "decided-manual": {
+      "suppressed": "small-count"
+    },
+    "decided-not-declared": {
+      "suppressed": "small-count"
+    }
+  }
+}

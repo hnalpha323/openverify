@@ -1,0 +1,11 @@
+- main:
+    - region "Photograph your ID":
+        - heading "Photograph your ID" [level=1]
+        - paragraph: Use a valid government-issued ID. Place it on a flat surface in good light and make sure all four corners are visible.
+        - paragraph: Attempt 1 of 3
+        - paragraph: Photo 1 of 2
+        - heading "Front of your ID" [level=2]
+        - paragraph: Fit the front of your ID inside the frame.
+        - button "Upload a photo"
+        - button "Take a photo"
+        - status

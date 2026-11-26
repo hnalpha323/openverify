@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-21T12:00:00Z",
+  "domain": "studio portrait pairs",
+  "models": { "detector": "yunet-2026may", "recognizer": "sface-2021dec" },
+  "set": {
+    "manifest_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "identities": 2,
+    "images": 4,
+    "excluded": [{ "image": "p0002-3", "reason": "near_duplicate" }]
+  },
+  "pairs": [
+    { "a": "p0001-1", "b": "p0001-2", "genuine": true, "cosine": 0.71, "age_gap_years": 6 },
+    { "a": "p0002-1", "b": "p0002-2", "genuine": true, "cosine": 0.64, "age_gap_years": null },
+    { "a": "p0001-1", "b": "p0002-1", "genuine": false, "cosine": 0.08 }
+  ],
+  "skew": {
+    "sex": { "female": 1, "male": 1 },
+    "ita_degrees": [41.2, 18.5],
+    "per_group_frr_measured": false
+  },
+  "provisional": { "center_yaw_ratio": [0.004, -0.012], "passive_liveness_mean": [0.97, 0.99] }
+}

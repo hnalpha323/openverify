@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "A submitted capture cannot be extended.",
+  "instance": "/api/v1/flow/selfie-captures/self_01M5CN00000000000000009A03/extend",
+  "requestId": "00000000-0000-4000-8000-000000009a06",
+  "code": "selfie_capture_not_extendable"
+}

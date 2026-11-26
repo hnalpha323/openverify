@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Arabic copy of values/strings_document.xml, machine-drafted by android-i18n (Workflow 10A, C199.1;
+  i18n/review-status.json): where the hosted web flow has the same English text, its
+  Arabic words are used, so both clients say the same thing. Compose Multiplatform resources:
+  positional placeholders only, ' and " written as they are, no isolate or other bidi control
+  (ResourcesTest).
+-->
+<resources>
+    <string name="openverify_document_title">رفع مستند</string>
+    <string name="openverify_document_intro">يُرجى رفع مستند يظهر فيه الاسم الكامل والعنوان.</string>
+    <string name="openverify_document_accepted">يمكن رفع أحد المستندات التالية:</string>
+    <plurals name="openverify_document_type_utility_bill">
+        <item quantity="zero">فاتورة خدمات مؤرخة خلال آخر %1$d يوم</item>
+        <item quantity="one">فاتورة خدمات مؤرخة خلال اليوم الأخير</item>
+        <item quantity="two">فاتورة خدمات مؤرخة خلال اليومين الأخيرين</item>
+        <item quantity="few">فاتورة خدمات مؤرخة خلال آخر %1$d أيام</item>
+        <item quantity="many">فاتورة خدمات مؤرخة خلال آخر %1$d يومًا</item>
+        <item quantity="other">فاتورة خدمات مؤرخة خلال آخر %1$d يوم</item>
+    </plurals>
+    <plurals name="openverify_document_type_bank_statement">
+        <item quantity="zero">كشف حساب بنكي مؤرخ خلال آخر %1$d يوم</item>
+        <item quantity="one">كشف حساب بنكي مؤرخ خلال اليوم الأخير</item>
+        <item quantity="two">كشف حساب بنكي مؤرخ خلال اليومين الأخيرين</item>
+        <item quantity="few">كشف حساب بنكي مؤرخ خلال آخر %1$d أيام</item>
+        <item quantity="many">كشف حساب بنكي مؤرخ خلال آخر %1$d يومًا</item>
+        <item quantity="other">كشف حساب بنكي مؤرخ خلال آخر %1$d يوم</item>
+    </plurals>
+    <plurals name="openverify_document_type_pay_stub">
+        <item quantity="zero">قسيمة راتب مؤرخة خلال آخر %1$d يوم</item>
+        <item quantity="one">قسيمة راتب مؤرخة خلال اليوم الأخير</item>
+        <item quantity="two">قسيمة راتب مؤرخة خلال اليومين الأخيرين</item>
+        <item quantity="few">قسيمة راتب مؤرخة خلال آخر %1$d أيام</item>
+        <item quantity="many">قسيمة راتب مؤرخة خلال آخر %1$d يومًا</item>
+        <item quantity="other">قسيمة راتب مؤرخة خلال آخر %1$d يوم</item>
+    </plurals>
+    <string name="openverify_document_type_lease">عقد إيجار ما زال ساريًا</string>
+    <string name="openverify_document_type_tax_document">مستند ضريبي من آخر سنة ضريبية</string>
+    <string name="openverify_document_name_utility_bill">فاتورة خدمات</string>
+    <string name="openverify_document_name_bank_statement">كشف حساب بنكي</string>
+    <string name="openverify_document_name_lease">عقد إيجار</string>
+    <string name="openverify_document_name_pay_stub">قسيمة راتب</string>
+    <string name="openverify_document_name_tax_document">مستند ضريبي</string>
+    <string name="openverify_document_formats">يُرجى رفعه بإحدى هذه الصيغ: %1$s، بحجم لا يتجاوز %2$d ميغابايت.</string>
+    <plurals name="openverify_document_pages">
+        <item quantity="zero">يمكن أن يحتوي ملف PDF على %1$d صفحة كحد أقصى.</item>
+        <item quantity="one">يمكن أن يحتوي ملف PDF على صفحة واحدة فقط.</item>
+        <item quantity="two">يمكن أن يحتوي ملف PDF على صفحتين كحد أقصى.</item>
+        <item quantity="few">يمكن أن يحتوي ملف PDF على %1$d صفحات كحد أقصى.</item>
+        <item quantity="many">يمكن أن يحتوي ملف PDF على %1$d صفحة كحد أقصى.</item>
+        <item quantity="other">يمكن أن يحتوي ملف PDF على %1$d صفحة كحد أقصى.</item>
+    </plurals>
+    <string name="openverify_document_choose">اختيار ملف</string>
+    <string name="openverify_document_photo">التقاط صورة</string>
+    <string name="openverify_document_unavailable">لا يمكن لهذا الجهاز تقديم مستند هنا. يُرجى استخدام جهاز آخر للمتابعة.</string>
+    <string name="openverify_document_picked">الملف: %1$s، %2$s</string>
+    <string name="openverify_document_unnamed">ملف بلا اسم</string>
+    <string name="openverify_decimal_separator">.</string>
+    <string name="openverify_document_picked_hint">يُرجى التأكد من أنه المستند الصحيح، ثم رفعه.</string>
+    <string name="openverify_document_upload">رفع هذا الملف</string>
+    <string name="openverify_document_choose_another">اختيار ملف آخر</string>
+    <string name="openverify_document_uploading">جارٍ رفع المستند…</string>
+    <string name="openverify_document_error_empty">هذا الملف فارغ. يُرجى اختيار ملف آخر.</string>
+    <string name="openverify_document_error_too_large">حجم هذا الملف أكبر من 10 ميغابايت. يُرجى اختيار ملف أصغر، مثل صورة للمستند أو ملف PDF بصفحات أقل.</string>
+    <string name="openverify_document_error_unsupported">لا يمكن استخدام هذا النوع من الملفات. يُرجى اختيار ملف بإحدى الصيغ المذكورة أعلاه.</string>
+    <string name="openverify_document_error_unreadable">تعذّرت قراءة هذا الملف. يُرجى اختيار ملف آخر.</string>
+    <string name="openverify_document_capture_title">تصوير المستند</string>
+    <string name="openverify_document_capture_instruction">يُرجى وضع الصفحة كاملة داخل الإطار، في إضاءة جيدة، دون أن يغطيها شيء.</string>
+    <string name="openverify_document_capture_photo">صورتك للمستند</string>
+    <string name="openverify_document_capture_back">الرجوع إلى خطوة المستند</string>
+
+    <!-- C202.3, C202.4: the capture guidance (machine-drafted). -->
+    <string name="openverify_document_guidance_move_closer">اقترب أكثر</string>
+    <string name="openverify_document_guidance_hold_still">لا تتحرك</string>
+    <string name="openverify_document_guidance_tilt_away">أمِل الوثيقة بعيدًا عن الضوء</string>
+    <string name="openverify_document_guidance_more_light">ابحث عن إضاءة أكثر</string>
+    <string name="openverify_document_guidance_fit_card">ضع البطاقة داخل الإطار</string>
+    <string name="openverify_document_guidance_fit_page">ضع الصفحة داخل الإطار</string>
+    <string name="openverify_document_guidance_show_mrz">أظهر أسطر الرمز في أسفل الصفحة</string>
+    <string name="openverify_document_guidance_auto">تُلتقط الصورة تلقائيًا عندما تظهر وثيقتك بوضوح. ويمكنك أيضًا التقاطها بنفسك في أي وقت.</string>
+</resources>

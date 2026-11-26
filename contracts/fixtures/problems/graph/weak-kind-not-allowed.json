@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "A weak kind needs include-weak-kinds, at no more than 4 hops.",
+  "instance": "/api/v1/graph-query-template-versions/grqtv_01M5CK3190XEVBM5ZXA76E1JSN/publish",
+  "requestId": "00000000-0000-4000-8000-000000001000",
+  "code": "weak_kind_not_allowed",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/config/connect-kinds/0",
+      "detail": "is a weak kind"
+    }
+  ]
+}

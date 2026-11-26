@@ -1,0 +1,11 @@
+# The kind upgrade's changed values (Workflow 11C chart-policy-11c; C265.4, review H16), applied by
+# ci/kind.sh upgrade on top of ci/kind-values.yaml: the same chart with other values re-runs the
+# pre-upgrade migrate hook, then the smoke. The flow server moves to the image built without face
+# guidance (Phase 10 P2's decline outcome, C289), the API to two replicas, and the log level and a
+# non-secret setting change, so the ConfigMaps' checksums roll the Deployments.
+install:
+  logLevel: debug
+flow:
+  image: { repository: openverify/flow, tag: 11c-local-noguidance, pullPolicy: Never }
+api:
+  replicaCount: 2

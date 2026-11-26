@@ -1,0 +1,20 @@
+{
+  "chip": {
+    "challenge-id": "chc_01M5CK3190XEVBM5ZXA76E1JSM",
+    "nonce": "0123456789abcdef",
+    "active-authentication-response": "AQIDBA==",
+    "device-report": {
+      "protocols": [
+        {
+          "protocol": "pace",
+          "outcome": "succeeded"
+        },
+        {
+          "protocol": "active-authentication",
+          "outcome": "succeeded"
+        }
+      ],
+      "read-ms": 4200
+    }
+  }
+}

@@ -1,0 +1,1494 @@
+{
+  "$schema": "./flow-spec-members.schema.json",
+  "format": 1,
+  "description": "C194.4 (review H03): Android's treatment of every member of Phase 9's client views, read against contracts/fixtures/flow-spec/client-view-members.json by FlowSpecMembersTest, which fails on a member without an entry. honoured: the SDK reads and acts on it; ignored: it decodes or skips it, for the reason given; server-only: a client never receives it. A member added after spec 2 says whether it is appearance-only and why (C151.7 amended). No component has a style member (10A decision 4, K9-4): per-component style overrides are dormant. Shared between Workflows; each Stage 1a that adds a member lists it in the same commit.",
+  "session": {
+    "completion": {
+      "treatment": "ignored",
+      "contract": "C158.5, decision 10",
+      "reason": "the activity result replaces the redirect on Android",
+      "members": {
+        "redirect-url": {
+          "treatment": "ignored",
+          "contract": "C158.5",
+          "reason": "decision 10"
+        }
+      }
+    },
+    "consent": {
+      "treatment": "honoured",
+      "contract": "C3, C94.6",
+      "members": {
+        "accepted-at": {
+          "treatment": "honoured",
+          "contract": "C3"
+        }
+      }
+    },
+    "copy": {
+      "treatment": "honoured",
+      "contract": "C162.6, C199.6",
+      "members": {
+        "messages": {
+          "treatment": "honoured",
+          "contract": "C199.6"
+        }
+      }
+    },
+    "decision-contest-route": {
+      "treatment": "honoured",
+      "contract": "C128.7, C197.3: shown on the failed screen",
+      "members": {
+        "url": {
+          "treatment": "honoured",
+          "contract": "C197.3"
+        },
+        "host": {
+          "treatment": "honoured",
+          "contract": "C197.3"
+        },
+        "contact": {
+          "treatment": "honoured",
+          "contract": "C197.3"
+        }
+      }
+    },
+    "embed": {
+      "treatment": "ignored",
+      "contract": "C159",
+      "reason": "web only: the embed bridge's origins",
+      "members": {
+        "allowed-origins": {
+          "treatment": "ignored",
+          "contract": "C159",
+          "reason": "web only"
+        }
+      }
+    },
+    "environment": {
+      "treatment": "honoured",
+      "contract": "C19",
+      "members": {
+        "kind": {
+          "treatment": "honoured",
+          "contract": "C19: the sandbox banner and uploads"
+        }
+      }
+    },
+    "face-template-retention-days": {
+      "treatment": "honoured",
+      "contract": "C42.3, C200.2: fills {days}"
+    },
+    "flow": {
+      "treatment": "ignored",
+      "contract": "C151.6, C193.2",
+      "reason": "the v1 projection; the driver renders position and step (C193.3). Today's coordinator still walks it until android-driver's checkpoint 1"
+    },
+    "handoff": {
+      "treatment": "ignored",
+      "contract": "C96.3, C221.13",
+      "reason": "the server skips device_handoff for every SDK session (C221.13), so the driver never needs its state; served anyway, a device_handoff position renders unsupported (C194.2)",
+      "members": {
+        "handed-off": {
+          "treatment": "ignored",
+          "contract": "C96.3",
+          "reason": "as handoff"
+        },
+        "state": {
+          "treatment": "ignored",
+          "contract": "C96.3",
+          "reason": "as handoff"
+        },
+        "step-id": {
+          "treatment": "ignored",
+          "contract": "C96.3",
+          "reason": "as handoff"
+        }
+      }
+    },
+    "handoff-context": {
+      "treatment": "server-only",
+      "contract": "C96.3 (F30)",
+      "reason": "served only to a session a handoff redemption created; an SDK session never is one",
+      "members": {
+        "attribution": {
+          "treatment": "server-only",
+          "contract": "C96.3",
+          "reason": "as handoff-context"
+        },
+        "issuing-country-code": {
+          "treatment": "server-only",
+          "contract": "C96.3",
+          "reason": "as handoff-context"
+        },
+        "organization-display-name": {
+          "treatment": "server-only",
+          "contract": "C96.3",
+          "reason": "as handoff-context"
+        },
+        "started-at": {
+          "treatment": "server-only",
+          "contract": "C96.3",
+          "reason": "as handoff-context"
+        },
+        "steps": {
+          "treatment": "server-only",
+          "contract": "C96.3",
+          "reason": "as handoff-context"
+        }
+      }
+    },
+    "inquiry": {
+      "treatment": "honoured",
+      "contract": "C3, C193.3",
+      "members": {
+        "id": {
+          "treatment": "honoured",
+          "contract": "C3"
+        },
+        "status": {
+          "treatment": "honoured",
+          "contract": "C193.3: an ended position reads the terminal status"
+        }
+      }
+    },
+    "integrity": {
+      "treatment": "honoured",
+      "contract": "C211.3, C194.4 (Workflow 10B): not appearance-only",
+      "reason": "asks the host's IntegrityTokenProvider for one token after consent (device-integrity-android)",
+      "members": {
+        "request": {
+          "treatment": "honoured",
+          "contract": "C211.3"
+        }
+      }
+    },
+    "links": {
+      "treatment": "honoured",
+      "contract": "C162.3, C197.4: the help slot",
+      "members": {
+        "help-url": {
+          "treatment": "honoured",
+          "contract": "C197.4"
+        },
+        "privacy-url": {
+          "treatment": "honoured",
+          "contract": "C197.4"
+        }
+      },
+      "addedAfterSpec2": true,
+      "appearanceOnly": false,
+      "appearanceReason": "Workflow 9B added it within spec 2: without it the person is not offered the help and privacy links, so it changes what a person is told; recorded before C151.7's Phase 10 amendment"
+    },
+    "locales": {
+      "treatment": "honoured",
+      "contract": "C161.2, C199.2",
+      "members": {
+        "enabled": {
+          "treatment": "honoured",
+          "contract": "C199.2"
+        },
+        "default": {
+          "treatment": "honoured",
+          "contract": "C199.2"
+        }
+      }
+    },
+    "organization-display-name": {
+      "treatment": "honoured",
+      "contract": "C200.2, C221.12: fills {organization} in operator copy and in the consent digests",
+      "addedAfterSpec2": true,
+      "appearanceOnly": false,
+      "appearanceReason": "Workflow 10A added it within spec 2 (10A decision 6): it fills {organization} in operator copy, so it changes what a person is told; additive because no built-in text uses it and a client that cannot fill a placeholder shows the text unsupported (C199.6), never different words"
+    },
+    "position": {
+      "treatment": "honoured",
+      "contract": "C151.5, C193.3",
+      "members": {
+        "step-id": {
+          "treatment": "honoured",
+          "contract": "C193.3"
+        },
+        "state": {
+          "treatment": "honoured",
+          "contract": "C193.3"
+        },
+        "previous-step-id": {
+          "treatment": "ignored",
+          "contract": "C151.5",
+          "reason": "the SDK renders the current step only; the previous step is the server's record"
+        },
+        "retry-after-ms": {
+          "treatment": "honoured",
+          "contract": "C197.1"
+        }
+      }
+    },
+    "signals": {
+      "treatment": "honoured",
+      "contract": "C94.6 (Phase 7): the collection tiers after consent",
+      "members": {
+        "integrity": {
+          "treatment": "honoured",
+          "contract": "C94.6"
+        },
+        "recognition": {
+          "treatment": "honoured",
+          "contract": "C94.6"
+        },
+        "next-sequence": {
+          "treatment": "honoured",
+          "contract": "K7A-7"
+        }
+      }
+    },
+    "spec-version": {
+      "treatment": "honoured",
+      "contract": "C193.2: the driver requires 2"
+    },
+    "step": {
+      "treatment": "honoured",
+      "contract": "C151.5, C194: the step registry renders it"
+    },
+    "theme": {
+      "treatment": "honoured",
+      "contract": "C160.7, C198",
+      "members": {
+        "theme-set-id": {
+          "treatment": "ignored",
+          "contract": "C160.7",
+          "reason": "names the set for the console; the SDK maps the palettes it carries"
+        },
+        "revision": {
+          "treatment": "ignored",
+          "contract": "C160.7",
+          "reason": "as theme-set-id"
+        },
+        "mode": {
+          "treatment": "honoured",
+          "contract": "C198.2, C198.5"
+        },
+        "light": {
+          "treatment": "honoured",
+          "contract": "C198.2"
+        },
+        "dark": {
+          "treatment": "honoured",
+          "contract": "C198.2, C198.5"
+        },
+        "radius": {
+          "treatment": "honoured",
+          "contract": "C198.2"
+        },
+        "font": {
+          "treatment": "honoured",
+          "contract": "C198.4: kind and platforms read; an uploaded font is web-only, so the system font"
+        },
+        "logo": {
+          "treatment": "honoured",
+          "contract": "C198.3"
+        },
+        "placement": {
+          "treatment": "honoured",
+          "contract": "C198.10"
+        }
+      }
+    },
+    "values": {
+      "treatment": "honoured",
+      "contract": "C151.5, C195.5"
+    },
+    "verifications": {
+      "treatment": "honoured",
+      "contract": "C193.4"
+    },
+    "withdrawable-share-consents": {
+      "treatment": "honoured",
+      "contract": "C237.6, C238.7 (Workflow 11A; V02): one withdraw affordance per entry on every later step and the completion screen",
+      "addedAfterSpec2": true,
+      "appearanceOnly": false,
+      "appearanceReason": "it offers the person a way to withdraw a consent they gave in this session, so it changes what a person can do; it is served only after a share_consent step, which no client built before Workflow 11A renders, so spec 2 carries it without a version change"
+    }
+  },
+  "steps": {
+    "aamva": {
+      "id": {
+        "treatment": "honoured",
+        "contract": "C59"
+      },
+      "maxAttempts": {
+        "treatment": "honoured",
+        "contract": "C59"
+      },
+      "source": {
+        "treatment": "honoured",
+        "contract": "C59"
+      },
+      "type": {
+        "treatment": "honoured",
+        "contract": "C59"
+      }
+    },
+    "business_website": {
+      "id": {
+        "treatment": "honoured",
+        "contract": "C61"
+      },
+      "maxAttempts": {
+        "treatment": "honoured",
+        "contract": "C61"
+      },
+      "type": {
+        "treatment": "honoured",
+        "contract": "C61"
+      }
+    },
+    "completion": {
+      "id": {
+        "treatment": "honoured",
+        "contract": "C193.3"
+      },
+      "messageKey": {
+        "treatment": "honoured",
+        "contract": "C193.3"
+      },
+      "type": {
+        "treatment": "honoured",
+        "contract": "C193.3"
+      }
+    },
+    "consent": {
+      "id": {
+        "treatment": "honoured",
+        "contract": "C45, C200"
+      },
+      "optionalTextKeys": {
+        "treatment": "honoured",
+        "contract": "C45, C200"
+      },
+      "required": {
+        "treatment": "honoured",
+        "contract": "C45, C200"
+      },
+      "textKeys": {
+        "treatment": "honoured",
+        "contract": "C45, C200"
+      },
+      "type": {
+        "treatment": "honoured",
+        "contract": "C45, C200"
+      }
+    },
+    "crypto_wallet": {
+      "chains": {
+        "treatment": "honoured",
+        "contract": "C57 (paste only)"
+      },
+      "id": {
+        "treatment": "honoured",
+        "contract": "C57 (paste only)"
+      },
+      "maxAttempts": {
+        "treatment": "honoured",
+        "contract": "C57 (paste only)"
+      },
+      "signing": {
+        "treatment": "honoured",
+        "contract": "C57 (paste only)"
+      },
+      "type": {
+        "treatment": "honoured",
+        "contract": "C57 (paste only)"
+      }
+    },
+    "database": {
+      "fields": {
+        "treatment": "honoured",
+        "contract": "C52.3"
+      },
+      "id": {
+        "treatment": "honoured",
+        "contract": "C52.3"
+      },
+      "maxAttempts": {
+        "treatment": "honoured",
+        "contract": "C52.3"
+      },
+      "requiredFields": {
+        "treatment": "honoured",
+        "contract": "C52.3"
+      },
+      "type": {
+        "treatment": "honoured",
+        "contract": "C52.3"
+      }
+    },
+    "database_business": {
+      "collectAssociatedPersons": {
+        "treatment": "honoured",
+        "contract": "C61"
+      },
+      "id": {
+        "treatment": "honoured",
+        "contract": "C61"
+      },
+      "maxAttempts": {
+        "treatment": "honoured",
+        "contract": "C61"
+      },
+      "type": {
+        "treatment": "honoured",
+        "contract": "C61"
+      }
+    },
+    "device_handoff": {
+      "allowContinueHere": {
+        "treatment": "ignored",
+        "contract": "C96.1, C221.13",
+        "reason": "the server skips device_handoff for every SDK session; served anyway, the step renders unsupported (C194.2)"
+      },
+      "confirmationCode": {
+        "treatment": "ignored",
+        "contract": "C96.1, C221.13",
+        "reason": "the server skips device_handoff for every SDK session; served anyway, the step renders unsupported (C194.2)"
+      },
+      "id": {
+        "treatment": "ignored",
+        "contract": "C96.1, C221.13",
+        "reason": "the server skips device_handoff for every SDK session; served anyway, the step renders unsupported (C194.2)"
+      },
+      "linkTtlSeconds": {
+        "treatment": "ignored",
+        "contract": "C96.1, C221.13",
+        "reason": "the server skips device_handoff for every SDK session; served anyway, the step renders unsupported (C194.2)"
+      },
+      "methods": {
+        "treatment": "ignored",
+        "contract": "C96.1, C221.13",
+        "reason": "the server skips device_handoff for every SDK session; served anyway, the step renders unsupported (C194.2)"
+      },
+      "qrTtlSeconds": {
+        "treatment": "ignored",
+        "contract": "C96.1, C221.13",
+        "reason": "the server skips device_handoff for every SDK session; served anyway, the step renders unsupported (C194.2)"
+      },
+      "skipOnMobile": {
+        "treatment": "ignored",
+        "contract": "C96.1, C221.13",
+        "reason": "the server skips device_handoff for every SDK session; served anyway, the step renders unsupported (C194.2)"
+      },
+      "type": {
+        "treatment": "ignored",
+        "contract": "C96.1, C221.13",
+        "reason": "the server skips device_handoff for every SDK session; served anyway, the step renders unsupported (C194.2)"
+      }
+    },
+    "document": {
+      "captureMethods": {
+        "treatment": "honoured",
+        "contract": "C60, C193.4"
+      },
+      "captureMethodsByDevice": {
+        "treatment": "honoured",
+        "contract": "C153.2, C206.1: the native list"
+      },
+      "documentTypes": {
+        "treatment": "honoured",
+        "contract": "C60, C193.4"
+      },
+      "id": {
+        "treatment": "honoured",
+        "contract": "C60, C193.4"
+      },
+      "maxAttempts": {
+        "treatment": "honoured",
+        "contract": "C60, C193.4"
+      },
+      "type": {
+        "treatment": "honoured",
+        "contract": "C60, C193.4"
+      }
+    },
+    "email_otp": {
+      "codeLength": {
+        "treatment": "honoured",
+        "contract": "C55"
+      },
+      "id": {
+        "treatment": "honoured",
+        "contract": "C55"
+      },
+      "maxAttempts": {
+        "treatment": "honoured",
+        "contract": "C55"
+      },
+      "type": {
+        "treatment": "honoured",
+        "contract": "C55"
+      }
+    },
+    "failure": {
+      "id": {
+        "treatment": "honoured",
+        "contract": "C197.3"
+      },
+      "messageKey": {
+        "treatment": "honoured",
+        "contract": "C197.3"
+      },
+      "type": {
+        "treatment": "honoured",
+        "contract": "C197.3"
+      }
+    },
+    "government_id": {
+      "allowedCountries": {
+        "treatment": "honoured",
+        "contract": "C29, C193.4"
+      },
+      "allowedIdClasses": {
+        "treatment": "honoured",
+        "contract": "C29, C193.4"
+      },
+      "captureMethods": {
+        "treatment": "honoured",
+        "contract": "C29, C193.4"
+      },
+      "captureMethodsByDevice": {
+        "treatment": "honoured",
+        "contract": "C153.2, C206.1: the native list"
+      },
+      "id": {
+        "treatment": "honoured",
+        "contract": "C29, C193.4"
+      },
+      "maxAttempts": {
+        "treatment": "honoured",
+        "contract": "C29, C193.4"
+      },
+      "sides": {
+        "treatment": "honoured",
+        "contract": "C29, C193.4"
+      },
+      "type": {
+        "treatment": "honoured",
+        "contract": "C29, C193.4"
+      }
+    },
+    "nfc": {
+      "androidOnly": {
+        "treatment": "ignored",
+        "contract": "C147, C207",
+        "reason": "tells the web flow it cannot render the step; Android renders it (C207)"
+      },
+      "fallbackAvailable": {
+        "treatment": "honoured",
+        "contract": "C207.9, C194.4 (Workflow 10C): not appearance-only",
+        "addedAfterSpec2": true,
+        "appearanceOnly": false,
+        "appearanceReason": "it decides whether the person is offered \"use another way\" at the nfc step, so it changes what a person is asked; no client released or built before Workflow 10C renders an nfc step (the SDK showed it as unsupported and the web flow ships with the server), so spec 2 carries it without a version change"
+      },
+      "id": {
+        "treatment": "honoured",
+        "contract": "C207.1 (Workflow 10C)"
+      },
+      "maxAttempts": {
+        "treatment": "honoured",
+        "contract": "C207.1 (Workflow 10C)"
+      },
+      "prefillMrz": {
+        "treatment": "honoured",
+        "contract": "C207.2, C221.1, C194.4 (Workflow 10C): not appearance-only; personal data",
+        "addedAfterSpec2": true,
+        "appearanceOnly": false,
+        "appearanceReason": "with it the person is not asked to type the document number, birth date and expiry, so it changes what a person is asked; no client released or built before Workflow 10C renders an nfc step (the SDK showed it as unsupported and the web flow ships with the server), so spec 2 carries it without a version change"
+      },
+      "sandboxChipAvailable": {
+        "treatment": "honoured",
+        "contract": "C208.2, C194.4 (Workflow 10C): not appearance-only",
+        "addedAfterSpec2": true,
+        "appearanceOnly": false,
+        "appearanceReason": "it decides whether the person is offered the \"Test chip (sandbox)\" reader, so it changes what a person is asked; no client released or built before Workflow 10C renders an nfc step (the SDK showed it as unsupported and the web flow ships with the server), so spec 2 carries it without a version change"
+      },
+      "type": {
+        "treatment": "honoured",
+        "contract": "C207.1 (Workflow 10C)"
+      }
+    },
+    "phone_otp": {
+      "allowVoip": {
+        "treatment": "ignored",
+        "contract": "C55.8",
+        "reason": "the server checks the number; the SDK only collects it"
+      },
+      "allowedCountries": {
+        "treatment": "honoured",
+        "contract": "C55"
+      },
+      "codeLength": {
+        "treatment": "honoured",
+        "contract": "C55"
+      },
+      "id": {
+        "treatment": "honoured",
+        "contract": "C55"
+      },
+      "maxAttempts": {
+        "treatment": "honoured",
+        "contract": "C55"
+      },
+      "type": {
+        "treatment": "honoured",
+        "contract": "C55"
+      }
+    },
+    "screen": {
+      "components": {
+        "treatment": "honoured",
+        "contract": "C195.1"
+      },
+      "id": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "type": {
+        "treatment": "honoured",
+        "contract": "C195"
+      }
+    },
+    "selfie": {
+      "id": {
+        "treatment": "honoured",
+        "contract": "C40, C193.4"
+      },
+      "liveness": {
+        "treatment": "honoured",
+        "contract": "C40, C193.4"
+      },
+      "maxAttempts": {
+        "treatment": "honoured",
+        "contract": "C40, C193.4"
+      },
+      "poses": {
+        "treatment": "honoured",
+        "contract": "C40, C193.4"
+      },
+      "type": {
+        "treatment": "honoured",
+        "contract": "C40, C193.4"
+      }
+    },
+    "share_consent": {
+      "biometric": {
+        "treatment": "honoured",
+        "contract": "C238.3, C238.7 (Workflow 11A): the separate, unticked biometric tick with its own text and digest"
+      },
+      "categories": {
+        "treatment": "honoured",
+        "contract": "C238.3, C238.7 (Workflow 11A): the categories in words"
+      },
+      "id": {
+        "treatment": "honoured",
+        "contract": "C238.3 (Workflow 11A)"
+      },
+      "recipientName": {
+        "treatment": "honoured",
+        "contract": "C238.3, C238.7 (Workflow 11A): the named recipient, as the server serves it"
+      },
+      "side": {
+        "treatment": "honoured",
+        "contract": "C238.3 (Workflow 11A)"
+      },
+      "sourceName": {
+        "treatment": "honoured",
+        "contract": "C238.3, C238.7 (Workflow 11A)"
+      },
+      "text": {
+        "treatment": "honoured",
+        "contract": "C238.3, C238.7 (Workflow 11A): the server-composed text; the SDK recomputes its SHA-256 over what it displays and renders unsupported on a mismatch"
+      },
+      "type": {
+        "treatment": "honoured",
+        "contract": "C238.1 (Workflow 11A)"
+      }
+    }
+  },
+  "components": {
+    "address": {
+      "allowedCountries": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "enabledWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      },
+      "fields": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "hintKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "id": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "kind": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "labelKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "required": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "visibleWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      }
+    },
+    "button": {
+      "action": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "enabledWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      },
+      "id": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "kind": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "labelKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "link": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "port": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "visibleWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      }
+    },
+    "checkbox": {
+      "enabledWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      },
+      "field": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "hintKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "id": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "kind": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "labelKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "required": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "visibleWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      }
+    },
+    "checkbox_group": {
+      "enabledWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      },
+      "field": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "hintKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "id": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "kind": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "labelKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "options": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "required": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "visibleWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      }
+    },
+    "container": {
+      "children": {
+        "treatment": "honoured",
+        "contract": "C195.1: nesting at most 3"
+      },
+      "direction": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "enabledWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      },
+      "id": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "kind": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "visibleWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      }
+    },
+    "country_select": {
+      "allowedCountries": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "enabledWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      },
+      "field": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "hintKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "id": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "kind": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "labelKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "required": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "visibleWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      }
+    },
+    "date": {
+      "enabledWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      },
+      "field": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "hintKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "id": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "kind": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "labelKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "max": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "min": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "required": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "visibleWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      }
+    },
+    "email": {
+      "enabledWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      },
+      "field": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "hintKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "id": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "kind": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "labelKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "required": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "visibleWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      }
+    },
+    "footer": {
+      "children": {
+        "treatment": "honoured",
+        "contract": "C195.1: nesting at most 3"
+      },
+      "enabledWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      },
+      "id": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "kind": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "visibleWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      }
+    },
+    "image": {
+      "altKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "assetId": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "decorative": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "enabledWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      },
+      "id": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "kind": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "visibleWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      }
+    },
+    "masked_text": {
+      "enabledWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      },
+      "field": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "hintKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "id": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "kind": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "labelKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "maxLength": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "minLength": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "pattern": {
+        "treatment": "honoured",
+        "contract": "C148.3, C196.2: the Kotlin matcher; the server stays the final check"
+      },
+      "required": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "visibleWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      }
+    },
+    "multi_select": {
+      "enabledWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      },
+      "field": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "hintKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "id": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "kind": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "labelKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "options": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "required": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "visibleWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      }
+    },
+    "number": {
+      "enabledWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      },
+      "field": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "hintKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "id": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "kind": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "labelKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "max": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "min": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "required": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "visibleWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      }
+    },
+    "phone": {
+      "allowedCountries": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "enabledWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      },
+      "field": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "hintKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "id": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "kind": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "labelKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "required": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "visibleWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      }
+    },
+    "radio_group": {
+      "enabledWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      },
+      "field": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "hintKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "id": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "kind": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "labelKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "options": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "required": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "visibleWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      }
+    },
+    "select": {
+      "enabledWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      },
+      "field": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "hintKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "id": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "kind": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "labelKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "options": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "required": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "visibleWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      }
+    },
+    "spacer": {
+      "enabledWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      },
+      "id": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "kind": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "size": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "visibleWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      }
+    },
+    "stepper": {
+      "current": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "enabledWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      },
+      "id": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "kind": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "labelKeys": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "visibleWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      }
+    },
+    "text": {
+      "copyKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "enabledWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      },
+      "id": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "kind": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "variant": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "visibleWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      }
+    },
+    "text_area": {
+      "enabledWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      },
+      "field": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "hintKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "id": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "kind": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "labelKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "maxLength": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "minLength": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "pattern": {
+        "treatment": "honoured",
+        "contract": "C148.3, C196.2: the Kotlin matcher; the server stays the final check"
+      },
+      "required": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "visibleWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      }
+    },
+    "text_input": {
+      "enabledWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      },
+      "field": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "hintKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "id": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "kind": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "labelKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "maxLength": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "minLength": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "pattern": {
+        "treatment": "honoured",
+        "contract": "C148.3, C196.2: the Kotlin matcher; the server stays the final check"
+      },
+      "required": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "visibleWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      }
+    },
+    "url": {
+      "enabledWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      },
+      "field": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "hintKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "id": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "kind": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "labelKey": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "required": {
+        "treatment": "honoured",
+        "contract": "C195"
+      },
+      "visibleWhen": {
+        "treatment": "honoured",
+        "contract": "C148.4, C196.1: the strict evaluator"
+      }
+    }
+  }
+}

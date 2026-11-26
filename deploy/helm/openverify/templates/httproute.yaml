@@ -1,0 +1,51 @@
+{{- /*
+C263.1 (Workflow 11C Stage 2, chart-11c): an optional Gateway API HTTPRoute per host instead of the
+Ingress, an example only (C286), rendered when gateway.httpRoute.enabled and the host is set. It
+attaches to the parents gateway.httpRoute.parentRefs names, or, when that is empty, to a Gateway named
+like the release (<fullname>) in the release's namespace (KP11-84, Workflow 11F review); each route sends the host to its component's public port only, never the API's
+internal listener (C250.3: the public port answers its generic 404 on /api/v1/internal/), and sets
+Strict-Transport-Security from ingress.hsts (C255.1). The Gateway API has no standard body limit, so
+the gateway's own settings bound request bodies.
+*/ -}}
+{{- if .Values.gateway.httpRoute.enabled }}
+{{- $hsts := .Values.ingress.hsts }}
+{{- $hstsValue := printf "max-age=%d%s%s" (int $hsts.maxAge) (ternary "; includeSubDomains" "" $hsts.includeSubDomains) (ternary "; preload" "" $hsts.preload) }}
+{{- $ports := dict "api" .Values.api.port "flow" .Values.flow.port "dashboard" .Values.dashboard.port }}
+{{- range $component := list "api" "flow" "dashboard" }}
+{{- with index $.Values.ingress.hosts $component }}
+{{- $name := include "openverify.componentName" (dict "root" $ "component" $component) }}
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: {{ $name }}
+  labels:
+    {{- include "openverify.labels" (dict "root" $ "component" $component) | nindent 4 }}
+spec:
+  parentRefs:
+    {{- with $.Values.gateway.httpRoute.parentRefs }}
+    {{- toYaml . | nindent 4 }}
+    {{- else }}
+    - name: {{ include "openverify.fullname" $ }}
+    {{- end }}
+  hostnames:
+    - {{ . | quote }}
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      {{- if $hsts.enabled }}
+      filters:
+        - type: ResponseHeaderModifier
+          responseHeaderModifier:
+            set:
+              - name: Strict-Transport-Security
+                value: {{ $hstsValue | quote }}
+      {{- end }}
+      backendRefs:
+        - name: {{ $name }}
+          port: {{ index $ports $component }}
+{{- end }}
+{{- end }}
+{{- end }}

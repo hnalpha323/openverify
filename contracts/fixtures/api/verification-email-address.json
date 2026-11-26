@@ -1,0 +1,96 @@
+{
+  "data": {
+    "type": "verification/email-address",
+    "id": "ver_01M5CKG6H4E1R5K1BM7CF3VP0D",
+    "attributes": {
+      "status": "passed",
+      "checks": [
+        {
+          "name": "email_address_otp_comparison",
+          "status": "passed",
+          "reasons": [],
+          "requirement": "required",
+          "metadata": {
+            "channel": "email",
+            "sends": 1,
+            "failed-attempts": 0
+          },
+          "stage": "ga",
+          "confidence": null,
+          "provenance": {
+            "implementation-version": 1,
+            "provider": {
+              "id": "smtp",
+              "sandbox": false
+            },
+            "thresholds": {}
+          },
+          "category": "user_action_required"
+        },
+        {
+          "name": "email_address_disposable_detection",
+          "status": "passed",
+          "reasons": [],
+          "requirement": "not_required",
+          "metadata": {
+            "match": "none"
+          },
+          "stage": "ga",
+          "confidence": null,
+          "provenance": {
+            "implementation-version": 1,
+            "models": [
+              {
+                "id": "disposable-email-domains@6fcca80",
+                "sha256": "e3bd73552549f2fef7997b4892909835907f0045742a06d961bc9af8d7380f79"
+              }
+            ],
+            "thresholds": {
+              "allow-domains": [],
+              "deny-domains": []
+            },
+            "threshold-basis": {
+              "allow-domains": "provisional",
+              "deny-domains": "provisional"
+            }
+          },
+          "category": "fraud"
+        },
+        {
+          "name": "email_address_mx_detection",
+          "status": "passed",
+          "reasons": [],
+          "requirement": "not_required",
+          "metadata": {
+            "route": "reserved"
+          },
+          "stage": "ga",
+          "confidence": null,
+          "provenance": {
+            "implementation-version": 1,
+            "thresholds": {}
+          },
+          "category": "user_action_required"
+        }
+      ],
+      "email-address": "avery@example.test",
+      "confirmed-at": "2026-10-20T12:05:25.000Z",
+      "sends": 1,
+      "failed-attempts": 0,
+      "from-rejected-handoff": false,
+      "created-at": "2026-10-20T12:05:00.000Z",
+      "updated-at": "2026-10-20T12:05:30.000Z"
+    },
+    "relationships": {
+      "inquiry": {
+        "data": {
+          "type": "inquiry",
+          "id": "inq_01M5CJXHG07XPHF3HRM6NREDH7"
+        }
+      },
+      "files": {
+        "data": []
+      }
+    }
+  }
+}

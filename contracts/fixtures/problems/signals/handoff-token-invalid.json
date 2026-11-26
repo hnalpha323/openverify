@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Gone",
+  "status": 410,
+  "detail": "This link or code is no longer valid. Start again on the other device.",
+  "instance": "/api/v1/flow/handoffs/redeem",
+  "requestId": "00000000-0000-4000-8000-000000000716",
+  "code": "handoff_token_invalid"
+}

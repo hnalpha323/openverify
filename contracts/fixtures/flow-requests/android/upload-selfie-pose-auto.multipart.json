@@ -1,0 +1,16 @@
+{
+  "fields": {
+    "kind": "selfie-left",
+    "capture-id": "self_01M5CJXHG07XPHF3HRM6NREDH9",
+    "nonce": "E2eSyntheticNonce00000",
+    "client-elapsed-ms": "6250",
+    "capture-method": "camera",
+    "capture-trigger": "auto"
+  },
+  "file": {
+    "name": "file",
+    "filename": "selfie-left.jpg",
+    "content-type": "image/jpeg",
+    "size": 6
+  }
+}

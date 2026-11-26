@@ -1,0 +1,112 @@
+{
+  "data": {
+    "type": "analytics-signals",
+    "id": "ba411f180c3bdc41d0e59b6bd0166cb57a6dd60114a613d6f093bac1340a497f",
+    "attributes": {
+      "time-zone": "Europe/Paris",
+      "time-zones": ["Europe/Paris"],
+      "from": "2026-10-27",
+      "to": "2026-10-29",
+      "bucket": "day",
+      "threshold": 11,
+      "suppressed-cells": 2,
+      "settle-days": 30,
+      "freshness": {
+        "rolled-up-through": "2026-10-29T13:55:00.000Z",
+        "outcomes-as-of": "2026-10-28T23:05:00.000Z"
+      },
+      "buckets": [
+        {
+          "start": "2026-10-27",
+          "end": "2026-10-27",
+          "time-zone": "Europe/Paris",
+          "live": false
+        },
+        {
+          "start": "2026-10-28",
+          "end": "2026-10-28",
+          "time-zone": "Europe/Paris",
+          "live": false
+        },
+        {
+          "start": "2026-10-29",
+          "end": "2026-10-29",
+          "time-zone": "Europe/Paris",
+          "live": true
+        }
+      ],
+      "totals": {
+        "signals": [
+          {
+            "name": "inquiry/bot_score",
+            "tier": "H",
+            "stage": "beta",
+            "bins": [
+              {
+                "bin": "0-9",
+                "count": 611
+              },
+              {
+                "bin": "10-19",
+                "count": 204
+              },
+              {
+                "bin": "20-29",
+                "count": 47
+              },
+              {
+                "bin": "30-39",
+                "count": {
+                  "suppressed": "small-count"
+                }
+              },
+              {
+                "bin": "40-49",
+                "count": {
+                  "suppressed": "complementary"
+                }
+              },
+              {
+                "bin": "50-59",
+                "count": 0
+              },
+              {
+                "bin": "60-69",
+                "count": 0
+              },
+              {
+                "bin": "70-79",
+                "count": 0
+              },
+              {
+                "bin": "80-89",
+                "count": 0
+              },
+              {
+                "bin": "90-100",
+                "count": 0
+              }
+            ],
+            "not-evaluated": 112
+          },
+          {
+            "name": "inquiry/tor_detected",
+            "tier": "R",
+            "stage": "ga",
+            "bins": [
+              {
+                "bin": "true",
+                "count": 0
+              },
+              {
+                "bin": "false",
+                "count": 871
+              }
+            ],
+            "not-evaluated": 112
+          }
+        ]
+      }
+    }
+  }
+}

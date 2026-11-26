@@ -1,0 +1,61 @@
+{
+  "advisories": {
+    "9000001": {
+      "id": 9000001,
+      "module_name": "synthetic-high",
+      "severity": "high",
+      "github_advisory_id": "GHSA-syn2-high-0001",
+      "cves": [],
+      "patched_versions": ">=99.0.0",
+      "title": "synthetic advisory",
+      "findings": [
+        {
+          "version": "1.0.0",
+          "paths": ["apps__synthetic>synthetic-high"],
+          "dev": false
+        }
+      ]
+    },
+    "9000002": {
+      "id": 9000002,
+      "module_name": "synthetic-moderate",
+      "severity": "moderate",
+      "github_advisory_id": "GHSA-syn2-mode-0002",
+      "cves": [],
+      "patched_versions": ">=99.0.0",
+      "title": "synthetic advisory",
+      "findings": [
+        {
+          "version": "2.0.0",
+          "paths": ["apps__synthetic>synthetic-moderate"],
+          "dev": false
+        }
+      ]
+    },
+    "9000003": {
+      "id": 9000003,
+      "module_name": "synthetic-low",
+      "severity": "low",
+      "github_advisory_id": "GHSA-syn2-loww-0003",
+      "cves": [],
+      "patched_versions": ">=99.0.0",
+      "title": "synthetic advisory",
+      "findings": [
+        {
+          "version": "3.0.0",
+          "paths": ["apps__synthetic>synthetic-low"],
+          "dev": false
+        }
+      ]
+    }
+  },
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 1,
+      "moderate": 1,
+      "high": 1,
+      "critical": 0
+    }
+  }
+}

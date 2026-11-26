@@ -1,0 +1,59 @@
+{
+  "metadata": {
+    "specVersion": 2,
+    "id": "projection-screen",
+    "version": 1,
+    "name": "Projection: screen"
+  },
+  "entry": "consent",
+  "steps": [
+    {
+      "id": "consent",
+      "type": "consent",
+      "textKeys": ["consent.biometric"],
+      "required": true
+    },
+    {
+      "id": "extra_details",
+      "type": "screen",
+      "components": [
+        {
+          "id": "title",
+          "kind": "text",
+          "variant": "title",
+          "copyKey": "extra_details.title.body"
+        },
+        {
+          "id": "nickname",
+          "kind": "text_input",
+          "field": "nickname",
+          "labelKey": "extra_details.nickname.label"
+        },
+        {
+          "id": "continue",
+          "kind": "button",
+          "labelKey": "extra_details.continue.button",
+          "action": "submit"
+        }
+      ]
+    },
+    {
+      "id": "done",
+      "type": "completion"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "from": "consent",
+      "port": "next",
+      "to": "extra_details"
+    },
+    {
+      "id": "e2",
+      "from": "extra_details",
+      "port": "next",
+      "to": "done"
+    }
+  ]
+}

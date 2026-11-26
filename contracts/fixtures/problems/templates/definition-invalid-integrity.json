@@ -1,0 +1,23 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The flow breaks a rule it must meet.",
+  "instance": "/api/v1/inquiry-template-versions/itmplv_01M5CN0000000000000010B001",
+  "requestId": "00000000-0000-4000-8000-000000010b02",
+  "code": "definition_invalid",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/flow/steps/5",
+      "detail": "A failure step follows a route on a signal that is never decisive alone, with no verification outcome in between.",
+      "code": "signal_not_decisive_alone"
+    },
+    {
+      "location": "body",
+      "pointer": "/data/attributes/flow/steps/0",
+      "detail": "The environment binds a device-integrity provider, and no screen before the collection shows the Play Integrity notice.",
+      "code": "play_integrity_notice_missing"
+    }
+  ]
+}

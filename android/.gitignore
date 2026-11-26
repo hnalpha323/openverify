@@ -1,0 +1,9 @@
+# The repository root .gitignore covers these too. They are repeated here so the
+# android/ tree stays self-contained.
+.gradle/
+.kotlin/
+build/
+local.properties
+*.iml
+.idea/
+captures/

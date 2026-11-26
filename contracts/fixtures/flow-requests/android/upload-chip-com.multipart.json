@@ -1,0 +1,11 @@
+{
+  "fields": {
+    "kind": "chip-com"
+  },
+  "file": {
+    "name": "file",
+    "filename": "chip-com.bin",
+    "content-type": "application/octet-stream",
+    "size": 2
+  }
+}

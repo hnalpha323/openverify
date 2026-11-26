@@ -1,0 +1,178 @@
+{
+  "data": {
+    "type": "verification/government-id",
+    "id": "ver_01M5CJZC301G4JHXZQ3PZBYH3Q",
+    "attributes": {
+      "status": "failed",
+      "country": "US",
+      "id-class": "drivers_license",
+      "checks": [
+        {
+          "name": "id_blur_detection",
+          "status": "failed",
+          "reasons": ["image_blurry"],
+          "requirement": "required",
+          "category": "user_action_required",
+          "metadata": {
+            "side": "front",
+            "blur_score": 41.7
+          },
+          "stage": "ga",
+          "confidence": null,
+          "provenance": {
+            "implementation-version": 1,
+            "thresholds": {
+              "min-blur-score": 100
+            }
+          }
+        },
+        {
+          "name": "id_glare_detection",
+          "status": "passed",
+          "reasons": [],
+          "requirement": "required",
+          "category": "user_action_required",
+          "metadata": {
+            "glare_ratio": 0.004
+          },
+          "stage": "ga",
+          "confidence": null,
+          "provenance": {
+            "implementation-version": 1,
+            "thresholds": {
+              "max-glare-ratio": 0.05
+            }
+          }
+        },
+        {
+          "name": "id_portrait_detection",
+          "status": "passed",
+          "reasons": [],
+          "requirement": "required",
+          "category": "fraud",
+          "metadata": {
+            "score": 0.93
+          },
+          "stage": "beta",
+          "confidence": null,
+          "provenance": {
+            "implementation-version": 1,
+            "models": [
+              {
+                "id": "yunet-2026may",
+                "sha256": "ebafce4e3c118d6554634be5c27ab333b4c047a9a8c3faf1d7cf93101c22f0f0"
+              }
+            ],
+            "thresholds": {}
+          }
+        },
+        {
+          "name": "id_double_side_detection",
+          "status": "passed",
+          "reasons": [],
+          "requirement": "required",
+          "category": "user_action_required",
+          "metadata": {},
+          "stage": "beta",
+          "confidence": null,
+          "provenance": {
+            "implementation-version": 1,
+            "thresholds": {
+              "min-front-back-phash-distance": 13
+            }
+          }
+        }
+      ],
+      "name-first": "JORDAN",
+      "name-middle": null,
+      "name-last": "TESTWORTH",
+      "birthdate": "1992-07-04",
+      "sex": null,
+      "nationality": null,
+      "identification-number": "Y9876543",
+      "personal-number": null,
+      "issue-date": "2024-07-01",
+      "expiration-date": "2029-07-04",
+      "issuing-authority-code": "636014",
+      "address-street-1": "100 SYNTHETIC WAY",
+      "address-street-2": null,
+      "address-city": "TESTVILLE",
+      "address-subdivision": "CA",
+      "address-postal-code": "90001",
+      "address-country-code": "US",
+      "endorsements": null,
+      "restrictions": null,
+      "vehicle-class": "C",
+      "extraction-sources": {
+        "name-first": ["barcode", "viz"],
+        "name-last": ["barcode", "viz"]
+      },
+      "from-rejected-handoff": false,
+      "created-at": "2026-10-20T12:01:00.000Z",
+      "updated-at": "2026-10-20T12:01:30.000Z",
+      "redacted-at": null
+    },
+    "relationships": {
+      "inquiry": {
+        "data": {
+          "type": "inquiry",
+          "id": "inq_01M5CJXHG07XPHF3HRM6NREDH7"
+        }
+      },
+      "files": {
+        "data": [
+          {
+            "type": "file",
+            "id": "file_01M5CJZD282YV9958CG7ZK9ZKN"
+          },
+          {
+            "type": "file",
+            "id": "file_01M5CJZE1G6XVZ8MHB9Y8SNWH3"
+          }
+        ]
+      }
+    }
+  },
+  "included": [
+    {
+      "type": "file",
+      "id": "file_01M5CJZD282YV9958CG7ZK9ZKN",
+      "attributes": {
+        "kind": "front",
+        "mime-type": "image/jpeg",
+        "byte-size": 245812,
+        "created-at": "2026-10-20T12:01:01.000Z",
+        "capture-method": null,
+        "capture-trigger": null
+      },
+      "relationships": {
+        "verification": {
+          "data": {
+            "type": "verification/government-id",
+            "id": "ver_01M5CJZC301G4JHXZQ3PZBYH3Q"
+          }
+        }
+      }
+    },
+    {
+      "type": "file",
+      "id": "file_01M5CJZE1G6XVZ8MHB9Y8SNWH3",
+      "attributes": {
+        "kind": "back",
+        "mime-type": "image/png",
+        "byte-size": 512004,
+        "created-at": "2026-10-20T12:01:02.000Z",
+        "capture-method": null,
+        "capture-trigger": null
+      },
+      "relationships": {
+        "verification": {
+          "data": {
+            "type": "verification/government-id",
+            "id": "ver_01M5CJZC301G4JHXZQ3PZBYH3Q"
+          }
+        }
+      }
+    }
+  ]
+}

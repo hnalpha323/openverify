@@ -1,0 +1,39 @@
+{
+  "data": {
+    "type": "inquiry-template-translations",
+    "id": "itmpl_01M5A0GTG0RSTVX9PHA0V7P3X6",
+    "attributes": {
+      "inquiry-template-version-id": "itmplv_01M5CN00000000000000009A01",
+      "translations": [
+        {
+          "step": "extra_details",
+          "step-display-name": "Extra details",
+          "component": "title",
+          "attribute-name": "body",
+          "locale-values": [
+            {
+              "locale": "en",
+              "value": "A few more details"
+            },
+            {
+              "locale": "es",
+              "value": "Algunos datos más"
+            }
+          ]
+        },
+        {
+          "step": null,
+          "step-display-name": null,
+          "component": null,
+          "attribute-name": "flow.completion",
+          "locale-values": [
+            {
+              "locale": "en",
+              "value": "Thank you"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

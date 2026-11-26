@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Gone",
+  "status": 410,
+  "detail": "This file was redacted after the export was prepared.",
+  "instance": "/api/v1/account-exports/aexp_01M5CN0000000000000011B100/files/file_01M5CK17N82ZP0PQ8RZRRTT5V5",
+  "requestId": "00000000-0000-4000-8000-00000011b012",
+  "code": "account_export_item_redacted"
+}

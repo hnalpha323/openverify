@@ -1,0 +1,119 @@
+# OpenVerify's PII-pattern scan (C260.3, decision 16, review P29; Workflow 11C, sast-pii-11c).
+#
+# A second gitleaks configuration, beside the secret scan of .gitleaks.toml. It looks for what
+# reads like a real person's data in the places that hold sample data: contracts/fixtures/,
+# fixtures/, docs/, e2e/, load/, every test-support/ (and tests/, testing/) directory, every test
+# file and the seed sources. Each rule below names the values a fixture may hold; the reviewed
+# exceptions are in security/gitleaks-pii-allowlist.toml, joined through [extend].
+#
+# Run it from the repository root, always through the filter, which runs gitleaks, keeps only the
+# checksum-valid card and IBAN matches (gitleaks has no Luhn or mod-97 validator) and prints a
+# finding's rule, file and line, never its value:
+#   python3 -I security/gitleaks-pii-filter.py --gitleaks <gitleaks> dir .
+#   python3 -I security/gitleaks-pii-filter.py --gitleaks <gitleaks> git --pre-commit --staged .
+# gitleaks resolves [extend]'s path from the working directory, not from this file, so the
+# commands run from the repository root (as git runs the pre-commit hook).
+#
+# Honesty (C260.4): a pattern catches what looks like personal data; it cannot tell a real name
+# or number from a synthetic one, so synthetic generators remain the rule (CLAUDE.md rule 3).
+# Tests: security/tests/test_gitleaks_pii_config.py and test_gitleaks_pii_filter.py.
+title = "OpenVerify PII patterns"
+
+[extend]
+# The reviewed allowlist (each entry with its reason). No default rule is used: the secret scan
+# is .gitleaks.toml's.
+path = "security/gitleaks-pii-allowlist.toml"
+
+# What is never read, whatever the rules' paths say. gitleaks 8.30.1's `dir` does not read
+# .gitignore (checked on the pinned version), so the generated trees are named here.
+[[allowlists]]
+description = "Generated, installed and binary files: not sources (gitleaks dir ignores .gitignore)"
+paths = [
+  # Installed packages, build and test outputs, caches.
+  '''(?:^|/)(?:node_modules|dist|build|coverage|\.next|\.turbo|\.gradle|\.kotlin|\.venv|__pycache__|\.pytest_cache|\.mypy_cache|\.ruff_cache|test-results|playwright-report|blob-report|\.git)/''',
+  # Downloaded model weights and datasets (scripts/fetch_*.py; never committed).
+  '''(?:^|/)(?:models|data)/''',
+  # Workflow 11D's raw takes, gitignored and never committed (rule 9): the load harness's and the
+  # matcher benchmark's results trees (pg_stat_statements' query ids match the card pattern).
+  '''(?:^|/)(?:load|packages/watchlist)/results/''',
+  # Binary files: images, archives, fonts and certificates hold no text a rule reads.
+  '''\.(?:png|jpe?g|gif|webp|ico|onnx|mmdb|y4m|mp4|webm|mov|npy|npz|gz|tgz|zip|jar|aar|apk|aab|so|wasm|ttf|otf|woff2?|pdf|der|cer|crt|p12|bin|keystore)$''',
+]
+
+# The e2e stack's run record and environment hold that run's generated credentials (mode 0600),
+# are gitignored, and are not sources; the Validation runs this scan with the stack down.
+[[allowlists]]
+description = "The e2e stack's generated run record and environment: that run's seeded credentials (gitignored, not sources)"
+paths = ['''(?:^|/)e2e/\.artifacts/''', '''(?:^|/)e2e/\.env\.e2e$''']
+
+# Every rule reads only the sample-data paths: one scope, repeated in each rule because a gitleaks
+# path cannot be negated (security/tests/test_gitleaks_pii_config.py holds them equal).
+#   contracts/fixtures/ fixtures/ docs/ e2e/ load/ (11D), every test-support/ tests/ test/
+#   testing/ directory and Android test source set, every test file (TypeScript, Python, Kotlin,
+#   shell), test helper modules (testing.ts, test-support.ts), and the seed sources (seed:dev and
+#   seed:dev --connect: apps/api/scripts/seed-dev.ts and apps/api/src/seed/; seed:load:
+#   apps/api/scripts/seed-load.ts, Workflow 11D, KP11-35).
+
+[[rules]]
+id = "pii-email"
+description = "An email address outside example.com, example.org, example.net and the reserved .test, .example, .invalid and .localhost names (RFC 2606, RFC 6761)"
+regex = '''(?i)(?:^|[^a-z0-9._%+-])([a-z0-9._%+-]{1,64}@(?:[a-z0-9-]{1,63}\.)+[a-z][a-z0-9-]{1,62})(?:[^a-z0-9-]|$)'''
+secretGroup = 1
+keywords = ["@"]
+path = '''(?:^|/)(?:contracts/fixtures|fixtures|docs|e2e|load)/|(?:^|/)(?:test-support|tests|test|testing|__tests__|androidHostTest|androidDeviceTest|androidUnitTest|androidTest|commonTest|jvmTest)/|\.(?:test|spec)\.[cm]?[jt]sx?$|(?:^|/)(?:testing|test-support)\.[cm]?[jt]s$|\.test-support\.[cm]?[jt]s$|(?:^|/)test_[^/]*\.py$|_test\.py$|(?:^|/)conftest\.py$|Test\.kt$|\.test\.sh$|(?:^|/)apps/api/scripts/seed-dev\.ts$|(?:^|/)apps/api/scripts/seed-load\.ts$|(?:^|/)apps/api/src/seed/'''
+
+[[rules]]
+id = "pii-ipv4"
+description = "An IPv4 address outside 192.0.2.0/24, 198.51.100.0/24, 203.0.113.0/24, loopback, 10.0.2.2 and 0.0.0.0"
+regex = '''(?:^|[^0-9A-Za-z./§]|(?:^|[^0-9A-Za-z])/)((?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])(?:\.(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])){3})(?:/[0-9]{1,2})?(?:[^0-9A-Za-z.]|$)'''
+secretGroup = 1
+keywords = ["."]
+path = '''(?:^|/)(?:contracts/fixtures|fixtures|docs|e2e|load)/|(?:^|/)(?:test-support|tests|test|testing|__tests__|androidHostTest|androidDeviceTest|androidUnitTest|androidTest|commonTest|jvmTest)/|\.(?:test|spec)\.[cm]?[jt]sx?$|(?:^|/)(?:testing|test-support)\.[cm]?[jt]s$|\.test-support\.[cm]?[jt]s$|(?:^|/)test_[^/]*\.py$|_test\.py$|(?:^|/)conftest\.py$|Test\.kt$|\.test\.sh$|(?:^|/)apps/api/scripts/seed-dev\.ts$|(?:^|/)apps/api/scripts/seed-load\.ts$|(?:^|/)apps/api/src/seed/'''
+
+[[rules]]
+id = "pii-ipv6"
+description = "An IPv6 address outside 2001:db8::/32 and ::1"
+regex = '''(?i)(?:^|[^0-9a-z:.])((?:[0-9a-f]{1,4}:){7}[0-9a-f]{1,4}|(?:[0-9a-f]{1,4}:){1,6}(?::[0-9a-f]{1,4}){1,6}|(?:[0-9a-f]{1,4}:){1,7}:|::(?:[0-9a-f]{1,4}:){0,6}[0-9a-f]{1,4})(?:/[0-9]{1,3})?(?:[^0-9a-z:.]|$)'''
+secretGroup = 1
+keywords = [":"]
+path = '''(?:^|/)(?:contracts/fixtures|fixtures|docs|e2e|load)/|(?:^|/)(?:test-support|tests|test|testing|__tests__|androidHostTest|androidDeviceTest|androidUnitTest|androidTest|commonTest|jvmTest)/|\.(?:test|spec)\.[cm]?[jt]sx?$|(?:^|/)(?:testing|test-support)\.[cm]?[jt]s$|\.test-support\.[cm]?[jt]s$|(?:^|/)test_[^/]*\.py$|_test\.py$|(?:^|/)conftest\.py$|Test\.kt$|\.test\.sh$|(?:^|/)apps/api/scripts/seed-dev\.ts$|(?:^|/)apps/api/scripts/seed-load\.ts$|(?:^|/)apps/api/src/seed/'''
+
+[[rules]]
+id = "pii-phone"
+description = "A phone number (international +CC form, or the North American (NPA) NXX-XXXX form) outside the fictitious ranges the fixtures use"
+regex = '''(?:^|[^0-9A-Za-z+])(\+[1-9](?:[ .()-]{0,2}[0-9]){6,14}|\([2-9][0-9]{2}\)[ .-]?[2-9][0-9]{2}[ .-][0-9]{4})(?:[^0-9]|$)'''
+secretGroup = 1
+keywords = ["+", "("]
+path = '''(?:^|/)(?:contracts/fixtures|fixtures|docs|e2e|load)/|(?:^|/)(?:test-support|tests|test|testing|__tests__|androidHostTest|androidDeviceTest|androidUnitTest|androidTest|commonTest|jvmTest)/|\.(?:test|spec)\.[cm]?[jt]sx?$|(?:^|/)(?:testing|test-support)\.[cm]?[jt]s$|\.test-support\.[cm]?[jt]s$|(?:^|/)test_[^/]*\.py$|_test\.py$|(?:^|/)conftest\.py$|Test\.kt$|\.test\.sh$|(?:^|/)apps/api/scripts/seed-dev\.ts$|(?:^|/)apps/api/scripts/seed-load\.ts$|(?:^|/)apps/api/src/seed/'''
+
+[[rules]]
+id = "pii-mrz-name"
+description = "A machine-readable-zone name field (SURNAME<<GIVEN<NAMES, with or without its document code and issuer) whose names are not the synthetic generators' names"
+regex = '''(?:^|[^A-Za-z0-9<])((?:[ACIPV][A-Z<][A-Z<]{3})?[A-Z]+(?:<[A-Z]+)*<<[A-Z]+(?:<[A-Z]+)*<*)(?:[^A-Za-z0-9<]|$)'''
+secretGroup = 1
+keywords = ["<<"]
+path = '''(?:^|/)(?:contracts/fixtures|fixtures|docs|e2e|load)/|(?:^|/)(?:test-support|tests|test|testing|__tests__|androidHostTest|androidDeviceTest|androidUnitTest|androidTest|commonTest|jvmTest)/|\.(?:test|spec)\.[cm]?[jt]sx?$|(?:^|/)(?:testing|test-support)\.[cm]?[jt]s$|\.test-support\.[cm]?[jt]s$|(?:^|/)test_[^/]*\.py$|_test\.py$|(?:^|/)conftest\.py$|Test\.kt$|\.test\.sh$|(?:^|/)apps/api/scripts/seed-dev\.ts$|(?:^|/)apps/api/scripts/seed-load\.ts$|(?:^|/)apps/api/src/seed/'''
+
+# Card and IBAN: gitleaks matches the shape; security/gitleaks-pii-filter.py keeps a match only
+# when it is Luhn-valid with a card network's prefix, or a mod-97-valid IBAN.
+[[rules]]
+id = "pii-card-number"
+description = "A Luhn-valid card number with a card network's prefix, outside the networks' published test numbers (the filter checks the Luhn digit)"
+regex = '''(?:^|[^0-9A-Za-z.,])((?:[0-9][ -]?){12,18}[0-9])(?:[^0-9A-Za-z]|$)'''
+secretGroup = 1
+path = '''(?:^|/)(?:contracts/fixtures|fixtures|docs|e2e|load)/|(?:^|/)(?:test-support|tests|test|testing|__tests__|androidHostTest|androidDeviceTest|androidUnitTest|androidTest|commonTest|jvmTest)/|\.(?:test|spec)\.[cm]?[jt]sx?$|(?:^|/)(?:testing|test-support)\.[cm]?[jt]s$|\.test-support\.[cm]?[jt]s$|(?:^|/)test_[^/]*\.py$|_test\.py$|(?:^|/)conftest\.py$|Test\.kt$|\.test\.sh$|(?:^|/)apps/api/scripts/seed-dev\.ts$|(?:^|/)apps/api/scripts/seed-load\.ts$|(?:^|/)apps/api/src/seed/'''
+
+[[rules]]
+id = "pii-iban"
+description = "A checksum-valid IBAN outside the published examples (the filter checks mod 97)"
+regex = '''(?:^|[^A-Za-z0-9])([A-Z]{2}[0-9]{2}(?:[A-Z0-9]{11,30}|(?: [A-Z0-9]{4}){2,7}(?: [A-Z0-9]{1,3})?))(?:[^A-Za-z0-9]|$)'''
+secretGroup = 1
+path = '''(?:^|/)(?:contracts/fixtures|fixtures|docs|e2e|load)/|(?:^|/)(?:test-support|tests|test|testing|__tests__|androidHostTest|androidDeviceTest|androidUnitTest|androidTest|commonTest|jvmTest)/|\.(?:test|spec)\.[cm]?[jt]sx?$|(?:^|/)(?:testing|test-support)\.[cm]?[jt]s$|\.test-support\.[cm]?[jt]s$|(?:^|/)test_[^/]*\.py$|_test\.py$|(?:^|/)conftest\.py$|Test\.kt$|\.test\.sh$|(?:^|/)apps/api/scripts/seed-dev\.ts$|(?:^|/)apps/api/scripts/seed-load\.ts$|(?:^|/)apps/api/src/seed/'''
+
+[[rules]]
+id = "pii-us-ssn"
+description = "A US Social Security number (AAA-GG-SSSS) outside the never-issued ranges (area 000, 666 and 900-999, group 00, serial 0000)"
+regex = '''(?:^|[^0-9A-Za-z-])((?:00[1-9]|0[1-9][0-9]|[1-578][0-9]{2}|6[0-57-9][0-9]|66[0-57-9])-(?:0[1-9]|[1-9][0-9])-(?:000[1-9]|00[1-9][0-9]|0[1-9][0-9]{2}|[1-9][0-9]{3}))(?:[^0-9A-Za-z-]|$)'''
+secretGroup = 1
+keywords = ["-"]
+path = '''(?:^|/)(?:contracts/fixtures|fixtures|docs|e2e|load)/|(?:^|/)(?:test-support|tests|test|testing|__tests__|androidHostTest|androidDeviceTest|androidUnitTest|androidTest|commonTest|jvmTest)/|\.(?:test|spec)\.[cm]?[jt]sx?$|(?:^|/)(?:testing|test-support)\.[cm]?[jt]s$|\.test-support\.[cm]?[jt]s$|(?:^|/)test_[^/]*\.py$|_test\.py$|(?:^|/)conftest\.py$|Test\.kt$|\.test\.sh$|(?:^|/)apps/api/scripts/seed-dev\.ts$|(?:^|/)apps/api/scripts/seed-load\.ts$|(?:^|/)apps/api/src/seed/'''

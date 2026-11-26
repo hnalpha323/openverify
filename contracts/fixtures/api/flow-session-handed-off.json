@@ -1,0 +1,119 @@
+{
+  "inquiry": {
+    "id": "inq_01M5CJXHG07XPHF3HRM6NREDH7",
+    "status": "pending"
+  },
+  "flow": {
+    "metadata": {
+      "specVersion": 1,
+      "id": "default-gov-id-selfie",
+      "version": 3,
+      "name": "Government ID and selfie",
+      "description": "Consent, a two-sided government ID, then a selfie compared with the ID portrait."
+    },
+    "steps": [
+      {
+        "id": "consent",
+        "type": "consent",
+        "textKeys": ["consent.biometric", "consent.processing", "notice.session-integrity"],
+        "optionalTextKeys": ["consent.biometric-matching"],
+        "required": true
+      },
+      {
+        "id": "government_id",
+        "type": "government_id",
+        "sides": "both",
+        "maxAttempts": 3,
+        "captureMethods": ["upload", "camera"]
+      },
+      {
+        "id": "selfie",
+        "type": "selfie",
+        "poses": ["center", "left", "right"],
+        "liveness": "active",
+        "maxAttempts": 3
+      },
+      {
+        "id": "completion",
+        "type": "completion",
+        "messageKey": "flow.completion"
+      },
+      {
+        "id": "failure",
+        "type": "failure",
+        "messageKey": "flow.failure"
+      }
+    ],
+    "transitions": [
+      {
+        "from": "government_id",
+        "to": "failure",
+        "condition": {
+          "==": [
+            {
+              "var": "inquiry.status"
+            },
+            "failed"
+          ]
+        }
+      },
+      {
+        "from": "selfie",
+        "to": "failure",
+        "condition": {
+          "==": [
+            {
+              "var": "inquiry.status"
+            },
+            "failed"
+          ]
+        }
+      }
+    ]
+  },
+  "verifications": [
+    {
+      "type": "verification/government-id",
+      "id": "ver_01M5CJZC301G4JHXZQ3PZBYH3Q",
+      "attributes": {
+        "status": "failed",
+        "retry-hints": [
+          {
+            "name": "id_blur_detection",
+            "reasons": ["image_blurry"]
+          }
+        ],
+        "created-at": "2026-10-20T12:01:00.000Z",
+        "updated-at": "2026-10-20T12:01:30.000Z"
+      }
+    },
+    {
+      "type": "verification/government-id",
+      "id": "ver_01M5CK16P0D13FXHZSS4TCFBVH",
+      "attributes": {
+        "status": "initiated",
+        "retry-hints": [],
+        "created-at": "2026-10-20T12:02:00.000Z",
+        "updated-at": "2026-10-20T12:02:00.000Z"
+      }
+    }
+  ],
+  "consent": {
+    "accepted-at": "2026-10-20T12:00:30.000Z"
+  },
+  "environment": {
+    "kind": "sandbox"
+  },
+  "face-template-retention-days": 365,
+  "signals": {
+    "integrity": true,
+    "recognition": false,
+    "next-sequence": 3
+  },
+  "handoff": {
+    "step-id": "handoff",
+    "state": "redeemed",
+    "handed-off": true
+  },
+  "handoff-context": null
+}

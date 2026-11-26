@@ -1,0 +1,13 @@
+{
+  "type": "connect/source-data/verification/phone-number",
+  "attributes": {
+    "status": {
+      "visibility": "full",
+      "value": "passed"
+    },
+    "phone-number": {
+      "visibility": "presence",
+      "value": false
+    }
+  }
+}

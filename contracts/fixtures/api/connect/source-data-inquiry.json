@@ -1,0 +1,84 @@
+{
+  "type": "connect/source-data/inquiry",
+  "attributes": {
+    "status": {
+      "visibility": "full",
+      "value": "approved"
+    },
+    "created-at": {
+      "visibility": "full",
+      "value": "2026-10-20T11:00:00.000Z"
+    }
+  },
+  "fields": {
+    "name_first": {
+      "visibility": "full",
+      "value": "Alex"
+    },
+    "name_last": {
+      "visibility": "presence",
+      "value": true
+    },
+    "birthdate": {
+      "visibility": "presence",
+      "value": true
+    },
+    "email_address": {
+      "visibility": "presence",
+      "value": true
+    }
+  },
+  "related-objects": [
+    {
+      "type": "connect/source-data/verification/government-id",
+      "attributes": {
+        "status": {
+          "visibility": "full",
+          "value": "passed"
+        },
+        "name-first": {
+          "visibility": "full",
+          "value": "Alex"
+        },
+        "name-last": {
+          "visibility": "presence",
+          "value": true
+        },
+        "id-class": {
+          "visibility": "full",
+          "value": "dl"
+        }
+      },
+      "files": {
+        "visibility": "presence",
+        "value": true
+      }
+    },
+    {
+      "type": "connect/source-data/verification/selfie",
+      "attributes": {
+        "status": {
+          "visibility": "full",
+          "value": "passed"
+        }
+      },
+      "files": {
+        "visibility": "presence",
+        "value": true
+      }
+    },
+    {
+      "type": "connect/source-data/verification/database",
+      "attributes": {
+        "status": {
+          "visibility": "full",
+          "value": "passed"
+        },
+        "name-first": {
+          "visibility": "presence",
+          "value": true
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640" role="img" aria-labelledby="title desc" font-family="Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+<title id="title">Architecture</title>
+<desc id="desc">OpenVerify architecture: the flow, the Android SDK, your backend and the operator console talk to the API over HTTPS; the API queues jobs for the worker, which calls the vision service and the code runner; both use PostgreSQL, Valkey, an S3 API and SMTP.</desc>
+<defs>
+  <marker id="ah-n" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#6e7681"/></marker>
+  <marker id="ah-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3b8bff"/></marker>
+</defs>
+<rect x="0.5" y="0.5" width="1199" height="639" rx="16" fill="#0d1117" stroke="#30363d"/>
+<text x="30" y="50" font-size="11" font-weight="700" fill="#9198a1" text-anchor="start">WHO USES IT</text>
+<text x="890" y="50" font-size="11" font-weight="700" fill="#9198a1" text-anchor="start">INTERNAL SERVICES</text>
+<text x="612" y="530" font-size="11" font-weight="700" fill="#9198a1" text-anchor="start">DATA STORES (STANDARD PROTOCOLS ONLY)</text>
+<rect x="30" y="70" width="280" height="86" rx="10" fill="#161b22" stroke="#30363d" stroke-width="1.2"/>
+<text x="46" y="98" font-size="16" font-weight="650" fill="#e6edf3">Verification flow</text>
+<text x="46" y="119" font-size="12.5" fill="#9198a1">Hosted, embedded or inline web flow</text>
+<text x="46" y="137" font-size="12.5" fill="#9198a1">apps/flow · Vite + React</text>
+<path d="M310 113 L352 113" fill="none" stroke="#6e7681" stroke-width="1.6"/>
+<rect x="30" y="175" width="280" height="86" rx="10" fill="#161b22" stroke="#30363d" stroke-width="1.2"/>
+<text x="46" y="203" font-size="16" font-weight="650" fill="#e6edf3">Android SDK</text>
+<text x="46" y="224" font-size="12.5" fill="#9198a1">Kotlin Multiplatform · CameraX</text>
+<text x="46" y="242" font-size="12.5" fill="#9198a1">optional NFC chip and face modules</text>
+<path d="M310 218 L352 218" fill="none" stroke="#6e7681" stroke-width="1.6"/>
+<rect x="30" y="280" width="280" height="86" rx="10" fill="#161b22" stroke="#30363d" stroke-width="1.2"/>
+<text x="46" y="308" font-size="16" font-weight="650" fill="#e6edf3">Your backend</text>
+<text x="46" y="329" font-size="12.5" fill="#9198a1">REST API, signed webhooks</text>
+<text x="46" y="347" font-size="12.5" fill="#9198a1">@openverify/node · js · react</text>
+<path d="M310 323 L352 323" fill="none" stroke="#6e7681" stroke-width="1.6"/>
+<rect x="30" y="385" width="280" height="86" rx="10" fill="#161b22" stroke="#30363d" stroke-width="1.2"/>
+<text x="46" y="413" font-size="16" font-weight="650" fill="#e6edf3">Operator console</text>
+<text x="46" y="434" font-size="12.5" fill="#9198a1">Review, cases, workflows, graph</text>
+<text x="46" y="452" font-size="12.5" fill="#9198a1">apps/dashboard · Next.js</text>
+<path d="M310 428 L352 428" fill="none" stroke="#6e7681" stroke-width="1.6"/>
+<path d="M352 113 L352 428" fill="none" stroke="#6e7681" stroke-width="1.6"/>
+<path d="M352 190 L428 190" fill="none" stroke="#3b8bff" stroke-width="1.6" marker-end="url(#ah-a)"/>
+<text x="358" y="178" font-size="10.5" font-weight="400" fill="#9198a1" text-anchor="start">HTTPS</text>
+<rect x="400" y="62" width="400" height="418" rx="14" fill="#0c1a36" stroke="#3b8bff" stroke-width="1.4" stroke-dasharray="6 4"/>
+<g transform="translate(416 74) scale(0.34)"><rect width="64" height="64" rx="15" fill="#3b8bff"/>
+<circle cx="32" cy="32" r="18" fill="none" stroke="#030712" stroke-width="5" stroke-linecap="round" stroke-dasharray="86 27.1" transform="rotate(-22 32 32)"/>
+<path d="M22.5 32.5 L29.5 39.5 L46 21" fill="none" stroke="#030712" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+<text x="446" y="89" font-size="14" font-weight="700" fill="#e6edf3" text-anchor="start">OpenVerify</text>
+<rect x="430" y="120" width="340" height="120" rx="10" fill="#0d1117" stroke="#3b8bff" stroke-width="1.6"/>
+<text x="446" y="148" font-size="16" font-weight="650" fill="#e6edf3">API</text>
+<text x="446" y="169" font-size="12.5" fill="#9198a1">Fastify + TypeScript · OpenAPI from zod</text>
+<text x="446" y="187" font-size="12.5" fill="#9198a1">inquiries, verifications, reports, accounts,</text>
+<text x="446" y="205" font-size="12.5" fill="#9198a1">cases, lists, graph, transactions</text>
+<rect x="430" y="320" width="340" height="128" rx="10" fill="#0d1117" stroke="#3b8bff" stroke-width="1.6"/>
+<text x="446" y="348" font-size="16" font-weight="650" fill="#e6edf3">Worker</text>
+<text x="446" y="369" font-size="12.5" fill="#9198a1">BullMQ jobs: 89 checks, 11 report types,</text>
+<text x="446" y="387" font-size="12.5" fill="#9198a1">19 signals, workflows, list screening,</text>
+<text x="446" y="405" font-size="12.5" fill="#9198a1">webhooks, retention</text>
+<path d="M600 240 L600 318" fill="none" stroke="#3b8bff" stroke-width="1.6" marker-end="url(#ah-a)"/>
+<text x="610" y="284" font-size="11" font-weight="400" fill="#9198a1" text-anchor="start">jobs on Valkey</text>
+<path d="M430 420 L376 420 L376 345 L312 345" fill="none" stroke="#6e7681" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#ah-n)"/>
+<text x="391" y="383" font-size="10.5" fill="#9198a1" text-anchor="middle" transform="rotate(-90 391 383)">webhooks</text>
+<rect x="890" y="120" width="280" height="140" rx="10" fill="#161b22" stroke="#30363d" stroke-width="1.2"/>
+<text x="906" y="148" font-size="16" font-weight="650" fill="#e6edf3">Vision service</text>
+<text x="906" y="169" font-size="12.5" fill="#9198a1">Python 3.12 · FastAPI · ONNX</text>
+<text x="906" y="187" font-size="12.5" fill="#9198a1">face detection and match, liveness,</text>
+<text x="906" y="205" font-size="12.5" fill="#9198a1">OCR, MRZ, PDF417, document forensics</text>
+<text x="906" y="223" font-size="12.5" fill="#9198a1">no outbound network</text>
+<rect x="890" y="325" width="280" height="110" rx="10" fill="#161b22" stroke="#30363d" stroke-width="1.2"/>
+<text x="906" y="353" font-size="16" font-weight="650" fill="#e6edf3">Code runner</text>
+<text x="906" y="374" font-size="12.5" fill="#9198a1">Sandboxed workflow code steps</text>
+<text x="906" y="392" font-size="12.5" fill="#9198a1">no network, read-only</text>
+<path d="M770 180 L888 180" fill="none" stroke="#6e7681" stroke-width="1.6" marker-end="url(#ah-n)"/>
+<path d="M770 350 L830 350 L830 215 L888 215" fill="none" stroke="#6e7681" stroke-width="1.6" marker-end="url(#ah-n)"/>
+<path d="M770 385 L888 385" fill="none" stroke="#6e7681" stroke-width="1.6" marker-end="url(#ah-n)"/>
+<path d="M600 448 L600 548" fill="none" stroke="#6e7681" stroke-width="1.6"/>
+<path d="M490 548 L1078 548" fill="none" stroke="#6e7681" stroke-width="1.6"/>
+<path d="M490 548 L490 566" fill="none" stroke="#6e7681" stroke-width="1.6" marker-end="url(#ah-n)"/>
+<rect x="400" y="568" width="180" height="56" rx="10" fill="#161b22" stroke="#30363d" stroke-width="1.2"/>
+<text x="490" y="592" font-size="14.5" font-weight="650" fill="#e6edf3" text-anchor="middle">PostgreSQL 17</text>
+<text x="490" y="611" font-size="11.5" fill="#9198a1" text-anchor="middle">pgvector, encrypted PII</text>
+<path d="M686 548 L686 566" fill="none" stroke="#6e7681" stroke-width="1.6" marker-end="url(#ah-n)"/>
+<rect x="596" y="568" width="180" height="56" rx="10" fill="#161b22" stroke="#30363d" stroke-width="1.2"/>
+<text x="686" y="592" font-size="14.5" font-weight="650" fill="#e6edf3" text-anchor="middle">Valkey</text>
+<text x="686" y="611" font-size="11.5" fill="#9198a1" text-anchor="middle">Redis protocol, queues</text>
+<path d="M882 548 L882 566" fill="none" stroke="#6e7681" stroke-width="1.6" marker-end="url(#ah-n)"/>
+<rect x="792" y="568" width="180" height="56" rx="10" fill="#161b22" stroke="#30363d" stroke-width="1.2"/>
+<text x="882" y="592" font-size="14.5" font-weight="650" fill="#e6edf3" text-anchor="middle">S3 API</text>
+<text x="882" y="611" font-size="11.5" fill="#9198a1" text-anchor="middle">RustFS, or any S3</text>
+<path d="M1078 548 L1078 566" fill="none" stroke="#6e7681" stroke-width="1.6" marker-end="url(#ah-n)"/>
+<rect x="988" y="568" width="180" height="56" rx="10" fill="#161b22" stroke="#30363d" stroke-width="1.2"/>
+<text x="1078" y="592" font-size="14.5" font-weight="650" fill="#e6edf3" text-anchor="middle">SMTP</text>
+<text x="1078" y="611" font-size="11.5" fill="#9198a1" text-anchor="middle">Mailpit in development</text>
+<text x="30" y="520" font-size="11.5" font-weight="400" fill="#9198a1" text-anchor="start">Every port binds to loopback by default;</text>
+<text x="30" y="538" font-size="11.5" font-weight="400" fill="#9198a1" text-anchor="start">put your TLS proxy in front.</text>
+</svg>

@@ -1,0 +1,377 @@
+{
+  "model_versions": {
+    "detector": "yunet-2026may",
+    "recognizer": "sface-2021dec",
+    "text_detector": "pp-ocrv6-small-det",
+    "text_recognizer": "pp-ocrv6-small-rec"
+  },
+  "sides": {
+    "front": {
+      "quality": {
+        "blur_score": 80.45161699275658,
+        "is_blurry": true,
+        "glare_ratio": 1.9290123456790124e-6,
+        "has_glare": false,
+        "brightness": 0.41246657513313967,
+        "is_too_dark": false,
+        "is_too_bright": false
+      },
+      "faces": [
+        {
+          "bbox": [172.92, 786.96, 148.9, 190.96],
+          "score": 0.9361
+        }
+      ],
+      "portrait": {
+        "bbox": [172.92, 786.96, 148.9, 190.96],
+        "score": 0.9361,
+        "embedding": [
+          -0.09948334097862244, 0.005199377425014973, 0.01896713115274906, 0.046440720558166504,
+          -0.04443870112299919, -0.022074447944760323, -0.08900830894708633, -0.006279618013650179,
+          -0.1385696977376938, 0.08838854730129242, -0.08647523820400238, 0.009463055990636349,
+          0.03144184127449989, -0.08438491821289062, 0.03062363527715206, -0.014470049180090427,
+          -0.04323584958910942, 0.0070170070976018906, -0.1559809297323227, 0.15775783360004425,
+          0.04615626856684685, -0.03890971839427948, -0.0781712606549263, -0.044199030846357346,
+          0.0647663101553917, 0.09008395671844482, 0.11352944374084473, 0.016196144744753838,
+          -0.05203559994697571, 0.043195776641368866, 0.026232538744807243, 0.13625727593898773,
+          0.007006193045526743, 0.015797272324562073, -0.07212887704372406, 0.05408087745308876,
+          -0.09520228952169418, 0.12840136885643005, -0.060205087065696716, -0.04679582640528679,
+          -0.021902836859226227, -0.092537522315979, -0.10850324481725693, 0.03044259548187256,
+          0.003236655844375491, 0.07011040300130844, -0.0679406076669693, 0.036194637417793274,
+          -0.11745814234018326, 0.039188727736473083, -0.04887285456061363, -0.1576869934797287,
+          -0.12949293851852417, -0.07036192715167999, -0.022197483107447624, -0.04308882728219032,
+          -0.13465332984924316, 0.07419969141483307, -0.022208476439118385, 0.012862753123044968,
+          -0.039481353014707565, 0.0385955274105072, 0.07173869758844376, 0.05748577043414116,
+          -0.05600912496447563, -0.056751541793346405, 0.0011159757850691676, 0.10291137546300888,
+          -0.05828721448779106, -0.09152712672948837, 0.10082847625017166, -0.0065953233279287815,
+          0.14701725542545319, -0.13981762528419495, -0.01277631614357233, -0.11375660449266434,
+          0.008071552030742168, 0.139107346534729, -0.0205596424639225, -0.21595153212547302,
+          0.0003658607311081141, 0.146448016166687, 0.026559945195913315, 0.1630972921848297,
+          0.02025355026125908, 0.05620864778757095, 0.08623255044221878, 0.04798811301589012,
+          -0.08702613413333893, -0.02776581048965454, -0.04300986975431442, 0.03872695192694664,
+          -0.0026075062341988087, 0.07383998483419418, 0.11335308849811554, 0.047165773808956146,
+          0.10506340116262436, 0.2681483030319214, 0.0175074003636837, 0.08980114012956619,
+          0.040846116840839386, -0.06517859548330307, -0.17002201080322266, -0.007306600920855999,
+          -0.022449905052781105, -0.22492527961730957, -0.15629860758781433, 0.14251384139060974,
+          -0.03200966492295265, -0.0018004404846578836, -0.10275394469499588, -0.12008704990148544,
+          0.07493013143539429, 0.09869025647640228, 0.1337091028690338, 0.07975798100233078,
+          -0.10682520270347595, 0.016168460249900818, -0.015683090314269066, -0.036114804446697235,
+          -0.1932317465543747, -0.1202213391661644, 0.08825229853391647, 0.08584000170230865,
+          0.04944435879588127, 0.007446015253663063, -0.05894389748573303, 0.13635486364364624
+        ]
+      },
+      "document": {
+        "found": true,
+        "quad": [
+          [75.51, 589.5],
+          [1003.5, 589.5],
+          [1003.5, 1175.49],
+          [75.51, 1175.49]
+        ],
+        "method": "text_layout",
+        "rectified_size": [928, 585],
+        "aspect_ratio": 1.583646,
+        "area_ratio": 0.262244
+      },
+      "document_quality": {
+        "blur_score": 296.9593,
+        "tenengrad": 22781.179,
+        "width_px": 928,
+        "height_px": 585,
+        "glare_ratio_text": 0.0,
+        "glare_ratio_portrait": 0.0
+      },
+      "text": [
+        {
+          "text": "QUEBEC",
+          "confidence": 0.9999,
+          "box": [30.0, 21.0, 149.0, 39.0],
+          "stroke_width_mean": 3.309,
+          "stroke_width_cv": 0.1329
+        },
+        {
+          "text": "PERMIS DE CONDUIRE",
+          "confidence": 0.9973,
+          "box": [334.0, 33.0, 267.0, 26.0],
+          "stroke_width_mean": 2.881,
+          "stroke_width_cv": 0.1389
+        },
+        {
+          "text": "SPECIMEN",
+          "confidence": 0.9993,
+          "box": [712.0, 31.0, 134.0, 29.0],
+          "stroke_width_mean": 2.909,
+          "stroke_width_cv": 0.2175
+        },
+        {
+          "text": "T1234-567890-12",
+          "confidence": 1.0,
+          "box": [368.0, 123.0, 254.0, 32.0],
+          "stroke_width_mean": 3.133,
+          "stroke_width_cv": 0.1694
+        },
+        {
+          "text": "TREMBLAY",
+          "confidence": 1.0,
+          "box": [367.0, 176.0, 166.0, 33.0],
+          "stroke_width_mean": 3.092,
+          "stroke_width_cv": 0.2149
+        },
+        {
+          "text": "MARIE",
+          "confidence": 0.9999,
+          "box": [366.0, 226.0, 101.0, 34.0],
+          "stroke_width_mean": 3.125,
+          "stroke_width_cv": 0.2142
+        },
+        {
+          "text": "100 RUE FICTIVE",
+          "confidence": 0.9659,
+          "box": [368.0, 278.0, 171.0, 26.0],
+          "stroke_width_mean": 2.746,
+          "stroke_width_cv": 0.122
+        },
+        {
+          "text": "MONTREAL QC H0H 0HO",
+          "confidence": 0.9363,
+          "box": [366.0, 312.0, 251.0, 24.0],
+          "stroke_width_mean": 2.726,
+          "stroke_width_cv": 0.1622
+        },
+        {
+          "text": "DATE DE NAISSANCE (A-M-J): 1990-02-14",
+          "confidence": 0.9681,
+          "box": [367.0, 355.0, 371.0, 23.0],
+          "stroke_width_mean": 2.692,
+          "stroke_width_cv": 0.2075
+        },
+        {
+          "text": "4a",
+          "confidence": 0.9949,
+          "box": [336.0, 398.0, 14.0, 12.0],
+          "stroke_width_mean": null,
+          "stroke_width_cv": null
+        },
+        {
+          "text": "DELIVRELE 2021-03-15",
+          "confidence": 0.9908,
+          "box": [367.0, 394.0, 217.0, 22.0],
+          "stroke_width_mean": 2.691,
+          "stroke_width_cv": 0.1514
+        },
+        {
+          "text": "EXPIRE LE 2029-02-14",
+          "confidence": 0.9767,
+          "box": [367.0, 434.0, 203.0, 22.0],
+          "stroke_width_mean": 2.686,
+          "stroke_width_cv": 0.1919
+        },
+        {
+          "text": "CLASSE(S):5",
+          "confidence": 1.0,
+          "box": [366.0, 473.0, 124.0, 25.0],
+          "stroke_width_mean": 2.63,
+          "stroke_width_cv": 0.1511
+        },
+        {
+          "text": "15",
+          "confidence": 0.9742,
+          "box": [563.0, 477.0, 16.0, 14.0],
+          "stroke_width_mean": null,
+          "stroke_width_cv": null
+        },
+        {
+          "text": "SEXE: F",
+          "confidence": 0.9386,
+          "box": [594.0, 474.0, 75.0, 23.0],
+          "stroke_width_mean": 2.638,
+          "stroke_width_cv": 0.1892
+        },
+        {
+          "text": "16",
+          "confidence": 0.9985,
+          "box": [704.0, 476.0, 27.0, 15.0],
+          "stroke_width_mean": null,
+          "stroke_width_cv": null
+        },
+        {
+          "text": "TAILLE (CM): 165",
+          "confidence": 0.979,
+          "box": [734.0, 474.0, 154.0, 21.0],
+          "stroke_width_mean": 2.752,
+          "stroke_width_cv": 0.1872
+        },
+        {
+          "text": "SPECIMEN- OPENVERIFY SYNTHETIC TEST CARD",
+          "confidence": 0.9842,
+          "box": [31.0, 532.0, 449.0, 22.0],
+          "stroke_width_mean": 2.72,
+          "stroke_width_cv": 0.1828
+        }
+      ],
+      "mrz": {
+        "found": false,
+        "format_guess": null,
+        "lines": [],
+        "line_confidences": [],
+        "box": null
+      },
+      "barcodes": [],
+      "portrait_clarity": {
+        "face_width_px": 148.9,
+        "sharpness": 127.1711,
+        "landmarks_score": 0.9361
+      },
+      "forensics": {
+        "exif": {
+          "software": null,
+          "make": null,
+          "model": null,
+          "has_gps": false
+        },
+        "jpeg": {
+          "quality_estimate": 92,
+          "standard_tables": true,
+          "double_compression_score": 0.0
+        },
+        "ela_score": 0.0843,
+        "moire_score": 0.0,
+        "screen_grid_score": 0.0,
+        "chroma": {
+          "mean_saturation": 0.2316,
+          "colorfulness": 35.0
+        },
+        "color_cast_score": 0.1937,
+        "copy_move_score": 0.125,
+        "portrait_boundary_score": 0.0389,
+        "star_glyph": {
+          "found": false,
+          "score": 0.0178,
+          "box": null
+        }
+      },
+      "phash": "f0c31fc0b03ccc3f"
+    },
+    "back": {
+      "quality": {
+        "blur_score": 187.99034770263316,
+        "is_blurry": false,
+        "glare_ratio": 1.9290123456790124e-6,
+        "has_glare": false,
+        "brightness": 0.42136132103304286,
+        "is_too_dark": false,
+        "is_too_bright": false
+      },
+      "faces": [],
+      "portrait": null,
+      "document": {
+        "found": true,
+        "quad": [
+          [75.51, 589.5],
+          [1003.5, 589.5],
+          [1003.5, 1175.49],
+          [75.51, 1175.49]
+        ],
+        "method": "text_layout",
+        "rectified_size": [928, 585],
+        "aspect_ratio": 1.583646,
+        "area_ratio": 0.262244
+      },
+      "document_quality": {
+        "blur_score": 267.9298,
+        "tenengrad": 21354.1803,
+        "width_px": 928,
+        "height_px": 585,
+        "glare_ratio_text": 0.0,
+        "glare_ratio_portrait": null
+      },
+      "text": [
+        {
+          "text": "QUEBEC",
+          "confidence": 0.9999,
+          "box": [30.0, 21.0, 148.0, 39.0],
+          "stroke_width_mean": 3.309,
+          "stroke_width_cv": 0.1329
+        },
+        {
+          "text": "PERMIS DE CONDUIRE",
+          "confidence": 0.9776,
+          "box": [335.0, 32.0, 267.0, 28.0],
+          "stroke_width_mean": 3.063,
+          "stroke_width_cv": 0.1307
+        },
+        {
+          "text": "SPECIMEN",
+          "confidence": 0.9997,
+          "box": [714.0, 32.0, 131.0, 28.0],
+          "stroke_width_mean": 3.057,
+          "stroke_width_cv": 0.1602
+        },
+        {
+          "text": "CONDITIONS:AUCUNE",
+          "confidence": 0.9999,
+          "box": [52.0, 117.0, 210.0, 22.0],
+          "stroke_width_mean": 2.803,
+          "stroke_width_cv": 0.1549
+        },
+        {
+          "text": "SPECIMEN-OPENVERIFY SYNTHETIC TEST CARD",
+          "confidence": 0.9932,
+          "box": [30.0, 533.0, 450.0, 22.0],
+          "stroke_width_mean": 2.757,
+          "stroke_width_cv": 0.1756
+        }
+      ],
+      "mrz": {
+        "found": false,
+        "format_guess": null,
+        "lines": [],
+        "line_confidences": [],
+        "box": null
+      },
+      "barcodes": [
+        {
+          "format": "PDF417",
+          "bytes_b64": "QAoeDUFOU0kgNjA0NDI4MTAwMDAyREwwMDQxMDIyM1pRMDI2NDAwMzZETERDQTUKRENCTk9ORQpEQ0ROT05FCkRCQTIwMjkwMjE0CkRDU1RSRU1CTEFZCkRBQ01BUklFCkRBRE5PTkUKREJEMjAyMTAzMTUKREJCMTk5MDAyMTQKREJDMgpEQVlCUk8KREFVMTY1IENNCkRBRzEwMCBSVUUgRklDVElWRQpEQUlNT05UUkVBTApEQUpRQwpEQUtIMEgwSDAgICAgIApEQVFUMTIzNDU2Nzg5MDEyCkRDRlNZTlRIMjAyMTAzMTUwMDAwMQpEQ0dDQU4KRERFTgpEREZOCkRER04NWlFaUUFPUEVOVkVSSUZZIFNZTlRIRVRJQyBURVNUIERBVEEN",
+          "text": "@\n\u001e\rANSI 604428100002DL00410223ZQ02640036DLDCA5\nDCBNONE\nDCDNONE\nDBA20290214\nDCSTREMBLAY\nDACMARIE\nDADNONE\nDBD20210315\nDBB19900214\nDBC2\nDAYBRO\nDAU165 CM\nDAG100 RUE FICTIVE\nDAIMONTREAL\nDAJQC\nDAKH0H0H0     \nDAQT123456789012\nDCFSYNTH2021031500001\nDCGCAN\nDDEN\nDDFN\nDDGN\rZQZQAOPENVERIFY SYNTHETIC TEST DATA\r",
+          "quad": [
+            [140.0, 764.0],
+            [940.0, 764.0],
+            [940.0, 928.0],
+            [140.0, 928.0]
+          ]
+        }
+      ],
+      "portrait_clarity": null,
+      "forensics": {
+        "exif": {
+          "software": null,
+          "make": null,
+          "model": null,
+          "has_gps": false
+        },
+        "jpeg": {
+          "quality_estimate": 92,
+          "standard_tables": true,
+          "double_compression_score": 0.0
+        },
+        "ela_score": 0.0,
+        "moire_score": 0.0,
+        "screen_grid_score": 0.0,
+        "chroma": {
+          "mean_saturation": 0.1518,
+          "colorfulness": 24.95
+        },
+        "color_cast_score": 0.2486,
+        "copy_move_score": 0.125,
+        "portrait_boundary_score": null,
+        "star_glyph": {
+          "found": false,
+          "score": 0.0894,
+          "box": null
+        }
+      },
+      "phash": "ddaaa875f5a2880d"
+    }
+  }
+}

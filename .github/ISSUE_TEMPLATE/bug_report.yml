@@ -1,0 +1,91 @@
+name: Bug report
+description: Something in OpenVerify does not work as documented.
+title: '[Bug]: '
+labels: ['bug', 'triage']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug.
+
+        **Security vulnerabilities must not be reported here.** Use the private reporting form instead ([SECURITY.md](https://github.com/hnalpha323/openverify/blob/main/SECURITY.md)).
+
+        **Never include personal data**: no real identity documents, selfies, names, document numbers, API keys, session tokens or webhook secrets, even redacted. Reproduce with the sandbox environment and synthetic data.
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      options:
+        - API or worker (apps/api)
+        - Verification flow (apps/flow)
+        - Operator console (apps/dashboard)
+        - Vision service (services/vision)
+        - Android SDK or modules (android/)
+        - Web SDKs (@openverify/node, js, react)
+        - A check, report or signal
+        - Deployment (Docker Compose, Helm chart, images)
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      description: The commit SHA you run (`git rev-parse --short HEAD`), or the image tag.
+      placeholder: e.g. 1a2b3c4d5
+    validations:
+      required: true
+  - type: dropdown
+    id: deployment
+    attributes:
+      label: How you run it
+      options:
+        - Development (pnpm, local processes)
+        - Docker Compose (app profile)
+        - Helm chart on Kubernetes
+        - Android app with the SDK
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you saw, including the error, the HTTP status and the problem document's `type` and `title` if there is one.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+      description: What should have happened, and the documentation that says so if you know it.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: The smallest steps from a fresh `seed:dev` sandbox that show the problem.
+      placeholder: |
+        1. Create an inquiry with the default template
+        2. ...
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: Remove any token, key, secret or personal value before pasting. This is rendered as code.
+      render: shell
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched the existing issues and discussions.
+          required: true
+        - label: This report contains no personal data, credentials or tokens.
+          required: true
+        - label: This is not a security vulnerability.
+          required: true

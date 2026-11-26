@@ -1,0 +1,105 @@
+{
+  "data": [
+    {
+      "type": "workflow-action",
+      "id": "decline_inquiry@1",
+      "attributes": {
+        "key": "decline_inquiry",
+        "version": 1,
+        "kind": "internal",
+        "stage": "ga",
+        "delivery": "exactly-once",
+        "adverse": "always",
+        "config-schema": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false
+        },
+        "output-schema": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false
+        },
+        "grant": {
+          "scopes": ["inquiries:write"],
+          "pii": false
+        },
+        "grant-depends-on-config": false,
+        "emits": ["inquiry.declined", "inquiry.transitioned"],
+        "triggers": null,
+        "available": true,
+        "reason": null
+      }
+    },
+    {
+      "type": "workflow-action",
+      "id": "run_report@1",
+      "attributes": {
+        "key": "run_report",
+        "version": 1,
+        "kind": "internal",
+        "stage": "beta",
+        "delivery": "exactly-once",
+        "adverse": "never",
+        "config-schema": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false
+        },
+        "output-schema": {
+          "type": "object",
+          "properties": {
+            "has-match": {
+              "type": ["boolean", "null"]
+            }
+          },
+          "required": ["has-match"],
+          "additionalProperties": false
+        },
+        "grant": {
+          "scopes": ["reports:write"],
+          "pii": false
+        },
+        "grant-depends-on-config": true,
+        "emits": [],
+        "triggers": null,
+        "available": true,
+        "reason": null
+      }
+    },
+    {
+      "type": "workflow-action",
+      "id": "send_slack_message@1",
+      "attributes": {
+        "key": "send_slack_message",
+        "version": 1,
+        "kind": "egress",
+        "stage": "ga",
+        "delivery": "at-most-once",
+        "adverse": "never",
+        "config-schema": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false
+        },
+        "output-schema": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false
+        },
+        "grant": {
+          "scopes": [],
+          "pii": false
+        },
+        "grant-depends-on-config": true,
+        "emits": [],
+        "triggers": null,
+        "available": false,
+        "reason": "provider_not_configured"
+      }
+    }
+  ],
+  "links": {
+    "next": null
+  }
+}

@@ -1,0 +1,356 @@
+{
+  "model_versions": {
+    "detector": "yunet-2026may",
+    "recognizer": "sface-2021dec",
+    "text_detector": "pp-ocrv6-small-det",
+    "text_recognizer": "pp-ocrv6-small-rec"
+  },
+  "sides": {
+    "front": {
+      "quality": {
+        "blur_score": 19.335144193387947,
+        "is_blurry": true,
+        "glare_ratio": 0.0,
+        "has_glare": false,
+        "brightness": 0.40929320042060036,
+        "is_too_dark": false,
+        "is_too_bright": false
+      },
+      "faces": [
+        {
+          "bbox": [173.22, 786.26, 149.06, 191.59],
+          "score": 0.9358
+        }
+      ],
+      "portrait": {
+        "bbox": [173.22, 786.26, 149.06, 191.59],
+        "score": 0.9358,
+        "embedding": [
+          -0.09776600450277328, 0.0018129368545487523, 0.022202961146831512, 0.049016278237104416,
+          -0.024957893416285515, -0.022883493453264236, -0.08409970253705978, -0.019588256254792213,
+          -0.13887248933315277, 0.08779598772525787, -0.09188637882471085, -0.0029798843897879124,
+          0.03076964057981968, -0.06525822728872299, 0.03502760827541351, -0.01232104655355215,
+          -0.04618766903877258, 0.001326309284195304, -0.16892550885677338, 0.15205007791519165,
+          0.0534231923520565, -0.05348212271928787, -0.07413192093372345, -0.03644108399748802,
+          0.04761993885040283, 0.09162722527980804, 0.11748935282230377, 0.027192313224077225,
+          -0.06196993216872215, 0.04575608670711517, 0.028916940093040466, 0.14283213019371033,
+          0.010256599634885788, 0.02836463414132595, -0.07812176644802094, 0.07062547653913498,
+          -0.09262464940547943, 0.13185742497444153, -0.040786851197481155, -0.0521896556019783,
+          -0.03449057415127754, -0.09470188617706299, -0.11849484592676163, 0.018709417432546616,
+          0.006566406227648258, 0.0717441588640213, -0.05272830277681351, 0.04235784709453583,
+          -0.1259428858757019, 0.030840851366519928, -0.052720408886671066, -0.16778041422367096,
+          -0.12170061469078064, -0.06245085597038269, -0.036962732672691345, -0.040411848574876785,
+          -0.13126441836357117, 0.09345029294490814, -0.024871395900845528, 0.013792016543447971,
+          -0.038694825023412704, 0.046693313866853714, 0.07547963410615921, 0.045587364584207535,
+          -0.061201538890600204, -0.0629490464925766, 0.0005094992811791599, 0.105970099568367,
+          -0.06815410405397415, -0.09865625947713852, 0.10203836113214493, 0.008258547633886337,
+          0.15423156321048737, -0.13259872794151306, -0.011530338786542416, -0.12504510581493378,
+          0.016766896471381187, 0.13186988234519958, -0.011519966647028923, -0.20409324765205383,
+          0.007952543906867504, 0.1626594364643097, 0.021902013570070267, 0.1722593903541565,
+          0.0133785055950284, 0.050009217113256454, 0.07850489765405655, 0.04063015058636665,
+          -0.08335558325052261, -0.018111612647771835, -0.025312988087534904, 0.04512881115078926,
+          -0.020264310762286186, 0.06678500771522522, 0.10505354404449463, 0.04794340953230858,
+          0.10930709540843964, 0.26730072498321533, 0.017921708524227142, 0.08871300518512726,
+          0.037096209824085236, -0.07688875496387482, -0.14996586740016937, 0.0016378032742068172,
+          -0.0037628712598234415, -0.216181680560112, -0.15233910083770752, 0.13258127868175507,
+          -0.03632284700870514, 0.0026035176124423742, -0.12191010266542435, -0.11421125382184982,
+          0.07608135044574738, 0.08830013126134872, 0.12734626233577728, 0.06760015338659286,
+          -0.09978601336479187, 0.01827029325067997, -0.011661347001791, -0.03546322509646416,
+          -0.18324224650859833, -0.1268804669380188, 0.08563315868377686, 0.10322550684213638,
+          0.03170595318078995, 0.012963946908712387, -0.05935930088162422, 0.14691780507564545
+        ]
+      },
+      "document": {
+        "found": true,
+        "quad": [
+          [75.51, 589.5],
+          [1003.5, 589.5],
+          [1003.5, 1175.48],
+          [75.5, 1175.48]
+        ],
+        "method": "text_layout",
+        "rectified_size": [928, 585],
+        "aspect_ratio": 1.58368,
+        "area_ratio": 0.262242
+      },
+      "document_quality": {
+        "blur_score": 95.4788,
+        "tenengrad": 11447.1661,
+        "width_px": 928,
+        "height_px": 585,
+        "glare_ratio_text": 0.0,
+        "glare_ratio_portrait": 0.0
+      },
+      "text": [
+        {
+          "text": "QUEBEC",
+          "confidence": 0.9999,
+          "box": [30.0, 21.0, 149.0, 39.0],
+          "stroke_width_mean": 4.152,
+          "stroke_width_cv": 0.1128
+        },
+        {
+          "text": "PERMIS DE CONDUIRE",
+          "confidence": 0.9985,
+          "box": [334.0, 33.0, 267.0, 26.0],
+          "stroke_width_mean": 3.83,
+          "stroke_width_cv": 0.1791
+        },
+        {
+          "text": "SPECIMEN",
+          "confidence": 0.9995,
+          "box": [712.0, 31.0, 135.0, 29.0],
+          "stroke_width_mean": 3.939,
+          "stroke_width_cv": 0.232
+        },
+        {
+          "text": "T1234-567890-12",
+          "confidence": 1.0,
+          "box": [367.0, 122.0, 256.0, 34.0],
+          "stroke_width_mean": 4.071,
+          "stroke_width_cv": 0.163
+        },
+        {
+          "text": "TREMBLAY",
+          "confidence": 1.0,
+          "box": [367.0, 176.0, 166.0, 33.0],
+          "stroke_width_mean": 4.012,
+          "stroke_width_cv": 0.2083
+        },
+        {
+          "text": "MARIE",
+          "confidence": 0.9999,
+          "box": [364.0, 225.0, 103.0, 36.0],
+          "stroke_width_mean": 4.077,
+          "stroke_width_cv": 0.178
+        },
+        {
+          "text": "100 RUE FICTIVE",
+          "confidence": 0.9806,
+          "box": [368.0, 278.0, 171.0, 26.0],
+          "stroke_width_mean": 3.882,
+          "stroke_width_cv": 0.2102
+        },
+        {
+          "text": "MONTREAL QC HOH OHO",
+          "confidence": 0.9293,
+          "box": [366.0, 312.0, 251.0, 24.0],
+          "stroke_width_mean": 3.802,
+          "stroke_width_cv": 0.2319
+        },
+        {
+          "text": "DATE DE NAISSANCE (A-M-J): 1990-02-14",
+          "confidence": 0.9788,
+          "box": [367.0, 354.0, 372.0, 24.0],
+          "stroke_width_mean": 3.816,
+          "stroke_width_cv": 0.2967
+        },
+        {
+          "text": "DELIVRE LE 2021-03-15",
+          "confidence": 0.9756,
+          "box": [367.0, 394.0, 217.0, 22.0],
+          "stroke_width_mean": 3.769,
+          "stroke_width_cv": 0.1812
+        },
+        {
+          "text": "EXPIRE LE 2029-02-14",
+          "confidence": 0.9966,
+          "box": [366.0, 434.0, 204.0, 22.0],
+          "stroke_width_mean": 3.844,
+          "stroke_width_cv": 0.2722
+        },
+        {
+          "text": "CLASSE(S):5",
+          "confidence": 0.9999,
+          "box": [365.0, 473.0, 125.0, 25.0],
+          "stroke_width_mean": 3.81,
+          "stroke_width_cv": 0.2558
+        },
+        {
+          "text": "SEXE: F",
+          "confidence": 0.9464,
+          "box": [594.0, 474.0, 75.0, 23.0],
+          "stroke_width_mean": 4.06,
+          "stroke_width_cv": 0.268
+        },
+        {
+          "text": "TAILLE (CM):165",
+          "confidence": 0.9933,
+          "box": [735.0, 474.0, 153.0, 21.0],
+          "stroke_width_mean": 3.97,
+          "stroke_width_cv": 0.2859
+        },
+        {
+          "text": "SPECIMEN-OPENVERIFY SYNTHETIC TEST CARD",
+          "confidence": 0.9861,
+          "box": [30.0, 532.0, 450.0, 22.0],
+          "stroke_width_mean": 3.832,
+          "stroke_width_cv": 0.2517
+        }
+      ],
+      "mrz": {
+        "found": false,
+        "format_guess": null,
+        "lines": [],
+        "line_confidences": [],
+        "box": null
+      },
+      "barcodes": [],
+      "portrait_clarity": {
+        "face_width_px": 149.06,
+        "sharpness": 56.2885,
+        "landmarks_score": 0.9358
+      },
+      "forensics": {
+        "exif": {
+          "software": null,
+          "make": null,
+          "model": null,
+          "has_gps": false
+        },
+        "jpeg": {
+          "quality_estimate": 92,
+          "standard_tables": true,
+          "double_compression_score": 0.0
+        },
+        "ela_score": 0.092,
+        "moire_score": 0.0,
+        "screen_grid_score": 0.0,
+        "chroma": {
+          "mean_saturation": 0.2301,
+          "colorfulness": 34.83
+        },
+        "color_cast_score": 0.2038,
+        "copy_move_score": 0.0938,
+        "portrait_boundary_score": 0.0209,
+        "star_glyph": {
+          "found": false,
+          "score": 0.0166,
+          "box": null
+        }
+      },
+      "phash": "f0c31fc0b03ccc3f"
+    },
+    "back": {
+      "quality": {
+        "blur_score": 51.362858313758316,
+        "is_blurry": true,
+        "glare_ratio": 0.0,
+        "has_glare": false,
+        "brightness": 0.4181923244220528,
+        "is_too_dark": false,
+        "is_too_bright": false
+      },
+      "faces": [],
+      "portrait": null,
+      "document": {
+        "found": true,
+        "quad": [
+          [75.51, 589.5],
+          [1003.5, 589.5],
+          [1003.5, 1175.48],
+          [75.5, 1175.48]
+        ],
+        "method": "text_layout",
+        "rectified_size": [928, 585],
+        "aspect_ratio": 1.58368,
+        "area_ratio": 0.262242
+      },
+      "document_quality": {
+        "blur_score": 89.8641,
+        "tenengrad": 10887.1138,
+        "width_px": 928,
+        "height_px": 585,
+        "glare_ratio_text": 0.0,
+        "glare_ratio_portrait": null
+      },
+      "text": [
+        {
+          "text": "QUEBEC",
+          "confidence": 0.9998,
+          "box": [30.0, 20.0, 149.0, 40.0],
+          "stroke_width_mean": 4.242,
+          "stroke_width_cv": 0.1094
+        },
+        {
+          "text": "PERMIS DE CONDUIRE",
+          "confidence": 0.9759,
+          "box": [334.0, 32.0, 268.0, 28.0],
+          "stroke_width_mean": 3.895,
+          "stroke_width_cv": 0.1812
+        },
+        {
+          "text": "SPECIMEN",
+          "confidence": 0.9998,
+          "box": [713.0, 31.0, 134.0, 29.0],
+          "stroke_width_mean": 3.912,
+          "stroke_width_cv": 0.2212
+        },
+        {
+          "text": "CONDITIONS:AUCUNE",
+          "confidence": 0.9999,
+          "box": [51.0, 116.0, 212.0, 24.0],
+          "stroke_width_mean": 3.93,
+          "stroke_width_cv": 0.3171
+        },
+        {
+          "text": "SPECIMEN-OPENVERIFY SYNTHETIC TEST CARD",
+          "confidence": 0.9761,
+          "box": [31.0, 533.0, 447.0, 21.0],
+          "stroke_width_mean": 3.746,
+          "stroke_width_cv": 0.2413
+        }
+      ],
+      "mrz": {
+        "found": false,
+        "format_guess": null,
+        "lines": [],
+        "line_confidences": [],
+        "box": null
+      },
+      "barcodes": [
+        {
+          "format": "PDF417",
+          "bytes_b64": "QAoeDUFOU0kgNjA0NDI4MTAwMDAyREwwMDQxMDIyM1pRMDI2NDAwMzZETERDQTUKRENCTk9ORQpEQ0ROT05FCkRCQTIwMjkwMjE0CkRDU1RSRU1CTEFZCkRBQ01BUklFCkRBRE5PTkUKREJEMjAyMTAzMTUKREJCMTk5MDAyMTQKREJDMgpEQVlCUk8KREFVMTY1IENNCkRBRzEwMCBSVUUgRklDVElWRQpEQUlNT05UUkVBTApEQUpRQwpEQUtIMEgwSDAgICAgIApEQVFUMTIzNDU2Nzg5MDEyCkRDRlNZTlRIMjAyMTAzMTUwMDAwMQpEQ0dDQU4KRERFTgpEREZOCkRER04NWlFaUUFPUEVOVkVSSUZZIFNZTlRIRVRJQyBURVNUIERBVEEN",
+          "text": "@\n\u001e\rANSI 604428100002DL00410223ZQ02640036DLDCA5\nDCBNONE\nDCDNONE\nDBA20290214\nDCSTREMBLAY\nDACMARIE\nDADNONE\nDBD20210315\nDBB19900214\nDBC2\nDAYBRO\nDAU165 CM\nDAG100 RUE FICTIVE\nDAIMONTREAL\nDAJQC\nDAKH0H0H0     \nDAQT123456789012\nDCFSYNTH2021031500001\nDCGCAN\nDDEN\nDDFN\nDDGN\rZQZQAOPENVERIFY SYNTHETIC TEST DATA\r",
+          "quad": [
+            [140.0, 764.0],
+            [940.0, 764.0],
+            [940.0, 928.0],
+            [140.0, 928.0]
+          ]
+        }
+      ],
+      "portrait_clarity": null,
+      "forensics": {
+        "exif": {
+          "software": null,
+          "make": null,
+          "model": null,
+          "has_gps": false
+        },
+        "jpeg": {
+          "quality_estimate": 92,
+          "standard_tables": true,
+          "double_compression_score": 0.0
+        },
+        "ela_score": 0.0,
+        "moire_score": 0.0,
+        "screen_grid_score": 0.0,
+        "chroma": {
+          "mean_saturation": 0.1488,
+          "colorfulness": 24.77
+        },
+        "color_cast_score": 0.2511,
+        "copy_move_score": 0.0938,
+        "portrait_boundary_score": null,
+        "star_glyph": {
+          "found": false,
+          "score": 0.0798,
+          "box": null
+        }
+      },
+      "phash": "ddaaa875f5a2880d"
+    }
+  }
+}

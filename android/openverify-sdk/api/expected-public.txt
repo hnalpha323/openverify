@@ -1,0 +1,69 @@
+# The public surface of :openverify-sdk (plan C190.7, decision 68; review F02; amended in Workflow 10A
+# Stage 1a by SandboxSignalOutcome, the events' two enums and the chip report's nested types).
+# Everything else is internal.
+# One declaration per line, its fully qualified name. A top-level declaration starts at column 0;
+# a nested one is indented two spaces under its parent. Changed only by contracts-10a or an
+# integration agent, in the same commit as the public change and the ABI dump (C214.2).
+# PublicSurfaceTest (androidHostTest) holds the top-level lines to the sources; the ABI dump of
+# foundation-10a holds every line.
+
+# Entry points and results (C190)
+dev.openverify.sdk.OpenVerifyInquiry
+  Request
+  OneTimeLink
+  Contract
+  OneTimeLinkContract
+  fromOneTimeLink
+dev.openverify.sdk.InquiryResult
+  Completed
+  Failed
+  Canceled
+dev.openverify.sdk.FailureReason
+dev.openverify.sdk.model.InquiryStatus
+dev.openverify.sdk.Appearance
+
+# The registry, the transport and the sandbox control (C191; Phase 7 C90.9)
+dev.openverify.sdk.OpenVerifyAndroid
+dev.openverify.sdk.OpenVerifyComponents
+dev.openverify.sdk.FlowTransport
+dev.openverify.sdk.OpenVerifyAndroidTransport
+dev.openverify.sdk.SandboxSignalOutcome
+
+# Events (C192)
+dev.openverify.sdk.OpenVerifyEvent
+  Started
+  StepShown
+  CameraPermission
+  CaptureFailed
+  Submitted
+  Waiting
+  Ended
+dev.openverify.sdk.OpenVerifyEventListener
+dev.openverify.sdk.CaptureFailureReason
+dev.openverify.sdk.InquiryResultKind
+
+# Seams (C190.7, C204.2, C207.3, C211.2) and their value types
+dev.openverify.sdk.chip.ChipReader
+dev.openverify.sdk.chip.ChipAccess
+  Mrz
+  Can
+dev.openverify.sdk.chip.ChipRead
+dev.openverify.sdk.chip.ChipDeviceReport
+  Attempt
+  Protocol
+  Outcome
+dev.openverify.sdk.chip.ChipProgress
+  WaitingForDocument
+  Connected
+  Reading
+  Authenticating
+  Done
+dev.openverify.sdk.chip.ChipReadException
+dev.openverify.sdk.chip.ChipReadFailure
+dev.openverify.sdk.mrz.BacKeySeed
+dev.openverify.sdk.model.FileKind
+dev.openverify.sdk.face.FaceDetectorFactory
+dev.openverify.sdk.face.FaceDetector
+dev.openverify.sdk.face.YunetOutputs
+dev.openverify.sdk.integrity.IntegrityTokenProvider
+dev.openverify.sdk.ExperimentalOpenVerifyApi

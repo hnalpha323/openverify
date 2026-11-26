@@ -1,0 +1,54 @@
+{
+  "name": "@openverify/signals",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Signals (plan C92-C94): the browser collector (no runtime dependency, no network call, no storage), the network parsers, interval sets and lookups over operator-synced data, and the synthetic publisher files for tests",
+  "type": "module",
+  "exports": {
+    ".": {
+      "@openverify/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./address": {
+      "@openverify/source": "./src/network/address.ts",
+      "types": "./dist/network/address.d.ts",
+      "default": "./dist/network/address.js"
+    },
+    "./browser": {
+      "@openverify/source": "./src/browser/index.ts",
+      "types": "./dist/browser/index.d.ts",
+      "default": "./dist/browser/index.js"
+    },
+    "./network": {
+      "@openverify/source": "./src/network/index.ts",
+      "types": "./dist/network/index.d.ts",
+      "default": "./dist/network/index.js"
+    },
+    "./testing": {
+      "@openverify/source": "./src/testing/index.ts",
+      "types": "./dist/testing/index.d.ts",
+      "default": "./dist/testing/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@openverify/config": "workspace:*",
+    "@openverify/contracts": "workspace:*",
+    "@openverify/core": "workspace:*",
+    "@types/node": "catalog:",
+    "@vitest/coverage-v8": "catalog:",
+    "esbuild": "catalog:",
+    "jsdom": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  },
+  "dependencies": {
+    "mmdb-lib": "catalog:"
+  }
+}

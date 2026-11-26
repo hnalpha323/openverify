@@ -1,0 +1,7 @@
+{
+  "path": "/v1/count/document-pages",
+  "media_type": "application/pdf",
+  "max_bytes": 20000000,
+  "max_pages": 10000,
+  "refusals": ["pdf_encrypted", "pdf_unprocessable", "too_many_pages"]
+}

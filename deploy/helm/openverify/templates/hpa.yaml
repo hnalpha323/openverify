@@ -1,0 +1,35 @@
+{{- /*
+C263.4 (Workflow 11C Stage 2, chart-11c): HorizontalPodAutoscalers on CPU for the API, the console
+and the flow server, each only when <component>.autoscaling.enabled (its Deployment then leaves the
+replica count to it). The worker scales by replicas: queue-depth scaling (KEDA's Redis scaler over
+BullMQ's keys) is untested, so it is the guide's example, never a template; vision and the runner
+have no HPA either.
+*/ -}}
+{{- range $pair := list (list "api" $.Values.api) (list "dashboard" $.Values.dashboard) (list "flow" $.Values.flow) }}
+{{- $component := index $pair 0 }}
+{{- $c := index $pair 1 }}
+{{- if $c.autoscaling.enabled }}
+{{- $name := include "openverify.componentName" (dict "root" $ "component" $component) }}
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ $name }}
+  labels:
+    {{- include "openverify.labels" (dict "root" $ "component" $component) | nindent 4 }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ $name }}
+  minReplicas: {{ $c.autoscaling.minReplicas }}
+  maxReplicas: {{ $c.autoscaling.maxReplicas }}
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: {{ $c.autoscaling.targetCPUUtilizationPercentage }}
+{{- end }}
+{{- end }}

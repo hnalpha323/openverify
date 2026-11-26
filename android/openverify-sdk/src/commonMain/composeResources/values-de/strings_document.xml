@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  German copy of values/strings_document.xml, machine-drafted by android-i18n (Workflow 10A, C199.1;
+  i18n/review-status.json): where the hosted web flow has the same English text, its
+  German words are used, so both clients say the same thing. Compose Multiplatform resources:
+  positional placeholders only, ' and " written as they are, no isolate or other bidi control
+  (ResourcesTest).
+-->
+<resources>
+    <string name="openverify_document_title">Dokument hochladen</string>
+    <string name="openverify_document_intro">Laden Sie ein Dokument hoch, auf dem Ihr vollständiger Name und Ihre Adresse stehen.</string>
+    <string name="openverify_document_accepted">Sie können eines der folgenden Dokumente hochladen:</string>
+    <plurals name="openverify_document_type_utility_bill">
+        <item quantity="one">Eine Versorgerrechnung, die höchstens einen Tag alt ist</item>
+        <item quantity="other">Eine Versorgerrechnung, die höchstens %1$d Tage alt ist</item>
+    </plurals>
+    <plurals name="openverify_document_type_bank_statement">
+        <item quantity="one">Ein Kontoauszug, der höchstens einen Tag alt ist</item>
+        <item quantity="other">Ein Kontoauszug, der höchstens %1$d Tage alt ist</item>
+    </plurals>
+    <plurals name="openverify_document_type_pay_stub">
+        <item quantity="one">Eine Gehaltsabrechnung, die höchstens einen Tag alt ist</item>
+        <item quantity="other">Eine Gehaltsabrechnung, die höchstens %1$d Tage alt ist</item>
+    </plurals>
+    <string name="openverify_document_type_lease">Ein noch gültiger Miet- oder Pachtvertrag</string>
+    <string name="openverify_document_type_tax_document">Ein Steuerdokument aus dem letzten Steuerjahr</string>
+    <string name="openverify_document_name_utility_bill">Eine Versorgerrechnung</string>
+    <string name="openverify_document_name_bank_statement">Ein Kontoauszug</string>
+    <string name="openverify_document_name_lease">Ein Miet- oder Pachtvertrag</string>
+    <string name="openverify_document_name_pay_stub">Eine Gehaltsabrechnung</string>
+    <string name="openverify_document_name_tax_document">Ein Steuerdokument</string>
+    <string name="openverify_document_formats">Laden Sie es in einem dieser Formate hoch: %1$s, mit höchstens %2$d MB.</string>
+    <plurals name="openverify_document_pages">
+        <item quantity="one">Ein PDF darf nur %1$d Seite haben.</item>
+        <item quantity="other">Ein PDF darf bis zu %1$d Seiten haben.</item>
+    </plurals>
+    <string name="openverify_document_choose">Datei auswählen</string>
+    <string name="openverify_document_photo">Foto aufnehmen</string>
+    <string name="openverify_document_unavailable">Dieses Gerät kann hier kein Dokument bereitstellen. Verwenden Sie ein anderes Gerät, um fortzufahren.</string>
+    <string name="openverify_document_picked">Ihre Datei: %1$s, %2$s</string>
+    <string name="openverify_document_unnamed">eine Datei ohne Namen</string>
+    <string name="openverify_decimal_separator">,</string>
+    <string name="openverify_document_picked_hint">Prüfen Sie, ob es das richtige Dokument ist, und laden Sie es dann hoch.</string>
+    <string name="openverify_document_upload">Diese Datei hochladen</string>
+    <string name="openverify_document_choose_another">Andere Datei auswählen</string>
+    <string name="openverify_document_uploading">Ihr Dokument wird hochgeladen…</string>
+    <string name="openverify_document_error_empty">Diese Datei ist leer. Wählen Sie eine andere Datei aus.</string>
+    <string name="openverify_document_error_too_large">Diese Datei ist größer als 10 MB. Wählen Sie eine kleinere Datei, etwa ein Foto des Dokuments oder ein PDF mit weniger Seiten.</string>
+    <string name="openverify_document_error_unsupported">Diesen Dateityp können wir nicht verwenden. Wählen Sie eine Datei in einem der oben genannten Formate.</string>
+    <string name="openverify_document_error_unreadable">Wir konnten diese Datei nicht lesen. Wählen Sie eine andere Datei aus.</string>
+    <string name="openverify_document_capture_title">Fotografieren Sie Ihr Dokument</string>
+    <string name="openverify_document_capture_instruction">Bringen Sie die ganze Seite bei gutem Licht in den Rahmen, ohne dass etwas sie verdeckt.</string>
+    <string name="openverify_document_capture_photo">Ihr Foto des Dokuments</string>
+    <string name="openverify_document_capture_back">Zurück zum Dokumentschritt</string>
+
+    <!-- C202.3, C202.4: the capture guidance (machine-drafted). -->
+    <string name="openverify_document_guidance_move_closer">Gehen Sie näher heran</string>
+    <string name="openverify_document_guidance_hold_still">Halten Sie still</string>
+    <string name="openverify_document_guidance_tilt_away">Neigen Sie den Ausweis weg vom Licht</string>
+    <string name="openverify_document_guidance_more_light">Suchen Sie mehr Licht</string>
+    <string name="openverify_document_guidance_fit_card">Bringen Sie die Karte in den Rahmen</string>
+    <string name="openverify_document_guidance_fit_page">Bringen Sie die Seite in den Rahmen</string>
+    <string name="openverify_document_guidance_show_mrz">Zeigen Sie die Codezeilen unten auf der Seite</string>
+    <string name="openverify_document_guidance_auto">Das Foto wird automatisch aufgenommen, sobald Ihr Ausweis gut erkennbar ist. Sie können es auch jederzeit selbst aufnehmen.</string>
+</resources>

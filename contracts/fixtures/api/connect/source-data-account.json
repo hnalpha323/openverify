@@ -1,0 +1,19 @@
+{
+  "type": "connect/source-data/account",
+  "attributes": {
+    "status": {
+      "visibility": "full",
+      "value": "active"
+    }
+  },
+  "fields": {
+    "name_first": {
+      "visibility": "presence",
+      "value": true
+    },
+    "name_last": {
+      "visibility": "presence",
+      "value": false
+    }
+  }
+}

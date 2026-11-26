@@ -1,0 +1,26 @@
+{
+  "files": [
+    {
+      "kind": "chip-sod",
+      "content": "c3ludGhldGljIGNoaXAtc29k"
+    },
+    {
+      "kind": "chip-dg1",
+      "content": "c3ludGhldGljIGNoaXAtZGcx"
+    },
+    {
+      "kind": "chip-dg14",
+      "content": "c3ludGhldGljIGNoaXAtZGcxNA=="
+    },
+    {
+      "kind": "chip-dg15",
+      "content": "c3ludGhldGljIGNoaXAtZGcxNQ=="
+    },
+    {
+      "kind": "chip-com",
+      "content": "c3ludGhldGljIGNoaXAtY29t"
+    }
+  ],
+  "dg2-attached": true,
+  "active-authentication-response": "AAAAAAAAAAAAAAAAAAAAAA=="
+}

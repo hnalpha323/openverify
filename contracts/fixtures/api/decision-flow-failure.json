@@ -1,0 +1,67 @@
+{
+  "data": {
+    "type": "decision",
+    "id": "idec_01M5CN00000000000000009A20",
+    "attributes": {
+      "kind": "flow-failure",
+      "actor": {
+        "type": "inquiry-flow",
+        "id": "inq_01M5CJXHG07XPHF3HRM6NREDH7"
+      },
+      "run": null,
+      "flow": {
+        "template-version-id": "itmplv_01M5CN00000000000000009A01",
+        "failure-step-id": "failed_minor",
+        "routes": [
+          {
+            "step-id": "age_route",
+            "port": "route:minor",
+            "on-null": null
+          }
+        ]
+      },
+      "solely-automated": true,
+      "human-step": null,
+      "evidence": [
+        {
+          "kind": "verification",
+          "id": "ver_01M5CK16P0D13FXHZSS4TCFB00",
+          "name": null,
+          "status": "passed",
+          "tier": "R",
+          "stage": "ga",
+          "confidence": null
+        },
+        {
+          "kind": "extraction",
+          "id": null,
+          "name": "age-years",
+          "status": null,
+          "tier": "R/H",
+          "stage": "beta",
+          "confidence": null
+        }
+      ],
+      "pending-evidence": [],
+      "decision-basis": "contract",
+      "contest-route": {
+        "url": "https://help.example.com/contest"
+      },
+      "biometric-basis": null,
+      "comment": null,
+      "needs-review": false,
+      "human-review-pending": false,
+      "error-code": null,
+      "test-run-id": null,
+      "created-at": "2026-10-20T12:00:30.000Z"
+    },
+    "relationships": {
+      "subject": {
+        "data": {
+          "type": "inquiry",
+          "id": "inq_01M5CJXHG07XPHF3HRM6NREDH7"
+        }
+      }
+    }
+  }
+}

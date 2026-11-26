@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "description": "Workflow 11D's one City Lite publication (method item (d), docs/calibration/load-phase11.md): fetched only with `python3 -I scripts/fetch_data.py --manifest load/city-lite-manifest.json --dest <a fresh directory under /tmp>` for the MmdbSnapshot.verify take, never into data/ or an image context, never committed, baked or redistributed, and deleted after the take (rule 9). The default fetch_data.py, CI and every image never read this manifest.",
+  "data": [
+    {
+      "name": "dbip_city_lite_2026_10",
+      "filename": "dbip-city-lite-2026-10.mmdb.gz",
+      "url": "https://download.db-ip.com/free/dbip-city-lite-2026-10.mmdb.gz",
+      "sha256": "c839d407f85a1e0bddba354cef16b2c398182d1c34ed8d985555dce134b36b14",
+      "size": 60193321,
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_repo": "https://db-ip.com/db/download/ip-to-city-lite",
+      "upstream": "DB-IP (Eris Networks S.A.S), IP to City Lite, the monthly publication dated 2026-10-01 (Last-Modified Thu, 01 Oct 2026 06:29:28 GMT), 46 days old on 2026-11-16, when its size and SHA-256 were read by downloading it once into a fresh /tmp directory and deleting it",
+      "description": "DB-IP City Lite, the gzipped MMDB (about 7.8 million records), off by default in network/sources.json (dbip-city-lite)",
+      "notes": "Attribution: IP geolocation by DB-IP (https://db-ip.com), CC BY 4.0 (THIRD_PARTY_LICENSES.md section 4.2). DB-IP keeps only the current and previous month online: if this file is gone on the day of the take, the newest publication at least 14 days old is pinned in its place, its size and SHA-256 read that day, and the change is listed under the report's Amendments."
+    }
+  ]
+}

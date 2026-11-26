@@ -1,0 +1,19 @@
+- main:
+    - region "Share your verified details with Example Partner":
+        - heading "Share your verified details with Example Partner" [level=1]
+        - term: Shared by
+        - definition: Example Source
+        - term: Shared with
+        - definition: Example Partner
+        - term: What is shared
+        - definition:
+            - list:
+                - listitem: your identity details, such as your name and date of birth
+                - listitem: 'biometric data: photos of your face and the results of comparing them'
+                - listitem: the results of the checks on your details
+        - paragraph: Example Source asks for your agreement to share the details it verified about you with Example Partner.
+        - paragraph: To withdraw your agreement, email privacy@example.com.
+        - checkbox "I agree that Example Source shares my biometric data with Example Partner."
+        - text: I agree that Example Source shares my biometric data with Example Partner.
+        - button "Do not share"
+        - button "I agree"

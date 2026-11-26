@@ -1,0 +1,10 @@
+{
+  "data": {
+    "type": "graph-node-value",
+    "id": "gn_0123456789abcdefghijkl",
+    "attributes": {
+      "kind": "email_address",
+      "value": "linked@example.test"
+    }
+  }
+}

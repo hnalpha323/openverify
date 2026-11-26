@@ -1,0 +1,499 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <dev.openverify:openverify-sdk>
+open annotation class dev.openverify.sdk/ExperimentalOpenVerifyApi : kotlin/Annotation { // dev.openverify.sdk/ExperimentalOpenVerifyApi|null[0]
+    constructor <init>() // dev.openverify.sdk/ExperimentalOpenVerifyApi.<init>|<init>(){}[0]
+}
+
+final enum class dev.openverify.sdk.chip/ChipReadFailure : kotlin/Enum<dev.openverify.sdk.chip/ChipReadFailure> { // dev.openverify.sdk.chip/ChipReadFailure|null[0]
+    enum entry ACCESS_DENIED // dev.openverify.sdk.chip/ChipReadFailure.ACCESS_DENIED|null[0]
+    enum entry NFC_DISABLED // dev.openverify.sdk.chip/ChipReadFailure.NFC_DISABLED|null[0]
+    enum entry READER_BUSY // dev.openverify.sdk.chip/ChipReadFailure.READER_BUSY|null[0]
+    enum entry TAG_LOST // dev.openverify.sdk.chip/ChipReadFailure.TAG_LOST|null[0]
+    enum entry TIMEOUT // dev.openverify.sdk.chip/ChipReadFailure.TIMEOUT|null[0]
+    enum entry UNSUPPORTED_DOCUMENT // dev.openverify.sdk.chip/ChipReadFailure.UNSUPPORTED_DOCUMENT|null[0]
+
+    final val entries // dev.openverify.sdk.chip/ChipReadFailure.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.openverify.sdk.chip/ChipReadFailure> // dev.openverify.sdk.chip/ChipReadFailure.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): dev.openverify.sdk.chip/ChipReadFailure // dev.openverify.sdk.chip/ChipReadFailure.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.openverify.sdk.chip/ChipReadFailure> // dev.openverify.sdk.chip/ChipReadFailure.values|values#static(){}[0]
+}
+
+final enum class dev.openverify.sdk.model/FileKind : kotlin/Enum<dev.openverify.sdk.model/FileKind> { // dev.openverify.sdk.model/FileKind|null[0]
+    enum entry BACK // dev.openverify.sdk.model/FileKind.BACK|null[0]
+    enum entry CHIP_CARD_ACCESS // dev.openverify.sdk.model/FileKind.CHIP_CARD_ACCESS|null[0]
+    enum entry CHIP_CARD_SECURITY // dev.openverify.sdk.model/FileKind.CHIP_CARD_SECURITY|null[0]
+    enum entry CHIP_COM // dev.openverify.sdk.model/FileKind.CHIP_COM|null[0]
+    enum entry CHIP_DG1 // dev.openverify.sdk.model/FileKind.CHIP_DG1|null[0]
+    enum entry CHIP_DG14 // dev.openverify.sdk.model/FileKind.CHIP_DG14|null[0]
+    enum entry CHIP_DG15 // dev.openverify.sdk.model/FileKind.CHIP_DG15|null[0]
+    enum entry CHIP_DG2 // dev.openverify.sdk.model/FileKind.CHIP_DG2|null[0]
+    enum entry CHIP_PORTRAIT // dev.openverify.sdk.model/FileKind.CHIP_PORTRAIT|null[0]
+    enum entry CHIP_SOD // dev.openverify.sdk.model/FileKind.CHIP_SOD|null[0]
+    enum entry DOCUMENT // dev.openverify.sdk.model/FileKind.DOCUMENT|null[0]
+    enum entry DOCUMENT_PREVIEW // dev.openverify.sdk.model/FileKind.DOCUMENT_PREVIEW|null[0]
+    enum entry FRONT // dev.openverify.sdk.model/FileKind.FRONT|null[0]
+    enum entry PORTRAIT // dev.openverify.sdk.model/FileKind.PORTRAIT|null[0]
+    enum entry SELFIE_CENTER // dev.openverify.sdk.model/FileKind.SELFIE_CENTER|null[0]
+    enum entry SELFIE_LEFT // dev.openverify.sdk.model/FileKind.SELFIE_LEFT|null[0]
+    enum entry SELFIE_RIGHT // dev.openverify.sdk.model/FileKind.SELFIE_RIGHT|null[0]
+    enum entry UNKNOWN // dev.openverify.sdk.model/FileKind.UNKNOWN|null[0]
+
+    final val entries // dev.openverify.sdk.model/FileKind.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.openverify.sdk.model/FileKind> // dev.openverify.sdk.model/FileKind.entries.<get-entries>|<get-entries>#static(){}[0]
+    final val wireValue // dev.openverify.sdk.model/FileKind.wireValue|{}wireValue[0]
+        final fun <get-wireValue>(): kotlin/String // dev.openverify.sdk.model/FileKind.wireValue.<get-wireValue>|<get-wireValue>(){}[0]
+
+    final fun valueOf(kotlin/String): dev.openverify.sdk.model/FileKind // dev.openverify.sdk.model/FileKind.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.openverify.sdk.model/FileKind> // dev.openverify.sdk.model/FileKind.values|values#static(){}[0]
+}
+
+final enum class dev.openverify.sdk.model/InquiryStatus : kotlin/Enum<dev.openverify.sdk.model/InquiryStatus> { // dev.openverify.sdk.model/InquiryStatus|null[0]
+    enum entry APPROVED // dev.openverify.sdk.model/InquiryStatus.APPROVED|null[0]
+    enum entry COMPLETED // dev.openverify.sdk.model/InquiryStatus.COMPLETED|null[0]
+    enum entry CREATED // dev.openverify.sdk.model/InquiryStatus.CREATED|null[0]
+    enum entry DECLINED // dev.openverify.sdk.model/InquiryStatus.DECLINED|null[0]
+    enum entry EXPIRED // dev.openverify.sdk.model/InquiryStatus.EXPIRED|null[0]
+    enum entry FAILED // dev.openverify.sdk.model/InquiryStatus.FAILED|null[0]
+    enum entry NEEDS_REVIEW // dev.openverify.sdk.model/InquiryStatus.NEEDS_REVIEW|null[0]
+    enum entry PENDING // dev.openverify.sdk.model/InquiryStatus.PENDING|null[0]
+    enum entry UNKNOWN // dev.openverify.sdk.model/InquiryStatus.UNKNOWN|null[0]
+
+    final val entries // dev.openverify.sdk.model/InquiryStatus.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.openverify.sdk.model/InquiryStatus> // dev.openverify.sdk.model/InquiryStatus.entries.<get-entries>|<get-entries>#static(){}[0]
+    final val wireValue // dev.openverify.sdk.model/InquiryStatus.wireValue|{}wireValue[0]
+        final fun <get-wireValue>(): kotlin/String // dev.openverify.sdk.model/InquiryStatus.wireValue.<get-wireValue>|<get-wireValue>(){}[0]
+
+    final fun valueOf(kotlin/String): dev.openverify.sdk.model/InquiryStatus // dev.openverify.sdk.model/InquiryStatus.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.openverify.sdk.model/InquiryStatus> // dev.openverify.sdk.model/InquiryStatus.values|values#static(){}[0]
+}
+
+final enum class dev.openverify.sdk/Appearance : kotlin/Enum<dev.openverify.sdk/Appearance> { // dev.openverify.sdk/Appearance|null[0]
+    enum entry DARK // dev.openverify.sdk/Appearance.DARK|null[0]
+    enum entry LIGHT // dev.openverify.sdk/Appearance.LIGHT|null[0]
+    enum entry SYSTEM // dev.openverify.sdk/Appearance.SYSTEM|null[0]
+
+    final val entries // dev.openverify.sdk/Appearance.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.openverify.sdk/Appearance> // dev.openverify.sdk/Appearance.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): dev.openverify.sdk/Appearance // dev.openverify.sdk/Appearance.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.openverify.sdk/Appearance> // dev.openverify.sdk/Appearance.values|values#static(){}[0]
+}
+
+final enum class dev.openverify.sdk/CaptureFailureReason : kotlin/Enum<dev.openverify.sdk/CaptureFailureReason> { // dev.openverify.sdk/CaptureFailureReason|null[0]
+    enum entry CAMERA_ERROR // dev.openverify.sdk/CaptureFailureReason.CAMERA_ERROR|null[0]
+    enum entry CAMERA_UNAVAILABLE // dev.openverify.sdk/CaptureFailureReason.CAMERA_UNAVAILABLE|null[0]
+    enum entry OUT_OF_MEMORY // dev.openverify.sdk/CaptureFailureReason.OUT_OF_MEMORY|null[0]
+
+    final val entries // dev.openverify.sdk/CaptureFailureReason.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.openverify.sdk/CaptureFailureReason> // dev.openverify.sdk/CaptureFailureReason.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): dev.openverify.sdk/CaptureFailureReason // dev.openverify.sdk/CaptureFailureReason.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.openverify.sdk/CaptureFailureReason> // dev.openverify.sdk/CaptureFailureReason.values|values#static(){}[0]
+}
+
+final enum class dev.openverify.sdk/FailureReason : kotlin/Enum<dev.openverify.sdk/FailureReason> { // dev.openverify.sdk/FailureReason|null[0]
+    enum entry FLOW_HALTED // dev.openverify.sdk/FailureReason.FLOW_HALTED|null[0]
+    enum entry INQUIRY_EXPIRED // dev.openverify.sdk/FailureReason.INQUIRY_EXPIRED|null[0]
+    enum entry INQUIRY_FAILED // dev.openverify.sdk/FailureReason.INQUIRY_FAILED|null[0]
+    enum entry INQUIRY_REDACTED // dev.openverify.sdk/FailureReason.INQUIRY_REDACTED|null[0]
+    enum entry INVALID_REQUEST // dev.openverify.sdk/FailureReason.INVALID_REQUEST|null[0]
+    enum entry LINK_INVALID // dev.openverify.sdk/FailureReason.LINK_INVALID|null[0]
+    enum entry NETWORK_ERROR // dev.openverify.sdk/FailureReason.NETWORK_ERROR|null[0]
+    enum entry SERVER_ERROR // dev.openverify.sdk/FailureReason.SERVER_ERROR|null[0]
+    enum entry SESSION_CANCELED // dev.openverify.sdk/FailureReason.SESSION_CANCELED|null[0]
+    enum entry SESSION_EXPIRED // dev.openverify.sdk/FailureReason.SESSION_EXPIRED|null[0]
+    enum entry STILL_PROCESSING // dev.openverify.sdk/FailureReason.STILL_PROCESSING|null[0]
+    enum entry UNSUPPORTED_FLOW // dev.openverify.sdk/FailureReason.UNSUPPORTED_FLOW|null[0]
+
+    final val entries // dev.openverify.sdk/FailureReason.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.openverify.sdk/FailureReason> // dev.openverify.sdk/FailureReason.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): dev.openverify.sdk/FailureReason // dev.openverify.sdk/FailureReason.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.openverify.sdk/FailureReason> // dev.openverify.sdk/FailureReason.values|values#static(){}[0]
+}
+
+final enum class dev.openverify.sdk/InquiryResultKind : kotlin/Enum<dev.openverify.sdk/InquiryResultKind> { // dev.openverify.sdk/InquiryResultKind|null[0]
+    enum entry CANCELED // dev.openverify.sdk/InquiryResultKind.CANCELED|null[0]
+    enum entry COMPLETED // dev.openverify.sdk/InquiryResultKind.COMPLETED|null[0]
+    enum entry FAILED // dev.openverify.sdk/InquiryResultKind.FAILED|null[0]
+
+    final val entries // dev.openverify.sdk/InquiryResultKind.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.openverify.sdk/InquiryResultKind> // dev.openverify.sdk/InquiryResultKind.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): dev.openverify.sdk/InquiryResultKind // dev.openverify.sdk/InquiryResultKind.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.openverify.sdk/InquiryResultKind> // dev.openverify.sdk/InquiryResultKind.values|values#static(){}[0]
+}
+
+final enum class dev.openverify.sdk/SandboxSignalOutcome : kotlin/Enum<dev.openverify.sdk/SandboxSignalOutcome> { // dev.openverify.sdk/SandboxSignalOutcome|null[0]
+    enum entry BOT // dev.openverify.sdk/SandboxSignalOutcome.BOT|null[0]
+    enum entry HUMAN // dev.openverify.sdk/SandboxSignalOutcome.HUMAN|null[0]
+
+    final val entries // dev.openverify.sdk/SandboxSignalOutcome.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.openverify.sdk/SandboxSignalOutcome> // dev.openverify.sdk/SandboxSignalOutcome.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): dev.openverify.sdk/SandboxSignalOutcome // dev.openverify.sdk/SandboxSignalOutcome.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.openverify.sdk/SandboxSignalOutcome> // dev.openverify.sdk/SandboxSignalOutcome.values|values#static(){}[0]
+}
+
+abstract fun interface dev.openverify.sdk/OpenVerifyEventListener { // dev.openverify.sdk/OpenVerifyEventListener|null[0]
+    abstract fun onEvent(dev.openverify.sdk/OpenVerifyEvent) // dev.openverify.sdk/OpenVerifyEventListener.onEvent|onEvent(dev.openverify.sdk.OpenVerifyEvent){}[0]
+}
+
+abstract interface dev.openverify.sdk.chip/ChipReader { // dev.openverify.sdk.chip/ChipReader|null[0]
+    abstract suspend fun read(dev.openverify.sdk.chip/ChipAccess, kotlin/ByteArray, kotlin/Function1<dev.openverify.sdk.chip/ChipProgress, kotlin/Unit>): dev.openverify.sdk.chip/ChipRead // dev.openverify.sdk.chip/ChipReader.read|read(dev.openverify.sdk.chip.ChipAccess;kotlin.ByteArray;kotlin.Function1<dev.openverify.sdk.chip.ChipProgress,kotlin.Unit>){}[0]
+}
+
+abstract interface dev.openverify.sdk.face/FaceDetector : kotlin/AutoCloseable { // dev.openverify.sdk.face/FaceDetector|null[0]
+    abstract suspend fun detect(kotlin/FloatArray, kotlin/Int, kotlin/Int): dev.openverify.sdk.face/YunetOutputs // dev.openverify.sdk.face/FaceDetector.detect|detect(kotlin.FloatArray;kotlin.Int;kotlin.Int){}[0]
+}
+
+abstract interface dev.openverify.sdk.face/FaceDetectorFactory { // dev.openverify.sdk.face/FaceDetectorFactory|null[0]
+    abstract fun create(): dev.openverify.sdk.face/FaceDetector // dev.openverify.sdk.face/FaceDetectorFactory.create|create(){}[0]
+}
+
+abstract interface dev.openverify.sdk.integrity/IntegrityTokenProvider { // dev.openverify.sdk.integrity/IntegrityTokenProvider|null[0]
+    abstract suspend fun token(kotlin/String): kotlin/String? // dev.openverify.sdk.integrity/IntegrityTokenProvider.token|token(kotlin.String){}[0]
+}
+
+sealed interface dev.openverify.sdk.chip/ChipAccess { // dev.openverify.sdk.chip/ChipAccess|null[0]
+    final class Can : dev.openverify.sdk.chip/ChipAccess { // dev.openverify.sdk.chip/ChipAccess.Can|null[0]
+        constructor <init>(kotlin/String) // dev.openverify.sdk.chip/ChipAccess.Can.<init>|<init>(kotlin.String){}[0]
+
+        final val can // dev.openverify.sdk.chip/ChipAccess.Can.can|{}can[0]
+            final fun <get-can>(): kotlin/String // dev.openverify.sdk.chip/ChipAccess.Can.can.<get-can>|<get-can>(){}[0]
+
+        final fun toString(): kotlin/String // dev.openverify.sdk.chip/ChipAccess.Can.toString|toString(){}[0]
+    }
+
+    final class Mrz : dev.openverify.sdk.chip/ChipAccess { // dev.openverify.sdk.chip/ChipAccess.Mrz|null[0]
+        constructor <init>(dev.openverify.sdk.mrz/BacKeySeed) // dev.openverify.sdk.chip/ChipAccess.Mrz.<init>|<init>(dev.openverify.sdk.mrz.BacKeySeed){}[0]
+
+        final val seed // dev.openverify.sdk.chip/ChipAccess.Mrz.seed|{}seed[0]
+            final fun <get-seed>(): dev.openverify.sdk.mrz/BacKeySeed // dev.openverify.sdk.chip/ChipAccess.Mrz.seed.<get-seed>|<get-seed>(){}[0]
+
+        final fun toString(): kotlin/String // dev.openverify.sdk.chip/ChipAccess.Mrz.toString|toString(){}[0]
+    }
+}
+
+sealed interface dev.openverify.sdk.chip/ChipProgress { // dev.openverify.sdk.chip/ChipProgress|null[0]
+    final class Reading : dev.openverify.sdk.chip/ChipProgress { // dev.openverify.sdk.chip/ChipProgress.Reading|null[0]
+        constructor <init>(dev.openverify.sdk.model/FileKind, kotlin/Int) // dev.openverify.sdk.chip/ChipProgress.Reading.<init>|<init>(dev.openverify.sdk.model.FileKind;kotlin.Int){}[0]
+
+        final val fileKind // dev.openverify.sdk.chip/ChipProgress.Reading.fileKind|{}fileKind[0]
+            final fun <get-fileKind>(): dev.openverify.sdk.model/FileKind // dev.openverify.sdk.chip/ChipProgress.Reading.fileKind.<get-fileKind>|<get-fileKind>(){}[0]
+        final val percent // dev.openverify.sdk.chip/ChipProgress.Reading.percent|{}percent[0]
+            final fun <get-percent>(): kotlin/Int // dev.openverify.sdk.chip/ChipProgress.Reading.percent.<get-percent>|<get-percent>(){}[0]
+
+        final fun component1(): dev.openverify.sdk.model/FileKind // dev.openverify.sdk.chip/ChipProgress.Reading.component1|component1(){}[0]
+        final fun component2(): kotlin/Int // dev.openverify.sdk.chip/ChipProgress.Reading.component2|component2(){}[0]
+        final fun copy(dev.openverify.sdk.model/FileKind = ..., kotlin/Int = ...): dev.openverify.sdk.chip/ChipProgress.Reading // dev.openverify.sdk.chip/ChipProgress.Reading.copy|copy(dev.openverify.sdk.model.FileKind;kotlin.Int){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.openverify.sdk.chip/ChipProgress.Reading.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.openverify.sdk.chip/ChipProgress.Reading.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.openverify.sdk.chip/ChipProgress.Reading.toString|toString(){}[0]
+    }
+
+    final object Authenticating : dev.openverify.sdk.chip/ChipProgress { // dev.openverify.sdk.chip/ChipProgress.Authenticating|null[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.openverify.sdk.chip/ChipProgress.Authenticating.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.openverify.sdk.chip/ChipProgress.Authenticating.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.openverify.sdk.chip/ChipProgress.Authenticating.toString|toString(){}[0]
+    }
+
+    final object Connected : dev.openverify.sdk.chip/ChipProgress { // dev.openverify.sdk.chip/ChipProgress.Connected|null[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.openverify.sdk.chip/ChipProgress.Connected.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.openverify.sdk.chip/ChipProgress.Connected.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.openverify.sdk.chip/ChipProgress.Connected.toString|toString(){}[0]
+    }
+
+    final object Done : dev.openverify.sdk.chip/ChipProgress { // dev.openverify.sdk.chip/ChipProgress.Done|null[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.openverify.sdk.chip/ChipProgress.Done.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.openverify.sdk.chip/ChipProgress.Done.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.openverify.sdk.chip/ChipProgress.Done.toString|toString(){}[0]
+    }
+
+    final object WaitingForDocument : dev.openverify.sdk.chip/ChipProgress { // dev.openverify.sdk.chip/ChipProgress.WaitingForDocument|null[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.openverify.sdk.chip/ChipProgress.WaitingForDocument.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.openverify.sdk.chip/ChipProgress.WaitingForDocument.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.openverify.sdk.chip/ChipProgress.WaitingForDocument.toString|toString(){}[0]
+    }
+}
+
+sealed interface dev.openverify.sdk/InquiryResult { // dev.openverify.sdk/InquiryResult|null[0]
+    abstract val inquiryId // dev.openverify.sdk/InquiryResult.inquiryId|{}inquiryId[0]
+        abstract fun <get-inquiryId>(): kotlin/String? // dev.openverify.sdk/InquiryResult.inquiryId.<get-inquiryId>|<get-inquiryId>(){}[0]
+
+    final class Canceled : dev.openverify.sdk/InquiryResult { // dev.openverify.sdk/InquiryResult.Canceled|null[0]
+        constructor <init>(kotlin/String?) // dev.openverify.sdk/InquiryResult.Canceled.<init>|<init>(kotlin.String?){}[0]
+
+        final val inquiryId // dev.openverify.sdk/InquiryResult.Canceled.inquiryId|{}inquiryId[0]
+            final fun <get-inquiryId>(): kotlin/String? // dev.openverify.sdk/InquiryResult.Canceled.inquiryId.<get-inquiryId>|<get-inquiryId>(){}[0]
+
+        final fun component1(): kotlin/String? // dev.openverify.sdk/InquiryResult.Canceled.component1|component1(){}[0]
+        final fun copy(kotlin/String? = ...): dev.openverify.sdk/InquiryResult.Canceled // dev.openverify.sdk/InquiryResult.Canceled.copy|copy(kotlin.String?){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.openverify.sdk/InquiryResult.Canceled.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.openverify.sdk/InquiryResult.Canceled.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.openverify.sdk/InquiryResult.Canceled.toString|toString(){}[0]
+    }
+
+    final class Completed : dev.openverify.sdk/InquiryResult { // dev.openverify.sdk/InquiryResult.Completed|null[0]
+        constructor <init>(kotlin/String, dev.openverify.sdk.model/InquiryStatus) // dev.openverify.sdk/InquiryResult.Completed.<init>|<init>(kotlin.String;dev.openverify.sdk.model.InquiryStatus){}[0]
+
+        final val inquiryId // dev.openverify.sdk/InquiryResult.Completed.inquiryId|{}inquiryId[0]
+            final fun <get-inquiryId>(): kotlin/String // dev.openverify.sdk/InquiryResult.Completed.inquiryId.<get-inquiryId>|<get-inquiryId>(){}[0]
+        final val inquiryStatus // dev.openverify.sdk/InquiryResult.Completed.inquiryStatus|{}inquiryStatus[0]
+            final fun <get-inquiryStatus>(): dev.openverify.sdk.model/InquiryStatus // dev.openverify.sdk/InquiryResult.Completed.inquiryStatus.<get-inquiryStatus>|<get-inquiryStatus>(){}[0]
+
+        final fun component1(): kotlin/String // dev.openverify.sdk/InquiryResult.Completed.component1|component1(){}[0]
+        final fun component2(): dev.openverify.sdk.model/InquiryStatus // dev.openverify.sdk/InquiryResult.Completed.component2|component2(){}[0]
+        final fun copy(kotlin/String = ..., dev.openverify.sdk.model/InquiryStatus = ...): dev.openverify.sdk/InquiryResult.Completed // dev.openverify.sdk/InquiryResult.Completed.copy|copy(kotlin.String;dev.openverify.sdk.model.InquiryStatus){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.openverify.sdk/InquiryResult.Completed.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.openverify.sdk/InquiryResult.Completed.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.openverify.sdk/InquiryResult.Completed.toString|toString(){}[0]
+    }
+
+    final class Failed : dev.openverify.sdk/InquiryResult { // dev.openverify.sdk/InquiryResult.Failed|null[0]
+        constructor <init>(kotlin/String?, dev.openverify.sdk/FailureReason) // dev.openverify.sdk/InquiryResult.Failed.<init>|<init>(kotlin.String?;dev.openverify.sdk.FailureReason){}[0]
+
+        final val inquiryId // dev.openverify.sdk/InquiryResult.Failed.inquiryId|{}inquiryId[0]
+            final fun <get-inquiryId>(): kotlin/String? // dev.openverify.sdk/InquiryResult.Failed.inquiryId.<get-inquiryId>|<get-inquiryId>(){}[0]
+        final val reason // dev.openverify.sdk/InquiryResult.Failed.reason|{}reason[0]
+            final fun <get-reason>(): dev.openverify.sdk/FailureReason // dev.openverify.sdk/InquiryResult.Failed.reason.<get-reason>|<get-reason>(){}[0]
+
+        final fun component1(): kotlin/String? // dev.openverify.sdk/InquiryResult.Failed.component1|component1(){}[0]
+        final fun component2(): dev.openverify.sdk/FailureReason // dev.openverify.sdk/InquiryResult.Failed.component2|component2(){}[0]
+        final fun copy(kotlin/String? = ..., dev.openverify.sdk/FailureReason = ...): dev.openverify.sdk/InquiryResult.Failed // dev.openverify.sdk/InquiryResult.Failed.copy|copy(kotlin.String?;dev.openverify.sdk.FailureReason){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.openverify.sdk/InquiryResult.Failed.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.openverify.sdk/InquiryResult.Failed.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.openverify.sdk/InquiryResult.Failed.toString|toString(){}[0]
+    }
+}
+
+sealed interface dev.openverify.sdk/OpenVerifyEvent { // dev.openverify.sdk/OpenVerifyEvent|null[0]
+    final class CameraPermission : dev.openverify.sdk/OpenVerifyEvent { // dev.openverify.sdk/OpenVerifyEvent.CameraPermission|null[0]
+        constructor <init>(kotlin/Boolean) // dev.openverify.sdk/OpenVerifyEvent.CameraPermission.<init>|<init>(kotlin.Boolean){}[0]
+
+        final val granted // dev.openverify.sdk/OpenVerifyEvent.CameraPermission.granted|{}granted[0]
+            final fun <get-granted>(): kotlin/Boolean // dev.openverify.sdk/OpenVerifyEvent.CameraPermission.granted.<get-granted>|<get-granted>(){}[0]
+
+        final fun component1(): kotlin/Boolean // dev.openverify.sdk/OpenVerifyEvent.CameraPermission.component1|component1(){}[0]
+        final fun copy(kotlin/Boolean = ...): dev.openverify.sdk/OpenVerifyEvent.CameraPermission // dev.openverify.sdk/OpenVerifyEvent.CameraPermission.copy|copy(kotlin.Boolean){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.openverify.sdk/OpenVerifyEvent.CameraPermission.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.openverify.sdk/OpenVerifyEvent.CameraPermission.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.openverify.sdk/OpenVerifyEvent.CameraPermission.toString|toString(){}[0]
+    }
+
+    final class CaptureFailed : dev.openverify.sdk/OpenVerifyEvent { // dev.openverify.sdk/OpenVerifyEvent.CaptureFailed|null[0]
+        constructor <init>(dev.openverify.sdk/CaptureFailureReason) // dev.openverify.sdk/OpenVerifyEvent.CaptureFailed.<init>|<init>(dev.openverify.sdk.CaptureFailureReason){}[0]
+
+        final val reason // dev.openverify.sdk/OpenVerifyEvent.CaptureFailed.reason|{}reason[0]
+            final fun <get-reason>(): dev.openverify.sdk/CaptureFailureReason // dev.openverify.sdk/OpenVerifyEvent.CaptureFailed.reason.<get-reason>|<get-reason>(){}[0]
+
+        final fun component1(): dev.openverify.sdk/CaptureFailureReason // dev.openverify.sdk/OpenVerifyEvent.CaptureFailed.component1|component1(){}[0]
+        final fun copy(dev.openverify.sdk/CaptureFailureReason = ...): dev.openverify.sdk/OpenVerifyEvent.CaptureFailed // dev.openverify.sdk/OpenVerifyEvent.CaptureFailed.copy|copy(dev.openverify.sdk.CaptureFailureReason){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.openverify.sdk/OpenVerifyEvent.CaptureFailed.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.openverify.sdk/OpenVerifyEvent.CaptureFailed.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.openverify.sdk/OpenVerifyEvent.CaptureFailed.toString|toString(){}[0]
+    }
+
+    final class Ended : dev.openverify.sdk/OpenVerifyEvent { // dev.openverify.sdk/OpenVerifyEvent.Ended|null[0]
+        constructor <init>(dev.openverify.sdk/InquiryResultKind) // dev.openverify.sdk/OpenVerifyEvent.Ended.<init>|<init>(dev.openverify.sdk.InquiryResultKind){}[0]
+
+        final val result // dev.openverify.sdk/OpenVerifyEvent.Ended.result|{}result[0]
+            final fun <get-result>(): dev.openverify.sdk/InquiryResultKind // dev.openverify.sdk/OpenVerifyEvent.Ended.result.<get-result>|<get-result>(){}[0]
+
+        final fun component1(): dev.openverify.sdk/InquiryResultKind // dev.openverify.sdk/OpenVerifyEvent.Ended.component1|component1(){}[0]
+        final fun copy(dev.openverify.sdk/InquiryResultKind = ...): dev.openverify.sdk/OpenVerifyEvent.Ended // dev.openverify.sdk/OpenVerifyEvent.Ended.copy|copy(dev.openverify.sdk.InquiryResultKind){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.openverify.sdk/OpenVerifyEvent.Ended.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.openverify.sdk/OpenVerifyEvent.Ended.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.openverify.sdk/OpenVerifyEvent.Ended.toString|toString(){}[0]
+    }
+
+    final class Started : dev.openverify.sdk/OpenVerifyEvent { // dev.openverify.sdk/OpenVerifyEvent.Started|null[0]
+        constructor <init>(kotlin/String) // dev.openverify.sdk/OpenVerifyEvent.Started.<init>|<init>(kotlin.String){}[0]
+
+        final val inquiryId // dev.openverify.sdk/OpenVerifyEvent.Started.inquiryId|{}inquiryId[0]
+            final fun <get-inquiryId>(): kotlin/String // dev.openverify.sdk/OpenVerifyEvent.Started.inquiryId.<get-inquiryId>|<get-inquiryId>(){}[0]
+
+        final fun component1(): kotlin/String // dev.openverify.sdk/OpenVerifyEvent.Started.component1|component1(){}[0]
+        final fun copy(kotlin/String = ...): dev.openverify.sdk/OpenVerifyEvent.Started // dev.openverify.sdk/OpenVerifyEvent.Started.copy|copy(kotlin.String){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.openverify.sdk/OpenVerifyEvent.Started.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.openverify.sdk/OpenVerifyEvent.Started.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.openverify.sdk/OpenVerifyEvent.Started.toString|toString(){}[0]
+    }
+
+    final class StepShown : dev.openverify.sdk/OpenVerifyEvent { // dev.openverify.sdk/OpenVerifyEvent.StepShown|null[0]
+        constructor <init>(kotlin/String) // dev.openverify.sdk/OpenVerifyEvent.StepShown.<init>|<init>(kotlin.String){}[0]
+
+        final val stepType // dev.openverify.sdk/OpenVerifyEvent.StepShown.stepType|{}stepType[0]
+            final fun <get-stepType>(): kotlin/String // dev.openverify.sdk/OpenVerifyEvent.StepShown.stepType.<get-stepType>|<get-stepType>(){}[0]
+
+        final fun component1(): kotlin/String // dev.openverify.sdk/OpenVerifyEvent.StepShown.component1|component1(){}[0]
+        final fun copy(kotlin/String = ...): dev.openverify.sdk/OpenVerifyEvent.StepShown // dev.openverify.sdk/OpenVerifyEvent.StepShown.copy|copy(kotlin.String){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.openverify.sdk/OpenVerifyEvent.StepShown.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.openverify.sdk/OpenVerifyEvent.StepShown.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.openverify.sdk/OpenVerifyEvent.StepShown.toString|toString(){}[0]
+    }
+
+    final class Submitted : dev.openverify.sdk/OpenVerifyEvent { // dev.openverify.sdk/OpenVerifyEvent.Submitted|null[0]
+        constructor <init>(kotlin/String) // dev.openverify.sdk/OpenVerifyEvent.Submitted.<init>|<init>(kotlin.String){}[0]
+
+        final val stepType // dev.openverify.sdk/OpenVerifyEvent.Submitted.stepType|{}stepType[0]
+            final fun <get-stepType>(): kotlin/String // dev.openverify.sdk/OpenVerifyEvent.Submitted.stepType.<get-stepType>|<get-stepType>(){}[0]
+
+        final fun component1(): kotlin/String // dev.openverify.sdk/OpenVerifyEvent.Submitted.component1|component1(){}[0]
+        final fun copy(kotlin/String = ...): dev.openverify.sdk/OpenVerifyEvent.Submitted // dev.openverify.sdk/OpenVerifyEvent.Submitted.copy|copy(kotlin.String){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.openverify.sdk/OpenVerifyEvent.Submitted.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.openverify.sdk/OpenVerifyEvent.Submitted.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.openverify.sdk/OpenVerifyEvent.Submitted.toString|toString(){}[0]
+    }
+
+    final object Waiting : dev.openverify.sdk/OpenVerifyEvent { // dev.openverify.sdk/OpenVerifyEvent.Waiting|null[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.openverify.sdk/OpenVerifyEvent.Waiting.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.openverify.sdk/OpenVerifyEvent.Waiting.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.openverify.sdk/OpenVerifyEvent.Waiting.toString|toString(){}[0]
+    }
+}
+
+abstract class dev.openverify.sdk/FlowTransport // dev.openverify.sdk/FlowTransport|null[0]
+
+final class dev.openverify.sdk.chip/ChipDeviceReport { // dev.openverify.sdk.chip/ChipDeviceReport|null[0]
+    constructor <init>(kotlin.collections/List<dev.openverify.sdk.chip/ChipDeviceReport.Attempt> = ..., kotlin/Long? = ...) // dev.openverify.sdk.chip/ChipDeviceReport.<init>|<init>(kotlin.collections.List<dev.openverify.sdk.chip.ChipDeviceReport.Attempt>;kotlin.Long?){}[0]
+
+    final val protocols // dev.openverify.sdk.chip/ChipDeviceReport.protocols|{}protocols[0]
+        final fun <get-protocols>(): kotlin.collections/List<dev.openverify.sdk.chip/ChipDeviceReport.Attempt> // dev.openverify.sdk.chip/ChipDeviceReport.protocols.<get-protocols>|<get-protocols>(){}[0]
+    final val readMillis // dev.openverify.sdk.chip/ChipDeviceReport.readMillis|{}readMillis[0]
+        final fun <get-readMillis>(): kotlin/Long? // dev.openverify.sdk.chip/ChipDeviceReport.readMillis.<get-readMillis>|<get-readMillis>(){}[0]
+
+    final enum class Outcome : kotlin/Enum<dev.openverify.sdk.chip/ChipDeviceReport.Outcome> { // dev.openverify.sdk.chip/ChipDeviceReport.Outcome|null[0]
+        enum entry FAILED // dev.openverify.sdk.chip/ChipDeviceReport.Outcome.FAILED|null[0]
+        enum entry NOT_ATTEMPTED // dev.openverify.sdk.chip/ChipDeviceReport.Outcome.NOT_ATTEMPTED|null[0]
+        enum entry SUCCEEDED // dev.openverify.sdk.chip/ChipDeviceReport.Outcome.SUCCEEDED|null[0]
+
+        final val entries // dev.openverify.sdk.chip/ChipDeviceReport.Outcome.entries|#static{}entries[0]
+            final fun <get-entries>(): kotlin.enums/EnumEntries<dev.openverify.sdk.chip/ChipDeviceReport.Outcome> // dev.openverify.sdk.chip/ChipDeviceReport.Outcome.entries.<get-entries>|<get-entries>#static(){}[0]
+
+        final fun valueOf(kotlin/String): dev.openverify.sdk.chip/ChipDeviceReport.Outcome // dev.openverify.sdk.chip/ChipDeviceReport.Outcome.valueOf|valueOf#static(kotlin.String){}[0]
+        final fun values(): kotlin/Array<dev.openverify.sdk.chip/ChipDeviceReport.Outcome> // dev.openverify.sdk.chip/ChipDeviceReport.Outcome.values|values#static(){}[0]
+    }
+
+    final enum class Protocol : kotlin/Enum<dev.openverify.sdk.chip/ChipDeviceReport.Protocol> { // dev.openverify.sdk.chip/ChipDeviceReport.Protocol|null[0]
+        enum entry ACTIVE_AUTHENTICATION // dev.openverify.sdk.chip/ChipDeviceReport.Protocol.ACTIVE_AUTHENTICATION|null[0]
+        enum entry BAC // dev.openverify.sdk.chip/ChipDeviceReport.Protocol.BAC|null[0]
+        enum entry CHIP_AUTHENTICATION // dev.openverify.sdk.chip/ChipDeviceReport.Protocol.CHIP_AUTHENTICATION|null[0]
+        enum entry PACE // dev.openverify.sdk.chip/ChipDeviceReport.Protocol.PACE|null[0]
+        enum entry PACE_CAM // dev.openverify.sdk.chip/ChipDeviceReport.Protocol.PACE_CAM|null[0]
+
+        final val entries // dev.openverify.sdk.chip/ChipDeviceReport.Protocol.entries|#static{}entries[0]
+            final fun <get-entries>(): kotlin.enums/EnumEntries<dev.openverify.sdk.chip/ChipDeviceReport.Protocol> // dev.openverify.sdk.chip/ChipDeviceReport.Protocol.entries.<get-entries>|<get-entries>#static(){}[0]
+
+        final fun valueOf(kotlin/String): dev.openverify.sdk.chip/ChipDeviceReport.Protocol // dev.openverify.sdk.chip/ChipDeviceReport.Protocol.valueOf|valueOf#static(kotlin.String){}[0]
+        final fun values(): kotlin/Array<dev.openverify.sdk.chip/ChipDeviceReport.Protocol> // dev.openverify.sdk.chip/ChipDeviceReport.Protocol.values|values#static(){}[0]
+    }
+
+    final class Attempt { // dev.openverify.sdk.chip/ChipDeviceReport.Attempt|null[0]
+        constructor <init>(dev.openverify.sdk.chip/ChipDeviceReport.Protocol, dev.openverify.sdk.chip/ChipDeviceReport.Outcome) // dev.openverify.sdk.chip/ChipDeviceReport.Attempt.<init>|<init>(dev.openverify.sdk.chip.ChipDeviceReport.Protocol;dev.openverify.sdk.chip.ChipDeviceReport.Outcome){}[0]
+
+        final val outcome // dev.openverify.sdk.chip/ChipDeviceReport.Attempt.outcome|{}outcome[0]
+            final fun <get-outcome>(): dev.openverify.sdk.chip/ChipDeviceReport.Outcome // dev.openverify.sdk.chip/ChipDeviceReport.Attempt.outcome.<get-outcome>|<get-outcome>(){}[0]
+        final val protocol // dev.openverify.sdk.chip/ChipDeviceReport.Attempt.protocol|{}protocol[0]
+            final fun <get-protocol>(): dev.openverify.sdk.chip/ChipDeviceReport.Protocol // dev.openverify.sdk.chip/ChipDeviceReport.Attempt.protocol.<get-protocol>|<get-protocol>(){}[0]
+    }
+}
+
+final class dev.openverify.sdk.chip/ChipRead { // dev.openverify.sdk.chip/ChipRead|null[0]
+    constructor <init>(kotlin.collections/Map<dev.openverify.sdk.model/FileKind, kotlin/ByteArray>, kotlin/ByteArray?, dev.openverify.sdk.chip/ChipDeviceReport) // dev.openverify.sdk.chip/ChipRead.<init>|<init>(kotlin.collections.Map<dev.openverify.sdk.model.FileKind,kotlin.ByteArray>;kotlin.ByteArray?;dev.openverify.sdk.chip.ChipDeviceReport){}[0]
+
+    final val activeAuthenticationResponse // dev.openverify.sdk.chip/ChipRead.activeAuthenticationResponse|{}activeAuthenticationResponse[0]
+        final fun <get-activeAuthenticationResponse>(): kotlin/ByteArray? // dev.openverify.sdk.chip/ChipRead.activeAuthenticationResponse.<get-activeAuthenticationResponse>|<get-activeAuthenticationResponse>(){}[0]
+    final val deviceReport // dev.openverify.sdk.chip/ChipRead.deviceReport|{}deviceReport[0]
+        final fun <get-deviceReport>(): dev.openverify.sdk.chip/ChipDeviceReport // dev.openverify.sdk.chip/ChipRead.deviceReport.<get-deviceReport>|<get-deviceReport>(){}[0]
+    final val files // dev.openverify.sdk.chip/ChipRead.files|{}files[0]
+        final fun <get-files>(): kotlin.collections/Map<dev.openverify.sdk.model/FileKind, kotlin/ByteArray> // dev.openverify.sdk.chip/ChipRead.files.<get-files>|<get-files>(){}[0]
+
+    final fun toString(): kotlin/String // dev.openverify.sdk.chip/ChipRead.toString|toString(){}[0]
+}
+
+final class dev.openverify.sdk.chip/ChipReadException : kotlin/Exception { // dev.openverify.sdk.chip/ChipReadException|null[0]
+    constructor <init>(dev.openverify.sdk.chip/ChipReadFailure) // dev.openverify.sdk.chip/ChipReadException.<init>|<init>(dev.openverify.sdk.chip.ChipReadFailure){}[0]
+
+    final val failure // dev.openverify.sdk.chip/ChipReadException.failure|{}failure[0]
+        final fun <get-failure>(): dev.openverify.sdk.chip/ChipReadFailure // dev.openverify.sdk.chip/ChipReadException.failure.<get-failure>|<get-failure>(){}[0]
+}
+
+final class dev.openverify.sdk.face/YunetOutputs { // dev.openverify.sdk.face/YunetOutputs|null[0]
+    constructor <init>(kotlin/FloatArray, kotlin/FloatArray, kotlin/FloatArray, kotlin/FloatArray, kotlin/FloatArray, kotlin/FloatArray, kotlin/FloatArray, kotlin/FloatArray, kotlin/FloatArray, kotlin/FloatArray, kotlin/FloatArray, kotlin/FloatArray) // dev.openverify.sdk.face/YunetOutputs.<init>|<init>(kotlin.FloatArray;kotlin.FloatArray;kotlin.FloatArray;kotlin.FloatArray;kotlin.FloatArray;kotlin.FloatArray;kotlin.FloatArray;kotlin.FloatArray;kotlin.FloatArray;kotlin.FloatArray;kotlin.FloatArray;kotlin.FloatArray){}[0]
+
+    final val bbox16 // dev.openverify.sdk.face/YunetOutputs.bbox16|{}bbox16[0]
+        final fun <get-bbox16>(): kotlin/FloatArray // dev.openverify.sdk.face/YunetOutputs.bbox16.<get-bbox16>|<get-bbox16>(){}[0]
+    final val bbox32 // dev.openverify.sdk.face/YunetOutputs.bbox32|{}bbox32[0]
+        final fun <get-bbox32>(): kotlin/FloatArray // dev.openverify.sdk.face/YunetOutputs.bbox32.<get-bbox32>|<get-bbox32>(){}[0]
+    final val bbox8 // dev.openverify.sdk.face/YunetOutputs.bbox8|{}bbox8[0]
+        final fun <get-bbox8>(): kotlin/FloatArray // dev.openverify.sdk.face/YunetOutputs.bbox8.<get-bbox8>|<get-bbox8>(){}[0]
+    final val cls16 // dev.openverify.sdk.face/YunetOutputs.cls16|{}cls16[0]
+        final fun <get-cls16>(): kotlin/FloatArray // dev.openverify.sdk.face/YunetOutputs.cls16.<get-cls16>|<get-cls16>(){}[0]
+    final val cls32 // dev.openverify.sdk.face/YunetOutputs.cls32|{}cls32[0]
+        final fun <get-cls32>(): kotlin/FloatArray // dev.openverify.sdk.face/YunetOutputs.cls32.<get-cls32>|<get-cls32>(){}[0]
+    final val cls8 // dev.openverify.sdk.face/YunetOutputs.cls8|{}cls8[0]
+        final fun <get-cls8>(): kotlin/FloatArray // dev.openverify.sdk.face/YunetOutputs.cls8.<get-cls8>|<get-cls8>(){}[0]
+    final val kps16 // dev.openverify.sdk.face/YunetOutputs.kps16|{}kps16[0]
+        final fun <get-kps16>(): kotlin/FloatArray // dev.openverify.sdk.face/YunetOutputs.kps16.<get-kps16>|<get-kps16>(){}[0]
+    final val kps32 // dev.openverify.sdk.face/YunetOutputs.kps32|{}kps32[0]
+        final fun <get-kps32>(): kotlin/FloatArray // dev.openverify.sdk.face/YunetOutputs.kps32.<get-kps32>|<get-kps32>(){}[0]
+    final val kps8 // dev.openverify.sdk.face/YunetOutputs.kps8|{}kps8[0]
+        final fun <get-kps8>(): kotlin/FloatArray // dev.openverify.sdk.face/YunetOutputs.kps8.<get-kps8>|<get-kps8>(){}[0]
+    final val obj16 // dev.openverify.sdk.face/YunetOutputs.obj16|{}obj16[0]
+        final fun <get-obj16>(): kotlin/FloatArray // dev.openverify.sdk.face/YunetOutputs.obj16.<get-obj16>|<get-obj16>(){}[0]
+    final val obj32 // dev.openverify.sdk.face/YunetOutputs.obj32|{}obj32[0]
+        final fun <get-obj32>(): kotlin/FloatArray // dev.openverify.sdk.face/YunetOutputs.obj32.<get-obj32>|<get-obj32>(){}[0]
+    final val obj8 // dev.openverify.sdk.face/YunetOutputs.obj8|{}obj8[0]
+        final fun <get-obj8>(): kotlin/FloatArray // dev.openverify.sdk.face/YunetOutputs.obj8.<get-obj8>|<get-obj8>(){}[0]
+
+    final fun tensor(kotlin/String): kotlin/FloatArray? // dev.openverify.sdk.face/YunetOutputs.tensor|tensor(kotlin.String){}[0]
+
+    final object Companion { // dev.openverify.sdk.face/YunetOutputs.Companion|null[0]
+        final val NAMES // dev.openverify.sdk.face/YunetOutputs.Companion.NAMES|{}NAMES[0]
+            final fun <get-NAMES>(): kotlin.collections/List<kotlin/String> // dev.openverify.sdk.face/YunetOutputs.Companion.NAMES.<get-NAMES>|<get-NAMES>(){}[0]
+    }
+}
+
+final class dev.openverify.sdk.mrz/BacKeySeed { // dev.openverify.sdk.mrz/BacKeySeed|null[0]
+    constructor <init>(kotlin/String, kotlin/String, kotlin/String) // dev.openverify.sdk.mrz/BacKeySeed.<init>|<init>(kotlin.String;kotlin.String;kotlin.String){}[0]
+
+    final val dateOfBirth // dev.openverify.sdk.mrz/BacKeySeed.dateOfBirth|{}dateOfBirth[0]
+        final fun <get-dateOfBirth>(): kotlin/String // dev.openverify.sdk.mrz/BacKeySeed.dateOfBirth.<get-dateOfBirth>|<get-dateOfBirth>(){}[0]
+    final val dateOfExpiry // dev.openverify.sdk.mrz/BacKeySeed.dateOfExpiry|{}dateOfExpiry[0]
+        final fun <get-dateOfExpiry>(): kotlin/String // dev.openverify.sdk.mrz/BacKeySeed.dateOfExpiry.<get-dateOfExpiry>|<get-dateOfExpiry>(){}[0]
+    final val documentNumber // dev.openverify.sdk.mrz/BacKeySeed.documentNumber|{}documentNumber[0]
+        final fun <get-documentNumber>(): kotlin/String // dev.openverify.sdk.mrz/BacKeySeed.documentNumber.<get-documentNumber>|<get-documentNumber>(){}[0]
+    final val mrzInformation // dev.openverify.sdk.mrz/BacKeySeed.mrzInformation|{}mrzInformation[0]
+        final fun <get-mrzInformation>(): kotlin/String // dev.openverify.sdk.mrz/BacKeySeed.mrzInformation.<get-mrzInformation>|<get-mrzInformation>(){}[0]
+
+    final fun toString(): kotlin/String // dev.openverify.sdk.mrz/BacKeySeed.toString|toString(){}[0]
+
+    final object Companion { // dev.openverify.sdk.mrz/BacKeySeed.Companion|null[0]
+        final fun mrzInformation(kotlin/String, kotlin/String, kotlin/String): kotlin/String // dev.openverify.sdk.mrz/BacKeySeed.Companion.mrzInformation|mrzInformation(kotlin.String;kotlin.String;kotlin.String){}[0]
+    }
+}
+
+final class dev.openverify.sdk/OpenVerifyComponents { // dev.openverify.sdk/OpenVerifyComponents|null[0]
+    constructor <init>(dev.openverify.sdk.chip/ChipReader? = ..., dev.openverify.sdk.face/FaceDetectorFactory? = ..., dev.openverify.sdk.integrity/IntegrityTokenProvider? = ..., dev.openverify.sdk/OpenVerifyEventListener? = ..., dev.openverify.sdk/FlowTransport? = ..., dev.openverify.sdk/SandboxSignalOutcome? = ...) // dev.openverify.sdk/OpenVerifyComponents.<init>|<init>(dev.openverify.sdk.chip.ChipReader?;dev.openverify.sdk.face.FaceDetectorFactory?;dev.openverify.sdk.integrity.IntegrityTokenProvider?;dev.openverify.sdk.OpenVerifyEventListener?;dev.openverify.sdk.FlowTransport?;dev.openverify.sdk.SandboxSignalOutcome?){}[0]
+
+    final val chipReader // dev.openverify.sdk/OpenVerifyComponents.chipReader|{}chipReader[0]
+        final fun <get-chipReader>(): dev.openverify.sdk.chip/ChipReader? // dev.openverify.sdk/OpenVerifyComponents.chipReader.<get-chipReader>|<get-chipReader>(){}[0]
+    final val eventListener // dev.openverify.sdk/OpenVerifyComponents.eventListener|{}eventListener[0]
+        final fun <get-eventListener>(): dev.openverify.sdk/OpenVerifyEventListener? // dev.openverify.sdk/OpenVerifyComponents.eventListener.<get-eventListener>|<get-eventListener>(){}[0]
+    final val faceDetectorFactory // dev.openverify.sdk/OpenVerifyComponents.faceDetectorFactory|{}faceDetectorFactory[0]
+        final fun <get-faceDetectorFactory>(): dev.openverify.sdk.face/FaceDetectorFactory? // dev.openverify.sdk/OpenVerifyComponents.faceDetectorFactory.<get-faceDetectorFactory>|<get-faceDetectorFactory>(){}[0]
+    final val integrityTokenProvider // dev.openverify.sdk/OpenVerifyComponents.integrityTokenProvider|{}integrityTokenProvider[0]
+        final fun <get-integrityTokenProvider>(): dev.openverify.sdk.integrity/IntegrityTokenProvider? // dev.openverify.sdk/OpenVerifyComponents.integrityTokenProvider.<get-integrityTokenProvider>|<get-integrityTokenProvider>(){}[0]
+    final val sandboxSignalOutcome // dev.openverify.sdk/OpenVerifyComponents.sandboxSignalOutcome|{}sandboxSignalOutcome[0]
+        final fun <get-sandboxSignalOutcome>(): dev.openverify.sdk/SandboxSignalOutcome? // dev.openverify.sdk/OpenVerifyComponents.sandboxSignalOutcome.<get-sandboxSignalOutcome>|<get-sandboxSignalOutcome>(){}[0]
+    final val transport // dev.openverify.sdk/OpenVerifyComponents.transport|{}transport[0]
+        final fun <get-transport>(): dev.openverify.sdk/FlowTransport? // dev.openverify.sdk/OpenVerifyComponents.transport.<get-transport>|<get-transport>(){}[0]
+}

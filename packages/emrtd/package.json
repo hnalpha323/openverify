@@ -1,0 +1,38 @@
+{
+  "name": "@openverify/emrtd",
+  "version": "0.0.0",
+  "private": true,
+  "description": "eMRTD chip verification on the server: Passive Authentication, Active Authentication over a server nonce, DG1 and DG2 parsing, and synthetic test chips (plan C62, C65.3)",
+  "type": "module",
+  "exports": {
+    ".": {
+      "@openverify/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./testing": {
+      "@openverify/source": "./src/testing/index.ts",
+      "types": "./dist/testing/index.d.ts",
+      "default": "./dist/testing/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@openverify/config": "workspace:*",
+    "@types/node": "catalog:",
+    "@vitest/coverage-v8": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  },
+  "dependencies": {
+    "@noble/curves": "catalog:",
+    "@openverify/core": "workspace:*",
+    "asn1js": "3.1.0",
+    "pkijs": "3.4.1"
+  }
+}

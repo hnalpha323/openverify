@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "The verification reached its 10 captures and was canceled; start a new attempt.",
+  "instance": "/api/v1/flow/verifications/ver_01M5CK3190XEVBM5ZXA76E1JSM/selfies",
+  "requestId": "00000000-0000-4000-8000-000000000003",
+  "code": "selfie_capture_limit"
+}

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Arabic copy of values/strings_form.xml, machine-drafted by android-i18n (Workflow 10A, C199.1;
+  i18n/review-status.json): where the hosted web flow has the same English text, its
+  Arabic words are used, so both clients say the same thing. Compose Multiplatform resources:
+  positional placeholders only, ' and " written as they are, no isolate or other bidi control
+  (ResourcesTest).
+-->
+<resources>
+    <string name="openverify_database_title">إدخال البيانات</string>
+    <string name="openverify_database_intro">نتحقق من هذه البيانات مقابل السجلات. يُرجى إدخالها كما تظهر في المستندات الرسمية.</string>
+    <string name="openverify_aamva_title">إدخال بيانات رخصة القيادة أو بطاقة الهوية</string>
+    <string name="openverify_aamva_intro">يُرجى إدخال البيانات تمامًا كما هي مطبوعة على رخصة القيادة الأمريكية أو بطاقة هوية الولاية.</string>
+    <string name="openverify_field_name_first">الاسم الأول</string>
+    <string name="openverify_field_name_middle">الاسم الأوسط</string>
+    <string name="openverify_field_name_last">اسم العائلة</string>
+    <string name="openverify_field_birthdate">تاريخ الميلاد</string>
+    <string name="openverify_field_address_street_1">عنوان الشارع</string>
+    <string name="openverify_field_address_street_2">الشقة أو المكتب أو الوحدة</string>
+    <string name="openverify_field_address_city">المدينة</string>
+    <string name="openverify_field_address_subdivision">الولاية أو المقاطعة أو المنطقة</string>
+    <string name="openverify_field_address_postal_code">الرمز البريدي</string>
+    <string name="openverify_field_address_country_code">البلد</string>
+    <string name="openverify_field_identification_number">رقم الهوية الوطنية</string>
+    <string name="openverify_field_phone_number">رقم الهاتف</string>
+    <string name="openverify_field_email_address">عنوان البريد الإلكتروني</string>
+    <string name="openverify_field_license_number">رقم الرخصة أو بطاقة الهوية</string>
+    <string name="openverify_field_issuing_authority">الولاية أو الإقليم المُصدِر</string>
+    <string name="openverify_field_issue_date">تاريخ الإصدار</string>
+    <string name="openverify_field_expiration_date">تاريخ انتهاء الصلاحية</string>
+    <string name="openverify_field_zip_code">الرمز البريدي الأمريكي (ZIP)</string>
+    <string name="openverify_field_optional">اختياري</string>
+    <string name="openverify_field_date_hint">السنة والشهر واليوم، مثل 1990-04-23.</string>
+    <string name="openverify_field_phone_hint">يُرجى البدء بعلامة + ورمز البلد، مثل +1 555 555 0100.</string>
+    <string name="openverify_field_choose">اختيار</string>
+    <string name="openverify_field_error_missing">يُرجى ملء هذا الحقل.</string>
+    <string name="openverify_field_error_invalid">يُرجى مراجعة هذه القيمة: ليست بالصيغة المتوقعة.</string>
+    <string name="openverify_field_error_date">يُرجى إدخال تاريخ حقيقي بالسنة والشهر واليوم، مثل 1990-04-23.</string>
+    <string name="openverify_field_error_too_long">هذا طويل جدًا. يُرجى اختصاره.</string>
+    <string name="openverify_field_error_refused">يُرجى مراجعة هذا الحقل: تعذّر قبوله.</string>
+    <string name="openverify_form_refused">تعذّر قبول هذه البيانات. يُرجى مراجعتها والمحاولة مرة أخرى.</string>
+    <string name="openverify_form_continue">متابعة</string>
+    <string name="openverify_form_submitting">جارٍ إرسال البيانات…</string>
+</resources>

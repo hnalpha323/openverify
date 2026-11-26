@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "The share token cannot be redeemed or peeked in its status.",
+  "instance": "/api/v1/connect/share-tokens/cnst_01M5CN0000000000000011A200",
+  "requestId": "00000000-0000-4000-8000-00000011a015",
+  "code": "share_token_not_redeemable"
+}

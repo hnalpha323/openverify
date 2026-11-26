@@ -1,0 +1,897 @@
+{
+  "format": 1,
+  "description": "C200.4: for each Android row of consent-texts.json (client android) of its latest catalog version at two retention values, the text-sha256 the server's own fill and hash expect (consentTextDigest, apps/api/src/services/templates/consent-texts.ts): {{days}} and {{organization}} filled, NFC, UTF-8, SHA-256. organization is the name as the session serves it (NFC); its three cases add a Latin name beside an Arabic text, a name stored decomposed and a Korean name, and no built-in text holds {{organization}} today. Custom-copy cases (copy-source custom, KP10-9) hold an operator's text with its {name} placeholders as the session's copy serves it, and the digest the server takes of it filled. Written by apps/api/src/services/templates/consent-texts.android.test.ts with UPDATE_CONTRACT_FIXTURES=1; never edited by hand.",
+  "cases": [
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.automated-decision",
+      "locale": "en",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "e94c6b6f11ce661742a9e5008944d6978d312e8d4ac5c22350b33003f760a7f5"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.automated-decision",
+      "locale": "en",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "e94c6b6f11ce661742a9e5008944d6978d312e8d4ac5c22350b33003f760a7f5"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.biometric",
+      "locale": "en",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "8e80ee2b7850e01bf0eab5f0689d19ab7aaade83382eda7febb120530e22d11b"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.biometric",
+      "locale": "en",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "8e80ee2b7850e01bf0eab5f0689d19ab7aaade83382eda7febb120530e22d11b"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.biometric-matching",
+      "locale": "en",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "bfc0b1d01339ce90081e16820646648cb46db037f774cf3f81f3aa1e5d4d5d91"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.biometric-matching",
+      "locale": "en",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "68b5fdd1aafb58039e745bc928c3f673f90f2aa6f2dbde6f71383ed280ec9265"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.checkbox",
+      "locale": "en",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "5a3d39ccd8490f13ab35bc1e9b5e2d217147e097f7a227468dca7a6ecae278c1"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.checkbox",
+      "locale": "en",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "5a3d39ccd8490f13ab35bc1e9b5e2d217147e097f7a227468dca7a6ecae278c1"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.device-recognition",
+      "locale": "en",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "8802ca75e07b99d4125b26fefbaf6312ba55d6f5efb684ab11e5fd685ad9f789"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.device-recognition",
+      "locale": "en",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "8802ca75e07b99d4125b26fefbaf6312ba55d6f5efb684ab11e5fd685ad9f789"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.processing",
+      "locale": "en",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "6f1841b7e5a2fa8a7646d0443c3e6ebd48d1137ae0a64dac822a0a27eb5cce74"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.processing",
+      "locale": "en",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "6f1841b7e5a2fa8a7646d0443c3e6ebd48d1137ae0a64dac822a0a27eb5cce74"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "notice.device-recognition",
+      "locale": "en",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "3af7d40724b251ad9ecf2c25fffaba5c82f8f233036978745916c977f69c7e79"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "notice.device-recognition",
+      "locale": "en",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "3af7d40724b251ad9ecf2c25fffaba5c82f8f233036978745916c977f69c7e79"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "notice.play-integrity",
+      "locale": "en",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "c9a46ee58312c2b1554c4af037278af0a5609f190f5f7f69543114d296ecb963"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "notice.play-integrity",
+      "locale": "en",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "c9a46ee58312c2b1554c4af037278af0a5609f190f5f7f69543114d296ecb963"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "notice.session-integrity",
+      "locale": "en",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "54b9046902fc641f3da89574816dd3cda0b4ba4bfce7dee7de329be7d7da879a"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "notice.session-integrity",
+      "locale": "en",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "54b9046902fc641f3da89574816dd3cda0b4ba4bfce7dee7de329be7d7da879a"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.automated-decision",
+      "locale": "es",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "2068b19903c6369fcb5981ad18a82f8e8dcdc03d1ce4486c0928a1587d350527"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.automated-decision",
+      "locale": "es",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "2068b19903c6369fcb5981ad18a82f8e8dcdc03d1ce4486c0928a1587d350527"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.biometric",
+      "locale": "es",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "2cf5f823dff66e0d7dd88677584c3ac772502b9a2bd35a0f29f2c91bfd568abf"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.biometric",
+      "locale": "es",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "2cf5f823dff66e0d7dd88677584c3ac772502b9a2bd35a0f29f2c91bfd568abf"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.biometric-matching",
+      "locale": "es",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "32910bbcd08c1351e1924336f45f471032dc6d26de8165002c422e74ea9f3f93"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.biometric-matching",
+      "locale": "es",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "d3a29c5b59bea6d61e65951905af37acbff10697889e8ab2fc2200cf17e36486"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.checkbox",
+      "locale": "es",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "cfa4094a6246f306d3278e09e0565043803e5a8128b4edcd0666f6fb53704495"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.checkbox",
+      "locale": "es",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "cfa4094a6246f306d3278e09e0565043803e5a8128b4edcd0666f6fb53704495"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.device-recognition",
+      "locale": "es",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "74618c0b2958101af101766944b26490586c5ba620a83904aba9c88d378d90a4"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.device-recognition",
+      "locale": "es",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "74618c0b2958101af101766944b26490586c5ba620a83904aba9c88d378d90a4"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.processing",
+      "locale": "es",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "9ccb4b849fe2d676d7f7c9d92064b948157be87315b9ffbcd41f66f3c7924964"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.processing",
+      "locale": "es",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "9ccb4b849fe2d676d7f7c9d92064b948157be87315b9ffbcd41f66f3c7924964"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "notice.device-recognition",
+      "locale": "es",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "36f97e38a1c28bc5378492b70748920202d97ea35e158ab6822b0a58ba5a8e5b"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "notice.device-recognition",
+      "locale": "es",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "36f97e38a1c28bc5378492b70748920202d97ea35e158ab6822b0a58ba5a8e5b"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "notice.play-integrity",
+      "locale": "es",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "fde37cb1f744b4cb83c471cdad3712adf4d118943aae0e21c10a2a718567adad"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "notice.play-integrity",
+      "locale": "es",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "fde37cb1f744b4cb83c471cdad3712adf4d118943aae0e21c10a2a718567adad"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "notice.session-integrity",
+      "locale": "es",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "4ec73ac3c65b3853524cdeb33412ef4fd9e6a25048712c3b256079204081c701"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "notice.session-integrity",
+      "locale": "es",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "4ec73ac3c65b3853524cdeb33412ef4fd9e6a25048712c3b256079204081c701"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.automated-decision",
+      "locale": "fr",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "1840783862a5936b6769ccc659076be85304aef4be5b6387802c97329b4ba0a1"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.automated-decision",
+      "locale": "fr",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "1840783862a5936b6769ccc659076be85304aef4be5b6387802c97329b4ba0a1"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.biometric",
+      "locale": "fr",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "5f44a05c5795a63274c9d84cf90d6d1fbf4885222582c0e1124d4d7eda31bc9c"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.biometric",
+      "locale": "fr",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "5f44a05c5795a63274c9d84cf90d6d1fbf4885222582c0e1124d4d7eda31bc9c"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.biometric-matching",
+      "locale": "fr",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "bb4389bfb87ffe74fc872f2e7c4bb2605b2c8ef450917d36b487b2e73b1a614b"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.biometric-matching",
+      "locale": "fr",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "c7a9e0c0b76ce9e97029c83d5c3bfdf37d36de42fa42777ffca5e71506224b0b"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.checkbox",
+      "locale": "fr",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "b26ad23f460faf2425a2f67991f3b1cb9761df6ead098d5e49cb4b35aa5400b6"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.checkbox",
+      "locale": "fr",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "b26ad23f460faf2425a2f67991f3b1cb9761df6ead098d5e49cb4b35aa5400b6"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.device-recognition",
+      "locale": "fr",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "983d577bcb7382020a943b8523f2cfff537d1a034961bdf26fc356c54432ce8c"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.device-recognition",
+      "locale": "fr",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "983d577bcb7382020a943b8523f2cfff537d1a034961bdf26fc356c54432ce8c"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.processing",
+      "locale": "fr",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "fd413b0956bd3792b6350d6cf1561f4cd24965eac5bd7ef509906c7079c4fbc7"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.processing",
+      "locale": "fr",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "fd413b0956bd3792b6350d6cf1561f4cd24965eac5bd7ef509906c7079c4fbc7"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "notice.device-recognition",
+      "locale": "fr",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "4febdd3b2b652c01c8f91cfcff7208ff97ee6f246463f4447f9d189608133e97"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "notice.device-recognition",
+      "locale": "fr",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "4febdd3b2b652c01c8f91cfcff7208ff97ee6f246463f4447f9d189608133e97"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "notice.play-integrity",
+      "locale": "fr",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "03dcfd84014ed3770cd7faaba45001420c33fc8b0559bb01165b216ae1f9d41e"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "notice.play-integrity",
+      "locale": "fr",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "03dcfd84014ed3770cd7faaba45001420c33fc8b0559bb01165b216ae1f9d41e"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "notice.session-integrity",
+      "locale": "fr",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "84bb86230a4a8e513ba164ec9682b803e5b1a5c8e43896878447033b667fc9d1"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "notice.session-integrity",
+      "locale": "fr",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "84bb86230a4a8e513ba164ec9682b803e5b1a5c8e43896878447033b667fc9d1"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.automated-decision",
+      "locale": "de",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "d1576130ba50e1597151c7da07ebd005eb83dd621c47c208aa537c174a900d7c"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.automated-decision",
+      "locale": "de",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "d1576130ba50e1597151c7da07ebd005eb83dd621c47c208aa537c174a900d7c"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.biometric",
+      "locale": "de",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "a24362270b3a7214edcc2b71c52ddbb49dabe39a075c3d1141c5897b40b49dac"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.biometric",
+      "locale": "de",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "a24362270b3a7214edcc2b71c52ddbb49dabe39a075c3d1141c5897b40b49dac"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.biometric-matching",
+      "locale": "de",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "4e51db4d5e627560f33b5c1b817bc16df7abe9573006a1709a299abbfbf83a96"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.biometric-matching",
+      "locale": "de",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "b3deb79942aba7586e61d3d1a95d4c6416d1f782357454d9eed708123cde152a"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.checkbox",
+      "locale": "de",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "50331a9b856569f8b455544ba692c0786e3dae369b828bc7287b789c1341cbc0"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.checkbox",
+      "locale": "de",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "50331a9b856569f8b455544ba692c0786e3dae369b828bc7287b789c1341cbc0"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.device-recognition",
+      "locale": "de",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "16b41bec77aac687848907537be3082eb710bfebe3ae5a55f7d4891bba6bb52b"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.device-recognition",
+      "locale": "de",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "16b41bec77aac687848907537be3082eb710bfebe3ae5a55f7d4891bba6bb52b"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.processing",
+      "locale": "de",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "b49185b3f7897433953459939a5d18d7458fc556043ef00ee42e856cc4ca971f"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.processing",
+      "locale": "de",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "b49185b3f7897433953459939a5d18d7458fc556043ef00ee42e856cc4ca971f"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "notice.device-recognition",
+      "locale": "de",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "06fb295d6e977ffd43830f364cd349d6ada5fa92e7a56131bcd6fa75250e816d"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "notice.device-recognition",
+      "locale": "de",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "06fb295d6e977ffd43830f364cd349d6ada5fa92e7a56131bcd6fa75250e816d"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "notice.play-integrity",
+      "locale": "de",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "508a58e793f0760a5c86f6a3c1d5f58f778c8afa855b9dfa08fceedbd8c6075f"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "notice.play-integrity",
+      "locale": "de",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "508a58e793f0760a5c86f6a3c1d5f58f778c8afa855b9dfa08fceedbd8c6075f"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "notice.session-integrity",
+      "locale": "de",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "49dab468ef924e6b1259b20aa697f5b7d945d9593aa6a8c3db5d1668bb1adc83"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "notice.session-integrity",
+      "locale": "de",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "49dab468ef924e6b1259b20aa697f5b7d945d9593aa6a8c3db5d1668bb1adc83"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.automated-decision",
+      "locale": "ar",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "faac857d92c96497232d7f437e101dd01c6b52593355fb5f6c0e5e2220716f4d"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.automated-decision",
+      "locale": "ar",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "faac857d92c96497232d7f437e101dd01c6b52593355fb5f6c0e5e2220716f4d"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.biometric",
+      "locale": "ar",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "326366a712debbdb9356eb7a698178a0f13081e5aa7d0d22a7de9c55bcdd492b"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.biometric",
+      "locale": "ar",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "326366a712debbdb9356eb7a698178a0f13081e5aa7d0d22a7de9c55bcdd492b"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.biometric-matching",
+      "locale": "ar",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "73b10a9045890c64a17980b833efa8dc4f3655fedbfdffba609e4a51e2f94bdc"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.biometric-matching",
+      "locale": "ar",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "8a66a347424faa73c71a8b2aad992782c253aab40b67b996fbd5e0cdceaf6a3d"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.checkbox",
+      "locale": "ar",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "e6859bc978a97e5516766ef94b4909996e5f138c53d2d8b31a2efd61f8c7d84c"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.checkbox",
+      "locale": "ar",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "e6859bc978a97e5516766ef94b4909996e5f138c53d2d8b31a2efd61f8c7d84c"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.device-recognition",
+      "locale": "ar",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "f525a994fb46ad8f8889fc4d18c4d40e5b77d29c563fedd33e4521e3c21a746a"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.device-recognition",
+      "locale": "ar",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "f525a994fb46ad8f8889fc4d18c4d40e5b77d29c563fedd33e4521e3c21a746a"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.processing",
+      "locale": "ar",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "ce5989575fb2099f524a7c0e6c0d7e3f95b4a5f9afb96f57f2a41e0acfad0ee8"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.processing",
+      "locale": "ar",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "ce5989575fb2099f524a7c0e6c0d7e3f95b4a5f9afb96f57f2a41e0acfad0ee8"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "notice.device-recognition",
+      "locale": "ar",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "bb4b19925c0d887c042f104b232005b6154499c1a3df655417ed22dce27c5b19"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "notice.device-recognition",
+      "locale": "ar",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "bb4b19925c0d887c042f104b232005b6154499c1a3df655417ed22dce27c5b19"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "notice.play-integrity",
+      "locale": "ar",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "55a98d967966c42f2aca0afda2e431c3e2579d74f2d4defd9402fb258e6096fd"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "notice.play-integrity",
+      "locale": "ar",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "55a98d967966c42f2aca0afda2e431c3e2579d74f2d4defd9402fb258e6096fd"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "notice.session-integrity",
+      "locale": "ar",
+      "values": {
+        "days": "365"
+      },
+      "text-sha256": "22c6c8fc2fe66cd732d3e6795f9b215ae84df5c4f3b575d30db8bd3360b8f409"
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "notice.session-integrity",
+      "locale": "ar",
+      "values": {
+        "days": "30"
+      },
+      "text-sha256": "22c6c8fc2fe66cd732d3e6795f9b215ae84df5c4f3b575d30db8bd3360b8f409"
+    },
+    {
+      "name": "a Latin organisation name beside an Arabic text",
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.automated-decision",
+      "locale": "ar",
+      "values": {
+        "days": "365",
+        "organization": "Example Verification Ltd"
+      },
+      "text-sha256": "faac857d92c96497232d7f437e101dd01c6b52593355fb5f6c0e5e2220716f4d"
+    },
+    {
+      "name": "an organisation name stored decomposed",
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.automated-decision",
+      "locale": "en",
+      "values": {
+        "days": "365",
+        "organization": "Café Exemple"
+      },
+      "text-sha256": "e94c6b6f11ce661742a9e5008944d6978d312e8d4ac5c22350b33003f760a7f5"
+    },
+    {
+      "name": "a Korean organisation name of precomposed syllables",
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "key": "consent.automated-decision",
+      "locale": "en",
+      "values": {
+        "days": "365",
+        "organization": "한국 인증"
+      },
+      "text-sha256": "e94c6b6f11ce661742a9e5008944d6978d312e8d4ac5c22350b33003f760a7f5"
+    },
+    {
+      "name": "an operator text in Arabic with a Latin organisation name",
+      "copy-source": "custom",
+      "key": "consent.biometric",
+      "locale": "ar",
+      "text": "{organization} تقارن صورتك الذاتية بصورة وثيقة هويتك.",
+      "values": {
+        "days": "365",
+        "organization": "Example Verification Ltd"
+      },
+      "text-sha256": "7b02f76287b8a0070414996c13bdfb409084e495902bd0d7e11a0d1a20489d53"
+    },
+    {
+      "name": "an operator text with an organisation name stored decomposed",
+      "copy-source": "custom",
+      "key": "consent.processing",
+      "locale": "en",
+      "text": "{organization} processes your photos for this verification.",
+      "values": {
+        "days": "365",
+        "organization": "Café Exemple"
+      },
+      "text-sha256": "3c219afafcb7b163ca4fe310738d970f0d8d0b0a8bbb159c6e17786ef9ea76f3"
+    },
+    {
+      "name": "an operator text with a Korean organisation name of precomposed syllables",
+      "copy-source": "custom",
+      "key": "notice.session-integrity",
+      "locale": "en",
+      "text": "{organization} checks this session for signs of automation.",
+      "values": {
+        "days": "365",
+        "organization": "한국 인증"
+      },
+      "text-sha256": "98c56e3b203b63fa8e3034a558aeacb90a243970b6281701bfcf6ba7fd5bbf95"
+    },
+    {
+      "name": "an operator text naming the retention in days",
+      "copy-source": "custom",
+      "key": "consent.biometric-matching",
+      "locale": "es",
+      "text": "{organization} guarda la plantilla de tu rostro durante {days} días.",
+      "values": {
+        "days": "365",
+        "organization": "Example Verification Ltd"
+      },
+      "text-sha256": "dfa8d903f7b57985315b145304074f3c5761a31f66434e8eca6d31600133e5f1"
+    }
+  ]
+}

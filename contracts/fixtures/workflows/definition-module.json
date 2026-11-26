@@ -1,0 +1,60 @@
+{
+  "schema-version": 1,
+  "trigger": null,
+  "inputs": [
+    {
+      "name": "inquiry_id",
+      "type": "id<inq>",
+      "required": true
+    }
+  ],
+  "variables": [],
+  "steps": [
+    {
+      "id": "start",
+      "type": "module-input",
+      "name": "Inputs"
+    },
+    {
+      "id": "tag_it",
+      "type": "action",
+      "name": "Tag it",
+      "action-key": "tag_object",
+      "action-version": 1,
+      "config": {
+        "object-type": "inquiry",
+        "object-id": "{{ inputs.inquiry_id }}",
+        "tag": "checked"
+      }
+    },
+    {
+      "id": "output",
+      "type": "output",
+      "name": "Output",
+      "mappings": {
+        "checked": true
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "from": "start",
+      "from-port": "next",
+      "to": "tag_it"
+    },
+    {
+      "id": "e2",
+      "from": "tag_it",
+      "from-port": "next",
+      "to": "output"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "checked",
+      "pii": false
+    }
+  ],
+  "layout": {}
+}

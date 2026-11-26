@@ -1,0 +1,10 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The code is not correct.",
+  "instance": "/api/v1/flow/verifications/ver_01M5CK3190XEVBM5ZXA76E1JSM/otp/confirm",
+  "requestId": "00000000-0000-4000-8000-000000000109",
+  "code": "otp_incorrect",
+  "attempts-remaining": 4
+}

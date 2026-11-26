@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "Face and background items come one consenting inquiry at a time.",
+  "instance": "/api/v1/graph-queries/grphq_01M5CK3190XEVBM5ZXA76E1JSN/actions",
+  "requestId": "00000000-0000-4000-8000-000000001012",
+  "code": "biometric_list_not_bulk",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/list-id",
+      "detail": "is a biometric list"
+    }
+  ]
+}

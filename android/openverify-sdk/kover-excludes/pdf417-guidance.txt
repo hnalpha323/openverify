@@ -1,0 +1,4 @@
+# Kover exclusions of pdf417-guidance (C219.2; review F18): one class pattern per line, for glue a host test cannot
+# reach (each one named with its reason in docs/tdd/phase10-pdf417-guidance.tdd.md). Comments start with #.
+# zxing-cpp's bridge: its native library loads only on a device (ZxingCppBarcodeReaderDeviceTest covers it).
+dev.openverify.sdk.capture.barcode.ZxingCppBarcodeReader*

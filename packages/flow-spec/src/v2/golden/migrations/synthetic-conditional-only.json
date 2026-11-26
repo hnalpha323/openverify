@@ -1,0 +1,102 @@
+{
+  "source": "synthetic: conditional transitions only, else the next step in list order",
+  "flow": {
+    "metadata": {
+      "specVersion": 2,
+      "id": "conditional-only",
+      "version": 1,
+      "name": "Synthetic conditional-only"
+    },
+    "entry": "consent",
+    "steps": [
+      {
+        "id": "consent",
+        "type": "consent",
+        "textKeys": ["consent.biometric"],
+        "required": true
+      },
+      {
+        "id": "id_card",
+        "type": "government_id",
+        "sides": "front",
+        "maxAttempts": 2,
+        "captureMethods": ["camera"]
+      },
+      {
+        "id": "face",
+        "type": "selfie",
+        "poses": ["center"],
+        "liveness": "passive",
+        "maxAttempts": 2
+      },
+      {
+        "id": "done",
+        "type": "completion",
+        "messageKey": "flow.completion"
+      },
+      {
+        "id": "consent-routes",
+        "type": "branch",
+        "routes": [
+          {
+            "key": "r1",
+            "label": "Transition 1",
+            "condition": {
+              "and": [
+                {
+                  "===": [
+                    {
+                      "var": "inquiry.status"
+                    },
+                    "completed"
+                  ]
+                },
+                {
+                  "!!": [
+                    {
+                      "var": "inquiry.status"
+                    }
+                  ]
+                }
+              ]
+            },
+            "onNull": "else"
+          }
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "consent",
+        "port": "next",
+        "to": "consent-routes"
+      },
+      {
+        "id": "e2",
+        "from": "consent-routes",
+        "port": "route:r1",
+        "to": "face"
+      },
+      {
+        "id": "e3",
+        "from": "consent-routes",
+        "port": "else",
+        "to": "id_card"
+      },
+      {
+        "id": "e4",
+        "from": "id_card",
+        "port": "next",
+        "to": "face"
+      },
+      {
+        "id": "e5",
+        "from": "face",
+        "port": "next",
+        "to": "done"
+      }
+    ]
+  },
+  "notes": []
+}

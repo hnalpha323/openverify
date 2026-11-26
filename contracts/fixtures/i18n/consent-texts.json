@@ -1,0 +1,2211 @@
+{
+  "format": 1,
+  "description": "Append-only (C162.9, C200.3): the built-in consent and notice texts of each released catalog, as written, placeholders unfilled ({{name}}), one entry per catalog version, client, key and locale. The web rows (client web) are written by apps/flow/scripts/export-flow-locales.ts, the Android SDK rows (client android) by :openverify-sdk:exportConsentTexts; each keeps the other client rows; never edit or remove an entry.",
+  "entries": [
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.automated-decision",
+      "locale": "en",
+      "text": "Optional: I agree that automated decisions can be made about this verification from my biometric data, without a person reviewing them first. You can ask for a person to review a decision."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.biometric",
+      "locale": "en",
+      "text": "To confirm your identity, we compare a selfie with the photo on your ID document. This comparison uses biometric data: measurements of your facial features. Your biometric data is used only to verify your identity for this request."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.biometric-matching",
+      "locale": "en",
+      "text": "Optional: we also compare your selfie and its background with earlier selfies submitted to this organization, to stop one person from using several identities. A template of your face is kept for {{days}} days. You can still verify if you leave this unticked."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.checkbox",
+      "locale": "en",
+      "text": "I agree to the collection and use of my biometric data as described above."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.continue",
+      "locale": "en",
+      "text": "Continue"
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.device-recognition",
+      "locale": "en",
+      "text": "Optional: recognise this device on later visits, to protect my account from misuse."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.processing",
+      "locale": "en",
+      "text": "We process the photos of your ID document and your selfie only for this verification. They are deleted when the organization that asked for this verification no longer needs them, in line with its retention policy. You can stop at any time by closing this page."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.saving",
+      "locale": "en",
+      "text": "Saving your consent…"
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.title",
+      "locale": "en",
+      "text": "Consent to use your biometric data"
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.unavailable",
+      "locale": "en",
+      "text": "This verification asks you to agree to a text that this version cannot show. Contact the organization that asked you to verify."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "notice.device-recognition",
+      "locale": "en",
+      "text": "This service recognises the device you use, to protect accounts from misuse."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "notice.session-integrity",
+      "locale": "en",
+      "text": "To protect your verification against fraud, this page checks how it is being used, such as whether a browser is automated. It does not read your keystrokes or what you type."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.automated-decision",
+      "locale": "es",
+      "text": "Opcional: acepto que se puedan tomar decisiones automatizadas sobre esta verificación a partir de mis datos biométricos, sin que una persona las revise antes. Puedes pedir que una persona revise una decisión."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.biometric",
+      "locale": "es",
+      "text": "Para confirmar tu identidad, comparamos un selfi con la foto de tu documento de identidad. Esta comparación usa datos biométricos: medidas de los rasgos de tu cara. Tus datos biométricos se usan solo para verificar tu identidad en esta solicitud."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.biometric-matching",
+      "locale": "es",
+      "text": "Opcional: también comparamos tu selfi y su fondo con selfis anteriores enviados a esta organización, para evitar que una persona use varias identidades. Una plantilla de tu cara se conserva durante {{days}} días. Puedes verificarte aunque no marques esta casilla."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.checkbox",
+      "locale": "es",
+      "text": "Acepto la recopilación y el uso de mis datos biométricos tal como se describe arriba."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.continue",
+      "locale": "es",
+      "text": "Continuar"
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.device-recognition",
+      "locale": "es",
+      "text": "Opcional: reconocer este dispositivo en visitas posteriores, para proteger mi cuenta de usos indebidos."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.processing",
+      "locale": "es",
+      "text": "Tratamos las fotos de tu documento de identidad y tu selfi solo para esta verificación. Se eliminan cuando la organización que pidió esta verificación ya no las necesita, conforme a su política de conservación. Puedes detenerte en cualquier momento cerrando esta página."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.saving",
+      "locale": "es",
+      "text": "Guardando tu consentimiento…"
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.title",
+      "locale": "es",
+      "text": "Consentimiento para usar tus datos biométricos"
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.unavailable",
+      "locale": "es",
+      "text": "Esta verificación te pide aceptar un texto que esta versión no puede mostrar. Contacta con la organización que te pidió la verificación."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "notice.device-recognition",
+      "locale": "es",
+      "text": "Este servicio reconoce el dispositivo que usas, para proteger las cuentas de usos indebidos."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "notice.session-integrity",
+      "locale": "es",
+      "text": "Para proteger tu verificación contra el fraude, esta página comprueba cómo se usa, por ejemplo si un navegador está automatizado. No lee tus pulsaciones de teclas ni lo que escribes."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.automated-decision",
+      "locale": "fr",
+      "text": "Facultatif : j’accepte que des décisions automatisées soient prises sur cette vérification à partir de mes données biométriques, sans qu’une personne les examine d’abord. Vous pouvez demander qu’une personne examine une décision."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.biometric",
+      "locale": "fr",
+      "text": "Pour confirmer votre identité, nous comparons un selfie avec la photo de votre pièce d’identité. Cette comparaison utilise des données biométriques : des mesures des traits de votre visage. Vos données biométriques servent uniquement à vérifier votre identité pour cette demande."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.biometric-matching",
+      "locale": "fr",
+      "text": "Facultatif : nous comparons aussi votre selfie et son arrière-plan avec des selfies envoyés auparavant à cette organisation, pour empêcher une même personne d’utiliser plusieurs identités. Un modèle de votre visage est conservé pendant {{days}} jours. Vous pouvez quand même vous vérifier si vous laissez cette case décochée."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.checkbox",
+      "locale": "fr",
+      "text": "J’accepte la collecte et l’utilisation de mes données biométriques telles qu’elles sont décrites ci-dessus."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.continue",
+      "locale": "fr",
+      "text": "Continuer"
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.device-recognition",
+      "locale": "fr",
+      "text": "Facultatif : reconnaître cet appareil lors de mes prochaines visites, pour protéger mon compte contre les abus."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.processing",
+      "locale": "fr",
+      "text": "Nous traitons les photos de votre pièce d’identité et votre selfie uniquement pour cette vérification. Elles sont supprimées lorsque l’organisation qui a demandé cette vérification n’en a plus besoin, conformément à sa politique de conservation. Vous pouvez arrêter à tout moment en fermant cette page."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.saving",
+      "locale": "fr",
+      "text": "Enregistrement de votre consentement…"
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.title",
+      "locale": "fr",
+      "text": "Consentement à l’utilisation de vos données biométriques"
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.unavailable",
+      "locale": "fr",
+      "text": "Cette vérification vous demande d’accepter un texte que cette version ne peut pas afficher. Contactez l’organisation qui vous a demandé de vous vérifier."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "notice.device-recognition",
+      "locale": "fr",
+      "text": "Ce service reconnaît l’appareil que vous utilisez, pour protéger les comptes contre les abus."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "notice.session-integrity",
+      "locale": "fr",
+      "text": "Pour protéger votre vérification contre la fraude, cette page vérifie la façon dont elle est utilisée, par exemple si un navigateur est automatisé. Elle ne lit ni vos frappes au clavier ni ce que vous saisissez."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.automated-decision",
+      "locale": "de",
+      "text": "Optional: Ich bin einverstanden, dass über diese Verifizierung anhand meiner biometrischen Daten automatisierte Entscheidungen getroffen werden können, ohne dass eine Person sie vorher prüft. Sie können verlangen, dass eine Person eine Entscheidung prüft."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.biometric",
+      "locale": "de",
+      "text": "Um Ihre Identität zu bestätigen, vergleichen wir ein Selfie mit dem Foto in Ihrem Ausweisdokument. Dieser Vergleich nutzt biometrische Daten: Messwerte Ihrer Gesichtszüge. Ihre biometrischen Daten werden nur genutzt, um Ihre Identität für diese Anfrage zu verifizieren."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.biometric-matching",
+      "locale": "de",
+      "text": "Optional: Wir vergleichen Ihr Selfie und seinen Hintergrund auch mit früheren Selfies, die an diese Organisation gesendet wurden, damit niemand mehrere Identitäten nutzen kann. Eine Vorlage Ihres Gesichts wird {{days}} Tage lang aufbewahrt. Sie können sich auch verifizieren, wenn Sie dieses Kästchen nicht ankreuzen."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.checkbox",
+      "locale": "de",
+      "text": "Ich willige in die Erhebung und Nutzung meiner biometrischen Daten wie oben beschrieben ein."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.continue",
+      "locale": "de",
+      "text": "Weiter"
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.device-recognition",
+      "locale": "de",
+      "text": "Optional: Dieses Gerät bei späteren Besuchen wiedererkennen, um mein Konto vor Missbrauch zu schützen."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.processing",
+      "locale": "de",
+      "text": "Wir verarbeiten die Fotos Ihres Ausweisdokuments und Ihr Selfie nur für diese Verifizierung. Sie werden gelöscht, sobald die Organisation, die diese Verifizierung angefordert hat, sie nicht mehr benötigt, gemäß ihren Aufbewahrungsregeln. Sie können jederzeit aufhören, indem Sie diese Seite schließen."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.saving",
+      "locale": "de",
+      "text": "Ihre Einwilligung wird gespeichert…"
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.title",
+      "locale": "de",
+      "text": "Einwilligung in die Nutzung Ihrer biometrischen Daten"
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.unavailable",
+      "locale": "de",
+      "text": "Diese Verifizierung bittet Sie, einem Text zuzustimmen, den diese Version nicht anzeigen kann. Wenden Sie sich an die Organisation, die Sie um die Verifizierung gebeten hat."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "notice.device-recognition",
+      "locale": "de",
+      "text": "Dieser Dienst erkennt das Gerät, das Sie nutzen, wieder, um Konten vor Missbrauch zu schützen."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "notice.session-integrity",
+      "locale": "de",
+      "text": "Um Ihre Verifizierung vor Betrug zu schützen, prüft diese Seite, wie sie genutzt wird, etwa ob ein Browser automatisiert ist. Sie liest weder Ihre Tastenanschläge noch das, was Sie eingeben."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.automated-decision",
+      "locale": "ar",
+      "text": "اختياري: أوافق على إمكانية اتخاذ قرارات آلية بشأن هذا التحقق استنادًا إلى بياناتي البيومترية، دون أن يراجعها شخص أولًا. يمكن طلب مراجعة أي قرار من قِبل شخص."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.biometric",
+      "locale": "ar",
+      "text": "لتأكيد هويتك، نقارن صورة سيلفي بالصورة الموجودة في وثيقة هويتك. تستخدم هذه المقارنة بيانات بيومترية: قياسات لملامح الوجه. تُستخدم بياناتك البيومترية فقط للتحقق من هويتك في هذا الطلب."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.biometric-matching",
+      "locale": "ar",
+      "text": "اختياري: نقارن أيضًا صورة السيلفي وخلفيتها بصور سيلفي سابقة أُرسلت إلى هذه الجهة، لمنع شخص واحد من استخدام عدة هويات. يُحتفظ بنموذج لوجهك لمدة {{days}} يومًا. يمكن إتمام التحقق حتى إن تُرك هذا الخيار دون تحديد."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.checkbox",
+      "locale": "ar",
+      "text": "أوافق على جمع بياناتي البيومترية واستخدامها على النحو الموضح أعلاه."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.continue",
+      "locale": "ar",
+      "text": "متابعة"
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.device-recognition",
+      "locale": "ar",
+      "text": "اختياري: التعرّف على هذا الجهاز في الزيارات اللاحقة، لحماية حسابي من إساءة الاستخدام."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.processing",
+      "locale": "ar",
+      "text": "نعالج صور وثيقة هويتك وصورة السيلفي لهذا التحقق فقط. تُحذف عندما لا تعود الجهة التي طلبت هذا التحقق بحاجة إليها، وفقًا لسياسة الاحتفاظ لديها. يمكن التوقف في أي وقت بإغلاق هذه الصفحة."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.saving",
+      "locale": "ar",
+      "text": "جارٍ حفظ الموافقة…"
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.title",
+      "locale": "ar",
+      "text": "الموافقة على استخدام بياناتك البيومترية"
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "consent.unavailable",
+      "locale": "ar",
+      "text": "تطلب عملية التحقق هذه الموافقة على نص لا يمكن لهذا الإصدار عرضه. يُرجى التواصل مع الجهة التي طلبت التحقق."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "notice.device-recognition",
+      "locale": "ar",
+      "text": "تتعرّف هذه الخدمة على الجهاز المستخدم، لحماية الحسابات من إساءة الاستخدام."
+    },
+    {
+      "catalog-version": "web-03a9d4e06ed93f3e",
+      "client": "web",
+      "key": "notice.session-integrity",
+      "locale": "ar",
+      "text": "لحماية عملية التحقق من الاحتيال، تتحقق هذه الصفحة من طريقة استخدامها، مثل ما إذا كان المتصفح مؤتمتًا. ولا تقرأ ضغطات المفاتيح ولا ما يُكتب."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "consent.automated-decision",
+      "locale": "en",
+      "text": "Optional: I agree that automated decisions can be made about this verification from my biometric data, without a person reviewing them first. You can ask for a person to review a decision."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "consent.biometric",
+      "locale": "en",
+      "text": "To confirm your identity, we compare a selfie with the photo on your ID document. This comparison uses biometric data: measurements of your facial features. Your biometric data is used only to verify your identity for this request."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "consent.biometric-matching",
+      "locale": "en",
+      "text": "Optional: we also compare your selfie and its background with earlier selfies submitted to this organization, to stop one person from using several identities. A template of your face is kept for {{days}} days. You can still verify if you leave this unticked."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "consent.checkbox",
+      "locale": "en",
+      "text": "I agree to the collection and use of my biometric data as described above."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "consent.device-recognition",
+      "locale": "en",
+      "text": "Optional: recognise this device on later visits, to protect my account from misuse."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "consent.processing",
+      "locale": "en",
+      "text": "We process the photos of your ID document and your selfie only for this verification. They are deleted when the organization that asked for this verification no longer needs them, in line with its retention policy. You can stop at any time by closing this screen."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "notice.device-recognition",
+      "locale": "en",
+      "text": "This service recognises the device you use, to protect accounts from misuse."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "notice.session-integrity",
+      "locale": "en",
+      "text": "To protect your verification against fraud, this app checks how it is being used, such as whether a debugger is attached. It does not read what you type."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "consent.automated-decision",
+      "locale": "es",
+      "text": "Opcional: acepto que se puedan tomar decisiones automatizadas sobre esta verificación a partir de mis datos biométricos, sin que una persona las revise antes. Puedes pedir que una persona revise una decisión."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "consent.biometric",
+      "locale": "es",
+      "text": "Para confirmar tu identidad, comparamos un selfi con la foto de tu documento de identidad. Esta comparación usa datos biométricos: medidas de los rasgos de tu cara. Tus datos biométricos se usan solo para verificar tu identidad en esta solicitud."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "consent.biometric-matching",
+      "locale": "es",
+      "text": "Opcional: también comparamos tu selfi y su fondo con selfis anteriores enviados a esta organización, para evitar que una persona use varias identidades. Una plantilla de tu cara se conserva durante {{days}} días. Puedes verificarte aunque no marques esta casilla."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "consent.checkbox",
+      "locale": "es",
+      "text": "Acepto la recopilación y el uso de mis datos biométricos tal como se describe arriba."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "consent.device-recognition",
+      "locale": "es",
+      "text": "Opcional: reconocer este dispositivo en visitas posteriores, para proteger mi cuenta de usos indebidos."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "consent.processing",
+      "locale": "es",
+      "text": "Tratamos las fotos de tu documento de identidad y tu selfi solo para esta verificación. Se eliminan cuando la organización que pidió esta verificación ya no las necesita, conforme a su política de conservación. Puedes detenerte en cualquier momento cerrando esta pantalla."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "notice.device-recognition",
+      "locale": "es",
+      "text": "Este servicio reconoce el dispositivo que usas, para proteger las cuentas de usos indebidos."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "notice.session-integrity",
+      "locale": "es",
+      "text": "Para proteger tu verificación contra el fraude, esta aplicación comprueba cómo se usa, por ejemplo si hay un depurador conectado. No lee lo que escribes."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "consent.automated-decision",
+      "locale": "fr",
+      "text": "Facultatif : j’accepte que des décisions automatisées soient prises sur cette vérification à partir de mes données biométriques, sans qu’une personne les examine d’abord. Vous pouvez demander qu’une personne examine une décision."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "consent.biometric",
+      "locale": "fr",
+      "text": "Pour confirmer votre identité, nous comparons un selfie avec la photo de votre pièce d’identité. Cette comparaison utilise des données biométriques : des mesures des traits de votre visage. Vos données biométriques servent uniquement à vérifier votre identité pour cette demande."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "consent.biometric-matching",
+      "locale": "fr",
+      "text": "Facultatif : nous comparons aussi votre selfie et son arrière-plan avec des selfies envoyés auparavant à cette organisation, pour empêcher une même personne d’utiliser plusieurs identités. Un modèle de votre visage est conservé pendant {{days}} jours. Vous pouvez quand même vous vérifier si vous laissez cette case décochée."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "consent.checkbox",
+      "locale": "fr",
+      "text": "J’accepte la collecte et l’utilisation de mes données biométriques telles qu’elles sont décrites ci-dessus."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "consent.device-recognition",
+      "locale": "fr",
+      "text": "Facultatif : reconnaître cet appareil lors de mes prochaines visites, pour protéger mon compte contre les abus."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "consent.processing",
+      "locale": "fr",
+      "text": "Nous traitons les photos de votre pièce d’identité et votre selfie uniquement pour cette vérification. Elles sont supprimées lorsque l’organisation qui a demandé cette vérification n’en a plus besoin, conformément à sa politique de conservation. Vous pouvez arrêter à tout moment en fermant cet écran."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "notice.device-recognition",
+      "locale": "fr",
+      "text": "Ce service reconnaît l’appareil que vous utilisez, pour protéger les comptes contre les abus."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "notice.session-integrity",
+      "locale": "fr",
+      "text": "Pour protéger votre vérification contre la fraude, cette application vérifie la façon dont elle est utilisée, par exemple si un débogueur est connecté. Elle ne lit pas ce que vous saisissez."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "consent.automated-decision",
+      "locale": "de",
+      "text": "Optional: Ich bin einverstanden, dass über diese Verifizierung anhand meiner biometrischen Daten automatisierte Entscheidungen getroffen werden können, ohne dass eine Person sie vorher prüft. Sie können verlangen, dass eine Person eine Entscheidung prüft."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "consent.biometric",
+      "locale": "de",
+      "text": "Um Ihre Identität zu bestätigen, vergleichen wir ein Selfie mit dem Foto in Ihrem Ausweisdokument. Dieser Vergleich nutzt biometrische Daten: Messwerte Ihrer Gesichtszüge. Ihre biometrischen Daten werden nur genutzt, um Ihre Identität für diese Anfrage zu verifizieren."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "consent.biometric-matching",
+      "locale": "de",
+      "text": "Optional: Wir vergleichen Ihr Selfie und seinen Hintergrund auch mit früheren Selfies, die an diese Organisation gesendet wurden, damit niemand mehrere Identitäten nutzen kann. Eine Vorlage Ihres Gesichts wird {{days}} Tage lang aufbewahrt. Sie können sich auch verifizieren, wenn Sie dieses Kästchen nicht ankreuzen."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "consent.checkbox",
+      "locale": "de",
+      "text": "Ich willige in die Erhebung und Nutzung meiner biometrischen Daten wie oben beschrieben ein."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "consent.device-recognition",
+      "locale": "de",
+      "text": "Optional: Dieses Gerät bei späteren Besuchen wiedererkennen, um mein Konto vor Missbrauch zu schützen."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "consent.processing",
+      "locale": "de",
+      "text": "Wir verarbeiten die Fotos Ihres Ausweisdokuments und Ihr Selfie nur für diese Verifizierung. Sie werden gelöscht, sobald die Organisation, die diese Verifizierung angefordert hat, sie nicht mehr benötigt, gemäß ihren Aufbewahrungsregeln. Sie können jederzeit aufhören, indem Sie diesen Bildschirm schließen."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "notice.device-recognition",
+      "locale": "de",
+      "text": "Dieser Dienst erkennt das Gerät, das Sie nutzen, wieder, um Konten vor Missbrauch zu schützen."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "notice.session-integrity",
+      "locale": "de",
+      "text": "Um Ihre Verifizierung vor Betrug zu schützen, prüft diese App, wie sie genutzt wird, etwa ob ein Debugger verbunden ist. Sie liest nicht, was Sie eingeben."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "consent.automated-decision",
+      "locale": "ar",
+      "text": "اختياري: أوافق على إمكانية اتخاذ قرارات آلية بشأن هذا التحقق استنادًا إلى بياناتي البيومترية، دون أن يراجعها شخص أولًا. يمكن طلب مراجعة أي قرار من قِبل شخص."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "consent.biometric",
+      "locale": "ar",
+      "text": "لتأكيد هويتك، نقارن صورة سيلفي بالصورة الموجودة في وثيقة هويتك. تستخدم هذه المقارنة بيانات بيومترية: قياسات لملامح الوجه. تُستخدم بياناتك البيومترية فقط للتحقق من هويتك في هذا الطلب."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "consent.biometric-matching",
+      "locale": "ar",
+      "text": "اختياري: نقارن أيضًا صورة السيلفي وخلفيتها بصور سيلفي سابقة أُرسلت إلى هذه الجهة، لمنع شخص واحد من استخدام عدة هويات. يُحتفظ بنموذج لوجهك لمدة {{days}} يومًا. يمكن إتمام التحقق حتى إن تُرك هذا الخيار دون تحديد."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "consent.checkbox",
+      "locale": "ar",
+      "text": "أوافق على جمع بياناتي البيومترية واستخدامها على النحو الموضح أعلاه."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "consent.device-recognition",
+      "locale": "ar",
+      "text": "اختياري: التعرّف على هذا الجهاز في الزيارات اللاحقة، لحماية حسابي من إساءة الاستخدام."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "consent.processing",
+      "locale": "ar",
+      "text": "نعالج صور وثيقة هويتك وصورة السيلفي لهذا التحقق فقط. تُحذف عندما لا تعود الجهة التي طلبت هذا التحقق بحاجة إليها، وفقًا لسياسة الاحتفاظ لديها. يمكن التوقف في أي وقت بإغلاق هذه الشاشة."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "notice.device-recognition",
+      "locale": "ar",
+      "text": "تتعرّف هذه الخدمة على الجهاز المستخدم، لحماية الحسابات من إساءة الاستخدام."
+    },
+    {
+      "catalog-version": "android-0.1.0-75ddea08ad090412",
+      "client": "android",
+      "key": "notice.session-integrity",
+      "locale": "ar",
+      "text": "لحماية عملية التحقق من الاحتيال، يتحقق هذا التطبيق من طريقة استخدامه، مثل ما إذا كان مصحّح أخطاء متصلًا. ولا يقرأ ما يُكتب."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.automated-decision",
+      "locale": "en",
+      "text": "Optional: I agree that automated decisions can be made about this verification from my biometric data, without a person reviewing them first. You can ask for a person to review a decision."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.biometric",
+      "locale": "en",
+      "text": "To confirm your identity, we compare a selfie with the photo on your ID document. This comparison uses biometric data: measurements of your facial features. Your biometric data is used only to verify your identity for this request."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.biometric-matching",
+      "locale": "en",
+      "text": "Optional: we also compare your selfie and its background with earlier selfies submitted to this organization, to stop one person from using several identities. A template of your face is kept for {{days}} days. You can still verify if you leave this unticked."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.checkbox",
+      "locale": "en",
+      "text": "I agree to the collection and use of my biometric data as described above."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.continue",
+      "locale": "en",
+      "text": "Continue"
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.device-recognition",
+      "locale": "en",
+      "text": "Optional: recognise this device on later visits, to protect my account from misuse."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.processing",
+      "locale": "en",
+      "text": "We process the photos of your ID document and your selfie only for this verification. They are deleted when the organization that asked for this verification no longer needs them, in line with its retention policy. You can stop at any time by closing this page."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.saving",
+      "locale": "en",
+      "text": "Saving your consent…"
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.title",
+      "locale": "en",
+      "text": "Consent to use your biometric data"
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.unavailable",
+      "locale": "en",
+      "text": "This verification asks you to agree to a text that this version cannot show. Contact the organization that asked you to verify."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "notice.device-recognition",
+      "locale": "en",
+      "text": "This service recognises the device you use, to protect accounts from misuse."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "notice.play-integrity",
+      "locale": "en",
+      "text": "To protect your verification against fraud, the app you are using asks Google Play to confirm that it is the genuine app on a device that has not been tampered with. For this, Google receives the app's package name, version and signing certificate, its licence status and an attestation of this device's integrity."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "notice.session-integrity",
+      "locale": "en",
+      "text": "To protect your verification against fraud, this page checks how it is being used, such as whether a browser is automated. It does not read your keystrokes or what you type."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.automated-decision",
+      "locale": "es",
+      "text": "Opcional: acepto que se puedan tomar decisiones automatizadas sobre esta verificación a partir de mis datos biométricos, sin que una persona las revise antes. Puedes pedir que una persona revise una decisión."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.biometric",
+      "locale": "es",
+      "text": "Para confirmar tu identidad, comparamos un selfi con la foto de tu documento de identidad. Esta comparación usa datos biométricos: medidas de los rasgos de tu cara. Tus datos biométricos se usan solo para verificar tu identidad en esta solicitud."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.biometric-matching",
+      "locale": "es",
+      "text": "Opcional: también comparamos tu selfi y su fondo con selfis anteriores enviados a esta organización, para evitar que una persona use varias identidades. Una plantilla de tu cara se conserva durante {{days}} días. Puedes verificarte aunque no marques esta casilla."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.checkbox",
+      "locale": "es",
+      "text": "Acepto la recopilación y el uso de mis datos biométricos tal como se describe arriba."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.continue",
+      "locale": "es",
+      "text": "Continuar"
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.device-recognition",
+      "locale": "es",
+      "text": "Opcional: reconocer este dispositivo en visitas posteriores, para proteger mi cuenta de usos indebidos."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.processing",
+      "locale": "es",
+      "text": "Tratamos las fotos de tu documento de identidad y tu selfi solo para esta verificación. Se eliminan cuando la organización que pidió esta verificación ya no las necesita, conforme a su política de conservación. Puedes detenerte en cualquier momento cerrando esta página."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.saving",
+      "locale": "es",
+      "text": "Guardando tu consentimiento…"
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.title",
+      "locale": "es",
+      "text": "Consentimiento para usar tus datos biométricos"
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.unavailable",
+      "locale": "es",
+      "text": "Esta verificación te pide aceptar un texto que esta versión no puede mostrar. Contacta con la organización que te pidió la verificación."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "notice.device-recognition",
+      "locale": "es",
+      "text": "Este servicio reconoce el dispositivo que usas, para proteger las cuentas de usos indebidos."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "notice.play-integrity",
+      "locale": "es",
+      "text": "Para proteger tu verificación contra el fraude, la aplicación que usas pide a Google Play que confirme que es la aplicación auténtica en un dispositivo que no ha sido manipulado. Para ello, Google recibe el nombre del paquete de la aplicación, su versión y su certificado de firma, el estado de su licencia y una atestación de la integridad de este dispositivo."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "notice.session-integrity",
+      "locale": "es",
+      "text": "Para proteger tu verificación contra el fraude, esta página comprueba cómo se usa, por ejemplo si un navegador está automatizado. No lee tus pulsaciones de teclas ni lo que escribes."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.automated-decision",
+      "locale": "fr",
+      "text": "Facultatif : j’accepte que des décisions automatisées soient prises sur cette vérification à partir de mes données biométriques, sans qu’une personne les examine d’abord. Vous pouvez demander qu’une personne examine une décision."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.biometric",
+      "locale": "fr",
+      "text": "Pour confirmer votre identité, nous comparons un selfie avec la photo de votre pièce d’identité. Cette comparaison utilise des données biométriques : des mesures des traits de votre visage. Vos données biométriques servent uniquement à vérifier votre identité pour cette demande."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.biometric-matching",
+      "locale": "fr",
+      "text": "Facultatif : nous comparons aussi votre selfie et son arrière-plan avec des selfies envoyés auparavant à cette organisation, pour empêcher une même personne d’utiliser plusieurs identités. Un modèle de votre visage est conservé pendant {{days}} jours. Vous pouvez quand même vous vérifier si vous laissez cette case décochée."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.checkbox",
+      "locale": "fr",
+      "text": "J’accepte la collecte et l’utilisation de mes données biométriques telles qu’elles sont décrites ci-dessus."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.continue",
+      "locale": "fr",
+      "text": "Continuer"
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.device-recognition",
+      "locale": "fr",
+      "text": "Facultatif : reconnaître cet appareil lors de mes prochaines visites, pour protéger mon compte contre les abus."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.processing",
+      "locale": "fr",
+      "text": "Nous traitons les photos de votre pièce d’identité et votre selfie uniquement pour cette vérification. Elles sont supprimées lorsque l’organisation qui a demandé cette vérification n’en a plus besoin, conformément à sa politique de conservation. Vous pouvez arrêter à tout moment en fermant cette page."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.saving",
+      "locale": "fr",
+      "text": "Enregistrement de votre consentement…"
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.title",
+      "locale": "fr",
+      "text": "Consentement à l’utilisation de vos données biométriques"
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.unavailable",
+      "locale": "fr",
+      "text": "Cette vérification vous demande d’accepter un texte que cette version ne peut pas afficher. Contactez l’organisation qui vous a demandé de vous vérifier."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "notice.device-recognition",
+      "locale": "fr",
+      "text": "Ce service reconnaît l’appareil que vous utilisez, pour protéger les comptes contre les abus."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "notice.play-integrity",
+      "locale": "fr",
+      "text": "Pour protéger votre vérification contre la fraude, l’application que vous utilisez demande à Google Play de confirmer qu’il s’agit de l’application authentique, sur un appareil qui n’a pas été modifié. Pour cela, Google reçoit le nom du paquet de l’application, sa version et son certificat de signature, l’état de sa licence et une attestation de l’intégrité de cet appareil."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "notice.session-integrity",
+      "locale": "fr",
+      "text": "Pour protéger votre vérification contre la fraude, cette page vérifie la façon dont elle est utilisée, par exemple si un navigateur est automatisé. Elle ne lit ni vos frappes au clavier ni ce que vous saisissez."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.automated-decision",
+      "locale": "de",
+      "text": "Optional: Ich bin einverstanden, dass über diese Verifizierung anhand meiner biometrischen Daten automatisierte Entscheidungen getroffen werden können, ohne dass eine Person sie vorher prüft. Sie können verlangen, dass eine Person eine Entscheidung prüft."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.biometric",
+      "locale": "de",
+      "text": "Um Ihre Identität zu bestätigen, vergleichen wir ein Selfie mit dem Foto in Ihrem Ausweisdokument. Dieser Vergleich nutzt biometrische Daten: Messwerte Ihrer Gesichtszüge. Ihre biometrischen Daten werden nur genutzt, um Ihre Identität für diese Anfrage zu verifizieren."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.biometric-matching",
+      "locale": "de",
+      "text": "Optional: Wir vergleichen Ihr Selfie und seinen Hintergrund auch mit früheren Selfies, die an diese Organisation gesendet wurden, damit niemand mehrere Identitäten nutzen kann. Eine Vorlage Ihres Gesichts wird {{days}} Tage lang aufbewahrt. Sie können sich auch verifizieren, wenn Sie dieses Kästchen nicht ankreuzen."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.checkbox",
+      "locale": "de",
+      "text": "Ich willige in die Erhebung und Nutzung meiner biometrischen Daten wie oben beschrieben ein."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.continue",
+      "locale": "de",
+      "text": "Weiter"
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.device-recognition",
+      "locale": "de",
+      "text": "Optional: Dieses Gerät bei späteren Besuchen wiedererkennen, um mein Konto vor Missbrauch zu schützen."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.processing",
+      "locale": "de",
+      "text": "Wir verarbeiten die Fotos Ihres Ausweisdokuments und Ihr Selfie nur für diese Verifizierung. Sie werden gelöscht, sobald die Organisation, die diese Verifizierung angefordert hat, sie nicht mehr benötigt, gemäß ihren Aufbewahrungsregeln. Sie können jederzeit aufhören, indem Sie diese Seite schließen."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.saving",
+      "locale": "de",
+      "text": "Ihre Einwilligung wird gespeichert…"
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.title",
+      "locale": "de",
+      "text": "Einwilligung in die Nutzung Ihrer biometrischen Daten"
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.unavailable",
+      "locale": "de",
+      "text": "Diese Verifizierung bittet Sie, einem Text zuzustimmen, den diese Version nicht anzeigen kann. Wenden Sie sich an die Organisation, die Sie um die Verifizierung gebeten hat."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "notice.device-recognition",
+      "locale": "de",
+      "text": "Dieser Dienst erkennt das Gerät, das Sie nutzen, wieder, um Konten vor Missbrauch zu schützen."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "notice.play-integrity",
+      "locale": "de",
+      "text": "Um Ihre Verifizierung vor Betrug zu schützen, bittet die App, die Sie verwenden, Google Play zu bestätigen, dass sie die echte App auf einem unveränderten Gerät ist. Dazu erhält Google den Paketnamen, die Version und das Signaturzertifikat der App, ihren Lizenzstatus und eine Bestätigung der Integrität dieses Geräts."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "notice.session-integrity",
+      "locale": "de",
+      "text": "Um Ihre Verifizierung vor Betrug zu schützen, prüft diese Seite, wie sie genutzt wird, etwa ob ein Browser automatisiert ist. Sie liest weder Ihre Tastenanschläge noch das, was Sie eingeben."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.automated-decision",
+      "locale": "ar",
+      "text": "اختياري: أوافق على إمكانية اتخاذ قرارات آلية بشأن هذا التحقق استنادًا إلى بياناتي البيومترية، دون أن يراجعها شخص أولًا. يمكن طلب مراجعة أي قرار من قِبل شخص."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.biometric",
+      "locale": "ar",
+      "text": "لتأكيد هويتك، نقارن صورة سيلفي بالصورة الموجودة في وثيقة هويتك. تستخدم هذه المقارنة بيانات بيومترية: قياسات لملامح الوجه. تُستخدم بياناتك البيومترية فقط للتحقق من هويتك في هذا الطلب."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.biometric-matching",
+      "locale": "ar",
+      "text": "اختياري: نقارن أيضًا صورة السيلفي وخلفيتها بصور سيلفي سابقة أُرسلت إلى هذه الجهة، لمنع شخص واحد من استخدام عدة هويات. يُحتفظ بنموذج لوجهك لمدة {{days}} يومًا. يمكن إتمام التحقق حتى إن تُرك هذا الخيار دون تحديد."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.checkbox",
+      "locale": "ar",
+      "text": "أوافق على جمع بياناتي البيومترية واستخدامها على النحو الموضح أعلاه."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.continue",
+      "locale": "ar",
+      "text": "متابعة"
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.device-recognition",
+      "locale": "ar",
+      "text": "اختياري: التعرّف على هذا الجهاز في الزيارات اللاحقة، لحماية حسابي من إساءة الاستخدام."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.processing",
+      "locale": "ar",
+      "text": "نعالج صور وثيقة هويتك وصورة السيلفي لهذا التحقق فقط. تُحذف عندما لا تعود الجهة التي طلبت هذا التحقق بحاجة إليها، وفقًا لسياسة الاحتفاظ لديها. يمكن التوقف في أي وقت بإغلاق هذه الصفحة."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.saving",
+      "locale": "ar",
+      "text": "جارٍ حفظ الموافقة…"
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.title",
+      "locale": "ar",
+      "text": "الموافقة على استخدام بياناتك البيومترية"
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "consent.unavailable",
+      "locale": "ar",
+      "text": "تطلب عملية التحقق هذه الموافقة على نص لا يمكن لهذا الإصدار عرضه. يُرجى التواصل مع الجهة التي طلبت التحقق."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "notice.device-recognition",
+      "locale": "ar",
+      "text": "تتعرّف هذه الخدمة على الجهاز المستخدم، لحماية الحسابات من إساءة الاستخدام."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "notice.play-integrity",
+      "locale": "ar",
+      "text": "لحماية عملية التحقق من الاحتيال، يطلب التطبيق المستخدم من Google Play تأكيد أنه التطبيق الأصلي على جهاز لم يُعبث به. ولهذا تتلقى Google اسم حزمة التطبيق وإصداره وشهادة توقيعه وحالة ترخيصه وإثباتًا لسلامة هذا الجهاز."
+    },
+    {
+      "catalog-version": "web-a8a42feea15e8a73",
+      "client": "web",
+      "key": "notice.session-integrity",
+      "locale": "ar",
+      "text": "لحماية عملية التحقق من الاحتيال، تتحقق هذه الصفحة من طريقة استخدامها، مثل ما إذا كان المتصفح مؤتمتًا. ولا تقرأ ضغطات المفاتيح ولا ما يُكتب."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "consent.automated-decision",
+      "locale": "en",
+      "text": "Optional: I agree that automated decisions can be made about this verification from my biometric data, without a person reviewing them first. You can ask for a person to review a decision."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "consent.biometric",
+      "locale": "en",
+      "text": "To confirm your identity, we compare a selfie with the photo on your ID document. This comparison uses biometric data: measurements of your facial features. Your biometric data is used only to verify your identity for this request."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "consent.biometric-matching",
+      "locale": "en",
+      "text": "Optional: we also compare your selfie and its background with earlier selfies submitted to this organization, to stop one person from using several identities. A template of your face is kept for {{days}} days. You can still verify if you leave this unticked."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "consent.checkbox",
+      "locale": "en",
+      "text": "I agree to the collection and use of my biometric data as described above."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "consent.device-recognition",
+      "locale": "en",
+      "text": "Optional: recognise this device on later visits, to protect my account from misuse."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "consent.processing",
+      "locale": "en",
+      "text": "We process the photos of your ID document and your selfie only for this verification. They are deleted when the organization that asked for this verification no longer needs them, in line with its retention policy. You can stop at any time by closing this screen."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "notice.device-recognition",
+      "locale": "en",
+      "text": "This service recognises the device you use, to protect accounts from misuse."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "notice.play-integrity",
+      "locale": "en",
+      "text": "To protect your verification against fraud, the app you are using asks Google Play to confirm that it is the genuine app on a device that has not been tampered with. For this, Google receives the app's package name, version and signing certificate, its licence status and an attestation of this device's integrity."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "notice.session-integrity",
+      "locale": "en",
+      "text": "To protect your verification against fraud, this app checks how it is being used: whether a debugger is attached, and signs of an emulator, a rooted device or a tampering tool. For this it reads the device's build properties, the app's own process (its memory map, thread names and loaded classes), the mount table and whether known files are present, and sends only the names of the signs it finds. It does not read what you type or which other apps you have."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "consent.automated-decision",
+      "locale": "es",
+      "text": "Opcional: acepto que se puedan tomar decisiones automatizadas sobre esta verificación a partir de mis datos biométricos, sin que una persona las revise antes. Puedes pedir que una persona revise una decisión."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "consent.biometric",
+      "locale": "es",
+      "text": "Para confirmar tu identidad, comparamos un selfi con la foto de tu documento de identidad. Esta comparación usa datos biométricos: medidas de los rasgos de tu cara. Tus datos biométricos se usan solo para verificar tu identidad en esta solicitud."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "consent.biometric-matching",
+      "locale": "es",
+      "text": "Opcional: también comparamos tu selfi y su fondo con selfis anteriores enviados a esta organización, para evitar que una persona use varias identidades. Una plantilla de tu cara se conserva durante {{days}} días. Puedes verificarte aunque no marques esta casilla."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "consent.checkbox",
+      "locale": "es",
+      "text": "Acepto la recopilación y el uso de mis datos biométricos tal como se describe arriba."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "consent.device-recognition",
+      "locale": "es",
+      "text": "Opcional: reconocer este dispositivo en visitas posteriores, para proteger mi cuenta de usos indebidos."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "consent.processing",
+      "locale": "es",
+      "text": "Tratamos las fotos de tu documento de identidad y tu selfi solo para esta verificación. Se eliminan cuando la organización que pidió esta verificación ya no las necesita, conforme a su política de conservación. Puedes detenerte en cualquier momento cerrando esta pantalla."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "notice.device-recognition",
+      "locale": "es",
+      "text": "Este servicio reconoce el dispositivo que usas, para proteger las cuentas de usos indebidos."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "notice.play-integrity",
+      "locale": "es",
+      "text": "Para proteger tu verificación contra el fraude, la aplicación que usas pide a Google Play que confirme que es la aplicación auténtica en un dispositivo que no ha sido manipulado. Para ello, Google recibe el nombre del paquete de la aplicación, su versión y su certificado de firma, el estado de su licencia y una atestación de la integridad de este dispositivo."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "notice.session-integrity",
+      "locale": "es",
+      "text": "Para proteger tu verificación contra el fraude, esta aplicación comprueba cómo se usa: si hay un depurador conectado y si hay indicios de un emulador, un dispositivo rooteado o una herramienta de manipulación. Para ello lee las propiedades de compilación del dispositivo, el propio proceso de la aplicación (su mapa de memoria, los nombres de sus hilos y las clases cargadas), la tabla de montaje y si existen archivos conocidos, y solo envía los nombres de los indicios que encuentra. No lee lo que escribes ni qué otras aplicaciones tienes."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "consent.automated-decision",
+      "locale": "fr",
+      "text": "Facultatif : j’accepte que des décisions automatisées soient prises sur cette vérification à partir de mes données biométriques, sans qu’une personne les examine d’abord. Vous pouvez demander qu’une personne examine une décision."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "consent.biometric",
+      "locale": "fr",
+      "text": "Pour confirmer votre identité, nous comparons un selfie avec la photo de votre pièce d’identité. Cette comparaison utilise des données biométriques : des mesures des traits de votre visage. Vos données biométriques servent uniquement à vérifier votre identité pour cette demande."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "consent.biometric-matching",
+      "locale": "fr",
+      "text": "Facultatif : nous comparons aussi votre selfie et son arrière-plan avec des selfies envoyés auparavant à cette organisation, pour empêcher une même personne d’utiliser plusieurs identités. Un modèle de votre visage est conservé pendant {{days}} jours. Vous pouvez quand même vous vérifier si vous laissez cette case décochée."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "consent.checkbox",
+      "locale": "fr",
+      "text": "J’accepte la collecte et l’utilisation de mes données biométriques telles qu’elles sont décrites ci-dessus."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "consent.device-recognition",
+      "locale": "fr",
+      "text": "Facultatif : reconnaître cet appareil lors de mes prochaines visites, pour protéger mon compte contre les abus."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "consent.processing",
+      "locale": "fr",
+      "text": "Nous traitons les photos de votre pièce d’identité et votre selfie uniquement pour cette vérification. Elles sont supprimées lorsque l’organisation qui a demandé cette vérification n’en a plus besoin, conformément à sa politique de conservation. Vous pouvez arrêter à tout moment en fermant cet écran."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "notice.device-recognition",
+      "locale": "fr",
+      "text": "Ce service reconnaît l’appareil que vous utilisez, pour protéger les comptes contre les abus."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "notice.play-integrity",
+      "locale": "fr",
+      "text": "Pour protéger votre vérification contre la fraude, l’application que vous utilisez demande à Google Play de confirmer qu’il s’agit de l’application authentique, sur un appareil qui n’a pas été modifié. Pour cela, Google reçoit le nom du paquet de l’application, sa version et son certificat de signature, l’état de sa licence et une attestation de l’intégrité de cet appareil."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "notice.session-integrity",
+      "locale": "fr",
+      "text": "Pour protéger votre vérification contre la fraude, cette application vérifie la façon dont elle est utilisée : si un débogueur est connecté, et les signes d’un émulateur, d’un appareil rooté ou d’un outil de modification. Pour cela, elle lit les propriétés de build de l’appareil, le processus propre de l’application (sa carte mémoire, les noms de ses threads et les classes chargées), la table des montages et la présence de fichiers connus, et n’envoie que les noms des signes trouvés. Elle ne lit pas ce que vous saisissez ni les autres applications installées."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "consent.automated-decision",
+      "locale": "de",
+      "text": "Optional: Ich bin einverstanden, dass über diese Verifizierung anhand meiner biometrischen Daten automatisierte Entscheidungen getroffen werden können, ohne dass eine Person sie vorher prüft. Sie können verlangen, dass eine Person eine Entscheidung prüft."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "consent.biometric",
+      "locale": "de",
+      "text": "Um Ihre Identität zu bestätigen, vergleichen wir ein Selfie mit dem Foto in Ihrem Ausweisdokument. Dieser Vergleich nutzt biometrische Daten: Messwerte Ihrer Gesichtszüge. Ihre biometrischen Daten werden nur genutzt, um Ihre Identität für diese Anfrage zu verifizieren."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "consent.biometric-matching",
+      "locale": "de",
+      "text": "Optional: Wir vergleichen Ihr Selfie und seinen Hintergrund auch mit früheren Selfies, die an diese Organisation gesendet wurden, damit niemand mehrere Identitäten nutzen kann. Eine Vorlage Ihres Gesichts wird {{days}} Tage lang aufbewahrt. Sie können sich auch verifizieren, wenn Sie dieses Kästchen nicht ankreuzen."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "consent.checkbox",
+      "locale": "de",
+      "text": "Ich willige in die Erhebung und Nutzung meiner biometrischen Daten wie oben beschrieben ein."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "consent.device-recognition",
+      "locale": "de",
+      "text": "Optional: Dieses Gerät bei späteren Besuchen wiedererkennen, um mein Konto vor Missbrauch zu schützen."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "consent.processing",
+      "locale": "de",
+      "text": "Wir verarbeiten die Fotos Ihres Ausweisdokuments und Ihr Selfie nur für diese Verifizierung. Sie werden gelöscht, sobald die Organisation, die diese Verifizierung angefordert hat, sie nicht mehr benötigt, gemäß ihren Aufbewahrungsregeln. Sie können jederzeit aufhören, indem Sie diesen Bildschirm schließen."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "notice.device-recognition",
+      "locale": "de",
+      "text": "Dieser Dienst erkennt das Gerät, das Sie nutzen, wieder, um Konten vor Missbrauch zu schützen."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "notice.play-integrity",
+      "locale": "de",
+      "text": "Um Ihre Verifizierung vor Betrug zu schützen, bittet die App, die Sie verwenden, Google Play zu bestätigen, dass sie die echte App auf einem unveränderten Gerät ist. Dazu erhält Google den Paketnamen, die Version und das Signaturzertifikat der App, ihren Lizenzstatus und eine Bestätigung der Integrität dieses Geräts."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "notice.session-integrity",
+      "locale": "de",
+      "text": "Um Ihre Verifizierung vor Betrug zu schützen, prüft diese App, wie sie genutzt wird: ob ein Debugger verbunden ist und ob es Anzeichen für einen Emulator, ein gerootetes Gerät oder ein Manipulationswerkzeug gibt. Dazu liest sie die Build-Eigenschaften des Geräts, den eigenen Prozess der App (seine Speicherzuordnung, Thread-Namen und geladenen Klassen), die Mount-Tabelle und ob bekannte Dateien vorhanden sind, und sendet nur die Namen der gefundenen Anzeichen. Sie liest nicht, was Sie eingeben, und nicht, welche anderen Apps Sie haben."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "consent.automated-decision",
+      "locale": "ar",
+      "text": "اختياري: أوافق على إمكانية اتخاذ قرارات آلية بشأن هذا التحقق استنادًا إلى بياناتي البيومترية، دون أن يراجعها شخص أولًا. يمكن طلب مراجعة أي قرار من قِبل شخص."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "consent.biometric",
+      "locale": "ar",
+      "text": "لتأكيد هويتك، نقارن صورة سيلفي بالصورة الموجودة في وثيقة هويتك. تستخدم هذه المقارنة بيانات بيومترية: قياسات لملامح الوجه. تُستخدم بياناتك البيومترية فقط للتحقق من هويتك في هذا الطلب."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "consent.biometric-matching",
+      "locale": "ar",
+      "text": "اختياري: نقارن أيضًا صورة السيلفي وخلفيتها بصور سيلفي سابقة أُرسلت إلى هذه الجهة، لمنع شخص واحد من استخدام عدة هويات. يُحتفظ بنموذج لوجهك لمدة {{days}} يومًا. يمكن إتمام التحقق حتى إن تُرك هذا الخيار دون تحديد."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "consent.checkbox",
+      "locale": "ar",
+      "text": "أوافق على جمع بياناتي البيومترية واستخدامها على النحو الموضح أعلاه."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "consent.device-recognition",
+      "locale": "ar",
+      "text": "اختياري: التعرّف على هذا الجهاز في الزيارات اللاحقة، لحماية حسابي من إساءة الاستخدام."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "consent.processing",
+      "locale": "ar",
+      "text": "نعالج صور وثيقة هويتك وصورة السيلفي لهذا التحقق فقط. تُحذف عندما لا تعود الجهة التي طلبت هذا التحقق بحاجة إليها، وفقًا لسياسة الاحتفاظ لديها. يمكن التوقف في أي وقت بإغلاق هذه الشاشة."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "notice.device-recognition",
+      "locale": "ar",
+      "text": "تتعرّف هذه الخدمة على الجهاز المستخدم، لحماية الحسابات من إساءة الاستخدام."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "notice.play-integrity",
+      "locale": "ar",
+      "text": "لحماية عملية التحقق من الاحتيال، يطلب التطبيق المستخدم من Google Play تأكيد أنه التطبيق الأصلي على جهاز لم يُعبث به. ولهذا تتلقى Google اسم حزمة التطبيق وإصداره وشهادة توقيعه وحالة ترخيصه وإثباتًا لسلامة هذا الجهاز."
+    },
+    {
+      "catalog-version": "android-0.1.0-6ed3979d273c180e",
+      "client": "android",
+      "key": "notice.session-integrity",
+      "locale": "ar",
+      "text": "لحماية عملية التحقق من الاحتيال، يتحقق هذا التطبيق من طريقة استخدامه: هل يوجد مصحّح أخطاء متصل، وهل توجد علامات على محاكٍ أو جهاز مُفعَّلة فيه صلاحيات الجذر أو أداة عبث. ولهذا يقرأ خصائص إصدار الجهاز، وعملية التطبيق نفسه (خريطة ذاكرتها وأسماء سلاسل التنفيذ والفئات المحمّلة)، وجدول التحميل، ووجود ملفات معروفة، ولا يرسل إلا أسماء العلامات التي يجدها. ولا يقرأ ما يُكتب ولا التطبيقات الأخرى على الجهاز."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.automated-decision",
+      "locale": "en",
+      "text": "Optional: I agree that automated decisions can be made about this verification from my biometric data, without a person reviewing them first. You can ask for a person to review a decision."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.biometric",
+      "locale": "en",
+      "text": "To confirm your identity, we compare a selfie with the photo on your ID document. This comparison uses biometric data: measurements of your facial features. Your biometric data is used only to verify your identity for this request."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.biometric-matching",
+      "locale": "en",
+      "text": "Optional: we also compare your selfie and its background with earlier selfies submitted to this organization, to stop one person from using several identities. A template of your face is kept for {{days}} days. You can still verify if you leave this unticked."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.checkbox",
+      "locale": "en",
+      "text": "I agree to the collection and use of my biometric data as described above."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.continue",
+      "locale": "en",
+      "text": "Continue"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.device-recognition",
+      "locale": "en",
+      "text": "Optional: recognise this device on later visits, to protect my account from misuse."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.processing",
+      "locale": "en",
+      "text": "We process the photos of your ID document and your selfie only for this verification. They are deleted when the organization that asked for this verification no longer needs them, in line with its retention policy. You can stop at any time by closing this page."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.saving",
+      "locale": "en",
+      "text": "Saving your consent…"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.title",
+      "locale": "en",
+      "text": "Consent to use your biometric data"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.unavailable",
+      "locale": "en",
+      "text": "This verification asks you to agree to a text that this version cannot show. Contact the organization that asked you to verify."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "notice.device-recognition",
+      "locale": "en",
+      "text": "This service recognises the device you use, to protect accounts from misuse."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "notice.play-integrity",
+      "locale": "en",
+      "text": "To protect your verification against fraud, the app you are using asks Google Play to confirm that it is the genuine app on a device that has not been tampered with. For this, Google receives the app's package name, version and signing certificate, its licence status and an attestation of this device's integrity."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "notice.session-integrity",
+      "locale": "en",
+      "text": "To protect your verification against fraud, this page checks how it is being used, such as whether a browser is automated. It does not read your keystrokes or what you type."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.accept",
+      "locale": "en",
+      "text": "I agree"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.biometric-destination",
+      "locale": "en",
+      "text": "I agree that {{recipient}} receives my biometric data from {{source}}: the photo of my face on my ID document, my selfie and the results of comparing them. {{recipient}} keeps it for {{retention}}, only to verify my identity."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.biometric-source",
+      "locale": "en",
+      "text": "I agree that {{source}} shares my biometric data with {{recipient}}: the photo of my face on my ID document, my selfie and the results of comparing them."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.decline",
+      "locale": "en",
+      "text": "Do not share"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.destination",
+      "locale": "en",
+      "text": "{{recipient}} asks for your agreement to receive the details {{source}} verified about you, so that you do not have to verify again.\n\nWhat {{recipient}} receives: {{categories}}. {{recipient}} uses them only to verify your identity for this request and keeps them for {{retention}}. Nothing is received unless you agree, and choosing not to share does not stop your verification: you verify here instead.\n\nYour agreement ends after {{expires}} if the details have not been received by then.\n\nTo withdraw your agreement, {{withdraw}}. Withdrawing stops any transfer that has not happened yet."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.source",
+      "locale": "en",
+      "text": "{{source}} asks for your agreement to share the details it verified about you with {{recipient}}, so that {{recipient}} can reuse this verification instead of asking you to verify again.\n\nWhat is shared: {{categories}}. Nothing is shared unless you agree, and choosing not to share does not stop your verification.\n\nYour agreement covers one share with {{recipient}} for this purpose only. It ends after {{expires}} if the details have not been shared by then.\n\nTo withdraw your agreement, {{withdraw}}. Withdrawing stops any share that has not happened yet. Details already shared are kept by {{recipient}} under its own privacy notice."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.title",
+      "locale": "en",
+      "text": "Share your verified details with {{recipient}}"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.withdraw",
+      "locale": "en",
+      "text": "Withdraw my agreement to share with {{recipient}}"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.automated-decision",
+      "locale": "es",
+      "text": "Opcional: acepto que se puedan tomar decisiones automatizadas sobre esta verificación a partir de mis datos biométricos, sin que una persona las revise antes. Puedes pedir que una persona revise una decisión."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.biometric",
+      "locale": "es",
+      "text": "Para confirmar tu identidad, comparamos un selfi con la foto de tu documento de identidad. Esta comparación usa datos biométricos: medidas de los rasgos de tu cara. Tus datos biométricos se usan solo para verificar tu identidad en esta solicitud."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.biometric-matching",
+      "locale": "es",
+      "text": "Opcional: también comparamos tu selfi y su fondo con selfis anteriores enviados a esta organización, para evitar que una persona use varias identidades. Una plantilla de tu cara se conserva durante {{days}} días. Puedes verificarte aunque no marques esta casilla."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.checkbox",
+      "locale": "es",
+      "text": "Acepto la recopilación y el uso de mis datos biométricos tal como se describe arriba."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.continue",
+      "locale": "es",
+      "text": "Continuar"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.device-recognition",
+      "locale": "es",
+      "text": "Opcional: reconocer este dispositivo en visitas posteriores, para proteger mi cuenta de usos indebidos."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.processing",
+      "locale": "es",
+      "text": "Tratamos las fotos de tu documento de identidad y tu selfi solo para esta verificación. Se eliminan cuando la organización que pidió esta verificación ya no las necesita, conforme a su política de conservación. Puedes detenerte en cualquier momento cerrando esta página."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.saving",
+      "locale": "es",
+      "text": "Guardando tu consentimiento…"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.title",
+      "locale": "es",
+      "text": "Consentimiento para usar tus datos biométricos"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.unavailable",
+      "locale": "es",
+      "text": "Esta verificación te pide aceptar un texto que esta versión no puede mostrar. Contacta con la organización que te pidió la verificación."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "notice.device-recognition",
+      "locale": "es",
+      "text": "Este servicio reconoce el dispositivo que usas, para proteger las cuentas de usos indebidos."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "notice.play-integrity",
+      "locale": "es",
+      "text": "Para proteger tu verificación contra el fraude, la aplicación que usas pide a Google Play que confirme que es la aplicación auténtica en un dispositivo que no ha sido manipulado. Para ello, Google recibe el nombre del paquete de la aplicación, su versión y su certificado de firma, el estado de su licencia y una atestación de la integridad de este dispositivo."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "notice.session-integrity",
+      "locale": "es",
+      "text": "Para proteger tu verificación contra el fraude, esta página comprueba cómo se usa, por ejemplo si un navegador está automatizado. No lee tus pulsaciones de teclas ni lo que escribes."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.accept",
+      "locale": "es",
+      "text": "Acepto"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.biometric-destination",
+      "locale": "es",
+      "text": "Acepto que {{recipient}} reciba mis datos biométricos de {{source}}: la foto de mi cara en mi documento de identidad, mi selfie y los resultados de compararlas. {{recipient}} los conserva durante {{retention}}, solo para verificar mi identidad."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.biometric-source",
+      "locale": "es",
+      "text": "Acepto que {{source}} comparta mis datos biométricos con {{recipient}}: la foto de mi cara en mi documento de identidad, mi selfie y los resultados de compararlas."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.decline",
+      "locale": "es",
+      "text": "No compartir"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.destination",
+      "locale": "es",
+      "text": "{{recipient}} le pide su acuerdo para recibir los datos que {{source}} verificó sobre usted, para que no tenga que verificarse de nuevo.\n\nQué recibe {{recipient}}: {{categories}}. {{recipient}} los usa solo para verificar su identidad en esta solicitud y los conserva durante {{retention}}. No se recibe nada sin su acuerdo, y elegir no compartir no detiene su verificación: se verifica aquí.\n\nSu acuerdo termina después de {{expires}} si los datos no se han recibido antes.\n\nPara retirar su acuerdo, {{withdraw}}. Retirarlo detiene cualquier transferencia que aún no se haya hecho."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.source",
+      "locale": "es",
+      "text": "{{source}} le pide su acuerdo para compartir con {{recipient}} los datos que verificó sobre usted, para que {{recipient}} pueda reutilizar esta verificación en lugar de pedirle que se verifique de nuevo.\n\nQué se comparte: {{categories}}. No se comparte nada sin su acuerdo, y elegir no compartir no detiene su verificación.\n\nSu acuerdo cubre un solo envío a {{recipient}} y solo para este fin. Termina después de {{expires}} si los datos no se han compartido antes.\n\nPara retirar su acuerdo, {{withdraw}}. Retirarlo detiene cualquier envío que aún no se haya hecho. Los datos ya compartidos los conserva {{recipient}} según su propio aviso de privacidad."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.title",
+      "locale": "es",
+      "text": "Compartir sus datos verificados con {{recipient}}"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.withdraw",
+      "locale": "es",
+      "text": "Retirar mi acuerdo para compartir con {{recipient}}"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.automated-decision",
+      "locale": "fr",
+      "text": "Facultatif : j’accepte que des décisions automatisées soient prises sur cette vérification à partir de mes données biométriques, sans qu’une personne les examine d’abord. Vous pouvez demander qu’une personne examine une décision."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.biometric",
+      "locale": "fr",
+      "text": "Pour confirmer votre identité, nous comparons un selfie avec la photo de votre pièce d’identité. Cette comparaison utilise des données biométriques : des mesures des traits de votre visage. Vos données biométriques servent uniquement à vérifier votre identité pour cette demande."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.biometric-matching",
+      "locale": "fr",
+      "text": "Facultatif : nous comparons aussi votre selfie et son arrière-plan avec des selfies envoyés auparavant à cette organisation, pour empêcher une même personne d’utiliser plusieurs identités. Un modèle de votre visage est conservé pendant {{days}} jours. Vous pouvez quand même vous vérifier si vous laissez cette case décochée."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.checkbox",
+      "locale": "fr",
+      "text": "J’accepte la collecte et l’utilisation de mes données biométriques telles qu’elles sont décrites ci-dessus."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.continue",
+      "locale": "fr",
+      "text": "Continuer"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.device-recognition",
+      "locale": "fr",
+      "text": "Facultatif : reconnaître cet appareil lors de mes prochaines visites, pour protéger mon compte contre les abus."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.processing",
+      "locale": "fr",
+      "text": "Nous traitons les photos de votre pièce d’identité et votre selfie uniquement pour cette vérification. Elles sont supprimées lorsque l’organisation qui a demandé cette vérification n’en a plus besoin, conformément à sa politique de conservation. Vous pouvez arrêter à tout moment en fermant cette page."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.saving",
+      "locale": "fr",
+      "text": "Enregistrement de votre consentement…"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.title",
+      "locale": "fr",
+      "text": "Consentement à l’utilisation de vos données biométriques"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.unavailable",
+      "locale": "fr",
+      "text": "Cette vérification vous demande d’accepter un texte que cette version ne peut pas afficher. Contactez l’organisation qui vous a demandé de vous vérifier."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "notice.device-recognition",
+      "locale": "fr",
+      "text": "Ce service reconnaît l’appareil que vous utilisez, pour protéger les comptes contre les abus."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "notice.play-integrity",
+      "locale": "fr",
+      "text": "Pour protéger votre vérification contre la fraude, l’application que vous utilisez demande à Google Play de confirmer qu’il s’agit de l’application authentique, sur un appareil qui n’a pas été modifié. Pour cela, Google reçoit le nom du paquet de l’application, sa version et son certificat de signature, l’état de sa licence et une attestation de l’intégrité de cet appareil."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "notice.session-integrity",
+      "locale": "fr",
+      "text": "Pour protéger votre vérification contre la fraude, cette page vérifie la façon dont elle est utilisée, par exemple si un navigateur est automatisé. Elle ne lit ni vos frappes au clavier ni ce que vous saisissez."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.accept",
+      "locale": "fr",
+      "text": "J’accepte"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.biometric-destination",
+      "locale": "fr",
+      "text": "J’accepte que {{recipient}} reçoive mes données biométriques de {{source}} : la photo de mon visage sur ma pièce d’identité, mon selfie et les résultats de leur comparaison. {{recipient}} les conserve pendant {{retention}}, uniquement pour vérifier mon identité."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.biometric-source",
+      "locale": "fr",
+      "text": "J’accepte que {{source}} partage mes données biométriques avec {{recipient}} : la photo de mon visage sur ma pièce d’identité, mon selfie et les résultats de leur comparaison."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.decline",
+      "locale": "fr",
+      "text": "Ne pas partager"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.destination",
+      "locale": "fr",
+      "text": "{{recipient}} vous demande votre accord pour recevoir les informations que {{source}} a vérifiées à votre sujet, afin que vous n’ayez pas à vous vérifier à nouveau.\n\nCe que {{recipient}} reçoit : {{categories}}. {{recipient}} les utilise uniquement pour vérifier votre identité pour cette demande et les conserve pendant {{retention}}. Rien n’est reçu sans votre accord, et refuser le partage n’arrête pas votre vérification : vous vous vérifiez ici.\n\nVotre accord prend fin après {{expires}} si les informations n’ont pas été reçues d’ici là.\n\nPour retirer votre accord, {{withdraw}}. Le retrait arrête tout transfert qui n’a pas encore eu lieu."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.source",
+      "locale": "fr",
+      "text": "{{source}} vous demande votre accord pour partager avec {{recipient}} les informations qu’elle a vérifiées à votre sujet, afin que {{recipient}} puisse réutiliser cette vérification au lieu de vous demander de vous vérifier à nouveau.\n\nCe qui est partagé : {{categories}}. Rien n’est partagé sans votre accord, et refuser le partage n’arrête pas votre vérification.\n\nVotre accord couvre un seul partage avec {{recipient}}, pour cette seule finalité. Il prend fin après {{expires}} si les informations n’ont pas été partagées d’ici là.\n\nPour retirer votre accord, {{withdraw}}. Le retrait arrête tout partage qui n’a pas encore eu lieu. Les informations déjà partagées sont conservées par {{recipient}} selon sa propre politique de confidentialité."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.title",
+      "locale": "fr",
+      "text": "Partager vos informations vérifiées avec {{recipient}}"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.withdraw",
+      "locale": "fr",
+      "text": "Retirer mon accord de partage avec {{recipient}}"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.automated-decision",
+      "locale": "de",
+      "text": "Optional: Ich bin einverstanden, dass über diese Verifizierung anhand meiner biometrischen Daten automatisierte Entscheidungen getroffen werden können, ohne dass eine Person sie vorher prüft. Sie können verlangen, dass eine Person eine Entscheidung prüft."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.biometric",
+      "locale": "de",
+      "text": "Um Ihre Identität zu bestätigen, vergleichen wir ein Selfie mit dem Foto in Ihrem Ausweisdokument. Dieser Vergleich nutzt biometrische Daten: Messwerte Ihrer Gesichtszüge. Ihre biometrischen Daten werden nur genutzt, um Ihre Identität für diese Anfrage zu verifizieren."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.biometric-matching",
+      "locale": "de",
+      "text": "Optional: Wir vergleichen Ihr Selfie und seinen Hintergrund auch mit früheren Selfies, die an diese Organisation gesendet wurden, damit niemand mehrere Identitäten nutzen kann. Eine Vorlage Ihres Gesichts wird {{days}} Tage lang aufbewahrt. Sie können sich auch verifizieren, wenn Sie dieses Kästchen nicht ankreuzen."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.checkbox",
+      "locale": "de",
+      "text": "Ich willige in die Erhebung und Nutzung meiner biometrischen Daten wie oben beschrieben ein."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.continue",
+      "locale": "de",
+      "text": "Weiter"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.device-recognition",
+      "locale": "de",
+      "text": "Optional: Dieses Gerät bei späteren Besuchen wiedererkennen, um mein Konto vor Missbrauch zu schützen."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.processing",
+      "locale": "de",
+      "text": "Wir verarbeiten die Fotos Ihres Ausweisdokuments und Ihr Selfie nur für diese Verifizierung. Sie werden gelöscht, sobald die Organisation, die diese Verifizierung angefordert hat, sie nicht mehr benötigt, gemäß ihren Aufbewahrungsregeln. Sie können jederzeit aufhören, indem Sie diese Seite schließen."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.saving",
+      "locale": "de",
+      "text": "Ihre Einwilligung wird gespeichert…"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.title",
+      "locale": "de",
+      "text": "Einwilligung in die Nutzung Ihrer biometrischen Daten"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.unavailable",
+      "locale": "de",
+      "text": "Diese Verifizierung bittet Sie, einem Text zuzustimmen, den diese Version nicht anzeigen kann. Wenden Sie sich an die Organisation, die Sie um die Verifizierung gebeten hat."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "notice.device-recognition",
+      "locale": "de",
+      "text": "Dieser Dienst erkennt das Gerät, das Sie nutzen, wieder, um Konten vor Missbrauch zu schützen."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "notice.play-integrity",
+      "locale": "de",
+      "text": "Um Ihre Verifizierung vor Betrug zu schützen, bittet die App, die Sie verwenden, Google Play zu bestätigen, dass sie die echte App auf einem unveränderten Gerät ist. Dazu erhält Google den Paketnamen, die Version und das Signaturzertifikat der App, ihren Lizenzstatus und eine Bestätigung der Integrität dieses Geräts."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "notice.session-integrity",
+      "locale": "de",
+      "text": "Um Ihre Verifizierung vor Betrug zu schützen, prüft diese Seite, wie sie genutzt wird, etwa ob ein Browser automatisiert ist. Sie liest weder Ihre Tastenanschläge noch das, was Sie eingeben."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.accept",
+      "locale": "de",
+      "text": "Ich stimme zu"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.biometric-destination",
+      "locale": "de",
+      "text": "Ich stimme zu, dass {{recipient}} meine biometrischen Daten von {{source}} erhält: das Foto meines Gesichts auf meinem Ausweisdokument, mein Selfie und die Ergebnisse ihres Vergleichs. {{recipient}} bewahrt sie {{retention}} lang auf, nur um meine Identität zu prüfen."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.biometric-source",
+      "locale": "de",
+      "text": "Ich stimme zu, dass {{source}} meine biometrischen Daten mit {{recipient}} teilt: das Foto meines Gesichts auf meinem Ausweisdokument, mein Selfie und die Ergebnisse ihres Vergleichs."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.decline",
+      "locale": "de",
+      "text": "Nicht teilen"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.destination",
+      "locale": "de",
+      "text": "{{recipient}} bittet um Ihre Zustimmung, die von {{source}} über Sie geprüften Angaben zu erhalten, damit Sie sich nicht erneut prüfen lassen müssen.\n\nWas {{recipient}} erhält: {{categories}}. {{recipient}} verwendet sie nur, um Ihre Identität für diese Anfrage zu prüfen, und bewahrt sie {{retention}} lang auf. Ohne Ihre Zustimmung wird nichts übermittelt, und wenn Sie nicht teilen, wird Ihre Prüfung nicht abgebrochen: Sie werden dann hier geprüft.\n\nIhre Zustimmung endet nach {{expires}}, wenn die Angaben bis dahin nicht übermittelt wurden.\n\nUm Ihre Zustimmung zu widerrufen, {{withdraw}}. Der Widerruf stoppt jede Übermittlung, die noch nicht erfolgt ist."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.source",
+      "locale": "de",
+      "text": "{{source}} bittet um Ihre Zustimmung, die über Sie geprüften Angaben mit {{recipient}} zu teilen, damit {{recipient}} diese Prüfung wiederverwenden kann, statt Sie erneut prüfen zu lassen.\n\nWas geteilt wird: {{categories}}. Ohne Ihre Zustimmung wird nichts geteilt, und wenn Sie nicht teilen, wird Ihre Prüfung nicht abgebrochen.\n\nIhre Zustimmung gilt für eine einzige Weitergabe an {{recipient}} und nur für diesen Zweck. Sie endet nach {{expires}}, wenn die Angaben bis dahin nicht geteilt wurden.\n\nUm Ihre Zustimmung zu widerrufen, {{withdraw}}. Der Widerruf stoppt jede Weitergabe, die noch nicht erfolgt ist. Bereits geteilte Angaben bewahrt {{recipient}} nach der eigenen Datenschutzerklärung auf."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.title",
+      "locale": "de",
+      "text": "Ihre geprüften Angaben mit {{recipient}} teilen"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.withdraw",
+      "locale": "de",
+      "text": "Meine Zustimmung zum Teilen mit {{recipient}} widerrufen"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.automated-decision",
+      "locale": "ar",
+      "text": "اختياري: أوافق على إمكانية اتخاذ قرارات آلية بشأن هذا التحقق استنادًا إلى بياناتي البيومترية، دون أن يراجعها شخص أولًا. يمكن طلب مراجعة أي قرار من قِبل شخص."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.biometric",
+      "locale": "ar",
+      "text": "لتأكيد هويتك، نقارن صورة سيلفي بالصورة الموجودة في وثيقة هويتك. تستخدم هذه المقارنة بيانات بيومترية: قياسات لملامح الوجه. تُستخدم بياناتك البيومترية فقط للتحقق من هويتك في هذا الطلب."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.biometric-matching",
+      "locale": "ar",
+      "text": "اختياري: نقارن أيضًا صورة السيلفي وخلفيتها بصور سيلفي سابقة أُرسلت إلى هذه الجهة، لمنع شخص واحد من استخدام عدة هويات. يُحتفظ بنموذج لوجهك لمدة {{days}} يومًا. يمكن إتمام التحقق حتى إن تُرك هذا الخيار دون تحديد."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.checkbox",
+      "locale": "ar",
+      "text": "أوافق على جمع بياناتي البيومترية واستخدامها على النحو الموضح أعلاه."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.continue",
+      "locale": "ar",
+      "text": "متابعة"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.device-recognition",
+      "locale": "ar",
+      "text": "اختياري: التعرّف على هذا الجهاز في الزيارات اللاحقة، لحماية حسابي من إساءة الاستخدام."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.processing",
+      "locale": "ar",
+      "text": "نعالج صور وثيقة هويتك وصورة السيلفي لهذا التحقق فقط. تُحذف عندما لا تعود الجهة التي طلبت هذا التحقق بحاجة إليها، وفقًا لسياسة الاحتفاظ لديها. يمكن التوقف في أي وقت بإغلاق هذه الصفحة."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.saving",
+      "locale": "ar",
+      "text": "جارٍ حفظ الموافقة…"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.title",
+      "locale": "ar",
+      "text": "الموافقة على استخدام بياناتك البيومترية"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "consent.unavailable",
+      "locale": "ar",
+      "text": "تطلب عملية التحقق هذه الموافقة على نص لا يمكن لهذا الإصدار عرضه. يُرجى التواصل مع الجهة التي طلبت التحقق."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "notice.device-recognition",
+      "locale": "ar",
+      "text": "تتعرّف هذه الخدمة على الجهاز المستخدم، لحماية الحسابات من إساءة الاستخدام."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "notice.play-integrity",
+      "locale": "ar",
+      "text": "لحماية عملية التحقق من الاحتيال، يطلب التطبيق المستخدم من Google Play تأكيد أنه التطبيق الأصلي على جهاز لم يُعبث به. ولهذا تتلقى Google اسم حزمة التطبيق وإصداره وشهادة توقيعه وحالة ترخيصه وإثباتًا لسلامة هذا الجهاز."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "notice.session-integrity",
+      "locale": "ar",
+      "text": "لحماية عملية التحقق من الاحتيال، تتحقق هذه الصفحة من طريقة استخدامها، مثل ما إذا كان المتصفح مؤتمتًا. ولا تقرأ ضغطات المفاتيح ولا ما يُكتب."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.accept",
+      "locale": "ar",
+      "text": "أوافق"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.biometric-destination",
+      "locale": "ar",
+      "text": "أوافق على أن تتلقى {{recipient}} بياناتي البيومترية من {{source}}: صورة وجهي في وثيقة هويتي، وصورتي الذاتية، ونتائج المقارنة بينهما. تحتفظ بها {{recipient}} مدة {{retention}} للتحقق من هويتي فقط."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.biometric-source",
+      "locale": "ar",
+      "text": "أوافق على أن تشارك {{source}} بياناتي البيومترية مع {{recipient}}: صورة وجهي في وثيقة هويتي، وصورتي الذاتية، ونتائج المقارنة بينهما."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.decline",
+      "locale": "ar",
+      "text": "عدم المشاركة"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.destination",
+      "locale": "ar",
+      "text": "تطلب {{recipient}} موافقتك على تلقي البيانات التي تحققت منها {{source}} عنك، حتى لا تحتاج إلى التحقق مرة أخرى.\n\nما تتلقاه {{recipient}}: {{categories}}. تستخدم {{recipient}} هذه البيانات للتحقق من هويتك في هذا الطلب فقط، وتحتفظ بها مدة {{retention}}. لا يجري تلقي أي شيء دون موافقتك، واختيار عدم المشاركة لا يوقف عملية التحقق: يجري التحقق هنا بدلًا من ذلك.\n\nتنتهي موافقتك بعد {{expires}} إذا لم يجرِ تلقي البيانات قبل ذلك.\n\nلسحب موافقتك: {{withdraw}}. يوقف سحب الموافقة أي نقل لم يحدث بعد."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.source",
+      "locale": "ar",
+      "text": "تطلب {{source}} موافقتك على مشاركة البيانات التي تحققت منها عنك مع {{recipient}}، حتى تتمكن {{recipient}} من إعادة استخدام هذا التحقق بدلًا من أن تطلب منك التحقق مرة أخرى.\n\nما تجري مشاركته: {{categories}}. لا تجري مشاركة أي شيء دون موافقتك، واختيار عدم المشاركة لا يوقف عملية التحقق.\n\nتشمل موافقتك مشاركة واحدة مع {{recipient}} لهذا الغرض وحده، وتنتهي بعد {{expires}} إذا لم تجرِ المشاركة قبل ذلك.\n\nلسحب موافقتك: {{withdraw}}. يوقف سحب الموافقة أي مشاركة لم تحدث بعد. أما البيانات التي جرت مشاركتها فتحتفظ بها {{recipient}} وفق إشعار الخصوصية الخاص بها."
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.title",
+      "locale": "ar",
+      "text": "مشاركة بياناتك التي جرى التحقق منها مع {{recipient}}"
+    },
+    {
+      "catalog-version": "web-f753624327cec872",
+      "client": "web",
+      "key": "share.consent.withdraw",
+      "locale": "ar",
+      "text": "سحب موافقتي على المشاركة مع {{recipient}}"
+    }
+  ]
+}

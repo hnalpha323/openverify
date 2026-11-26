@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The field schemas break a rule of their version.",
+  "instance": "/api/v1/transaction-type-versions/txntpv_01M5CK3190XEVBM5ZXA76E1JSN/publish",
+  "requestId": "00000000-0000-4000-8000-000000000903",
+  "code": "field_schema_invalid",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/field-schemas/0",
+      "detail": "breaks a field rule"
+    }
+  ]
+}

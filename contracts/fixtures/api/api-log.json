@@ -1,0 +1,30 @@
+{
+  "data": {
+    "type": "api-log",
+    "id": "alog_01M5CK707GE9YRH4WYN6TBZJPN",
+    "attributes": {
+      "method": "POST",
+      "path": "/api/v1/inquiries/inq_01M5CJXHG07XPHF3HRM6NREDH7/resume",
+      "route": "/api/v1/inquiries/:id/resume",
+      "status": 200,
+      "duration-ms": 37,
+      "request-id": "00000000-0000-4000-8000-000000000042",
+      "idempotency-key": "resume-test-001",
+      "api-key-id": "key_01M5CJXHG0RVK7X4H9941FSM5K",
+      "user-id": null,
+      "ip-address": "203.0.113.10",
+      "user-agent": "openverify-node/0.0.0 (synthetic test)",
+      "query": {},
+      "request-body": null,
+      "response-body": {
+        "data": {
+          "type": "inquiry",
+          "id": "inq_01M5CJXHG07XPHF3HRM6NREDH7",
+          "attributes": { "status": "created" }
+        },
+        "meta": { "session-token": "[REDACTED]", "flow-url": "[REDACTED]" }
+      },
+      "created-at": "2026-10-20T12:00:05.000Z"
+    }
+  }
+}

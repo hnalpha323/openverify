@@ -1,0 +1,366 @@
+{
+  "data": [
+    {
+      "type": "list-item/browser-fingerprint",
+      "id": "libf_01M5CK3190XEVBM5ZXA76E1JSN",
+      "attributes": {
+        "status": "active",
+        "archived-at": null,
+        "created-at": "2026-10-31T12:00:00.000Z",
+        "updated-at": "2026-10-31T12:00:00.000Z",
+        "redacted-at": null,
+        "match-count": 0,
+        "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "key-id": "AAAAAAAAAAA"
+      },
+      "relationships": {
+        "list": {
+          "data": {
+            "type": "list/browser-fingerprint",
+            "id": "lst_01M5CK3190XEVBM5ZXA76E1JSN"
+          }
+        },
+        "creator": {
+          "data": {
+            "type": "user",
+            "id": "usr_01M5CJXHG0RVK7X4H9941FSM5K"
+          }
+        }
+      }
+    },
+    {
+      "type": "list-item/device-fingerprint",
+      "id": "lidf_01M5CK3190XEVBM5ZXA76E1JSN",
+      "attributes": {
+        "status": "active",
+        "archived-at": null,
+        "created-at": "2026-10-31T12:00:00.000Z",
+        "updated-at": "2026-10-31T12:00:00.000Z",
+        "redacted-at": null,
+        "match-count": 0,
+        "value": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+        "key-id": "AAAAAAAAAAA"
+      },
+      "relationships": {
+        "list": {
+          "data": {
+            "type": "list/device-fingerprint",
+            "id": "lst_01M5CK3190XEVBM5ZXA76E1JSN"
+          }
+        },
+        "creator": {
+          "data": {
+            "type": "user",
+            "id": "usr_01M5CJXHG0RVK7X4H9941FSM5K"
+          }
+        }
+      }
+    },
+    {
+      "type": "list-item/country",
+      "id": "lic_01M5CK3190XEVBM5ZXA76E1JSN",
+      "attributes": {
+        "status": "active",
+        "archived-at": null,
+        "created-at": "2026-10-31T12:00:00.000Z",
+        "updated-at": "2026-10-31T12:00:00.000Z",
+        "redacted-at": null,
+        "match-count": 0,
+        "country-code": "ZZ"
+      },
+      "relationships": {
+        "list": {
+          "data": {
+            "type": "list/country",
+            "id": "lst_01M5CK3190XEVBM5ZXA76E1JSN"
+          }
+        },
+        "creator": {
+          "data": {
+            "type": "user",
+            "id": "usr_01M5CJXHG0RVK7X4H9941FSM5K"
+          }
+        }
+      }
+    },
+    {
+      "type": "list-item/email-address",
+      "id": "liea_01M5CK3190XEVBM5ZXA76E1JSN",
+      "attributes": {
+        "status": "active",
+        "archived-at": null,
+        "created-at": "2026-10-31T12:00:00.000Z",
+        "updated-at": "2026-10-31T12:00:00.000Z",
+        "redacted-at": null,
+        "match-count": 0,
+        "value": "listed@example.test",
+        "match-type": "email_address"
+      },
+      "relationships": {
+        "list": {
+          "data": {
+            "type": "list/email-address",
+            "id": "lst_01M5CK3190XEVBM5ZXA76E1JSN"
+          }
+        },
+        "creator": {
+          "data": {
+            "type": "user",
+            "id": "usr_01M5CJXHG0RVK7X4H9941FSM5K"
+          }
+        }
+      }
+    },
+    {
+      "type": "list-item/face",
+      "id": "lifc_01M5CK3190XEVBM5ZXA76E1JSN",
+      "attributes": {
+        "status": "active",
+        "archived-at": null,
+        "created-at": "2026-10-31T12:00:00.000Z",
+        "updated-at": "2026-10-31T12:00:00.000Z",
+        "redacted-at": null,
+        "match-count": 0,
+        "model": "sface-2021dec",
+        "source-inquiry-id": "inq_01M5CK3190XEVBM5ZXA76E1JSN"
+      },
+      "relationships": {
+        "list": {
+          "data": {
+            "type": "list/face",
+            "id": "lst_01M5CK3190XEVBM5ZXA76E1JSN"
+          }
+        },
+        "creator": {
+          "data": {
+            "type": "user",
+            "id": "usr_01M5CJXHG0RVK7X4H9941FSM5K"
+          }
+        }
+      }
+    },
+    {
+      "type": "list-item/geolocation",
+      "id": "ligl_01M5CK3190XEVBM5ZXA76E1JSN",
+      "attributes": {
+        "status": "active",
+        "archived-at": null,
+        "created-at": "2026-10-31T12:00:00.000Z",
+        "updated-at": "2026-10-31T12:00:00.000Z",
+        "redacted-at": null,
+        "match-count": 0,
+        "latitude": -30.5,
+        "longitude": -140.25,
+        "radius-meters": 1000
+      },
+      "relationships": {
+        "list": {
+          "data": {
+            "type": "list/geolocation",
+            "id": "lst_01M5CK3190XEVBM5ZXA76E1JSN"
+          }
+        },
+        "creator": {
+          "data": {
+            "type": "user",
+            "id": "usr_01M5CJXHG0RVK7X4H9941FSM5K"
+          }
+        }
+      }
+    },
+    {
+      "type": "list-item/government-id-number",
+      "id": "ligin_01M5CK3190XEVBM5ZXA76E1JSN",
+      "attributes": {
+        "status": "active",
+        "archived-at": null,
+        "created-at": "2026-10-31T12:00:00.000Z",
+        "updated-at": "2026-10-31T12:00:00.000Z",
+        "redacted-at": null,
+        "match-count": 0,
+        "id-number": "X0000001",
+        "id-class": "passport"
+      },
+      "relationships": {
+        "list": {
+          "data": {
+            "type": "list/government-id-number",
+            "id": "lst_01M5CK3190XEVBM5ZXA76E1JSN"
+          }
+        },
+        "creator": {
+          "data": {
+            "type": "user",
+            "id": "usr_01M5CJXHG0RVK7X4H9941FSM5K"
+          }
+        }
+      }
+    },
+    {
+      "type": "list-item/field",
+      "id": "liif_01M5CK3190XEVBM5ZXA76E1JSN",
+      "attributes": {
+        "status": "active",
+        "archived-at": null,
+        "created-at": "2026-10-31T12:00:00.000Z",
+        "updated-at": "2026-10-31T12:00:00.000Z",
+        "redacted-at": null,
+        "match-count": 0,
+        "field-value": "synthetic-loan-0001"
+      },
+      "relationships": {
+        "list": {
+          "data": {
+            "type": "list/field",
+            "id": "lst_01M5CK3190XEVBM5ZXA76E1JSN"
+          }
+        },
+        "creator": {
+          "data": {
+            "type": "user",
+            "id": "usr_01M5CJXHG0RVK7X4H9941FSM5K"
+          }
+        }
+      }
+    },
+    {
+      "type": "list-item/ip-address",
+      "id": "liip_01M5CK3190XEVBM5ZXA76E1JSN",
+      "attributes": {
+        "status": "active",
+        "archived-at": null,
+        "created-at": "2026-10-31T12:00:00.000Z",
+        "updated-at": "2026-10-31T12:00:00.000Z",
+        "redacted-at": null,
+        "match-count": 0,
+        "value": "198.51.100.0/24"
+      },
+      "relationships": {
+        "list": {
+          "data": {
+            "type": "list/ip-address",
+            "id": "lst_01M5CK3190XEVBM5ZXA76E1JSN"
+          }
+        },
+        "creator": {
+          "data": {
+            "type": "user",
+            "id": "usr_01M5CJXHG0RVK7X4H9941FSM5K"
+          }
+        }
+      }
+    },
+    {
+      "type": "list-item/name",
+      "id": "lin_01M5CK3190XEVBM5ZXA76E1JSN",
+      "attributes": {
+        "status": "active",
+        "archived-at": null,
+        "created-at": "2026-10-31T12:00:00.000Z",
+        "updated-at": "2026-10-31T12:00:00.000Z",
+        "redacted-at": null,
+        "match-count": 0,
+        "name-first": "Synthetic",
+        "name-last": "Person"
+      },
+      "relationships": {
+        "list": {
+          "data": {
+            "type": "list/name",
+            "id": "lst_01M5CK3190XEVBM5ZXA76E1JSN"
+          }
+        },
+        "creator": {
+          "data": {
+            "type": "user",
+            "id": "usr_01M5CJXHG0RVK7X4H9941FSM5K"
+          }
+        }
+      }
+    },
+    {
+      "type": "list-item/phone-number",
+      "id": "lipn_01M5CK3190XEVBM5ZXA76E1JSN",
+      "attributes": {
+        "status": "active",
+        "archived-at": null,
+        "created-at": "2026-10-31T12:00:00.000Z",
+        "updated-at": "2026-10-31T12:00:00.000Z",
+        "redacted-at": null,
+        "match-count": 0,
+        "value": "+15555550100"
+      },
+      "relationships": {
+        "list": {
+          "data": {
+            "type": "list/phone-number",
+            "id": "lst_01M5CK3190XEVBM5ZXA76E1JSN"
+          }
+        },
+        "creator": {
+          "data": {
+            "type": "user",
+            "id": "usr_01M5CJXHG0RVK7X4H9941FSM5K"
+          }
+        }
+      }
+    },
+    {
+      "type": "list-item/selfie-background",
+      "id": "lisb_01M5CK3190XEVBM5ZXA76E1JSN",
+      "attributes": {
+        "status": "active",
+        "archived-at": null,
+        "created-at": "2026-10-31T12:00:00.000Z",
+        "updated-at": "2026-10-31T12:00:00.000Z",
+        "redacted-at": null,
+        "match-count": 0,
+        "source-inquiry-id": "inq_01M5CK3190XEVBM5ZXA76E1JSN"
+      },
+      "relationships": {
+        "list": {
+          "data": {
+            "type": "list/selfie-background",
+            "id": "lst_01M5CK3190XEVBM5ZXA76E1JSN"
+          }
+        },
+        "creator": {
+          "data": {
+            "type": "user",
+            "id": "usr_01M5CJXHG0RVK7X4H9941FSM5K"
+          }
+        }
+      }
+    },
+    {
+      "type": "list-item/string",
+      "id": "lis_01M5CK3190XEVBM5ZXA76E1JSN",
+      "attributes": {
+        "status": "active",
+        "archived-at": null,
+        "created-at": "2026-10-31T12:00:00.000Z",
+        "updated-at": "2026-10-31T12:00:00.000Z",
+        "redacted-at": null,
+        "match-count": 0,
+        "value": "SYNTHETIC-COUPON"
+      },
+      "relationships": {
+        "list": {
+          "data": {
+            "type": "list/string",
+            "id": "lst_01M5CK3190XEVBM5ZXA76E1JSN"
+          }
+        },
+        "creator": {
+          "data": {
+            "type": "user",
+            "id": "usr_01M5CJXHG0RVK7X4H9941FSM5K"
+          }
+        }
+      }
+    }
+  ],
+  "links": {
+    "next": null
+  }
+}

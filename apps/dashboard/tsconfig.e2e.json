@@ -1,0 +1,17 @@
+// The isolated e2e build (OPENVERIFY_DASHBOARD_DIST_DIR=.next/e2e, see next.config.ts): the same
+// files as tsconfig.json, type-checked with the route types that build generates, never with a
+// developer's .next/types.
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "next-env.d.ts",
+    "src",
+    "server.ts",
+    "server.test.ts",
+    "next.config.ts",
+    "vitest.config.ts",
+    "vitest.setup.ts",
+    ".next/e2e/types/**/*.ts",
+    ".next/e2e/dev/types/**/*.ts"
+  ]
+}

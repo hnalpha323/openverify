@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The consent screen's own notices (Workflow 10B contracts-10b). openverify_consent_text_changed (C200.5,
+  KP10-6): shown above the consent when the server refused the last acceptance because the wording
+  changed. A notice of the SDK's, not a legal text. French, machine-drafted (C199.1).
+-->
+<resources>
+    <string name="openverify_consent_text_changed">Le texte de ce consentement a changé depuis son ouverture. Rien n’a été enregistré. Relisez-le avant de continuer.</string>
+</resources>

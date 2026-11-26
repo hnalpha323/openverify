@@ -1,0 +1,16 @@
+{
+  "data": {
+    "type": "selfie",
+    "id": "self_01M5CJXHG07XPHF3HRM6NREDH9",
+    "attributes": {
+      "prompts": ["center", "right", "left"],
+      "expires-at": "2026-10-21T12:03:00.000Z",
+      "nonce": "E2eSyntheticNonce00000",
+      "guidance": {
+        "max-center-yaw-ratio": 0.021,
+        "min-side-yaw-ratio-change": 0.077,
+        "hold-ms": 500
+      }
+    }
+  }
+}

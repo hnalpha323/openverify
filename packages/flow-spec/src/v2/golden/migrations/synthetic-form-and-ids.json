@@ -1,0 +1,176 @@
+{
+  "source": "synthetic: a form step, a branch id that is taken, and a step after a verification before consent",
+  "flow": {
+    "metadata": {
+      "specVersion": 2,
+      "id": "form-ids",
+      "version": 1,
+      "name": "Synthetic form-ids"
+    },
+    "entry": "details",
+    "steps": [
+      {
+        "id": "details",
+        "type": "screen",
+        "components": [
+          {
+            "id": "continue",
+            "field": "continue",
+            "labelKey": "form.nickname",
+            "required": true,
+            "kind": "text_input",
+            "minLength": 2,
+            "maxLength": 20,
+            "pattern": "^(a+)+$"
+          },
+          {
+            "id": "birthdate",
+            "field": "birthdate",
+            "labelKey": "form.birthdate",
+            "required": false,
+            "kind": "date",
+            "max": "2010-01-01"
+          },
+          {
+            "id": "email",
+            "field": "email",
+            "labelKey": "form.email",
+            "required": false,
+            "kind": "email"
+          },
+          {
+            "id": "phone",
+            "field": "phone",
+            "labelKey": "form.phone",
+            "required": false,
+            "kind": "phone",
+            "allowedCountries": ["US"]
+          },
+          {
+            "id": "occupation",
+            "field": "occupation",
+            "labelKey": "form.occupation",
+            "required": false,
+            "kind": "select",
+            "options": [
+              {
+                "key": "o1",
+                "value": "employed",
+                "labelKey": "form.occupation.employed"
+              },
+              {
+                "key": "o2",
+                "value": "other",
+                "labelKey": "form.occupation.other"
+              }
+            ]
+          },
+          {
+            "id": "residence",
+            "field": "residence",
+            "labelKey": "form.residence",
+            "required": true,
+            "kind": "country_select"
+          },
+          {
+            "id": "continue_2",
+            "kind": "button",
+            "labelKey": "screen.continue",
+            "action": "submit"
+          }
+        ]
+      },
+      {
+        "id": "details-routes",
+        "type": "government_id",
+        "sides": "front",
+        "maxAttempts": 2,
+        "captureMethods": ["camera"]
+      },
+      {
+        "id": "consent",
+        "type": "consent",
+        "textKeys": ["consent.biometric"],
+        "required": true
+      },
+      {
+        "id": "done",
+        "type": "completion",
+        "messageKey": "flow.completion"
+      },
+      {
+        "id": "details-routes-2",
+        "type": "branch",
+        "routes": [
+          {
+            "key": "r1",
+            "label": "Transition 1",
+            "condition": {
+              "===": [
+                {
+                  "var": "inquiry.status"
+                },
+                "expired"
+              ]
+            },
+            "onNull": "else"
+          }
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "details",
+        "port": "next",
+        "to": "details-routes-2"
+      },
+      {
+        "id": "e2",
+        "from": "details-routes-2",
+        "port": "route:r1",
+        "to": "done"
+      },
+      {
+        "id": "e3",
+        "from": "details-routes-2",
+        "port": "else",
+        "to": "details-routes"
+      },
+      {
+        "id": "e4",
+        "from": "details-routes",
+        "port": "next",
+        "to": "consent"
+      },
+      {
+        "id": "e5",
+        "from": "consent",
+        "port": "next",
+        "to": "done"
+      }
+    ]
+  },
+  "notes": [
+    {
+      "pointer": "/steps/0",
+      "code": "form_to_screen",
+      "detail": "The form became a screen with its fields and a submit button"
+    },
+    {
+      "pointer": "/steps/0/fields/0/validation/pattern",
+      "code": "pattern_refused",
+      "detail": "The restricted pattern grammar refuses this pattern (nested_quantifier)"
+    },
+    {
+      "pointer": "/steps/0",
+      "code": "consent_not_first",
+      "detail": "No consent step comes first on every path to this step; publishing a draft made from it is refused until one does"
+    },
+    {
+      "pointer": "/steps/1",
+      "code": "consent_not_first",
+      "detail": "No consent step comes first on every path to this step; publishing a draft made from it is refused until one does"
+    }
+  ]
+}

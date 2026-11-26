@@ -1,0 +1,399 @@
+{
+  "$comment": "Synthetic, test-only webhook signing vectors. Every secret below is a public test value labelled wbhsec_test_; never use it outside tests. Generated independently with Python's hmac module.",
+  "scheme": {
+    "header": "OpenVerify-Signature",
+    "format": "t=<unix seconds>,v1=<hex HMAC-SHA256> (further v1=<hex> values separated by a single space during secret rotation)",
+    "signedPayload": "<t>.<raw request body bytes>",
+    "defaultToleranceSeconds": 300,
+    "checkOrder": ["malformed_header", "no_matching_signature", "timestamp_outside_tolerance"]
+  },
+  "sign": [
+    {
+      "name": "event-body",
+      "secret": "wbhsec_test_ONLY_not_a_real_secret_000000000000001",
+      "timestamp": 1792497600,
+      "body": "{\"data\":{\"type\":\"event\",\"id\":\"evt_01M5CJXHG0041061050R3GG28A\",\"attributes\":{\"name\":\"inquiry.completed\"}}}",
+      "signature": "f587c9b9ce4808782b55e3df7f7cb6ec2697342bff845bd51cf8fb613ce45637",
+      "header": "t=1792497600,v1=f587c9b9ce4808782b55e3df7f7cb6ec2697342bff845bd51cf8fb613ce45637"
+    },
+    {
+      "name": "utf8-body-with-whitespace",
+      "secret": "wbhsec_test_ONLY_not_a_real_secret_000000000000002",
+      "timestamp": 1792497601,
+      "body": "{\"data\": {\"note\": \"Zoë Sample – synthetic\"}}\n",
+      "signature": "9920d421f4c3204241d6cf7843cd3b5f985f7576f71264c5cdc49d4ae019e85c",
+      "header": "t=1792497601,v1=9920d421f4c3204241d6cf7843cd3b5f985f7576f71264c5cdc49d4ae019e85c"
+    },
+    {
+      "name": "empty-body",
+      "secret": "wbhsec_test_ONLY_not_a_real_secret_000000000000001",
+      "timestamp": 1792497600,
+      "body": "",
+      "signature": "73e2e7801db5935bf8ed6ae6bf98c95289dce83ce4ac5329ad9433e4e2b1cd84",
+      "header": "t=1792497600,v1=73e2e7801db5935bf8ed6ae6bf98c95289dce83ce4ac5329ad9433e4e2b1cd84"
+    }
+  ],
+  "signMultiple": [
+    {
+      "name": "rotation-two-secrets",
+      "secrets": [
+        "wbhsec_test_ONLY_not_a_real_secret_000000000000001",
+        "wbhsec_test_ONLY_not_a_real_secret_000000000000002"
+      ],
+      "timestamp": 1792497600,
+      "body": "{\"data\":{\"type\":\"event\",\"id\":\"evt_01M5CJXHG0041061050R3GG28A\",\"attributes\":{\"name\":\"inquiry.completed\"}}}",
+      "header": "t=1792497600,v1=f587c9b9ce4808782b55e3df7f7cb6ec2697342bff845bd51cf8fb613ce45637 v1=1eea5b5488a843a7f79bc94554203e9e0ea4a29a49baa738b7b772103ad7ca6c"
+    },
+    {
+      "name": "rotation-new-then-previous-secret",
+      "secrets": [
+        "wbhsec_test_ONLY_not_a_real_secret_000000000000004",
+        "wbhsec_test_ONLY_not_a_real_secret_000000000000001"
+      ],
+      "timestamp": 1792498200,
+      "body": "{\"data\":{\"type\":\"event\",\"id\":\"evt_01M5CKFVE0A1DPCWBWGY99VA5K\",\"attributes\":{\"name\":\"inquiry.approved\"}}}",
+      "header": "t=1792498200,v1=9ec004aa9c51e4132f94fabaf63b2fd1cd087329997e0d9b5a4b568ba5fd9f58 v1=b6abc1e5052ca7b11370f516f73bd4c927f1ff0d7f79a60b09ae786d082880bf"
+    }
+  ],
+  "verify": [
+    {
+      "name": "valid",
+      "secrets": ["wbhsec_test_ONLY_not_a_real_secret_000000000000001"],
+      "body": "{\"data\":{\"type\":\"event\",\"id\":\"evt_01M5CJXHG0041061050R3GG28A\",\"attributes\":{\"name\":\"inquiry.completed\"}}}",
+      "header": "t=1792497600,v1=f587c9b9ce4808782b55e3df7f7cb6ec2697342bff845bd51cf8fb613ce45637",
+      "now": 1792497610,
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "name": "valid-utf8-body",
+      "secrets": ["wbhsec_test_ONLY_not_a_real_secret_000000000000002"],
+      "body": "{\"data\": {\"note\": \"Zoë Sample – synthetic\"}}\n",
+      "header": "t=1792497601,v1=9920d421f4c3204241d6cf7843cd3b5f985f7576f71264c5cdc49d4ae019e85c",
+      "now": 1792497601,
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "name": "valid-at-past-tolerance-edge",
+      "secrets": ["wbhsec_test_ONLY_not_a_real_secret_000000000000001"],
+      "body": "{\"data\":{\"type\":\"event\",\"id\":\"evt_01M5CJXHG0041061050R3GG28A\",\"attributes\":{\"name\":\"inquiry.completed\"}}}",
+      "header": "t=1792497600,v1=f587c9b9ce4808782b55e3df7f7cb6ec2697342bff845bd51cf8fb613ce45637",
+      "now": 1792497900,
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "name": "valid-at-future-tolerance-edge",
+      "secrets": ["wbhsec_test_ONLY_not_a_real_secret_000000000000001"],
+      "body": "{\"data\":{\"type\":\"event\",\"id\":\"evt_01M5CJXHG0041061050R3GG28A\",\"attributes\":{\"name\":\"inquiry.completed\"}}}",
+      "header": "t=1792497600,v1=f587c9b9ce4808782b55e3df7f7cb6ec2697342bff845bd51cf8fb613ce45637",
+      "now": 1792497300,
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "name": "valid-receiver-holds-two-secrets",
+      "secrets": [
+        "wbhsec_test_ONLY_not_a_real_secret_000000000000003",
+        "wbhsec_test_ONLY_not_a_real_secret_000000000000001"
+      ],
+      "body": "{\"data\":{\"type\":\"event\",\"id\":\"evt_01M5CJXHG0041061050R3GG28A\",\"attributes\":{\"name\":\"inquiry.completed\"}}}",
+      "header": "t=1792497600,v1=f587c9b9ce4808782b55e3df7f7cb6ec2697342bff845bd51cf8fb613ce45637",
+      "now": 1792497600,
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "name": "valid-second-v1-matches",
+      "secrets": ["wbhsec_test_ONLY_not_a_real_secret_000000000000002"],
+      "body": "{\"data\":{\"type\":\"event\",\"id\":\"evt_01M5CJXHG0041061050R3GG28A\",\"attributes\":{\"name\":\"inquiry.completed\"}}}",
+      "header": "t=1792497600,v1=f587c9b9ce4808782b55e3df7f7cb6ec2697342bff845bd51cf8fb613ce45637 v1=1eea5b5488a843a7f79bc94554203e9e0ea4a29a49baa738b7b772103ad7ca6c",
+      "now": 1792497600,
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "name": "valid-custom-tolerance",
+      "secrets": ["wbhsec_test_ONLY_not_a_real_secret_000000000000001"],
+      "body": "{\"data\":{\"type\":\"event\",\"id\":\"evt_01M5CJXHG0041061050R3GG28A\",\"attributes\":{\"name\":\"inquiry.completed\"}}}",
+      "header": "t=1792497600,v1=f587c9b9ce4808782b55e3df7f7cb6ec2697342bff845bd51cf8fb613ce45637",
+      "now": 1792498100,
+      "toleranceSeconds": 600,
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "name": "valid-uppercase-hex",
+      "secrets": ["wbhsec_test_ONLY_not_a_real_secret_000000000000001"],
+      "body": "{\"data\":{\"type\":\"event\",\"id\":\"evt_01M5CJXHG0041061050R3GG28A\",\"attributes\":{\"name\":\"inquiry.completed\"}}}",
+      "header": "t=1792497600,v1=F587C9B9CE4808782B55E3DF7F7CB6EC2697342BFF845BD51CF8FB613CE45637",
+      "now": 1792497600,
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "name": "too-old",
+      "secrets": ["wbhsec_test_ONLY_not_a_real_secret_000000000000001"],
+      "body": "{\"data\":{\"type\":\"event\",\"id\":\"evt_01M5CJXHG0041061050R3GG28A\",\"attributes\":{\"name\":\"inquiry.completed\"}}}",
+      "header": "t=1792497600,v1=f587c9b9ce4808782b55e3df7f7cb6ec2697342bff845bd51cf8fb613ce45637",
+      "now": 1792497901,
+      "expected": {
+        "valid": false,
+        "reason": "timestamp_outside_tolerance"
+      }
+    },
+    {
+      "name": "too-far-in-future",
+      "secrets": ["wbhsec_test_ONLY_not_a_real_secret_000000000000001"],
+      "body": "{\"data\":{\"type\":\"event\",\"id\":\"evt_01M5CJXHG0041061050R3GG28A\",\"attributes\":{\"name\":\"inquiry.completed\"}}}",
+      "header": "t=1792497600,v1=f587c9b9ce4808782b55e3df7f7cb6ec2697342bff845bd51cf8fb613ce45637",
+      "now": 1792497299,
+      "expected": {
+        "valid": false,
+        "reason": "timestamp_outside_tolerance"
+      }
+    },
+    {
+      "name": "wrong-secret",
+      "secrets": ["wbhsec_test_ONLY_not_a_real_secret_000000000000003"],
+      "body": "{\"data\":{\"type\":\"event\",\"id\":\"evt_01M5CJXHG0041061050R3GG28A\",\"attributes\":{\"name\":\"inquiry.completed\"}}}",
+      "header": "t=1792497600,v1=f587c9b9ce4808782b55e3df7f7cb6ec2697342bff845bd51cf8fb613ce45637",
+      "now": 1792497600,
+      "expected": {
+        "valid": false,
+        "reason": "no_matching_signature"
+      }
+    },
+    {
+      "name": "tampered-body",
+      "secrets": ["wbhsec_test_ONLY_not_a_real_secret_000000000000001"],
+      "body": "{\"data\":{\"type\":\"event\",\"id\":\"evt_01M5CJXHG0041061050R3GG28A\",\"attributes\":{\"name\":\"inquiry.completeD\"}}}",
+      "header": "t=1792497600,v1=f587c9b9ce4808782b55e3df7f7cb6ec2697342bff845bd51cf8fb613ce45637",
+      "now": 1792497600,
+      "expected": {
+        "valid": false,
+        "reason": "no_matching_signature"
+      }
+    },
+    {
+      "name": "tampered-timestamp",
+      "secrets": ["wbhsec_test_ONLY_not_a_real_secret_000000000000001"],
+      "body": "{\"data\":{\"type\":\"event\",\"id\":\"evt_01M5CJXHG0041061050R3GG28A\",\"attributes\":{\"name\":\"inquiry.completed\"}}}",
+      "header": "t=1792497601,v1=f587c9b9ce4808782b55e3df7f7cb6ec2697342bff845bd51cf8fb613ce45637",
+      "now": 1792497600,
+      "expected": {
+        "valid": false,
+        "reason": "no_matching_signature"
+      }
+    },
+    {
+      "name": "reencoded-body",
+      "secrets": ["wbhsec_test_ONLY_not_a_real_secret_000000000000001"],
+      "body": "{\"data\": {\"type\": \"event\", \"id\": \"evt_01M5CJXHG0041061050R3GG28A\", \"attributes\": {\"name\": \"inquiry.completed\"}}}",
+      "header": "t=1792497600,v1=f587c9b9ce4808782b55e3df7f7cb6ec2697342bff845bd51cf8fb613ce45637",
+      "now": 1792497600,
+      "expected": {
+        "valid": false,
+        "reason": "no_matching_signature"
+      }
+    },
+    {
+      "name": "empty-header",
+      "secrets": ["wbhsec_test_ONLY_not_a_real_secret_000000000000001"],
+      "body": "{\"data\":{\"type\":\"event\",\"id\":\"evt_01M5CJXHG0041061050R3GG28A\",\"attributes\":{\"name\":\"inquiry.completed\"}}}",
+      "header": "",
+      "now": 1792497600,
+      "expected": {
+        "valid": false,
+        "reason": "malformed_header"
+      }
+    },
+    {
+      "name": "missing-timestamp",
+      "secrets": ["wbhsec_test_ONLY_not_a_real_secret_000000000000001"],
+      "body": "{\"data\":{\"type\":\"event\",\"id\":\"evt_01M5CJXHG0041061050R3GG28A\",\"attributes\":{\"name\":\"inquiry.completed\"}}}",
+      "header": "v1=f587c9b9ce4808782b55e3df7f7cb6ec2697342bff845bd51cf8fb613ce45637",
+      "now": 1792497600,
+      "expected": {
+        "valid": false,
+        "reason": "malformed_header"
+      }
+    },
+    {
+      "name": "missing-signature",
+      "secrets": ["wbhsec_test_ONLY_not_a_real_secret_000000000000001"],
+      "body": "{\"data\":{\"type\":\"event\",\"id\":\"evt_01M5CJXHG0041061050R3GG28A\",\"attributes\":{\"name\":\"inquiry.completed\"}}}",
+      "header": "t=1792497600",
+      "now": 1792497600,
+      "expected": {
+        "valid": false,
+        "reason": "malformed_header"
+      }
+    },
+    {
+      "name": "elements-reversed",
+      "secrets": ["wbhsec_test_ONLY_not_a_real_secret_000000000000001"],
+      "body": "{\"data\":{\"type\":\"event\",\"id\":\"evt_01M5CJXHG0041061050R3GG28A\",\"attributes\":{\"name\":\"inquiry.completed\"}}}",
+      "header": "v1=f587c9b9ce4808782b55e3df7f7cb6ec2697342bff845bd51cf8fb613ce45637,t=1792497600",
+      "now": 1792497600,
+      "expected": {
+        "valid": false,
+        "reason": "malformed_header"
+      }
+    },
+    {
+      "name": "non-numeric-timestamp",
+      "secrets": ["wbhsec_test_ONLY_not_a_real_secret_000000000000001"],
+      "body": "{\"data\":{\"type\":\"event\",\"id\":\"evt_01M5CJXHG0041061050R3GG28A\",\"attributes\":{\"name\":\"inquiry.completed\"}}}",
+      "header": "t=17924976OO,v1=f587c9b9ce4808782b55e3df7f7cb6ec2697342bff845bd51cf8fb613ce45637",
+      "now": 1792497600,
+      "expected": {
+        "valid": false,
+        "reason": "malformed_header"
+      }
+    },
+    {
+      "name": "leading-zero-timestamp",
+      "secrets": ["wbhsec_test_ONLY_not_a_real_secret_000000000000001"],
+      "body": "{\"data\":{\"type\":\"event\",\"id\":\"evt_01M5CJXHG0041061050R3GG28A\",\"attributes\":{\"name\":\"inquiry.completed\"}}}",
+      "header": "t=01792497600,v1=f587c9b9ce4808782b55e3df7f7cb6ec2697342bff845bd51cf8fb613ce45637",
+      "now": 1792497600,
+      "expected": {
+        "valid": false,
+        "reason": "malformed_header"
+      }
+    },
+    {
+      "name": "short-signature",
+      "secrets": ["wbhsec_test_ONLY_not_a_real_secret_000000000000001"],
+      "body": "{\"data\":{\"type\":\"event\",\"id\":\"evt_01M5CJXHG0041061050R3GG28A\",\"attributes\":{\"name\":\"inquiry.completed\"}}}",
+      "header": "t=1792497600,v1=f587c9b9ce4808782b55e3df7f7cb6ec2697342bff845bd51cf8fb613ce456",
+      "now": 1792497600,
+      "expected": {
+        "valid": false,
+        "reason": "malformed_header"
+      }
+    },
+    {
+      "name": "unknown-scheme",
+      "secrets": ["wbhsec_test_ONLY_not_a_real_secret_000000000000001"],
+      "body": "{\"data\":{\"type\":\"event\",\"id\":\"evt_01M5CJXHG0041061050R3GG28A\",\"attributes\":{\"name\":\"inquiry.completed\"}}}",
+      "header": "t=1792497600,v0=f587c9b9ce4808782b55e3df7f7cb6ec2697342bff845bd51cf8fb613ce45637",
+      "now": 1792497600,
+      "expected": {
+        "valid": false,
+        "reason": "malformed_header"
+      }
+    },
+    {
+      "name": "comma-separated-signatures",
+      "secrets": ["wbhsec_test_ONLY_not_a_real_secret_000000000000001"],
+      "body": "{\"data\":{\"type\":\"event\",\"id\":\"evt_01M5CJXHG0041061050R3GG28A\",\"attributes\":{\"name\":\"inquiry.completed\"}}}",
+      "header": "t=1792497600,v1=f587c9b9ce4808782b55e3df7f7cb6ec2697342bff845bd51cf8fb613ce45637,v1=1eea5b5488a843a7f79bc94554203e9e0ea4a29a49baa738b7b772103ad7ca6c",
+      "now": 1792497600,
+      "expected": {
+        "valid": false,
+        "reason": "malformed_header"
+      }
+    },
+    {
+      "name": "surrounding-whitespace",
+      "secrets": ["wbhsec_test_ONLY_not_a_real_secret_000000000000001"],
+      "body": "{\"data\":{\"type\":\"event\",\"id\":\"evt_01M5CJXHG0041061050R3GG28A\",\"attributes\":{\"name\":\"inquiry.completed\"}}}",
+      "header": " t=1792497600,v1=f587c9b9ce4808782b55e3df7f7cb6ec2697342bff845bd51cf8fb613ce45637 ",
+      "now": 1792497600,
+      "expected": {
+        "valid": false,
+        "reason": "malformed_header"
+      }
+    },
+    {
+      "name": "dual-valid-with-new-secret",
+      "secrets": ["wbhsec_test_ONLY_not_a_real_secret_000000000000004"],
+      "body": "{\"data\":{\"type\":\"event\",\"id\":\"evt_01M5CKFVE0A1DPCWBWGY99VA5K\",\"attributes\":{\"name\":\"inquiry.approved\"}}}",
+      "header": "t=1792498200,v1=9ec004aa9c51e4132f94fabaf63b2fd1cd087329997e0d9b5a4b568ba5fd9f58 v1=b6abc1e5052ca7b11370f516f73bd4c927f1ff0d7f79a60b09ae786d082880bf",
+      "now": 1792498210,
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "name": "dual-valid-with-previous-secret",
+      "secrets": ["wbhsec_test_ONLY_not_a_real_secret_000000000000001"],
+      "body": "{\"data\":{\"type\":\"event\",\"id\":\"evt_01M5CKFVE0A1DPCWBWGY99VA5K\",\"attributes\":{\"name\":\"inquiry.approved\"}}}",
+      "header": "t=1792498200,v1=9ec004aa9c51e4132f94fabaf63b2fd1cd087329997e0d9b5a4b568ba5fd9f58 v1=b6abc1e5052ca7b11370f516f73bd4c927f1ff0d7f79a60b09ae786d082880bf",
+      "now": 1792498210,
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "name": "dual-valid-receiver-holds-both",
+      "secrets": [
+        "wbhsec_test_ONLY_not_a_real_secret_000000000000001",
+        "wbhsec_test_ONLY_not_a_real_secret_000000000000004"
+      ],
+      "body": "{\"data\":{\"type\":\"event\",\"id\":\"evt_01M5CKFVE0A1DPCWBWGY99VA5K\",\"attributes\":{\"name\":\"inquiry.approved\"}}}",
+      "header": "t=1792498200,v1=9ec004aa9c51e4132f94fabaf63b2fd1cd087329997e0d9b5a4b568ba5fd9f58 v1=b6abc1e5052ca7b11370f516f73bd4c927f1ff0d7f79a60b09ae786d082880bf",
+      "now": 1792498210,
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "name": "dual-valid-signatures-in-either-order",
+      "secrets": ["wbhsec_test_ONLY_not_a_real_secret_000000000000004"],
+      "body": "{\"data\":{\"type\":\"event\",\"id\":\"evt_01M5CKFVE0A1DPCWBWGY99VA5K\",\"attributes\":{\"name\":\"inquiry.approved\"}}}",
+      "header": "t=1792498200,v1=b6abc1e5052ca7b11370f516f73bd4c927f1ff0d7f79a60b09ae786d082880bf v1=9ec004aa9c51e4132f94fabaf63b2fd1cd087329997e0d9b5a4b568ba5fd9f58",
+      "now": 1792498210,
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "name": "dual-wrong-secret",
+      "secrets": ["wbhsec_test_ONLY_not_a_real_secret_000000000000003"],
+      "body": "{\"data\":{\"type\":\"event\",\"id\":\"evt_01M5CKFVE0A1DPCWBWGY99VA5K\",\"attributes\":{\"name\":\"inquiry.approved\"}}}",
+      "header": "t=1792498200,v1=9ec004aa9c51e4132f94fabaf63b2fd1cd087329997e0d9b5a4b568ba5fd9f58 v1=b6abc1e5052ca7b11370f516f73bd4c927f1ff0d7f79a60b09ae786d082880bf",
+      "now": 1792498210,
+      "expected": {
+        "valid": false,
+        "reason": "no_matching_signature"
+      }
+    },
+    {
+      "name": "dual-tampered-body",
+      "secrets": [
+        "wbhsec_test_ONLY_not_a_real_secret_000000000000004",
+        "wbhsec_test_ONLY_not_a_real_secret_000000000000001"
+      ],
+      "body": "{\"data\":{\"type\":\"event\",\"id\":\"evt_01M5CKFVE0A1DPCWBWGY99VA5K\",\"attributes\":{\"name\":\"inquiry.declined\"}}}",
+      "header": "t=1792498200,v1=9ec004aa9c51e4132f94fabaf63b2fd1cd087329997e0d9b5a4b568ba5fd9f58 v1=b6abc1e5052ca7b11370f516f73bd4c927f1ff0d7f79a60b09ae786d082880bf",
+      "now": 1792498210,
+      "expected": {
+        "valid": false,
+        "reason": "no_matching_signature"
+      }
+    },
+    {
+      "name": "dual-too-old",
+      "secrets": ["wbhsec_test_ONLY_not_a_real_secret_000000000000004"],
+      "body": "{\"data\":{\"type\":\"event\",\"id\":\"evt_01M5CKFVE0A1DPCWBWGY99VA5K\",\"attributes\":{\"name\":\"inquiry.approved\"}}}",
+      "header": "t=1792498200,v1=9ec004aa9c51e4132f94fabaf63b2fd1cd087329997e0d9b5a4b568ba5fd9f58 v1=b6abc1e5052ca7b11370f516f73bd4c927f1ff0d7f79a60b09ae786d082880bf",
+      "now": 1792498501,
+      "expected": {
+        "valid": false,
+        "reason": "timestamp_outside_tolerance"
+      }
+    }
+  ]
+}

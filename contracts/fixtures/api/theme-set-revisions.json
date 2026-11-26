@@ -1,0 +1,90 @@
+{
+  "data": [
+    {
+      "type": "theme-set-revision",
+      "id": "theset_01M5CN00000000000000009A40:3",
+      "attributes": {
+        "revision": 3,
+        "name": "Storefront",
+        "styles": {
+          "settings": {
+            "use-dark-theme": true,
+            "preferred-theme-variant": "light"
+          },
+          "light": {
+            "palette": {
+              "primary": "#1f4fd1",
+              "primary-hover": "#1a43b3",
+              "on-primary": "#ffffff",
+              "danger": "#b42318",
+              "danger-hover": "#9a1e14",
+              "surface": "#ffffff",
+              "canvas": "#f6f7f9",
+              "ink": "#14171f",
+              "ink-muted": "#4b5262",
+              "line": "#d5d9e0",
+              "control": "#6b7280",
+              "focus": "#1f4fd1"
+            }
+          },
+          "dark": {
+            "palette": {
+              "primary": "#8fb0ff",
+              "primary-hover": "#a8c1ff",
+              "on-primary": "#0b1020",
+              "surface": "#14171f",
+              "canvas": "#0e1016",
+              "ink": "#f3f4f6",
+              "ink-muted": "#c3c8d2"
+            }
+          },
+          "shape": {
+            "radius": 8
+          },
+          "typography": {
+            "font": {
+              "kind": "uploaded",
+              "asset-id": "tsa_01M5CN00000000000000009A43"
+            }
+          },
+          "branding": {
+            "logo": {
+              "asset-id": "tsa_01M5CN00000000000000009A42",
+              "alt-key": "brand.logo.alt",
+              "decorative": false
+            },
+            "logo-placement": "header"
+          }
+        },
+        "creator": {
+          "type": "user",
+          "id": "usr_01M5CJXHG03PHEQZPRWAH2RXM5"
+        },
+        "restored-from": 1,
+        "created-at": "2026-10-21T09:30:00.000Z"
+      }
+    },
+    {
+      "type": "theme-set-revision",
+      "id": "theset_01M5CN00000000000000009A40:2",
+      "attributes": {
+        "revision": 2,
+        "name": "Storefront",
+        "styles": {
+          "shape": {
+            "radius": 4
+          }
+        },
+        "creator": {
+          "type": "api-key",
+          "id": "key_01M5CN00000000000000009A44"
+        },
+        "restored-from": null,
+        "created-at": "2026-10-20T15:00:00.000Z"
+      }
+    }
+  ],
+  "links": {
+    "next": "/api/v1/theme-sets/theset_01M5CN00000000000000009A40/revisions?page%5Bbefore%5D=2"
+  }
+}

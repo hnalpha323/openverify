@@ -1,0 +1,615 @@
+{
+  "schema_version": 1,
+  "generator": "services/vision/tools/synthetic_quebec.py",
+  "synthetic": "Invented values only: a fictional holder on a SPECIMEN card printed in a Quebec licence's layout; no jurisdiction issued it and no real person or card is in it.",
+  "description": "OCR lines of the synthetic Quebec-format front (text, confidence, box [x, y, width, height] in rectified pixels at 12 px/mm) and the fields parseViz must read from them.",
+  "cases": [
+    {
+      "id": "printed",
+      "description": "Every line as printed, the tiny field numbers included as their own lines.",
+      "now": "2026-11-22T00:00:00.000Z",
+      "lines": [
+        {
+          "text": "QUEBEC",
+          "confidence": 0.9414,
+          "box": [36, 29, 158, 32]
+        },
+        {
+          "text": "PERMIS DE CONDUIRE",
+          "confidence": 0.9941,
+          "box": [372, 43, 290, 19]
+        },
+        {
+          "text": "SPECIMEN",
+          "confidence": 0.8973,
+          "box": [792, 43, 139, 19]
+        },
+        {
+          "text": "4d",
+          "confidence": 0.9938,
+          "box": [372, 140, 14, 8]
+        },
+        {
+          "text": "T1234-567890-12",
+          "confidence": 0.9174,
+          "box": [408, 141, 279, 24]
+        },
+        {
+          "text": "1",
+          "confidence": 0.9308,
+          "box": [372, 200, 6, 8]
+        },
+        {
+          "text": "TREMBLAY",
+          "confidence": 0.9793,
+          "box": [408, 201, 173, 24]
+        },
+        {
+          "text": "2",
+          "confidence": 0.9291,
+          "box": [372, 255, 6, 8]
+        },
+        {
+          "text": "MARIE",
+          "confidence": 0.946,
+          "box": [408, 256, 100, 24]
+        },
+        {
+          "text": "8",
+          "confidence": 0.8833,
+          "box": [372, 315, 6, 8]
+        },
+        {
+          "text": "100 RUE FICTIVE",
+          "confidence": 0.9704,
+          "box": [408, 315, 184, 16]
+        },
+        {
+          "text": "MONTREAL QC H0H 0H0",
+          "confidence": 0.9446,
+          "box": [408, 351, 271, 17]
+        },
+        {
+          "text": "3",
+          "confidence": 0.9196,
+          "box": [372, 399, 6, 8]
+        },
+        {
+          "text": "DATE DE NAISSANCE (A-M-J): 1990-02-14",
+          "confidence": 0.9746,
+          "box": [408, 396, 419, 19]
+        },
+        {
+          "text": "4a",
+          "confidence": 0.9164,
+          "box": [372, 442, 13, 8]
+        },
+        {
+          "text": "DELIVRE LE 2021-03-15",
+          "confidence": 0.9344,
+          "box": [408, 441, 243, 15]
+        },
+        {
+          "text": "4b",
+          "confidence": 0.8961,
+          "box": [372, 485, 13, 8]
+        },
+        {
+          "text": "EXPIRE LE 2029-02-14",
+          "confidence": 0.9284,
+          "box": [408, 485, 228, 15]
+        },
+        {
+          "text": "9",
+          "confidence": 0.9044,
+          "box": [372, 531, 6, 8]
+        },
+        {
+          "text": "CLASSE(S): 5",
+          "confidence": 0.9115,
+          "box": [408, 528, 129, 19]
+        },
+        {
+          "text": "15",
+          "confidence": 0.97,
+          "box": [624, 531, 12, 8]
+        },
+        {
+          "text": "SEXE: F",
+          "confidence": 0.9136,
+          "box": [660, 530, 76, 15]
+        },
+        {
+          "text": "16",
+          "confidence": 0.9382,
+          "box": [780, 531, 12, 8]
+        },
+        {
+          "text": "TAILLE (CM): 165",
+          "confidence": 0.9977,
+          "box": [816, 527, 159, 18]
+        },
+        {
+          "text": "SPECIMEN - OPENVERIFY SYNTHETIC TEST CARD",
+          "confidence": 0.9954,
+          "box": [36, 595, 506, 15]
+        }
+      ],
+      "expected": {
+        "identification-number": {
+          "value": "T123456789012",
+          "via": "pattern"
+        },
+        "name-last": {
+          "value": "TREMBLAY",
+          "via": "layout"
+        },
+        "name-first": {
+          "value": "MARIE",
+          "via": "layout"
+        },
+        "birthdate": {
+          "value": "1990-02-14",
+          "via": "label"
+        },
+        "issue-date": {
+          "value": "2021-03-15",
+          "via": "label"
+        },
+        "expiration-date": {
+          "value": "2029-02-14",
+          "via": "label"
+        },
+        "sex": {
+          "value": "F",
+          "via": "label"
+        }
+      },
+      "absent": []
+    },
+    {
+      "id": "phone-ocr",
+      "description": "As the live OCR read a phone capture: no field numbers, the birth date's colon glued to a value with a misread month digit, the issue label glued to its date.",
+      "now": "2026-11-22T00:00:00.000Z",
+      "lines": [
+        {
+          "text": "QUEBEC",
+          "confidence": 0.9114,
+          "box": [36, 29, 158, 32]
+        },
+        {
+          "text": "PERMIS DE CONDUIRE",
+          "confidence": 0.9158,
+          "box": [372, 43, 290, 19]
+        },
+        {
+          "text": "SPECIMEN",
+          "confidence": 0.9777,
+          "box": [792, 43, 139, 19]
+        },
+        {
+          "text": "T1234-567890-12",
+          "confidence": 0.891,
+          "box": [408, 141, 279, 24]
+        },
+        {
+          "text": "TREMBLAY",
+          "confidence": 0.952,
+          "box": [408, 201, 173, 24]
+        },
+        {
+          "text": "MARIE",
+          "confidence": 0.9674,
+          "box": [408, 256, 100, 24]
+        },
+        {
+          "text": "100 RUE FICTIVE",
+          "confidence": 0.9025,
+          "box": [408, 315, 184, 16]
+        },
+        {
+          "text": "MONTREAL QC H0H 0H0",
+          "confidence": 0.8866,
+          "box": [408, 351, 271, 17]
+        },
+        {
+          "text": "DATE DE NAISSANCE (A-M-J):1990-0Z-14",
+          "confidence": 0.913,
+          "box": [408, 396, 419, 19]
+        },
+        {
+          "text": "DELIVRE LE2021-03-15",
+          "confidence": 0.9589,
+          "box": [408, 441, 243, 15]
+        },
+        {
+          "text": "EXPIRE LE 2029-02-14",
+          "confidence": 0.9475,
+          "box": [408, 485, 228, 15]
+        },
+        {
+          "text": "CLASSE(S):5",
+          "confidence": 0.898,
+          "box": [408, 528, 129, 19]
+        },
+        {
+          "text": "SEXE:F",
+          "confidence": 0.9319,
+          "box": [660, 530, 76, 15]
+        },
+        {
+          "text": "TAILLE (CM):165",
+          "confidence": 0.9603,
+          "box": [816, 527, 159, 18]
+        },
+        {
+          "text": "SPECIMEN - OPENVERIFY SYNTHETIC TEST CARD",
+          "confidence": 0.9307,
+          "box": [36, 595, 506, 15]
+        }
+      ],
+      "expected": {
+        "identification-number": {
+          "value": "T123456789012",
+          "via": "pattern"
+        },
+        "name-last": {
+          "value": "TREMBLAY",
+          "via": "layout"
+        },
+        "name-first": {
+          "value": "MARIE",
+          "via": "layout"
+        },
+        "birthdate": {
+          "value": "1990-02-14",
+          "via": "label"
+        },
+        "issue-date": {
+          "value": "2021-03-15",
+          "via": "label"
+        },
+        "expiration-date": {
+          "value": "2029-02-14",
+          "via": "label"
+        },
+        "sex": {
+          "value": "F",
+          "via": "label"
+        }
+      },
+      "absent": []
+    },
+    {
+      "id": "labels-unread",
+      "description": "The issue and expiry labels misread: their dates are found by pattern inside the lines (a past date of the last 15 years is the issue date, a future one the expiry).",
+      "now": "2026-11-22T00:00:00.000Z",
+      "lines": [
+        {
+          "text": "QUEBEC",
+          "confidence": 0.8903,
+          "box": [36, 29, 158, 32]
+        },
+        {
+          "text": "PERMIS DE CONDUIRE",
+          "confidence": 0.9084,
+          "box": [372, 43, 290, 19]
+        },
+        {
+          "text": "SPECIMEN",
+          "confidence": 0.9762,
+          "box": [792, 43, 139, 19]
+        },
+        {
+          "text": "T1234-567890-12",
+          "confidence": 0.9499,
+          "box": [408, 141, 279, 24]
+        },
+        {
+          "text": "TREMBLAY",
+          "confidence": 0.8913,
+          "box": [408, 201, 173, 24]
+        },
+        {
+          "text": "MARIE",
+          "confidence": 0.932,
+          "box": [408, 256, 100, 24]
+        },
+        {
+          "text": "100 RUE FICTIVE",
+          "confidence": 0.9375,
+          "box": [408, 315, 184, 16]
+        },
+        {
+          "text": "MONTREAL QC H0H 0H0",
+          "confidence": 0.8992,
+          "box": [408, 351, 271, 17]
+        },
+        {
+          "text": "DATE DE NAISSANCE (A-M-J):1990-0Z-14",
+          "confidence": 0.9681,
+          "box": [408, 396, 419, 19]
+        },
+        {
+          "text": "DELIVRF LF2021-03-15",
+          "confidence": 0.8936,
+          "box": [408, 441, 243, 15]
+        },
+        {
+          "text": "FXPIRF L 2029-02-14",
+          "confidence": 0.9269,
+          "box": [408, 485, 228, 15]
+        },
+        {
+          "text": "CLASSE(S):5",
+          "confidence": 0.942,
+          "box": [408, 528, 129, 19]
+        },
+        {
+          "text": "SEXE:F",
+          "confidence": 0.9317,
+          "box": [660, 530, 76, 15]
+        },
+        {
+          "text": "TAILLE (CM):165",
+          "confidence": 0.9504,
+          "box": [816, 527, 159, 18]
+        },
+        {
+          "text": "SPECIMEN - OPENVERIFY SYNTHETIC TEST CARD",
+          "confidence": 0.9685,
+          "box": [36, 595, 506, 15]
+        }
+      ],
+      "expected": {
+        "identification-number": {
+          "value": "T123456789012",
+          "via": "pattern"
+        },
+        "name-last": {
+          "value": "TREMBLAY",
+          "via": "layout"
+        },
+        "name-first": {
+          "value": "MARIE",
+          "via": "layout"
+        },
+        "birthdate": {
+          "value": "1990-02-14",
+          "via": "label"
+        },
+        "issue-date": {
+          "value": "2021-03-15",
+          "via": "pattern"
+        },
+        "expiration-date": {
+          "value": "2029-02-14",
+          "via": "pattern"
+        },
+        "sex": {
+          "value": "F",
+          "via": "label"
+        }
+      },
+      "absent": []
+    },
+    {
+      "id": "number-confusion",
+      "description": "The licence number with a 0 read as O inside its digits.",
+      "now": "2026-11-22T00:00:00.000Z",
+      "lines": [
+        {
+          "text": "QUEBEC",
+          "confidence": 0.9932,
+          "box": [36, 29, 158, 32]
+        },
+        {
+          "text": "PERMIS DE CONDUIRE",
+          "confidence": 0.9414,
+          "box": [372, 43, 290, 19]
+        },
+        {
+          "text": "SPECIMEN",
+          "confidence": 0.9971,
+          "box": [792, 43, 139, 19]
+        },
+        {
+          "text": "T1234-56789O-12",
+          "confidence": 0.8897,
+          "box": [408, 141, 279, 24]
+        },
+        {
+          "text": "TREMBLAY",
+          "confidence": 0.9529,
+          "box": [408, 201, 173, 24]
+        },
+        {
+          "text": "MARIE",
+          "confidence": 0.9252,
+          "box": [408, 256, 100, 24]
+        },
+        {
+          "text": "100 RUE FICTIVE",
+          "confidence": 0.9762,
+          "box": [408, 315, 184, 16]
+        },
+        {
+          "text": "MONTREAL QC H0H 0H0",
+          "confidence": 0.9009,
+          "box": [408, 351, 271, 17]
+        },
+        {
+          "text": "DATE DE NAISSANCE (A-M-J):1990-0Z-14",
+          "confidence": 0.9846,
+          "box": [408, 396, 419, 19]
+        },
+        {
+          "text": "DELIVRE LE2021-03-15",
+          "confidence": 0.9453,
+          "box": [408, 441, 243, 15]
+        },
+        {
+          "text": "EXPIRE LE 2029-02-14",
+          "confidence": 0.9883,
+          "box": [408, 485, 228, 15]
+        },
+        {
+          "text": "CLASSE(S):5",
+          "confidence": 0.9373,
+          "box": [408, 528, 129, 19]
+        },
+        {
+          "text": "SEXE:F",
+          "confidence": 0.9317,
+          "box": [660, 530, 76, 15]
+        },
+        {
+          "text": "TAILLE (CM):165",
+          "confidence": 0.9747,
+          "box": [816, 527, 159, 18]
+        },
+        {
+          "text": "SPECIMEN - OPENVERIFY SYNTHETIC TEST CARD",
+          "confidence": 0.9981,
+          "box": [36, 595, 506, 15]
+        }
+      ],
+      "expected": {
+        "identification-number": {
+          "value": "T123456789012",
+          "via": "pattern"
+        },
+        "name-last": {
+          "value": "TREMBLAY",
+          "via": "layout"
+        },
+        "name-first": {
+          "value": "MARIE",
+          "via": "layout"
+        },
+        "birthdate": {
+          "value": "1990-02-14",
+          "via": "label"
+        },
+        "issue-date": {
+          "value": "2021-03-15",
+          "via": "label"
+        },
+        "expiration-date": {
+          "value": "2029-02-14",
+          "via": "label"
+        },
+        "sex": {
+          "value": "F",
+          "via": "label"
+        }
+      },
+      "absent": []
+    },
+    {
+      "id": "not-quebec",
+      "description": "The same layout under another issuer and number: the Quebec rule must not read the two unlabeled name lines.",
+      "now": "2026-11-22T00:00:00.000Z",
+      "lines": [
+        {
+          "text": "UTOPIA",
+          "confidence": 0.9766,
+          "box": [36, 29, 143, 30]
+        },
+        {
+          "text": "PERMIS DE CONDUIRE",
+          "confidence": 0.977,
+          "box": [372, 43, 290, 19]
+        },
+        {
+          "text": "SPECIMEN",
+          "confidence": 0.9418,
+          "box": [792, 43, 139, 19]
+        },
+        {
+          "text": "UT4829163",
+          "confidence": 0.9143,
+          "box": [408, 141, 184, 24]
+        },
+        {
+          "text": "TREMBLAY",
+          "confidence": 0.8865,
+          "box": [408, 201, 173, 24]
+        },
+        {
+          "text": "MARIE",
+          "confidence": 0.926,
+          "box": [408, 256, 100, 24]
+        },
+        {
+          "text": "100 RUE FICTIVE",
+          "confidence": 0.929,
+          "box": [408, 315, 184, 16]
+        },
+        {
+          "text": "MONTREAL QC H0H 0H0",
+          "confidence": 0.8854,
+          "box": [408, 351, 271, 17]
+        },
+        {
+          "text": "DATE DE NAISSANCE (A-M-J):1990-0Z-14",
+          "confidence": 0.8859,
+          "box": [408, 396, 419, 19]
+        },
+        {
+          "text": "DELIVRE LE2021-03-15",
+          "confidence": 0.9999,
+          "box": [408, 441, 243, 15]
+        },
+        {
+          "text": "EXPIRE LE 2029-02-14",
+          "confidence": 0.9583,
+          "box": [408, 485, 228, 15]
+        },
+        {
+          "text": "CLASSE(S):5",
+          "confidence": 0.9081,
+          "box": [408, 528, 129, 19]
+        },
+        {
+          "text": "SEXE:F",
+          "confidence": 0.9322,
+          "box": [660, 530, 76, 15]
+        },
+        {
+          "text": "TAILLE (CM):165",
+          "confidence": 0.9969,
+          "box": [816, 527, 159, 18]
+        },
+        {
+          "text": "SPECIMEN - OPENVERIFY SYNTHETIC TEST CARD",
+          "confidence": 0.9877,
+          "box": [36, 595, 506, 15]
+        }
+      ],
+      "expected": {
+        "identification-number": {
+          "value": "UT4829163",
+          "via": "pattern"
+        },
+        "birthdate": {
+          "value": "1990-02-14",
+          "via": "label"
+        },
+        "issue-date": {
+          "value": "2021-03-15",
+          "via": "label"
+        },
+        "expiration-date": {
+          "value": "2029-02-14",
+          "via": "label"
+        },
+        "sex": {
+          "value": "F",
+          "via": "label"
+        }
+      },
+      "absent": ["name-first", "name-last"]
+    }
+  ]
+}

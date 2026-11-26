@@ -1,0 +1,45 @@
+{
+  "name": "@openverify/watchlist",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Sanctions and PEP lists for reports (plan C77, C78): the normalised record and its hashes, streaming list parsers, the ZIP reader, the diff, PEP positions, and the screening matcher on the C58 matching library",
+  "type": "module",
+  "exports": {
+    ".": {
+      "@openverify/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./testing": {
+      "@openverify/source": "./src/testing/index.ts",
+      "types": "./dist/testing/index.d.ts",
+      "default": "./dist/testing/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --coverage",
+    "build:variant-groups": "node --experimental-transform-types --no-warnings --conditions=@openverify/source --import ../checks/scripts/register-ts.mjs scripts/build-variant-groups.mjs",
+    "benchmark:test": "vitest run --config scripts/benchmark-vitest.config.mjs",
+    "benchmark:typecheck": "tsc -p scripts/benchmark-tsconfig.json",
+    "benchmark:quality": "node --max-old-space-size=12288 --experimental-transform-types --no-warnings --conditions=@openverify/source --import ../checks/scripts/register-ts.mjs scripts/benchmark-quality.mjs",
+    "benchmark:performance": "node --max-old-space-size=12288 --experimental-transform-types --no-warnings --conditions=@openverify/source --import ../checks/scripts/register-ts.mjs scripts/benchmark-performance.mjs",
+    "benchmark:render": "node --experimental-transform-types --no-warnings --conditions=@openverify/source --import ../checks/scripts/register-ts.mjs scripts/benchmark-render.mjs"
+  },
+  "devDependencies": {
+    "@openverify/config": "workspace:*",
+    "@types/node": "catalog:",
+    "@vitest/coverage-v8": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  },
+  "dependencies": {
+    "@openverify/checks": "workspace:*",
+    "@openverify/core": "workspace:*",
+    "any-ascii": "0.3.3",
+    "saxes": "6.0.0",
+    "zod": "^4.6.7"
+  }
+}

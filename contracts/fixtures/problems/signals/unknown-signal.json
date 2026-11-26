@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The signal configuration names a signal that does not exist.",
+  "instance": "/api/v1/inquiry-template-versions/itmplv_01M5CK3190XEVBM5ZXA76E1JSN/publish",
+  "requestId": "00000000-0000-4000-8000-000000000700",
+  "code": "unknown_signal",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/signal-config/collect/0",
+      "detail": "is not a registered signal"
+    }
+  ]
+}

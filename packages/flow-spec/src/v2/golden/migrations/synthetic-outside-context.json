@@ -1,0 +1,287 @@
+{
+  "source": "synthetic: conditions on paths outside v1’s context, a var default, loose equality and a null operand",
+  "flow": {
+    "metadata": {
+      "specVersion": 2,
+      "id": "outside",
+      "version": 1,
+      "name": "Synthetic outside"
+    },
+    "entry": "consent",
+    "steps": [
+      {
+        "id": "consent",
+        "type": "consent",
+        "textKeys": ["consent.biometric"],
+        "required": true
+      },
+      {
+        "id": "id_card",
+        "type": "government_id",
+        "sides": "front",
+        "maxAttempts": 2,
+        "captureMethods": ["camera"]
+      },
+      {
+        "id": "face",
+        "type": "selfie",
+        "poses": ["center"],
+        "liveness": "passive",
+        "maxAttempts": 2
+      },
+      {
+        "id": "proof",
+        "type": "document",
+        "documentTypes": ["utility_bill"],
+        "captureMethods": ["upload"]
+      },
+      {
+        "id": "done",
+        "type": "completion",
+        "messageKey": "flow.completion"
+      },
+      {
+        "id": "consent-routes",
+        "type": "branch",
+        "routes": [
+          {
+            "key": "r1",
+            "label": "Transition 1",
+            "condition": {
+              "!!": [false]
+            },
+            "onNull": "else"
+          },
+          {
+            "key": "r2",
+            "label": "Transition 2",
+            "condition": {
+              "!!": [true]
+            },
+            "onNull": "else"
+          }
+        ]
+      },
+      {
+        "id": "id_card-routes",
+        "type": "branch",
+        "routes": [
+          {
+            "key": "r1",
+            "label": "Transition 3",
+            "condition": {
+              "==": [
+                {
+                  "var": "inquiry.status"
+                },
+                "completed"
+              ]
+            },
+            "onNull": "else"
+          },
+          {
+            "key": "r2",
+            "label": "Transition 4",
+            "condition": {
+              "!!": [true]
+            },
+            "onNull": "else"
+          },
+          {
+            "key": "r3",
+            "label": "Transition 5",
+            "condition": {
+              "==": [
+                {
+                  "var": "inquiry.status"
+                },
+                1
+              ]
+            },
+            "onNull": "else"
+          },
+          {
+            "key": "r4",
+            "label": "Transition 6",
+            "condition": {
+              "and": [
+                {
+                  "==": [
+                    {
+                      "var": "inquiry.status"
+                    },
+                    "pending"
+                  ]
+                },
+                null
+              ]
+            },
+            "onNull": "else"
+          }
+        ]
+      },
+      {
+        "id": "face-routes",
+        "type": "branch",
+        "routes": [
+          {
+            "key": "r1",
+            "label": "Transition 7",
+            "condition": {
+              "!!": [true]
+            },
+            "onNull": "else"
+          }
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "consent",
+        "port": "next",
+        "to": "consent-routes"
+      },
+      {
+        "id": "e2",
+        "from": "consent-routes",
+        "port": "route:r1",
+        "to": "proof"
+      },
+      {
+        "id": "e3",
+        "from": "consent-routes",
+        "port": "route:r2",
+        "to": "face"
+      },
+      {
+        "id": "e4",
+        "from": "consent-routes",
+        "port": "else",
+        "to": "id_card"
+      },
+      {
+        "id": "e5",
+        "from": "id_card",
+        "port": "next",
+        "to": "id_card-routes"
+      },
+      {
+        "id": "e6",
+        "from": "id_card-routes",
+        "port": "route:r1",
+        "to": "done"
+      },
+      {
+        "id": "e7",
+        "from": "id_card-routes",
+        "port": "route:r2",
+        "to": "proof"
+      },
+      {
+        "id": "e8",
+        "from": "id_card-routes",
+        "port": "route:r3",
+        "to": "face"
+      },
+      {
+        "id": "e9",
+        "from": "id_card-routes",
+        "port": "route:r4",
+        "to": "face"
+      },
+      {
+        "id": "e10",
+        "from": "id_card-routes",
+        "port": "else",
+        "to": "face"
+      },
+      {
+        "id": "e11",
+        "from": "face",
+        "port": "next",
+        "to": "face-routes"
+      },
+      {
+        "id": "e12",
+        "from": "face-routes",
+        "port": "route:r1",
+        "to": "done"
+      },
+      {
+        "id": "e13",
+        "from": "face-routes",
+        "port": "else",
+        "to": "proof"
+      },
+      {
+        "id": "e14",
+        "from": "proof",
+        "port": "next",
+        "to": "done"
+      }
+    ]
+  },
+  "notes": [
+    {
+      "pointer": "/transitions/0/condition/==/0/var",
+      "code": "path_outside_v1_context",
+      "detail": "v1 read this path as its fallback; the migrated condition holds that literal"
+    },
+    {
+      "pointer": "/transitions/0/condition",
+      "code": "condition_folded",
+      "detail": "This condition reads no v1 fact, so it is its v1 answer"
+    },
+    {
+      "pointer": "/transitions/1/condition/!/0/var",
+      "code": "path_outside_v1_context",
+      "detail": "v1 read this path as its fallback; the migrated condition holds that literal"
+    },
+    {
+      "pointer": "/transitions/1/condition",
+      "code": "condition_folded",
+      "detail": "This condition reads no v1 fact, so it is its v1 answer"
+    },
+    {
+      "pointer": "/transitions/2/condition/==/0/var",
+      "code": "var_default_dropped",
+      "detail": "inquiry.status is never missing, so v1 never read the default"
+    },
+    {
+      "pointer": "/transitions/3/condition/==/0/var",
+      "code": "path_outside_v1_context",
+      "detail": "v1 read this path as its fallback; the migrated condition holds that literal"
+    },
+    {
+      "pointer": "/transitions/3/condition",
+      "code": "condition_folded",
+      "detail": "This condition reads no v1 fact, so it is its v1 answer"
+    },
+    {
+      "pointer": "/transitions/4/condition/==",
+      "code": "loose_equality",
+      "detail": "\"==\" compares strictly in v2; v1 compared loosely"
+    },
+    {
+      "pointer": "/transitions/5/condition/and/1/var",
+      "code": "path_outside_v1_context",
+      "detail": "v1 read this path as its fallback; the migrated condition holds that literal"
+    },
+    {
+      "pointer": "/transitions/5/condition/and/1",
+      "code": "null_operand",
+      "detail": "A null under \"and\" is unknown in v2, where v1 read it as false"
+    },
+    {
+      "pointer": "/transitions/6/condition/!=/0/var",
+      "code": "path_outside_v1_context",
+      "detail": "v1 read this path as its fallback; the migrated condition holds that literal"
+    },
+    {
+      "pointer": "/transitions/6/condition",
+      "code": "condition_folded",
+      "detail": "This condition reads no v1 fact, so it is its v1 answer"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{{- /*
+C263 (Workflow 11C Stage 2, chart-11c): vision. The image's own command serves port 8000
+(vision.port names it). It mounts the models claim read-only at /models and reads
+/models/<manifest digest> (OPENVERIFY_VISION_MODELS_DIR); it never fetches, in any mode: the
+models-fetch hook Job does, in its own pod (C263.5), and vision has no egress (C264.2).
+*/ -}}
+{{- include "openverify.checks" . -}}
+{{- $v := .Values.vision -}}
+{{- $ports := printf "- name: http\n  containerPort: %v\n  protocol: TCP" $v.port -}}
+{{- $probes := include "openverify.httpProbes" (dict "path" "/health" "startupFailures" 36) -}}
+{{- $volumes := printf "- name: models\n  persistentVolumeClaim:\n    claimName: %s\n    readOnly: true" (include "openverify.modelsClaim" .) -}}
+{{- $mounts := "- name: models\n  mountPath: /models\n  readOnly: true" -}}
+{{ include "openverify.deployment" (dict "root" . "component" "vision" "process" "vision" "c" $v "ports" $ports "probes" $probes "volumes" $volumes "mounts" $mounts "hpa" false) }}

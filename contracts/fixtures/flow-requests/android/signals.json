@@ -1,0 +1,11 @@
+{
+  "platform": "android",
+  "collector-version": 1,
+  "screen": "consent",
+  "sequence": 0,
+  "android-integrity": {
+    "debugger-connected": false,
+    "app-debuggable": false
+  },
+  "device-class": "smartphone"
+}

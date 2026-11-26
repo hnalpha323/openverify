@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The template uses a parameter it does not declare.",
+  "instance": "/api/v1/graph-query-template-versions/grqtv_01M5CK3190XEVBM5ZXA76E1JSN/publish",
+  "requestId": "00000000-0000-4000-8000-000000001001",
+  "code": "graph_parameter_unbound",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/config/start/0/value",
+      "detail": "is not declared"
+    }
+  ]
+}

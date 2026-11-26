@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "The connection is not active.",
+  "instance": "/api/v1/connect/connections/cxn_01M5CN0000000000000011A100/deactivate",
+  "requestId": "00000000-0000-4000-8000-00000011a003",
+  "code": "connection_not_active"
+}

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Spanish texts of strings_document.xml (C60, C64.2). -->
+<resources>
+    <string name="openverify_document_title">Sube un documento</string>
+    <string name="openverify_document_intro">Sube un documento que muestre tu nombre completo y tu dirección.</string>
+    <string name="openverify_document_accepted">Puedes subir uno de estos:</string>
+    <plurals name="openverify_document_type_utility_bill">
+        <item quantity="one">Una factura de servicios con fecha del último %1$d día</item>
+        <item quantity="other">Una factura de servicios con fecha de los últimos %1$d días</item>
+    </plurals>
+    <plurals name="openverify_document_type_bank_statement">
+        <item quantity="one">Un extracto bancario con fecha del último %1$d día</item>
+        <item quantity="other">Un extracto bancario con fecha de los últimos %1$d días</item>
+    </plurals>
+    <plurals name="openverify_document_type_pay_stub">
+        <item quantity="one">Una nómina con fecha del último %1$d día</item>
+        <item quantity="other">Una nómina con fecha de los últimos %1$d días</item>
+    </plurals>
+    <string name="openverify_document_type_lease">Un contrato de alquiler que siga vigente</string>
+    <string name="openverify_document_type_tax_document">Un documento fiscal del último ejercicio fiscal</string>
+    <string name="openverify_document_name_utility_bill">Una factura de servicios</string>
+    <string name="openverify_document_name_bank_statement">Un extracto bancario</string>
+    <string name="openverify_document_name_lease">Un contrato de alquiler</string>
+    <string name="openverify_document_name_pay_stub">Una nómina</string>
+    <string name="openverify_document_name_tax_document">Un documento fiscal</string>
+    <string name="openverify_document_formats">Súbelo en uno de estos formatos: %1$s, de hasta %2$d MB.</string>
+    <plurals name="openverify_document_pages">
+        <item quantity="one">Un PDF solo puede tener %1$d página.</item>
+        <item quantity="other">Un PDF puede tener hasta %1$d páginas.</item>
+    </plurals>
+
+    <string name="openverify_document_choose">Elegir un archivo</string>
+    <string name="openverify_document_photo">Tomar una foto</string>
+    <string name="openverify_document_unavailable">Este dispositivo no puede aportar un documento aquí. Usa otro dispositivo para continuar.</string>
+    <string name="openverify_document_picked">Tu archivo: %1$s, %2$s</string>
+    <string name="openverify_document_unnamed">un archivo sin nombre</string>
+    <string name="openverify_decimal_separator">,</string>
+    <string name="openverify_document_picked_hint">Comprueba que es el documento correcto y súbelo.</string>
+    <string name="openverify_document_upload">Subir este archivo</string>
+    <string name="openverify_document_choose_another">Elegir otro archivo</string>
+    <string name="openverify_document_uploading">Subiendo tu documento…</string>
+
+    <string name="openverify_document_error_empty">Este archivo está vacío. Elige otro archivo.</string>
+    <string name="openverify_document_error_too_large">Este archivo ocupa más de 10 MB. Elige un archivo más pequeño, como una foto del documento o un PDF con menos páginas.</string>
+    <string name="openverify_document_error_unsupported">No podemos usar este tipo de archivo. Elige un archivo en uno de los formatos de arriba.</string>
+    <string name="openverify_document_error_unreadable">No pudimos leer este archivo. Elige otro archivo.</string>
+
+    <string name="openverify_document_capture_title">Fotografía tu documento</string>
+    <string name="openverify_document_capture_instruction">Encaja toda la página en el marco, con buena luz y sin nada que la tape.</string>
+    <string name="openverify_document_capture_photo">Tu foto del documento</string>
+    <string name="openverify_document_capture_back">Volver al paso del documento</string>
+
+    <!-- C202.3, C202.4: the capture guidance (machine-drafted). -->
+    <string name="openverify_document_guidance_move_closer">Acércate más</string>
+    <string name="openverify_document_guidance_hold_still">No te muevas</string>
+    <string name="openverify_document_guidance_tilt_away">Inclínalo para evitar el reflejo de la luz</string>
+    <string name="openverify_document_guidance_more_light">Busca más luz</string>
+    <string name="openverify_document_guidance_fit_card">Encuadra la tarjeta dentro del marco</string>
+    <string name="openverify_document_guidance_fit_page">Encuadra la página dentro del marco</string>
+    <string name="openverify_document_guidance_show_mrz">Muestra las líneas de código de la parte inferior de la página</string>
+    <string name="openverify_document_guidance_auto">La foto se toma sola cuando tu documento se ve con claridad. También puedes tomarla tú en cualquier momento.</string>
+</resources>

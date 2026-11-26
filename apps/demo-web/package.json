@@ -1,0 +1,36 @@
+{
+  "name": "@openverify/demo-web",
+  "version": "0.0.0",
+  "private": true,
+  "description": "A sample customer site (plan C266.3): creates an inquiry through its own small server, embeds the flow and verifies a webhook; synthetic data only, never published",
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "start": "node src/server/main.ts",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p e2e",
+    "test": "vitest run --coverage",
+    "e2e": "vite build && pnpm --filter @openverify/e2e exec playwright test --config ../apps/demo-web/e2e/playwright.config.ts --tsconfig ../apps/demo-web/e2e/tsconfig.runtime.json"
+  },
+  "dependencies": {
+    "@openverify/js": "workspace:*",
+    "@openverify/node": "workspace:*",
+    "@openverify/react": "workspace:*",
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  },
+  "devDependencies": {
+    "@openverify/config": "workspace:*",
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/react": "^16.3.3",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vitejs/plugin-react": "catalog:",
+    "@vitest/coverage-v8": "catalog:",
+    "jsdom": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vitest": "catalog:"
+  }
+}

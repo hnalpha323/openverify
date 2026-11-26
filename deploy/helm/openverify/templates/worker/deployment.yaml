@@ -1,0 +1,22 @@
+{{- /*
+C263 (Workflow 11C Stage 2, chart-11c): the worker (node dist/worker.js), no Service and no port.
+Its probe runs node dist/worker-health.js (the heartbeat at most 30 s old, C250.2) with no shell; its
+grace period stays above the longest job lease (values.yaml says which); it scales by replicas, never
+by an HPA (C263.4). The operator's IP-reputation claim is mounted read-only (Workflow 7A). Only when
+worker.extraContainers is given (the operator's clamd: ClamAV is GPL-2.0 and never ships, OD-11C-5)
+does the pod gain those containers under the restricted context, worker.extraVolumes, and a shared
+clamd-socket emptyDir at /run/clamd, with OPENVERIFY_CLAMD_SOCKET=/run/clamd/clamd.sock.
+*/ -}}
+{{- include "openverify.checks" . -}}
+{{- $v := .Values.worker -}}
+{{- $probes := include "openverify.execProbes" (dict "command" (list "node" "dist/worker-health.js") "startupFailures" 30) -}}
+{{- $volumes := include "openverify.ipReputationVolume" (dict "root" .) | trim -}}
+{{- $mounts := include "openverify.ipReputationMount" (dict "root" .) | trim -}}
+{{- $sidecars := "" -}}
+{{- if $v.extraContainers -}}
+{{- $volumes = printf "%s\n- name: clamd-socket\n  emptyDir: {}" $volumes | trim -}}
+{{- with $v.extraVolumes }}{{ $volumes = printf "%s\n%s" $volumes (toYaml .) | trim }}{{ end -}}
+{{- $mounts = printf "%s\n- name: clamd-socket\n  mountPath: /run/clamd" $mounts | trim -}}
+{{- $sidecars = include "openverify.restrictedContainers" (dict "root" . "containers" $v.extraContainers) -}}
+{{- end -}}
+{{ include "openverify.deployment" (dict "root" . "component" "worker" "process" "worker" "c" $v "command" (list "node" "dist/worker.js") "probes" $probes "volumes" $volumes "mounts" $mounts "sidecars" $sidecars "hpa" false) }}

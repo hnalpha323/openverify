@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The release and minifiedSmoke builds (C213.4, C215.2): https only, and only the system's certificate
+  authorities are trusted, never one the person added. The debug build overrides this file (src/debug)
+  for plain http to the development machine.
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

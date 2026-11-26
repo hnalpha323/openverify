@@ -1,0 +1,17 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The search cannot be run.",
+  "instance": "/api/v1/cases/search",
+  "requestId": "00000000-0000-4000-8000-000000009b71",
+  "code": "case_search_invalid",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/query/and/0/attribute",
+      "detail": "Cases cannot be searched by that attribute.",
+      "code": "search_attribute_unknown"
+    }
+  ]
+}

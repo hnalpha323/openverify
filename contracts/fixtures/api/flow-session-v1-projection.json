@@ -1,0 +1,81 @@
+{
+  "inquiry": {
+    "id": "inq_01M5CJXHG07XPHF3HRM6NREDH7",
+    "status": "pending"
+  },
+  "flow": {
+    "metadata": {
+      "specVersion": 1,
+      "id": "projection-branch",
+      "version": 1,
+      "name": "Projection: branch"
+    },
+    "steps": [
+      {
+        "id": "consent",
+        "type": "consent",
+        "textKeys": ["consent.biometric"],
+        "required": true
+      },
+      {
+        "id": "id_card",
+        "type": "government_id",
+        "sides": "front",
+        "maxAttempts": 1,
+        "captureMethods": ["camera"]
+      },
+      {
+        "id": "continue-1",
+        "type": "server-continuation"
+      }
+    ],
+    "transitions": []
+  },
+  "verifications": [
+    {
+      "type": "verification/government-id",
+      "id": "ver_01M5CJZC301G4JHXZQ3PZBYH3Q",
+      "attributes": {
+        "status": "failed",
+        "retry-hints": [
+          {
+            "name": "id_blur_detection",
+            "reasons": ["image_blurry"]
+          }
+        ],
+        "created-at": "2026-10-20T12:01:00.000Z",
+        "updated-at": "2026-10-20T12:01:30.000Z"
+      }
+    },
+    {
+      "type": "verification/government-id",
+      "id": "ver_01M5CK16P0D13FXHZSS4TCFBVH",
+      "attributes": {
+        "status": "initiated",
+        "retry-hints": [],
+        "created-at": "2026-10-20T12:02:00.000Z",
+        "updated-at": "2026-10-20T12:02:00.000Z"
+      }
+    }
+  ],
+  "consent": {
+    "accepted-at": "2026-10-20T12:00:30.000Z"
+  },
+  "environment": {
+    "kind": "sandbox"
+  },
+  "face-template-retention-days": 365,
+  "signals": {
+    "integrity": true,
+    "recognition": false,
+    "next-sequence": 0
+  },
+  "handoff": null,
+  "handoff-context": null,
+  "position": {
+    "step-id": "extra_details",
+    "state": "active",
+    "previous-step-id": "id_card"
+  },
+  "spec-version": 1
+}

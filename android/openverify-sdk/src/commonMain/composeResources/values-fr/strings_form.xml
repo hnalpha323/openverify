@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  French copy of values/strings_form.xml, machine-drafted by android-i18n (Workflow 10A, C199.1;
+  i18n/review-status.json): where the hosted web flow has the same English text, its
+  French words are used, so both clients say the same thing. Compose Multiplatform resources:
+  positional placeholders only, ' and " written as they are, no isolate or other bidi control
+  (ResourcesTest).
+-->
+<resources>
+    <string name="openverify_database_title">Saisissez vos informations</string>
+    <string name="openverify_database_intro">Nous comparons ces informations à des registres. Saisissez-les telles qu’elles figurent sur vos documents officiels.</string>
+    <string name="openverify_aamva_title">Saisissez les informations de votre permis de conduire ou de votre carte d’identité</string>
+    <string name="openverify_aamva_intro">Saisissez les informations exactement comme elles sont imprimées sur votre permis de conduire américain ou votre carte d’identité d’État.</string>
+    <string name="openverify_field_name_first">Prénom</string>
+    <string name="openverify_field_name_middle">Deuxième prénom</string>
+    <string name="openverify_field_name_last">Nom de famille</string>
+    <string name="openverify_field_birthdate">Date de naissance</string>
+    <string name="openverify_field_address_street_1">Adresse</string>
+    <string name="openverify_field_address_street_2">Appartement, bureau ou unité</string>
+    <string name="openverify_field_address_city">Ville</string>
+    <string name="openverify_field_address_subdivision">État, province ou région</string>
+    <string name="openverify_field_address_postal_code">Code postal</string>
+    <string name="openverify_field_address_country_code">Pays</string>
+    <string name="openverify_field_identification_number">Numéro d’identification national</string>
+    <string name="openverify_field_phone_number">Numéro de téléphone</string>
+    <string name="openverify_field_email_address">Adresse e-mail</string>
+    <string name="openverify_field_license_number">Numéro du permis ou de la carte d’identité</string>
+    <string name="openverify_field_issuing_authority">État ou territoire de délivrance</string>
+    <string name="openverify_field_issue_date">Date de délivrance</string>
+    <string name="openverify_field_expiration_date">Date d’expiration</string>
+    <string name="openverify_field_zip_code">Code ZIP</string>
+    <string name="openverify_field_optional">Facultatif</string>
+    <string name="openverify_field_date_hint">L’année, le mois et le jour, par exemple 1990-04-23.</string>
+    <string name="openverify_field_phone_hint">Commencez par + et l’indicatif du pays, par exemple +1 555 555 0100.</string>
+    <string name="openverify_field_choose">Choisir</string>
+    <string name="openverify_field_error_missing">Remplissez ce champ.</string>
+    <string name="openverify_field_error_invalid">Vérifiez cette valeur : elle n’est pas au format attendu.</string>
+    <string name="openverify_field_error_date">Saisissez une date réelle sous la forme année, mois et jour, par exemple 1990-04-23.</string>
+    <string name="openverify_field_error_too_long">Ce texte est trop long. Raccourcissez-le.</string>
+    <string name="openverify_field_error_refused">Vérifiez ce champ : nous n’avons pas pu l’accepter.</string>
+    <string name="openverify_form_refused">Nous n’avons pas pu accepter ces informations. Vérifiez-les et réessayez.</string>
+    <string name="openverify_form_continue">Continuer</string>
+    <string name="openverify_form_submitting">Envoi de vos informations…</string>
+</resources>

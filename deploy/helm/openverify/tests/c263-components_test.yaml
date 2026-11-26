@@ -1,0 +1,630 @@
+# C263.1-C263.3 (Workflow 11C Stage 2, chart-11c; checkpoint components): the components, their
+# labels and selectors, the image references, each process's ConfigMap placed by the configuration
+# registry, the migrate Job with its hook and GitOps switch, and NOTES.txt.
+suite: c263 components
+release:
+  name: ov
+  namespace: verify
+templates:
+  - templates/api/deployment.yaml
+  - templates/api/service.yaml
+  - templates/worker/deployment.yaml
+  - templates/vision/deployment.yaml
+  - templates/vision/service.yaml
+  - templates/flow/deployment.yaml
+  - templates/flow/service.yaml
+  - templates/dashboard/deployment.yaml
+  - templates/dashboard/service.yaml
+  - templates/code-runner/deployment.yaml
+  - templates/code-runner/service.yaml
+  - templates/configmap.yaml
+  - templates/migrate-job.yaml
+  - templates/NOTES.txt
+tests:
+  - it: renders one Deployment per component, selecting its pods by name, instance and component
+    template: templates/api/deployment.yaml
+    asserts:
+      - isKind:
+          of: Deployment
+      - equal:
+          path: metadata.name
+          value: ov-openverify-api
+      - equal:
+          path: spec.selector.matchLabels
+          value:
+            app.kubernetes.io/name: openverify
+            app.kubernetes.io/instance: ov
+            app.kubernetes.io/component: api
+      - isSubset:
+          path: spec.template.metadata.labels
+          content:
+            app.kubernetes.io/name: openverify
+            app.kubernetes.io/instance: ov
+            app.kubernetes.io/component: api
+            app.kubernetes.io/part-of: openverify
+      - equal:
+          path: spec.replicas
+          value: 2
+
+  - it: labels the worker, vision, flow, console and runner pods with their component
+    template: templates/worker/deployment.yaml
+    asserts:
+      - equal:
+          path: spec.template.metadata.labels["app.kubernetes.io/component"]
+          value: worker
+      - equal:
+          path: spec.selector.matchLabels["app.kubernetes.io/component"]
+          value: worker
+  - it: labels vision's pods vision
+    template: templates/vision/deployment.yaml
+    asserts:
+      - equal:
+          path: spec.template.metadata.labels["app.kubernetes.io/component"]
+          value: vision
+  - it: labels the flow server's pods flow
+    template: templates/flow/deployment.yaml
+    asserts:
+      - equal:
+          path: spec.template.metadata.labels["app.kubernetes.io/component"]
+          value: flow
+  - it: labels the console's pods dashboard
+    template: templates/dashboard/deployment.yaml
+    asserts:
+      - equal:
+          path: spec.template.metadata.labels["app.kubernetes.io/component"]
+          value: dashboard
+  - it: labels the runner's pods code-runner
+    template: templates/code-runner/deployment.yaml
+    asserts:
+      - equal:
+          path: spec.template.metadata.labels["app.kubernetes.io/component"]
+          value: code-runner
+
+  - it: gives every pod no service-account token, no Service variables and uid and gid 10001
+    template: templates/vision/deployment.yaml
+    asserts:
+      - equal:
+          path: spec.template.spec.automountServiceAccountToken
+          value: false
+      - equal:
+          path: spec.template.spec.enableServiceLinks
+          value: false
+      - isSubset:
+          path: spec.template.spec.securityContext
+          content:
+            runAsNonRoot: true
+            runAsUser: 10001
+            runAsGroup: 10001
+            fsGroup: 10001
+      - isSubset:
+          path: spec.template.spec.containers[0].securityContext
+          content:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+      - contains:
+          path: spec.template.spec.containers[0].volumeMounts
+          content:
+            name: tmp
+            mountPath: /tmp
+
+  - it: runs the API and the worker from the API image's entry points
+    template: templates/worker/deployment.yaml
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].command
+          value: [node, dist/worker.js]
+      - equal:
+          path: spec.template.spec.containers[0].image
+          value: openverify/api:0.1.0
+  - it: runs node dist/server.js in the API
+    template: templates/api/deployment.yaml
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].command
+          value: [node, dist/server.js]
+
+  - it: references an image by its tag, the chart's appVersion by default
+    template: templates/flow/deployment.yaml
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].image
+          value: openverify/flow:0.1.0
+  - it: references an image by digest when a digest is given, after the registry and tag
+    template: templates/flow/deployment.yaml
+    set:
+      flow.image.registry: registry.example.com/
+      flow.image.tag: 0.1.0-noguidance
+      flow.image.digest: sha256:1111111111111111111111111111111111111111111111111111111111111111
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].image
+          value: registry.example.com/openverify/flow:0.1.0-noguidance@sha256:1111111111111111111111111111111111111111111111111111111111111111
+  - it: references the migrate Job's image by digest too
+    template: templates/migrate-job.yaml
+    set:
+      migrate.image.digest: sha256:2222222222222222222222222222222222222222222222222222222222222222
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].image
+          value: openverify/api:0.1.0@sha256:2222222222222222222222222222222222222222222222222222222222222222
+
+  - it: exposes the API's public port and its internal listener on separate Services, no metrics port
+    template: templates/api/service.yaml
+    asserts:
+      - hasDocuments:
+          count: 2
+      - equal:
+          path: metadata.name
+          value: ov-openverify-api
+        documentIndex: 0
+      - equal:
+          path: spec.ports
+          value:
+            - name: http
+              port: 3000
+              targetPort: http
+              protocol: TCP
+        documentIndex: 0
+      - equal:
+          path: metadata.name
+          value: ov-openverify-api-internal
+        documentIndex: 1
+      - equal:
+          path: spec.ports
+          value:
+            - name: internal
+              port: 3101
+              targetPort: internal
+              protocol: TCP
+        documentIndex: 1
+      - equal:
+          path: spec.selector["app.kubernetes.io/component"]
+          value: api
+        documentIndex: 1
+  - it: opens only the http and internal ports in the API container
+    template: templates/api/deployment.yaml
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].ports
+          value:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+            - name: internal
+              containerPort: 3101
+              protocol: TCP
+  - it: gives vision, the flow, the console and the runner a Service on their ports
+    template: templates/code-runner/service.yaml
+    asserts:
+      - equal:
+          path: metadata.name
+          value: ov-openverify-code-runner
+      - equal:
+          path: spec.ports[0].port
+          value: 7700
+      - equal:
+          path: spec.selector["app.kubernetes.io/component"]
+          value: code-runner
+  - it: gives vision a Service on 8000
+    template: templates/vision/service.yaml
+    asserts:
+      - equal:
+          path: spec.ports[0].port
+          value: 8000
+  - it: gives the flow a Service on 4173
+    template: templates/flow/service.yaml
+    asserts:
+      - equal:
+          path: spec.ports[0].port
+          value: 4173
+  - it: gives the console a Service on 3001
+    template: templates/dashboard/service.yaml
+    asserts:
+      - equal:
+          path: spec.ports[0].port
+          value: 3001
+
+  - it: reads each long-running process's own ConfigMap
+    template: templates/dashboard/deployment.yaml
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].envFrom
+          value:
+            - configMapRef:
+                name: ov-openverify-dashboard
+      - exists:
+          path: spec.template.metadata.annotations["checksum/config"]
+  - it: writes a ConfigMap per long-running process
+    template: templates/configmap.yaml
+    asserts:
+      - hasDocuments:
+          count: 6
+      - isKind:
+          of: ConfigMap
+
+  - it: keeps Connect and the UN opt-in off, HSTS at 0 and the console limits on the API
+    template: templates/configmap.yaml
+    documentSelector:
+      path: metadata.name
+      value: ov-openverify-api
+    asserts:
+      - isSubset:
+          path: data
+          content:
+            OPENVERIFY_MODE: production
+            OPENVERIFY_CONNECT_ENABLED: 'false'
+            OPENVERIFY_WATCHLIST_UN_OPT_IN_ALLOWED: 'true'
+            OPENVERIFY_HSTS_MAX_AGE: '0'
+            OPENVERIFY_QUEUE_IN_FLIGHT_CAP_MAX: '50'
+            OPENVERIFY_CONSOLE_IDLE_TIMEOUT_SECONDS: '1800'
+            OPENVERIFY_CONSOLE_ABSOLUTE_TIMEOUT_SECONDS: '43200'
+            OPENVERIFY_API_HOST: 0.0.0.0
+            OPENVERIFY_API_PORT: '3000'
+            OPENVERIFY_INTERNAL_LISTEN: 0.0.0.0:3101
+            OPENVERIFY_VISION_URL: http://ov-openverify-vision:8000
+      - notExists:
+          path: data.OPENVERIFY_TRUST_PROXY
+      - notExists:
+          path: data.OPENVERIFY_SANDBOX_CHIP_FACES
+      - notExists:
+          path: data.OPENVERIFY_PROVIDER_DEVICE_INTEGRITY_SANDBOX
+      - notExists:
+          path: data.OPENVERIFY_PROVIDER_DEVICE_INTEGRITY_PRODUCTION
+      - notExists:
+          path: data.OPENVERIFY_SSO_PRIVATE_ISSUERS
+  - it: sets OPENVERIFY_TRUST_PROXY on the API and the worker only from api.trustProxy
+    template: templates/configmap.yaml
+    set:
+      api.trustProxy: 10.0.0.0/8
+    asserts:
+      - equal:
+          path: data.OPENVERIFY_TRUST_PROXY
+          value: 10.0.0.0/8
+        documentSelector:
+          path: metadata.name
+          value: ov-openverify-api
+      - equal:
+          path: data.OPENVERIFY_TRUST_PROXY
+          value: 10.0.0.0/8
+        documentSelector:
+          path: metadata.name
+          value: ov-openverify-worker
+      - notExists:
+          path: data.OPENVERIFY_TRUST_PROXY
+        documentSelector:
+          path: metadata.name
+          value: ov-openverify-flow
+  - it: names the private SSO issuers on the API only
+    template: templates/configmap.yaml
+    set:
+      api.ssoPrivateIssuers:
+        - https://idp.internal.example.com
+        - https://login.example.org
+      networkPolicy.egress.identityProviders:
+        - cidr: 192.0.2.0/24
+          ports: [443]
+    asserts:
+      - equal:
+          path: data.OPENVERIFY_SSO_PRIVATE_ISSUERS
+          value: https://idp.internal.example.com,https://login.example.org
+        documentSelector:
+          path: metadata.name
+          value: ov-openverify-api
+      - notExists:
+          path: data.OPENVERIFY_SSO_PRIVATE_ISSUERS
+        documentSelector:
+          path: metadata.name
+          value: ov-openverify-worker
+  - it: places the worker's settings on the worker, its heartbeat under /tmp and no internal listener
+    template: templates/configmap.yaml
+    documentSelector:
+      path: metadata.name
+      value: ov-openverify-worker
+    asserts:
+      - isSubset:
+          path: data
+          content:
+            OPENVERIFY_CONNECT_ENABLED: 'false'
+            OPENVERIFY_WATCHLIST_UN_OPT_IN_ALLOWED: 'true'
+            OPENVERIFY_QUEUE_IN_FLIGHT_CAP_MAX: '50'
+            OPENVERIFY_WORKER_CONCURRENCY: '4'
+            OPENVERIFY_WORKER_HEARTBEAT_FILE: /tmp/openverify-worker-heartbeat
+            OPENVERIFY_NETWORK_REFRESH: 'false'
+      - notExists:
+          path: data.OPENVERIFY_INTERNAL_LISTEN
+      - notExists:
+          path: data.OPENVERIFY_CONSOLE_IDLE_TIMEOUT_SECONDS
+      - notExists:
+          path: data.OPENVERIFY_HSTS_MAX_AGE
+      - notExists:
+          path: data.OPENVERIFY_PLAY_INTEGRITY_PACKAGE_NAME
+      - notExists:
+          path: data.OPENVERIFY_NETWORK_SOURCES_ENABLED
+  - it: passes the network sources as given, the refresh off unless asked
+    template: templates/configmap.yaml
+    set:
+      network.sourcesEnabled: dbip-city-lite
+      network.sourcesDisabled: tor-exits
+    asserts:
+      - isSubset:
+          path: data
+          content:
+            OPENVERIFY_NETWORK_SOURCES_ENABLED: dbip-city-lite
+            OPENVERIFY_NETWORK_SOURCES_DISABLED: tor-exits
+            OPENVERIFY_NETWORK_REFRESH: 'false'
+        documentSelector:
+          path: metadata.name
+          value: ov-openverify-worker
+
+  - it: renders the console's public URL on the API, the worker and the flow from its ingress host
+    template: templates/configmap.yaml
+    set:
+      ingress.hosts.dashboard: console.example.com
+      ingress.hosts.flow: verify.example.com
+      ingress.hosts.api: api.example.com
+    asserts:
+      - isSubset:
+          path: data
+          content:
+            OPENVERIFY_DASHBOARD_PUBLIC_URL: https://console.example.com
+            OPENVERIFY_FLOW_PUBLIC_URL: https://verify.example.com
+        documentSelector:
+          path: metadata.name
+          value: ov-openverify-api
+      - isSubset:
+          path: data
+          content:
+            OPENVERIFY_DASHBOARD_PUBLIC_URL: https://console.example.com
+            OPENVERIFY_FLOW_PUBLIC_URL: https://verify.example.com
+        documentSelector:
+          path: metadata.name
+          value: ov-openverify-worker
+      - isSubset:
+          path: data
+          content:
+            OPENVERIFY_DASHBOARD_PUBLIC_URL: https://console.example.com
+            OPENVERIFY_FLOW_API_URL: https://api.example.com
+        documentSelector:
+          path: metadata.name
+          value: ov-openverify-flow
+  - it: prefers publicUrls over the ingress hosts
+    template: templates/configmap.yaml
+    set:
+      publicUrls.dashboard: https://console.example.org/
+      ingress.hosts.dashboard: console.example.com
+    asserts:
+      - equal:
+          path: data.OPENVERIFY_DASHBOARD_PUBLIC_URL
+          value: https://console.example.org
+        documentSelector:
+          path: metadata.name
+          value: ov-openverify-worker
+  - it: allows a loopback console URL in development mode
+    template: templates/configmap.yaml
+    set:
+      install.mode: development
+      publicUrls.dashboard: http://localhost:3001
+    asserts:
+      - equal:
+          path: data.OPENVERIFY_DASHBOARD_PUBLIC_URL
+          value: http://localhost:3001
+        documentSelector:
+          path: metadata.name
+          value: ov-openverify-api
+
+  - it: routes the flow server to the API's internal listener, with no static frame-ancestors
+    template: templates/configmap.yaml
+    documentSelector:
+      path: metadata.name
+      value: ov-openverify-flow
+    asserts:
+      - isSubset:
+          path: data
+          content:
+            OPENVERIFY_MODE: production
+            OPENVERIFY_FLOW_SERVER_API_URL: http://ov-openverify-api-internal:3101
+            OPENVERIFY_FLOW_SERVER_TRUSTED_PROXY_HOPS: '0'
+            OPENVERIFY_HSTS_MAX_AGE: '0'
+      - notExists:
+          path: data.OPENVERIFY_FLOW_SERVER_TOKEN
+      - notExists:
+          path: data.OPENVERIFY_FLOW_ALLOWED_FRAME_ANCESTORS
+      - notExists:
+          path: data.VITE_OPENVERIFY_API_URL
+  - it: configures the console for the API's Service, its proxies and the enforced script policy
+    template: templates/configmap.yaml
+    set:
+      dashboard.trustedProxyHops: 1
+      publicUrls.flow: https://verify.example.com
+    documentSelector:
+      path: metadata.name
+      value: ov-openverify-dashboard
+    asserts:
+      - isSubset:
+          path: data
+          content:
+            OPENVERIFY_MODE: production
+            OPENVERIFY_API_URL: http://ov-openverify-api:3000
+            OPENVERIFY_DASHBOARD_TRUSTED_PROXY_HOPS: '1'
+            OPENVERIFY_DASHBOARD_CSP_MODE: enforce
+            OPENVERIFY_FLOW_PUBLIC_URL: https://verify.example.com
+            OPENVERIFY_HSTS_MAX_AGE: '0'
+      - notExists:
+          path: data.OPENVERIFY_DASHBOARD_INSECURE_COOKIES
+      - notExists:
+          path: data.OPENVERIFY_DASHBOARD_BFF_TOKEN
+  - it: binds no device-integrity provider by default and passes bindings to the API and the worker only
+    template: templates/configmap.yaml
+    set:
+      providers:
+        OPENVERIFY_PROVIDER_DEVICE_INTEGRITY_PRODUCTION: play-integrity
+    asserts:
+      - equal:
+          path: data.OPENVERIFY_PROVIDER_DEVICE_INTEGRITY_PRODUCTION
+          value: play-integrity
+        documentSelector:
+          path: metadata.name
+          value: ov-openverify-api
+      - equal:
+          path: data.OPENVERIFY_PROVIDER_DEVICE_INTEGRITY_PRODUCTION
+          value: play-integrity
+        documentSelector:
+          path: metadata.name
+          value: ov-openverify-worker
+      - notExists:
+          path: data.OPENVERIFY_PROVIDER_DEVICE_INTEGRITY_PRODUCTION
+        documentSelector:
+          path: metadata.name
+          value: ov-openverify-dashboard
+  - it: puts Play Integrity's package name and certificate digests on the worker only
+    template: templates/configmap.yaml
+    set:
+      worker.playIntegrity.packageName: com.example.verify
+      worker.playIntegrity.certificateDigests: AAAA
+    asserts:
+      - isSubset:
+          path: data
+          content:
+            OPENVERIFY_PLAY_INTEGRITY_PACKAGE_NAME: com.example.verify
+            OPENVERIFY_PLAY_INTEGRITY_CERTIFICATE_DIGESTS: AAAA
+        documentSelector:
+          path: metadata.name
+          value: ov-openverify-worker
+      - notExists:
+          path: data.OPENVERIFY_PLAY_INTEGRITY_PACKAGE_NAME
+        documentSelector:
+          path: metadata.name
+          value: ov-openverify-api
+  - it: writes config.extra into the API's and the worker's ConfigMaps, not the console's
+    template: templates/configmap.yaml
+    set:
+      config.extra:
+        OPENVERIFY_RATE_LIMIT_API_PER_MINUTE: '600'
+    asserts:
+      - equal:
+          path: data.OPENVERIFY_RATE_LIMIT_API_PER_MINUTE
+          value: '600'
+        documentSelector:
+          path: metadata.name
+          value: ov-openverify-api
+      - notExists:
+          path: data.OPENVERIFY_RATE_LIMIT_API_PER_MINUTE
+        documentSelector:
+          path: metadata.name
+          value: ov-openverify-dashboard
+
+  - it: runs the migrate Job as a pre-install,pre-upgrade hook deleted before a new one and on success
+    template: templates/migrate-job.yaml
+    asserts:
+      - isKind:
+          of: Job
+      - equal:
+          path: metadata.name
+          value: ov-openverify-migrate
+      - isSubset:
+          path: metadata.annotations
+          content:
+            helm.sh/hook: pre-install,pre-upgrade
+            helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
+      - equal:
+          path: spec.backoffLimit
+          value: 1
+      - equal:
+          path: spec.activeDeadlineSeconds
+          value: 900
+      - equal:
+          path: spec.template.spec.restartPolicy
+          value: Never
+      - equal:
+          path: spec.template.metadata.labels["app.kubernetes.io/component"]
+          value: migrate
+  - it: migrates as an init container, then grants the runtime role in the same Job
+    template: templates/migrate-job.yaml
+    set:
+      external.postgres.runtimeRole: verify_app
+    asserts:
+      - equal:
+          path: spec.template.spec.initContainers[0].command
+          value: [node, dist/commands/db-migrate.js]
+      - equal:
+          path: spec.template.spec.containers[0].command
+          value: [node, dist/commands/db-grant-runtime.js, verify_app]
+      - contains:
+          path: spec.template.spec.containers[0].env
+          content:
+            name: OPENVERIFY_MIGRATE_LOCK_TIMEOUT_SECONDS
+            value: '600'
+      - contains:
+          path: spec.template.spec.initContainers[0].env
+          content:
+            name: OPENVERIFY_MIGRATE_LOCK_TIMEOUT_SECONDS
+            value: '600'
+      - contains:
+          path: spec.template.spec.initContainers[0].env
+          content:
+            name: OPENVERIFY_MODE
+            value: production
+  - it: runs db:migrate alone when the grant is switched off
+    template: templates/migrate-job.yaml
+    set:
+      migrate.grantRuntime: false
+    asserts:
+      - notExists:
+          path: spec.template.spec.initContainers
+      - equal:
+          path: spec.template.spec.containers[0].command
+          value: [node, dist/commands/db-migrate.js]
+  - it: passes the lock's wait to migrate and keeps the deadline above it
+    template: templates/migrate-job.yaml
+    set:
+      migrate.lockTimeoutSeconds: 1200
+      migrate.activeDeadlineSeconds: 1500
+    asserts:
+      - contains:
+          path: spec.template.spec.containers[0].env
+          content:
+            name: OPENVERIFY_MIGRATE_LOCK_TIMEOUT_SECONDS
+            value: '1200'
+      - equal:
+          path: spec.activeDeadlineSeconds
+          value: 1500
+  - it: renders a plain Job named by its image for GitOps tools
+    template: templates/migrate-job.yaml
+    set:
+      migrate.gitOps: true
+    asserts:
+      - notExists:
+          path: metadata.annotations
+      - equal:
+          path: metadata.name
+          value: ov-openverify-migrate-4da622b3
+  - it: names the GitOps Job anew when its image changes (the first 8 hex of the image reference's SHA-256)
+    template: templates/migrate-job.yaml
+    set:
+      migrate.gitOps: true
+      migrate.image.tag: 0.1.1
+    asserts:
+      - equal:
+          path: metadata.name
+          value: ov-openverify-migrate-d78f218a
+
+  - it: says in NOTES.txt that policies need an enforcing plugin, that nothing is signed and where the proxies go
+    template: templates/NOTES.txt
+    asserts:
+      - matchRegexRaw:
+          pattern: network policies take effect only with a network plugin that enforces NetworkPolicy
+      - matchRegexRaw:
+          pattern: Nothing in this release is signed or attested
+      - matchRegexRaw:
+          pattern: The chart creates no Secret
+      - matchRegexRaw:
+          pattern: opens no metrics port
+      - matchRegexRaw:
+          pattern: api.trustProxy is unset
+      - matchRegexRaw:
+          pattern: ASVS and MASVS rows are self-assessed
+  - it: never claims a certification in NOTES.txt
+    template: templates/NOTES.txt
+    asserts:
+      - notMatchRegexRaw:
+          pattern: (?i)certif|complian

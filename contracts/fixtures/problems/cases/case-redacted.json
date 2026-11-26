@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Gone",
+  "status": 410,
+  "detail": "The case was redacted.",
+  "instance": "/api/v1/cases/case_01M5CK3190XEVBM5ZXA76E1JSN",
+  "requestId": "00000000-0000-4000-8000-000000001216",
+  "code": "case_redacted"
+}

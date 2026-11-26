@@ -1,0 +1,15 @@
+{{- /*
+C263.6 (Workflow 11C Stage 2, chart-11c; decision 51): Phase 8 P17's code runner as its own
+Deployment, so its pod's network namespace is its own: chart-policy-11c's policies give it no
+egress and accept only the worker. It listens on codeRunner.port (OPENVERIFY_CODE_RUNNER_LISTEN)
+instead of its socket, and the worker reaches it at
+OPENVERIFY_WORKFLOW_CODE_RUNNER=tcp:<fullname>-code-runner:<port> with OPENVERIFY_CODE_RUNNER_TOKEN, a
+file from each process's own Secret (secrets.worker and secrets.codeRunner).
+*/ -}}
+{{- if .Values.codeRunner.enabled -}}
+{{- include "openverify.checks" . -}}
+{{- $v := .Values.codeRunner -}}
+{{- $ports := printf "- name: runner\n  containerPort: %v\n  protocol: TCP" $v.port -}}
+{{- $probes := include "openverify.execProbes" (dict "command" (list "node" "bin/code-runner-server.mjs" "--health") "ready" true) -}}
+{{ include "openverify.deployment" (dict "root" . "component" "code-runner" "process" "codeRunner" "c" $v "ports" $ports "probes" $probes "hpa" false) }}
+{{- end }}

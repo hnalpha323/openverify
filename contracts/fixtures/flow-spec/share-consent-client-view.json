@@ -1,0 +1,18 @@
+{
+  "id": "share-consent-1",
+  "type": "share_consent",
+  "side": "source",
+  "recipientName": "Example Partner",
+  "sourceName": "Example Source",
+  "categories": ["identity-fields", "document-images", "biometric", "check-results"],
+  "text": {
+    "locale": "en",
+    "body": "Synthetic composed text: Example Source shares your verified identity with Example Partner.",
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "keys": ["share.consent.source"]
+  },
+  "biometric": {
+    "body": "Synthetic biometric text for Example Partner.",
+    "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+  }
+}

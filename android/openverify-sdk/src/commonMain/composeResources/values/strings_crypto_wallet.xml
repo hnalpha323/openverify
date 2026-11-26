@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The crypto wallet step by its paste path (C57, C64.2): the SDK has no wallet of its own, so the
+  user signs the server's message in their wallet app and pastes the signature. values-es holds
+  the Spanish. Chain names are proper nouns and stay in code (CryptoChains). Compose Multiplatform
+  resources: positional placeholders only, ' and " written as they are (ResourcesTest).
+-->
+<resources>
+    <string name="openverify_crypto_title">Prove you control your wallet</string>
+    <string name="openverify_crypto_intro">Choose the network and enter your wallet address. We then show you a message to sign in your wallet app.</string>
+    <string name="openverify_crypto_chain">Network</string>
+    <!-- %1$s is an EVM chain number, such as 8453. -->
+    <string name="openverify_crypto_evm_chain">EVM network %1$s</string>
+    <string name="openverify_crypto_address">Wallet address</string>
+    <string name="openverify_crypto_get_message">Get the message to sign</string>
+    <string name="openverify_crypto_getting_message">Getting the message…</string>
+
+    <string name="openverify_crypto_message_title">Sign this message</string>
+    <string name="openverify_crypto_message_instructions">Copy this message, sign it in your wallet app with the address you entered, then paste the signature below.</string>
+    <string name="openverify_crypto_copy">Copy message</string>
+    <string name="openverify_crypto_copied">Message copied.</string>
+    <plurals name="openverify_crypto_expires_in">
+        <item quantity="one">The message expires in %1$d minute.</item>
+        <item quantity="other">The message expires in %1$d minutes.</item>
+    </plurals>
+    <string name="openverify_crypto_signature">Signature</string>
+    <string name="openverify_crypto_signed_message">Signed message, if your wallet shows one</string>
+    <string name="openverify_crypto_signed_message_hint">Some Solana wallets add to the message before they sign it. If yours shows the message it signed, paste it here too.</string>
+    <string name="openverify_crypto_submit">Submit signature</string>
+    <string name="openverify_crypto_submitting">Sending your signature…</string>
+    <string name="openverify_crypto_change">Use another wallet</string>
+    <string name="openverify_crypto_new_message">Get a new message</string>
+
+    <string name="openverify_crypto_error_chain_not_offered">This network cannot be used here. Choose one of the networks listed.</string>
+    <string name="openverify_crypto_error_address_invalid">This is not a valid address for the network you chose. Check that you copied the whole address.</string>
+    <string name="openverify_crypto_error_expected_address">This is not the wallet address you were asked to verify. Use the expected wallet address.</string>
+    <string name="openverify_crypto_error_challenge_invalid">This message has expired or was replaced. Get a new message to sign.</string>
+    <string name="openverify_crypto_error_signature_too_long">This signature is too long. Paste only the signature.</string>
+    <string name="openverify_crypto_error_signed_message_too_long">This signed message is too long. Paste only the bytes your wallet signed.</string>
+    <!-- C57.2: the previous attempt was canceled after too many messages. -->
+    <string name="openverify_crypto_restarted">Your previous attempt ended because too many messages were requested. Start again.</string>
+</resources>

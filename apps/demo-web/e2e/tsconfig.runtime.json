@@ -1,0 +1,6 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "paths": { "@playwright/test": ["../../../e2e/node_modules/@playwright/test/index.mjs"] }
+  }
+}

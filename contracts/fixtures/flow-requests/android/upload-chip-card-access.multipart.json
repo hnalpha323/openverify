@@ -1,0 +1,11 @@
+{
+  "fields": {
+    "kind": "chip-card-access"
+  },
+  "file": {
+    "name": "file",
+    "filename": "chip-card-access.bin",
+    "content-type": "application/octet-stream",
+    "size": 3
+  }
+}

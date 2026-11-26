@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:openverify:fixtures:visibility-vectors:1",
+  "title": "Visibility evaluator vectors (C196.1, C196.4)",
+  "description": "Written by packages/flow-spec/src/export-vectors.test.ts (api-android-10a) from evaluateVisibility over its own case table, only under UPDATE_CONTRACT_FIXTURES=1. A case gives a rule over screen.<field> and the screen's values; `result` is evaluateVisibility's answer. A refusal is a rule evaluateVisibility throws VisibilityRuleError for; the Kotlin evaluator throws VisibilityRuleRefused.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format", "description", "cases", "refusals"],
+  "properties": {
+    "format": {
+      "const": 1
+    },
+    "description": {
+      "type": "string"
+    },
+    "cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "rule", "values", "result"],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "rule": {
+            "type": ["object", "null"]
+          },
+          "values": {
+            "type": "object"
+          },
+          "result": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "refusals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "rule", "values"],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "rule": {
+            "type": "object"
+          },
+          "values": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  }
+}

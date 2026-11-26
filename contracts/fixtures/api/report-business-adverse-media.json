@@ -1,0 +1,172 @@
+{
+  "data": {
+    "type": "report/business-adverse-media",
+    "id": "rep_01M5Y5Z400TCEJ11NFXAZ3Y2EA",
+    "attributes": {
+      "status": "ready",
+      "created-at": "2026-10-27T09:00:00.000Z",
+      "completed-at": "2026-10-27T09:00:01.250Z",
+      "redacted-at": null,
+      "report-template-version-name": "v1",
+      "has-match": true,
+      "is-continuous": false,
+      "is-recurring": false,
+      "tags": ["onboarding"],
+      "query": {
+        "term": "Sandbox-Media Quarrystone Trading Ltd",
+        "country-code": "GB"
+      },
+      "origin": "api",
+      "errors": [],
+      "unavailable-fields": [],
+      "coverage": {
+        "complete": false,
+        "limits": ["title_only", "window_90_days", "lexicon_languages"]
+      },
+      "next-run-at": null,
+      "paused-at": null,
+      "paused-reason": null,
+      "sources": [],
+      "query-sources": {
+        "term": "request",
+        "country-code": "request"
+      },
+      "matcher-version": null,
+      "provider": {
+        "id": "sandbox",
+        "sandbox": true
+      },
+      "thresholds": {
+        "max-article-age-days": 90,
+        "max-records": 250
+      },
+      "notices": ["media_coverage_limited"],
+      "articles": [
+        {
+          "entity-id": "article:dd15433ebeadb6f6209c13d9381ca685",
+          "match-id": "rpm_01M60CQA48H0XVC42EWSDKXTXX",
+          "url": "https://sandbox-news.example/articles/synthetic-1",
+          "domain": "sandbox-news.example",
+          "seen-date": "2026-10-26T12:00:00.000Z",
+          "language": "en",
+          "source-country": null,
+          "title": "sandbox media quarrystone trading named in synthetic embezzlement report 1",
+          "categories": ["financial_crime"],
+          "match-types": ["title_full_name"],
+          "score": 1,
+          "confidence": 0.6
+        },
+        {
+          "entity-id": "article:dfb06c1b90d0ef07c4f0f14afb301562",
+          "match-id": "rpm_01M60CQA481KCHVHENT6KB3WJ6",
+          "url": "https://sandbox-news.example/articles/synthetic-2",
+          "domain": "sandbox-news.example",
+          "seen-date": "2026-10-17T12:00:00.000Z",
+          "language": "en",
+          "source-country": null,
+          "title": "sandbox media quarrystone trading named in synthetic embezzlement report 2",
+          "categories": ["financial_crime"],
+          "match-types": ["title_full_name"],
+          "score": 0.99,
+          "confidence": 0.59
+        }
+      ],
+      "citation": "Synthetic articles from the OpenVerify sandbox provider; no news service was asked.",
+      "ignore-list": [],
+      "matches": [
+        {
+          "id": "rpm_01M60CQA48H0XVC42EWSDKXTXX",
+          "entity-id": "article:dd15433ebeadb6f6209c13d9381ca685",
+          "source-id": null,
+          "name": "sandbox media quarrystone trading named in synthetic embezzlement report 1",
+          "status": "open",
+          "review-status": "pending",
+          "risk-level": null,
+          "notify-on-change": false,
+          "present-in-last-run": true,
+          "score": 1,
+          "match-types": ["title_full_name"],
+          "qualifiers": [],
+          "lapsed-from": null,
+          "delisted-at": null,
+          "reviewed-at": null,
+          "created-at": "2026-10-27T12:00:00.000Z",
+          "updated-at": "2026-10-27T12:00:00.000Z",
+          "first-run": "rpr_01M5YKPJG04KQ9QHGVHYZM7AHQ",
+          "last-run": "rpr_01M5YKPJG04KQ9QHGVHYZM7AHQ",
+          "components": {
+            "subject-name": null,
+            "list-name": "sandbox media quarrystone trading named in synthetic embezzlement report 1",
+            "name-level": null,
+            "methods": [],
+            "preset": null,
+            "min-score": null
+          }
+        },
+        {
+          "id": "rpm_01M60CQA481KCHVHENT6KB3WJ6",
+          "entity-id": "article:dfb06c1b90d0ef07c4f0f14afb301562",
+          "source-id": null,
+          "name": "sandbox media quarrystone trading named in synthetic embezzlement report 2",
+          "status": "open",
+          "review-status": "pending",
+          "risk-level": null,
+          "notify-on-change": false,
+          "present-in-last-run": true,
+          "score": 0.99,
+          "match-types": ["title_full_name"],
+          "qualifiers": [],
+          "lapsed-from": null,
+          "delisted-at": null,
+          "reviewed-at": null,
+          "created-at": "2026-10-27T12:00:00.000Z",
+          "updated-at": "2026-10-27T12:00:00.000Z",
+          "first-run": "rpr_01M5YKPJG04KQ9QHGVHYZM7AHQ",
+          "last-run": "rpr_01M5YKPJG04KQ9QHGVHYZM7AHQ",
+          "components": {
+            "subject-name": null,
+            "list-name": "sandbox media quarrystone trading named in synthetic embezzlement report 2",
+            "name-level": null,
+            "methods": [],
+            "preset": null,
+            "min-score": null
+          }
+        }
+      ]
+    },
+    "relationships": {
+      "inquiry": {
+        "data": null
+      },
+      "account": {
+        "data": {
+          "type": "account",
+          "id": "acc_01M5CJXJF84MR3PHJHBHKQ4ZC8"
+        }
+      },
+      "accounts": {
+        "data": [
+          {
+            "type": "account",
+            "id": "acc_01M5CJXJF84MR3PHJHBHKQ4ZC8"
+          }
+        ]
+      },
+      "report-template": {
+        "data": {
+          "type": "report-template",
+          "id": "rptp_01M5Y5Z40023976HFB9Z1FJF7B"
+        }
+      },
+      "report-template-version": {
+        "data": {
+          "type": "report-template-version",
+          "id": "rptpv_01M5Y5Z400Y4R25E5AQEDD7ZKS"
+        }
+      },
+      "transaction": {
+        "data": null
+      }
+    }
+  }
+}

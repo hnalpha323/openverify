@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "description": "Synthetic. The Utopia test chip for the Android reader (C209.3): written by packages/emrtd/src/testing/utopia-chip-export.test.ts under UPDATE_CONTRACT_FIXTURES=1. No real document, no image, no private value: the Active Authentication responses are precomputed for the listed nonces only.",
+  "issuer": "UTO",
+  "built": {
+    "now": "2026-11-01T00:00:00.000Z",
+    "seed": "openverify/emrtd/utopia-chip-export/v1"
+  },
+  "mrz": {
+    "lines": [
+      "P<UTOQUILL<<ROWAN<ASH<<<<<<<<<<<<<<<<<<<<<<<",
+      "X123456785UTO9001011M3101012<<<<<<<<<<<<<<06"
+    ],
+    "document-number": "X12345678",
+    "date-of-birth": "900101",
+    "date-of-expiry": "310101",
+    "information": "X12345678590010113101012"
+  },
+  "bac": {
+    "k-seed": "336db8c69bcbffb748be91595f7cb424",
+    "k-enc": "dfd031b0ae9d5bf4a78510ef15bf6467",
+    "k-mac": "49100d4cd60457bce6388c54bf94253b"
+  },
+  "files": [
+    {
+      "name": "com",
+      "kind": "chip-com",
+      "file-identifier": "011e",
+      "short-identifier": "1e",
+      "length": 24,
+      "sha256": "388e6cfc0a205e23fbe35c53b0977a010234326e38fa6e951050293e629eb91f",
+      "content": "YBZfAQQwMTA3XzYGMDQwMDAwXARhdW5v"
+    },
+    {
+      "name": "sod",
+      "kind": "chip-sod",
+      "file-identifier": "011d",
+      "short-identifier": "1d",
+      "length": 1200,
+      "sha256": "b1b88d5d71a9750d73db9da3a490a9f21734e89302181a94121ae5b734b52399",
+      "content": "d4IErDCCBKgGCSqGSIb3DQEHAqCCBJkwggSVAgEDMQ0wCwYJYIZIAWUDBAIBMIHQBgZngQgBAQGggcUEgcIwgb8CAQEwCwYJYIZIAWUDBAIBMIGcMCUCAQEEIIq+3ahKHXjr005nq562ALLpEY0Z9quLe6qJqxVvEMn2MCUCAQIEIPUsFPb5j0EiljEgPwVTtzKxQPF+mePIW7bfAY9rH0w/MCUCAQ4EIDYU0MzGkAlxhR++qnq9H6EqC0ZsQ+bSlxJalnxOFxzKMCUCAQ8EICxTE/lczJ+m+wcFaoQ3q/4TD34g++Kd+qdHY5BC+DI+MA4TBDAxMDcTBjA0MDAwMKCCAuEwggLdMIIChKADAgECAgc+Vmgkk3WVMAoGCCqGSM49BAMCMD0xCzAJBgNVBAYTAlVUMRgwFgYDVQQKDA9PcGVuVmVyaWZ5IFRlc3QxFDASBgNVBAMMC0NTQ0EgVXRvcGlhMB4XDTI2MTAzMTAwMDAwMFoXDTM3MDEzMDAwMDAwMFowUTELMAkGA1UEBhMCVVQxGDAWBgNVBAoMD09wZW5WZXJpZnkgVGVzdDEoMCYGA1UEAwwfVXRvcGlhIERvY3VtZW50IFNpZ25lciA4NGYyMWVhZjCCATMwgewGByqGSM49AgEwgeACAQEwLAYHKoZIzj0BAQIhAKn7V9uh7qm8PmYKkJ2DjXJuO/Yj1SYgKCATSB0fblN3MEQEIH1aCXX8LDBX7vZ1MEF6/+f7gFXBJtxcbOlKS0TzMLXZBCAm3Fxs6UpLRPMwtdm713y/lYQWKVz34c5rzNwY/4wHtgRBBIvSrrnLflfLLEtIL/yBt6+53ifh470jwjpEU72azjJiVH74NcPaxP2X+EYaFGEdycJ3RRMt7Y5UXB1Uxy8EaZcCIQCp+1fboe6pvD5mCpCdg41xjDl6o7VhpveQHg6Cl0hWpwIBAQNCAARrxAj1vYO3xAQJVM4JJYwvUIlef0oQ7Zv7rehmfRq1nFrvZAqnsazJLQbXhVwffzK7ItR/plEaD7l43fLCgchOo38wfTAfBgNVHSMEGDAWgBQKAwHaQ9ZVJxHjUtA7WDUYCcVpSDAdBgNVHQ4EFgQUDu8rtdWpN3dudDsjmzC9u4ruXogwDgYDVR0PAQH/BAQDAgeAMCsGA1UdEAQkMCKADzIwMjYxMDMxMDAwMDAwWoEPMjAzNzAxMzAwMDAwMDBaMAoGCCqGSM49BAMCA0cAMEQCIFamSXVOiqIn5C2ZAC3oxSJBt+0Sxh/B5bkL4k903nZrAiBOkjb0II3evRhv0yyUU5Qzm9+nStn2ykUwEFU8mumTTzGByDCBxQIBA4AUDu8rtdWpN3dudDsjmzC9u4ruXogwCwYJYIZIAWUDBAIBoEgwFQYJKoZIhvcNAQkDMQgGBmeBCAEBATAvBgkqhkiG9w0BCQQxIgQgBG2RM1IcGwAFfLKh6OyDVzG2c3X3O/RY1K5YLBAwhWswCgYIKoZIzj0EAwIERzBFAiEAmGkiZsrXZWUZgAIMVfUWf5omk2B4/45UIfJtzRT5ObUCIEbNRZWtUxKOKqlANFIDM925peMqHlihL9phu1aFCeLZ"
+    },
+    {
+      "name": "dg1",
+      "kind": "chip-dg1",
+      "file-identifier": "0101",
+      "short-identifier": "01",
+      "length": 93,
+      "sha256": "8abedda84a1d78ebd34e67ab9eb600b2e9118d19f6ab8b7baa89ab156f10c9f6",
+      "content": "YVtfH1hQPFVUT1FVSUxMPDxST1dBTjxBU0g8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PFgxMjM0NTY3ODVVVE85MDAxMDExTTMxMDEwMTI8PDw8PDw8PDw8PDw8PDA2"
+    },
+    {
+      "name": "dg2",
+      "kind": "chip-dg2",
+      "file-identifier": "0102",
+      "short-identifier": "02",
+      "length": 3095,
+      "sha256": "f52c14f6f98f41229631203f0553b732b140f17e99e3c85bb6df018f6b1f4c3f",
+      "content": "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"
+    },
+    {
+      "name": "dg14",
+      "kind": "chip-dg14",
+      "file-identifier": "010e",
+      "short-identifier": "0e",
+      "length": 29,
+      "sha256": "3614d0ccc6900971851fbeaa7abd1fa12a0b466c43e6d297125a967c4e171cca",
+      "content": "bhsxGTAXBgZngQgBAQUCAQEGCgQAfwAHAQEEAQM="
+    },
+    {
+      "name": "dg15",
+      "kind": "chip-dg15",
+      "file-identifier": "010f",
+      "short-identifier": "0f",
+      "length": 93,
+      "sha256": "2c5313f95ccc9fa6fb07056a8437abfe130f7e20fbe29dfaa747639042f8323e",
+      "content": "b1swWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAASRLs1egjbx/toiZZSM2pASFUDm4xpVVvmqIFTObpXchGeQfzzolvJbT1uj8qVSLwRY5HItso2uW9i84ogoOAvh"
+    }
+  ],
+  "active-authentication": {
+    "algorithm": "ecdsa-plain",
+    "curve": "P-256",
+    "hash": "sha256",
+    "responses": [
+      {
+        "nonce": "0000000000000000",
+        "response": "c68603a2b35b7c6909b442e9e38ddb98c352bee33c68c27fbc437d447da42569123a24945631b445c367a17f9ebaff7727021556dbdc4cc6fb21fd1b8de16570"
+      },
+      {
+        "nonce": "0011223344556677",
+        "response": "158b1b7016d94f4a45acb2178ea33856db8a53389fda180e33b658bc6e11df9517619689c301d66f96112af7e72e179541e4f6c3c49e81ed388436d907b6a6d8"
+      },
+      {
+        "nonce": "0123456789abcdef",
+        "response": "010210b1daaeba8dc61f21d36117afafa34d8fd5e60658e753632a11a994f59e432e4efa08625f7b38e2d097079d671dd0135782048956226c748045abf13831"
+      },
+      {
+        "nonce": "ffffffffffffffff",
+        "response": "4ff2809dcf79c5ced9013234ec4da6a8fc11e26badf669d6322562362c53629054fd58faabcec03da7a189691b3f33ce4670d187dc0b9bbf43f4d1d78d83602e"
+      }
+    ]
+  }
+}

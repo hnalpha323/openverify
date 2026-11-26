@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "That person cannot be assigned this case.",
+  "instance": "/api/v1/cases/case_01M5CK3190XEVBM5ZXA76E1JSN/assign",
+  "requestId": "00000000-0000-4000-8000-000000001211",
+  "code": "case_assignee_ineligible",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/meta/user-id",
+      "detail": "cannot be assigned this case"
+    }
+  ]
+}

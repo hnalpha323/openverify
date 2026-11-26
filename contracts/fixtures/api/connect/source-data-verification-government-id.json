@@ -1,0 +1,25 @@
+{
+  "type": "connect/source-data/verification/government-id",
+  "attributes": {
+    "status": {
+      "visibility": "full",
+      "value": "passed"
+    },
+    "name-first": {
+      "visibility": "full",
+      "value": "Alex"
+    },
+    "name-last": {
+      "visibility": "presence",
+      "value": true
+    },
+    "id-class": {
+      "visibility": "full",
+      "value": "dl"
+    }
+  },
+  "files": {
+    "visibility": "presence",
+    "value": true
+  }
+}

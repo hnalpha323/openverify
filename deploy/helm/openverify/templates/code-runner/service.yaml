@@ -1,0 +1,4 @@
+{{- /* C263.6 (Workflow 11C Stage 2, chart-11c): the runner's Service, the worker's tcp: target (OPENVERIFY_WORKFLOW_CODE_RUNNER). */ -}}
+{{- if .Values.codeRunner.enabled }}
+{{ include "openverify.service" (dict "root" . "component" "code-runner" "name" (include "openverify.componentName" (dict "root" . "component" "code-runner")) "ports" (printf "- name: runner\n  port: %v\n  targetPort: runner\n  protocol: TCP" .Values.codeRunner.port)) }}
+{{- end }}

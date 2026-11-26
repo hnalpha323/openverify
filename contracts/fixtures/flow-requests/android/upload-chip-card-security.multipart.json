@@ -1,0 +1,11 @@
+{
+  "fields": {
+    "kind": "chip-card-security"
+  },
+  "file": {
+    "name": "file",
+    "filename": "chip-card-security.bin",
+    "content-type": "application/octet-stream",
+    "size": 4
+  }
+}

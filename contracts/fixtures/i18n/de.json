@@ -1,0 +1,799 @@
+{
+  "locale": "de",
+  "catalog-version": "web-f753624327cec872",
+  "catalog-sha256": "083d0fec90260947408e1ccae2fa39fc0ff1e740c1d417af61821c5157dd7b9a",
+  "review-status": {
+    "status": "machine-drafted"
+  },
+  "messages": {
+    "app": {
+      "name": "OpenVerify",
+      "language": "Sprache"
+    },
+    "loading": "Ihre Verifizierung wird geladen…",
+    "attempt": "Versuch {{current}} von {{max}}",
+    "consent": {
+      "title": "Einwilligung in die Nutzung Ihrer biometrischen Daten",
+      "biometric": "Um Ihre Identität zu bestätigen, vergleichen wir ein Selfie mit dem Foto in Ihrem Ausweisdokument. Dieser Vergleich nutzt biometrische Daten: Messwerte Ihrer Gesichtszüge. Ihre biometrischen Daten werden nur genutzt, um Ihre Identität für diese Anfrage zu verifizieren.",
+      "processing": "Wir verarbeiten die Fotos Ihres Ausweisdokuments und Ihr Selfie nur für diese Verifizierung. Sie werden gelöscht, sobald die Organisation, die diese Verifizierung angefordert hat, sie nicht mehr benötigt, gemäß ihren Aufbewahrungsregeln. Sie können jederzeit aufhören, indem Sie diese Seite schließen.",
+      "biometric-matching": "Optional: Wir vergleichen Ihr Selfie und seinen Hintergrund auch mit früheren Selfies, die an diese Organisation gesendet wurden, damit niemand mehrere Identitäten nutzen kann. Eine Vorlage Ihres Gesichts wird {{days}} Tage lang aufbewahrt. Sie können sich auch verifizieren, wenn Sie dieses Kästchen nicht ankreuzen.",
+      "device-recognition": "Optional: Dieses Gerät bei späteren Besuchen wiedererkennen, um mein Konto vor Missbrauch zu schützen.",
+      "automated-decision": "Optional: Ich bin einverstanden, dass über diese Verifizierung anhand meiner biometrischen Daten automatisierte Entscheidungen getroffen werden können, ohne dass eine Person sie vorher prüft. Sie können verlangen, dass eine Person eine Entscheidung prüft.",
+      "checkbox": "Ich willige in die Erhebung und Nutzung meiner biometrischen Daten wie oben beschrieben ein.",
+      "continue": "Weiter",
+      "saving": "Ihre Einwilligung wird gespeichert…",
+      "unavailable": "Diese Verifizierung bittet Sie, einem Text zuzustimmen, den diese Version nicht anzeigen kann. Wenden Sie sich an die Organisation, die Sie um die Verifizierung gebeten hat."
+    },
+    "notice": {
+      "session-integrity": "Um Ihre Verifizierung vor Betrug zu schützen, prüft diese Seite, wie sie genutzt wird, etwa ob ein Browser automatisiert ist. Sie liest weder Ihre Tastenanschläge noch das, was Sie eingeben.",
+      "device-recognition": "Dieser Dienst erkennt das Gerät, das Sie nutzen, wieder, um Konten vor Missbrauch zu schützen.",
+      "play-integrity": "Um Ihre Verifizierung vor Betrug zu schützen, bittet die App, die Sie verwenden, Google Play zu bestätigen, dass sie die echte App auf einem unveränderten Gerät ist. Dazu erhält Google den Paketnamen, die Version und das Signaturzertifikat der App, ihren Lizenzstatus und eine Bestätigung der Integrität dieses Geräts."
+    },
+    "nativeApp": {
+      "consent": {
+        "processing": "Wir verarbeiten die Fotos Ihres Ausweisdokuments und Ihr Selfie nur für diese Verifizierung. Sie werden gelöscht, sobald die Organisation, die diese Verifizierung angefordert hat, sie nicht mehr benötigt, gemäß ihren Aufbewahrungsregeln. Sie können jederzeit aufhören, indem Sie diesen Bildschirm schließen.",
+        "biometric-matching-checkbox": "Ja, mein Selfie auch mit früheren Selfies vergleichen (freiwillig)",
+        "device-recognition-checkbox": "Ja, dieses Gerät bei späteren Besuchen wiedererkennen (freiwillig)",
+        "automated-decision-checkbox": "Ja, automatisierte Entscheidungen anhand meiner biometrischen Daten erlauben (freiwillig)"
+      },
+      "notice": {
+        "session-integrity": "Um Ihre Verifizierung vor Betrug zu schützen, prüft diese App, wie sie genutzt wird: ob ein Debugger verbunden ist und ob es Anzeichen für einen Emulator, ein gerootetes Gerät oder ein Manipulationswerkzeug gibt. Dazu liest sie die Build-Eigenschaften des Geräts, den eigenen Prozess der App (seine Speicherzuordnung, Thread-Namen und geladenen Klassen), die Mount-Tabelle und ob bekannte Dateien vorhanden sind, und sendet nur die Namen der gefundenen Anzeichen. Sie liest nicht, was Sie eingeben, und nicht, welche anderen Apps Sie haben."
+      }
+    },
+    "camera": {
+      "title": "Kamerazugriff",
+      "intro": "Als Nächstes brauchen wir Ihre Kamera, um Fotos Ihres Ausweisdokuments und ein Selfie aufzunehmen.",
+      "request": "Kamerazugriff erlauben",
+      "requesting": "Warten auf die Kameraberechtigung…",
+      "ready": "Ihre Kamera ist bereit.",
+      "errors": {
+        "permission-denied": "Der Kamerazugriff ist blockiert. Erlauben Sie ihn in den Einstellungen Ihres Browsers und versuchen Sie es dann erneut.",
+        "no-camera": "Wir konnten keine Kamera finden. Schließen Sie eine an oder wechseln Sie zu einem Gerät mit Kamera.",
+        "constraints-not-satisfied": "Ihre Kamera unterstützt die nötigen Einstellungen nicht. Versuchen Sie eine andere Kamera oder ein anderes Gerät.",
+        "camera-in-use": "Eine andere App nutzt Ihre Kamera. Schließen Sie diese App und versuchen Sie es dann erneut.",
+        "insecure-context": "Der Kamerazugriff erfordert eine sichere Verbindung (https).",
+        "unsupported": "Dieser Browser kann keine Kamera nutzen. Versuchen Sie es mit einem aktuellen Browser.",
+        "unknown": "Beim Starten Ihrer Kamera ist ein Fehler aufgetreten. Versuchen Sie es erneut."
+      }
+    },
+    "capture": {
+      "progress": "Foto {{current}} von {{total}}",
+      "takePhoto": "Foto aufnehmen",
+      "uploadPhoto": "Foto hochladen",
+      "startingCamera": "Ihre Kamera wird gestartet…",
+      "cameraReady": "Ihre Kamera ist bereit. Wählen Sie „Aufnehmen“, um das Foto zu machen.",
+      "photoReady": "Ihr Foto kann geprüft werden. Verwenden Sie es oder nehmen Sie es neu auf.",
+      "preview": "Kameravorschau",
+      "shutter": "Aufnehmen",
+      "cancel": "Abbrechen",
+      "back": "Zurück",
+      "tryAgain": "Erneut versuchen",
+      "captureFailed": "Wir konnten das Foto nicht aufnehmen. Versuchen Sie es erneut.",
+      "uploadInstead": "Sie können stattdessen auch ein Foto hochladen.",
+      "checkPhoto": "Prüfen Sie, ob das Foto scharf und gut beleuchtet ist und alles zeigt, worum wir gebeten haben.",
+      "retake": "Neu aufnehmen",
+      "usePhoto": "Dieses Foto verwenden",
+      "barcodeHint": "Achten Sie darauf, dass der Barcode scharf und innerhalb des Rahmens ist.",
+      "photoCheck": {
+        "blurry": "Dieses Foto wirkt unscharf. Halten Sie Ihren Ausweis bei gutem Licht ruhig, lassen Sie die Kamera scharf stellen und nehmen Sie es erneut auf.",
+        "too-small": "Die Auflösung dieses Fotos ist zu gering, um Ihren Ausweis zu lesen. Nehmen Sie es erneut auf, oder verwenden Sie eine andere Kamera, wenn das Problem bleibt.",
+        "useAnyway": "Dieses Foto trotzdem verwenden"
+      },
+      "fileErrors": {
+        "empty": "Diese Datei ist leer. Wählen Sie ein anderes Foto aus.",
+        "too-large": "Dieses Foto ist größer als 10 MB. Wählen Sie ein kleineres Foto aus.",
+        "unsupported-type": "Diese Datei ist kein unterstütztes Bild. Wählen Sie ein JPEG-, PNG- oder WebP-Foto aus.",
+        "unreadable": "Wir konnten diese Datei nicht lesen. Wählen Sie ein anderes Foto aus."
+      }
+    },
+    "governmentId": {
+      "title": "Fotografieren Sie Ihren Ausweis",
+      "intro": "Verwenden Sie einen gültigen amtlichen Ausweis. Legen Sie ihn bei gutem Licht auf eine ebene Fläche, sodass alle vier Ecken zu sehen sind.",
+      "front": {
+        "title": "Vorderseite Ihres Ausweises",
+        "instruction": "Bringen Sie die Vorderseite Ihres Ausweises in den Rahmen.",
+        "alt": "Ihr Foto der Vorderseite Ihres Ausweises",
+        "upload": "Ein Foto der Vorderseite Ihres Ausweises auswählen"
+      },
+      "back": {
+        "title": "Rückseite Ihres Ausweises",
+        "instruction": "Drehen Sie Ihren Ausweis um und bringen Sie die Rückseite in den Rahmen.",
+        "alt": "Ihr Foto der Rückseite Ihres Ausweises",
+        "upload": "Ein Foto der Rückseite Ihres Ausweises auswählen"
+      }
+    },
+    "selfie": {
+      "title": "Nehmen Sie ein Selfie auf",
+      "intro": "Wir vergleichen Ihr Selfie mit dem Foto in Ihrem Ausweis. Nehmen Sie Sonnenbrille und Hut ab und suchen Sie sich einen gut beleuchteten Ort.",
+      "center": {
+        "title": "Schauen Sie geradeaus",
+        "instruction": "Bringen Sie Ihr Gesicht in das Oval und schauen Sie direkt in die Kamera.",
+        "alt": "Ihr Selfie, geradeaus schauend",
+        "upload": "Ein Selfie auswählen, geradeaus schauend"
+      },
+      "left": {
+        "title": "Drehen Sie den Kopf nach links",
+        "instruction": "Lassen Sie Ihr Gesicht im Oval und drehen Sie den Kopf langsam nach links.",
+        "alt": "Ihr Selfie, mit nach links gedrehtem Kopf",
+        "upload": "Ein Selfie auswählen, mit nach links gedrehtem Kopf"
+      },
+      "right": {
+        "title": "Drehen Sie den Kopf nach rechts",
+        "instruction": "Lassen Sie Ihr Gesicht im Oval und drehen Sie den Kopf langsam nach rechts.",
+        "alt": "Ihr Selfie, mit nach rechts gedrehtem Kopf",
+        "upload": "Ein Selfie auswählen, mit nach rechts gedrehtem Kopf"
+      },
+      "howItWorks": "Wir bitten Sie, direkt in die Kamera zu schauen und den Kopf zu drehen, wenn Sie dazu aufgefordert werden. Jedes Foto wird automatisch aufgenommen, sobald Sie stillhalten.",
+      "howItWorksCenter": "Schauen Sie direkt in die Kamera. Das Foto wird automatisch aufgenommen, sobald Sie stillhalten.",
+      "start": "Kamera starten",
+      "uploadInstead": "Fotos hochladen",
+      "preparing": "Vorbereitung",
+      "opening": "Ihr Selfie wird gestartet…",
+      "prompt": "Foto {{current}} von {{total}}: {{title}}",
+      "uploadingPose": "Foto {{current}} von {{total}} wird hochgeladen…",
+      "submitting": "Ihre Fotos werden gesendet…",
+      "restarted": "Ihre Selfie-Sitzung endete, bevor alle Fotos gesendet waren, deshalb haben wir neu begonnen. Folgen Sie den Hinweisen noch einmal.",
+      "shutterSoon": "Das Foto wird automatisch aufgenommen, wenn Sie stillhalten. In wenigen Sekunden können Sie es auch selbst aufnehmen.",
+      "shutterReady": "Wenn das Foto nicht automatisch aufgenommen wird, wählen Sie „Aufnehmen“.",
+      "retakePose": "Dieses Foto neu aufnehmen",
+      "guidance": {
+        "starting": "Die Gesichtsführung wird vorbereitet…",
+        "manual": "Halten Sie die Position und wählen Sie dann „Aufnehmen“.",
+        "no-face": "Wir sehen Ihr Gesicht nicht. Bringen Sie Ihr Gesicht in das Oval.",
+        "multiple-faces": "Achten Sie darauf, dass nur Ihr Gesicht im Bild ist.",
+        "too-far": "Gehen Sie näher an die Kamera heran.",
+        "too-close": "Gehen Sie etwas zurück.",
+        "off-centre": "Bringen Sie Ihr Gesicht in die Mitte des Ovals.",
+        "look-straight": "Schauen Sie direkt in die Kamera.",
+        "turn-left": "Drehen Sie den Kopf langsam nach links.",
+        "turn-right": "Drehen Sie den Kopf langsam nach rechts.",
+        "hold-still": "Bitte stillhalten…"
+      }
+    },
+    "otp": {
+      "send": "Code senden",
+      "sending": "Ihr Code wird gesendet…",
+      "phone": {
+        "title": "Bestätigen Sie Ihre Telefonnummer",
+        "intro": "Wir senden einen Code per SMS an Ihr Telefon. Es können die üblichen Kosten für Nachrichten anfallen.",
+        "country": "Land",
+        "countryOption": "{{country}} ({{code}})",
+        "number": "Telefonnummer",
+        "numberHint": "Sie können die Ländervorwahl weglassen.",
+        "change": "Telefonnummer ändern",
+        "errors": {
+          "required": "Geben Sie Ihre Telefonnummer ein.",
+          "invalid": "Geben Sie eine gültige Telefonnummer für das gewählte Land ein.",
+          "notAllowed": "An diese Nummer können hier keine Codes gesendet werden. Verwenden Sie eine Nummer aus einem der aufgeführten Länder.",
+          "destinationInvalid": "Diese Nummer kann keinen Code empfangen. Prüfen Sie sie oder verwenden Sie eine andere Telefonnummer.",
+          "deliveryFailed": "Wir konnten keinen Code an diese Nummer senden. Prüfen Sie sie und versuchen Sie es erneut, oder verwenden Sie eine andere Nummer."
+        }
+      },
+      "email": {
+        "title": "Bestätigen Sie Ihre E-Mail-Adresse",
+        "intro": "Wir senden einen Code an Ihre E-Mail-Adresse.",
+        "address": "E-Mail-Adresse",
+        "change": "E-Mail-Adresse ändern",
+        "errors": {
+          "required": "Geben Sie Ihre E-Mail-Adresse ein.",
+          "invalid": "Geben Sie eine E-Mail-Adresse im richtigen Format ein, zum Beispiel name@example.com.",
+          "notAllowed": "An diese E-Mail-Adresse können hier keine Codes gesendet werden. Verwenden Sie eine andere E-Mail-Adresse.",
+          "destinationInvalid": "Diese E-Mail-Adresse kann keinen Code empfangen. Prüfen Sie sie oder verwenden Sie eine andere E-Mail-Adresse.",
+          "deliveryFailed": "Wir konnten keinen Code an diese E-Mail-Adresse senden. Prüfen Sie sie und versuchen Sie es erneut, oder verwenden Sie eine andere E-Mail-Adresse."
+        }
+      },
+      "code": {
+        "title": "Code eingeben",
+        "sentTo": "Wir haben einen Code an {{destination}} gesendet.",
+        "sentAgain": "Wir haben einen neuen Code an {{destination}} gesendet.",
+        "label": "Bestätigungscode",
+        "hint": "Der Code hat {{length}} Ziffern.",
+        "confirm": "Bestätigen",
+        "checking": "Ihr Code wird geprüft…",
+        "attemptsLeft": "Verbleibende Versuche für diesen Code: {{remaining}}",
+        "expiresAt": "Der Code läuft um {{time}} ab.",
+        "resend": "Neuen Code senden",
+        "resendIn": "Sie können in {{time}} einen neuen Code anfordern.",
+        "resendReady": "Sie können jetzt einen neuen Code anfordern.",
+        "noResend": "Es können keine weiteren Codes gesendet werden.",
+        "expiredFinal": "Dieser Code ist abgelaufen, und es können keine weiteren Codes gesendet werden. Beginnen Sie von vorn, um einen neuen Code zu erhalten.",
+        "startAgain": "Von vorn beginnen",
+        "errors": {
+          "required": "Geben Sie den Code ein, den wir Ihnen gesendet haben.",
+          "format": "Geben Sie den {{length}}-stelligen Code ein.",
+          "incorrect": "Dieser Code ist nicht korrekt. Prüfen Sie ihn und versuchen Sie es erneut.",
+          "expired": "Dieser Code ist abgelaufen. Fordern Sie einen neuen Code an.",
+          "exhausted": "Zu viele falsche Versuche für diesen Code. Fordern Sie einen neuen Code an.",
+          "notSent": "Fordern Sie zuerst einen Code an.",
+          "tooSoon": "Warten Sie kurz, bevor Sie einen neuen Code anfordern."
+        }
+      },
+      "limited": {
+        "title": "Wir können Ihnen gerade keinen Code senden",
+        "message": "Wir konnten gerade keinen Code für Sie senden oder prüfen. Sie können fortfahren; die Organisation, die Ihre Verifizierung angefordert hat, prüft sie dann.",
+        "continue": "Weiter",
+        "continuing": "Ihre Verifizierung wird gesendet…",
+        "failed": "Wir konnten nicht fortfahren. Warten Sie eine Weile und versuchen Sie es dann erneut."
+      },
+      "confirmed": {
+        "title": "Ihr Code wurde bestätigt",
+        "submitting": "Ihre Verifizierung wird gesendet…"
+      }
+    },
+    "handoff": {
+      "desktop": {
+        "title": "Auf dem Telefon fortfahren",
+        "intro": "Scannen Sie diesen Code mit der Kamera Ihres Telefons, um diese Verifizierung auf dem Telefon fortzusetzen. Ihr bisheriger Fortschritt bleibt erhalten.",
+        "issuing": "Ein Code für Ihr Telefon wird abgerufen…",
+        "qrLabel": "QR-Code, der diese Verifizierung auf Ihrem Telefon öffnet",
+        "linkLabel": "Oder öffnen Sie diesen Link auf Ihrem Telefon",
+        "copy": "Link kopieren",
+        "copied": "Link kopiert.",
+        "expiresIn": "Dieser Code läuft in {{time}} ab.",
+        "expired": "Dieser Code ist abgelaufen. Rufen Sie einen neuen ab, um auf dem Telefon fortzufahren.",
+        "newCode": "Neuen Code abrufen",
+        "confirmationCode": "Wenn Ihr Telefon nach einem Code fragt, geben Sie ein: {{code}}",
+        "emailOption": "Stattdessen einen Link per E-Mail senden",
+        "smsOption": "Stattdessen einen Link per SMS senden",
+        "emailLabel": "E-Mail-Adresse",
+        "smsLabel": "Telefonnummer mit Ländervorwahl",
+        "smsHint": "Zum Beispiel +1 202 555 0123.",
+        "send": "Link senden",
+        "sending": "Der Link wird gesendet…",
+        "sentEmail": "Wir haben einen Link an Ihre E-Mail-Adresse gesendet. Öffnen Sie ihn innerhalb von {{minutes}} Minuten auf Ihrem Telefon.",
+        "sentSms": "Wir haben einen Link per SMS an Ihr Telefon gesendet. Öffnen Sie ihn innerhalb von {{minutes}} Minuten.",
+        "showQr": "Stattdessen einen QR-Code anzeigen",
+        "continueHere": "Auf diesem Gerät fortfahren",
+        "continuing": "Es geht auf diesem Gerät weiter…",
+        "waitingTitle": "Es geht auf Ihrem Telefon weiter",
+        "waiting": "Sie haben um {{time}} auf Ihrem Telefon weitergemacht. Schließen Sie die Verifizierung dort ab; diese Seite aktualisiert sich, wenn Sie fertig sind.",
+        "waitingDevice": "Ihr Telefon: {{device}}",
+        "notMe": "Das war ich nicht",
+        "rejecting": "Die Sitzung auf dem anderen Gerät wird beendet…",
+        "rejected": "Wir haben die Sitzung auf dem anderen Gerät beendet und abgebrochen, was dort noch nicht fertig war. Rufen Sie einen neuen Code ab, oder fahren Sie hier fort.",
+        "declined": "Das andere Gerät hat das Fortfahren abgelehnt. Rufen Sie einen neuen Code ab, oder fahren Sie hier fort.",
+        "errors": {
+          "destinationNotConfirmed": "Ein Link kann nur an eine E-Mail-Adresse oder Telefonnummer gesendet werden, die Sie zuvor in dieser Verifizierung bestätigt haben.",
+          "sendLimited": "Es wurden zu viele Links gesendet. Warten Sie eine Weile, oder verwenden Sie den QR-Code.",
+          "required": "Geben Sie an, wohin der Link gesendet werden soll."
+        }
+      },
+      "phone": {
+        "title": "Verifizierung fortsetzen",
+        "loading": "Ihr Link wird geprüft…",
+        "requester": "{{organization}} möchte Ihre Identität verifizieren.",
+        "verifies": "Auf diesem Telefon werden Sie um Folgendes gebeten:",
+        "started": "Diese Verifizierung wurde um {{time}} auf einem anderen Gerät begonnen.",
+        "startedIn": "Diese Verifizierung wurde um {{time}} auf einem anderen Gerät in {{country}} begonnen.",
+        "adviceQr": "Fahren Sie nur fort, wenn Sie diesen Code gerade auf der Website von {{organization}} gescannt haben. Wenn Ihnen jemand diesen Code geschickt hat, lehnen Sie ab.",
+        "adviceLink": "Fahren Sie nur fort, wenn Sie diesen Link gerade auf der Website von {{organization}} angefordert haben. Andernfalls lehnen Sie ab.",
+        "codeLabel": "Auf Ihrem anderen Gerät angezeigter Code",
+        "codeHint": "Sechs Ziffern.",
+        "codeRequired": "Geben Sie den sechsstelligen Code ein, der auf Ihrem anderen Gerät angezeigt wird.",
+        "checkCode": "Code prüfen",
+        "checking": "Der Code wird geprüft…",
+        "continue": "Weiter",
+        "continuing": "Ihre Verifizierung wird geöffnet…",
+        "decline": "Ablehnen",
+        "declining": "Wird abgelehnt…",
+        "declinedTitle": "Sie haben abgelehnt",
+        "declined": "Von diesem Telefon wurde nichts geteilt. Sie können diese Seite schließen.",
+        "invalid": "Dieser Link ist ungültig, abgelaufen oder wurde schon verwendet. Kehren Sie zu dem Gerät zurück, auf dem Sie begonnen haben, um einen neuen Code zu erhalten.",
+        "limitTitle": "Diese Verifizierung kann hier nicht fortgesetzt werden",
+        "limit": "Diese Verifizierung kann nicht auf einem anderen Gerät fortgesetzt werden. Kehren Sie zu dem Gerät zurück, auf dem Sie begonnen haben."
+      },
+      "steps": {
+        "form": "einige Angaben zu Ihrer Person",
+        "government_id": "ein Foto Ihres Ausweisdokuments",
+        "selfie": "ein Selfie",
+        "document": "das Hochladen eines Dokuments",
+        "phone_otp": "ein Code, der an Ihr Telefon gesendet wird",
+        "email_otp": "ein Code, der an Ihre E-Mail-Adresse gesendet wird",
+        "database": "ein Abgleich Ihrer Angaben mit einer Datenbank",
+        "aamva": "eine Prüfung Ihrer Führerscheindaten bei der ausstellenden Stelle",
+        "nfc": "das Auslesen des Chips in Ihrem Ausweisdokument",
+        "crypto_wallet": "der Nachweis, dass Sie eine Krypto-Wallet kontrollieren",
+        "database_business": "eine Prüfung Ihres Unternehmens in Unternehmensregistern",
+        "business_website": "eine Prüfung der Website Ihres Unternehmens"
+      }
+    },
+    "cryptoWallet": {
+      "title": "Weisen Sie nach, dass Sie Ihre Krypto-Wallet kontrollieren",
+      "intro": "Sie signieren eine Nachricht mit Ihrer Wallet. Das Signieren ist kostenlos: Es sendet keine Transaktion und bewegt kein Guthaben.",
+      "network": "Netzwerk",
+      "networkIs": "Netzwerk: {{network}}",
+      "restarted": "Ihr letzter Versuch wurde beendet, weil zu viele Nachrichten zum Signieren angefordert wurden. Beginnen Sie von vorn.",
+      "wallet": {
+        "connect": "Wallet verbinden",
+        "connectNamed": "{{name}} verbinden",
+        "connecting": "Warten auf Ihre Wallet…",
+        "signing": "Signieren Sie die Nachricht in Ihrer Wallet. Sie zeigt diese Website und den Grund der Anfrage.",
+        "submitting": "Ihre Signatur wird gesendet…",
+        "pasteInstead": "Stattdessen eine Signatur einfügen",
+        "declined": "Sie haben die Anfrage in Ihrer Wallet abgelehnt. Versuchen Sie es erneut, wenn Sie bereit sind.",
+        "failed": "Ihre Wallet konnte die Anfrage nicht abschließen. Versuchen Sie es erneut, oder fügen Sie stattdessen eine Signatur ein.",
+        "failedNoPaste": "Ihre Wallet konnte die Anfrage nicht abschließen. Versuchen Sie es erneut.",
+        "needed": "Für diesen Schritt ist eine Browser-Wallet nötig. Öffnen Sie diese Seite in einem Browser mit Wallet-Erweiterung oder im Browser Ihrer Wallet-App."
+      },
+      "paste": {
+        "address": "Wallet-Adresse",
+        "addressHint": "Kopieren Sie sie aus Ihrer Wallet und fügen Sie sie hier ein.",
+        "getMessage": "Nachricht zum Signieren abrufen",
+        "gettingMessage": "Die Nachricht wird abgerufen…",
+        "message": "Zu signierende Nachricht",
+        "messageHint": "Signieren Sie genau diese Nachricht in Ihrer Wallet und fügen Sie die Signatur unten ein. Signieren Sie sie vor {{time}}.",
+        "copy": "Nachricht kopieren",
+        "copied": "Nachricht kopiert.",
+        "copyFailed": "Wir konnten die Nachricht nicht kopieren. Markieren und kopieren Sie sie selbst.",
+        "signature": "Signatur",
+        "signedMessage": "Signierte Nachricht (optional)",
+        "signedMessageHint": "Manche Solana-Wallets zeigen die signierten Bytes an. Wenn Ihre das tut, fügen Sie sie hier ein.",
+        "submit": "Signatur senden",
+        "submitting": "Ihre Signatur wird gesendet…",
+        "otherAddress": "Andere Adresse verwenden",
+        "walletInstead": "Stattdessen Ihre Browser-Wallet verwenden"
+      },
+      "errors": {
+        "addressRequired": "Geben Sie Ihre Wallet-Adresse ein.",
+        "addressInvalid": "Diese Wallet-Adresse ist für das gewählte Netzwerk nicht gültig. Prüfen Sie, ob Sie die ganze Adresse kopiert haben.",
+        "addressNotExpected": "Das ist nicht die Wallet-Adresse, die Sie verifizieren sollen. Verwenden Sie die erwartete Wallet-Adresse.",
+        "chainNotOffered": "Dieses Netzwerk wird hier nicht akzeptiert. Wählen Sie ein anderes Netzwerk.",
+        "signatureRequired": "Fügen Sie die Signatur aus Ihrer Wallet ein.",
+        "signatureTooLong": "Diese Signatur ist zu lang. Fügen Sie nur die Signatur ein.",
+        "challengeInvalid": "Diese Nachricht ist abgelaufen oder wurde schon verwendet. Rufen Sie eine neue Nachricht zum Signieren ab."
+      },
+      "chains": {
+        "bitcoin": "Bitcoin",
+        "bitcoinTestnet": "Bitcoin (Testnetz)",
+        "litecoin": "Litecoin",
+        "dogecoin": "Dogecoin",
+        "solana": "Solana",
+        "tron": "TRON",
+        "xrpl": "XRP Ledger",
+        "ethereum": "Ethereum",
+        "optimism": "OP Mainnet",
+        "bnb": "BNB Smart Chain",
+        "polygon": "Polygon",
+        "base": "Base",
+        "arbitrum": "Arbitrum One",
+        "sepolia": "Sepolia (Testnetz)",
+        "evm": "EVM-Netzwerk {{number}}"
+      }
+    },
+    "share": {
+      "consent": {
+        "title": "Ihre geprüften Angaben mit {{recipient}} teilen",
+        "source": "{{source}} bittet um Ihre Zustimmung, die über Sie geprüften Angaben mit {{recipient}} zu teilen, damit {{recipient}} diese Prüfung wiederverwenden kann, statt Sie erneut prüfen zu lassen.\n\nWas geteilt wird: {{categories}}. Ohne Ihre Zustimmung wird nichts geteilt, und wenn Sie nicht teilen, wird Ihre Prüfung nicht abgebrochen.\n\nIhre Zustimmung gilt für eine einzige Weitergabe an {{recipient}} und nur für diesen Zweck. Sie endet nach {{expires}}, wenn die Angaben bis dahin nicht geteilt wurden.\n\nUm Ihre Zustimmung zu widerrufen, {{withdraw}}. Der Widerruf stoppt jede Weitergabe, die noch nicht erfolgt ist. Bereits geteilte Angaben bewahrt {{recipient}} nach der eigenen Datenschutzerklärung auf.",
+        "destination": "{{recipient}} bittet um Ihre Zustimmung, die von {{source}} über Sie geprüften Angaben zu erhalten, damit Sie sich nicht erneut prüfen lassen müssen.\n\nWas {{recipient}} erhält: {{categories}}. {{recipient}} verwendet sie nur, um Ihre Identität für diese Anfrage zu prüfen, und bewahrt sie {{retention}} lang auf. Ohne Ihre Zustimmung wird nichts übermittelt, und wenn Sie nicht teilen, wird Ihre Prüfung nicht abgebrochen: Sie werden dann hier geprüft.\n\nIhre Zustimmung endet nach {{expires}}, wenn die Angaben bis dahin nicht übermittelt wurden.\n\nUm Ihre Zustimmung zu widerrufen, {{withdraw}}. Der Widerruf stoppt jede Übermittlung, die noch nicht erfolgt ist.",
+        "biometric-source": "Ich stimme zu, dass {{source}} meine biometrischen Daten mit {{recipient}} teilt: das Foto meines Gesichts auf meinem Ausweisdokument, mein Selfie und die Ergebnisse ihres Vergleichs.",
+        "biometric-destination": "Ich stimme zu, dass {{recipient}} meine biometrischen Daten von {{source}} erhält: das Foto meines Gesichts auf meinem Ausweisdokument, mein Selfie und die Ergebnisse ihres Vergleichs. {{recipient}} bewahrt sie {{retention}} lang auf, nur um meine Identität zu prüfen.",
+        "accept": "Ich stimme zu",
+        "decline": "Nicht teilen",
+        "withdraw": "Meine Zustimmung zum Teilen mit {{recipient}} widerrufen"
+      },
+      "step": {
+        "sharedBy": "Geteilt von",
+        "sharedWith": "Geteilt mit",
+        "whatIsShared": "Was geteilt wird",
+        "saving": "Ihre Auswahl wird gespeichert …",
+        "biometricRequired": "Setzen Sie das Häkchen, um dem Teilen Ihrer biometrischen Daten zuzustimmen, oder wählen Sie „Nicht teilen“.",
+        "withdrawHeading": "Ihre Zustimmung zum Teilen",
+        "withdrawIntro": "Sie haben zugestimmt, Ihre geprüften Angaben mit {{recipient}} zu teilen. Sie können diese Zustimmung widerrufen, solange diese Prüfung offen ist.",
+        "withdrawing": "Ihre Zustimmung wird widerrufen …",
+        "withdrawn": "Sie haben Ihre Zustimmung zum Teilen mit {{recipient}} widerrufen."
+      },
+      "categories": {
+        "identity-fields": "Ihre Identitätsangaben, etwa Ihr Name und Ihr Geburtsdatum",
+        "contact-fields": "Ihre Kontaktdaten, etwa Ihre E-Mail-Adresse und Telefonnummer",
+        "other-fields": "weitere Angaben, die Sie eingegeben haben",
+        "document-images": "Bilder Ihrer Ausweisdokumente",
+        "biometric": "biometrische Daten: Fotos Ihres Gesichts und die Ergebnisse ihres Vergleichs",
+        "check-results": "die Ergebnisse der Prüfungen Ihrer Angaben"
+      }
+    },
+    "nfc": {
+      "title": "Für diesen Schritt wird die App der Organisation benötigt",
+      "needsApp": "Zum Auslesen des Chips eines Dokuments wird die App der Organisation benötigt; ein Browser kann ihn nicht auslesen.",
+      "otherWay": "Sie können hier auf anderem Weg fortfahren.",
+      "useAnotherWay": "Anderen Weg nutzen",
+      "switching": "Wechsel zu einem anderen Weg…",
+      "noOtherWay": "Fahren Sie in der App der Organisation fort. Wenn Sie die App nicht haben, wenden Sie sich an die Organisation, die Sie um die Verifizierung gebeten hat."
+    },
+    "forms": {
+      "requiredNote": "Mit * markierte Felder sind Pflichtfelder.",
+      "continue": "Weiter",
+      "sending": "Ihre Angaben werden gesendet…",
+      "received": "Wir haben Ihre Angaben erhalten. Senden Sie sie zur Prüfung, oder ändern Sie sie unten.",
+      "sendReceived": "Zur Prüfung senden",
+      "invalid": "Prüfen Sie die unten markierten Angaben.",
+      "refused": "Einige Angaben wurden nicht akzeptiert. Prüfen Sie sie und versuchen Sie es erneut.",
+      "address": "Adresse",
+      "chooseCountry": "Land auswählen",
+      "chooseState": "Bundesstaat oder Territorium auswählen",
+      "database": {
+        "title": "Geben Sie Ihre Angaben ein",
+        "intro": "Wir gleichen diese Angaben mit amtlichen Registern ab. Geben Sie sie so ein, wie sie in Ihren amtlichen Dokumenten stehen."
+      },
+      "database_business": {
+        "title": "Angaben zu Ihrem Unternehmen",
+        "intro": "Wir suchen diese Angaben in amtlichen Unternehmensregistern. Geben Sie sie so ein, wie das Unternehmen eingetragen ist."
+      },
+      "business_website": {
+        "title": "Geben Sie die Website Ihres Unternehmens ein",
+        "intro": "Wir prüfen, ob die Adresse der Website existiert. Die Website selbst öffnen wir nie."
+      },
+      "businessAddress": "Eingetragene Adresse",
+      "persons": {
+        "legend": "Personen, denen das Unternehmen gehört oder die es leiten",
+        "intro": "Sie können bis zu {{max}} Personen aus Geschäftsführung, Vorstand oder Eigentümerkreis zur Prüfung im Register hinzufügen.",
+        "person": "Person {{number}}",
+        "add": "Person hinzufügen",
+        "remove": "Person {{number}} entfernen",
+        "full": "Sie haben die höchstmögliche Zahl von Personen hinzugefügt."
+      },
+      "aamva": {
+        "title": "Geben Sie die Daten Ihres Führerscheins ein",
+        "intro": "Geben Sie die Daten genau so ein, wie sie auf Ihrem US-Führerschein oder Ihrem bundesstaatlichen Ausweis gedruckt sind. Wir prüfen sie bei der ausstellenden Behörde."
+      },
+      "silent": {
+        "title": "Ihre Führerscheindaten werden geprüft",
+        "message": "Wir prüfen Ihren Führerschein oder Ausweis bei der ausstellenden Behörde. Das dauert meist nur wenige Sekunden. Lassen Sie diese Seite geöffnet."
+      },
+      "fields": {
+        "name-first": "Vorname",
+        "name-middle": "Zweiter Vorname",
+        "name-last": "Nachname",
+        "birthdate": "Geburtsdatum",
+        "address-street-1": "Adresszeile 1",
+        "address-street-2": "Adresszeile 2",
+        "address-city": "Ort",
+        "address-subdivision": "Bundesland, Provinz oder Region",
+        "address-postal-code": "Postleitzahl",
+        "address-country-code": "Land",
+        "identification-number": "Identifikationsnummer",
+        "phone-number": "Telefonnummer",
+        "email-address": "E-Mail-Adresse",
+        "licenseNumber": "Nummer des Führerscheins oder Ausweises",
+        "issuingAuthority": "Ausstellender Bundesstaat oder ausstellendes Territorium",
+        "issueDate": "Ausstellungsdatum",
+        "expirationDate": "Ablaufdatum",
+        "zip": "ZIP-Code",
+        "business-name": "Name des Unternehmens",
+        "country-code": "Land der Eintragung",
+        "registration-number": "Registernummer",
+        "lei": "Rechtsträgerkennung (LEI)",
+        "businessStreet1": "Adresszeile 1",
+        "businessStreet2": "Adresszeile 2",
+        "businessCity": "Ort",
+        "businessSubdivision": "Bundesland, Provinz oder Region",
+        "businessPostalCode": "Postleitzahl",
+        "person-name-first": "Vorname",
+        "person-name-last": "Nachname",
+        "person-birthdate": "Geburtsmonat oder Geburtsdatum",
+        "website-url": "Adresse der Website"
+      },
+      "hints": {
+        "phone-number": "Geben Sie Ihre Ländervorwahl mit an.",
+        "registrationGb": "Bei einem britischen Unternehmen die 8-stellige Companies-House-Nummer, etwa 01234567 oder SC123456.",
+        "registrationUs": "Bei einem US-Unternehmen sein SEC Central Index Key (CIK), bis zu 10 Ziffern.",
+        "registration": "Die Nummer, die das Register dem Unternehmen gibt: bis zu 20 Buchstaben und Ziffern.",
+        "lei": "Der 20-stellige Code aus dem weltweiten LEI-Register. Lassen Sie das Feld leer, wenn das Unternehmen keinen hat.",
+        "person-birthdate": "Im Format YYYY-MM oder YYYY-MM-DD.",
+        "website-url": "Mit https:// oder http://, etwa https://www.example.com."
+      },
+      "required": {
+        "name-first": "Geben Sie Ihren Vornamen ein.",
+        "name-middle": "Geben Sie Ihren zweiten Vornamen ein.",
+        "name-last": "Geben Sie Ihren Nachnamen ein.",
+        "birthdate": "Geben Sie Ihr Geburtsdatum ein.",
+        "address-street-1": "Geben Sie die erste Zeile Ihrer Adresse ein.",
+        "address-street-2": "Geben Sie die zweite Zeile Ihrer Adresse ein.",
+        "address-city": "Geben Sie Ihren Ort ein.",
+        "address-subdivision": "Geben Sie Ihr Bundesland, Ihre Provinz oder Ihre Region ein.",
+        "address-postal-code": "Geben Sie Ihre Postleitzahl ein.",
+        "address-country-code": "Wählen Sie Ihr Land aus.",
+        "identification-number": "Geben Sie Ihre Identifikationsnummer ein.",
+        "phone-number": "Geben Sie Ihre Telefonnummer ein.",
+        "email-address": "Geben Sie Ihre E-Mail-Adresse ein.",
+        "licenseNumber": "Geben Sie die Nummer Ihres Führerscheins oder Ausweises ein.",
+        "issuingAuthority": "Wählen Sie den Bundesstaat oder das Territorium aus, das ihn ausgestellt hat.",
+        "issueDate": "Geben Sie das Ausstellungsdatum ein.",
+        "expirationDate": "Geben Sie das Ablaufdatum ein.",
+        "zip": "Geben Sie Ihren ZIP-Code ein.",
+        "business-name": "Geben Sie den Namen des Unternehmens ein.",
+        "country-code": "Wählen Sie das Land aus, in dem das Unternehmen eingetragen ist.",
+        "registration-number": "Geben Sie die Registernummer ein.",
+        "lei": "Geben Sie die LEI ein.",
+        "businessStreet1": "Geben Sie die erste Zeile der Unternehmensadresse ein.",
+        "businessStreet2": "Geben Sie die zweite Zeile der Unternehmensadresse ein.",
+        "businessCity": "Geben Sie den Ort des Unternehmens ein.",
+        "businessSubdivision": "Geben Sie das Bundesland, die Provinz oder die Region des Unternehmens ein.",
+        "businessPostalCode": "Geben Sie die Postleitzahl des Unternehmens ein.",
+        "person-name-first": "Geben Sie den Vornamen dieser Person ein.",
+        "person-name-last": "Geben Sie den Nachnamen dieser Person ein.",
+        "person-birthdate": "Geben Sie den Geburtsmonat oder das Geburtsdatum dieser Person ein.",
+        "website-url": "Geben Sie die Adresse der Website ein."
+      },
+      "errors": {
+        "tooLong": "Geben Sie höchstens {{max}} Zeichen ein.",
+        "date": "Geben Sie ein gültiges Datum ein.",
+        "phone": "Geben Sie die Nummer mit Ländervorwahl ein, etwa +1 202 555 0143.",
+        "email": "Geben Sie eine E-Mail-Adresse im richtigen Format ein, zum Beispiel name@example.com.",
+        "zip": "Geben Sie einen 5-stelligen ZIP-Code oder einen ZIP+4-Code wie 12345-6789 ein.",
+        "url": "Geben Sie die vollständige Webadresse mit https:// oder http:// ein, etwa https://www.example.com.",
+        "lei": "Geben Sie die 20-stellige LEI genau so ein, wie sie eingetragen ist.",
+        "registrationGb": "Geben Sie die 8-stellige Unternehmensnummer ein, etwa 01234567 oder SC123456.",
+        "registrationUs": "Geben Sie den CIK ein: bis zu 10 Ziffern.",
+        "registration": "Geben Sie bis zu 20 Buchstaben und Ziffern ohne Leerzeichen ein.",
+        "birthMonth": "Geben Sie den Monat als YYYY-MM oder das Datum als YYYY-MM-DD ein.",
+        "refused": "Dies wurde nicht akzeptiert. Prüfen Sie die Angabe und versuchen Sie es erneut."
+      }
+    },
+    "document": {
+      "title": "Dokument hochladen",
+      "intro": "Laden Sie ein Dokument hoch, auf dem Ihr vollständiger Name und Ihre Adresse stehen.",
+      "accepted": "Sie können eines der folgenden Dokumente hochladen:",
+      "types": {
+        "utility_bill_one": "Eine Versorgerrechnung, die höchstens einen Tag alt ist",
+        "utility_bill_other": "Eine Versorgerrechnung, die höchstens {{count}} Tage alt ist",
+        "bank_statement_one": "Ein Kontoauszug, der höchstens einen Tag alt ist",
+        "bank_statement_other": "Ein Kontoauszug, der höchstens {{count}} Tage alt ist",
+        "pay_stub_one": "Eine Gehaltsabrechnung, die höchstens einen Tag alt ist",
+        "pay_stub_other": "Eine Gehaltsabrechnung, die höchstens {{count}} Tage alt ist",
+        "lease": "Ein noch gültiger Miet- oder Pachtvertrag",
+        "tax_document": "Ein Steuerdokument aus dem letzten Steuerjahr"
+      },
+      "typeNames": {
+        "utility_bill": "Eine Versorgerrechnung",
+        "bank_statement": "Ein Kontoauszug",
+        "lease": "Ein Miet- oder Pachtvertrag",
+        "pay_stub": "Eine Gehaltsabrechnung",
+        "tax_document": "Ein Steuerdokument"
+      },
+      "formats": "Laden Sie es als {{formats}}-Datei mit höchstens {{size}} hoch.",
+      "pages_one": "Ein PDF darf nur {{count}} Seite haben.",
+      "pages_other": "Ein PDF darf bis zu {{count}} Seiten haben.",
+      "chooseFile": "Datei auswählen",
+      "chooseFileLabel": "Eine Datei Ihres Dokuments auswählen",
+      "takePhoto": "Foto aufnehmen",
+      "takePhotoLabel": "Ein Foto Ihres Dokuments aufnehmen",
+      "picked": "Ihre Datei: {{name}}, {{size}}",
+      "pickedHint": "Prüfen Sie, ob es das richtige Dokument ist, und laden Sie es dann hoch.",
+      "upload": "Diese Datei hochladen",
+      "chooseAnother": "Andere Datei auswählen",
+      "takeAnother": "Anderes Foto aufnehmen",
+      "uploading": "Ihr Dokument wird hochgeladen…",
+      "fileErrors": {
+        "empty": "Diese Datei ist leer. Wählen Sie eine andere Datei aus.",
+        "too-large": "Diese Datei ist größer als {{size}}. Wählen Sie eine kleinere Datei, etwa ein Foto des Dokuments oder ein PDF mit weniger Seiten.",
+        "unsupported-type": "Diesen Dateityp können wir nicht verwenden. Wählen Sie eine {{formats}}-Datei aus.",
+        "unreadable": "Wir konnten diese Datei nicht lesen. Wählen Sie eine andere Datei aus."
+      }
+    },
+    "screen": {
+      "continue": "Weiter",
+      "heading": "Ihre Angaben",
+      "required": "Mit * markierte Felder sind Pflichtfelder.",
+      "choose": "Bitte wählen…",
+      "set": "Bereits angegeben. Geben Sie einen neuen Wert ein, um ihn zu ändern.",
+      "summary": "Bitte prüfen Sie diese Angaben:",
+      "errors": {
+        "required": "Geben Sie einen Wert ein oder wählen Sie einen aus.",
+        "tooShort": "Geben Sie mindestens {{limit}} Zeichen ein.",
+        "tooLong": "Geben Sie höchstens {{limit}} Zeichen ein.",
+        "pattern": "Das entspricht nicht dem erwarteten Format.",
+        "number": "Geben Sie eine Zahl ein.",
+        "tooSmall": "Geben Sie {{limit}} oder mehr ein.",
+        "tooLarge": "Geben Sie {{limit}} oder weniger ein.",
+        "date": "Geben Sie ein Datum ein.",
+        "dateTooEarly": "Geben Sie den {{limit}} oder ein späteres Datum ein.",
+        "dateTooLate": "Geben Sie den {{limit}} oder ein früheres Datum ein.",
+        "email": "Geben Sie eine E-Mail-Adresse ein, zum Beispiel name@example.com.",
+        "phone": "Geben Sie eine Telefonnummer mit Ländervorwahl ein.",
+        "url": "Geben Sie eine Webadresse ein, die mit https:// beginnt.",
+        "option": "Wählen Sie eine der Optionen.",
+        "country": "Wählen Sie eines der Länder.",
+        "refused": "Dieser Wert wurde nicht angenommen. Prüfen Sie ihn und versuchen Sie es erneut."
+      },
+      "address": {
+        "street1": "Straße und Hausnummer",
+        "street2": "Wohnung, Gebäude oder Etage (optional)",
+        "city": "Ort",
+        "subdivision": "Bundesland, Provinz oder Region",
+        "postalCode": "Postleitzahl",
+        "country": "Land"
+      },
+      "saving": "Ihre Angaben werden gespeichert…",
+      "cancel": {
+        "title": "Vorerst aufhören?",
+        "message": "Ihre bisherigen Angaben bleiben erhalten. Mit demselben Link können Sie später weitermachen.",
+        "confirm": "Ja, vorerst aufhören",
+        "keep": "Nein, weitermachen",
+        "stopped": "Sie haben vorerst aufgehört",
+        "stoppedMessage": "Mit demselben Link können Sie dort weitermachen, wo Sie aufgehört haben."
+      },
+      "unavailable": "Dieser Bildschirm kann in dieser Version nicht angezeigt werden.",
+      "help": "Hilfe und Datenschutz",
+      "helpLink": "Hilfe erhalten",
+      "privacyLink": "Datenschutzhinweis",
+      "waiting": {
+        "title": "Einen Moment",
+        "message": "Der nächste Schritt wird vorbereitet…"
+      },
+      "halted": {
+        "title": "Diese Verifizierung kann nicht fortgesetzt werden",
+        "message": "Etwas hat diese Verifizierung angehalten. Wenden Sie sich an die Organisation, die Sie um die Verifizierung gebeten hat."
+      },
+      "redirect": {
+        "announce": "Ihr Teil ist erledigt. Mit „Weiter“ kehren Sie zu der Website zurück, von der Sie gekommen sind.",
+        "continue": "Weiter"
+      },
+      "extend": {
+        "warning": "Noch etwa {{seconds}} Sekunden für Ihre Fotos. Brauchen Sie mehr Zeit?",
+        "button": "Mehr Zeit",
+        "extended": "Sie haben mehr Zeit.",
+        "failed": "Wir konnten keine Zeit hinzufügen. Machen Sie Ihre Fotos jetzt, oder beginnen Sie neu, wenn die Zeit abläuft."
+      }
+    },
+    "submission": {
+      "uploading": "Ihre Fotos werden hochgeladen…",
+      "retry": "Erneut versuchen",
+      "retake": "Fotos neu aufnehmen"
+    },
+    "processing": {
+      "title": "Ihre Fotos werden geprüft",
+      "verificationTitle": "Ihre Verifizierung wird geprüft",
+      "message": "Das dauert meist nur wenige Sekunden. Lassen Sie diese Seite geöffnet.",
+      "slow": "Das dauert länger als üblich.",
+      "checkAgain": "Erneut prüfen"
+    },
+    "finalizing": {
+      "title": "Ihre Verifizierung wird abgeschlossen",
+      "message": "Das dauert meist nur wenige Sekunden. Lassen Sie diese Seite geöffnet."
+    },
+    "retry": {
+      "title": "Wir konnten Ihre letzten Fotos nicht verwenden",
+      "attemptTitle": "Ihr letzter Versuch ist nicht durchgegangen",
+      "generic": "Etwas auf dem Foto war nicht deutlich genug. Versuchen Sie es bei gutem Licht erneut.",
+      "reasons": {
+        "image_blurry": "Das Foto war unscharf. Halten Sie Ihr Gerät ruhig und warten Sie, bis das Bild scharf ist.",
+        "glare_present": "Auf Ihrem Ausweis war eine Spiegelung. Gehen Sie aus dem direkten Licht oder kippen Sie den Ausweis leicht.",
+        "portrait_not_present": "Wir konnten das Foto auf Ihrem Ausweis nicht finden. Achten Sie darauf, dass die ganze Vorderseite im Rahmen ist.",
+        "front_not_present": "Wir brauchen ein Foto der Vorderseite Ihres Ausweises.",
+        "back_not_present": "Wir brauchen ein Foto der Rückseite Ihres Ausweises.",
+        "image_too_dark": "Das Foto war zu dunkel. Suchen Sie sich einen helleren Ort.",
+        "image_too_bright": "Das Foto war zu hell. Gehen Sie aus starkem Licht.",
+        "face_not_present": "Wir konnten Ihr Gesicht nicht sehen. Bringen Sie Ihr Gesicht in das Oval.",
+        "multiple_faces_present": "Auf dem Foto war mehr als ein Gesicht. Achten Sie darauf, dass nur Sie im Bild sind.",
+        "image_unreadable": "Wir konnten das Foto nicht öffnen. Nehmen Sie ein neues auf oder wählen Sie ein JPEG-, PNG- oder WebP-Bild.",
+        "document_not_found": "Wir konnten Ihren Ausweis auf dem Foto nicht finden. Legen Sie ihn auf eine einfarbige, kontrastreiche Fläche, sodass alle vier Ecken im Rahmen sind.",
+        "insufficient_text": "Wir konnten den Text auf Ihrem Ausweis nicht lesen. Achten Sie darauf, dass das Foto scharf, gut beleuchtet und ohne Spiegelung ist und den ganzen Ausweis zeigt.",
+        "identity_features_not_found": "Wir konnten weder Ihr Foto noch die Zeilen aus Buchstaben und Ziffern auf Ihrem Ausweis finden. Fotografieren Sie die Seite mit Ihrem Foto, mit dem ganzen Ausweis im Rahmen.",
+        "resolution_too_low": "Ihr Ausweis war auf dem Foto zu klein. Gehen Sie mit dem Gerät näher heran, sodass der Ausweis den größten Teil des Rahmens ausfüllt.",
+        "back_feature_not_found": "Wir konnten die Rückseite Ihres Ausweises nicht lesen. Drehen Sie ihn um und fotografieren Sie die Rückseite scharf und ohne Spiegelung, damit ihr Strichcode oder ihre Zeilen aus Buchstaben und Ziffern lesbar sind.",
+        "portrait_too_small": "Das Foto Ihres Gesichts auf dem Ausweis war zu klein. Gehen Sie mit dem Gerät näher heran, sodass der Ausweis den größten Teil des Rahmens ausfüllt.",
+        "portrait_blurry": "Das Foto Ihres Gesichts auf dem Ausweis war nicht scharf. Halten Sie Ihr Gerät ruhig und warten Sie, bis das Bild scharf ist.",
+        "portrait_obstructed": "Etwas hat das Foto Ihres Gesichts auf dem Ausweis verdeckt. Halten Sie Finger und Spiegelungen davon fern.",
+        "mrz_not_found": "Wir konnten die Zeilen aus Buchstaben, Ziffern und <<<-Zeichen auf Ihrem Ausweis nicht finden. Achten Sie darauf, dass der ganze Ausweis im Rahmen ist, auch die Unterkante.",
+        "mrz_unreadable": "Wir konnten die Zeilen aus Buchstaben, Ziffern und <<<-Zeichen auf Ihrem Ausweis nicht lesen. Halten Sie Ihr Gerät ruhig und vermeiden Sie Spiegelungen, damit diese Zeilen scharf sind.",
+        "barcode_not_found": "Wir konnten den Strichcode auf Ihrem Ausweis nicht finden. Fotografieren Sie die Seite mit dem Strichcode, mit dem ganzen Ausweis im Rahmen und ohne Spiegelung auf dem Strichcode.",
+        "required_fields_missing": "Wir konnten nicht alle Angaben auf Ihrem Ausweis lesen. Achten Sie darauf, dass der ganze Ausweis scharf und ohne Spiegelung im Rahmen ist.",
+        "face_too_small": "Ihr Gesicht war auf dem Foto zu klein. Gehen Sie näher heran, sodass Ihr Gesicht das Oval ausfüllt.",
+        "face_glare": "Licht hat sich auf Ihrem Gesicht gespiegelt. Wenden Sie sich vom direkten Licht ab und versuchen Sie es erneut.",
+        "pose_not_center": "Schauen Sie beim ersten Foto direkt in die Kamera, mit Ihrem Gesicht in der Mitte des Ovals.",
+        "pose_not_left": "Ihr Kopf war nicht weit genug nach links gedreht. Drehen Sie den Kopf auf Aufforderung langsam nach links und halten Sie ihn dort.",
+        "pose_not_right": "Ihr Kopf war nicht weit genug nach rechts gedreht. Drehen Sie den Kopf auf Aufforderung langsam nach rechts und halten Sie ihn dort.",
+        "face_covered": "Ein Teil Ihres Gesichts war verdeckt. Nehmen Sie Maske oder Schal ab und halten Sie die Hände vom Gesicht fern.",
+        "glasses_detected": "Nehmen Sie Ihre Brille ab und versuchen Sie es dann erneut.",
+        "document_type_not_accepted": "Diese Dokumentart wird hier nicht akzeptiert. Laden Sie eine der Dokumentarten hoch, die dieser Schritt nennt.",
+        "document_unreadable": "Wir konnten Ihr Dokument nicht öffnen oder lesen. Laden Sie ein deutliches Foto oder ein PDF des ganzen Dokuments hoch.",
+        "document_password_protected": "Ihr PDF ist mit einem Passwort geschützt. Laden Sie eine Kopie ohne Passwort oder ein Foto des Dokuments hoch.",
+        "document_too_large": "Ihre Datei ist zu groß. Laden Sie eine kleinere Datei hoch, etwa ein Foto des Dokuments oder ein PDF mit weniger Seiten.",
+        "document_too_many_pages": "Ihr PDF hat zu viele Seiten. Laden Sie nur die Seiten hoch, auf denen Ihr Name, Ihre Adresse und das Datum stehen.",
+        "name_not_found": "Wir konnten auf Ihrem Dokument keinen Namen finden. Laden Sie ein Dokument hoch, auf dem Ihr vollständiger Name steht.",
+        "address_not_found": "Wir konnten auf Ihrem Dokument keine Adresse finden. Laden Sie ein Dokument hoch, auf dem Ihre vollständige Adresse steht.",
+        "issue_date_not_found": "Wir konnten das Ausstellungsdatum Ihres Dokuments nicht finden. Laden Sie ein Dokument hoch, auf dem das Ausstellungsdatum steht.",
+        "issuer_not_found": "Wir konnten nicht erkennen, wer Ihr Dokument ausgestellt hat. Laden Sie ein Dokument hoch, auf dem das ausstellende Unternehmen oder die ausstellende Behörde steht.",
+        "document_expired": "Ihr Dokument ist abgelaufen. Laden Sie eines hoch, das noch gültig ist.",
+        "document_too_old": "Ihr Dokument ist zu alt. Laden Sie ein neueres hoch.",
+        "po_box_detected": "Ein Postfach kann nicht als Ihre Adresse verwendet werden. Geben Sie die Adresse ein, unter der Sie wohnen.",
+        "otp_attempts_exhausted": "Es wurden zu viele falsche Codes eingegeben. Beginnen Sie von vorn, um einen neuen Code zu erhalten.",
+        "otp_not_confirmed": "Der Code wurde nicht rechtzeitig bestätigt. Beginnen Sie von vorn, um einen neuen Code zu erhalten.",
+        "domain_not_found": "Der Teil Ihrer E-Mail-Adresse nach dem @ existiert nicht. Prüfen Sie ihn auf Tippfehler.",
+        "domain_rejects_mail": "Diese E-Mail-Domain nimmt keine E-Mails an. Verwenden Sie eine andere E-Mail-Adresse.",
+        "no_mail_server": "An diese Adresse kann keine E-Mail zugestellt werden. Prüfen Sie sie oder verwenden Sie eine andere E-Mail-Adresse.",
+        "address_invalid": "Diese Wallet-Adresse ist für das gewählte Netzwerk nicht gültig. Prüfen Sie, ob Sie die ganze Adresse kopiert haben.",
+        "address_checksum_invalid": "Diese Wallet-Adresse enthält einen Tippfehler. Kopieren Sie sie erneut aus Ihrer Wallet, statt sie abzutippen.",
+        "signature_invalid": "Die Signatur konnte nicht gelesen werden. Signieren Sie die Nachricht erneut in Ihrer Wallet und fügen Sie die ganze Signatur ein.",
+        "signature_address_mismatch": "Die Nachricht wurde von einer anderen Wallet-Adresse signiert. Signieren Sie sie mit der Adresse, die Sie eingegeben haben.",
+        "expected_address_mismatch": "Das ist nicht die Wallet-Adresse, die Sie verifizieren sollen. Verwenden Sie die erwartete Wallet-Adresse.",
+        "country_not_enabled": "Unternehmen aus diesem Land können hier nicht verifiziert werden. Prüfen Sie das gewählte Land.",
+        "domain_not_resolving": "Wir konnten diese Website nicht finden. Prüfen Sie die Webadresse auf Tippfehler.",
+        "document_name_mismatch": "Der Name auf Ihrem Dokument stimmt nicht mit Ihrem überein. Laden Sie ein Dokument auf Ihren eigenen Namen hoch."
+      }
+    },
+    "flow": {
+      "completion": "Vielen Dank. Ihre Verifizierung wurde übermittelt, und Sie können diese Seite schließen.",
+      "failure": "Wir konnten Ihre Identität nicht verifizieren. Wenden Sie sich an die Organisation, die Sie um die Verifizierung gebeten hat."
+    },
+    "completion": {
+      "title": "Verifizierung übermittelt"
+    },
+    "failure": {
+      "title": "Verifizierung nicht abgeschlossen"
+    },
+    "contest": {
+      "heading": "Überprüfung anfordern",
+      "intro": "Wenn Sie mit dem Ergebnis nicht einverstanden sind, kann eine Person es überprüfen.",
+      "host": "Dieser Link öffnet {{host}}",
+      "link": "Überprüfung anfordern",
+      "contact": "Sie erreichen außerdem: {{contact}}"
+    },
+    "expired": {
+      "title": "Dieser Verifizierungslink ist abgelaufen",
+      "message": "Bitten Sie die Organisation, die ihn gesendet hat, um einen neuen Link."
+    },
+    "ended": {
+      "expired": {
+        "title": "Ihre Verifizierungssitzung ist abgelaufen",
+        "message": "Zu Ihrer Sicherheit endet eine Verifizierungssitzung nach einiger Zeit. Bitten Sie die Organisation, die Sie um die Verifizierung gebeten hat, um einen neuen Link."
+      },
+      "canceled": {
+        "title": "Diese Verifizierungssitzung ist beendet",
+        "message": "Die Sitzung wurde geschlossen, etwa weil die Verifizierung abgeschlossen oder zurückgezogen wurde. Wenn Sie sich noch verifizieren müssen, bitten Sie die Organisation, die Sie darum gebeten hat, um einen neuen Link."
+      },
+      "redacted": {
+        "title": "Diese Verifizierung ist nicht mehr verfügbar",
+        "message": "Die Informationen dieser Verifizierung wurden gelöscht, daher kann sie nicht fortgesetzt werden. Wenn Sie sich noch verifizieren müssen, wenden Sie sich an die Organisation, die Sie darum gebeten hat."
+      }
+    },
+    "sandbox": {
+      "label": "Testumgebung",
+      "message": "Dies ist eine Testverifizierung. Verwenden Sie nur Testdaten, niemals einen echten Ausweis."
+    },
+    "unsupported": {
+      "title": "Dieser Schritt ist hier nicht verfügbar",
+      "step": "Diese Verifizierung enthält einen Schritt, den diese Version des Web-Ablaufs noch nicht unterstützt: {{step}}.",
+      "flow": "Diese Verifizierung nutzt eine Regel, die diese Version des Web-Ablaufs noch nicht unterstützt.",
+      "contact": "Wenden Sie sich an die Organisation, die Sie um die Verifizierung gebeten hat.",
+      "steps": {
+        "form": "ein Formular",
+        "document": "das Hochladen eines Dokuments",
+        "phone_otp": "ein Code, der an Ihr Telefon gesendet wird",
+        "email_otp": "ein Code, der an Ihre E-Mail-Adresse gesendet wird",
+        "database": "ein Abgleich Ihrer Angaben mit einer Datenbank",
+        "aamva": "eine Prüfung Ihrer Führerscheindaten bei der ausstellenden Stelle",
+        "nfc": "das Auslesen des Chips in Ihrem Ausweis, wofür die mobile App nötig ist",
+        "crypto_wallet": "der Nachweis, dass Sie eine Krypto-Wallet kontrollieren",
+        "database_business": "eine Prüfung Ihres Unternehmens in Unternehmensregistern",
+        "business_website": "eine Prüfung der Website Ihres Unternehmens"
+      }
+    },
+    "link": {
+      "title": "Wir konnten Ihre Verifizierung nicht öffnen",
+      "missing": "Öffnen Sie diese Seite über den Verifizierungslink, den Sie erhalten haben. Der Link fehlt oder ist unvollständig.",
+      "invalid": "Dieser Verifizierungslink ist ungültig. Prüfen Sie, ob Sie den ganzen Link geöffnet haben, oder fordern Sie einen neuen an.",
+      "mismatch": "Dieser Link gehört zu einer anderen Verifizierung. Öffnen Sie den neuesten Link, den Sie erhalten haben.",
+      "used": "Dieser Link wurde bereits verwendet oder ist abgelaufen. Jeder Link funktioniert nur einmal. Bitten Sie die Organisation, die ihn gesendet hat, um einen neuen.",
+      "reloaded": "Diese Seite wurde über einen Einmal-Link geöffnet, der nur einmal funktioniert, daher kann sie nicht neu geladen werden. Öffnen Sie den erhaltenen Link erneut, oder fordern Sie einen neuen an, wenn er nicht mehr funktioniert."
+    },
+    "errors": {
+      "title": "Etwas ist schiefgelaufen",
+      "network": "Wir konnten den Verifizierungsdienst nicht erreichen. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut.",
+      "timeout": "Der Verifizierungsdienst hat zu lange für eine Antwort gebraucht. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut.",
+      "unauthorized": "Dieser Verifizierungslink ist nicht mehr gültig. Bitten Sie die Organisation, die ihn gesendet hat, um einen neuen.",
+      "conflict": "Ihre Verifizierung hat sich geändert, vielleicht in einem anderen Fenster. Versuchen Sie es erneut, um fortzufahren.",
+      "tooLarge": "Dieses Foto ist größer als 10 MB. Nehmen Sie es neu auf oder wählen Sie ein kleineres Foto.",
+      "unsupportedImage": "Wir konnten dieses Foto nicht verwenden. Nehmen Sie es neu auf oder wählen Sie ein JPEG-, PNG- oder WebP-Foto.",
+      "notAccepted": "Dies wurde nicht akzeptiert. Prüfen Sie Ihre Eingabe und versuchen Sie es erneut.",
+      "rateLimited": "Zu viele Versuche in kurzer Zeit. Warten Sie einen Moment und versuchen Sie es dann erneut.",
+      "server": "Der Verifizierungsdienst hat Probleme. Versuchen Sie es in ein paar Minuten erneut.",
+      "unexpected": "Etwas ist schiefgelaufen. Versuchen Sie es erneut.",
+      "retry": "Erneut versuchen"
+    },
+    "notFound": {
+      "title": "Seite nicht gefunden",
+      "back": "Von vorn beginnen"
+    }
+  }
+}

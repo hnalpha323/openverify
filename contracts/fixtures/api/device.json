@@ -1,0 +1,26 @@
+{
+  "data": {
+    "type": "device",
+    "id": "dev_01M5CJZC30W7PFE0GD30HJWEC6",
+    "attributes": {
+      "created-at": "2026-10-20T12:00:20.000Z",
+      "device-vendor-id": null,
+      "device-fingerprint": null,
+      "browser-fingerprint": "3c1f000000000000000000000000000000000000000000000000000000009a2d",
+      "device-class": "7b2e0000000000000000000000000000000000000000000000000000000041c8",
+      "platform": "web",
+      "collector-version": 1,
+      "fingerprint-randomised": false,
+      "key-id": "Qm9xZXN0ZXI",
+      "session-count": 1,
+      "first-seen-at": "2026-10-20T12:00:20.000Z",
+      "last-seen-at": "2026-10-20T12:00:20.000Z",
+      "trusted-at": "2026-10-20T12:05:00.000Z",
+      "trusted-by": {
+        "type": "workflow-run",
+        "id": "wfr_01M5CM00000000000000000006"
+      },
+      "trust-reason": "manual_review_passed"
+    }
+  }
+}

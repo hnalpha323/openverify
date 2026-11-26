@@ -1,0 +1,38 @@
+{
+  "data": {
+    "type": "graph-query-template-version",
+    "id": "grqtv_01M5CK3190XEVBM5ZXA76E1JSN",
+    "attributes": {
+      "version-number": 1,
+      "status": "published",
+      "config": {
+        "parameters": [
+          {
+            "name": "email",
+            "kind": "email_address"
+          }
+        ],
+        "start": [
+          {
+            "kind": "email_address",
+            "value": "{{email}}"
+          }
+        ],
+        "connect-kinds": ["email_address", "phone_number", "device_fingerprint"],
+        "max-hops": 4,
+        "node-limit": 100,
+        "include-weak-kinds": false
+      },
+      "created-at": "2026-10-31T12:00:00.000Z",
+      "published-at": "2026-10-31T12:00:00.000Z"
+    },
+    "relationships": {
+      "graph-query-template": {
+        "data": {
+          "type": "graph-query-template",
+          "id": "grqt_01M5CK3190XEVBM5ZXA76E1JSN"
+        }
+      }
+    }
+  }
+}

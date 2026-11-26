@@ -1,0 +1,65 @@
+{
+  "source": "synthetic: list order only, the last step not terminal (a synthetic completion)",
+  "flow": {
+    "metadata": {
+      "specVersion": 2,
+      "id": "linear-open",
+      "version": 1,
+      "name": "Synthetic linear-open"
+    },
+    "entry": "consent",
+    "steps": [
+      {
+        "id": "consent",
+        "type": "consent",
+        "textKeys": ["consent.biometric"],
+        "required": true
+      },
+      {
+        "id": "id_card",
+        "type": "government_id",
+        "sides": "front",
+        "maxAttempts": 2,
+        "captureMethods": ["camera"]
+      },
+      {
+        "id": "face",
+        "type": "selfie",
+        "poses": ["center"],
+        "liveness": "passive",
+        "maxAttempts": 2
+      },
+      {
+        "id": "completion",
+        "type": "completion"
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "consent",
+        "port": "next",
+        "to": "id_card"
+      },
+      {
+        "id": "e2",
+        "from": "id_card",
+        "port": "next",
+        "to": "face"
+      },
+      {
+        "id": "e3",
+        "from": "face",
+        "port": "next",
+        "to": "completion"
+      }
+    ]
+  },
+  "notes": [
+    {
+      "pointer": "/steps/2",
+      "code": "synthetic_completion",
+      "detail": "v1 ends with completion after its last step; v2 names that completion step"
+    }
+  ]
+}

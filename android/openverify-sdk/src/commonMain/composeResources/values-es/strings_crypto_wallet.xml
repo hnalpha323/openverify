@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Spanish for strings_crypto_wallet.xml (values). -->
+<resources>
+    <string name="openverify_crypto_title">Demuestra que controlas tu monedero</string>
+    <string name="openverify_crypto_intro">Elige la red y escribe la dirección de tu monedero. Después te mostramos un mensaje para firmar en tu aplicación de monedero.</string>
+    <string name="openverify_crypto_chain">Red</string>
+    <string name="openverify_crypto_evm_chain">Red EVM %1$s</string>
+    <string name="openverify_crypto_address">Dirección del monedero</string>
+    <string name="openverify_crypto_get_message">Obtener el mensaje para firmar</string>
+    <string name="openverify_crypto_getting_message">Obteniendo el mensaje…</string>
+
+    <string name="openverify_crypto_message_title">Firma este mensaje</string>
+    <string name="openverify_crypto_message_instructions">Copia este mensaje, fírmalo en tu aplicación de monedero con la dirección que escribiste y pega la firma abajo.</string>
+    <string name="openverify_crypto_copy">Copiar el mensaje</string>
+    <string name="openverify_crypto_copied">Mensaje copiado.</string>
+    <plurals name="openverify_crypto_expires_in">
+        <item quantity="one">El mensaje caduca en %1$d minuto.</item>
+        <item quantity="other">El mensaje caduca en %1$d minutos.</item>
+    </plurals>
+    <string name="openverify_crypto_signature">Firma</string>
+    <string name="openverify_crypto_signed_message">Mensaje firmado, si tu monedero lo muestra</string>
+    <string name="openverify_crypto_signed_message_hint">Algunos monederos de Solana añaden texto al mensaje antes de firmarlo. Si el tuyo muestra el mensaje que firmó, pégalo aquí también.</string>
+    <string name="openverify_crypto_submit">Enviar la firma</string>
+    <string name="openverify_crypto_submitting">Enviando tu firma…</string>
+    <string name="openverify_crypto_change">Usar otro monedero</string>
+    <string name="openverify_crypto_new_message">Obtener un mensaje nuevo</string>
+
+    <string name="openverify_crypto_error_chain_not_offered">Aquí no se puede usar esta red. Elige una de las redes de la lista.</string>
+    <string name="openverify_crypto_error_address_invalid">Esta no es una dirección válida para la red que elegiste. Comprueba que copiaste la dirección completa.</string>
+    <string name="openverify_crypto_error_expected_address">Esta no es la dirección de monedero que te pidieron verificar. Usa la dirección esperada.</string>
+    <string name="openverify_crypto_error_challenge_invalid">Este mensaje caducó o fue reemplazado. Obtén un mensaje nuevo para firmar.</string>
+    <string name="openverify_crypto_error_signature_too_long">Esta firma es demasiado larga. Pega solo la firma.</string>
+    <string name="openverify_crypto_error_signed_message_too_long">Este mensaje firmado es demasiado largo. Pega solo los bytes que firmó tu monedero.</string>
+    <string name="openverify_crypto_restarted">Tu intento anterior terminó porque se pidieron demasiados mensajes. Empieza de nuevo.</string>
+</resources>

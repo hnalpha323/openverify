@@ -1,0 +1,133 @@
+{
+  "source": "synthetic: two conditional transitions before an unconditional one, one after it",
+  "flow": {
+    "metadata": {
+      "specVersion": 2,
+      "id": "routes",
+      "version": 1,
+      "name": "Synthetic routes"
+    },
+    "entry": "consent",
+    "steps": [
+      {
+        "id": "consent",
+        "type": "consent",
+        "textKeys": ["consent.biometric"],
+        "required": true
+      },
+      {
+        "id": "id_card",
+        "type": "government_id",
+        "sides": "front",
+        "maxAttempts": 2,
+        "captureMethods": ["camera"]
+      },
+      {
+        "id": "proof",
+        "type": "document",
+        "documentTypes": ["utility_bill"],
+        "captureMethods": ["upload"]
+      },
+      {
+        "id": "face",
+        "type": "selfie",
+        "poses": ["center"],
+        "liveness": "passive",
+        "maxAttempts": 2
+      },
+      {
+        "id": "done",
+        "type": "completion",
+        "messageKey": "flow.completion"
+      },
+      {
+        "id": "rejected",
+        "type": "failure",
+        "messageKey": "flow.failure"
+      },
+      {
+        "id": "id_card-routes",
+        "type": "branch",
+        "routes": [
+          {
+            "key": "r1",
+            "label": "Transition 1",
+            "condition": {
+              "==": [
+                {
+                  "var": "inquiry.status"
+                },
+                "failed"
+              ]
+            },
+            "onNull": "else"
+          },
+          {
+            "key": "r2",
+            "label": "Transition 2",
+            "condition": {
+              "!=": [
+                {
+                  "var": "inquiry.status"
+                },
+                "pending"
+              ]
+            },
+            "onNull": "else"
+          }
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "consent",
+        "port": "next",
+        "to": "id_card"
+      },
+      {
+        "id": "e2",
+        "from": "id_card",
+        "port": "next",
+        "to": "id_card-routes"
+      },
+      {
+        "id": "e3",
+        "from": "id_card-routes",
+        "port": "route:r1",
+        "to": "rejected"
+      },
+      {
+        "id": "e4",
+        "from": "id_card-routes",
+        "port": "route:r2",
+        "to": "proof"
+      },
+      {
+        "id": "e5",
+        "from": "id_card-routes",
+        "port": "else",
+        "to": "face"
+      },
+      {
+        "id": "e6",
+        "from": "proof",
+        "port": "next",
+        "to": "face"
+      },
+      {
+        "id": "e7",
+        "from": "face",
+        "port": "next",
+        "to": "done"
+      }
+    ]
+  },
+  "notes": [
+    {
+      "pointer": "/transitions/3",
+      "code": "transition_dropped",
+      "detail": "v1 takes the first unconditional transition, so this one was never reached"
+    }
+  ]
+}

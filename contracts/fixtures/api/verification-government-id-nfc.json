@@ -1,0 +1,219 @@
+{
+  "data": {
+    "type": "verification/government-id-nfc",
+    "id": "ver_01M5CKH7J4E3S6M2CN8DG4WQ1D",
+    "attributes": {
+      "status": "passed",
+      "checks": [
+        {
+          "name": "id_nfc_expired_detection",
+          "status": "passed",
+          "reasons": [],
+          "requirement": "required",
+          "metadata": {
+            "days-past-expiration": 0,
+            "integrity": "established"
+          },
+          "stage": "ga",
+          "confidence": null,
+          "provenance": {
+            "implementation-version": 1,
+            "thresholds": {
+              "grace-days": 0
+            },
+            "threshold-basis": {
+              "grace-days": "provisional"
+            }
+          },
+          "category": "fraud"
+        },
+        {
+          "name": "id_nfc_passive_authentication_detection",
+          "status": "passed",
+          "reasons": [],
+          "requirement": "required",
+          "metadata": {
+            "integrity": "established",
+            "revocation": "unrevoked",
+            "hash-algorithm": "sha256",
+            "signature-algorithm": "ecdsa-with-sha256",
+            "anchor-matched-by": "aki",
+            "anchor-link": false,
+            "anchor-sandbox-only": true,
+            "data-groups": {
+              "dg1": "identical",
+              "dg2": "identical",
+              "dg14": "identical",
+              "dg15": "identical"
+            },
+            "flags": []
+          },
+          "stage": "ga",
+          "confidence": null,
+          "provenance": {
+            "implementation-version": 1,
+            "thresholds": {
+              "revocation": "strict",
+              "accept-sha1": true
+            },
+            "threshold-basis": {
+              "revocation": "provisional",
+              "accept-sha1": "provisional"
+            }
+          },
+          "category": "fraud"
+        },
+        {
+          "name": "id_nfc_chip_authentication_detection",
+          "status": "passed",
+          "reasons": [],
+          "requirement": "required",
+          "metadata": {
+            "outcome": "verified",
+            "scheme": "ecdsa-plain",
+            "hash-algorithm": "sha256"
+          },
+          "stage": "ga",
+          "confidence": null,
+          "provenance": {
+            "implementation-version": 1,
+            "thresholds": {
+              "require-active-authentication": false
+            },
+            "threshold-basis": {
+              "require-active-authentication": "provisional"
+            }
+          },
+          "category": "fraud"
+        },
+        {
+          "name": "id_nfc_mrz_comparison",
+          "status": "passed",
+          "reasons": [],
+          "requirement": "required",
+          "metadata": {
+            "integrity": "established",
+            "compared-fields": [
+              "identification-number",
+              "birthdate",
+              "expiration-date",
+              "name",
+              "nationality"
+            ],
+            "mismatched-fields": [],
+            "confusables-tolerated": true,
+            "government-id-verification-id": "ver_01M5CK0A1B2C3D4E5F6G7H8J9K"
+          },
+          "stage": "ga",
+          "confidence": null,
+          "provenance": {
+            "implementation-version": 1,
+            "thresholds": {}
+          },
+          "category": "fraud"
+        },
+        {
+          "name": "id_nfc_selfie_comparison",
+          "status": "passed",
+          "reasons": [],
+          "requirement": "required",
+          "metadata": {
+            "similarity": 0.71,
+            "threshold": 0.394,
+            "selfie-verification-id": "ver_01M5CK3M4N5P6Q7R8S9T0V1W2X",
+            "integrity": "established"
+          },
+          "stage": "beta",
+          "confidence": 0.5215,
+          "provenance": {
+            "implementation-version": 1,
+            "models": [
+              {
+                "id": "yunet-2026may",
+                "sha256": "ebafce4e3c118d6554634be5c27ab333b4c047a9a8c3faf1d7cf93101c22f0f0"
+              },
+              {
+                "id": "sface-2021dec",
+                "sha256": "0ba9fbfa01b5270c96627c4ef784da859931e02f04419c829e83484087c34e79"
+              }
+            ],
+            "thresholds": {
+              "threshold": 0.394
+            },
+            "threshold-basis": {
+              "threshold": "provisional"
+            }
+          },
+          "category": "fraud"
+        },
+        {
+          "name": "id_nfc_repeat_detection",
+          "status": "passed",
+          "reasons": [],
+          "requirement": "not_required",
+          "metadata": {
+            "sightings": 0
+          },
+          "stage": "ga",
+          "confidence": null,
+          "provenance": {
+            "implementation-version": 1,
+            "thresholds": {
+              "sighting-outcome": "review"
+            },
+            "threshold-basis": {
+              "sighting-outcome": "provisional"
+            }
+          },
+          "category": "fraud"
+        }
+      ],
+      "name-first": "AVERY",
+      "name-last": "EXAMPLE",
+      "birthdate": "1990-04-12",
+      "sex": "F",
+      "expiration-date": "2031-04-11",
+      "identification-number": "UT1234567",
+      "nationality": "UTO",
+      "id-class": "passport",
+      "issuing-country": "UT",
+      "passive-authentication": {
+        "outcome": "passed",
+        "integrity": "established",
+        "anchor-source": "openverify-sandbox",
+        "hash-algorithm": "sha256",
+        "revocation": "unrevoked"
+      },
+      "active-authentication": {
+        "outcome": "passed"
+      },
+      "from-rejected-handoff": false,
+      "created-at": "2026-10-20T12:05:00.000Z",
+      "updated-at": "2026-10-20T12:05:30.000Z"
+    },
+    "relationships": {
+      "inquiry": {
+        "data": {
+          "type": "inquiry",
+          "id": "inq_01M5CJXHG07XPHF3HRM6NREDH7"
+        }
+      },
+      "files": {
+        "data": [
+          {
+            "type": "file",
+            "id": "file_01M5CKH7J5F2S6M2CN8DG4WQ1E"
+          },
+          {
+            "type": "file",
+            "id": "file_01M5CKH7J6G3T7N3DP9EH5XR2F"
+          },
+          {
+            "type": "file",
+            "id": "file_01M5CKH7J7H4V8P4EQAFJ6YS3G"
+          }
+        ]
+      }
+    }
+  }
+}

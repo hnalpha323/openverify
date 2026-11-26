@@ -1,0 +1,51 @@
+# kind.sh fixtures (Workflow 11C chart-policy-11c; C265.4): Valkey 9.1, the image pinned by digest,
+# with a password from the Secret openverify-ci-valkey-auth (random per run) and noeviction, as the
+# self-hosting requirements ask of the Redis-protocol store.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: valkey
+  namespace: openverify-fixtures
+  labels:
+    app: valkey
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: valkey
+  template:
+    metadata:
+      labels:
+        app: valkey
+    spec:
+      containers:
+        - name: valkey
+          image: valkey/valkey:9.1@sha256:3add1a336a920ea54770a001ab6feb3da5fceea96a40373a3a2cd469b815f0b7
+          args: ['--requirepass', '$(VALKEY_PASSWORD)', '--maxmemory-policy', 'noeviction']
+          env:
+            - name: VALKEY_PASSWORD
+              valueFrom:
+                secretKeyRef: { name: openverify-ci-valkey-auth, key: VALKEY_PASSWORD }
+          ports:
+            - name: valkey
+              containerPort: 6379
+          readinessProbe:
+            tcpSocket:
+              port: valkey
+            periodSeconds: 2
+          resources:
+            requests: { cpu: 50m, memory: 64Mi }
+            limits: { memory: 256Mi }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: valkey
+  namespace: openverify-fixtures
+spec:
+  selector:
+    app: valkey
+  ports:
+    - name: valkey
+      port: 6379
+      targetPort: valkey

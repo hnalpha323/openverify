@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "A case holds at most its limit of objects.",
+  "instance": "/api/v1/cases/case_01M5CK3190XEVBM5ZXA76E1JSN/add-objects",
+  "requestId": "00000000-0000-4000-8000-000000001204",
+  "code": "case_objects_limit",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/meta/object-ids",
+      "detail": "would pass the limit"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "data": {
+    "type": "event",
+    "id": "evt_01M5CN00000000000000009A42",
+    "attributes": {
+      "name": "deployment.completed",
+      "payload": {
+        "data": {
+          "type": "deployment",
+          "id": "dply_01M5CN00000000000000009A30",
+          "attributes": {
+            "resource-type": "inquiry-template",
+            "creator": {
+              "type": "user",
+              "id": "usr_01M5CJXHG03PHEQZPRWAH2RXM5"
+            },
+            "routes": [
+              {
+                "template-id": "itmpl_01M5A0GTG0RSTVX9PHA0V7P3X6",
+                "environment-id": "env_01M5CJZC30W7PFE0GD30HJWEC5",
+                "rules": [
+                  {
+                    "strategy": "constant",
+                    "version-id": "itmplv_01M5CN00000000000000009A01"
+                  }
+                ],
+                "source-deployment-id": "dply_01M5CN00000000000000009A29"
+              }
+            ],
+            "created-at": "2026-10-20T12:05:00.000Z"
+          },
+          "relationships": {
+            "inquiry-template": {
+              "data": {
+                "type": "inquiry-template",
+                "id": "itmpl_01M5A0GTG0RSTVX9PHA0V7P3X6"
+              }
+            }
+          }
+        }
+      },
+      "created-at": "2026-10-20T12:05:00.000Z"
+    }
+  }
+}

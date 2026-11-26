@@ -1,0 +1,50 @@
+# C259.2 (decision 6; review H14): reviewed exceptions to the supply-chain gate. Every finding at
+# critical or high, with or without a fix, fails the per-push supply-chain job and release.yml's
+# image scans unless an entry here names it with its reason and an expiry at most 90 days ahead
+# (the reason may be "no fix available"); an expired entry fails the job. Medium and low findings are
+# reported, never listed here. Never add an entry a version bump inside rule 3 can fix.
+#
+# Each entry (security/allowlist.schema.json): {id, package or path, reason, expires, added-by}, e.g.
+#   - id: GHSA-xxxx-xxxx-xxxx
+#     package: example-package
+#     reason: no fix released; the vulnerable function is never called (path:line)
+#     expires: 2027-01-31
+#     added-by: scanners-11c
+#
+# Agents add only their own entries, each with its reason (the plan's shared-file rule).
+- id: GHSA-9pwp-9qqc-pr26
+  path: android/consumer-check/
+  reason: >-
+    android/consumer-check is the release checks' stand-in consumer build (Phase 10 C217.3), never shipped. The finding is in its own build tooling (bcprov-jdk18on 1.80.2 in AGP's lint tool, whose lint tasks this build disables), which the main build moved to the fixed release (android/build.gradle.kts, Workflow 11C integration-11c); its three lock and metadata files change only when a published module's declared dependencies change (C214.5, 11C rule 3), so its owner refreshes them.
+  expires: 2027-02-12
+  added-by: integration-11c
+- id: GHSA-qp49-qgx5-5m26
+  path: android/consumer-check/
+  reason: >-
+    android/consumer-check is the release checks' stand-in consumer build (Phase 10 C217.3), never shipped. The finding is in its own build tooling (bcprov-jdk18on 1.80.2 in AGP's lint tool, whose lint tasks this build disables), which the main build moved to the fixed release (android/build.gradle.kts, Workflow 11C integration-11c); its three lock and metadata files change only when a published module's declared dependencies change (C214.5, 11C rule 3), so its owner refreshes them.
+  expires: 2027-02-12
+  added-by: integration-11c
+- id: GHSA-xxph-c9ww-hj94
+  path: android/consumer-check/
+  reason: >-
+    android/consumer-check is the release checks' stand-in consumer build (Phase 10 C217.3), never shipped. The finding is in its own build tooling (guava 33.4.0-jre in AGP's lint tool, whose lint tasks this build disables), which the main build moved to the fixed release (android/build.gradle.kts, Workflow 11C integration-11c); its three lock and metadata files change only when a published module's declared dependencies change (C214.5, 11C rule 3), so its owner refreshes them.
+  expires: 2027-02-12
+  added-by: integration-11c
+- id: GHSA-2363-cqg2-863c
+  path: android/consumer-check/
+  reason: >-
+    android/consumer-check is the release checks' stand-in consumer build (Phase 10 C217.3), never shipped. The finding is in its own build tooling (jdom2 2.0.6 on the build plugins' classpath), which the main build moved to the fixed release (android/build.gradle.kts, Workflow 11C integration-11c); its three lock and metadata files change only when a published module's declared dependencies change (C214.5, 11C rule 3), so its owner refreshes them.
+  expires: 2027-02-12
+  added-by: integration-11c
+- id: GHSA-3677-xxcr-wjqv
+  path: android/consumer-check/
+  reason: >-
+    android/consumer-check is the release checks' stand-in consumer build (Phase 10 C217.3), never shipped. The finding is in its own build tooling (jose4j 0.9.5 on the build plugins' classpath), which the main build moved to the fixed release (android/build.gradle.kts, Workflow 11C integration-11c); its three lock and metadata files change only when a published module's declared dependencies change (C214.5, 11C rule 3), so its owner refreshes them.
+  expires: 2027-02-12
+  added-by: integration-11c
+- id: GHSA-fc5q-39xc-vjpf
+  package: picomatch
+  reason: >-
+    No fixed release: OSV marks picomatch up to 4.0.7, its newest release, as affected (read 2026-11-18). Every path to it is a devDependency (vite, vitest, typescript-eslint, eslint's file-entry-cache; pnpm why picomatch -r shows no production path), so no image or published package holds it, and its ReDoS needs an attacker's extglob where only the tools' own globs reach it. Take the fix once it is 14 days old.
+  expires: 2027-01-31
+  added-by: fix-11d

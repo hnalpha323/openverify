@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openverify.example/schemas/calibration-summary-1.json",
+  "title": "openverify/calibration-summary@1",
+  "description": "The machine-readable summary block of a calibration report (Phase 11 C279.1, C284.4; Workflow 11D Stage 1a amendment 14). load/report.py writes it between the markers <!-- openverify:calibration-summary:start --> and <!-- openverify:calibration-summary:end --> as one fenced json code block; 11E's catalog generator and the release notes read each verdict from it.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "report",
+    "workflow",
+    "status",
+    "method-commit",
+    "base",
+    "head",
+    "machine",
+    "rows"
+  ],
+  "properties": {
+    "schema": { "const": "openverify/calibration-summary@1" },
+    "report": { "type": "string", "pattern": "^docs/calibration/[a-z0-9-]+\\.md$" },
+    "workflow": { "type": "string", "pattern": "^[0-9]+[A-Z]$" },
+    "status": { "enum": ["template", "published"] },
+    "method-commit": { "$ref": "#/$defs/commit" },
+    "base": { "$ref": "#/$defs/commit" },
+    "head": { "$ref": "#/$defs/commit" },
+    "machine": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["cpu", "logical-cpus", "memory-gib", "disk-class"],
+          "properties": {
+            "cpu": { "type": "string", "minLength": 1 },
+            "logical-cpus": { "type": "integer", "minimum": 1 },
+            "memory-gib": { "type": "number", "exclusiveMinimum": 0 },
+            "disk-class": { "type": "string", "minLength": 1 }
+          }
+        }
+      ]
+    },
+    "rows": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/row" }
+    }
+  },
+  "$defs": {
+    "commit": {
+      "oneOf": [{ "type": "null" }, { "type": "string", "pattern": "^[0-9a-f]{40}$" }]
+    },
+    "row": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "contract",
+        "owner",
+        "budget",
+        "verdict",
+        "median",
+        "unit",
+        "gap",
+        "configuration",
+        "takes"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+        "title": { "type": "string", "minLength": 1 },
+        "contract": { "type": "string", "minLength": 1 },
+        "owner": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+        "budget": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["metric", "comparison", "value", "unit"],
+              "properties": {
+                "metric": { "enum": ["p95", "median", "mean", "max", "rate", "ratio", "growth"] },
+                "comparison": { "enum": ["<=", ">="] },
+                "value": { "type": "number" },
+                "unit": { "$ref": "#/$defs/unit" }
+              }
+            }
+          ]
+        },
+        "verdict": {
+          "enum": [
+            "pending",
+            "met",
+            "missed",
+            "invalid",
+            "not-measured",
+            "reported",
+            "kept",
+            "revert",
+            "identical",
+            "not-identical",
+            "not-calibrated"
+          ]
+        },
+        "median": { "type": ["number", "null"] },
+        "unit": { "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/unit" }] },
+        "gap": { "type": ["number", "null"] },
+        "configuration": { "type": "string", "minLength": 1 },
+        "takes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["value", "status", "load-start", "load-end"],
+            "properties": {
+              "value": { "type": ["number", "null"] },
+              "status": { "enum": ["valid", "invalid"] },
+              "load-start": { "type": "number", "minimum": 0 },
+              "load-end": { "type": "number", "minimum": 0 }
+            }
+          }
+        }
+      }
+    },
+    "unit": {
+      "enum": ["ms", "s", "per-s", "per-hour", "percent", "ratio", "mib", "count"]
+    }
+  }
+}

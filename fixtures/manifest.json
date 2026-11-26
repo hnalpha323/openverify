@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "description": "Public-domain face photos (US federal government works on Wikimedia Commons) for the vision real-model tests and the synthetic ID and fake-camera generators. Fetch with python3 scripts/fetch_fixtures.py into fixtures/faces/; generated assets go to fixtures/generated/. Both directories are gitignored: never commit the images. Each license template was confirmed by reading the file page wikitext; sha1 is Commons' SHA-1, which finds an archived revision when a re-upload changes the bytes behind the URL; face_box is the YuNet box in source pixels (measured once at a 640-pixel long side) that the generators use to frame crops. The forms list (Phase 5, C60.7, decision 18) pins the blank US federal forms of the held-out document set: works of the US federal government, public domain under 17 U.S.C. 105, fetched by the same script from prior-year irs.gov URLs (superseded revisions, whose bytes no longer change) into fixtures/generated/federal-forms/ (gitignored); pages are the 1-based pages the generator fills with synthetic values and keeps. Never commit them.",
+  "faces": [
+    {
+      "name": "person_a_id",
+      "person": "A",
+      "role": "id_portrait",
+      "filename": "person-a-id.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Christina_M._Hammock_portrait.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Christina_M._Hammock_portrait.jpg",
+      "sha256": "926c4ddf6e0817830612f55c186b9cca4c2289f78d6481b7cf03986a123d1698",
+      "sha1": "8d70b051fa71fa4282a96af64cd3250e5979a073",
+      "size": 1393362,
+      "license": "public-domain",
+      "license_template": "PD-USGov-NASA",
+      "author": "NASA/Robert Markowitz",
+      "subject": "Christina Koch (NASA astronaut), 2014 portrait, NASA id JSC2014-E-007974",
+      "face_box": [959, 706, 1060, 1447],
+      "notes": "File page checked 2026-10-20: license section is {{PD-USGov-NASA}}; source https://www.flickr.com/photos/nasa2explore/12774511004/. The sha1 of the download equals the Commons imageinfo sha1 8d70b051fa71fa4282a96af64cd3250e5979a073. Used as the ID-card portrait."
+    },
+    {
+      "name": "person_a_selfie",
+      "person": "A",
+      "role": "selfie",
+      "filename": "person-a-selfie.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Christina_Koch_official_portrait_in_an_EMU.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Christina_Koch_official_portrait_in_an_EMU.jpg",
+      "sha256": "522624d493e16bf38a018f188f0caed31be7ee0beb4fb723bdcef6bb6bc58f35",
+      "sha1": "69ce60cf0c1db691280f8e0eed2eeb75eeeac152",
+      "size": 3571793,
+      "license": "public-domain",
+      "license_template": "PD-USGov-NASA",
+      "author": "NASA/Bill Stafford",
+      "subject": "Christina Koch (NASA astronaut), 2018 official portrait, NASA id JSC2018-E-095073",
+      "face_box": [2968, 861, 893, 1228],
+      "notes": "File page checked 2026-10-20: license section is {{PD-USGov-NASA}}; source https://www.flickr.com/photos/nasa2explore/48189504956/. The sha1 of the download equals the Commons imageinfo sha1 69ce60cf0c1db691280f8e0eed2eeb75eeeac152. A different photo of person A (four years later, no glasses), used for the selfie and the fake camera."
+    },
+    {
+      "name": "person_b_selfie",
+      "person": "B",
+      "role": "selfie",
+      "filename": "person-b-selfie.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Kayla_Barron_official_portrait.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Kayla_Barron_official_portrait.jpg",
+      "sha256": "cb807f22a038ad0019baeac65e26c054430b7cf8d9684e5ef432b0714bb62cd4",
+      "sha1": "4f94ea1b96154e04f04e8fc84ab1ed1e9735ed62",
+      "size": 3280345,
+      "license": "public-domain",
+      "license_template": "PD-USGov-NASA",
+      "author": "NASA/Bill Stafford",
+      "subject": "Kayla Barron (NASA astronaut), 2017 official portrait, NASA id JSC2017-E-118421",
+      "face_box": [1883, 951, 1092, 1468],
+      "notes": "File page checked 2026-10-20: license section is {{PD-USGov-NASA}}; source https://www.flickr.com/photos/nasa2explore/44714115062/. The sha1 of the download equals the Commons imageinfo sha1 4f94ea1b96154e04f04e8fc84ab1ed1e9735ed62. A different person, used for the negative face-match case."
+    }
+  ],
+  "forms": [
+    {
+      "name": "irs_w2_2025",
+      "form": "w2",
+      "filename": "fw2--2025.pdf",
+      "source_page": "https://www.irs.gov/forms-pubs/about-form-w-2",
+      "url": "https://www.irs.gov/pub/irs-prior/fw2--2025.pdf",
+      "sha256": "6a52ad63693de54220a3326b22c4d0fb34f4c25084366537087312975a55ae96",
+      "size": 1343180,
+      "license": "public-domain",
+      "publisher": "Internal Revenue Service",
+      "pages": [4],
+      "revision": "2025",
+      "notes": "Downloaded twice on 2026-10-24 (UTC) with equal SHA-256; the server's Last-Modified is 2025-01-08. Page 4 is Copy B, the employee's copy for a federal return. The file also carries XFA, document-level JavaScript and a usage-rights signature, none of which the generator copies: it draws the synthetic values over page 4 and writes that page alone."
+    },
+    {
+      "name": "irs_1099_nec_2025",
+      "form": "1099-nec",
+      "filename": "f1099nec--2025.pdf",
+      "source_page": "https://www.irs.gov/forms-pubs/about-form-1099-nec",
+      "url": "https://www.irs.gov/pub/irs-prior/f1099nec--2025.pdf",
+      "sha256": "7cf3272e27de046a92346375601f3211b711a9c800f9185034dd70badcab0abe",
+      "size": 513361,
+      "license": "public-domain",
+      "publisher": "Internal Revenue Service",
+      "pages": [4, 5],
+      "revision": "Rev. April 2025",
+      "notes": "Downloaded twice on 2026-10-24 (UTC) with equal SHA-256; the server's Last-Modified is 2025-03-13. Pages 4 and 5 are Copy B for the recipient and its instructions. The original is linearized and incrementally updated; the generator writes a fresh file without its XFA, JavaScript or usage-rights signature."
+    },
+    {
+      "name": "irs_1040_2025",
+      "form": "1040",
+      "filename": "f1040--2025.pdf",
+      "source_page": "https://www.irs.gov/forms-pubs/about-form-1040",
+      "url": "https://www.irs.gov/pub/irs-prior/f1040--2025.pdf",
+      "sha256": "3d31c226df0d189ced80e039d01cf0f8820c1019681a0f0ca6264de277b7e982",
+      "size": 220237,
+      "license": "public-domain",
+      "publisher": "Internal Revenue Service",
+      "pages": [1, 2],
+      "revision": "2025",
+      "notes": "Downloaded twice on 2026-10-24 (UTC) with equal SHA-256; the server's Last-Modified is 2026-01-02. Both pages of the return. The generator writes a fresh file without the original's XFA, JavaScript or usage-rights signature."
+    }
+  ]
+}

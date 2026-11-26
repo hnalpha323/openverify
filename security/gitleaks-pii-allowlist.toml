@@ -1,0 +1,298 @@
+# The reviewed allowlist of OpenVerify's PII-pattern scan (C260.3; Workflow 11C, sast-pii-11c).
+#
+# security/gitleaks-pii.toml joins this file through [extend]. gitleaks 8.30.1 ignores
+# `targetRules` in an extended file but merges an extended rule's [[rules.allowlists]] into the
+# rule of the same id, so each exception below sits under the one rule it serves (a [[rules]]
+# table here carries only its id; the regular expression is the main file's). Every entry says
+# what it lets through and why; nothing is listed without a reason, and nothing is listed to hide
+# a value that could be a real person's. security/tests/test_gitleaks_pii_config.py checks the
+# shape and infra/tests/gitleaks-pii.test.sh the effect, with values assembled at run time.
+title = "OpenVerify PII patterns: reviewed allowlist"
+
+# --- pii-email -------------------------------------------------------------------------------
+
+[[rules]]
+id = "pii-email"
+
+[[rules.allowlists]]
+description = "pii-email: example.com, example.org and example.net (RFC 2606) and the reserved top-level names .test, .example, .invalid and .localhost (RFC 2606, RFC 6761). Amends C260.3: the sandbox looks up MX for example.com (C56), so Workflow 7B moved the full-stack specs to .test addresses"
+regexTarget = "secret"
+regexes = ['''(?i)@(?:[a-z0-9-]+\.)*(?:example\.(?:com|org|net)|test|example|invalid|localhost)$''']
+
+[[rules.allowlists]]
+description = "pii-email: Kotlin's labelled this and super (this@A11yFixture.now) are not addresses"
+regexTarget = "secret"
+regexes = ['''^(?:this|super)@[A-Z][A-Za-z0-9]*\.''']
+
+[[rules.allowlists]]
+description = "pii-email: the published reproduction strings of nodemailer's address-parser advisories (recipient confusion through evil.com, victim.com and good.com), kept verbatim in the tests that prove the fix and in the research note that records it; not people"
+regexTarget = "secret"
+regexes = ['''^(?:evil|a)@evil\.com$''', '''^v@victim\.com$''']
+
+[[rules.allowlists]]
+description = "pii-email: the free-mail, typo-domain and private-relay checks' tests need the providers' own domains (gmail.com, the gmial.com typo, privaterelay.appleid.com); the local parts are invented and the tests send nothing. Listed by value, only in those test files"
+condition = "AND"
+paths = ['''(?:^|/)packages/checks/src/reports/email/report\.test\.ts$''', '''(?:^|/)apps/api/src/jobs/report-types/email-address\.test\.ts$''']
+regexTarget = "secret"
+regexes = ['''^(?:avery\.quill@gmail\.com|avery@gmial\.com|x1y2z3@privaterelay\.appleid\.com|kim@gmail\.com)$''']
+
+[[rules.allowlists]]
+description = "pii-email: syntax tests with a name at a domain that is not reserved (an apostrophe local part at example.co, a mixed-case top-level name, a percent-encoded dot that gitleaks decodes, the registered-domain example of the risk-report research), listed by value; the SDK's Kotlin test is not changed in Workflow 11C"
+regexTarget = "secret"
+regexes = ['''^neil@example\.co$''', '''^shown@mail\.exampleDomain$''', '''^user@exa\.mple\.org$''', '''^user@mail\.example\.co\.uk$''']
+
+[[rules.allowlists]]
+description = "pii-email: the Spanish UI text's example address (the translation of name@example.com in the input hint, contracts/fixtures/i18n/es.json); its domain is not reserved, which the fluent review of the machine-drafted texts (KP10-16) may change to a reserved one"
+regexTarget = "secret"
+regexes = ['''^nombre@ejemplo\.com$''']
+
+[[rules.allowlists]]
+description = "pii-email: not people: curl's --data-urlencode name@file form (query@nicknames.sparql), a public authority's role address quoted from its published CSCA page (csca-germany@bsi.bund.de), and kubectl's release-signing service account (krel-staging@k8s-releng-prod.iam.gserviceaccount.com; Workflow 11C Stage 1a amendment 30), a public signing identity that is never reworded"
+regexTarget = "secret"
+regexes = ['''^query@nicknames\.sparql$''', '''^csca-germany@bsi\.bund\.de$''', '''^krel-staging@k8s-releng-prod\.iam\.gserviceaccount\.com$''']
+
+# --- pii-ipv4 --------------------------------------------------------------------------------
+
+[[rules]]
+id = "pii-ipv4"
+
+[[rules.allowlists]]
+description = "pii-ipv4: the documentation ranges 192.0.2.0/24, 198.51.100.0/24 and 203.0.113.0/24 (RFC 5737), loopback 127.0.0.0/8, the Android emulator's host alias 10.0.2.2 and the unspecified 0.0.0.0"
+regexTarget = "secret"
+regexes = ['''^(?:192\.0\.2|198\.51\.100|203\.0\.113)\.[0-9]{1,3}$''', '''^127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$''', '''^10\.0\.2\.2$''', '''^0\.0\.0\.0$''']
+
+[[rules.allowlists]]
+description = "pii-ipv4: the special-purpose blocks that are never a person's public address (RFC 6890's registry: this network 0/8, private 10/8, 172.16/12 and 192.168/16, shared 100.64/10, link-local 169.254/16 with the cloud metadata endpoints, protocol assignments 192.0.0/24, benchmarking 198.18/15, multicast 224/4, reserved 240/4 and the limited broadcast). The egress guard's and the network policies' tests name them; Workflow 11C rule 9 keeps new uses to CIDR blocks"
+regexTarget = "secret"
+regexes = [
+  '''^(?:0|10|127)\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$''',
+  '''^100\.(?:6[4-9]|[7-9][0-9]|1[01][0-9]|12[0-7])\.[0-9]{1,3}\.[0-9]{1,3}$''',
+  '''^169\.254\.[0-9]{1,3}\.[0-9]{1,3}$''',
+  '''^172\.(?:1[6-9]|2[0-9]|3[01])\.[0-9]{1,3}\.[0-9]{1,3}$''',
+  '''^192\.0\.0\.[0-9]{1,3}$''',
+  '''^192\.168\.[0-9]{1,3}\.[0-9]{1,3}$''',
+  '''^198\.1[89]\.[0-9]{1,3}\.[0-9]{1,3}$''',
+  '''^(?:22[4-9]|2[3-5][0-9])\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$''',
+]
+
+[[rules.allowlists]]
+description = "pii-ipv4: a CIDR block of 256 or more addresses (prefix /0 to /24) names a network, never one person or device"
+regexTarget = "match"
+regexes = ['''[0-9]/(?:[0-9]|1[0-9]|2[0-4])[^0-9]?$''']
+
+[[rules.allowlists]]
+description = "pii-ipv4, pii-ipv6: public infrastructure named for what it is, never a person: the public DNS resolvers 1.1.1.1, 8.8.8.8, 2606:4700:4700::1111 and 2001:4860:4860::8888 (and that provider's 2001:4860::/32), the address example.com resolved to (93.184.215.14), Azure's WireServer metadata address 168.63.129.16, and the AS112, AMT and 6to4 anycast blocks of RFC 6890's registry (192.31.196.0/24, 192.52.193.0/24, 192.88.99.0/24, 192.175.48.0/24)"
+regexTarget = "secret"
+regexes = [
+  '''^(?:1\.1\.1\.1|8\.8\.8\.8|93\.184\.215\.14|168\.63\.129\.16)$''',
+  '''^192\.(?:31\.196|52\.193|88\.99|175\.48)\.[0-9]{1,3}$''',
+  '''(?i)^(?:2606:4700:4700::1111|2001:4860:)''',
+]
+
+[[rules.allowlists]]
+description = "pii-ipv4, pii-ipv6: the address-classification and egress-guard tests assert the edges of the documentation and special-purpose ranges, so they name the public addresses just outside them (203.0.114.0/24, 198.51.101.0/24, 2001:db9::/32, 2a00:db8::/32, the addresses beside each private, shared and link-local block) and unallocated or provider addresses; only in those files, and only address-shaped values"
+condition = "AND"
+paths = [
+  '''(?:^|/)apps/api/src/webhooks/(?:ssrf|http-sender|iana-special-purpose)\.test\.ts$''',
+  '''(?:^|/)apps/api/src/workflows/actions/https/guard\.integration\.test\.ts$''',
+  '''(?:^|/)apps/api/src/jobs/types/(?:business-website|kyb-valkey-scan)\.test\.ts$''',
+  '''(?:^|/)apps/api/src/plugins/principal-auth\.test\.ts$''',
+  # Deleted since; kept so a scan of the full history reads it the same way (Workflow 11C).
+  '''(?:^|/)apps/api/src/plugins/api-key-auth\.test\.ts$''',
+  '''(?:^|/)apps/api/src/services/lists/lists\.integration\.test\.ts$''',
+  '''(?:^|/)packages/db/src/repositories/list-repositories\.test\.ts$''',
+  '''(?:^|/)packages/signals/src/network/address(?:-class)?\.test\.ts$''',
+  '''(?:^|/)e2e/src/forwarded-for\.test\.ts$''',
+  '''(?:^|/)android/openverify-sdk/src/androidHostTest/kotlin/dev/openverify/sdk/api/ApiBaseUrlParityTest\.kt$''',
+]
+regexTarget = "secret"
+regexes = ['''^[0-9]{1,3}(?:\.[0-9]{1,3}){3}$''', '''(?i)^[0-9a-f:]*::?[0-9a-f:]*$''']
+
+[[rules.allowlists]]
+description = "pii-ipv4: a dotted four-part version of a named release (a browser's full version, OpenCV, zlib, Spongy Castle, the WSL kernel), not an address"
+regexTarget = "line"
+regexes = [
+  '''(?i)(?:full-?version|(?:headless)?chrome[ /][0-9]|opencv|zlib [0-9]|spongy castle|-microsoft-standard)''',
+]
+
+[[rules.allowlists]]
+description = "pii-ipv4: opencv-python-headless's four-part release versions 5.0.0.93 and 4.14.0.94, which the research notes also cite without the package's name on the line"
+regexTarget = "secret"
+regexes = ['''^(?:5\.0\.0\.93|4\.14\.0\.94)$''']
+
+[[rules.allowlists]]
+description = "pii-ipv4: a section or requirement number cited from a standard (ICAO Doc 9303, RFCs, NIST SP 800-63B, PCI DSS, OIDC Core, a licence's clause), not an address"
+regexTarget = "line"
+regexes = ['''(?:§|\b[Ss]ection [0-9]|\bclause [0-9]|\brequirement [0-9]|PCI DSS v?[0-9]|OIDC Core [0-9])''']
+
+[[rules.allowlists]]
+description = "pii-ipv4: X.500 attribute type (2.5.4.x) and X.509 extension (2.5.29.x) object identifiers, not addresses"
+regexTarget = "secret"
+regexes = ['''^2\.5\.(?:4|29)\.[0-9]{1,3}$''']
+
+[[rules.allowlists]]
+description = "pii-ipv4: the tests' made-up object identifier 1.2.3.4 where an ASN.1 builder or an algorithm identifier takes it, not an address"
+regexTarget = "line"
+regexes = ['''(?:objectIdentifier|algorithmIdentifier)\('1\.2\.3\.4'|\boid: '1\.2\.3\.4''']
+
+# --- pii-ipv6 --------------------------------------------------------------------------------
+
+[[rules]]
+id = "pii-ipv6"
+
+[[rules.allowlists]]
+description = "pii-ipv6: the documentation prefixes 2001:db8::/32 (RFC 3849) and 3fff::/20 (RFC 9637), loopback ::1 and the unspecified ::, written short or in full"
+regexTarget = "secret"
+regexes = ['''(?i)^2001:0{0,1}db8:''', '''(?i)^3fff:0{0,1}[0-9a-f]{0,2}:''', '''^[0:]+1?$''']
+
+[[rules.allowlists]]
+description = "pii-ipv6: the special-purpose prefixes that are never a person's public address (RFC 6890's IPv6 registry: IPv4-mapped ::ffff:0:0/96, NAT64 64:ff9b::/96 and 64:ff9b:1::/48, discard-only 100::/64, IETF protocol assignments 2001::/23, 6to4 2002::/16, AS112 2620:4f:8000::/48, SRv6 5f00::/16, unique-local fc00::/7, link-local fe80::/10 and multicast ff00::/8)"
+regexTarget = "secret"
+regexes = [
+  '''(?i)^::ffff:''',
+  '''(?i)^64:ff9b:''',
+  '''(?i)^100:(?:0{1,4}:){0,3}:?''',
+  '''(?i)^2001:(?:0{0,3}[0-9a-f]|0{0,2}1[0-9a-f]{2}|0{0,2}[0-9a-f]{1,2})?:''',
+  '''(?i)^2002:''',
+  '''(?i)^2620:0{0,2}4f:8000:''',
+  '''(?i)^5f00:''',
+  '''(?i)^f[cd][0-9a-f]{0,2}:''',
+  '''(?i)^fe[89ab][0-9a-f]?:''',
+  '''(?i)^ff[0-9a-f]{0,2}:''',
+]
+
+[[rules.allowlists]]
+description = "pii-ipv6: a CIDR block of a /64 or more addresses names a network, never one person or device"
+regexTarget = "match"
+regexes = ['''(?i)[0-9a-f:]/(?:[0-9]|[1-5][0-9]|6[0-4])[^0-9]?$''']
+
+[[rules.allowlists]]
+description = "pii-ipv6: the deprecated IPv4-compatible ::/96 and site-local fec0::/10 prefixes, and the IPv4-mapped prefix written in full, which the egress guard's tests name"
+regexTarget = "secret"
+regexes = ['''(?i)^::[0-9a-f]{1,4}:[0-9a-f]{1,4}$''', '''(?i)^fe[c-f][0-9a-f]?:''', '''(?i)^(?:0{1,4}:){5}ffff:''']
+
+[[rules.allowlists]]
+description = "pii-ipv6: a Python slice with a step ([2::3], [1::-1], [::997]), which no address in brackets is"
+regexTarget = "match"
+regexes = ['''^\[[0-9]{0,4}::(?:-|[0-9]{0,4}\]?)$''']
+
+[[rules.allowlists]]
+description = "pii-ipv4, pii-ipv6: public infrastructure named for what it is, never a person: the public DNS resolvers 1.1.1.1, 8.8.8.8, 2606:4700:4700::1111 and 2001:4860:4860::8888 (and that provider's 2001:4860::/32), the address example.com resolved to (93.184.215.14), Azure's WireServer metadata address 168.63.129.16, and the AS112, AMT and 6to4 anycast blocks of RFC 6890's registry (192.31.196.0/24, 192.52.193.0/24, 192.88.99.0/24, 192.175.48.0/24)"
+regexTarget = "secret"
+regexes = [
+  '''^(?:1\.1\.1\.1|8\.8\.8\.8|93\.184\.215\.14|168\.63\.129\.16)$''',
+  '''^192\.(?:31\.196|52\.193|88\.99|175\.48)\.[0-9]{1,3}$''',
+  '''(?i)^(?:2606:4700:4700::1111|2001:4860:)''',
+]
+
+[[rules.allowlists]]
+description = "pii-ipv4, pii-ipv6: the address-classification and egress-guard tests assert the edges of the documentation and special-purpose ranges, so they name the public addresses just outside them (203.0.114.0/24, 198.51.101.0/24, 2001:db9::/32, 2a00:db8::/32, the addresses beside each private, shared and link-local block) and unallocated or provider addresses; only in those files, and only address-shaped values"
+condition = "AND"
+paths = [
+  '''(?:^|/)apps/api/src/webhooks/(?:ssrf|http-sender|iana-special-purpose)\.test\.ts$''',
+  '''(?:^|/)apps/api/src/workflows/actions/https/guard\.integration\.test\.ts$''',
+  '''(?:^|/)apps/api/src/jobs/types/(?:business-website|kyb-valkey-scan)\.test\.ts$''',
+  '''(?:^|/)apps/api/src/plugins/principal-auth\.test\.ts$''',
+  # Deleted since; kept so a scan of the full history reads it the same way (Workflow 11C).
+  '''(?:^|/)apps/api/src/plugins/api-key-auth\.test\.ts$''',
+  '''(?:^|/)apps/api/src/services/lists/lists\.integration\.test\.ts$''',
+  '''(?:^|/)packages/db/src/repositories/list-repositories\.test\.ts$''',
+  '''(?:^|/)packages/signals/src/network/address(?:-class)?\.test\.ts$''',
+  '''(?:^|/)e2e/src/forwarded-for\.test\.ts$''',
+  '''(?:^|/)android/openverify-sdk/src/androidHostTest/kotlin/dev/openverify/sdk/api/ApiBaseUrlParityTest\.kt$''',
+]
+regexTarget = "secret"
+regexes = ['''^[0-9]{1,3}(?:\.[0-9]{1,3}){3}$''', '''(?i)^[0-9a-f:]*::?[0-9a-f:]*$''']
+
+# --- pii-phone -------------------------------------------------------------------------------
+
+[[rules]]
+id = "pii-phone"
+
+[[rules.allowlists]]
+description = "pii-phone: North America's fictitious numbers: lines 555-0100 to 555-0199 in any area code (and their partial forms), and the unassigned area code 555"
+regexTarget = "secret"
+regexes = [
+  '''^(?:\+1[ .-]?)?\(?[2-9][0-9]{2}\)?[ .-]?555(?:[ .-]?01?[0-9]{0,2})?$''',
+  '''^\+1[ .-]?\(?555\)?[ .()0-9-]*$''',
+]
+
+[[rules.allowlists]]
+description = "pii-phone: a messaging provider's documented test numbers +1 500 555 0000 to 0009"
+regexTarget = "secret"
+regexes = ['''^\+1[ .-]?500[ .-]?555[ .-]?000[0-9]$''']
+
+[[rules.allowlists]]
+description = "pii-phone: Ofcom's numbers for drama and examples (+44 20 7946 0xxx, 7700 900xxx, 1632 960xxx, 113 to 161 496 0xxx, 191 498 0xxx, 28 9649 6xxx, 29 2018 0xxx, 808 157 0xxx, 909 879 0xxx, 306 999 0xxx), with or without the trunk 0, and their partial forms"
+regexTarget = "secret"
+regexes = ['''^\+44[ .-]?\(?0?\)?[ .-]?(?:20[ .-]?7946[ .-]?0|7700[ .-]?900|1632[ .-]?960|1[1-6][1-8][ .-]?496[ .-]?0|191[ .-]?498[ .-]?0|28[ .-]?9649[ .-]?6|29[ .-]?2018[ .-]?0|808[ .-]?157[ .-]?0|909[ .-]?879[ .-]?0|306[ .-]?999[ .-]?0)[ .-]?[0-9]{0,3}$''']
+
+[[rules.allowlists]]
+description = "pii-phone: ACMA's fictitious Australian mobile numbers (+61 491 570 000 to 579 999) and ARCEP's fictitious French mobile block (+33 6 39 98 xx xx)"
+regexTarget = "secret"
+regexes = ['''^\+61[ .-]?4[ .-]?91[ .-]?57[0-9][ .-]?[0-9]{3}$''', '''^\+33[ .-]?6[ .-]?39[ .-]?98(?:[ .-]?[0-9]{2}){2}$''']
+
+[[rules.allowlists]]
+description = "pii-phone: the placeholder digits of the phone parsers' per-country tests (libphonenumber's example numbers): an ascending run 1-2-3-4-5-6 or six zeros, for countries that publish no fictitious range"
+regexTarget = "secret"
+regexes = ['''^\+[0-9 .()-]*1[ .()-]{0,2}2[ .()-]{0,2}3[ .()-]{0,2}4[ .()-]{0,2}5[ .()-]{0,2}6''', '''^\+[0-9 .()-]*0(?:[ .()-]{0,2}0){5}''']
+
+[[rules.allowlists]]
+description = "pii-phone: a signed ISO 8601 date (+YYYY-MM-DD), not a number"
+regexTarget = "secret"
+regexes = ['''^\+[0-9]{4,6}-[0-9]{2}-[0-9]{2}$''']
+
+# --- pii-mrz-name ----------------------------------------------------------------------------
+
+[[rules]]
+id = "pii-mrz-name"
+
+[[rules.allowlists]]
+description = "pii-mrz-name: the synthetic names of the document generators and fixtures (services/vision/tools/synthetic_*.py, packages/checks/src/document/testing.ts, contracts/fixtures/mrz/), ICAO Doc 9303's specimens (ERIKSSON ANNA MARIA, STEVENSON PETER JOHN) and the parsers' placeholder words, in full or as the MRZ truncates them, with or without the document code and issuer"
+regexTarget = "secret"
+regexes = ['''^(?:[ACIPV][A-Z<][A-Z<]{3})?(?:ERIKSSON|ANNA|MARIA|STEVENSON|PETER|JOHN|QUILL|QUILLAN|QUILLWORTHINGTONSHIRE|ROWAN|ASH|ASHWOOD|ASHGROVE|THEA|VALEMONT|QUINN|ALEXANDRA|BEAT|CALDERWOOD|NORA|MERIDEN|SOLVEIG|ISLA|FARROW|LUCIA|VANDERBERGHEHOFFMANNSCHMIDT|VANDERBERGHEHOFFMANNSCHMID|ONEIL|SMITH|JANE|SAMPLE|SPECIMEN|TEST|SURNAME|GIVEN|NAMES|PRIMARY|SECONDARY|ABCDEFGHIJKLMNOPQRSTUVWXYZ|<)+[A-Z]{0,3}<*$''']
+
+# --- pii-card-number -------------------------------------------------------------------------
+
+[[rules]]
+id = "pii-card-number"
+
+[[rules.allowlists]]
+description = "pii-card-number: the card networks' and payment providers' published test numbers (Visa 4111 1111 1111 1111 and 4222 2222 2222 2, the 4242 4242 4242 4242 pattern, also at 19 digits, Mastercard 5555 5555 5555 4444 and 5105 1051 0510 5100, American Express 3782 822463 10005, Discover 6011 1111 1111 1117, Diners Club 3056 9309 0259 04, JCB 3530 1113 3330 0000), with spaces or hyphens"
+regexTarget = "secret"
+regexes = [
+  '''^4(?:[ -]?1){15}$''',
+  '''^4(?:[ -]?2){12}$''',
+  '''^4242(?:[ -]?4242){3}[0-9]{0,3}$''',
+  '''^5555[ -]?5555[ -]?5555[ -]?4444$''',
+  '''^5105[ -]?1051[ -]?0510[ -]?5100$''',
+  '''^3782[ -]?(?:822463[ -]?10005|8224[ -]?6310[ -]?005)$''',
+  '''^6011[ -]?1111[ -]?1111[ -]?1117$''',
+  '''^3056[ -]?9309[ -]?0259[ -]?04$''',
+  '''^3530[ -]?1113[ -]?3330[ -]?0000$''',
+]
+
+[[rules.allowlists]]
+description = "pii-card-number: a network prefix followed only by zeros (a rounded JSON number in the transaction field tests), which no issuer assigns"
+regexTarget = "secret"
+regexes = ['''^[1-9][0-9]?(?:[ -]?0){11,18}$''']
+
+# --- pii-iban --------------------------------------------------------------------------------
+
+[[rules]]
+id = "pii-iban"
+
+[[rules.allowlists]]
+description = "pii-iban: the published example IBANs of the IBAN registry and ECBS (GB82 WEST 1234 5698 7654 32, GB29 NWBK 6016 1331 9268 19, DE89 3704 0044 0532 0130 00)"
+regexTarget = "secret"
+regexes = ['''^GB82 ?WEST ?1234 ?5698 ?7654 ?32$''', '''^GB29 ?NWBK ?6016 ?1331 ?9268 ?19$''', '''^DE89 ?3704 ?0044 ?0532 ?0130 ?00$''']
+
+# --- pii-us-ssn ------------------------------------------------------------------------------
+
+[[rules]]
+id = "pii-us-ssn"
+
+[[rules.allowlists]]
+description = "pii-us-ssn: numbers published as never valid: 078-05-1120 (the 1938 wallet-insert number the Social Security Administration voided) and the ascending placeholder 123-45-6789"
+regexTarget = "secret"
+regexes = ['''^(?:078-05-1120|123-45-6789)$''']

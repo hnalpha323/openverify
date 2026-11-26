@@ -1,0 +1,690 @@
+# C263.4 (Workflow 11C Stage 2, chart-11c; checkpoint operations): the probes, the grace periods
+# and memory limits, the IP-reputation claim, the operator's clamd beside the worker, the HPAs, the
+# disruption budgets and scheduling, and the ingress with its optional Gateway API route.
+suite: c263 operations (probes and pods)
+release:
+  name: ov
+  namespace: verify
+templates:
+  - templates/api/deployment.yaml
+  - templates/worker/deployment.yaml
+  - templates/vision/deployment.yaml
+  - templates/flow/deployment.yaml
+  - templates/dashboard/deployment.yaml
+  - templates/code-runner/deployment.yaml
+  - templates/configmap.yaml
+tests:
+  - it: checks the API's readiness on /ready and its liveness and start on /health
+    template: templates/api/deployment.yaml
+    asserts:
+      - isSubset:
+          path: spec.template.spec.containers[0].readinessProbe
+          content:
+            httpGet:
+              path: /ready
+              port: http
+      - isSubset:
+          path: spec.template.spec.containers[0].livenessProbe
+          content:
+            httpGet:
+              path: /health
+              port: http
+      - isSubset:
+          path: spec.template.spec.containers[0].startupProbe
+          content:
+            httpGet:
+              path: /health
+              port: http
+  - it: probes the worker by running node dist/worker-health.js, with no shell and no port
+    template: templates/worker/deployment.yaml
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].livenessProbe.exec.command
+          value: [node, dist/worker-health.js]
+      - equal:
+          path: spec.template.spec.containers[0].startupProbe.exec.command
+          value: [node, dist/worker-health.js]
+      - notExists:
+          path: spec.template.spec.containers[0].livenessProbe.httpGet
+      - notExists:
+          path: spec.template.spec.containers[0].ports
+  - it: probes the flow server with GET / on its port
+    template: templates/flow/deployment.yaml
+    asserts:
+      - isSubset:
+          path: spec.template.spec.containers[0].readinessProbe
+          content:
+            httpGet:
+              path: /
+              port: http
+      - isSubset:
+          path: spec.template.spec.containers[0].livenessProbe
+          content:
+            httpGet:
+              path: /
+              port: http
+  - it: probes the console with GET /login
+    template: templates/dashboard/deployment.yaml
+    asserts:
+      - isSubset:
+          path: spec.template.spec.containers[0].readinessProbe
+          content:
+            httpGet:
+              path: /login
+              port: http
+      - isSubset:
+          path: spec.template.spec.containers[0].livenessProbe
+          content:
+            httpGet:
+              path: /login
+              port: http
+  - it: probes vision on /health, the route its image's health check called
+    template: templates/vision/deployment.yaml
+    asserts:
+      - isSubset:
+          path: spec.template.spec.containers[0].readinessProbe
+          content:
+            httpGet:
+              path: /health
+              port: http
+      - isSubset:
+          path: spec.template.spec.containers[0].livenessProbe
+          content:
+            httpGet:
+              path: /health
+              port: http
+  - it: probes the runner with its own health mode, with no shell
+    template: templates/code-runner/deployment.yaml
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].readinessProbe.exec.command
+          value: [node, bin/code-runner-server.mjs, --health]
+      - equal:
+          path: spec.template.spec.containers[0].livenessProbe.exec.command
+          value: [node, bin/code-runner-server.mjs, --health]
+
+  - it: gives the worker a grace period above the longest job lease (15 minutes)
+    template: templates/worker/deployment.yaml
+    asserts:
+      - equal:
+          path: spec.template.spec.terminationGracePeriodSeconds
+          value: 960
+  - it: keeps the API's default memory limit at 1 GiB and the worker's at 1.5 GiB
+    template: templates/api/deployment.yaml
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].resources.limits.memory
+          value: 1Gi
+  - it: keeps the worker's default memory limit at 1.5 GiB
+    template: templates/worker/deployment.yaml
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].resources.limits.memory
+          value: 1536Mi
+
+  - it: mounts no IP-reputation claim by default
+    template: templates/api/deployment.yaml
+    asserts:
+      - notContains:
+          path: spec.template.spec.volumes
+          any: true
+          content:
+            name: ip-reputation
+  - it: mounts the IP-reputation claim read-only in the API
+    template: templates/api/deployment.yaml
+    set:
+      ipReputation.existingClaim: anon-ip
+      ipReputation.path: /var/lib/openverify/ip-reputation/anonymous-ip.mmdb
+    asserts:
+      - contains:
+          path: spec.template.spec.volumes
+          content:
+            name: ip-reputation
+            persistentVolumeClaim:
+              claimName: anon-ip
+              readOnly: true
+      - contains:
+          path: spec.template.spec.containers[0].volumeMounts
+          content:
+            name: ip-reputation
+            mountPath: /var/lib/openverify/ip-reputation
+            readOnly: true
+  - it: mounts the IP-reputation claim read-only in the worker
+    template: templates/worker/deployment.yaml
+    set:
+      ipReputation.existingClaim: anon-ip
+      ipReputation.path: /var/lib/openverify/ip-reputation/anonymous-ip.mmdb
+    asserts:
+      - contains:
+          path: spec.template.spec.containers[0].volumeMounts
+          content:
+            name: ip-reputation
+            mountPath: /var/lib/openverify/ip-reputation
+            readOnly: true
+  - it: never mounts the IP-reputation claim in vision, the flow or the console
+    template: templates/vision/deployment.yaml
+    set:
+      ipReputation.existingClaim: anon-ip
+      ipReputation.path: /var/lib/openverify/ip-reputation/anonymous-ip.mmdb
+    asserts:
+      - notContains:
+          path: spec.template.spec.volumes
+          any: true
+          content:
+            name: ip-reputation
+  - it: names the MMDB on the API and the worker only
+    template: templates/configmap.yaml
+    set:
+      ipReputation.existingClaim: anon-ip
+      ipReputation.path: /var/lib/openverify/ip-reputation/anonymous-ip.mmdb
+    asserts:
+      - equal:
+          path: data.OPENVERIFY_IP_REPUTATION_MMDB_PATH
+          value: /var/lib/openverify/ip-reputation/anonymous-ip.mmdb
+        documentSelector:
+          path: metadata.name
+          value: ov-openverify-api
+      - equal:
+          path: data.OPENVERIFY_IP_REPUTATION_MMDB_PATH
+          value: /var/lib/openverify/ip-reputation/anonymous-ip.mmdb
+        documentSelector:
+          path: metadata.name
+          value: ov-openverify-worker
+      - notExists:
+          path: data.OPENVERIFY_IP_REPUTATION_MMDB_PATH
+        documentSelector:
+          path: metadata.name
+          value: ov-openverify-flow
+
+  - it: renders no clamd container, socket volume or OPENVERIFY_CLAMD_SOCKET without the operator's
+    template: templates/worker/deployment.yaml
+    asserts:
+      - lengthEqual:
+          path: spec.template.spec.containers
+          count: 1
+      - notContains:
+          path: spec.template.spec.volumes
+          any: true
+          content:
+            name: clamd-socket
+  - it: sets no OPENVERIFY_CLAMD_SOCKET without the operator's clamd
+    template: templates/configmap.yaml
+    documentSelector:
+      path: metadata.name
+      value: ov-openverify-worker
+    asserts:
+      - notExists:
+          path: data.OPENVERIFY_CLAMD_SOCKET
+  - it: runs the operator's clamd in the worker's pod under the restricted context, on a shared socket
+    template: templates/worker/deployment.yaml
+    set:
+      worker.extraContainers:
+        - name: clamd
+          image: registry.example.com/clamd:1@sha256:3333333333333333333333333333333333333333333333333333333333333333
+          volumeMounts:
+            - name: clamd-socket
+              mountPath: /run/clamd
+            - name: clamd-db
+              mountPath: /var/lib/clamav
+      worker.extraVolumes:
+        - name: clamd-db
+          emptyDir: {}
+    asserts:
+      - lengthEqual:
+          path: spec.template.spec.containers
+          count: 2
+      - equal:
+          path: spec.template.spec.containers[1].name
+          value: clamd
+      - isSubset:
+          path: spec.template.spec.containers[1].securityContext
+          content:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+      - contains:
+          path: spec.template.spec.volumes
+          content:
+            name: clamd-socket
+            emptyDir: {}
+      - contains:
+          path: spec.template.spec.volumes
+          content:
+            name: clamd-db
+            emptyDir: {}
+      - contains:
+          path: spec.template.spec.containers[0].volumeMounts
+          content:
+            name: clamd-socket
+            mountPath: /run/clamd
+  - it: points the worker at the shared socket when the operator's clamd is given
+    template: templates/configmap.yaml
+    set:
+      worker.extraContainers:
+        - name: clamd
+          image: registry.example.com/clamd:1
+    documentSelector:
+      path: metadata.name
+      value: ov-openverify-worker
+    asserts:
+      - equal:
+          path: data.OPENVERIFY_CLAMD_SOCKET
+          value: /run/clamd/clamd.sock
+
+  - it: applies each component's priority class and spread constraints
+    template: templates/flow/deployment.yaml
+    set:
+      flow.priorityClassName: openverify-web
+      flow.topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: topology.kubernetes.io/zone
+          whenUnsatisfiable: ScheduleAnyway
+    asserts:
+      - equal:
+          path: spec.template.spec.priorityClassName
+          value: openverify-web
+      - equal:
+          path: spec.template.spec.topologySpreadConstraints[0].topologyKey
+          value: topology.kubernetes.io/zone
+  - it: leaves the replica count to the HPA when the API autoscales
+    template: templates/api/deployment.yaml
+    set:
+      api.autoscaling.enabled: true
+    asserts:
+      - notExists:
+          path: spec.replicas
+  - it: keeps the worker's replica count, which no HPA owns
+    template: templates/worker/deployment.yaml
+    set:
+      worker.autoscaling.enabled: true
+      worker.replicaCount: 3
+    asserts:
+      - equal:
+          path: spec.replicas
+          value: 3
+---
+suite: c263 operations (autoscaling and disruption budgets)
+release:
+  name: ov
+  namespace: verify
+templates:
+  - templates/hpa.yaml
+  - templates/pdb.yaml
+tests:
+  - it: renders no HPA by default
+    template: templates/hpa.yaml
+    asserts:
+      - hasDocuments:
+          count: 0
+  - it: scales the API, the console and the flow on CPU, never the worker
+    template: templates/hpa.yaml
+    set:
+      api.autoscaling.enabled: true
+      dashboard.autoscaling.enabled: true
+      flow.autoscaling.enabled: true
+      worker.autoscaling.enabled: true
+      vision.autoscaling.enabled: true
+      codeRunner.autoscaling.enabled: true
+    asserts:
+      - hasDocuments:
+          count: 3
+      - isKind:
+          of: HorizontalPodAutoscaler
+      - isAPIVersion:
+          of: autoscaling/v2
+  - it: targets the API's Deployment with its bounds and CPU utilisation
+    template: templates/hpa.yaml
+    set:
+      api.autoscaling.enabled: true
+    asserts:
+      - equal:
+          path: metadata.name
+          value: ov-openverify-api
+      - equal:
+          path: spec.scaleTargetRef
+          value:
+            apiVersion: apps/v1
+            kind: Deployment
+            name: ov-openverify-api
+      - equal:
+          path: spec.minReplicas
+          value: 2
+      - equal:
+          path: spec.maxReplicas
+          value: 4
+      - equal:
+          path: spec.metrics
+          value:
+            - type: Resource
+              resource:
+                name: cpu
+                target:
+                  type: Utilization
+                  averageUtilization: 70
+  - it: renders a disruption budget for each component that enables one
+    template: templates/pdb.yaml
+    asserts:
+      - hasDocuments:
+          count: 3
+      - isKind:
+          of: PodDisruptionBudget
+  - it: selects the API's pods with its minimum available
+    template: templates/pdb.yaml
+    documentSelector:
+      path: metadata.name
+      value: ov-openverify-api
+    asserts:
+      - equal:
+          path: spec.minAvailable
+          value: 1
+      - equal:
+          path: spec.selector.matchLabels
+          value:
+            app.kubernetes.io/name: openverify
+            app.kubernetes.io/instance: ov
+            app.kubernetes.io/component: api
+  - it: adds the worker's budget when it is enabled
+    template: templates/pdb.yaml
+    set:
+      worker.podDisruptionBudget.enabled: true
+    asserts:
+      - hasDocuments:
+          count: 4
+---
+suite: c263 operations (ingress)
+release:
+  name: ov
+  namespace: verify
+templates:
+  - templates/ingress.yaml
+tests:
+  - it: renders no Ingress until a host is given
+    asserts:
+      - hasDocuments:
+          count: 0
+  - it: routes separate API, flow and console hosts to their Services, never the internal port
+    set:
+      ingress.className: nginx
+      ingress.hosts.api: api.example.com
+      ingress.hosts.flow: verify.example.com
+      ingress.hosts.dashboard: console.example.com
+      ingress.tls:
+        - secretName: openverify-tls
+          hosts: [api.example.com, verify.example.com, console.example.com]
+    asserts:
+      - hasDocuments:
+          count: 5
+      - isKind:
+          of: Ingress
+      - equal:
+          path: spec.ingressClassName
+          value: nginx
+      - notContains:
+          path: spec.rules[0].http.paths
+          any: true
+          content:
+            backend:
+              service:
+                port:
+                  name: internal
+      - notContains:
+          path: spec.rules[0].http.paths
+          any: true
+          content:
+            backend:
+              service:
+                port:
+                  number: 3101
+  - it: sends the API host's ordinary paths to the API's public port
+    set:
+      ingress.hosts.api: api.example.com
+      ingress.tls:
+        - secretName: openverify-tls
+          hosts: [api.example.com, verify.example.com, console.example.com]
+    documentSelector:
+      path: metadata.name
+      value: ov-openverify-api
+    asserts:
+      - equal:
+          path: spec.rules[0].host
+          value: api.example.com
+      - contains:
+          path: spec.rules[0].http.paths
+          content:
+            path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ov-openverify-api
+                port:
+                  name: http
+  - it: gives the list importer its own Ingress for its larger body limit
+    set:
+      ingress.hosts.api: api.example.com
+      ingress.tls:
+        - secretName: openverify-tls
+          hosts: [api.example.com, verify.example.com, console.example.com]
+    documentSelector:
+      path: metadata.name
+      value: ov-openverify-api-import
+    asserts:
+      - equal:
+          path: spec.rules[0].http.paths
+          value:
+            - path: /api/v1/importer
+              pathType: Prefix
+              backend:
+                service:
+                  name: ov-openverify-api
+                  port:
+                    name: http
+  - it: gives the transaction routes their own Ingress for a transaction file's body limit
+    set:
+      ingress.hosts.api: api.example.com
+      ingress.tls:
+        - secretName: openverify-tls
+          hosts: [api.example.com, verify.example.com, console.example.com]
+    documentSelector:
+      path: metadata.name
+      value: ov-openverify-api-transaction-files
+    asserts:
+      - equal:
+          path: spec.rules[0].http.paths[0].path
+          value: /api/v1/transactions
+      - equal:
+          path: spec.rules[0].http.paths[0].backend.service.port.name
+          value: http
+  - it: routes the flow host to the flow server and the console host to the console
+    set:
+      ingress.hosts.flow: verify.example.com
+      ingress.hosts.dashboard: console.example.com
+      ingress.tls:
+        - secretName: openverify-tls
+          hosts: [api.example.com, verify.example.com, console.example.com]
+    asserts:
+      - hasDocuments:
+          count: 2
+      - equal:
+          path: spec.rules[0].http.paths[0].backend.service.name
+          value: ov-openverify-flow
+        documentSelector:
+          path: metadata.name
+          value: ov-openverify-flow
+      - equal:
+          path: spec.rules[0].http.paths[0].backend.service.name
+          value: ov-openverify-dashboard
+        documentSelector:
+          path: metadata.name
+          value: ov-openverify-dashboard
+  - it: carries the TLS entry naming each Ingress's host
+    set:
+      ingress.hosts.flow: verify.example.com
+      ingress.tls:
+        - secretName: flow-tls
+          hosts: [verify.example.com]
+        - secretName: other-tls
+          hosts: [other.example.com]
+    documentSelector:
+      path: metadata.name
+      value: ov-openverify-flow
+    asserts:
+      - equal:
+          path: spec.tls
+          value:
+            - secretName: flow-tls
+              hosts: [verify.example.com]
+  - it: renders nothing while the ingress is off
+    set:
+      ingress.enabled: false
+      ingress.hosts.api: api.example.com
+    asserts:
+      - hasDocuments:
+          count: 0
+---
+suite: c263 operations (gateway route)
+release:
+  name: ov
+  namespace: verify
+templates:
+  - templates/httproute.yaml
+tests:
+  - it: renders no HTTPRoute by default
+    set:
+      ingress.hosts.api: api.example.com
+    asserts:
+      - hasDocuments:
+          count: 0
+  - it: renders an example HTTPRoute per host when asked, with HSTS and the public ports only
+    set:
+      gateway.httpRoute.enabled: true
+      ingress.hosts.api: api.example.com
+      ingress.hosts.flow: verify.example.com
+      ingress.hosts.dashboard: console.example.com
+    asserts:
+      - hasDocuments:
+          count: 3
+      - isKind:
+          of: HTTPRoute
+      - isAPIVersion:
+          of: gateway.networking.k8s.io/v1
+      - equal:
+          path: spec.hostnames
+          value: [api.example.com]
+        documentSelector:
+          path: metadata.name
+          value: ov-openverify-api
+      - equal:
+          path: spec.rules[0].backendRefs
+          value:
+            - name: ov-openverify-api
+              port: 3000
+        documentSelector:
+          path: metadata.name
+          value: ov-openverify-api
+      - contains:
+          path: spec.rules[0].filters
+          content:
+            type: ResponseHeaderModifier
+            responseHeaderModifier:
+              set:
+                - name: Strict-Transport-Security
+                  value: max-age=31536000; includeSubDomains
+        documentSelector:
+          path: metadata.name
+          value: ov-openverify-api
+  # KP11-84 (Workflow 11F review): the Gateway each route attaches to.
+  - it: attaches every route to the Gateway named like the release when gateway.httpRoute.parentRefs is empty
+    set:
+      gateway.httpRoute.enabled: true
+      ingress.hosts.api: api.example.com
+      ingress.hosts.flow: verify.example.com
+    asserts:
+      - equal:
+          path: spec.parentRefs
+          value:
+            - name: ov-openverify
+  - it: attaches every route to the parents gateway.httpRoute.parentRefs names, such as one HTTPS listener of a shared Gateway
+    set:
+      gateway.httpRoute.enabled: true
+      gateway.httpRoute.parentRefs:
+        - name: shared-gateway
+          namespace: gateway-system
+          sectionName: https
+      ingress.hosts.api: api.example.com
+      ingress.hosts.dashboard: console.example.com
+    asserts:
+      - hasDocuments:
+          count: 2
+      - equal:
+          path: spec.parentRefs
+          value:
+            - name: shared-gateway
+              namespace: gateway-system
+              sectionName: https
+  - it: refuses a parent without a name
+    set:
+      gateway.httpRoute.enabled: true
+      gateway.httpRoute.parentRefs:
+        - sectionName: https
+      ingress.hosts.api: api.example.com
+    asserts:
+      - failedTemplate: {}
+---
+suite: c263 operations (pool check)
+release:
+  name: ov
+templates:
+  - templates/configmap.yaml
+tests:
+  - it: passes the default pools (api 3 x 10, worker 2 x 10, migrate 11) within 100 connections
+    asserts:
+      - hasDocuments:
+          count: 6
+  - it: fails when every replica's pool could exceed the server's connections
+    set:
+      api.replicaCount: 6
+      worker.replicaCount: 3
+    asserts:
+      - failedTemplate:
+          errorPattern: 'the database pools could open 131 connections \(api 8 pods x 10, worker 4 pods x 10, migrate 11\), above external.postgres.maxConnections \(100\)'
+  - it: counts the HPA's maximum, not the replica count, when the API autoscales
+    set:
+      api.autoscaling.enabled: true
+      api.autoscaling.maxReplicas: 10
+      external.postgres.maxConnections: 140
+    asserts:
+      - failedTemplate:
+          errorPattern: could open 161 connections \(api 13 pods x 10
+  - it: passes when the server allows them
+    set:
+      api.replicaCount: 6
+      worker.replicaCount: 3
+      external.postgres.maxConnections: 131
+    asserts:
+      - hasDocuments:
+          count: 6
+---
+suite: c263 operations (IP-reputation checks)
+release:
+  name: ov
+templates:
+  - templates/configmap.yaml
+tests:
+  - it: refuses an IP-reputation claim without the MMDB's path
+    set:
+      ipReputation.existingClaim: anon-ip
+    asserts:
+      - failedTemplate:
+          errorPattern: ipReputation.path must name the MMDB under /var/lib/openverify/ip-reputation/
+  - it: refuses a path outside the claim's mount
+    set:
+      ipReputation.existingClaim: anon-ip
+      ipReputation.path: /etc/anonymous-ip.mmdb
+    asserts:
+      - failedTemplate:
+          errorPattern: ipReputation.path must name the MMDB under /var/lib/openverify/ip-reputation/
+  - it: refuses a path without a claim
+    set:
+      ipReputation.path: /var/lib/openverify/ip-reputation/anonymous-ip.mmdb
+    asserts:
+      - failedTemplate:
+          errorPattern: ipReputation.path needs ipReputation.existingClaim

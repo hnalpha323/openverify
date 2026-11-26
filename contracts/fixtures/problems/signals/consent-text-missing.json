@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "Device recognition with consent needs the optional consent text in the consent step.",
+  "instance": "/api/v1/inquiry-template-versions/itmplv_01M5CK3190XEVBM5ZXA76E1JSN/publish",
+  "requestId": "00000000-0000-4000-8000-000000000707",
+  "code": "consent_text_missing"
+}

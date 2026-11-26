@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "This flow must continue on another device.",
+  "instance": "/api/v1/flow/handoffs/continue-here",
+  "requestId": "00000000-0000-4000-8000-000000000718",
+  "code": "continue_here_not_allowed"
+}

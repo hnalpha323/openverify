@@ -1,0 +1,30 @@
+{
+  "matches": [
+    {
+      "vulnerability": {
+        "id": "GHSA-syn4-crit-0012",
+        "severity": "Critical"
+      },
+      "relatedVulnerabilities": [
+        {
+          "id": "CVE-2099-0012"
+        }
+      ],
+      "artifact": {
+        "name": "synthetic-go",
+        "version": "0.1.0"
+      }
+    },
+    {
+      "vulnerability": {
+        "id": "CVE-2099-0013",
+        "severity": "Negligible"
+      },
+      "relatedVulnerabilities": [],
+      "artifact": {
+        "name": "libsynthetic",
+        "version": "1.0"
+      }
+    }
+  ]
+}

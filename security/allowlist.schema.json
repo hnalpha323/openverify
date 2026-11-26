@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openverify.invalid/schemas/security-allowlist.schema.json",
+  "title": "OpenVerify supply-chain allowlist",
+  "description": "C259.2: the reviewed exceptions to the per-push supply-chain gate and release.yml's image scans. The gate (infra/scripts/supply-chain.sh) refuses an expired entry and an entry whose expiry is more than 90 days after the day it runs, which JSON Schema cannot express.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["id", "reason", "expires", "added-by"],
+    "oneOf": [
+      {
+        "required": ["package"]
+      },
+      {
+        "required": ["path"]
+      }
+    ],
+    "properties": {
+      "id": {
+        "type": "string",
+        "minLength": 3,
+        "maxLength": 100,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$",
+        "description": "The advisory or check id the scanner reports: a GHSA, CVE, OSV, PYSEC or GO id, a Trivy misconfiguration id (AVD-...) or a zizmor audit name."
+      },
+      "package": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 214,
+        "description": "The package the finding is in, as the scanner names it (npm, PyPI, Maven group:artifact, or an OS package)."
+      },
+      "path": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 300,
+        "pattern": "^[^/].*$",
+        "description": "The repository path the finding is in (a workflow, a Dockerfile, a chart template), relative to the root."
+      },
+      "reason": {
+        "type": "string",
+        "minLength": 10,
+        "maxLength": 500,
+        "description": "Why the finding is accepted until the expiry: for example \"no fix available\" with what limits the exposure."
+      },
+      "expires": {
+        "type": "string",
+        "format": "date",
+        "description": "The last day the entry holds (YYYY-MM-DD), at most 90 days after the day it is added; the gate refuses it after that day."
+      },
+      "added-by": {
+        "type": "string",
+        "minLength": 2,
+        "maxLength": 100,
+        "description": "The agent or person who reviewed and added the entry."
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "name": "@openverify/e2e",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Full-stack end-to-end tests: real API, worker, vision service, hosted flow and dashboard",
+  "type": "module",
+  "scripts": {
+    "e2e": "playwright test",
+    "e2e:stack:up": "node --experimental-transform-types --no-warnings --conditions=@openverify/source --import ../packages/checks/scripts/register-ts.mjs setup/reusable-stack-cli.ts up",
+    "e2e:stack:down": "node --experimental-transform-types --no-warnings --conditions=@openverify/source --import ../packages/checks/scripts/register-ts.mjs setup/reusable-stack-cli.ts down",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@aws-sdk/client-s3": "3.1150.0",
+    "@axe-core/playwright": "catalog:",
+    "@noble/curves": "catalog:",
+    "@noble/hashes": "catalog:",
+    "@openverify/config": "workspace:*",
+    "@openverify/contracts": "workspace:*",
+    "@openverify/emrtd": "workspace:*",
+    "@openverify/node": "workspace:*",
+    "@playwright/test": "catalog:",
+    "@scure/base": "catalog:",
+    "@scure/btc-signer": "catalog:",
+    "@types/node": "catalog:",
+    "@types/pg": "8.23.1",
+    "@vitest/coverage-v8": "catalog:",
+    "pg": "8.23.1",
+    "typescript": "catalog:",
+    "vitest": "catalog:",
+    "zod": "^4.6.7"
+  }
+}

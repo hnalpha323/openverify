@@ -1,0 +1,133 @@
+{
+  "data": {
+    "type": "case-template-version",
+    "id": "ctmplv_01M5CN00000000000000000003",
+    "attributes": {
+      "version-number": 1,
+      "status": "published",
+      "field-schemas": [
+        {
+          "type": "string",
+          "key": "summary",
+          "label": "Summary",
+          "config": {
+            "max-char-length": 500
+          }
+        },
+        {
+          "type": "multi-choices",
+          "key": "risk-reasons",
+          "label": "Risk reasons",
+          "config": {
+            "options": ["document", "watchlist", "device"],
+            "allow-empty": true
+          }
+        },
+        {
+          "type": "email-address",
+          "key": "contact",
+          "label": "Contact",
+          "config": {
+            "searchable": true
+          }
+        }
+      ],
+      "statuses": [
+        {
+          "key": "open",
+          "label": "Open",
+          "category": "initial",
+          "pauses-sla": false,
+          "required-comment": false,
+          "status-tags": [],
+          "status-tag-required": false
+        },
+        {
+          "key": "pending",
+          "label": "Pending",
+          "category": "intermediate",
+          "pauses-sla": true,
+          "required-comment": false,
+          "status-tags": [],
+          "status-tag-required": false
+        },
+        {
+          "key": "approved",
+          "label": "Approved",
+          "category": "end",
+          "pauses-sla": false,
+          "required-comment": false,
+          "status-tags": [],
+          "status-tag-required": false
+        },
+        {
+          "key": "declined",
+          "label": "Declined",
+          "category": "end",
+          "pauses-sla": false,
+          "required-comment": true,
+          "status-tags": [
+            {
+              "key": "fraud",
+              "label": "Fraud"
+            },
+            {
+              "key": "document",
+              "label": "Document problem"
+            }
+          ],
+          "status-tag-required": true
+        }
+      ],
+      "resolutions": ["Approved", "Declined"],
+      "transitions": {
+        "open": ["pending", "approved", "declined"],
+        "pending": ["open", "approved", "declined"],
+        "approved": ["open"],
+        "declined": ["open"]
+      },
+      "default-queue-id": "cqueue_01M5CN00000000000000000005",
+      "assignment-policy-id": "cap_01M5CN00000000000000000006",
+      "sla-policy-id": "cslap_01M5CN00000000000000000007",
+      "sla-starts-on": "entered-queue",
+      "held-object-types": ["account", "inquiry", "report", "verification"],
+      "attachment-policy": {
+        "max-files": 20,
+        "types": ["jpeg", "png", "webp", "pdf"]
+      },
+      "notify-on-create": ["usr_01M5CN00000000000000000011"],
+      "layout-modules": [
+        {
+          "key": "held-objects",
+          "required-permissions": []
+        },
+        {
+          "key": "graph",
+          "required-permissions": ["graph:read"]
+        },
+        {
+          "key": "timeline",
+          "required-permissions": []
+        },
+        {
+          "key": "comments",
+          "required-permissions": []
+        },
+        {
+          "key": "attachments",
+          "required-permissions": ["pii:view"]
+        }
+      ],
+      "created-at": "2026-10-20T12:00:00.000Z",
+      "published-at": "2026-10-20T12:05:00.000Z"
+    },
+    "relationships": {
+      "case-template": {
+        "data": {
+          "type": "case-template",
+          "id": "ctmpl_01M5CN00000000000000000002"
+        }
+      }
+    }
+  }
+}

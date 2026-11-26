@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "A transaction holds at most 100 related objects.",
+  "instance": "/api/v1/transactions/txn_01M5CK3190XEVBM5ZXA76E1JSN/add-objects",
+  "requestId": "00000000-0000-4000-8000-000000000908",
+  "code": "related_objects_limit",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/meta/object-ids",
+      "detail": "more than 100 related objects"
+    }
+  ]
+}

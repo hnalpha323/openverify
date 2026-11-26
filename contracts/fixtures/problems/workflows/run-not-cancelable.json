@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "This run has already ended.",
+  "instance": "/api/v1/workflow-runs/wfr_01M5CK3190XEVBM5ZXA76E1JSN/cancel",
+  "requestId": "00000000-0000-4000-8000-000000001112",
+  "code": "run_not_cancelable"
+}

@@ -1,0 +1,102 @@
+# kind.sh fixtures (Workflow 11C chart-policy-11c; C265.4): RustFS 1.0.3 for the S3 API, the image
+# pinned by digest, with its keys from the Secret openverify-ci-rustfs-auth (random per run), and the
+# Job that creates the files bucket with versioning on, as compose's objectstore-init does, with the
+# AWS CLI image pinned by digest.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rustfs
+  namespace: openverify-fixtures
+  labels:
+    app: rustfs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rustfs
+  template:
+    metadata:
+      labels:
+        app: rustfs
+    spec:
+      containers:
+        - name: rustfs
+          image: rustfs/rustfs:1.0.3@sha256:9ca9559533b537d10482fe923288b676ad08f92a7069d9a17327fbae3cab688b
+          env:
+            - name: RUSTFS_ACCESS_KEY
+              valueFrom:
+                secretKeyRef: { name: openverify-ci-rustfs-auth, key: S3_ACCESS_KEY_ID }
+            - name: RUSTFS_SECRET_KEY
+              valueFrom:
+                secretKeyRef: { name: openverify-ci-rustfs-auth, key: S3_SECRET_ACCESS_KEY }
+            - name: RUSTFS_REGION
+              value: us-east-1
+            - name: RUSTFS_ADDRESS
+              value: ':9000'
+          ports:
+            - name: s3
+              containerPort: 9000
+          readinessProbe:
+            httpGet:
+              path: /health/ready
+              port: s3
+            periodSeconds: 2
+            failureThreshold: 60
+          resources:
+            requests: { cpu: 50m, memory: 128Mi }
+            limits: { memory: 512Mi }
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: data
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rustfs
+  namespace: openverify-fixtures
+spec:
+  selector:
+    app: rustfs
+  ports:
+    - name: s3
+      port: 9000
+      targetPort: s3
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: rustfs-bucket
+  namespace: openverify-fixtures
+spec:
+  backoffLimit: 6
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: bucket
+          image: amazon/aws-cli:2.38.2@sha256:5d39fd52f236ed01c5c25fba66c9aebcfc6cbb88e7bb1b727c5fe1f150540597
+          command: [/bin/sh, -ec]
+          args:
+            - |
+              if ! aws s3api head-bucket --bucket "$S3_BUCKET" >/dev/null 2>&1; then
+                aws s3api create-bucket --bucket "$S3_BUCKET" >/dev/null
+              fi
+              aws s3api put-bucket-versioning --bucket "$S3_BUCKET" --versioning-configuration Status=Enabled
+              test "$(aws s3api get-bucket-versioning --bucket "$S3_BUCKET" --query Status --output text)" = Enabled
+              echo "bucket $S3_BUCKET ready (versioning Enabled)"
+          env:
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef: { name: openverify-ci-rustfs-auth, key: S3_ACCESS_KEY_ID }
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef: { name: openverify-ci-rustfs-auth, key: S3_SECRET_ACCESS_KEY }
+            - name: AWS_DEFAULT_REGION
+              value: us-east-1
+            - name: AWS_ENDPOINT_URL
+              value: http://rustfs.openverify-fixtures.svc:9000
+            - name: S3_BUCKET
+              value: openverify-files

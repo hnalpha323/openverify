@@ -1,0 +1,13 @@
+{
+  "data": [
+    {
+      "message-ref": "sandbox-1",
+      "workflow-run-id": "wfr_01M5CM00000000000000000006",
+      "step-id": "notify",
+      "recorded-at": "2026-10-20T12:10:00.000Z",
+      "message-subject": "A synthetic subject",
+      "message-text": "A synthetic message.",
+      "message-html": null
+    }
+  ]
+}

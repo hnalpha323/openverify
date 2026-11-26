@@ -1,0 +1,56 @@
+{
+  "data": {
+    "type": "connect/connection",
+    "id": "cxn_01M5CN0000000000000011A100",
+    "attributes": {
+      "status": "pending",
+      "direction": "outbound",
+      "source-organization-id": "org_01M5CN0000000000000011A010",
+      "destination-organization-id": "org_01M5CN0000000000000011A020",
+      "source-organization-name": "Example Source",
+      "destination-organization-name": null,
+      "created-at": "2026-10-20T12:00:00.000Z",
+      "updated-at": "2026-10-20T12:00:00.000Z",
+      "activated-at": null,
+      "deactivated-at": null,
+      "deactivated-by": null,
+      "share-policy": {
+        "id": "cxnp_01M5CN0000000000000011A110",
+        "version": 1,
+        "created-at": "2026-10-20T12:00:00.000Z",
+        "body": {
+          "purpose": "share.reuse-kyc",
+          "source-types": ["inquiry", "account", "verification"],
+          "verifications": {
+            "types": ["government-id", "selfie", "database"],
+            "extracted-data": true,
+            "check-results": true,
+            "files": true
+          },
+          "fields": {
+            "inquiry": ["name_first", "name_last", "birthdate", "email_address"],
+            "account": ["name_first", "name_last"],
+            "transaction": []
+          },
+          "biometric": true,
+          "peek": {
+            "inquiry.status": "full",
+            "inquiry.fields.name_first": "full",
+            "account.fields.name_first": "presence",
+            "verification/government-id.status": "full"
+          },
+          "attested-consent": "non-biometric"
+        }
+      },
+      "accepted-policy-version": null
+    },
+    "relationships": {
+      "creator": {
+        "data": {
+          "type": "user",
+          "id": "usr_01M5CJXHG03PHEQZPRWAH2RXM5"
+        }
+      }
+    }
+  }
+}

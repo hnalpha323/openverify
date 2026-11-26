@@ -1,0 +1,7 @@
+{
+  "status": "not_ready",
+  "checks": {
+    "postgres": "ok",
+    "valkey": "unavailable"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "Finish or undo the rollout first.",
+  "instance": "/api/v1/workflows/wfl_01M5CK3190XEVBM5ZXA76E1JSN/promote",
+  "requestId": "00000000-0000-4000-8000-000000001104",
+  "code": "rollout_in_progress"
+}

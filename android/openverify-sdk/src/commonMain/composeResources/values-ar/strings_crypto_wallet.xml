@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Arabic copy of values/strings_crypto_wallet.xml, machine-drafted by android-i18n (Workflow 10A, C199.1;
+  i18n/review-status.json): where the hosted web flow has the same English text, its
+  Arabic words are used, so both clients say the same thing. Compose Multiplatform resources:
+  positional placeholders only, ' and " written as they are, no isolate or other bidi control
+  (ResourcesTest).
+-->
+<resources>
+    <string name="openverify_crypto_title">إثبات التحكم في المحفظة</string>
+    <string name="openverify_crypto_intro">يُرجى اختيار الشبكة وإدخال عنوان المحفظة. ثم نعرض رسالة لتوقيعها في تطبيق المحفظة.</string>
+    <string name="openverify_crypto_chain">الشبكة</string>
+    <string name="openverify_crypto_evm_chain">شبكة EVM رقم %1$s</string>
+    <string name="openverify_crypto_address">عنوان المحفظة</string>
+    <string name="openverify_crypto_get_message">الحصول على الرسالة المراد توقيعها</string>
+    <string name="openverify_crypto_getting_message">جارٍ الحصول على الرسالة…</string>
+    <string name="openverify_crypto_message_title">توقيع هذه الرسالة</string>
+    <string name="openverify_crypto_message_instructions">يُرجى نسخ هذه الرسالة وتوقيعها في تطبيق المحفظة بالعنوان المُدخل، ثم لصق التوقيع أدناه.</string>
+    <string name="openverify_crypto_copy">نسخ الرسالة</string>
+    <string name="openverify_crypto_copied">تم نسخ الرسالة.</string>
+    <plurals name="openverify_crypto_expires_in">
+        <item quantity="zero">تنتهي صلاحية الرسالة بعد %1$d دقيقة.</item>
+        <item quantity="one">تنتهي صلاحية الرسالة بعد دقيقة واحدة.</item>
+        <item quantity="two">تنتهي صلاحية الرسالة بعد دقيقتين.</item>
+        <item quantity="few">تنتهي صلاحية الرسالة بعد %1$d دقائق.</item>
+        <item quantity="many">تنتهي صلاحية الرسالة بعد %1$d دقيقة.</item>
+        <item quantity="other">تنتهي صلاحية الرسالة بعد %1$d دقيقة.</item>
+    </plurals>
+    <string name="openverify_crypto_signature">التوقيع</string>
+    <string name="openverify_crypto_signed_message">الرسالة الموقّعة، إذا عرضتها المحفظة</string>
+    <string name="openverify_crypto_signed_message_hint">تضيف بعض محافظ Solana إلى الرسالة قبل توقيعها. إذا عرضت المحفظة الرسالة التي وقّعتها، يُرجى لصقها هنا أيضًا.</string>
+    <string name="openverify_crypto_submit">إرسال التوقيع</string>
+    <string name="openverify_crypto_submitting">جارٍ إرسال التوقيع…</string>
+    <string name="openverify_crypto_change">استخدام محفظة أخرى</string>
+    <string name="openverify_crypto_new_message">طلب رسالة جديدة</string>
+    <string name="openverify_crypto_error_chain_not_offered">لا يمكن استخدام هذه الشبكة هنا. يُرجى اختيار إحدى الشبكات المدرجة.</string>
+    <string name="openverify_crypto_error_address_invalid">هذا العنوان غير صالح للشبكة المختارة. يُرجى التأكد من نسخ العنوان كاملًا.</string>
+    <string name="openverify_crypto_error_expected_address">هذا ليس عنوان المحفظة المطلوب التحقق منه. يُرجى استخدام عنوان المحفظة المتوقع.</string>
+    <string name="openverify_crypto_error_challenge_invalid">انتهت صلاحية هذه الرسالة أو استُبدلت. يُرجى طلب رسالة جديدة للتوقيع.</string>
+    <string name="openverify_crypto_error_signature_too_long">هذا التوقيع طويل جدًا. يُرجى لصق التوقيع فقط.</string>
+    <string name="openverify_crypto_error_signed_message_too_long">هذه الرسالة الموقّعة طويلة جدًا. يُرجى لصق البايتات التي وقّعتها المحفظة فقط.</string>
+    <string name="openverify_crypto_restarted">انتهت المحاولة السابقة لأنه طُلب عدد كبير جدًا من الرسائل. يُرجى البدء من جديد.</string>
+</resources>

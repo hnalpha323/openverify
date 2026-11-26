@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Calls to the OpenVerify flow API. A normal (install-time) permission. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Document and selfie photos. The only runtime permission the SDK asks for, and only
+         after explaining why (CameraPermissionGate). -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- C213.1 (decision 36, 70): on Android 12 (API 31) and later the flow's window hides other apps'
+         overlays while it is in front (Window.setHideOverlayWindows). A normal (install-time) permission. -->
+    <uses-permission android:name="android.permission.HIDE_OVERLAY_WINDOWS" />
+
+    <!-- Host apps stay installable on devices without a camera; the flow explains the need. -->
+    <uses-feature
+        android:name="android.hardware.camera.any"
+        android:required="false" />
+
+    <application>
+        <activity
+            android:name="dev.openverify.sdk.OpenVerifyInquiryActivity"
+            android:exported="false"
+            android:theme="@style/OpenVerify.Theme" />
+    </application>
+
+</manifest>

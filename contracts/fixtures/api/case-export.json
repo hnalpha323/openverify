@@ -1,0 +1,17 @@
+{
+  "data": {
+    "type": "case-export",
+    "id": "cexp_01M5CN00000000000000000014",
+    "attributes": {
+      "status": "completed",
+      "format": "csv",
+      "include-personal-data": false,
+      "case-count": 2,
+      "byte-size": 912,
+      "error-code": null,
+      "created-at": "2026-10-20T12:05:00.000Z",
+      "completed-at": "2026-10-20T12:05:00.000Z",
+      "expires-at": "2026-10-21T12:05:00.000Z"
+    }
+  }
+}

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  German copy of values/strings_form.xml, machine-drafted by android-i18n (Workflow 10A, C199.1;
+  i18n/review-status.json): where the hosted web flow has the same English text, its
+  German words are used, so both clients say the same thing. Compose Multiplatform resources:
+  positional placeholders only, ' and " written as they are, no isolate or other bidi control
+  (ResourcesTest).
+-->
+<resources>
+    <string name="openverify_database_title">Geben Sie Ihre Angaben ein</string>
+    <string name="openverify_database_intro">Wir gleichen diese Angaben mit Registern ab. Geben Sie sie so ein, wie sie in Ihren amtlichen Dokumenten stehen.</string>
+    <string name="openverify_aamva_title">Geben Sie die Daten Ihres Führerscheins oder Ausweises ein</string>
+    <string name="openverify_aamva_intro">Geben Sie die Daten genau so ein, wie sie auf Ihrem US-Führerschein oder Ihrem State-ID-Ausweis gedruckt sind.</string>
+    <string name="openverify_field_name_first">Vorname</string>
+    <string name="openverify_field_name_middle">Zweiter Vorname</string>
+    <string name="openverify_field_name_last">Nachname</string>
+    <string name="openverify_field_birthdate">Geburtsdatum</string>
+    <string name="openverify_field_address_street_1">Straße und Hausnummer</string>
+    <string name="openverify_field_address_street_2">Wohnung, Büro oder Einheit</string>
+    <string name="openverify_field_address_city">Ort</string>
+    <string name="openverify_field_address_subdivision">Bundesland, Provinz oder Region</string>
+    <string name="openverify_field_address_postal_code">Postleitzahl</string>
+    <string name="openverify_field_address_country_code">Land</string>
+    <string name="openverify_field_identification_number">Nationale Ausweisnummer</string>
+    <string name="openverify_field_phone_number">Telefonnummer</string>
+    <string name="openverify_field_email_address">E-Mail-Adresse</string>
+    <string name="openverify_field_license_number">Führerschein- oder Ausweisnummer</string>
+    <string name="openverify_field_issuing_authority">Ausstellender Bundesstaat oder ausstellendes Territorium</string>
+    <string name="openverify_field_issue_date">Ausstellungsdatum</string>
+    <string name="openverify_field_expiration_date">Ablaufdatum</string>
+    <string name="openverify_field_zip_code">ZIP-Code</string>
+    <string name="openverify_field_optional">Optional</string>
+    <string name="openverify_field_date_hint">Jahr, Monat und Tag, zum Beispiel 1990-04-23.</string>
+    <string name="openverify_field_phone_hint">Beginnen Sie mit + und der Ländervorwahl, zum Beispiel +1 555 555 0100.</string>
+    <string name="openverify_field_choose">Auswählen</string>
+    <string name="openverify_field_error_missing">Füllen Sie dieses Feld aus.</string>
+    <string name="openverify_field_error_invalid">Prüfen Sie diesen Wert: Er hat nicht das erwartete Format.</string>
+    <string name="openverify_field_error_date">Geben Sie ein gültiges Datum als Jahr, Monat und Tag ein, zum Beispiel 1990-04-23.</string>
+    <string name="openverify_field_error_too_long">Das ist zu lang. Kürzen Sie es.</string>
+    <string name="openverify_field_error_refused">Prüfen Sie dieses Feld: Wir konnten es nicht annehmen.</string>
+    <string name="openverify_form_refused">Wir konnten diese Angaben nicht annehmen. Prüfen Sie sie und versuchen Sie es erneut.</string>
+    <string name="openverify_form_continue">Weiter</string>
+    <string name="openverify_form_submitting">Ihre Angaben werden gesendet…</string>
+</resources>

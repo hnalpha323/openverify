@@ -1,0 +1,152 @@
+{
+  "data": {
+    "type": "report/ip-address",
+    "id": "rep_01M5Y5Z400A1B2C3D4E5F6G7H8",
+    "attributes": {
+      "status": "ready",
+      "created-at": "2026-10-27T09:00:00.000Z",
+      "completed-at": "2026-10-27T09:00:01.250Z",
+      "redacted-at": null,
+      "report-template-version-name": "v1",
+      "has-match": false,
+      "is-continuous": false,
+      "is-recurring": false,
+      "tags": ["onboarding"],
+      "query": {
+        "ip-address": "192.0.2.10"
+      },
+      "origin": "api",
+      "errors": [],
+      "unavailable-fields": [
+        {
+          "field": "proxy-detected",
+          "reason": "provider_not_configured"
+        },
+        {
+          "field": "vpn-detected",
+          "reason": "not_in_known_ranges"
+        },
+        {
+          "field": "datacenter-ip",
+          "reason": "not_in_known_ranges"
+        },
+        {
+          "field": "service-type",
+          "reason": "not_in_known_ranges"
+        },
+        {
+          "field": "mobile-ip",
+          "reason": "no_adapter"
+        },
+        {
+          "field": "city",
+          "reason": "list_unavailable"
+        },
+        {
+          "field": "region",
+          "reason": "list_unavailable"
+        },
+        {
+          "field": "latitude",
+          "reason": "list_unavailable"
+        },
+        {
+          "field": "longitude",
+          "reason": "list_unavailable"
+        }
+      ],
+      "coverage": null,
+      "next-run-at": null,
+      "paused-at": null,
+      "paused-reason": null,
+      "sources": [
+        {
+          "source-id": "openverify-sandbox-network",
+          "sync-id": "3",
+          "published-at": "2026-10-27T08:00:00.000Z",
+          "checked-at": "2026-10-27T08:00:00.000Z",
+          "sha256": "5f1c00000000000000000000000000000000000000000000000000000000e2a7",
+          "origin": "import",
+          "attribution": "Synthetic network data for the sandbox (OpenVerify); IP geolocation by DB-IP"
+        }
+      ],
+      "query-sources": {
+        "ip-address": "request"
+      },
+      "matcher-version": null,
+      "provider": null,
+      "thresholds": null,
+      "notices": [],
+      "service-type": null,
+      "datacenter-ip": null,
+      "vpn-detected": null,
+      "proxy-detected": null,
+      "tor-exit-node": "MATCHED",
+      "isp": "Example Residential",
+      "mobile-ip": null,
+      "country-code": "ZZ",
+      "country-name": "Unknown or unspecified country",
+      "city": null,
+      "region": null,
+      "latitude": null,
+      "longitude": null,
+      "error": null,
+      "flagged": true,
+      "hosting-asn": null,
+      "client-address-source": null,
+      "field-details": {
+        "tor-exit-node": {
+          "tier": "R",
+          "reasons": ["tor_exit_listed"]
+        },
+        "datacenter-ip": {
+          "tier": "R",
+          "reasons": []
+        },
+        "vpn-detected": {
+          "tier": "H",
+          "confidence": null,
+          "reasons": ["vpn_list_not_exhaustive"]
+        },
+        "proxy-detected": {
+          "tier": "A",
+          "reasons": ["proxy_not_evaluated"]
+        }
+      }
+    },
+    "relationships": {
+      "inquiry": {
+        "data": null
+      },
+      "account": {
+        "data": {
+          "type": "account",
+          "id": "acc_01M5CJXJF84MR3PHJHBHKQ4ZC8"
+        }
+      },
+      "accounts": {
+        "data": [
+          {
+            "type": "account",
+            "id": "acc_01M5CJXJF84MR3PHJHBHKQ4ZC8"
+          }
+        ]
+      },
+      "report-template": {
+        "data": {
+          "type": "report-template",
+          "id": "rptp_01M5Y5Z4000NAK7F99R976H7VW"
+        }
+      },
+      "report-template-version": {
+        "data": {
+          "type": "report-template-version",
+          "id": "rptpv_01M5Y5Z400RP6KKS8G4ANS4EX9"
+        }
+      },
+      "transaction": {
+        "data": null
+      }
+    }
+  }
+}

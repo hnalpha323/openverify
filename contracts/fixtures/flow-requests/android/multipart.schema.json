@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:openverify:fixtures:flow-requests-android-multipart:1",
+  "title": "An Android multipart request fixture (C224.4)",
+  "description": "Workflow 10B Stage 1a (contracts-10b): a .multipart.json request fixture is this whole JSON value, written by its client owner's MockEngine test against the real FlowApiClient under UPDATE_CONTRACT_FIXTURES=1. fields are the form fields as sent, in order, each a string, parsed by the index entry's schema (flowFileUploadFieldsSchema); file is the file part's name, its filename (<kind>.<extension>, never a person's own file name), its content type and its size in bytes, never its bytes. apps/api/src/routes/flow/flow-requests.android.test.ts parses it so.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "fields",
+    "file"
+  ],
+  "properties": {
+    "fields": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "file": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "filename",
+        "content-type",
+        "size"
+      ],
+      "properties": {
+        "name": {
+          "const": "file"
+        },
+        "filename": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+\\.[a-z0-9]+$"
+        },
+        "content-type": {
+          "type": "string"
+        },
+        "size": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    }
+  }
+}

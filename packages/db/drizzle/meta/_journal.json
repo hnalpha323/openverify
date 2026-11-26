@@ -1,0 +1,272 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1792471560435,
+      "tag": "0000_schema_v0",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1792476193625,
+      "tag": "0001_schema_v1",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1792486380911,
+      "tag": "0002_files_unique_kind",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1792490472340,
+      "tag": "0003_schema_v2",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1792507466049,
+      "tag": "0004_api_key_pii_masked",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1792507773352,
+      "tag": "0005_redaction_subject_ids",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1792509544954,
+      "tag": "0006_retention_created_at_indexes",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1792509804801,
+      "tag": "0007_expired_credential_indexes",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1792509938473,
+      "tag": "0008_accounts_consolidated_into_index",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1792537066362,
+      "tag": "0009_api_logs_user_id_index",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1792549982882,
+      "tag": "0010_check_result_provenance",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1792551302010,
+      "tag": "0011_verification_needs_review",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1792553018182,
+      "tag": "0012_government_id_extractions",
+      "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1792565724152,
+      "tag": "0013_government_id_extraction_class_group",
+      "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "7",
+      "when": 1792566313542,
+      "tag": "0014_list_indexes_nulls_first",
+      "breakpoints": true
+    },
+    {
+      "idx": 15,
+      "version": "7",
+      "when": 1792599437721,
+      "tag": "0015_selfie_captures_face_templates",
+      "breakpoints": true
+    },
+    {
+      "idx": 16,
+      "version": "7",
+      "when": 1792658535645,
+      "tag": "0016_phase5_verification_types",
+      "breakpoints": true
+    },
+    {
+      "idx": 17,
+      "version": "7",
+      "when": 1792671010813,
+      "tag": "0017_phase5_inputs_otp_crypto",
+      "breakpoints": true
+    },
+    {
+      "idx": 18,
+      "version": "7",
+      "when": 1792797978751,
+      "tag": "0018_phase5_documents_chips_kyb",
+      "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "7",
+      "when": 1792847153261,
+      "tag": "0019_submitted_verifications_index",
+      "breakpoints": true
+    },
+    {
+      "idx": 20,
+      "version": "7",
+      "when": 1793129106994,
+      "tag": "0020_phase6_reports_watchlists",
+      "breakpoints": true
+    },
+    {
+      "idx": 21,
+      "version": "7",
+      "when": 1793190266261,
+      "tag": "0021_watchlist_check_backoff",
+      "breakpoints": true
+    },
+    {
+      "idx": 22,
+      "version": "7",
+      "when": 1793345805931,
+      "tag": "0022_watchlist_changed_page_index",
+      "breakpoints": true
+    },
+    {
+      "idx": 23,
+      "version": "7",
+      "when": 1793381538146,
+      "tag": "0023_phase7a",
+      "breakpoints": true
+    },
+    {
+      "idx": 24,
+      "version": "7",
+      "when": 1793511937627,
+      "tag": "0024_phase7b",
+      "breakpoints": true
+    },
+    {
+      "idx": 25,
+      "version": "7",
+      "when": 1793575117424,
+      "tag": "0025_phase7c",
+      "breakpoints": true
+    },
+    {
+      "idx": 26,
+      "version": "7",
+      "when": 1793586621585,
+      "tag": "0026_transaction_relations_page_index",
+      "breakpoints": true
+    },
+    {
+      "idx": 27,
+      "version": "7",
+      "when": 1793606282259,
+      "tag": "0027_phase8a",
+      "breakpoints": true
+    },
+    {
+      "idx": 28,
+      "version": "7",
+      "when": 1793696610108,
+      "tag": "0028_phase8b",
+      "breakpoints": true
+    },
+    {
+      "idx": 29,
+      "version": "7",
+      "when": 1793760502758,
+      "tag": "0029_phase8d",
+      "breakpoints": true
+    },
+    {
+      "idx": 30,
+      "version": "7",
+      "when": 1793856789074,
+      "tag": "0030_phase9a",
+      "breakpoints": true
+    },
+    {
+      "idx": 31,
+      "version": "7",
+      "when": 1793981534671,
+      "tag": "0031_phase9b",
+      "breakpoints": true
+    },
+    {
+      "idx": 32,
+      "version": "7",
+      "when": 1794111703801,
+      "tag": "0032_phase9d",
+      "breakpoints": true
+    },
+    {
+      "idx": 33,
+      "version": "7",
+      "when": 1794247450046,
+      "tag": "0033_phase10b",
+      "breakpoints": true
+    },
+    {
+      "idx": 34,
+      "version": "7",
+      "when": 1794320329512,
+      "tag": "0034_phase10c",
+      "breakpoints": true
+    },
+    {
+      "idx": 35,
+      "version": "7",
+      "when": 1794510689593,
+      "tag": "0035_phase11_connect",
+      "breakpoints": true
+    },
+    {
+      "idx": 36,
+      "version": "7",
+      "when": 1794613863661,
+      "tag": "0036_phase11_hardening",
+      "breakpoints": true
+    },
+    {
+      "idx": 37,
+      "version": "7",
+      "when": 1795259547525,
+      "tag": "0037_phase11f_session_amr",
+      "breakpoints": true
+    }
+  ]
+}

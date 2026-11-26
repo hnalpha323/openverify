@@ -1,0 +1,28 @@
+{
+  "data": {
+    "type": "selfie",
+    "id": "self_01M5CJXHG07XPHF3HRM6NREDH9",
+    "attributes": {
+      "status": "processed",
+      "capture-method": "camera",
+      "liveness": "active",
+      "prompts": ["center", "right", "left"],
+      "prompt-timings": [
+        { "pose": "center", "client-elapsed-ms": 2140, "received-at": "2026-10-21T12:00:02.310Z" },
+        { "pose": "right", "client-elapsed-ms": 5020, "received-at": "2026-10-21T12:00:05.190Z" },
+        { "pose": "left", "client-elapsed-ms": 8460, "received-at": "2026-10-21T12:00:08.640Z" }
+      ],
+      "created-at": "2026-10-21T12:00:00.000Z",
+      "expires-at": "2026-10-21T12:03:00.000Z",
+      "submitted-at": "2026-10-21T12:00:09.020Z",
+      "processed-at": "2026-10-21T12:00:12.400Z",
+      "error-code": null
+    },
+    "relationships": {
+      "verification": {
+        "data": { "type": "verification/selfie", "id": "ver_01M5CJXHG07XPHF3HRM6NREDH8" }
+      },
+      "inquiry": { "data": { "type": "inquiry", "id": "inq_01M5CJXHG07XPHF3HRM6NREDH7" } }
+    }
+  }
+}

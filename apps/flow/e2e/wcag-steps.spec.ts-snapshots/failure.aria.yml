@@ -1,0 +1,4 @@
+- main:
+    - region "Verification not completed":
+        - heading "Verification not completed" [level=1]
+        - paragraph: We could not verify your identity. Contact the organization that asked you to verify.

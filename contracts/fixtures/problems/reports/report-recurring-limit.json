@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The environment holds its limit of recurring reports.",
+  "instance": "/api/v1/reports",
+  "requestId": "00000000-0000-4000-8000-000000000609",
+  "code": "report_recurring_limit"
+}

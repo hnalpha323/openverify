@@ -1,0 +1,33 @@
+{
+  "data": [
+    {
+      "type": "user-session",
+      "id": "uss_01M5CN00000000000000009B45",
+      "attributes": {
+        "device": "Firefox on Linux",
+        "created-at": "2026-10-29T08:00:00.000Z",
+        "last-seen-at": "2026-10-29T09:00:00.000Z",
+        "expires-at": "2026-10-29T20:00:00.000Z",
+        "current": true,
+        "mfa-verified-at": "2026-10-29T08:00:00.000Z",
+        "provider-amr": ["pwd", "mfa"]
+      }
+    },
+    {
+      "type": "user-session",
+      "id": "uss_01M5CN00000000000000009B46",
+      "attributes": {
+        "device": null,
+        "created-at": "2026-10-28T08:00:00.000Z",
+        "last-seen-at": "2026-10-28T09:00:00.000Z",
+        "expires-at": "2026-10-28T20:00:00.000Z",
+        "current": false,
+        "mfa-verified-at": null,
+        "provider-amr": null
+      }
+    }
+  ],
+  "links": {
+    "next": null
+  }
+}

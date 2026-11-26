@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  French copy of values/strings_selfie.xml, machine-drafted by selfie-guidance (Workflow 10B,
+  C199.1; i18n/review-status.json): the web flow's French words where it has the same text
+  (selfie.guidance, screen.extend), drafted here otherwise. Positional placeholders only, ' and "
+  written as they are, no isolate or other bidi control (ResourcesTest).
+-->
+<resources>
+    <!-- C204.3: one hint at a time; the shutter stays on screen (C202.4). -->
+    <string name="openverify_selfie_guidance_starting">Préparation du guide du visage…</string>
+    <string name="openverify_selfie_guidance_manual">Gardez la pose, puis sélectionnez « Prendre la photo ».</string>
+    <string name="openverify_selfie_guidance_no_face">Nous ne voyons pas votre visage. Placez votre visage dans l’ovale.</string>
+    <string name="openverify_selfie_guidance_multiple_faces">Assurez-vous que seul votre visage est dans le cadre.</string>
+    <string name="openverify_selfie_guidance_too_far">Rapprochez-vous de la caméra.</string>
+    <string name="openverify_selfie_guidance_too_close">Reculez un peu.</string>
+    <string name="openverify_selfie_guidance_off_centre">Placez votre visage au centre de l’ovale.</string>
+    <string name="openverify_selfie_guidance_look_straight">Regardez droit vers la caméra.</string>
+    <string name="openverify_selfie_guidance_turn_left">Tournez lentement la tête vers la gauche.</string>
+    <string name="openverify_selfie_guidance_turn_right">Tournez lentement la tête vers la droite.</string>
+    <string name="openverify_selfie_guidance_hold_still">Ne bougez plus…</string>
+    <!-- C204.5 (WCAG 2.2.1): 20 s before the capture ends, in a polite live region; the count is shown once. -->
+    <plurals name="openverify_selfie_extend_warning">
+        <item quantity="one">Il reste environ %1$d seconde pour prendre vos photos. Besoin de plus de temps ?</item>
+        <item quantity="many">Il reste environ %1$d secondes pour prendre vos photos. Besoin de plus de temps ?</item>
+        <item quantity="other">Il reste environ %1$d secondes pour prendre vos photos. Besoin de plus de temps ?</item>
+    </plurals>
+    <string name="openverify_selfie_extend_more_time">Plus de temps</string>
+    <string name="openverify_selfie_extend_extended">Vous avez plus de temps.</string>
+    <string name="openverify_selfie_extend_failed">Nous n’avons pas pu ajouter de temps. Prenez vos photos maintenant, ou recommencez si le temps est écoulé.</string>
+    <string name="openverify_selfie_extend_already_sent">Vos photos ont déjà été envoyées : il n’est plus nécessaire d’ajouter du temps.</string>
+</resources>

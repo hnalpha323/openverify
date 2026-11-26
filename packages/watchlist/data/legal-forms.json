@@ -1,0 +1,4572 @@
+{
+  "format": "openverify/legal-forms/v1",
+  "source": {
+    "repository": "https://github.com/opensanctions/rigour",
+    "commit": "607fa82b1ba3338c5e2e04f81c3a77e8cbbe0ee7",
+    "path": "resources/names/org_types.yml",
+    "sha256": "772d6c6cf48af7a5b4832ac9aab1e293f0002111f2abb9588377a0459f087f20",
+    "license": "MIT",
+    "licenseSha256": "099eeaff53a618bbd4420fa4746311ff72e418816bb21133781af0493d63c6d1",
+    "licenseText": "MIT License\n\nCopyright (c) 2023-2025: OpenSanctions Datenbanken GmbH\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+  },
+  "forms": [
+    {
+      "id": "3at",
+      "generic": null,
+      "phrases": [
+        "3at",
+        "закрытае ацыянернае таварыства"
+      ]
+    },
+    {
+      "id": "a d",
+      "generic": "jsc",
+      "phrases": [
+        "a d",
+        "akcionarsko drustvo",
+        "aktsionerno druzhestvo"
+      ]
+    },
+    {
+      "id": "ab",
+      "generic": null,
+      "phrases": [
+        "a bolag",
+        "ab",
+        "abp",
+        "aktie bolag",
+        "aktiebol",
+        "aktiebolag",
+        "publikt aktiebolag"
+      ]
+    },
+    {
+      "id": "abv",
+      "generic": null,
+      "phrases": [
+        "aandeelhouder bestuurde vennootschap",
+        "abv"
+      ]
+    },
+    {
+      "id": "adsic",
+      "generic": null,
+      "phrases": [
+        "adsic",
+        "adsitz",
+        "aktsionerno druzhestvo sas spetsialna investitsionna tsel",
+        "адсиц",
+        "акционерно дружество със специална инвестиционна цел"
+      ]
+    },
+    {
+      "id": "ae",
+      "generic": null,
+      "phrases": [
+        "ae",
+        "anonimi eteria",
+        "ανωνυμη εταιρεια"
+      ]
+    },
+    {
+      "id": "ag",
+      "generic": "jsc",
+      "phrases": [
+        "a g",
+        "ag",
+        "ag societe anonyme",
+        "ags",
+        "akt ges",
+        "aktg",
+        "aktien ges",
+        "aktien gesellschaft",
+        "aktienges",
+        "aktiengesellschaft",
+        "aktiengeselschaft"
+      ]
+    },
+    {
+      "id": "agcokg",
+      "generic": "lp",
+      "phrases": [
+        "ag co kg",
+        "ag und co kg",
+        "agcokg",
+        "aktiengesellschaft co kg"
+      ]
+    },
+    {
+      "id": "agcokgaa",
+      "generic": "lp",
+      "phrases": [
+        "ag co kgaa",
+        "agcokgaa",
+        "aktiengesellschaft co kgaa"
+      ]
+    },
+    {
+      "id": "aksiyadorlik jamiyati",
+      "generic": "jsc",
+      "phrases": [
+        "aandelenvennootschap",
+        "aksiyadorlik jamiyati",
+        "det offentligretlige aktieselskab",
+        "kumpanija bishma kongunti",
+        "акциядорлик жамияти"
+      ]
+    },
+    {
+      "id": "alap",
+      "generic": "ngo",
+      "phrases": [
+        "alap",
+        "alapitvany"
+      ]
+    },
+    {
+      "id": "amba",
+      "generic": "llc",
+      "phrases": [
+        "a m b a",
+        "amba",
+        "andelsselskab med begraenset ansvar"
+      ]
+    },
+    {
+      "id": "anl",
+      "generic": "coop",
+      "phrases": [
+        "andelslag",
+        "andelslag med begraenset ansvar",
+        "anl"
+      ]
+    },
+    {
+      "id": "anpo",
+      "generic": "ngo",
+      "phrases": [
+        "anpo",
+        "autonomous non profit organization"
+      ]
+    },
+    {
+      "id": "ao",
+      "generic": "jsc",
+      "phrases": [
+        "aktsionernoe obschestvo",
+        "aktsionernoe obshchestvo",
+        "aktsionernoe obshchestvo otkrytogo tipa",
+        "ao",
+        "aкционерное общество",
+        "o a o",
+        "oao",
+        "odkryte akcjonarne obschtschestwo",
+        "otkr akts obshch",
+        "otkritoe aktsionernoe obshchestvo",
+        "otkrytoe akcionernoe obshchestvo",
+        "otkrytoe akcionernoe obshhestvo",
+        "otkrytoe aktsionernoe obschchestvo",
+        "otkrytoe aktsionernoe obschestvo",
+        "otkrytoe aktsionernoe obshchestvo",
+        "otkrytoe aktsionernoye obshestvo",
+        "otkrytoje akcionernoje obshchestvo",
+        "otkrytoye aktsionernoye obshchestvo",
+        "publichnoe aktsionernoe obshchestvo",
+        "акционеpное общество откpытого типа",
+        "акционеное общество закрытого типа",
+        "акционерная компания с ограниченной ответственностью",
+        "акционерне общество закрытого типа",
+        "акционерного общества",
+        "акционерного общества закрытого типа",
+        "акционерное обшество закрытого типа",
+        "акционерное общество",
+        "акционерное общество открытого типа",
+        "акционерные общества",
+        "акционерные общества закрытого типа",
+        "акционерое общество закрытого типа",
+        "акционероное общество закрытого типа",
+        "акционрное общество закрытого типа",
+        "акцоинерное общество закрытого типа",
+        "акцонерное общество закрытого типа",
+        "акцонерное общество открытого типа",
+        "акціонерне товариство відкритого типу",
+        "ао",
+        "закрите акціонерне товариство",
+        "закритое акционерное общество",
+        "закрытоe акционерное общeство",
+        "закрытое акционерное общeство",
+        "закрытое акционерное общество",
+        "закрытое акціонерне товариство",
+        "зао",
+        "нао",
+        "непубличное акционерное общество",
+        "о а о",
+        "оао",
+        "открытоe акционерное общeство",
+        "открытое акционергое общество",
+        "открытое акционернoe общество",
+        "открытое акционерное общeство",
+        "открытое акционерное общество",
+        "пао",
+        "пат",
+        "приватне акціонерне товариство",
+        "публичное акционерное общество",
+        "публічне акціонерне товариство",
+        "сак",
+        "страховая акционер компания",
+        "страховая акционерная компания"
+      ]
+    },
+    {
+      "id": "aor",
+      "generic": "soe",
+      "phrases": [
+        "a o r",
+        "a oe r",
+        "anstalt des oeffentlichen rechts",
+        "anstalt des offentlichen rechts",
+        "anstalt oeffentlichen rechts",
+        "anstalt offentlichen rechts",
+        "aoer",
+        "aor"
+      ]
+    },
+    {
+      "id": "aps",
+      "generic": "llc",
+      "phrases": [
+        "anpartsselskab",
+        "aps"
+      ]
+    },
+    {
+      "id": "as",
+      "generic": "jsc",
+      "phrases": [
+        "a s",
+        "a spolecnost",
+        "akc spolecnost",
+        "akciju sabiedriba",
+        "akciova spolecnost",
+        "akciova spolocnost",
+        "aktieselskab",
+        "aktieselskabet",
+        "aktsiaselts",
+        "anonim ortaklik",
+        "anonim sirket",
+        "anonim sirketi",
+        "as"
+      ]
+    },
+    {
+      "id": "asbl",
+      "generic": "ngo",
+      "phrases": [
+        "a s b l",
+        "aisbl",
+        "asbl",
+        "association internationale sans but lucratif",
+        "association sans but lucratif"
+      ]
+    },
+    {
+      "id": "asc",
+      "generic": "ngo",
+      "phrases": [
+        "aciq səhmdar cəmiyyəti",
+        "asc"
+      ]
+    },
+    {
+      "id": "at",
+      "generic": "jsc",
+      "phrases": [
+        "aktsionerne tovarystvo",
+        "at",
+        "акціонерне товариство",
+        "акціонерного товариства"
+      ]
+    },
+    {
+      "id": "atviroji akcine bendrove",
+      "generic": "jsc",
+      "phrases": [
+        "atviroji akcine bendrove",
+        "avatud aktsiaselts",
+        "avoin osakeyhtio",
+        "avoin osakeyhtioe",
+        "cuideachta comhstoic oscailte"
+      ]
+    },
+    {
+      "id": "ay",
+      "generic": "gp",
+      "phrases": [
+        "avoin yhtio",
+        "avoin yhtioe",
+        "ay"
+      ]
+    },
+    {
+      "id": "bhd",
+      "generic": "llc",
+      "phrases": [
+        "berhad",
+        "bhd"
+      ]
+    },
+    {
+      "id": "bt",
+      "generic": "lp",
+      "phrases": [
+        "beteti tarsasag",
+        "bt"
+      ]
+    },
+    {
+      "id": "bv",
+      "generic": "llc",
+      "phrases": [
+        "b v",
+        "b vennootschap",
+        "besl vennootschap",
+        "besloten vennootschap",
+        "besloten vennotschap",
+        "beslotn vennootschap",
+        "bv"
+      ]
+    },
+    {
+      "id": "bvba",
+      "generic": "llc",
+      "phrases": [
+        "besloten vennootschap met beperkte aansprakelijkheid",
+        "bvba",
+        "eenpersoons besloten vennootschap met beperkte aansprakelijkheid",
+        "eenpersoons bvba",
+        "vennootschap met beperkte aansprakelijkheid"
+      ]
+    },
+    {
+      "id": "bvcokg",
+      "generic": "lp",
+      "phrases": [
+        "b v co kg",
+        "bv co kg",
+        "bvcokg"
+      ]
+    },
+    {
+      "id": "ca",
+      "generic": "llc",
+      "phrases": [
+        "ca",
+        "compania anonima"
+      ]
+    },
+    {
+      "id": "cia",
+      "generic": "llc",
+      "phrases": [
+        "cia",
+        "compania"
+      ]
+    },
+    {
+      "id": "cic",
+      "generic": "ngo",
+      "phrases": [
+        "c i c",
+        "cic",
+        "community interest company"
+      ]
+    },
+    {
+      "id": "cjsc",
+      "generic": "jsc",
+      "phrases": [
+        "cjsc",
+        "closed joint stock company",
+        "closed jsc"
+      ]
+    },
+    {
+      "id": "co op",
+      "generic": "coop",
+      "phrases": [
+        "co op",
+        "cooperatif",
+        "cooperation",
+        "cooperative",
+        "kooperatif",
+        "kooperatsia",
+        "sociedad cooperativa",
+        "spoldzielni",
+        "кооператив",
+        "кооперация"
+      ]
+    },
+    {
+      "id": "coltd",
+      "generic": "llc",
+      "phrases": [
+        "cia ltda",
+        "co ltd",
+        "coltd",
+        "compania limitada"
+      ]
+    },
+    {
+      "id": "consorzio statale",
+      "generic": "soe",
+      "phrases": [
+        "consorzio statale",
+        "den foderale statsejede budgetinstitution",
+        "den foederale statsejede budgetinstitution",
+        "empresa orcamental do estado federal",
+        "empresa unitaria estatal",
+        "empresa unitaria estatal de la",
+        "entita statali",
+        "entreprise unitaire detat",
+        "gosudarstvennoe unitarnoe predpriyatie",
+        "impresa unitaria statale",
+        "staatliches einheitsunternehmen",
+        "staatsinformatieagentschap",
+        "staatskonzern",
+        "state concern",
+        "state enterprise",
+        "state unitary enterprise",
+        "state unitary enterprise of the",
+        "statni jednotny podnik",
+        "statni koncern",
+        "statny unitarny podnik",
+        "unitarnoe predpriyatie",
+        "unіtarnae pradpryemstva",
+        "государственного унитарного предприятия",
+        "гп",
+        "державне унітарне підприємство",
+        "державного унітарного підприємства",
+        "унитарное предприятие",
+        "унітарнае прадпрыемства",
+        "уп",
+        "федеральне державне унітарне підприємство"
+      ]
+    },
+    {
+      "id": "cpa",
+      "generic": "jsc",
+      "phrases": [
+        "c por a",
+        "compania por acciones",
+        "cpa"
+      ]
+    },
+    {
+      "id": "cso",
+      "generic": "ngo",
+      "phrases": [
+        "civil society organisation",
+        "civil society organization",
+        "cso"
+      ]
+    },
+    {
+      "id": "cty cp",
+      "generic": "jsc",
+      "phrases": [
+        "cong ty co phan",
+        "cty cp"
+      ]
+    },
+    {
+      "id": "cty tnhh",
+      "generic": "llc",
+      "phrases": [
+        "cong ty trach nhiem huu han",
+        "cty tnhh"
+      ]
+    },
+    {
+      "id": "cty tnhh mtv",
+      "generic": "llc",
+      "phrases": [
+        "cong ty trach nhiem huu han mot thanh vien",
+        "cty tnhh mtv"
+      ]
+    },
+    {
+      "id": "cv",
+      "generic": "lp",
+      "phrases": [
+        "comm v",
+        "commanditaire vennootschap",
+        "cv",
+        "gewone commanditaire vennootschap"
+      ]
+    },
+    {
+      "id": "cva",
+      "generic": "lp",
+      "phrases": [
+        "comm va",
+        "commanditaire vennootschap op aandelen",
+        "cva"
+      ]
+    },
+    {
+      "id": "cvba",
+      "generic": "coop",
+      "phrases": [
+        "cooeperatieve vennootschap met beperkte aansprakelijkheid",
+        "cooperatieve vennootschap met beperkte aansprakelijkheid",
+        "cvba"
+      ]
+    },
+    {
+      "id": "cvoa",
+      "generic": "coop",
+      "phrases": [
+        "cooeperatieve vennootschap met onbeperkte aansprakelijkheid",
+        "cooperatieve vennootschap met onbeperkte aansprakelijkheid",
+        "cvoa"
+      ]
+    },
+    {
+      "id": "dd",
+      "generic": "jsc",
+      "phrases": [
+        "d d",
+        "dd",
+        "dionicko drustvo"
+      ]
+    },
+    {
+      "id": "dis tic ltd",
+      "generic": "llc",
+      "phrases": [
+        "dis tic ltd"
+      ]
+    },
+    {
+      "id": "dmcc",
+      "generic": "llc",
+      "phrases": [
+        "dmcc",
+        "dmcc co",
+        "dmcc company",
+        "dmcc free zone",
+        "dmcc llc",
+        "dubai multi commodities centre",
+        "dubai multi commodities centre company"
+      ]
+    },
+    {
+      "id": "dnnn",
+      "generic": "soe",
+      "phrases": [
+        "dnnn",
+        "doanh nghiep nha nuoc"
+      ]
+    },
+    {
+      "id": "dno",
+      "generic": "llc",
+      "phrases": [
+        "d n o",
+        "dno",
+        "drustvo s neogranicenom solidarnom odgovornoscu"
+      ]
+    },
+    {
+      "id": "dntn",
+      "generic": "llc",
+      "phrases": [
+        "dntn",
+        "doanh nghiep tu nhan"
+      ]
+    },
+    {
+      "id": "doo",
+      "generic": "llc",
+      "phrases": [
+        "d o o",
+        "doo",
+        "drustv ogranic odgovor",
+        "drustvo ogranicene odgovornosti",
+        "drustvo s ogranicenom odgovornoscu",
+        "drustvo sa ogranicenom odgovornoscu",
+        "druzba z omejeno odgovornostjo",
+        "д о о",
+        "доо",
+        "друштво са ограниченом одговорношћу"
+      ]
+    },
+    {
+      "id": "drustveno preduzece",
+      "generic": "llc",
+      "phrases": [
+        "drustveno preduzece",
+        "ribotos atsakomybes bendrove",
+        "дп",
+        "друштвено предузеће"
+      ]
+    },
+    {
+      "id": "dtnn",
+      "generic": "llc",
+      "phrases": [
+        "doanh nghiep co von dau tu nuoc ngoai",
+        "dtnn"
+      ]
+    },
+    {
+      "id": "eeig",
+      "generic": "coop",
+      "phrases": [
+        "e w i v",
+        "eeig",
+        "europaeische wirtschaftliche interessenvereinigung",
+        "europaische wirtschaftliche interessenvereinigung",
+        "european economic interest grouping",
+        "evropeysko obedinenie po ikonomicheski interesi",
+        "ewiv",
+        "европейско обединение по икономически интереси",
+        "еоии"
+      ]
+    },
+    {
+      "id": "eg",
+      "generic": "coop",
+      "phrases": [
+        "e g",
+        "eg",
+        "egen",
+        "eingetragene genossenschaft",
+        "genossenschaft"
+      ]
+    },
+    {
+      "id": "egbr",
+      "generic": "gp",
+      "phrases": [
+        "e gbr",
+        "egbr",
+        "eingetragene gbr",
+        "eingetragene gesellschaft buergerlichen rechts",
+        "eingetragene gesellschaft burgerlichen rechts",
+        "eingetragene gesellschaft des buergerlichen rechts",
+        "eingetragene gesellschaft des burgerlichen rechts"
+      ]
+    },
+    {
+      "id": "egcokg",
+      "generic": "lp",
+      "phrases": [
+        "eg co kg",
+        "egcokg",
+        "eingetragene genossenschaft co kg",
+        "genossenschaft co kg"
+      ]
+    },
+    {
+      "id": "ege",
+      "generic": "coop",
+      "phrases": [
+        "ege",
+        "europai gazdasagi egyesueles",
+        "europai gazdasagi egyesules"
+      ]
+    },
+    {
+      "id": "egyeni vallalkozo",
+      "generic": "sp",
+      "phrases": [
+        "egyeni ceg",
+        "egyeni vallalkozo"
+      ]
+    },
+    {
+      "id": "egyes",
+      "generic": "ngo",
+      "phrases": [
+        "egyes",
+        "egyesuelet",
+        "egyesulet"
+      ]
+    },
+    {
+      "id": "ehf",
+      "generic": "llc",
+      "phrases": [
+        "ehf",
+        "einkahlutafelag"
+      ]
+    },
+    {
+      "id": "ei",
+      "generic": "sp",
+      "phrases": [
+        "ei",
+        "entreprise individuelle"
+      ]
+    },
+    {
+      "id": "eireli",
+      "generic": "llc",
+      "phrases": [
+        "eireli",
+        "empresa individual de responsabilidade limitada"
+      ]
+    },
+    {
+      "id": "eirl",
+      "generic": "llc",
+      "phrases": [
+        "eirl",
+        "empresa individual de responsabilidad limitada"
+      ]
+    },
+    {
+      "id": "ek",
+      "generic": "sp",
+      "phrases": [
+        "e k",
+        "e kfm",
+        "e kfr",
+        "eingetr kaufmann",
+        "eingetragene kauffrau",
+        "eingetragener kaufmann",
+        "ek",
+        "ekfm",
+        "ekfr",
+        "kfm",
+        "kfr"
+      ]
+    },
+    {
+      "id": "ekd",
+      "generic": "coop",
+      "phrases": [
+        "ekd",
+        "evropeysko kooperativno druzhestvo",
+        "eвропейско кооперативно дружество",
+        "екд"
+      ]
+    },
+    {
+      "id": "ekfor",
+      "generic": "coop",
+      "phrases": [
+        "ek foer",
+        "ek for",
+        "ekfor",
+        "ekonomisk foerening",
+        "ekonomisk forening"
+      ]
+    },
+    {
+      "id": "empresa unipersonal",
+      "generic": "sp",
+      "phrases": [
+        "eingetragenes einzelunternehmen",
+        "empresa unipersonal"
+      ]
+    },
+    {
+      "id": "ep",
+      "generic": "soe",
+      "phrases": [
+        "empresa publica",
+        "ep"
+      ]
+    },
+    {
+      "id": "esv",
+      "generic": "coop",
+      "phrases": [
+        "economisch samenwerkingsverband",
+        "esv"
+      ]
+    },
+    {
+      "id": "et",
+      "generic": "gp",
+      "phrases": [
+        "egyszeru tarsasag",
+        "et"
+      ]
+    },
+    {
+      "id": "ets",
+      "generic": "coop",
+      "phrases": [
+        "erdeszeti tarsulas",
+        "ets"
+      ]
+    },
+    {
+      "id": "eurl",
+      "generic": "llc",
+      "phrases": [
+        "entreprise unipersonnelle a responsabilite limitee",
+        "eurl"
+      ]
+    },
+    {
+      "id": "ev",
+      "generic": "ngo",
+      "phrases": [
+        "e v",
+        "eingetr verein",
+        "eingetragene vereinigung",
+        "eingetragener verein",
+        "ev",
+        "verein"
+      ]
+    },
+    {
+      "id": "evropeysko druzhestvo",
+      "generic": "jsc",
+      "phrases": [
+        "evropeysko druzhestvo",
+        "eвропейско дружество",
+        "ед"
+      ]
+    },
+    {
+      "id": "f ma",
+      "generic": null,
+      "phrases": [
+        "enskild naeringsidkare",
+        "enskild naringsidkare",
+        "f ma"
+      ]
+    },
+    {
+      "id": "fgbu",
+      "generic": "soe",
+      "phrases": [
+        "empresa publica unitaria federal",
+        "entreprise unitaire publique federale",
+        "federal state budgetary enterprise",
+        "federal state budgetary institution",
+        "federal state institution",
+        "federal state unitary enterprise",
+        "federalna budzetowa instytucja",
+        "federalne panstwowe przedsiebiorstwo unitarne",
+        "federalnoe gosudarstvennoe byudzhetnoe uchrezhdenie",
+        "fgbu",
+        "foderales staatseigenes unternehmen",
+        "foederales staatseigenes unternehmen",
+        "intreprinderea unitara a statului federal",
+        "фгбу",
+        "федеральное государственное бюджетное учреждение"
+      ]
+    },
+    {
+      "id": "fgup",
+      "generic": "soe",
+      "phrases": [
+        "fgup",
+        "фгуп",
+        "федеральное государственное унитарное предприятие"
+      ]
+    },
+    {
+      "id": "fie",
+      "generic": null,
+      "phrases": [
+        "fie",
+        "fueuesilisest isikust ettevotja",
+        "fuusilisest isikust ettevotja"
+      ]
+    },
+    {
+      "id": "fmba",
+      "generic": null,
+      "phrases": [
+        "fmba",
+        "forening med begraenset ansvar"
+      ]
+    },
+    {
+      "id": "fond commun de placement",
+      "generic": "fin",
+      "phrases": [
+        "fond commun de placement",
+        "fond de placement"
+      ]
+    },
+    {
+      "id": "fop",
+      "generic": "sp",
+      "phrases": [
+        "fop",
+        "физическое лицо предприниматель",
+        "фоп",
+        "фізична особа підприємець"
+      ]
+    },
+    {
+      "id": "fzco",
+      "generic": "llc",
+      "phrases": [
+        "f z co",
+        "free economic zone llc",
+        "free zone co",
+        "free zone company",
+        "free zone l l c",
+        "free zone limited liability company",
+        "freezone company",
+        "fz l l c",
+        "fz llc",
+        "fzco",
+        "fzllc",
+        "l l c fz",
+        "special economic zone llc",
+        "trade free zone company"
+      ]
+    },
+    {
+      "id": "fze",
+      "generic": "llc",
+      "phrases": [
+        "free zone enterprise",
+        "free zone entity",
+        "free zone establishment",
+        "fz enterprise",
+        "fz entity",
+        "fz establishment",
+        "fze"
+      ]
+    },
+    {
+      "id": "gag",
+      "generic": "jsc",
+      "phrases": [
+        "gag",
+        "gemeinnuetzige ag",
+        "gemeinnuetzige aktiengesellschaft",
+        "gemeinnutzige ag",
+        "gemeinnutzige aktiengesellschaft"
+      ]
+    },
+    {
+      "id": "gbr",
+      "generic": "gp",
+      "phrases": [
+        "bgb gesellschaft",
+        "gbr",
+        "ges buer rechts",
+        "ges buergerlichen rechts",
+        "ges bur rechts",
+        "ges burgerlichen rechts",
+        "gesbr",
+        "gesellschaft buergerlichen rechts",
+        "gesellschaft burgerlichen rechts",
+        "gesellschaft des buergerlichen rechts",
+        "gesellschaft des burgerlichen rechts"
+      ]
+    },
+    {
+      "id": "gensidigt selskab",
+      "generic": "coop",
+      "phrases": [
+        "gensidigt selskab"
+      ]
+    },
+    {
+      "id": "ggmbh",
+      "generic": "llc",
+      "phrases": [
+        "gemeinnuetzige gesellschaft mit beschraenkter haftung",
+        "gemeinnuetzige gmbh",
+        "gemeinnutzige gesellschaft mit beschrankter haftung",
+        "gemeinnutzige gmbh",
+        "ggmbh"
+      ]
+    },
+    {
+      "id": "gie",
+      "generic": "coop",
+      "phrases": [
+        "gie",
+        "groupement dinteret economique"
+      ]
+    },
+    {
+      "id": "gk",
+      "generic": "llc",
+      "phrases": [
+        "gk",
+        "合同会社"
+      ]
+    },
+    {
+      "id": "gmbh",
+      "generic": "llc",
+      "phrases": [
+        "g m b h",
+        "g m besch haftung",
+        "g m beschr haftung",
+        "ges m b h",
+        "ges mit besch haftung",
+        "ges mit beschr haftung",
+        "gesellsch m b h",
+        "gesellschaft m b h",
+        "gesellschaft mbh",
+        "gesellschaft mit besch haftung",
+        "gesellschaft mit beschr haftung",
+        "gesellschaft mit beschraenker haftung",
+        "gesellschaft mit beschraenkter haftng",
+        "gesellschaft mit beschraenkter haftung",
+        "gesellschaft mit beschrankter haftng",
+        "gesellschaft mit beschrankter haftung",
+        "gesmbh",
+        "gmb h",
+        "gmbh",
+        "gmbhs",
+        "m b h",
+        "mbh",
+        "mit besch haftung",
+        "mit beschr haftung",
+        "mit beschraenkter haftung",
+        "mit beschrankter haftung",
+        "г м б х",
+        "гмбх"
+      ]
+    },
+    {
+      "id": "gmbhcokg",
+      "generic": "lp",
+      "phrases": [
+        "gesellschaft mbh co kg",
+        "gesellschaft mit beschraenkter haftung co kg",
+        "gesellschaft mit beschrankter haftung co kg",
+        "gmbh and сo kg",
+        "gmbh co",
+        "gmbh co kg",
+        "gmbh u co kg",
+        "gmbh und co kg",
+        "gmbhcokg",
+        "m b h co kg",
+        "mbh co kg",
+        "mbh u co kg",
+        "гмбх енд ко кг"
+      ]
+    },
+    {
+      "id": "gmbhcokgaa",
+      "generic": "lp",
+      "phrases": [
+        "gesellschaft mit beschraenkter haftung co kgaa",
+        "gesellschaft mit beschrankter haftung co kgaa",
+        "gmbh co kgaa",
+        "gmbhcokgaa"
+      ]
+    },
+    {
+      "id": "gmbhcoohg",
+      "generic": "gp",
+      "phrases": [
+        "gesellschaft mit beschraenkter haftung co ohg",
+        "gesellschaft mit beschrankter haftung co ohg",
+        "gmbh co ohg",
+        "gmbhcoohg"
+      ]
+    },
+    {
+      "id": "gnpp",
+      "generic": "soe",
+      "phrases": [
+        "gnpp",
+        "gosudarstvennoe nauchno proizvodstvennoe predpriyatie",
+        "scientific and production enterprise",
+        "scientific production enterprise",
+        "государственное научно производственное предприятие",
+        "державне науково виробниче підприємство"
+      ]
+    },
+    {
+      "id": "gospodarsko interesno udruzenje",
+      "generic": "coop",
+      "phrases": [
+        "gospodarsko interesno udruzenje"
+      ]
+    },
+    {
+      "id": "gp",
+      "generic": "gp",
+      "phrases": [
+        "general partnership",
+        "gp"
+      ]
+    },
+    {
+      "id": "gug",
+      "generic": "llc",
+      "phrases": [
+        "gemeinnuetzige ug",
+        "gemeinnuetzige ug haftungsbeschraenkt",
+        "gemeinnuetzige unternehmergesellschaft",
+        "gemeinnuetzige unternehmergesellschaft haftungsbeschraenkt",
+        "gemeinnutzige ug",
+        "gemeinnutzige ug haftungsbeschrankt",
+        "gemeinnutzige unternehmergesellschaft",
+        "gemeinnutzige unternehmergesellschaft haftungsbeschrankt",
+        "gug",
+        "gug haftungsbeschraenkt",
+        "gug haftungsbeschrankt"
+      ]
+    },
+    {
+      "id": "gup",
+      "generic": "soe",
+      "phrases": [
+        "gup",
+        "государственное унитарное предприятие",
+        "гуп"
+      ]
+    },
+    {
+      "id": "haao",
+      "generic": "jsc",
+      "phrases": [
+        "haao",
+        "halka acik anonim ortaklik"
+      ]
+    },
+    {
+      "id": "hf",
+      "generic": "llc",
+      "phrases": [
+        "hf",
+        "hlutafelag"
+      ]
+    },
+    {
+      "id": "htx",
+      "generic": "coop",
+      "phrases": [
+        "hop tac xa",
+        "htx"
+      ]
+    },
+    {
+      "id": "huf",
+      "generic": "soe",
+      "phrases": [
+        "hindu undivided family",
+        "huf"
+      ]
+    },
+    {
+      "id": "ii",
+      "generic": "sp",
+      "phrases": [
+        "ii",
+        "inteprinderea individuala",
+        "interprinderea individuala",
+        "intreprindera individuala",
+        "intreprindere individuala",
+        "intreprinderea ibdividuala",
+        "intreprinderea individuala",
+        "intreprinderea individuali",
+        "intreprinderea indiviuala",
+        "intreprindserea individuala",
+        "intreprinzator individual",
+        "intreprinzatorul individual"
+      ]
+    },
+    {
+      "id": "ik",
+      "generic": "soe",
+      "phrases": [
+        "ik",
+        "individualais komersants"
+      ]
+    },
+    {
+      "id": "ilp",
+      "generic": "lp",
+      "phrases": [
+        "ilp",
+        "incorporated limited partnership"
+      ]
+    },
+    {
+      "id": "im",
+      "generic": "soe",
+      "phrases": [
+        "im",
+        "intreprinderea municipala"
+      ]
+    },
+    {
+      "id": "inc",
+      "generic": "llc",
+      "phrases": [
+        "i n c",
+        "in",
+        "inc",
+        "incorp",
+        "incorporado",
+        "incorporatd",
+        "incorporated",
+        "incorporation",
+        "incorporee",
+        "incorported",
+        "incs"
+      ]
+    },
+    {
+      "id": "ip",
+      "generic": "sp",
+      "phrases": [
+        "ip",
+        "индивидуальный предприниматель",
+        "ип",
+        "індывідуальны прадпрымальнік",
+        "іп"
+      ]
+    },
+    {
+      "id": "is",
+      "generic": "soe",
+      "phrases": [
+        "interessentskab",
+        "intreprindere de stat alimentatiei publice",
+        "intreprinderea de stat",
+        "is"
+      ]
+    },
+    {
+      "id": "ivs",
+      "generic": "llc",
+      "phrases": [
+        "ivaerksaetterselskab",
+        "ivs"
+      ]
+    },
+    {
+      "id": "jdoo",
+      "generic": "llc",
+      "phrases": [
+        "j d o o",
+        "jdoo",
+        "jednostavno drustvo s ogranicenom odgovornoscu"
+      ]
+    },
+    {
+      "id": "jsc",
+      "generic": "jsc",
+      "phrases": [
+        "j s c",
+        "j stock company",
+        "jnt stock co",
+        "joint stock co",
+        "joint stock compan",
+        "joint stock companie",
+        "joint stock company",
+        "joint stock corp",
+        "jointstock company",
+        "js co",
+        "jsc",
+        "jsc company",
+        "jt stock co"
+      ]
+    },
+    {
+      "id": "jscb",
+      "generic": "jsc",
+      "phrases": [
+        "aktsionerny kommercheskiy bank",
+        "joint stock bank",
+        "joint stock commercial bank",
+        "jscb",
+        "pjscb",
+        "public joint stock commercial bank",
+        "акб",
+        "акционерны коммерческий банк",
+        "акционерный комерчески банк",
+        "акционерный комерческий банк",
+        "акционерный коммерческий банк",
+        "акцыонерный коммерческий банк",
+        "акціонерний комерційний банк"
+      ]
+    },
+    {
+      "id": "jtd",
+      "generic": "jsc",
+      "phrases": [
+        "j t d",
+        "javno trgovacko drustvo",
+        "jtd"
+      ]
+    },
+    {
+      "id": "jusikhoesa",
+      "generic": "jsc",
+      "phrases": [
+        "jusikhoesa",
+        "주식회사"
+      ]
+    },
+    {
+      "id": "jv",
+      "generic": null,
+      "phrases": [
+        "joint venture",
+        "jv",
+        "합영회사",
+        "합작회사"
+      ]
+    },
+    {
+      "id": "kb",
+      "generic": "lp",
+      "phrases": [
+        "kb",
+        "kommanditbolag"
+      ]
+    },
+    {
+      "id": "kd",
+      "generic": "lp",
+      "phrases": [
+        "k d",
+        "kd",
+        "komanditno drustvo",
+        "komanditno druzhestvo"
+      ]
+    },
+    {
+      "id": "kda",
+      "generic": "lp",
+      "phrases": [
+        "kda",
+        "komanditno druzhestvo s aktsii",
+        "komanditno druzhestvo s aktsiyami",
+        "кда",
+        "командитно дружество с акции"
+      ]
+    },
+    {
+      "id": "kdor",
+      "generic": "soe",
+      "phrases": [
+        "k d o r",
+        "k d oe r",
+        "kdoer",
+        "kdor",
+        "koer",
+        "koerperschaft des oeffentlichen rechts",
+        "koerperschaft oeffentlichen rechts",
+        "kor",
+        "korperschaft des offentlichen rechts",
+        "korperschaft offentlichen rechts"
+      ]
+    },
+    {
+      "id": "keg",
+      "generic": "gp",
+      "phrases": [
+        "keg",
+        "kommanditerwerbsgesellschaft"
+      ]
+    },
+    {
+      "id": "kft",
+      "generic": "llc",
+      "phrases": [
+        "k f t",
+        "kft",
+        "korlatolt felelossegu tarsasag",
+        "korlatolt felelossegu tarsasag organizacni slozka",
+        "korlatolt felelossegue tarsasag organizacni slozka"
+      ]
+    },
+    {
+      "id": "kft fioktelep",
+      "generic": "llc",
+      "phrases": [
+        "kft fioktelep",
+        "kuelfoeldi szekhelyu vallalkozas fioktelepe",
+        "kulfoldi szekhelyu vallalkozas fioktelepe"
+      ]
+    },
+    {
+      "id": "kg",
+      "generic": "lp",
+      "phrases": [
+        "k g",
+        "kg",
+        "kommandit gesellschaft",
+        "kommanditgesellschaft"
+      ]
+    },
+    {
+      "id": "kgaa",
+      "generic": "lp",
+      "phrases": [
+        "k g a a",
+        "kgaa",
+        "kommanditgesellschaft auf aktien"
+      ]
+    },
+    {
+      "id": "kht",
+      "generic": "ngo",
+      "phrases": [
+        "kht",
+        "koezhasznu tarsasag",
+        "kozhasznu tarsasag"
+      ]
+    },
+    {
+      "id": "kjsz",
+      "generic": "soe",
+      "phrases": [
+        "kjsz",
+        "koezjogi szervezet",
+        "kozjogi szervezet"
+      ]
+    },
+    {
+      "id": "kkt",
+      "generic": "gp",
+      "phrases": [
+        "kkt",
+        "koezkereseti tarsasag",
+        "kozkereseti tarsasag"
+      ]
+    },
+    {
+      "id": "koll sti",
+      "generic": "gp",
+      "phrases": [
+        "kolektif sirket",
+        "koll sti"
+      ]
+    },
+    {
+      "id": "kom sti",
+      "generic": "lp",
+      "phrases": [
+        "kom sti",
+        "komandit sirket"
+      ]
+    },
+    {
+      "id": "koop",
+      "generic": "coop",
+      "phrases": [
+        "koop",
+        "kooperatif sirket"
+      ]
+    },
+    {
+      "id": "ks",
+      "generic": "lp",
+      "phrases": [
+        "komanditni spolecnost",
+        "komanditsabiedriba",
+        "kommanditselskab",
+        "ks"
+      ]
+    },
+    {
+      "id": "ku",
+      "generic": "soe",
+      "phrases": [
+        "gemeinnuetziges kommunalunternehmen",
+        "gemeinnutziges kommunalunternehmen",
+        "gku",
+        "k u",
+        "kommunalunternehmen",
+        "ku"
+      ]
+    },
+    {
+      "id": "kv",
+      "generic": "jv",
+      "phrases": [
+        "koezoes vallalat",
+        "kozos vallalat",
+        "kv"
+      ]
+    },
+    {
+      "id": "ky",
+      "generic": "lp",
+      "phrases": [
+        "kommandiittiyhtio",
+        "kommandiittiyhtioe",
+        "ky"
+      ]
+    },
+    {
+      "id": "limited ortaklik",
+      "generic": "lp",
+      "phrases": [
+        "limited ortaklik"
+      ]
+    },
+    {
+      "id": "llc",
+      "generic": "llc",
+      "phrases": [
+        "foreign limited liability company",
+        "l l c",
+        "lc",
+        "limitd liability co",
+        "limited liab co",
+        "limited liability co",
+        "limited liability comp",
+        "limited liability company",
+        "limited liability corp",
+        "limited liability corporation",
+        "limted liability co",
+        "ll",
+        "llc",
+        "llcs",
+        "lmtd liability company",
+        "lt liability company",
+        "ltd liab company",
+        "ltd liability co",
+        "ltd liability comp",
+        "ltd liability company",
+        "private limited liability company",
+        "有限責任会社",
+        "有限責任公司",
+        "有限责任公司"
+      ]
+    },
+    {
+      "id": "llp",
+      "generic": "llp",
+      "phrases": [
+        "limited liability partnership",
+        "llp",
+        "有限責任事業組合"
+      ]
+    },
+    {
+      "id": "lp",
+      "generic": "lp",
+      "phrases": [
+        "l p",
+        "limited partnership",
+        "lp",
+        "л п",
+        "兩合公司"
+      ]
+    },
+    {
+      "id": "ltd",
+      "generic": "llc",
+      "phrases": [
+        "cyf",
+        "cyfyngedig",
+        "lda",
+        "limitada",
+        "limitd",
+        "limite",
+        "limited",
+        "limited by guarantee",
+        "limited by shares",
+        "limited co",
+        "limited company",
+        "limited sirket",
+        "limited sirketi",
+        "limited sti",
+        "limitee",
+        "limted",
+        "lmtd",
+        "lt",
+        "ltd",
+        "ltd co",
+        "ltd sti",
+        "ltda",
+        "ltds",
+        "private company with limited liability",
+        "private limited company",
+        "proprietary limited",
+        "proprietary limited company",
+        "proprietary ltd",
+        "pty limited",
+        "pty ltd",
+        "компания с ограниченной ответственностью",
+        "лимитед",
+        "лтд",
+        "лімітед",
+        "частная компания с ответственностью",
+        "частная компания с ответственностью ограниченной акциями",
+        "בע מ",
+        "المحدوده",
+        "المساهمه المحدوده",
+        "有限",
+        "有限公司",
+        "유한공사"
+      ]
+    },
+    {
+      "id": "ltda",
+      "generic": "llc",
+      "phrases": [
+        "ltda",
+        "sociedada limitada",
+        "sociedade limitada"
+      ]
+    },
+    {
+      "id": "ltdcokg",
+      "generic": "lp",
+      "phrases": [
+        "limited co kg",
+        "ltd co kg",
+        "ltdcokg"
+      ]
+    },
+    {
+      "id": "militarische organisation",
+      "generic": "mil",
+      "phrases": [
+        "chvk",
+        "militaerische organisation",
+        "militaerische vereinigung",
+        "militarische organisation",
+        "militarische vereinigung",
+        "militarna organizacija",
+        "militarne organizacije",
+        "pmc",
+        "private military company",
+        "приватна військова компанія",
+        "частная военная компания",
+        "чвк"
+      ]
+    },
+    {
+      "id": "mmc",
+      "generic": "llc",
+      "phrases": [
+        "mmc",
+        "məhdud məsuliyyətli cəmiyyət"
+      ]
+    },
+    {
+      "id": "mtu",
+      "generic": "ngo",
+      "phrases": [
+        "mittetulundusuehing",
+        "mittetulundusuhing",
+        "mtu",
+        "mtue"
+      ]
+    },
+    {
+      "id": "mup",
+      "generic": "soe",
+      "phrases": [
+        "mup",
+        "муниципальное унитарное предприятие",
+        "муп"
+      ]
+    },
+    {
+      "id": "na",
+      "generic": null,
+      "phrases": [
+        "n a",
+        "na",
+        "national association"
+      ]
+    },
+    {
+      "id": "na/fin",
+      "generic": "fin",
+      "phrases": [
+        "n a",
+        "na",
+        "national association"
+      ]
+    },
+    {
+      "id": "ngo",
+      "generic": "ngo",
+      "phrases": [
+        "charitable fund",
+        "charitable organisation",
+        "charitable organization",
+        "charity",
+        "charity fund",
+        "mimovladna organizacia",
+        "n g o",
+        "n p o",
+        "nevladina organizacija",
+        "nevladine organizacije",
+        "nevladni organizace",
+        "ngo",
+        "nichtregierungsorganisation",
+        "niegovorni organizaciji",
+        "niet gouvernementele organisatie",
+        "non government organisation",
+        "non governmental organisation",
+        "non governmental organization",
+        "non profit",
+        "non profit organisation",
+        "non profit organization",
+        "nonprofit",
+        "nonprofit organization",
+        "npo",
+        "organizacja pozarzadowa",
+        "organizatia neguvernamentala",
+        "organizatia societatii civile",
+        "منظمه غير حكوميه",
+        "ن م م"
+      ]
+    },
+    {
+      "id": "nini kumiai",
+      "generic": "fin",
+      "phrases": [
+        "nini kumiai",
+        "non bank credit organization",
+        "settlement non banking credit organization",
+        "небанковская кредитная организация",
+        "расчетная небанковская кредитная организация",
+        "任意組合"
+      ]
+    },
+    {
+      "id": "nl",
+      "generic": null,
+      "phrases": [
+        "nl",
+        "no liability"
+      ]
+    },
+    {
+      "id": "nt sa",
+      "generic": "fin",
+      "phrases": [
+        "national trust and savings association",
+        "nt sa"
+      ]
+    },
+    {
+      "id": "nv",
+      "generic": "jsc",
+      "phrases": [
+        "n v",
+        "n vennootschap",
+        "naaml vennootschap",
+        "naamloze vennootschap",
+        "naamlze vennootschap",
+        "nv"
+      ]
+    },
+    {
+      "id": "nyrt",
+      "generic": "jsc",
+      "phrases": [
+        "nyilvanosan mukodo reszvenytarsasag",
+        "nyilvanosan mukoedo reszvenytarsasag",
+        "nyrt"
+      ]
+    },
+    {
+      "id": "oaj",
+      "generic": "jsc",
+      "phrases": [
+        "oaj",
+        "ochiq aksiyadorlik jamiyati",
+        "очиқ акциядорлик жамияти"
+      ]
+    },
+    {
+      "id": "obcanske sdruzeni",
+      "generic": "ngo",
+      "phrases": [
+        "obcanske sdruzeni"
+      ]
+    },
+    {
+      "id": "od",
+      "generic": "llc",
+      "phrases": [
+        "o d",
+        "od",
+        "ortacko drustvo",
+        "о д",
+        "од",
+        "ортачко друштво"
+      ]
+    },
+    {
+      "id": "oeg",
+      "generic": null,
+      "phrases": [
+        "oeg",
+        "offene erwerbsgesellschaft"
+      ]
+    },
+    {
+      "id": "og",
+      "generic": null,
+      "phrases": [
+        "offene gesellschaft",
+        "og"
+      ]
+    },
+    {
+      "id": "ohg",
+      "generic": "gp",
+      "phrases": [
+        "o h g",
+        "offene handels gesellschaft",
+        "offene handelsgesellschaft",
+        "ohg"
+      ]
+    },
+    {
+      "id": "oilaviy korxona",
+      "generic": "sp",
+      "phrases": [
+        "oilaviy korxona",
+        "оилавий корхона"
+      ]
+    },
+    {
+      "id": "ojsc",
+      "generic": "jsc",
+      "phrases": [
+        "o j s c",
+        "o joint stock co",
+        "offene aktiengesellschaft",
+        "ojsc",
+        "open jnt stock co",
+        "open joint stock company",
+        "open jsc",
+        "openbare aandelenvennootschap",
+        "openbare publiek private vennootschap op aandelen",
+        "openbare vennootschap op aandelen",
+        "otwarta spolka akcyjna",
+        "panstwowa spolka akcyjna",
+        "sociedad limitada por acciones abierta",
+        "sociedade por acoes aberta",
+        "societatea publica pe actiuni",
+        "societe par actions ouverte",
+        "societe publique par actions",
+        "vennootschap op aandelen",
+        "verejna akciova spolecnost",
+        "verejna akciova spolocnost",
+        "δημοσια συμμετοχικη εταιρεια",
+        "публично акционерно дружество",
+        "公開株式会社"
+      ]
+    },
+    {
+      "id": "ong",
+      "generic": "ngo",
+      "phrases": [
+        "ong",
+        "organisation non gouvernementale",
+        "organizacao nao governamental",
+        "organizacion no gubernamental",
+        "organizzazione non governativa"
+      ]
+    },
+    {
+      "id": "ood",
+      "generic": "llc",
+      "phrases": [
+        "drujestvo s ogranichena otgovornost",
+        "druzestvo s ogranicena otgovornost",
+        "druzhestvo s ogranichena otgovornost",
+        "ood",
+        "дружество с ограничена отговорност",
+        "оод"
+      ]
+    },
+    {
+      "id": "ooo",
+      "generic": "llc",
+      "phrases": [
+        "obshchestvo s ogranichennoi otvetstvennostiu",
+        "obshchestvo s ogranichennoi otvetstvennostyu",
+        "obshchestvo s ogranichennoj otvetstvennostyu",
+        "obshchestvo s ogranichennoy otvetstvennostyu",
+        "obshchestvo s ohranychennoi otvetstvennostiu",
+        "ooo",
+        "oсoo",
+        "иностранное общество с ограниченной ответственностью",
+        "ликвидационная комиссия общества с ограниченной ответственностью",
+        "ликвидационная комиссия общество с ограниченной ответственностью",
+        "ликвидационная комиссия ооо",
+        "обшество с ограниченной ответственностью",
+        "общесиво с ограниченной ответственностью",
+        "общества с ограниченной ответственностью",
+        "обществл с ограниченной ответственностью",
+        "общество c ограниченной ответственностью",
+        "общество ограниченной ответственности",
+        "общество с гораниченной ответственностью",
+        "общество с граниченной ответственностью",
+        "общество с огpаниченной ответственностью",
+        "общество с оганиченной ответственностью",
+        "общество с огарниченной ответственностью",
+        "общество с огра ниченной ответственностью",
+        "общество с ограгиченной ответственностью",
+        "общество с ограгниченной ответственностью",
+        "общество с ограинченной ответственностью",
+        "общество с ограиченной ответственностью",
+        "общество с огрангиченной ответственностью",
+        "общество с огранеченной ответственностью",
+        "общество с ограниенной ответственностью",
+        "общество с огранисенной ответственностью",
+        "общество с огранисченной ответственностью",
+        "общество с ограничеееной ответственностью",
+        "общество с ограничееной ответственностью",
+        "общество с ограниченнйо ответственностью",
+        "общество с ограниченнной ответственностью",
+        "общество с ограниченнои ответственностью",
+        "общество с ограниченной лтветственностью",
+        "общество с ограниченной общество с ограниченной ответственностью",
+        "общество с ограниченной оветственностью",
+        "общество с ограниченной овтетственностью",
+        "общество с ограниченной огтветственностью",
+        "общество с ограниченной олтветственностью",
+        "общество с ограниченной осветственностью",
+        "общество с ограниченной от",
+        "общество с ограниченной отаетственностью",
+        "общество с ограниченной отвеетственностью",
+        "общество с ограниченной отвенственностью",
+        "общество с ограниченной отвентственностью",
+        "общество с ограниченной отвественностью",
+        "общество с ограниченной отвествтеннсотью",
+        "общество с ограниченной отвесттвенностью",
+        "общество с ограниченной ответвенностью",
+        "общество с ограниченной ответветственностью",
+        "общество с ограниченной ответвтвенностью",
+        "общество с ограниченной ответвтсенностью",
+        "общество с ограниченной ответсвенноссть",
+        "общество с ограниченной ответсвенностью",
+        "общество с ограниченной ответсственностью",
+        "общество с ограниченной ответствеенностью",
+        "общество с ограниченной ответствееностью",
+        "общество с ограниченной ответствекнностью",
+        "общество с ограниченной ответствененостью",
+        "общество с ограниченной ответственнностью",
+        "общество с ограниченной ответственновстью",
+        "общество с ограниченной ответственновтью",
+        "общество с ограниченной ответственногстью",
+        "общество с ограниченной ответственной",
+        "общество с ограниченной ответственнолтью",
+        "общество с ограниченной ответственномтью",
+        "общество с ограниченной ответственноостью",
+        "общество с ограниченной ответственности",
+        "общество с ограниченной ответственностиью",
+        "общество с ограниченной ответственносттью",
+        "общество с ограниченной ответственность",
+        "общество с ограниченной ответственностьб",
+        "общество с ограниченной ответственностьтью",
+        "общество с ограниченной ответственностью",
+        "общество с ограниченной ответственностью строительная компания",
+        "общество с ограниченной ответственностью торговый дом",
+        "общество с ограниченной ответственностью управляющая компания",
+        "общество с ограниченной ответственностью фирма",
+        "общество с ограниченной ответственностью частная охранная организация",
+        "общество с ограниченной ответственностью частное охранное предприятие",
+        "общество с ограниченной ответственностьюб",
+        "общество с ограниченной ответственностьюв",
+        "общество с ограниченной ответственностьюи",
+        "общество с ограниченной ответственностьюм",
+        "общество с ограниченной ответственностьют",
+        "общество с ограниченной ответственностю",
+        "общество с ограниченной ответственносьтю",
+        "общество с ограниченной ответственносью",
+        "общество с ограниченной ответственнотсью",
+        "общество с ограниченной ответственнотью",
+        "общество с ограниченной ответственночтью",
+        "общество с ограниченной ответственнростью",
+        "общество с ограниченной ответственнсотью",
+        "общество с ограниченной ответственнстью",
+        "общество с ограниченной ответственонстью",
+        "общество с ограниченной ответственоость",
+        "общество с ограниченной ответственоостью",
+        "общество с ограниченной ответственосстью",
+        "общество с ограниченной ответственостью",
+        "общество с ограниченной ответстветностью",
+        "общество с ограниченной ответстветсвенностью",
+        "общество с ограниченной ответстветственностью",
+        "общество с ограниченной ответствнностью",
+        "общество с ограниченной ответствтенностью",
+        "общество с ограниченной ответствуенностью",
+        "общество с ограниченной ответстенностью",
+        "общество с ограниченной ответстсвееностью",
+        "общество с ограниченной ответстсвенностью",
+        "общество с ограниченной ответстственностью",
+        "общество с ограниченной ответтственностью",
+        "общество с ограниченной ответчтвенностью",
+        "общество с ограниченной отвнтственностью",
+        "общество с ограниченной отвтетсвенностью",
+        "общество с ограниченной отвуетственностью",
+        "общество с ограниченной отевтственностью",
+        "общество с ограниченной отетвенностью",
+        "общество с ограниченной отетственностью",
+        "общество с ограниченной отсетственностью",
+        "общество с ограниченной товетственностью",
+        "общество с ограниченнрй ответственностью",
+        "общество с ограниченой ответствееностью",
+        "общество с ограниченой ответственностью",
+        "общество с ограниченой ответственостью",
+        "общество с ограниченоой ответственностью",
+        "общество с ограничинной ответственностью",
+        "общество с ограничнной отвественностью",
+        "общество с ограничнной ответственностью",
+        "общество с ограничнной ответствнностью",
+        "общество с ограничунной ответственностью",
+        "общество с огранмченной ответственностью",
+        "общество с огранниченной ответственностью",
+        "общество с огрантченной ответственностью",
+        "общество с огранченной ответственностью",
+        "общество с огранчиченной ответственностью",
+        "общество с огрвниченной ответственностью",
+        "общество с огрнаиченной ответственностью",
+        "общество с огрнаниченной ответственностью",
+        "общество с огрниченной ответственностью",
+        "общество с огрниченной отственностью",
+        "общество с огрониченной ответственностью",
+        "общество с огрораниченной ответственностью",
+        "общество с огрраниченной ответственностью",
+        "общество с ораниченной ответственностью",
+        "общество с органиченной ответственновстью",
+        "общество с органиченной ответственностью",
+        "общество с орграниченной ответственностью",
+        "общество с отраниченной ответственностью",
+        "общество сограниченной ответственностью",
+        "общество сограниченой ответственностью",
+        "общество ст ограниченной ответственностью",
+        "обществог с ограниченной отвественностью",
+        "обществоь с ограниченной ответственностью",
+        "обществр с ограниченной ответственностью",
+        "ооо",
+        "тзов",
+        "тов",
+        "товариство з обмеженою відповідальністю"
+      ]
+    },
+    {
+      "id": "opg",
+      "generic": "sp",
+      "phrases": [
+        "obiteljsko poljoprivredno gospodarstvo",
+        "opg"
+      ]
+    },
+    {
+      "id": "ops",
+      "generic": "ngo",
+      "phrases": [
+        "o p s",
+        "obecne prospesna spolecnost",
+        "ops"
+      ]
+    },
+    {
+      "id": "oscip",
+      "generic": "ngo",
+      "phrases": [
+        "organizacao da sociedade civil de interesse publico",
+        "oscip"
+      ]
+    },
+    {
+      "id": "osk",
+      "generic": null,
+      "phrases": [
+        "osk",
+        "osuuskunta"
+      ]
+    },
+    {
+      "id": "ou",
+      "generic": null,
+      "phrases": [
+        "osauehing",
+        "osauhing",
+        "ou",
+        "oue"
+      ]
+    },
+    {
+      "id": "owm",
+      "generic": "fin",
+      "phrases": [
+        "onderlinge waarborgmaatschappij",
+        "owm"
+      ]
+    },
+    {
+      "id": "oy",
+      "generic": "llc",
+      "phrases": [
+        "ab company oy",
+        "company oy ab",
+        "o y",
+        "osakeyhtio",
+        "osakeyhtioe",
+        "oy",
+        "oy company ab"
+      ]
+    },
+    {
+      "id": "oyj",
+      "generic": "jsc",
+      "phrases": [
+        "julkinen osakeyhtio",
+        "julkinen osakeyhtioe",
+        "oyj"
+      ]
+    },
+    {
+      "id": "pa",
+      "generic": "ngo",
+      "phrases": [
+        "pa",
+        "professional association"
+      ]
+    },
+    {
+      "id": "pao",
+      "generic": "jsc",
+      "phrases": [
+        "pao",
+        "publichne aktsionerne tovarystvo"
+      ]
+    },
+    {
+      "id": "partg",
+      "generic": "gp",
+      "phrases": [
+        "part g",
+        "partg",
+        "partnerschaft",
+        "partnerschaftsgesellschaft"
+      ]
+    },
+    {
+      "id": "partgmbb",
+      "generic": "llp",
+      "phrases": [
+        "mbb",
+        "part g mbb",
+        "part mbb",
+        "partg m b b",
+        "partg mbb",
+        "partgmbb",
+        "partmbb",
+        "partnerschaft mbb",
+        "partnerschaft mit beschraenkter berufshaftung",
+        "partnerschaft mit beschrankter berufshaftung",
+        "partnerschaftsgesellschaft mbb",
+        "partnerschaftsgesellschaft mit beschraenkter berufshaftung",
+        "partnerschaftsgesellschaft mit beschrankter berufshaftung"
+      ]
+    },
+    {
+      "id": "pc",
+      "generic": null,
+      "phrases": [
+        "pc",
+        "ኮርፖሬሽን"
+      ]
+    },
+    {
+      "id": "pe",
+      "generic": null,
+      "phrases": [
+        "pe",
+        "የመንግስት ልማት ድርጅቶች"
+      ]
+    },
+    {
+      "id": "peec",
+      "generic": "soe",
+      "phrases": [
+        "peec",
+        "public establishment with economic characteristics"
+      ]
+    },
+    {
+      "id": "pjsc",
+      "generic": "jsc",
+      "phrases": [
+        "allami tulajdonban levo reszvenytarsasag",
+        "javna delniska druzba",
+        "javno dionicko drustvo",
+        "kumpanija bishma kongunti pubblici",
+        "pjsc",
+        "public joint stock company",
+        "public jsc",
+        "public stock company",
+        "public stock company pjsc",
+        "sociedade publica por acoes",
+        "viesoji akcine bendrove",
+        "公共株式会社"
+      ]
+    },
+    {
+      "id": "plc",
+      "generic": "jsc",
+      "phrases": [
+        "p l c",
+        "p l co",
+        "plc",
+        "plc company",
+        "plc ltd",
+        "plcs",
+        "pub limited",
+        "pub limited co",
+        "pub lt co",
+        "pub ltd co",
+        "pubic limited company",
+        "publc limited company",
+        "publi limited company",
+        "public limitd company",
+        "public limited",
+        "public limited co",
+        "public limited company",
+        "public limited compnay",
+        "public limited corporation",
+        "public limitied company",
+        "public limitted company",
+        "public limted company",
+        "public lmtd company",
+        "public lt co",
+        "public lt company",
+        "public ltd co",
+        "public ltd corporation",
+        "publicly limited company",
+        "publicly ltd company"
+      ]
+    },
+    {
+      "id": "pllc",
+      "generic": "llc",
+      "phrases": [
+        "pllc",
+        "professional limited liability company"
+      ]
+    },
+    {
+      "id": "pp",
+      "generic": "sp",
+      "phrases": [
+        "pp",
+        "pryvatne pidpryiemstvo"
+      ]
+    },
+    {
+      "id": "pr",
+      "generic": null,
+      "phrases": [
+        "pr",
+        "preduzetnik",
+        "пр",
+        "предузетник"
+      ]
+    },
+    {
+      "id": "ps",
+      "generic": null,
+      "phrases": [
+        "partnerselskab",
+        "pilnsabiedriba",
+        "ps"
+      ]
+    },
+    {
+      "id": "pse",
+      "generic": null,
+      "phrases": [
+        "pse",
+        "public sector enterprise"
+      ]
+    },
+    {
+      "id": "psu",
+      "generic": null,
+      "phrases": [
+        "psu",
+        "public sector undertaking"
+      ]
+    },
+    {
+      "id": "pt",
+      "generic": null,
+      "phrases": [
+        "perseroan terbatas",
+        "pt"
+      ]
+    },
+    {
+      "id": "pt tbk",
+      "generic": null,
+      "phrases": [
+        "perseroan terbatas terbuka",
+        "pt tbk"
+      ]
+    },
+    {
+      "id": "pte ltd",
+      "generic": "llc",
+      "phrases": [
+        "pte ltd",
+        "single member private limited company"
+      ]
+    },
+    {
+      "id": "pup",
+      "generic": "sp",
+      "phrases": [
+        "pup",
+        "прыватнае унітарнае прадпрыемства",
+        "пуп"
+      ]
+    },
+    {
+      "id": "qk",
+      "generic": null,
+      "phrases": [
+        "qk",
+        "qoshma korxona",
+        "қўшма корхона"
+      ]
+    },
+    {
+      "id": "qmj",
+      "generic": null,
+      "phrases": [
+        "qmj",
+        "qoshimcha masuliyatli jamiyat",
+        "қўшимча масъулиятли жамият"
+      ]
+    },
+    {
+      "id": "qsc",
+      "generic": null,
+      "phrases": [
+        "qapali səhmdar cəmiyyəti",
+        "qapali tipli səhmdar cəmiyyəti",
+        "qsc"
+      ]
+    },
+    {
+      "id": "rf",
+      "generic": "ngo",
+      "phrases": [
+        "registrerad foerening",
+        "registrerad forening",
+        "reykjavikurfelag",
+        "rf"
+      ]
+    },
+    {
+      "id": "rp",
+      "generic": null,
+      "phrases": [
+        "rekisteroeity puolue",
+        "rekisteroity puolue",
+        "rp"
+      ]
+    },
+    {
+      "id": "rs",
+      "generic": null,
+      "phrases": [
+        "rs",
+        "saatio",
+        "saeaetioe"
+      ]
+    },
+    {
+      "id": "rt",
+      "generic": "jsc",
+      "phrases": [
+        "reszvenytarsasag",
+        "rt"
+      ]
+    },
+    {
+      "id": "ry",
+      "generic": "ngo",
+      "phrases": [
+        "rekisteroeity yhdistys",
+        "rekisteroeity yhdistys ry",
+        "rekisteroity yhdistys",
+        "rekisteroity yhdistys ry",
+        "ry"
+      ]
+    },
+    {
+      "id": "s p",
+      "generic": "sp",
+      "phrases": [
+        "s p",
+        "samostalni preduzetnik",
+        "statni podnik"
+      ]
+    },
+    {
+      "id": "sa",
+      "generic": "jsc",
+      "phrases": [
+        "s a",
+        "sa",
+        "sarf",
+        "socieda anonima",
+        "sociedad anonima",
+        "sociedada anonima",
+        "sociedade anonima",
+        "societa anonima",
+        "societat anonima",
+        "societate anonima",
+        "societate pe actiuni",
+        "societatea pe actiuni",
+        "societateare pe actiuni",
+        "societe anonyme",
+        "societe par actions",
+        "societe par actions de regime federal",
+        "societe par actions par loi sur les societes par actions",
+        "spolka akcyjna",
+        "شركه خفيه الاسم"
+      ]
+    },
+    {
+      "id": "sacif",
+      "generic": "jsc",
+      "phrases": [
+        "s a c i y f",
+        "sacif",
+        "sociedad anonima comercial industrial y financiera"
+      ]
+    },
+    {
+      "id": "sacifi",
+      "generic": "jsc",
+      "phrases": [
+        "s a c i f i",
+        "sacifi",
+        "sociedad anonima comercial industrial financiera e inmobiliaria"
+      ]
+    },
+    {
+      "id": "sacifia",
+      "generic": "jsc",
+      "phrases": [
+        "s a c i f i y a",
+        "sacifia",
+        "sociedad anonima comercial industrial financiera inmobiliaria y agropecuaria"
+      ]
+    },
+    {
+      "id": "sacv",
+      "generic": "jsc",
+      "phrases": [
+        "s a c v",
+        "s a de c v",
+        "sa de c v",
+        "sa de cv",
+        "sacv",
+        "sadecv",
+        "soc anon de cap var",
+        "sociedad anonima de capital variable"
+      ]
+    },
+    {
+      "id": "sad",
+      "generic": "jsc",
+      "phrases": [
+        "sad",
+        "sociedad anonima deportiva"
+      ]
+    },
+    {
+      "id": "saica",
+      "generic": "jsc",
+      "phrases": [
+        "s a i c a",
+        "saica",
+        "sociedades anonimas inscritas de capital abierto"
+      ]
+    },
+    {
+      "id": "saoc",
+      "generic": "jsc",
+      "phrases": [
+        "saoc",
+        "societe anonyme omanaise close"
+      ]
+    },
+    {
+      "id": "saog",
+      "generic": "jsc",
+      "phrases": [
+        "saog",
+        "societe anonyme omanaise generale"
+      ]
+    },
+    {
+      "id": "sapa",
+      "generic": "lp",
+      "phrases": [
+        "sapa",
+        "societa in accomandita per azioni"
+      ]
+    },
+    {
+      "id": "sapicv",
+      "generic": "jsc",
+      "phrases": [
+        "s a p i de c v",
+        "sa p i de c v",
+        "sapi de c v",
+        "sapicv",
+        "soc anon prom de inv de cap var",
+        "sociedad anonima promotora de inversion de capital variable"
+      ]
+    },
+    {
+      "id": "sarl",
+      "generic": "llc",
+      "phrases": [
+        "s a r l",
+        "sarl",
+        "soc a resp limitee",
+        "soc a responsab limitee",
+        "societe a responsabilite limitee",
+        "شركه ذات مسؤوليات محدوده ش م م"
+      ]
+    },
+    {
+      "id": "sas",
+      "generic": "llc",
+      "phrases": [
+        "s a s",
+        "s par a s",
+        "sas",
+        "soc par actions simplifiee",
+        "sociedad por acciones simplificada",
+        "sociedades por acciones simplificada",
+        "societe actions simplifiee",
+        "societe par actions simplifiee"
+      ]
+    },
+    {
+      "id": "sau",
+      "generic": "sp",
+      "phrases": [
+        "sau",
+        "sociedad anonima unipersonal"
+      ]
+    },
+    {
+      "id": "sb",
+      "generic": null,
+      "phrases": [
+        "sb",
+        "sube"
+      ]
+    },
+    {
+      "id": "sc/gp",
+      "generic": "gp",
+      "phrases": [
+        "compania comerciala si de productie societatea cu responsabilitate limitata",
+        "s c",
+        "sc",
+        "sociedad colectiva",
+        "societatea comerciala",
+        "አክሲዩን ማህበር"
+      ]
+    },
+    {
+      "id": "sc/lp",
+      "generic": "lp",
+      "phrases": [
+        "comandita simple",
+        "s en c",
+        "sc"
+      ]
+    },
+    {
+      "id": "sca",
+      "generic": "jsc",
+      "phrases": [
+        "comandita por acciones",
+        "s c a",
+        "sca",
+        "societe en commandite par actions"
+      ]
+    },
+    {
+      "id": "scc",
+      "generic": "llc",
+      "phrases": [
+        "scc",
+        "societe commerciale canadienne"
+      ]
+    },
+    {
+      "id": "sce",
+      "generic": "coop",
+      "phrases": [
+        "europaeische genossenschaft",
+        "europaische genossenschaft",
+        "s c e",
+        "sce",
+        "societas cooperativa europaea"
+      ]
+    },
+    {
+      "id": "scei",
+      "generic": "lp",
+      "phrases": [
+        "s c e i",
+        "scei",
+        "sociedad de capital e industria"
+      ]
+    },
+    {
+      "id": "scop",
+      "generic": "coop",
+      "phrases": [
+        "scop",
+        "societe cooperative de production"
+      ]
+    },
+    {
+      "id": "scpa",
+      "generic": null,
+      "phrases": [
+        "scpa",
+        "sociedad civil privada"
+      ]
+    },
+    {
+      "id": "scpa/lp",
+      "generic": "lp",
+      "phrases": [
+        "s c p a",
+        "scpa",
+        "sociedad en comandita por acciones"
+      ]
+    },
+    {
+      "id": "scra",
+      "generic": "lp",
+      "phrases": [
+        "s cra",
+        "scra",
+        "sociedad comanditaria"
+      ]
+    },
+    {
+      "id": "scs",
+      "generic": "lp",
+      "phrases": [
+        "s c s",
+        "scs",
+        "secs",
+        "sociedad en comandita simple",
+        "societe en commandite simple"
+      ]
+    },
+    {
+      "id": "sd",
+      "generic": "llc",
+      "phrases": [
+        "s ie",
+        "sabiratelno druzhestvo sd sadruzhie",
+        "sd",
+        "sd s ie",
+        "с ие",
+        "сд",
+        "събирателно дружество",
+        "събирателно дружество сд съдружие"
+      ]
+    },
+    {
+      "id": "sdn bhd",
+      "generic": "llc",
+      "phrases": [
+        "sdn bhd",
+        "sendirian berhad"
+      ]
+    },
+    {
+      "id": "se/jsc",
+      "generic": "jsc",
+      "phrases": [
+        "europaeische aktiengesellschaft",
+        "europaeische gesellschaft",
+        "europaische aktiengesellschaft",
+        "europaische gesellschaft",
+        "s e",
+        "se",
+        "societas europaea"
+      ]
+    },
+    {
+      "id": "se/soe",
+      "generic": "soe",
+      "phrases": [
+        "s e",
+        "se",
+        "sociedad del estado"
+      ]
+    },
+    {
+      "id": "secokg",
+      "generic": "lp",
+      "phrases": [
+        "europaeische gesellschaft co kg",
+        "europaische gesellschaft co kg",
+        "se co kg",
+        "secokg",
+        "societas europaea co kg"
+      ]
+    },
+    {
+      "id": "secokgaa",
+      "generic": "lp",
+      "phrases": [
+        "europaeische gesellschaft co kgaa",
+        "europaische gesellschaft co kgaa",
+        "se co kgaa",
+        "secokgaa",
+        "societas europaea co kgaa"
+      ]
+    },
+    {
+      "id": "sem",
+      "generic": "coop",
+      "phrases": [
+        "sem",
+        "societe deconomie mixte"
+      ]
+    },
+    {
+      "id": "sf",
+      "generic": "gp",
+      "phrases": [
+        "sameignarfelag",
+        "sf"
+      ]
+    },
+    {
+      "id": "sgr",
+      "generic": null,
+      "phrases": [
+        "s g r",
+        "sgr",
+        "sociedad de garantia reciproca"
+      ]
+    },
+    {
+      "id": "sgr/coop",
+      "generic": "coop",
+      "phrases": [
+        "s g r",
+        "sgr",
+        "sociedad de garantia reciproca"
+      ]
+    },
+    {
+      "id": "sha",
+      "generic": "jsc",
+      "phrases": [
+        "sh a",
+        "sha",
+        "shoqeri aksionere",
+        "shoqeri anonime"
+      ]
+    },
+    {
+      "id": "sharikat al mossahamah",
+      "generic": "jsc",
+      "phrases": [
+        "sharikat al mossahamah",
+        "شركه المساهمه"
+      ]
+    },
+    {
+      "id": "shk",
+      "generic": "lp",
+      "phrases": [
+        "sh k",
+        "shk",
+        "shoqeri komandite"
+      ]
+    },
+    {
+      "id": "shpk",
+      "generic": "llc",
+      "phrases": [
+        "sh p k",
+        "shoqeri me pergjegjesi te kufizuar",
+        "shpk"
+      ]
+    },
+    {
+      "id": "sia",
+      "generic": "llc",
+      "phrases": [
+        "s i a",
+        "sabiedriba ar ierobezotu atbildibu",
+        "sia",
+        "сиа"
+      ]
+    },
+    {
+      "id": "sicaf",
+      "generic": "fin",
+      "phrases": [
+        "sicaf",
+        "societe dinvestissement a capital fixe"
+      ]
+    },
+    {
+      "id": "sicav",
+      "generic": "fin",
+      "phrases": [
+        "s i c a v",
+        "sicav",
+        "soc invest capital variable",
+        "societe dinvestissement a capital variable"
+      ]
+    },
+    {
+      "id": "sll",
+      "generic": "llc",
+      "phrases": [
+        "sll",
+        "sociedad limitada laboral"
+      ]
+    },
+    {
+      "id": "slne",
+      "generic": "llc",
+      "phrases": [
+        "s l n e",
+        "slne",
+        "sociedad limitada nueva empresa"
+      ]
+    },
+    {
+      "id": "smba",
+      "generic": "llc",
+      "phrases": [
+        "selskab med begraenset ansvar",
+        "smba"
+      ]
+    },
+    {
+      "id": "snc",
+      "generic": "lp",
+      "phrases": [
+        "snc",
+        "societe en nom collectif"
+      ]
+    },
+    {
+      "id": "snt",
+      "generic": "lp",
+      "phrases": [
+        "snt",
+        "садоводческое некоммерческое товарищество"
+      ]
+    },
+    {
+      "id": "societe en participation",
+      "generic": "coop",
+      "phrases": [
+        "societe en participation"
+      ]
+    },
+    {
+      "id": "sole proprietorship",
+      "generic": "sp",
+      "phrases": [
+        "private enterprise",
+        "sole proprietorship"
+      ]
+    },
+    {
+      "id": "spa",
+      "generic": "jsc",
+      "phrases": [
+        "s p a",
+        "sociedad por acciones",
+        "sociedade por acoes",
+        "societa per azioni",
+        "spa"
+      ]
+    },
+    {
+      "id": "spd",
+      "generic": "sp",
+      "phrases": [
+        "spd",
+        "спд",
+        "субъект предпринимательской деятельности",
+        "субєкт підприємницької діяльності"
+      ]
+    },
+    {
+      "id": "spf",
+      "generic": "ngo",
+      "phrases": [
+        "spf",
+        "stichting particulier fonds"
+      ]
+    },
+    {
+      "id": "sprl",
+      "generic": "llc",
+      "phrases": [
+        "societe privee a responsabilite limitee",
+        "societe privee a responsabilite limitee unipersonnelle",
+        "sprl"
+      ]
+    },
+    {
+      "id": "spzoo",
+      "generic": "llc",
+      "phrases": [
+        "sp z o o",
+        "sp z o o sp k",
+        "sp z ogr odp",
+        "sp z oo",
+        "sp zoo",
+        "spolka z o o",
+        "spolka z o o sp k",
+        "spolka z ogr odpow",
+        "spolka z ograniczona odpowiedzialnoscia",
+        "spz o o",
+        "spz oo",
+        "spzoo"
+      ]
+    },
+    {
+      "id": "srl",
+      "generic": "llc",
+      "phrases": [
+        "intreprinderea cu responsabilitate limitata",
+        "s r l",
+        "sicietatea de raspundere limitata",
+        "soc a resp limitata",
+        "soc resp limitada",
+        "sociedad de responsabilidad limitada",
+        "societa a responsabilita limitata",
+        "societata cu raspundere limitata",
+        "societate cu rasponbilitate limitata",
+        "societate cu raspundere limitata",
+        "societate cu raspundre limitata",
+        "societate cu responsabilitate limiiata",
+        "societate cu responsabilitate limitata",
+        "societatea cu rasdpundere limitata",
+        "societatea cu rasponsabilitate limitata",
+        "societatea cu raspundere",
+        "societatea cu raspundere limitata",
+        "societatea cu raspundere limitate",
+        "societatea cu responsabilitate limitata",
+        "societatea cu responsabilitatea limitata",
+        "societatea cu respundere limitata",
+        "societatii cu raspunderea limitata",
+        "societete cu raspundere limitata",
+        "socitate cu responsabilitate limitata",
+        "srl"
+      ]
+    },
+    {
+      "id": "srlcv",
+      "generic": "llc",
+      "phrases": [
+        "s de r l de c v",
+        "s de rl de cv",
+        "sociedad de responsabilidad limitada de capital variable",
+        "srlcv"
+      ]
+    },
+    {
+      "id": "sro",
+      "generic": "llc",
+      "phrases": [
+        "s r o",
+        "spol s r o",
+        "spol s ruc omez",
+        "spolecnost s rucenim omezenym",
+        "sro"
+      ]
+    },
+    {
+      "id": "stg",
+      "generic": null,
+      "phrases": [
+        "stg",
+        "stille gesellschaft"
+      ]
+    },
+    {
+      "id": "sti",
+      "generic": "llc",
+      "phrases": [
+        "sirketi",
+        "sti"
+      ]
+    },
+    {
+      "id": "stiftung",
+      "generic": "ngo",
+      "phrases": [
+        "gemeinnuetzige stiftung",
+        "gemeinnutzige stiftung",
+        "rechtsf stiftung",
+        "rechtsfaehige stiftung",
+        "rechtsfahige stiftung",
+        "stiftung",
+        "stiftung des buergerlichen rechts",
+        "stiftung des burgerlichen rechts",
+        "stiftung des oeffentlichen rechts",
+        "stiftung des offentlichen rechts"
+      ]
+    },
+    {
+      "id": "stiftungcokg",
+      "generic": "lp",
+      "phrases": [
+        "stiftung co kg",
+        "stiftung und co kg",
+        "stiftungcokg"
+      ]
+    },
+    {
+      "id": "stiftungcokgaa",
+      "generic": "lp",
+      "phrases": [
+        "stiftung co kgaa",
+        "stiftungcokgaa"
+      ]
+    },
+    {
+      "id": "suarl",
+      "generic": "llc",
+      "phrases": [
+        "suarl",
+        "شركه فرديه ذات مسؤوليات محدوده"
+      ]
+    },
+    {
+      "id": "szov",
+      "generic": "coop",
+      "phrases": [
+        "szoev",
+        "szoevetkezet",
+        "szov",
+        "szovetkezet"
+      ]
+    },
+    {
+      "id": "t mi",
+      "generic": null,
+      "phrases": [
+        "oiminimi",
+        "t mi"
+      ]
+    },
+    {
+      "id": "tavaristva z abmezhavanaj adkaznastsiu",
+      "generic": "llc",
+      "phrases": [
+        "tavaristva z abmezhavanaj adkaznastsiu"
+      ]
+    },
+    {
+      "id": "tokumei kumiai",
+      "generic": "lp",
+      "phrases": [
+        "tokumei kumiai",
+        "匿名組合"
+      ]
+    },
+    {
+      "id": "tov",
+      "generic": "llc",
+      "phrases": [
+        "tov",
+        "tovarystvo z obmezhenoiu vidpovidalnistiu",
+        "tovarystvo z obmezhenoyu vidpovidalnistyu"
+      ]
+    },
+    {
+      "id": "tu",
+      "generic": "lp",
+      "phrases": [
+        "taeisuehing",
+        "taisuhing",
+        "tu",
+        "tue"
+      ]
+    },
+    {
+      "id": "uab",
+      "generic": "llc",
+      "phrases": [
+        "uab",
+        "uzdaroji akcine bendrove",
+        "uzdarosios akcines bendroves"
+      ]
+    },
+    {
+      "id": "ug",
+      "generic": "llc",
+      "phrases": [
+        "ug",
+        "ug h b",
+        "ug haftungsbeschr",
+        "ug haftungsbeschraenkt",
+        "ug haftungsbeschrankt",
+        "unternehmerg",
+        "unternehmerges",
+        "unternehmerges haftungsbeschraenkt",
+        "unternehmerges haftungsbeschrankt",
+        "unternehmergesellschaft",
+        "unternehmergesellschaft haftungsbeschraenkt",
+        "unternehmergesellschaft haftungsbeschrankt"
+      ]
+    },
+    {
+      "id": "ugcokg",
+      "generic": "lp",
+      "phrases": [
+        "ug co kg",
+        "ug haftungsbeschraenkt co kg",
+        "ug haftungsbeschrankt co kg",
+        "ugcokg",
+        "unternehmergesellschaft co kg",
+        "unternehmergesellschaft haftungsbeschraenkt co kg",
+        "unternehmergesellschaft haftungsbeschrankt co kg"
+      ]
+    },
+    {
+      "id": "ugcoohg",
+      "generic": "gp",
+      "phrases": [
+        "ug co ohg",
+        "ug haftungsbeschraenkt co ohg",
+        "ug haftungsbeschrankt co ohg",
+        "ugcoohg"
+      ]
+    },
+    {
+      "id": "ultd",
+      "generic": "sp",
+      "phrases": [
+        "ultd",
+        "unlimited",
+        "unlimited company",
+        "unlimited proprietary",
+        "unltd",
+        "無限公司"
+      ]
+    },
+    {
+      "id": "unitar korxona",
+      "generic": "soe",
+      "phrases": [
+        "unitar korxona",
+        "унитар корхона"
+      ]
+    },
+    {
+      "id": "uu",
+      "generic": "lp",
+      "phrases": [
+        "usaldusuehing",
+        "usaldusuhing",
+        "uu",
+        "uue"
+      ]
+    },
+    {
+      "id": "vof",
+      "generic": "sp",
+      "phrases": [
+        "vennootschap onder firma",
+        "vof"
+      ]
+    },
+    {
+      "id": "vos",
+      "generic": "sp",
+      "phrases": [
+        "verejna obchodni spolecnost",
+        "vos"
+      ]
+    },
+    {
+      "id": "vvag",
+      "generic": "coop",
+      "phrases": [
+        "v v a g",
+        "versicherungsverein a g",
+        "versicherungsverein auf gegenseitigkeit",
+        "vvag"
+      ]
+    },
+    {
+      "id": "vzw",
+      "generic": "ngo",
+      "phrases": [
+        "internationale vereniging zonder winstoogmerk",
+        "ivzw",
+        "vereinigung ohne gewinnerzielungsabsicht",
+        "vereniging zonder winstoogmerk",
+        "vog",
+        "vzw"
+      ]
+    },
+    {
+      "id": "xk",
+      "generic": null,
+      "phrases": [
+        "xk",
+        "xususiy korxona",
+        "хусусий корхона"
+      ]
+    },
+    {
+      "id": "xt",
+      "generic": null,
+      "phrases": [
+        "xt",
+        "xususiy tadbirkorlik",
+        "хусусий тадбиркорлик"
+      ]
+    },
+    {
+      "id": "yk",
+      "generic": "llc",
+      "phrases": [
+        "yk",
+        "有限会社"
+      ]
+    },
+    {
+      "id": "yoaj",
+      "generic": "jsc",
+      "phrases": [
+        "yoaj",
+        "yopiq aksiyadorlik jamiyati",
+        "епиқ акциядорлик жамияти"
+      ]
+    },
+    {
+      "id": "yu",
+      "generic": "llc",
+      "phrases": [
+        "yu",
+        "yuhanhoesa",
+        "유",
+        "유한회사"
+      ]
+    },
+    {
+      "id": "zao",
+      "generic": "jsc",
+      "phrases": [
+        "zakritoe aktsionernoe obshchestvo",
+        "zakryte akcjonarne obschtschestwo",
+        "zakrytoe akcionernoe obshchestvo",
+        "zakrytoe aktsionernoe obshchestvo",
+        "zakrytoe aktsionernoe obshhestvo",
+        "zakrytoje akcionernoje obshchestvo",
+        "zakrytoye aktsionernoye obshchestvo",
+        "zao"
+      ]
+    },
+    {
+      "id": "zrt",
+      "generic": "jsc",
+      "phrases": [
+        "zartkoeruen mukoedo reszvenytarsasag",
+        "zartkoruen mukodo reszvenytarsasag",
+        "zrt"
+      ]
+    },
+    {
+      "id": "zs",
+      "generic": "ngo",
+      "phrases": [
+        "z s",
+        "zapsany spolek",
+        "zs"
+      ]
+    },
+    {
+      "id": "εpε",
+      "generic": "llc",
+      "phrases": [
+        "ε π ε",
+        "εpε",
+        "εταιρια περιορισμενησ ευθυνησ"
+      ]
+    },
+    {
+      "id": "аат",
+      "generic": "jsc",
+      "phrases": [
+        "aat",
+        "adkritaye aktsiyanernaye tavaristva",
+        "adkrytae akcyyanernae tavarystva",
+        "аат",
+        "адкрытае акцыянернае таварыства"
+      ]
+    },
+    {
+      "id": "ад",
+      "generic": "jsc",
+      "phrases": [
+        "а д",
+        "ад",
+        "акционарско друштво",
+        "акционерно дружество"
+      ]
+    },
+    {
+      "id": "акционерное общество финансово строительная компания",
+      "generic": "jsc",
+      "phrases": [
+        "акционерное общество финансово строительная компания"
+      ]
+    },
+    {
+      "id": "ано",
+      "generic": "ngo",
+      "phrases": [
+        "avtonomnaja nekommerceskaja organizacija",
+        "avtonomnaya nekommercheskaya organizatsiya",
+        "автономная некоммерческая организация",
+        "ано"
+      ]
+    },
+    {
+      "id": "бо",
+      "generic": "ngo",
+      "phrases": [
+        "blagotvoritelnaja organizacija",
+        "blagotvoritelnaya organizatsiya",
+        "blahodiyna orhanizatsiya",
+        "blahodіjna orhanіzacіja",
+        "благодійна організація",
+        "благотворительная организация",
+        "бо"
+      ]
+    },
+    {
+      "id": "бф",
+      "generic": "ngo",
+      "phrases": [
+        "blagotvoritelny fond",
+        "blagotvoritelnyj fond",
+        "blagotvoritelnyy fond",
+        "blahodiynyy fond",
+        "blahodіjnyj fond",
+        "благодійний фонд",
+        "благотворительный фонд",
+        "бф"
+      ]
+    },
+    {
+      "id": "ват",
+      "generic": "jsc",
+      "phrases": [
+        "vidkrite akcionerne tovaristvo",
+        "vidkryte aktsionerne tovarystvo",
+        "в а t",
+        "ват",
+        "відкрите акціонерне товариство"
+      ]
+    },
+    {
+      "id": "во",
+      "generic": "ngo",
+      "phrases": [
+        "volonterska orhanizacija",
+        "volonterska orhanizatsiya",
+        "во",
+        "волонтерська організація"
+      ]
+    },
+    {
+      "id": "га",
+      "generic": "ngo",
+      "phrases": [
+        "hramadskae abjadnanne",
+        "hramadskaja arhanizacyja",
+        "hramadskaya arhanizatsyya",
+        "hramadskaye abyadnanne",
+        "га",
+        "грамадскае абяднанне",
+        "грамадская арганізацыя"
+      ]
+    },
+    {
+      "id": "гаусо",
+      "generic": "soe",
+      "phrases": [
+        "гаусо",
+        "государственное автономное учреждение социального обслуживания"
+      ]
+    },
+    {
+      "id": "гбоу",
+      "generic": "soe",
+      "phrases": [
+        "гбоу",
+        "государственное бюджетное общеобразовательное учреждение"
+      ]
+    },
+    {
+      "id": "гбскоу",
+      "generic": "soe",
+      "phrases": [
+        "гбскоу",
+        "государственное бюджетное специальное коррекционное образовательное учреждение для обучающихся воспитанников с ограниченными возможностями здоровья"
+      ]
+    },
+    {
+      "id": "гдоу",
+      "generic": "soe",
+      "phrases": [
+        "гдоу",
+        "государственное дошкольное образовательное учреждение"
+      ]
+    },
+    {
+      "id": "гдоу д с",
+      "generic": "soe",
+      "phrases": [
+        "гдоу д с",
+        "государственное дошкольное образовательное учреждение детский сад"
+      ]
+    },
+    {
+      "id": "гкоу",
+      "generic": "soe",
+      "phrases": [
+        "гкоу",
+        "государственное казенное образовательное учреждение"
+      ]
+    },
+    {
+      "id": "гкс к оу",
+      "generic": "soe",
+      "phrases": [
+        "гкс к оу",
+        "государственное казенное специальное коррекционное образовательное учреждение"
+      ]
+    },
+    {
+      "id": "гку",
+      "generic": "soe",
+      "phrases": [
+        "гку",
+        "государственное казенное учреждение"
+      ]
+    },
+    {
+      "id": "гну",
+      "generic": "soe",
+      "phrases": [
+        "гну",
+        "государственное научное учреждение"
+      ]
+    },
+    {
+      "id": "го",
+      "generic": "ngo",
+      "phrases": [
+        "hromadska orhanizacija",
+        "hromadska orhanizatsiya",
+        "hromadske objednannja",
+        "hromadske obyednannya",
+        "го",
+        "громадська організація",
+        "громадське обєднання"
+      ]
+    },
+    {
+      "id": "го шк инт",
+      "generic": "soe",
+      "phrases": [
+        "го шк инт",
+        "государственная общеобразовательная школа интернат"
+      ]
+    },
+    {
+      "id": "госнии",
+      "generic": "soe",
+      "phrases": [
+        "госнии",
+        "государственный научно исследовательский институт"
+      ]
+    },
+    {
+      "id": "гоу",
+      "generic": "soe",
+      "phrases": [
+        "государственное образовательное учреждение",
+        "государственное общеобразовательное учреждение",
+        "гоу"
+      ]
+    },
+    {
+      "id": "гоу впо",
+      "generic": "soe",
+      "phrases": [
+        "государственное бюджетное образовательное учреждение высшего профессионального образования",
+        "государственное образовательное учреждение высшего профессионального образования",
+        "гоу впо"
+      ]
+    },
+    {
+      "id": "гоу ддмшв",
+      "generic": "soe",
+      "phrases": [
+        "государственное образовательное учреждение для детей дошкольного и младшего школьного возраста",
+        "гоу ддмшв"
+      ]
+    },
+    {
+      "id": "гоу дпо",
+      "generic": "soe",
+      "phrases": [
+        "государственное образовательное учреждение дополнительного профессионального образования повышения квалификации специалистов",
+        "гоу дпо"
+      ]
+    },
+    {
+      "id": "гп",
+      "generic": "soe",
+      "phrases": [
+        "государственное предприятие",
+        "гп"
+      ]
+    },
+    {
+      "id": "гскоу",
+      "generic": "soe",
+      "phrases": [
+        "государственное специальное коррекционное образовательное учреждение",
+        "государственное специальное коррекционное образовательное учреждение для обучающихся с отклонениями в развитии",
+        "гскоу"
+      ]
+    },
+    {
+      "id": "гу",
+      "generic": "soe",
+      "phrases": [
+        "государственное учреждение",
+        "гу"
+      ]
+    },
+    {
+      "id": "гудп",
+      "generic": "soe",
+      "phrases": [
+        "государственное унитарное дочернее предприятие",
+        "гудп"
+      ]
+    },
+    {
+      "id": "гусп",
+      "generic": "soe",
+      "phrases": [
+        "государственное унитарное сельскохозяйственное предприятие",
+        "гусп"
+      ]
+    },
+    {
+      "id": "д с",
+      "generic": null,
+      "phrases": [
+        "д с",
+        "детский сад"
+      ]
+    },
+    {
+      "id": "да",
+      "generic": "ngo",
+      "phrases": [
+        "dabrachynnaya arhanizatsyya",
+        "dabracynnaja arhanizacyja",
+        "да",
+        "дабрачынная арганізацыя"
+      ]
+    },
+    {
+      "id": "дгуп",
+      "generic": "soe",
+      "phrases": [
+        "дгуп",
+        "дочернее государственное унитарное предприятие",
+        "дочернее государственое унитарное предприятие"
+      ]
+    },
+    {
+      "id": "дззд",
+      "generic": "llc",
+      "phrases": [
+        "druzhestvo uchredeno po zakona za zadalzheniyata i dogovorite",
+        "дззд",
+        "дружество учредено по закона за задълженията и договорите"
+      ]
+    },
+    {
+      "id": "доу",
+      "generic": null,
+      "phrases": [
+        "доу",
+        "дошкольное образовательное учреждение"
+      ]
+    },
+    {
+      "id": "дочернее фгуп",
+      "generic": "soe",
+      "phrases": [
+        "дочернее фгуп",
+        "федеральное дочернее государственное унитарное предприятие"
+      ]
+    },
+    {
+      "id": "дф",
+      "generic": "ngo",
+      "phrases": [
+        "dabrachynny fond",
+        "dabracynny fond",
+        "дабрачынны фонд",
+        "дф"
+      ]
+    },
+    {
+      "id": "еад",
+      "generic": "jsc",
+      "phrases": [
+        "ednolichno aktsionerno druzhestvo",
+        "еад",
+        "еднолично акционерно дружество"
+      ]
+    },
+    {
+      "id": "еоод",
+      "generic": "llc",
+      "phrases": [
+        "ednolichno druzhestvo s ogranichena otgovornost",
+        "еднолично дружество с ограничена отговорност",
+        "еоод"
+      ]
+    },
+    {
+      "id": "ет",
+      "generic": "sp",
+      "phrases": [
+        "ednolichen targovets",
+        "едноличен търговец",
+        "ет"
+      ]
+    },
+    {
+      "id": "зат",
+      "generic": "jsc",
+      "phrases": [
+        "zakritaye aktsiyanernaye tavaristva",
+        "zakrytae akcyyanernae tavarystva",
+        "закрытае акцыянернае таварыства",
+        "зат"
+      ]
+    },
+    {
+      "id": "интервальный комбинированный паевой инвестиционный фонд",
+      "generic": "fin",
+      "phrases": [
+        "birzhevoy paevoy investitsionnyy fond rynochnykh finansovykh instrumentov",
+        "otkrytyy paevoy investitsionnyy fond",
+        "zakrytyy kombinirovannyy paevoy investitsionnyy fond",
+        "биржевой паевой инвестиционный фонд",
+        "биржевой паевой инвестиционный фонд рыночных финансовых инструментов",
+        "закрытый комбинированный паевой инвестиционный фонд",
+        "закрытый паевой инвестиционный фонд",
+        "интервальный комбинированный паевой инвестиционный фонд",
+        "интервальный паевой инвестиционный фонд",
+        "открытый паевой инвестиционный фонд"
+      ]
+    },
+    {
+      "id": "к д",
+      "generic": "lp",
+      "phrases": [
+        "к д",
+        "кд",
+        "командитно дружество",
+        "командитно друштво"
+      ]
+    },
+    {
+      "id": "кб",
+      "generic": "fin",
+      "phrases": [
+        "кб",
+        "коммерческий банк"
+      ]
+    },
+    {
+      "id": "кфх",
+      "generic": null,
+      "phrases": [
+        "крестьянское фермерское хозяйство",
+        "крестьянское хозяйство",
+        "кфх"
+      ]
+    },
+    {
+      "id": "маоу",
+      "generic": "soe",
+      "phrases": [
+        "маоу",
+        "муниципальное автономное общеобразовательное учреждение муниципального образования город краснодар"
+      ]
+    },
+    {
+      "id": "мау",
+      "generic": "soe",
+      "phrases": [
+        "мау",
+        "муниципальное автономное дошкольное образовательное учреждение"
+      ]
+    },
+    {
+      "id": "мбдоу",
+      "generic": "soe",
+      "phrases": [
+        "мбдоу",
+        "муниципальное бюджетное дошкольное образовательное учреждение"
+      ]
+    },
+    {
+      "id": "мбоу",
+      "generic": "soe",
+      "phrases": [
+        "мбоу",
+        "муниципальное бюджетное образовательное учреждение",
+        "муниципальное бюджетное общеобразовательное учреждение",
+        "муниципальное общеобразовательное бюджетное учреждение"
+      ]
+    },
+    {
+      "id": "мбу до",
+      "generic": "soe",
+      "phrases": [
+        "мбу до",
+        "муниципальное бюджетное учреждение дополнительного образования"
+      ]
+    },
+    {
+      "id": "мк доу",
+      "generic": "soe",
+      "phrases": [
+        "мк доу",
+        "муниципальное казенное дошкольное образовательное учреждение"
+      ]
+    },
+    {
+      "id": "мку",
+      "generic": "soe",
+      "phrases": [
+        "мку",
+        "муниципальное казенное учреждение"
+      ]
+    },
+    {
+      "id": "моо",
+      "generic": "ngo",
+      "phrases": [
+        "местная общественная организация",
+        "моо"
+      ]
+    },
+    {
+      "id": "моо ппо",
+      "generic": "ngo",
+      "phrases": [
+        "местная общественная организация первичная профсоюзная организация",
+        "моо ппо"
+      ]
+    },
+    {
+      "id": "моо ппо гуп",
+      "generic": "ngo",
+      "phrases": [
+        "местная общественная организация первичная профсоюзная организация государственного унитарного предприятия",
+        "моо ппо гуп"
+      ]
+    },
+    {
+      "id": "моу",
+      "generic": "soe",
+      "phrases": [
+        "моу",
+        "муниципальное образовательное учреждение"
+      ]
+    },
+    {
+      "id": "мро",
+      "generic": "rel",
+      "phrases": [
+        "местная православная религиозная организация",
+        "местная религиозная организация",
+        "мро"
+      ]
+    },
+    {
+      "id": "мчж",
+      "generic": "llc",
+      "phrases": [
+        "masuliyati cheklangan jamiyat",
+        "mchj",
+        "масъулияти чекланган жамият",
+        "мчж"
+      ]
+    },
+    {
+      "id": "мчс россии",
+      "generic": "soe",
+      "phrases": [
+        "министерства российской федерации по делам гражданской обороны чрезвычайным ситуациям и ликвидации последствий стихийных бедствий",
+        "министерство российской федерации по делам гражданской обороны чрезвчайным ситуациям и ликвидации последствий стихийных бедствий",
+        "министерство российской федерации по делам гражданской обороны чрезвычайным ситуациям и ликвадации последствий стихийных бедствий",
+        "министерство российской федерации по делам гражданской обороны чрезвычайным ситуациям и ликвидации последствий стихийных бедствий",
+        "министерство российской федерации по делам гражданской обороны чрезвычайным ситуациям и ликвидации последствий стихийных бедствийп",
+        "министерство российской федерации по делам гражданской обороны чрезвычайным ситуациям и ликыидации последствий стихийных бедствий",
+        "министерство российской федерации по делам гражданской обороны чрезвычайных ситуаций и ликвидации последствий стихийних бедствий",
+        "министерство российской федерации поделам гражданской обороны чрезвычайным ситуациям и ликвидации последствий сихийных бедствий",
+        "мчс россии"
+      ]
+    },
+    {
+      "id": "нда",
+      "generic": "ngo",
+      "phrases": [
+        "nedzarzaunaja arhanizacyja",
+        "nedziarzhaunaya arhanizatsyya",
+        "nedzjarzhaunaja arhanizacyja",
+        "нда",
+        "недзяржаўная арганізацыя"
+      ]
+    },
+    {
+      "id": "ндо",
+      "generic": "ngo",
+      "phrases": [
+        "nederzavna orhanizacija",
+        "nederzhavna orhanizatsiya",
+        "nekomercіjna orhanіzacіja",
+        "nekomertsiyna orhanizatsiya",
+        "neurjadova orhanizacija",
+        "neuryadova orhanizatsiya",
+        "ндо",
+        "негосударственная некоммерческая организация",
+        "негосударственная организация",
+        "недержавна організація",
+        "некомерційна організація",
+        "неурядова організація",
+        "нуо"
+      ]
+    },
+    {
+      "id": "нко",
+      "generic": "ngo",
+      "phrases": [
+        "nekommercheskaya organizatsiya fond",
+        "некоммерческая организация фонд",
+        "нко"
+      ]
+    },
+    {
+      "id": "но",
+      "generic": "ngo",
+      "phrases": [
+        "nekommerceskaja organizacija",
+        "nekommerceskaya organizatsiya",
+        "nekommercheskaya organizaciya",
+        "nekommercheskaya organizatsiya",
+        "некоммерческая организация",
+        "но"
+      ]
+    },
+    {
+      "id": "ноу дпо",
+      "generic": "ngo",
+      "phrases": [
+        "негосударственное образовательное учреждение дополнительного профессионального образования",
+        "негосударственное образовательное учреждение начального и дополнительного профессионального образования",
+        "негосударственое образовательное учреждение дополнительного профессионального образования повышения квалификации специалистов",
+        "ноу дпо"
+      ]
+    },
+    {
+      "id": "ноудо",
+      "generic": "ngo",
+      "phrases": [
+        "негосударственное образовательное учреждение дополнительного образования",
+        "негосударственное образовательное учреждение дополнительного образования детей",
+        "ноудо"
+      ]
+    },
+    {
+      "id": "ночу дпо",
+      "generic": "soe",
+      "phrases": [
+        "негосударственное образовательное частное учреждение дополнительного профессионального образования",
+        "ночу дпо"
+      ]
+    },
+    {
+      "id": "нп",
+      "generic": "ngo",
+      "phrases": [
+        "некоммерческое партнерство",
+        "нп"
+      ]
+    },
+    {
+      "id": "нц",
+      "generic": null,
+      "phrases": [
+        "научный центр",
+        "нц"
+      ]
+    },
+    {
+      "id": "обо",
+      "generic": "ngo",
+      "phrases": [
+        "областная общественная организация",
+        "обо"
+      ]
+    },
+    {
+      "id": "огкоу",
+      "generic": "soe",
+      "phrases": [
+        "областное государственное казенное образовательное учреждение",
+        "областное государственное казенное общеобразовательное учреждение",
+        "огкоу"
+      ]
+    },
+    {
+      "id": "огу",
+      "generic": "soe",
+      "phrases": [
+        "огу",
+        "окружное государственное учреждение"
+      ]
+    },
+    {
+      "id": "одо",
+      "generic": "llc",
+      "phrases": [
+        "obshchestvo s dopolnitelnoj otvetstvennostyu",
+        "общество с дополнительной ответственностью",
+        "одо"
+      ]
+    },
+    {
+      "id": "оносс",
+      "generic": "ngo",
+      "phrases": [
+        "оносс",
+        "организация научного обслуживания и социальной сферы"
+      ]
+    },
+    {
+      "id": "оо",
+      "generic": "ngo",
+      "phrases": [
+        "obscestvennaja organizacija",
+        "obscestvennoe obedinenie",
+        "obschestvennaya organizatsiya",
+        "obschestvennoe obyedinenie",
+        "obshchestvennaya organizatsiya",
+        "obshchestvennoye obyedineniye",
+        "общественная организация",
+        "общественное объединение",
+        "оо"
+      ]
+    },
+    {
+      "id": "ооп",
+      "generic": "llp",
+      "phrases": [
+        "ооп",
+        "партнерство с ограниченной ответственностью"
+      ]
+    },
+    {
+      "id": "оппо",
+      "generic": "soe",
+      "phrases": [
+        "объединенная первичная профсоюзная организация",
+        "объединенная территориальная профсоюзная организация",
+        "оппо"
+      ]
+    },
+    {
+      "id": "отдел гпс",
+      "generic": "soe",
+      "phrases": [
+        "отдел государственной противопожарной службы",
+        "отдел гпс"
+      ]
+    },
+    {
+      "id": "оу дпо",
+      "generic": "soe",
+      "phrases": [
+        "образовательное учреждение дополнительного профессионального образования",
+        "оу дпо"
+      ]
+    },
+    {
+      "id": "оф",
+      "generic": "ngo",
+      "phrases": [
+        "obscestvennyj fond",
+        "obshchestvennyy fond",
+        "общественный фонд",
+        "оф"
+      ]
+    },
+    {
+      "id": "оюл",
+      "generic": null,
+      "phrases": [
+        "объединение юридических лиц",
+        "оюл"
+      ]
+    },
+    {
+      "id": "пк",
+      "generic": "coop",
+      "phrases": [
+        "пк",
+        "производственный кооператив"
+      ]
+    },
+    {
+      "id": "пкооп",
+      "generic": "coop",
+      "phrases": [
+        "пкооп",
+        "потребительский кооператив"
+      ]
+    },
+    {
+      "id": "поп обгуз",
+      "generic": null,
+      "phrases": [
+        "первичная организация профсоюза областного бюджетного учреждения здравоохранения",
+        "поп обгуз"
+      ]
+    },
+    {
+      "id": "попрз",
+      "generic": null,
+      "phrases": [
+        "первичная организация профсоюза работников здравоохранения",
+        "попрз"
+      ]
+    },
+    {
+      "id": "поу",
+      "generic": "soe",
+      "phrases": [
+        "поу",
+        "профессиональное образовательное учреждение"
+      ]
+    },
+    {
+      "id": "пп",
+      "generic": "sp",
+      "phrases": [
+        "пп",
+        "приватне підприємство"
+      ]
+    },
+    {
+      "id": "ппо",
+      "generic": "soe",
+      "phrases": [
+        "первичная профсоюзная организация",
+        "ппо",
+        "профсоюзная организация работников"
+      ]
+    },
+    {
+      "id": "ппо гбоу",
+      "generic": "soe",
+      "phrases": [
+        "первичная профсоюзная организация государственного бюджетного образовательного учреждения",
+        "ппо гбоу"
+      ]
+    },
+    {
+      "id": "ппо гбу",
+      "generic": "soe",
+      "phrases": [
+        "первичная профсоюзная организация государственного бюджетного учреждения",
+        "первичная профсоюзная организация государственное бюджетное учреждение",
+        "ппо гбу"
+      ]
+    },
+    {
+      "id": "ппо гоуспо",
+      "generic": "soe",
+      "phrases": [
+        "первичная профсоюзная организация государственного образовательного учреждения среднего профессионального образования",
+        "первичная профсоюзная организация государственного учреждения среднего профессионального образования",
+        "ппо гоуспо"
+      ]
+    },
+    {
+      "id": "ппо гуп",
+      "generic": "soe",
+      "phrases": [
+        "первичная профсоюзная организация государственного унитарного предприятия",
+        "ппо гуп"
+      ]
+    },
+    {
+      "id": "ппо дочернего ооо",
+      "generic": "soe",
+      "phrases": [
+        "первичная профсоюзная организация работников дочернего общества с ограниченой ответственностью",
+        "ппо дочернего ооо"
+      ]
+    },
+    {
+      "id": "ппо оао",
+      "generic": "soe",
+      "phrases": [
+        "первичная профсоюзная организация открытого акционерного общества",
+        "первичная профсоюзная организация работников открытого акционерного общества",
+        "ппо оао"
+      ]
+    },
+    {
+      "id": "ппо ооо",
+      "generic": "soe",
+      "phrases": [
+        "первичная профсоюзная организация общества с ограниченной ответственностью",
+        "ппо ооо"
+      ]
+    },
+    {
+      "id": "ппо псрз",
+      "generic": "soe",
+      "phrases": [
+        "первичная организация профессионального союза работников здравоохранения",
+        "первичная профсоюзная организация профессионального союза работников здравоохранения",
+        "первичная профсоюзная организация профсоюза работников здравоохранения",
+        "ппо псрз"
+      ]
+    },
+    {
+      "id": "ппо фбу",
+      "generic": "soe",
+      "phrases": [
+        "первичная профсоюзная организация федерального бюджетного учреждения",
+        "ппо фбу"
+      ]
+    },
+    {
+      "id": "ппо фгбоу во",
+      "generic": "soe",
+      "phrases": [
+        "первичная организация профсоюза сотрудников федерального государственного бюджетного образовательного учреждения высшего образования",
+        "первичная профсоюзная организация федерального государственного бюджетного образовательного учреждения высшего образования",
+        "ппо фгбоу во"
+      ]
+    },
+    {
+      "id": "ппо фгбу",
+      "generic": "soe",
+      "phrases": [
+        "первичная профсоюзная организация федерального государственного бюджетного учреждения",
+        "ппо фгбу"
+      ]
+    },
+    {
+      "id": "ппо фгуп",
+      "generic": "soe",
+      "phrases": [
+        "первичная профсоюзная организация сотрудников федерального государственного унитарного предприятия",
+        "ппо фгуп"
+      ]
+    },
+    {
+      "id": "ппо фку",
+      "generic": "soe",
+      "phrases": [
+        "первичная профсоюзная организация федерального казенного учреждения",
+        "ппо фку"
+      ]
+    },
+    {
+      "id": "ппоо",
+      "generic": "soe",
+      "phrases": [
+        "первичная профсоюзная общественная организация",
+        "ппоо"
+      ]
+    },
+    {
+      "id": "ппоо ао",
+      "generic": "soe",
+      "phrases": [
+        "первичная профсоюзная общественная организация акционерного общества",
+        "ппоо ао"
+      ]
+    },
+    {
+      "id": "пт",
+      "generic": "gp",
+      "phrases": [
+        "полное товарищество",
+        "пт"
+      ]
+    },
+    {
+      "id": "ро",
+      "generic": "rel",
+      "phrases": [
+        "религиозная организация",
+        "ро"
+      ]
+    },
+    {
+      "id": "спк",
+      "generic": "coop",
+      "phrases": [
+        "сельскохозяйственный производственный кооператив",
+        "спк"
+      ]
+    },
+    {
+      "id": "су ск рф",
+      "generic": "soe",
+      "phrases": [
+        "следственное управление следственного комитета российской федерации",
+        "су ск рф"
+      ]
+    },
+    {
+      "id": "таа",
+      "generic": "llc",
+      "phrases": [
+        "tavarystva z abmezhavanaj adkaznascyu",
+        "tavarystva z abmezhavanay adkaznastsyu",
+        "таа",
+        "таварыства з абмежаванай адказнасцю"
+      ]
+    },
+    {
+      "id": "тбб",
+      "generic": "ngo",
+      "phrases": [
+        "тбб",
+        "төрийн бус байгууллага"
+      ]
+    },
+    {
+      "id": "тда",
+      "generic": "llc",
+      "phrases": [
+        "tavarystva z dadatkovaj adkaznascyu",
+        "таварыства з дадатковай адказнасцю",
+        "тда"
+      ]
+    },
+    {
+      "id": "тоо",
+      "generic": "llp",
+      "phrases": [
+        "товарищество с ограниченной ответственностью",
+        "тоо"
+      ]
+    },
+    {
+      "id": "тсж",
+      "generic": null,
+      "phrases": [
+        "товарищество собственников жилья",
+        "товарищество собственников недвижимости",
+        "тсж"
+      ]
+    },
+    {
+      "id": "управление фсб рф",
+      "generic": "soe",
+      "phrases": [
+        "управление федеральной службы безопасности российской федерации",
+        "управление фсб рф"
+      ]
+    },
+    {
+      "id": "фгаоу во",
+      "generic": "soe",
+      "phrases": [
+        "фгаоу во",
+        "федеральное государственное автономное образовательное учреждение высшего образования"
+      ]
+    },
+    {
+      "id": "фгаоу дпо",
+      "generic": "soe",
+      "phrases": [
+        "фгаоу дпо",
+        "федеральное государственное автономное образовательное учреждение дополнительного профессионального образования"
+      ]
+    },
+    {
+      "id": "фгбвоу во",
+      "generic": "soe",
+      "phrases": [
+        "фгбвоу во",
+        "федеральное государственное бюджетное военное образовательное учреждение высшего образования"
+      ]
+    },
+    {
+      "id": "фгбдоу",
+      "generic": "soe",
+      "phrases": [
+        "фгбдоу",
+        "федеральное государственное бюджетное дошкольное образовательное учреждение"
+      ]
+    },
+    {
+      "id": "фгбоу во",
+      "generic": "soe",
+      "phrases": [
+        "фгбоу во",
+        "федеральное государственное бюджетное образовательное учреждение высшего образования",
+        "федеральное государственное бюджетное образовательное учреждение высшего профессионального образования"
+      ]
+    },
+    {
+      "id": "фгбоу дпо",
+      "generic": "soe",
+      "phrases": [
+        "фгбоу дпо",
+        "федеральное государственное бюджетное образовательное учреждение дополнительного профессионального образования"
+      ]
+    },
+    {
+      "id": "фгбу дпо",
+      "generic": "soe",
+      "phrases": [
+        "фгбу дпо",
+        "федеральное государственное бюджетное учреждение дополнительного профессионального образования"
+      ]
+    },
+    {
+      "id": "фгдоу",
+      "generic": "soe",
+      "phrases": [
+        "фгдоу",
+        "федеральное государственное дошкольное образовательное учреждение"
+      ]
+    },
+    {
+      "id": "фгквоу во",
+      "generic": "soe",
+      "phrases": [
+        "фгквоу",
+        "фгквоу во",
+        "федеральное государственное казенное военное образовательное учреждение высшего образования"
+      ]
+    },
+    {
+      "id": "фгквоу впо",
+      "generic": "soe",
+      "phrases": [
+        "фгквоу впо",
+        "федеральное государственное казенное военное образовательное учреждение высшего профессионального образования"
+      ]
+    },
+    {
+      "id": "фгкоу дпо",
+      "generic": "soe",
+      "phrases": [
+        "фгкоу дпо",
+        "федеральное государственное казенное образовательное учреждение дополнительного профессионального образования переподготовки и повышения квалификации"
+      ]
+    },
+    {
+      "id": "фгку",
+      "generic": "soe",
+      "phrases": [
+        "фгку",
+        "федеральное государственное казенное учреждение"
+      ]
+    },
+    {
+      "id": "фгну",
+      "generic": "soe",
+      "phrases": [
+        "фгну",
+        "федеральное государственное научное учреждение"
+      ]
+    },
+    {
+      "id": "фгоу впо",
+      "generic": "soe",
+      "phrases": [
+        "фгоу впо",
+        "федеральное государственное образовательное учреждение высшего профессионального образования"
+      ]
+    },
+    {
+      "id": "фгоу дпо",
+      "generic": "soe",
+      "phrases": [
+        "фгоу дпо",
+        "федеральное государственное образовательное учреждение дополнительного профессионального образования специалистов"
+      ]
+    },
+    {
+      "id": "фгу",
+      "generic": "soe",
+      "phrases": [
+        "фгу",
+        "федеральное государственное учреждение"
+      ]
+    },
+    {
+      "id": "фкп",
+      "generic": "soe",
+      "phrases": [
+        "федеральное казенное предприятие",
+        "фкп"
+      ]
+    },
+    {
+      "id": "фку",
+      "generic": "soe",
+      "phrases": [
+        "федеральное казенное учреждение",
+        "фку"
+      ]
+    },
+    {
+      "id": "хк",
+      "generic": "jsc",
+      "phrases": [
+        "хк",
+        "хувьцаат компани"
+      ]
+    },
+    {
+      "id": "ххк",
+      "generic": "llc",
+      "phrases": [
+        "ххк",
+        "хязгаарлагдмал хариуцлагатай компани"
+      ]
+    },
+    {
+      "id": "цро",
+      "generic": "rel",
+      "phrases": [
+        "центральная религиозная организация",
+        "цро"
+      ]
+    },
+    {
+      "id": "јп",
+      "generic": "soe",
+      "phrases": [
+        "javno preduzece",
+        "ј п",
+        "јавно предузеће",
+        "јп"
+      ]
+    },
+    {
+      "id": "სს",
+      "generic": "jsc",
+      "phrases": [
+        "დახურული სააქციო საზოგადოება",
+        "სააქციო საზოგადოება",
+        "სს"
+      ]
+    },
+    {
+      "id": "შპს",
+      "generic": "llc",
+      "phrases": [
+        "შეზღუდული პასუხისმგებლობის საზოგადოება",
+        "შპს"
+      ]
+    },
+    {
+      "id": "ሃላፊነቱ የተወሰነ የግል ማህበር",
+      "generic": "jsc",
+      "phrases": [
+        "ሃላፊነቱ የተወሰነ የግል ማህበር",
+        "股份公司",
+        "股份有限公司"
+      ]
+    },
+    {
+      "id": "ህብረት ስራ ማህበራት",
+      "generic": "coop",
+      "phrases": [
+        "ህብረት ስራ ማህበራት"
+      ]
+    },
+    {
+      "id": "合名会社",
+      "generic": "gp",
+      "phrases": [
+        "合名会社"
+      ]
+    },
+    {
+      "id": "合資会社",
+      "generic": "lp",
+      "phrases": [
+        "合資会社"
+      ]
+    },
+    {
+      "id": "株式会社",
+      "generic": "jsc",
+      "phrases": [
+        "株式会社"
+      ]
+    }
+  ]
+}

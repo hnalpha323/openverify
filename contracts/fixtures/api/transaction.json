@@ -1,0 +1,74 @@
+{
+  "data": {
+    "type": "transaction",
+    "id": "txn_01M5CK3190XEVBM5ZXA76E1JSN",
+    "attributes": {
+      "status": "approved",
+      "reference-id": "ref-test-001",
+      "fields": {
+        "order_id": {
+          "type": "string",
+          "value": "synthetic-order-0001"
+        },
+        "amount": {
+          "type": "number",
+          "value": 12.5
+        },
+        "payment_method": {
+          "type": "hash",
+          "value": {
+            "processor_token": "tok_synthetic"
+          }
+        },
+        "invoice": {
+          "type": "file",
+          "value": {
+            "file-id": "txnf_01M5CK3190XEVBM5ZXA76E1JSN",
+            "filename": "synthetic-invoice.pdf",
+            "byte-size": 1024,
+            "mime-type": "application/pdf"
+          }
+        }
+      },
+      "tags": ["synthetic"],
+      "signals": null,
+      "created-at": "2026-10-31T12:00:00.000Z",
+      "updated-at": "2026-10-31T12:00:00.000Z",
+      "transaction-type-version-id": "txntpv_01M5CK3190XEVBM5ZXA76E1JSN",
+      "redacted-at": null,
+      "biometrics-redacted-at": null
+    },
+    "relationships": {
+      "transaction-type": {
+        "data": {
+          "type": "transaction-type",
+          "id": "txntp_01M5CK3190XEVBM5ZXA76E1JSN"
+        }
+      },
+      "transaction-label": {
+        "data": {
+          "type": "transaction-label",
+          "id": "txnl_01M5CK3190XEVBM5ZXA76E1JSN"
+        }
+      },
+      "reviewer": {
+        "data": null
+      },
+      "related-objects": {
+        "data": [
+          {
+            "type": "account",
+            "id": "acc_01M5CK3190XEVBM5ZXA76E1JSN"
+          },
+          {
+            "type": "inquiry",
+            "id": "inq_01M5CK3190XEVBM5ZXA76E1JSN"
+          }
+        ]
+      },
+      "sentinel-sessions": {
+        "data": []
+      }
+    }
+  }
+}

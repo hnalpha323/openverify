@@ -1,0 +1,17 @@
+{
+  "data": [
+    {
+      "row": 3,
+      "column": "value",
+      "code": "invalid_value"
+    },
+    {
+      "row": null,
+      "column": null,
+      "code": "row_limit_exceeded"
+    }
+  ],
+  "links": {
+    "next": null
+  }
+}

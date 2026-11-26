@@ -1,0 +1,650 @@
+{
+  "description": "OpenVerify free-mail domains (plan C82.1): consumer mailbox domains anyone can sign up for free, grouped by provider, each provider citing its own page. A domain here sets email-is-free-provider (informational, never the band), is not aged by RDAP and is never read as a typo; typo-references are the domains a custom domain one edit away is read as a typo of (C82.1, research §1.7). Authored by risk-logic (Workflow 6A Stage 2); every domain had MX records at its provider (mx, a host-name suffix) when observed.",
+  "licence": "Authored by OpenVerify (Apache-2.0, as the repository); domain and provider names are facts, each provider cited at its own page.",
+  "observed": "2026-10-27",
+  "providers": [
+    {
+      "id": "google",
+      "name": "Gmail",
+      "source": "https://mail.google.com/",
+      "mx": "google.com",
+      "domains": [
+        "gmail.com",
+        "googlemail.com"
+      ],
+      "typo-references": [
+        "gmail.com",
+        "googlemail.com"
+      ]
+    },
+    {
+      "id": "microsoft",
+      "name": "Outlook.com",
+      "source": "https://outlook.live.com/",
+      "mx": "olc.protection.outlook.com",
+      "domains": [
+        "outlook.com",
+        "hotmail.com",
+        "live.com",
+        "msn.com",
+        "passport.com",
+        "windowslive.com",
+        "hotmail.co.uk",
+        "hotmail.fr",
+        "hotmail.de",
+        "hotmail.it",
+        "hotmail.es",
+        "hotmail.be",
+        "hotmail.nl",
+        "hotmail.se",
+        "hotmail.dk",
+        "hotmail.no",
+        "hotmail.fi",
+        "hotmail.gr",
+        "hotmail.ca",
+        "hotmail.com.au",
+        "hotmail.com.br",
+        "hotmail.com.ar",
+        "hotmail.co.jp",
+        "hotmail.co.in",
+        "hotmail.ch",
+        "hotmail.at",
+        "hotmail.cz",
+        "hotmail.sk",
+        "hotmail.hu",
+        "hotmail.com.tr",
+        "hotmail.co.za",
+        "hotmail.co.nz",
+        "hotmail.my",
+        "hotmail.ph",
+        "hotmail.sg",
+        "hotmail.co.th",
+        "live.co.uk",
+        "live.fr",
+        "live.de",
+        "live.it",
+        "live.nl",
+        "live.be",
+        "live.se",
+        "live.dk",
+        "live.no",
+        "live.ca",
+        "live.com.au",
+        "live.com.mx",
+        "live.com.ar",
+        "live.cl",
+        "live.ie",
+        "live.at",
+        "live.ch",
+        "live.ru",
+        "live.cn",
+        "live.co.za",
+        "live.co.kr",
+        "outlook.fr",
+        "outlook.de",
+        "outlook.es",
+        "outlook.it",
+        "outlook.com.br",
+        "outlook.jp",
+        "outlook.com.au",
+        "outlook.in",
+        "outlook.cl",
+        "outlook.com.ar",
+        "outlook.sa",
+        "outlook.be",
+        "outlook.dk",
+        "outlook.ie",
+        "outlook.pt",
+        "outlook.com.gr",
+        "outlook.at",
+        "outlook.kr",
+        "outlook.ph",
+        "outlook.my",
+        "outlook.sg",
+        "outlook.com.vn",
+        "outlook.co.id",
+        "outlook.co.th",
+        "outlook.cz",
+        "outlook.hu",
+        "outlook.lv",
+        "outlook.co.il"
+      ],
+      "typo-references": [
+        "hotmail.com",
+        "outlook.com",
+        "hotmail.co.uk",
+        "hotmail.fr",
+        "hotmail.de",
+        "hotmail.it",
+        "hotmail.es",
+        "outlook.fr",
+        "outlook.de"
+      ]
+    },
+    {
+      "id": "yahoo",
+      "name": "Yahoo Mail",
+      "source": "https://mail.yahoo.com/",
+      "mx": "yahoodns.net",
+      "domains": [
+        "yahoo.com",
+        "ymail.com",
+        "rocketmail.com",
+        "yahoo.co.uk",
+        "yahoo.fr",
+        "yahoo.de",
+        "yahoo.it",
+        "yahoo.es",
+        "yahoo.ca",
+        "yahoo.com.au",
+        "yahoo.com.br",
+        "yahoo.com.ar",
+        "yahoo.com.mx",
+        "yahoo.co.in",
+        "yahoo.in",
+        "yahoo.co.id",
+        "yahoo.com.sg",
+        "yahoo.com.hk",
+        "yahoo.com.tw",
+        "yahoo.com.ph",
+        "yahoo.com.vn",
+        "yahoo.co.nz",
+        "yahoo.co.za",
+        "yahoo.com.my",
+        "yahoo.gr",
+        "yahoo.se",
+        "yahoo.dk",
+        "yahoo.no",
+        "yahoo.ie",
+        "yahoo.at",
+        "yahoo.be",
+        "yahoo.pl",
+        "yahoo.ro",
+        "yahoo.co.th",
+        "yahoo.com.tr",
+        "yahoo.cl",
+        "yahoo.com.co",
+        "yahoo.com.pe",
+        "yahoo.com.ve"
+      ],
+      "typo-references": [
+        "yahoo.com",
+        "ymail.com",
+        "rocketmail.com",
+        "yahoo.co.uk",
+        "yahoo.fr",
+        "yahoo.de",
+        "yahoo.it",
+        "yahoo.es"
+      ]
+    },
+    {
+      "id": "aol",
+      "name": "AOL Mail",
+      "source": "https://mail.aol.com/",
+      "mx": "yahoodns.net",
+      "domains": [
+        "aol.com",
+        "aim.com",
+        "aol.co.uk",
+        "aol.fr",
+        "aol.de",
+        "aol.it",
+        "wow.com",
+        "ygm.com"
+      ],
+      "typo-references": []
+    },
+    {
+      "id": "apple",
+      "name": "iCloud Mail",
+      "source": "https://www.icloud.com/mail/",
+      "mx": "mail.icloud.com",
+      "domains": [
+        "icloud.com",
+        "me.com",
+        "mac.com"
+      ],
+      "typo-references": [
+        "icloud.com"
+      ]
+    },
+    {
+      "id": "proton",
+      "name": "Proton Mail",
+      "source": "https://proton.me/mail",
+      "mx": "protonmail.ch",
+      "domains": [
+        "proton.me",
+        "protonmail.com",
+        "protonmail.ch",
+        "pm.me"
+      ],
+      "typo-references": [
+        "protonmail.com"
+      ]
+    },
+    {
+      "id": "tuta",
+      "name": "Tuta Mail",
+      "source": "https://tuta.com/",
+      "mx": "tutanota.de",
+      "domains": [
+        "tuta.com",
+        "tutanota.com",
+        "tutanota.de",
+        "tutamail.com",
+        "tuta.io",
+        "keemail.me"
+      ],
+      "typo-references": [
+        "tutanota.com"
+      ]
+    },
+    {
+      "id": "zoho",
+      "name": "Zoho Mail",
+      "source": "https://www.zoho.com/mail/",
+      "mx": "zoho.com",
+      "domains": [
+        "zohomail.com",
+        "zohomail.in",
+        "zohomail.eu"
+      ],
+      "typo-references": [
+        "zohomail.com"
+      ]
+    },
+    {
+      "id": "gmx",
+      "name": "GMX",
+      "source": "https://www.gmx.net/",
+      "mx": "gmx.net",
+      "domains": [
+        "gmx.net",
+        "gmx.de",
+        "gmx.at",
+        "gmx.ch",
+        "gmx.com",
+        "gmx.us",
+        "gmx.co.uk",
+        "gmx.fr",
+        "gmx.es",
+        "gmx.ca",
+        "gmx.it"
+      ],
+      "typo-references": []
+    },
+    {
+      "id": "web-de",
+      "name": "WEB.DE",
+      "source": "https://web.de/",
+      "mx": "web.de",
+      "domains": [
+        "web.de"
+      ],
+      "typo-references": []
+    },
+    {
+      "id": "mail-com",
+      "name": "mail.com",
+      "source": "https://www.mail.com/",
+      "mx": "mail.com",
+      "domains": [
+        "mail.com",
+        "email.com",
+        "usa.com",
+        "post.com",
+        "europe.com",
+        "asia.com",
+        "iname.com",
+        "writeme.com",
+        "dr.com",
+        "engineer.com",
+        "cheerful.com",
+        "accountant.com",
+        "techie.com",
+        "consultant.com",
+        "myself.com"
+      ],
+      "typo-references": []
+    },
+    {
+      "id": "yandex",
+      "name": "Yandex Mail",
+      "source": "https://mail.yandex.com/",
+      "mx": "yandex.ru",
+      "domains": [
+        "yandex.ru",
+        "yandex.com",
+        "ya.ru",
+        "yandex.by",
+        "yandex.kz"
+      ],
+      "typo-references": [
+        "yandex.ru",
+        "yandex.com"
+      ]
+    },
+    {
+      "id": "mail-ru",
+      "name": "Mail.ru",
+      "source": "https://mail.ru/",
+      "mx": "mail.ru",
+      "domains": [
+        "mail.ru",
+        "inbox.ru",
+        "list.ru",
+        "bk.ru",
+        "internet.ru"
+      ],
+      "typo-references": []
+    },
+    {
+      "id": "rambler",
+      "name": "Rambler Mail",
+      "source": "https://mail.rambler.ru/",
+      "mx": "rambler.ru",
+      "domains": [
+        "rambler.ru",
+        "ro.ru",
+        "autorambler.ru",
+        "myrambler.ru"
+      ],
+      "typo-references": []
+    },
+    {
+      "id": "tencent",
+      "name": "QQ Mail",
+      "source": "https://mail.qq.com/",
+      "mx": "qq.com",
+      "domains": [
+        "qq.com",
+        "foxmail.com"
+      ],
+      "typo-references": [
+        "foxmail.com"
+      ]
+    },
+    {
+      "id": "netease",
+      "name": "NetEase Mail",
+      "source": "https://mail.163.com/",
+      "mx": "mxmail.netease.com",
+      "domains": [
+        "163.com",
+        "126.com",
+        "yeah.net"
+      ],
+      "typo-references": []
+    },
+    {
+      "id": "sina",
+      "name": "Sina Mail",
+      "source": "https://mail.sina.com.cn/",
+      "mx": "sinamail.sina.com.cn",
+      "domains": [
+        "sina.com",
+        "sina.cn",
+        "sina.com.cn"
+      ],
+      "typo-references": []
+    },
+    {
+      "id": "sohu",
+      "name": "Sohu Mail",
+      "source": "https://mail.sohu.com/",
+      "mx": "sohu.com",
+      "domains": [
+        "sohu.com"
+      ],
+      "typo-references": []
+    },
+    {
+      "id": "aliyun",
+      "name": "Aliyun Mail",
+      "source": "https://mail.aliyun.com/",
+      "mx": "mail.aliyun.com",
+      "domains": [
+        "aliyun.com"
+      ],
+      "typo-references": [
+        "aliyun.com"
+      ]
+    },
+    {
+      "id": "naver",
+      "name": "Naver Mail",
+      "source": "https://mail.naver.com/",
+      "mx": "mail.naver.com",
+      "domains": [
+        "naver.com"
+      ],
+      "typo-references": []
+    },
+    {
+      "id": "kakao",
+      "name": "Daum Mail",
+      "source": "https://mail.daum.net/",
+      "mx": "hanmail.net",
+      "domains": [
+        "daum.net",
+        "hanmail.net",
+        "kakao.com"
+      ],
+      "typo-references": [
+        "hanmail.net"
+      ]
+    },
+    {
+      "id": "yahoo-japan",
+      "name": "Yahoo! JAPAN Mail",
+      "source": "https://mail.yahoo.co.jp/",
+      "mx": "mail.yahoo.co.jp",
+      "domains": [
+        "yahoo.co.jp"
+      ],
+      "typo-references": []
+    },
+    {
+      "id": "rediff",
+      "name": "Rediffmail",
+      "source": "https://mail.rediff.com/",
+      "mx": "rediff.akadns.net",
+      "domains": [
+        "rediffmail.com"
+      ],
+      "typo-references": [
+        "rediffmail.com"
+      ]
+    },
+    {
+      "id": "seznam",
+      "name": "Seznam Email",
+      "source": "https://email.seznam.cz/",
+      "mx": "seznam.cz",
+      "domains": [
+        "seznam.cz",
+        "email.cz",
+        "post.cz",
+        "spoluzaci.cz"
+      ],
+      "typo-references": [
+        "seznam.cz"
+      ]
+    },
+    {
+      "id": "wp",
+      "name": "WP Poczta",
+      "source": "https://poczta.wp.pl/",
+      "mx": "wp.pl",
+      "domains": [
+        "wp.pl"
+      ],
+      "typo-references": []
+    },
+    {
+      "id": "o2-pl",
+      "name": "o2 Poczta",
+      "source": "https://poczta.o2.pl/",
+      "mx": "tlen.pl",
+      "domains": [
+        "o2.pl",
+        "tlen.pl",
+        "go2.pl"
+      ],
+      "typo-references": []
+    },
+    {
+      "id": "onet",
+      "name": "Onet Poczta",
+      "source": "https://poczta.onet.pl/",
+      "mx": "poczta.onet.pl",
+      "domains": [
+        "onet.pl",
+        "op.pl",
+        "onet.eu",
+        "vp.pl"
+      ],
+      "typo-references": []
+    },
+    {
+      "id": "interia",
+      "name": "Interia Poczta",
+      "source": "https://poczta.interia.pl/",
+      "mx": "interia.pl",
+      "domains": [
+        "interia.pl",
+        "interia.eu",
+        "poczta.fm"
+      ],
+      "typo-references": [
+        "interia.pl"
+      ]
+    },
+    {
+      "id": "libero",
+      "name": "Libero Mail",
+      "source": "https://mail.libero.it/",
+      "mx": "libero.it",
+      "domains": [
+        "libero.it",
+        "inwind.it",
+        "iol.it",
+        "blu.it",
+        "giallo.it"
+      ],
+      "typo-references": [
+        "libero.it"
+      ]
+    },
+    {
+      "id": "virgilio",
+      "name": "Virgilio Mail",
+      "source": "https://mail.virgilio.it/",
+      "mx": "virgilio.it",
+      "domains": [
+        "virgilio.it"
+      ],
+      "typo-references": [
+        "virgilio.it"
+      ]
+    },
+    {
+      "id": "laposte",
+      "name": "La Poste Mail",
+      "source": "https://www.laposte.net/",
+      "mx": "laposte.net",
+      "domains": [
+        "laposte.net"
+      ],
+      "typo-references": [
+        "laposte.net"
+      ]
+    },
+    {
+      "id": "t-online",
+      "name": "t-online.de FreeMail",
+      "source": "https://email.t-online.de/",
+      "mx": "t-online.de",
+      "domains": [
+        "t-online.de"
+      ],
+      "typo-references": []
+    },
+    {
+      "id": "freenet",
+      "name": "freenet Mail",
+      "source": "https://email.freenet.de/",
+      "mx": "freenet.de",
+      "domains": [
+        "freenet.de"
+      ],
+      "typo-references": [
+        "freenet.de"
+      ]
+    },
+    {
+      "id": "abv",
+      "name": "ABV Mail",
+      "source": "https://www.abv.bg/",
+      "mx": "abv.bg",
+      "domains": [
+        "abv.bg"
+      ],
+      "typo-references": []
+    },
+    {
+      "id": "inbox-lv",
+      "name": "Inbox.lv",
+      "source": "https://www.inbox.lv/",
+      "mx": "inbox.lv",
+      "domains": [
+        "inbox.lv"
+      ],
+      "typo-references": []
+    },
+    {
+      "id": "inbox-lt",
+      "name": "Inbox.lt",
+      "source": "https://www.inbox.lt/",
+      "mx": "inbox.eu",
+      "domains": [
+        "inbox.lt"
+      ],
+      "typo-references": []
+    },
+    {
+      "id": "ukr-net",
+      "name": "UKR.NET Mail",
+      "source": "https://mail.ukr.net/",
+      "mx": "ukr.net",
+      "domains": [
+        "ukr.net"
+      ],
+      "typo-references": []
+    },
+    {
+      "id": "bol",
+      "name": "BOL Mail",
+      "source": "https://www.bol.uol.com.br/",
+      "mx": "bol.com.br",
+      "domains": [
+        "bol.com.br"
+      ],
+      "typo-references": []
+    },
+    {
+      "id": "mailfence",
+      "name": "Mailfence",
+      "source": "https://mailfence.com/",
+      "mx": "mailfence.com",
+      "domains": [
+        "mailfence.com"
+      ],
+      "typo-references": [
+        "mailfence.com"
+      ]
+    }
+  ]
+}

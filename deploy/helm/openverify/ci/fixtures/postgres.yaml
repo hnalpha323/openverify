@@ -1,0 +1,96 @@
+# kind.sh fixtures (Workflow 11C chart-policy-11c; C265.4, C249.3): PostgreSQL 17 with pgvector, a
+# plain manifest with the image pinned by digest (no subchart). Its first start creates the two roles
+# of 11B's split: openverify_migrator, which owns the database and its public schema and runs the
+# migrate hook, and openverify_runtime, the API's and the worker's role, which owns nothing and gets
+# its rights from db:grant-runtime. Superuser-only extensions are created here, as a managed server's
+# operator would; the migrations' own CREATE EXTENSION IF NOT EXISTS then finds them. Passwords come
+# from the Secret openverify-ci-postgres-auth, which kind.sh fixtures generates at random per run.
+# The data lives in an emptyDir: the cluster is deleted at the end of every run.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-init
+  namespace: openverify-fixtures
+data:
+  10-roles.sh: |
+    #!/bin/sh
+    set -eu
+    psql -v ON_ERROR_STOP=1 --username postgres --dbname postgres \
+      -v migrator="$MIGRATOR_PASSWORD" -v runtime="$RUNTIME_PASSWORD" <<'SQL'
+    CREATE ROLE openverify_migrator LOGIN PASSWORD :'migrator';
+    CREATE ROLE openverify_runtime LOGIN PASSWORD :'runtime';
+    CREATE DATABASE openverify OWNER openverify_migrator;
+    SQL
+    psql -v ON_ERROR_STOP=1 --username postgres --dbname openverify <<'SQL'
+    ALTER SCHEMA public OWNER TO openverify_migrator;
+    CREATE EXTENSION IF NOT EXISTS vector;
+    CREATE EXTENSION IF NOT EXISTS pg_trgm;
+    SQL
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  namespace: openverify-fixtures
+  labels:
+    app: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: pgvector/pgvector:pg17@sha256:cf134a767f474095eeba57e0117be8e568e011a63f33fbf252f14c9b760f8e6f
+          ports:
+            - name: postgres
+              containerPort: 5432
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef: { name: openverify-ci-postgres-auth, key: POSTGRES_PASSWORD }
+            - name: MIGRATOR_PASSWORD
+              valueFrom:
+                secretKeyRef: { name: openverify-ci-postgres-auth, key: MIGRATOR_PASSWORD }
+            - name: RUNTIME_PASSWORD
+              valueFrom:
+                secretKeyRef: { name: openverify-ci-postgres-auth, key: RUNTIME_PASSWORD }
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
+          readinessProbe:
+            exec:
+              command: [pg_isready, -U, postgres, -d, openverify]
+            periodSeconds: 2
+            failureThreshold: 60
+          resources:
+            requests: { cpu: 100m, memory: 256Mi }
+            limits: { memory: 1Gi }
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+            - name: init
+              mountPath: /docker-entrypoint-initdb.d
+      volumes:
+        - name: data
+          emptyDir: {}
+        - name: init
+          configMap:
+            name: postgres-init
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: openverify-fixtures
+spec:
+  selector:
+    app: postgres
+  ports:
+    - name: postgres
+      port: 5432
+      targetPort: postgres

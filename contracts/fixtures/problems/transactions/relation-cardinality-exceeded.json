@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "This relation holds one target; remove it before adding another.",
+  "instance": "/api/v1/transactions/txn_01M5CK3190XEVBM5ZXA76E1JSN/add-relation",
+  "requestId": "00000000-0000-4000-8000-000000000907",
+  "code": "relation_cardinality_exceeded",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/meta/relation-schema-key",
+      "detail": "holds one target"
+    }
+  ]
+}

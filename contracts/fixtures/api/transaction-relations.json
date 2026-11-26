@@ -1,0 +1,31 @@
+{
+  "data": [
+    {
+      "type": "transaction-relation",
+      "id": "txn_01M5CK3190XEVBM5ZXA76E1JSN:refund-of:txn_01M5CK3190XEVBM5ZXA76E1JSP",
+      "attributes": {
+        "relation-schema-key": "refund-of",
+        "target": {
+          "type": "transaction",
+          "id": "txn_01M5CK3190XEVBM5ZXA76E1JSP"
+        },
+        "created-at": "2026-10-31T12:30:00.000Z"
+      }
+    },
+    {
+      "type": "transaction-relation",
+      "id": "txn_01M5CK3190XEVBM5ZXA76E1JSN:payer:acc_01M5CK3190XEVBM5ZXA76E1JSN",
+      "attributes": {
+        "relation-schema-key": "payer",
+        "target": {
+          "type": "account",
+          "id": "acc_01M5CK3190XEVBM5ZXA76E1JSN"
+        },
+        "created-at": "2026-10-31T12:00:00.000Z"
+      }
+    }
+  ],
+  "links": {
+    "next": "/api/v1/transactions/txn_01M5CK3190XEVBM5ZXA76E1JSN/relations?page[after]=2026-10-31T12%3A00%3A00.000000Z~payer~acc_01M5CK3190XEVBM5ZXA76E1JSN"
+  }
+}

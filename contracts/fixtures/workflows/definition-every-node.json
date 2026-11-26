@@ -1,0 +1,383 @@
+{
+  "schema-version": 1,
+  "trigger": {
+    "type": "trigger-event",
+    "config": {
+      "events": ["inquiry.completed"],
+      "criteria": {
+        "in": [
+          {
+            "var": "trigger.template.id"
+          },
+          ["itmpl_01M5A0GTG0RSTVX9PHA0V7P3X6"]
+        ]
+      },
+      "on-null": "skip"
+    },
+    "one-run-per-subject": true
+  },
+  "inputs": [],
+  "variables": [
+    {
+      "name": "risk",
+      "type": "number",
+      "default": 0
+    },
+    {
+      "name": "decision",
+      "type": "enum<approve,review>",
+      "default": "review"
+    },
+    {
+      "name": "failed",
+      "type": "boolean",
+      "default": false
+    }
+  ],
+  "steps": [
+    {
+      "id": "fetch_inquiry",
+      "type": "action",
+      "name": "Fetch the inquiry",
+      "action-key": "fetch_object",
+      "action-version": 1,
+      "config": {
+        "object-type": "inquiry",
+        "object-id": "{{ trigger.id }}"
+      }
+    },
+    {
+      "id": "fan_out",
+      "type": "parallel",
+      "name": "Screen and wait",
+      "branches": [
+        {
+          "key": "screen"
+        },
+        {
+          "key": "pause"
+        }
+      ]
+    },
+    {
+      "id": "run_watchlist",
+      "type": "action",
+      "name": "Run the watchlist report",
+      "action-key": "run_report",
+      "action-version": 1,
+      "config": {
+        "report-template-id": "rptp_01M5CM00000000000000000003",
+        "inquiry-id": "{{ trigger.id }}"
+      },
+      "continue-on-error": false
+    },
+    {
+      "id": "report_ready",
+      "type": "wait",
+      "name": "Wait for the report",
+      "mode": "events",
+      "subject": "steps.run_watchlist.output.report-id",
+      "events": ["report/watchlist.ready", "report/watchlist.errored"],
+      "timeout-seconds": 3600,
+      "on-timeout": "error"
+    },
+    {
+      "id": "short_pause",
+      "type": "wait",
+      "name": "Pause for a minute",
+      "mode": "time",
+      "seconds": 60
+    },
+    {
+      "id": "join_up",
+      "type": "join",
+      "name": "Both finished",
+      "join-of": "fan_out"
+    },
+    {
+      "id": "decide",
+      "type": "conditional",
+      "name": "Any match?",
+      "routes": [
+        {
+          "key": "matched",
+          "label": "A match",
+          "condition": {
+            "===": [
+              {
+                "var": "steps.run_watchlist.output.has-match"
+              },
+              true
+            ]
+          },
+          "on-null": "error"
+        }
+      ]
+    },
+    {
+      "id": "mark_review",
+      "type": "action",
+      "name": "Mark for review",
+      "action-key": "mark_inquiry_for_review",
+      "action-version": 1,
+      "config": {
+        "inquiry-id": "{{ trigger.id }}"
+      }
+    },
+    {
+      "id": "each_tag",
+      "type": "loop",
+      "name": "Each tag",
+      "mode": "for-each",
+      "items": "trigger.tags",
+      "concurrency": 2
+    },
+    {
+      "id": "copy_tag",
+      "type": "action",
+      "name": "Copy the tag",
+      "action-key": "tag_object",
+      "action-version": 1,
+      "config": {
+        "object-type": "inquiry",
+        "object-id": "{{ trigger.id }}",
+        "tag": "{{ loop.item }}"
+      }
+    },
+    {
+      "id": "retry_read",
+      "type": "loop",
+      "name": "Read until settled",
+      "mode": "while",
+      "condition": {
+        "<": [
+          {
+            "var": "vars.risk"
+          },
+          5
+        ]
+      },
+      "on-null": "stop",
+      "max-iterations": 3
+    },
+    {
+      "id": "recount",
+      "type": "action",
+      "name": "Recount",
+      "action-key": "calculate",
+      "action-version": 1,
+      "config": {
+        "operator": "sum",
+        "operands": ["{{ vars.risk }}", 1],
+        "default": 0
+      }
+    },
+    {
+      "id": "map_tags",
+      "type": "loop",
+      "name": "Map the tags",
+      "mode": "map",
+      "items": "trigger.tags"
+    },
+    {
+      "id": "collect",
+      "type": "array-map-output",
+      "name": "Collect",
+      "map-of": "map_tags",
+      "value": "{{ loop.item }}"
+    },
+    {
+      "id": "shared_checks",
+      "type": "module",
+      "name": "Shared checks",
+      "module-workflow-id": "wfl_01M5CM00000000000000000015",
+      "version": "latest-published",
+      "inputs": {
+        "inquiry_id": "{{ trigger.id }}"
+      }
+    },
+    {
+      "id": "note_failure",
+      "type": "action",
+      "name": "Note the failure",
+      "action-key": "update_variable",
+      "action-version": 1,
+      "config": {
+        "name": "failed",
+        "operator": "set",
+        "value": true
+      }
+    },
+    {
+      "id": "output",
+      "type": "output",
+      "name": "Output",
+      "mappings": {
+        "decision": "{{ vars.decision }}"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "from": "trigger",
+      "from-port": "next",
+      "to": "fetch_inquiry"
+    },
+    {
+      "id": "e2",
+      "from": "fetch_inquiry",
+      "from-port": "next",
+      "to": "fan_out"
+    },
+    {
+      "id": "e3",
+      "from": "fan_out",
+      "from-port": "branch:screen",
+      "to": "run_watchlist"
+    },
+    {
+      "id": "e4",
+      "from": "fan_out",
+      "from-port": "branch:pause",
+      "to": "short_pause"
+    },
+    {
+      "id": "e5",
+      "from": "run_watchlist",
+      "from-port": "next",
+      "to": "report_ready"
+    },
+    {
+      "id": "e6",
+      "from": "report_ready",
+      "from-port": "next",
+      "to": "join_up"
+    },
+    {
+      "id": "e7",
+      "from": "short_pause",
+      "from-port": "next",
+      "to": "join_up"
+    },
+    {
+      "id": "e8",
+      "from": "join_up",
+      "from-port": "next",
+      "to": "decide"
+    },
+    {
+      "id": "e9",
+      "from": "decide",
+      "from-port": "route:matched",
+      "to": "mark_review"
+    },
+    {
+      "id": "e10",
+      "from": "decide",
+      "from-port": "else",
+      "to": "each_tag"
+    },
+    {
+      "id": "e11",
+      "from": "mark_review",
+      "from-port": "next",
+      "to": "each_tag"
+    },
+    {
+      "id": "e12",
+      "from": "each_tag",
+      "from-port": "body",
+      "to": "copy_tag"
+    },
+    {
+      "id": "e13",
+      "from": "copy_tag",
+      "from-port": "next",
+      "to": "each_tag",
+      "to-port": "continue"
+    },
+    {
+      "id": "e14",
+      "from": "each_tag",
+      "from-port": "done",
+      "to": "retry_read"
+    },
+    {
+      "id": "e15",
+      "from": "retry_read",
+      "from-port": "body",
+      "to": "recount"
+    },
+    {
+      "id": "e16",
+      "from": "recount",
+      "from-port": "next",
+      "to": "retry_read",
+      "to-port": "continue"
+    },
+    {
+      "id": "e17",
+      "from": "retry_read",
+      "from-port": "done",
+      "to": "map_tags"
+    },
+    {
+      "id": "e18",
+      "from": "map_tags",
+      "from-port": "body",
+      "to": "collect"
+    },
+    {
+      "id": "e19",
+      "from": "collect",
+      "from-port": "next",
+      "to": "map_tags",
+      "to-port": "continue"
+    },
+    {
+      "id": "e20",
+      "from": "map_tags",
+      "from-port": "done",
+      "to": "shared_checks"
+    },
+    {
+      "id": "e21",
+      "from": "shared_checks",
+      "from-port": "next",
+      "to": "output"
+    },
+    {
+      "id": "e22",
+      "from": "shared_checks",
+      "from-port": "error",
+      "to": "note_failure"
+    },
+    {
+      "id": "e23",
+      "from": "note_failure",
+      "from-port": "next",
+      "to": "output"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "decision",
+      "pii": false
+    }
+  ],
+  "layout": {
+    "trigger": {
+      "x": 0,
+      "y": 0
+    },
+    "fetch_inquiry": {
+      "x": 0,
+      "y": 120
+    },
+    "output": {
+      "x": 0,
+      "y": 1800
+    }
+  }
+}

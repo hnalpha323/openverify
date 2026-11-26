@@ -1,0 +1,58 @@
+- main:
+    - paragraph: Fields marked * are required.
+    - heading "About you" [level=1]
+    - paragraph: A few details before we check your ID.
+    - list:
+        - listitem: Details
+        - listitem: ID
+    - text: First name
+    - textbox "First name": Sam
+    - text: Anything else
+    - textbox "Anything else"
+    - text: Age
+    - textbox "Age"
+    - text: Date of birth
+    - textbox "Date of birth"
+    - text: Email address
+    - textbox "Email address"
+    - text: Mobile number
+    - textbox "Mobile number"
+    - text: Website
+    - textbox "Website"
+    - text: Tax number
+    - paragraph: Already provided. Type a new value to change it.
+    - textbox "Tax number"
+    - text: Favourite colour
+    - combobox "Favourite colour":
+        - option "Choose…" [selected]
+        - option "Red"
+        - option "Blue"
+    - group "Do you have a pet?":
+        - text: ''
+        - radio "Yes"
+        - text: 'Yes'
+        - radio "No"
+        - text: 'No'
+    - checkbox "I confirm these details are mine"
+    - text: I confirm these details are mine
+    - group "Animals you like":
+        - text: ''
+        - checkbox "Cats"
+        - text: Cats
+        - checkbox "Dogs"
+        - text: Dogs
+    - text: Country of residence
+    - combobox "Country of residence":
+        - option "Choose…" [selected]
+    - group "Home address":
+        - text: Home address Street address
+        - textbox "Street address"
+        - text: City
+        - textbox "City"
+        - text: Postal code
+        - textbox "Postal code"
+        - text: Country
+        - combobox "Country":
+            - option "Choose…" [selected]
+    - button "Continue"
+    - button "Skip for now"

@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "This verification is created and submitted by the server, not by the flow.",
+  "instance": "/api/v1/flow/verifications/ver_01M5CK3190XEVBM5ZXA76E1JSM/submit",
+  "requestId": "00000000-0000-4000-8000-000000000101",
+  "code": "verification_created_by_server"
+}

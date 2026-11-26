@@ -1,0 +1,8 @@
+- main:
+    - region "Consent to use your biometric data":
+        - heading "Consent to use your biometric data" [level=1]
+        - paragraph: 'To confirm your identity, we compare a selfie with the photo on your ID document. This comparison uses biometric data: measurements of your facial features. Your biometric data is used only to verify your identity for this request.'
+        - paragraph: We process the photos of your ID document and your selfie only for this verification. They are deleted when the organization that asked for this verification no longer needs them, in line with its retention policy. You can stop at any time by closing this page.
+        - checkbox "I agree to the collection and use of my biometric data as described above."
+        - text: I agree to the collection and use of my biometric data as described above.
+        - button "Continue" [disabled]

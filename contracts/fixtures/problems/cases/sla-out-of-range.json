@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The deadline is outside the allowed range.",
+  "instance": "/api/v1/cases/case_01M5CK3190XEVBM5ZXA76E1JSN",
+  "requestId": "00000000-0000-4000-8000-000000001213",
+  "code": "sla_out_of_range",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/meta/sla-expires-in-seconds",
+      "detail": "is outside the allowed range"
+    }
+  ]
+}

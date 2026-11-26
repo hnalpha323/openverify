@@ -1,0 +1,10 @@
+{
+  "data": {
+    "type": "print-audit",
+    "id": "aud_01M5CN00000000000000009B64",
+    "attributes": {
+      "object-id": "inq_01M5CN00000000000000009B60",
+      "recorded-at": "2026-10-29T09:05:00.000Z"
+    }
+  }
+}

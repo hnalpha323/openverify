@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "A selfie is submitted with its capture: create one, upload each pose, then submit it.",
+  "instance": "/api/v1/flow/verifications/ver_01M5CK3190XEVBM5ZXA76E1JSM/submit",
+  "requestId": "00000000-0000-4000-8000-000000000003",
+  "code": "selfie_capture_required"
+}

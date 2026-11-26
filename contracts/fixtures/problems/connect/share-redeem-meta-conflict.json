@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "account-id, the auto-create members and destination-id exclude each other.",
+  "instance": "/api/v1/connect/share-tokens/cnst_01M5CN0000000000000011A200/redeem",
+  "requestId": "00000000-0000-4000-8000-00000011a021",
+  "code": "share_redeem_meta_conflict",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/meta/account-id",
+      "detail": "cannot be sent with auto-create-account-reference-id"
+    }
+  ]
+}

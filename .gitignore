@@ -1,0 +1,56 @@
+# deps / builds
+node_modules/
+dist/
+build/
+out/
+.next/
+.turbo/
+coverage/
+*.tsbuildinfo
+playwright-report/
+test-results/
+# env & secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+# python
+__pycache__/
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+# android / gradle
+.gradle/
+local.properties
+*.iml
+.idea/
+captures/
+.kotlin/
+# downloaded artefacts (fetched by scripts/fetch-*, never committed)
+models/**/*.onnx
+models/**/*.tflite
+models/**/*.task
+# the canonical face mesh (C41.1, C45.2)
+models/**/*.obj
+# the OCR recognizer's character dictionary (its pinned inference.yml)
+models/**/*.yml
+data/raw/
+# data files fetched by scripts/fetch_data.py (data/manifest.json); only the manifests are committed
+data/*
+!data/manifest.json
+!data/malicious-feeds.json
+# public-domain face photos (scripts/fetch_fixtures.py) and assets generated from them
+fixtures/faces/
+fixtures/generated/
+# misc
+.DS_Store
+*.log
+.claude/worktrees/
+
+# Workflow 11D: the load harness's and the matcher benchmark's results stay outside git (rule 9).
+load/results/
+packages/watchlist/results/

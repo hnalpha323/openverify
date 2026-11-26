@@ -1,0 +1,186 @@
+# C264.5, C255.1, C250.3 (Workflow 11C Stage 2, chart-policy-11c): the ingress annotations of each host
+# and path class (HSTS, the body limits measured against the API's routes, TLS required) and the
+# refusal of /api/v1/internal/ on the API host, whose internal listener no Ingress ever routes.
+suite: c264 ingress
+release:
+  name: ov
+  namespace: verify
+templates:
+  - templates/ingress.yaml
+set: &hosts
+  ingress.hosts.api: api.example.com
+  ingress.hosts.flow: verify.example.com
+  ingress.hosts.dashboard: console.example.com
+  ingress.tls:
+    - secretName: ov-tls
+      hosts: [api.example.com, verify.example.com, console.example.com]
+tests:
+  - it: renders the API host's three Ingresses and one per flow and console host
+    asserts:
+      - hasDocuments:
+          count: 5
+      - isKind:
+          of: Ingress
+
+  # C255.1: Strict-Transport-Security, one year with subdomains and no preload by default, as the
+  # NGINX controllers read it (F5's nginx.org annotations; the community controller's own HSTS
+  # setting defaults to the same value), and as the value the chart records for any other controller.
+  - it: sets HSTS on the API host
+    documentSelector: &apiDefault
+      path: metadata.name
+      value: ov-openverify-api
+    asserts: &hsts
+      - equal:
+          path: metadata.annotations["openverify.dev/strict-transport-security"]
+          value: max-age=31536000; includeSubDomains
+      - equal:
+          path: metadata.annotations["nginx.org/hsts"]
+          value: 'true'
+      - equal:
+          path: metadata.annotations["nginx.org/hsts-max-age"]
+          value: '31536000'
+      - equal:
+          path: metadata.annotations["nginx.org/hsts-include-subdomains"]
+          value: 'true'
+  - it: sets HSTS on the flow host
+    documentSelector:
+      path: metadata.name
+      value: ov-openverify-flow
+    asserts: *hsts
+  - it: sets HSTS on the console host
+    documentSelector:
+      path: metadata.name
+      value: ov-openverify-dashboard
+    asserts: *hsts
+  - it: adds preload only when asked
+    documentSelector: *apiDefault
+    set:
+      <<: *hosts
+      ingress.hsts.preload: true
+    asserts:
+      - equal:
+          path: metadata.annotations["openverify.dev/strict-transport-security"]
+          value: max-age=31536000; includeSubDomains; preload
+  - it: sets no HSTS annotation when ingress.hsts is off
+    documentSelector: *apiDefault
+    set:
+      <<: *hosts
+      ingress.hsts.enabled: false
+    asserts:
+      - notExists:
+          path: metadata.annotations["openverify.dev/strict-transport-security"]
+      - notExists:
+          path: metadata.annotations["nginx.org/hsts"]
+
+  # The body limits: the ordinary routes take PATCH /api/v1/cases/:id with a base64 attachment
+  # (CASE_PATCH_BODY_LIMIT, 14 MiB) and the 10 MiB uploads with their multipart overhead, so the
+  # default is 15m; the list importer takes IMPORTER_BODY_LIMIT_BYTES (26,670,764 bytes) and a
+  # transaction file 20,000,000 bytes plus its multipart overhead, so each has 28m on its own Ingress.
+  - it: limits the API's ordinary paths to ingress.maxBodySize, 15m by default
+    documentSelector: *apiDefault
+    asserts:
+      - equal:
+          path: metadata.annotations["nginx.ingress.kubernetes.io/proxy-body-size"]
+          value: 15m
+      - equal:
+          path: metadata.annotations["nginx.org/client-max-body-size"]
+          value: 15m
+  - it: limits the list importer's Ingress to ingress.maxBodySizeImport
+    documentSelector:
+      path: metadata.name
+      value: ov-openverify-api-import
+    asserts:
+      - equal:
+          path: metadata.annotations["nginx.ingress.kubernetes.io/proxy-body-size"]
+          value: 28m
+      - equal:
+          path: metadata.annotations["nginx.org/client-max-body-size"]
+          value: 28m
+  - it: limits the transaction routes' Ingress to ingress.maxBodySizeTransactionFile
+    documentSelector:
+      path: metadata.name
+      value: ov-openverify-api-transaction-files
+    set:
+      <<: *hosts
+      ingress.maxBodySizeTransactionFile: 24m
+    asserts:
+      - equal:
+          path: metadata.annotations["nginx.ingress.kubernetes.io/proxy-body-size"]
+          value: 24m
+  - it: keeps the flow and the console at ingress.maxBodySize
+    documentSelector:
+      path: metadata.name
+      value: ov-openverify-flow
+    set:
+      <<: *hosts
+      ingress.maxBodySize: 11m
+    asserts:
+      - equal:
+          path: metadata.annotations["nginx.ingress.kubernetes.io/proxy-body-size"]
+          value: 11m
+
+  # TLS required (C264.5).
+  - it: redirects plain HTTP to HTTPS
+    documentSelector: *apiDefault
+    asserts:
+      - equal:
+          path: metadata.annotations["nginx.ingress.kubernetes.io/force-ssl-redirect"]
+          value: 'true'
+  - it: redirects to HTTPS even for a host that no ingress.tls entry names (a controller's default certificate or a terminating load balancer serves it)
+    documentSelector: *apiDefault
+    set:
+      ingress.hosts.api: api.example.com
+      ingress.tls: []
+    asserts:
+      - equal:
+          path: metadata.annotations["nginx.ingress.kubernetes.io/force-ssl-redirect"]
+          value: 'true'
+      - notExists:
+          path: spec.tls
+
+  - it: merges ingress.annotations last, so the operator's own keys win
+    documentSelector: *apiDefault
+    set:
+      <<: *hosts
+      ingress.annotations:
+        nginx.ingress.kubernetes.io/proxy-body-size: 16m
+        example.com/owner: platform
+    asserts:
+      - equal:
+          path: metadata.annotations["nginx.ingress.kubernetes.io/proxy-body-size"]
+          value: 16m
+      - equal:
+          path: metadata.annotations["example.com/owner"]
+          value: platform
+
+  # C250.3: the internal path refused at the API host; no Ingress routes the internal listener.
+  - it: sends /api/v1/internal on the API host to a backend that has no endpoint, before /
+    documentSelector: *apiDefault
+    asserts:
+      - equal:
+          path: spec.rules[0].http.paths[0]
+          value:
+            path: /api/v1/internal
+            pathType: Prefix
+            backend:
+              service:
+                name: ov-openverify-api-internal-deny
+                port:
+                  name: deny
+      - equal:
+          path: spec.rules[0].http.paths[1].path
+          value: /
+  - it: never routes the internal listener's Service or port
+    asserts:
+      - notContains:
+          path: spec.rules[0].http.paths
+          content:
+            backend:
+              service:
+                name: ov-openverify-api-internal
+                port:
+                  name: internal
+          any: true
+      - notMatchRegex:
+          path: spec.rules[0].http.paths[0].backend.service.port.name
+          pattern: ^internal$

@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "The case already holds this object.",
+  "instance": "/api/v1/cases/case_01M5CK3190XEVBM5ZXA76E1JSN/add-objects",
+  "requestId": "00000000-0000-4000-8000-000000001206",
+  "code": "object_already_attached"
+}

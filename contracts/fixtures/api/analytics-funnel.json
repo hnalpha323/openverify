@@ -1,0 +1,137 @@
+{
+  "data": {
+    "type": "analytics-funnel",
+    "id": "9166cd75adf30c7b8366b734c4f20a8235b46964d529fff84be1a26f2e02d644",
+    "attributes": {
+      "time-zone": "Europe/Paris",
+      "time-zones": ["Europe/Paris"],
+      "from": "2026-10-27",
+      "to": "2026-10-29",
+      "bucket": "day",
+      "threshold": 11,
+      "suppressed-cells": 2,
+      "settle-days": 30,
+      "freshness": {
+        "rolled-up-through": "2026-10-29T13:55:00.000Z",
+        "outcomes-as-of": "2026-10-28T23:05:00.000Z"
+      },
+      "buckets": [
+        {
+          "start": "2026-10-27",
+          "end": "2026-10-27",
+          "time-zone": "Europe/Paris",
+          "live": false,
+          "step-data": false,
+          "counts": {
+            "started": 388
+          }
+        },
+        {
+          "start": "2026-10-28",
+          "end": "2026-10-28",
+          "time-zone": "Europe/Paris",
+          "live": false,
+          "step-data": true,
+          "counts": {
+            "started": 377
+          }
+        },
+        {
+          "start": "2026-10-29",
+          "end": "2026-10-29",
+          "time-zone": "Europe/Paris",
+          "live": true,
+          "step-data": true,
+          "counts": {
+            "started": 141
+          }
+        }
+      ],
+      "totals": {
+        "step-data-from": "2026-10-28",
+        "versions": [
+          {
+            "inquiry-template-version-id": "itmplv_01M5CN00000000000000009B20",
+            "counts": {
+              "started": 377
+            },
+            "steps": [
+              {
+                "step-id": "s_consent1",
+                "counts": {
+                  "entered": 377,
+                  "exited": 366,
+                  "revisits": 0
+                },
+                "rates": {
+                  "overall-share": {
+                    "value": 1.0
+                  },
+                  "step-share": {
+                    "suppressed": true
+                  }
+                }
+              },
+              {
+                "step-id": "s_idcard01",
+                "counts": {
+                  "entered": 362,
+                  "exited": 331,
+                  "revisits": 14
+                },
+                "rates": {
+                  "overall-share": {
+                    "value": 0.9602122015915119
+                  },
+                  "step-share": {
+                    "value": 0.9890710382513661
+                  }
+                }
+              },
+              {
+                "step-id": "s_fallback",
+                "counts": {
+                  "entered": {
+                    "suppressed": "small-count"
+                  },
+                  "exited": {
+                    "suppressed": "small-count"
+                  },
+                  "revisits": 0
+                },
+                "rates": {
+                  "overall-share": {
+                    "below": 3
+                  },
+                  "step-share": {
+                    "below": 4
+                  }
+                }
+              }
+            ],
+            "transitions": [
+              {
+                "from-step-id": "s_consent1",
+                "to-step-id": "s_idcard01",
+                "count": 366
+              },
+              {
+                "from-step-id": "s_idcard01",
+                "to-step-id": "s_fallback",
+                "count": {
+                  "suppressed": "small-count"
+                }
+              }
+            ],
+            "paths": [
+              {
+                "step-ids": ["s_consent1", "s_idcard01"],
+                "count": 318
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

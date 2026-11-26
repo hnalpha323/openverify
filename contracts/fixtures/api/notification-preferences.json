@@ -1,0 +1,26 @@
+{
+  "data": {
+    "type": "notification-preferences",
+    "id": "usr_01M5CN00000000000000009B21",
+    "attributes": {
+      "preferences": {
+        "assigned": {
+          "console": true,
+          "email": false
+        },
+        "sla-breached": {
+          "console": true,
+          "email": true
+        },
+        "mentioned": {
+          "console": true,
+          "email": false
+        },
+        "webhook-failure": {
+          "console": true,
+          "email": false
+        }
+      }
+    }
+  }
+}

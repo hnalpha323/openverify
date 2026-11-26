@@ -1,0 +1,80 @@
+{
+  "data": {
+    "type": "transaction-type",
+    "id": "txntp_01M5CK3190XEVBM5ZXA76E1JSN",
+    "attributes": {
+      "name": "Synthetic payment",
+      "created-at": "2026-10-31T12:00:00.000Z",
+      "updated-at": "2026-10-31T12:00:00.000Z",
+      "field-schemas": [
+        {
+          "type": "string",
+          "key": "order_id",
+          "label": "Order",
+          "config": {
+            "required": true,
+            "searchable": true,
+            "write-policy": "write_once"
+          }
+        },
+        {
+          "type": "number",
+          "key": "amount",
+          "label": "Amount",
+          "config": {
+            "min": 0
+          }
+        },
+        {
+          "type": "hash",
+          "key": "payment_method",
+          "label": "Payment method",
+          "config": {
+            "item-schemas": [
+              {
+                "type": "string",
+                "key": "processor_token",
+                "label": "Processor token"
+              }
+            ]
+          }
+        },
+        {
+          "type": "file",
+          "key": "invoice",
+          "label": "Invoice",
+          "config": {
+            "supported-mime-types": ["application/pdf"]
+          }
+        }
+      ],
+      "status": "active",
+      "statuses": ["created", "approved", "declined", "needs review"],
+      "relation-schemas": [
+        {
+          "key": "buyer",
+          "target": "account",
+          "cardinality": "one"
+        }
+      ],
+      "latest-version": 1,
+      "published-version": 1,
+      "adverse-statuses": ["declined"],
+      "contest-route": null
+    },
+    "relationships": {
+      "latest-version": {
+        "data": {
+          "type": "transaction-type-version",
+          "id": "txntpv_01M5CK3190XEVBM5ZXA76E1JSN"
+        }
+      },
+      "published-version": {
+        "data": {
+          "type": "transaction-type-version",
+          "id": "txntpv_01M5CK3190XEVBM5ZXA76E1JSN"
+        }
+      }
+    }
+  }
+}

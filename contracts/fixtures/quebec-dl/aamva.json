@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "generator": "services/vision/tools/synthetic_quebec.py",
+  "synthetic": "Invented values only: a fictional holder on a SPECIMEN card printed in a Quebec licence's layout; no jurisdiction issued it and no real person or card is in it.",
+  "description": "AAMVA payloads of the synthetic Quebec-format licence (IIN 604428, ZQ marker subfile): the standard one and tolerance cases, with the fields to read.",
+  "cases": [
+    {
+      "id": "qc-v10",
+      "description": "The standard payload: AAMVA version 10, Quebec IIN, CCYYMMDD dates.",
+      "payload": "@\n\u001e\rANSI 604428100002DL00410223ZQ02640036DLDCA5\nDCBNONE\nDCDNONE\nDBA20290214\nDCSTREMBLAY\nDACMARIE\nDADNONE\nDBD20210315\nDBB19900214\nDBC2\nDAYBRO\nDAU165 CM\nDAG100 RUE FICTIVE\nDAIMONTREAL\nDAJQC\nDAKH0H0H0     \nDAQT123456789012\nDCFSYNTH2021031500001\nDCGCAN\nDDEN\nDDFN\nDDGN\rZQZQAOPENVERIFY SYNTHETIC TEST DATA\r",
+      "expected": {
+        "name-first": "MARIE",
+        "name-last": "TREMBLAY",
+        "birthdate": "1990-02-14",
+        "sex": "F",
+        "identification-number": "T123456789012",
+        "issue-date": "2021-03-15",
+        "expiration-date": "2029-02-14",
+        "address-subdivision": "QC",
+        "address-postal-code": "H0H 0H0",
+        "issuing-authority-code": "604428"
+      }
+    },
+    {
+      "id": "qc-file-type-aamva",
+      "description": "The header's file type reads AAMVA instead of 'ANSI ' (older standards).",
+      "payload": "@\n\u001e\rAAMVA604428100002DL00410223ZQ02640036DLDCA5\nDCBNONE\nDCDNONE\nDBA20290214\nDCSTREMBLAY\nDACMARIE\nDADNONE\nDBD20210315\nDBB19900214\nDBC2\nDAYBRO\nDAU165 CM\nDAG100 RUE FICTIVE\nDAIMONTREAL\nDAJQC\nDAKH0H0H0     \nDAQT123456789012\nDCFSYNTH2021031500001\nDCGCAN\nDDEN\nDDFN\nDDGN\rZQZQAOPENVERIFY SYNTHETIC TEST DATA\r",
+      "expected": {
+        "name-first": "MARIE",
+        "name-last": "TREMBLAY",
+        "birthdate": "1990-02-14",
+        "sex": "F",
+        "identification-number": "T123456789012",
+        "issue-date": "2021-03-15",
+        "expiration-date": "2029-02-14",
+        "address-subdivision": "QC",
+        "address-postal-code": "H0H 0H0",
+        "issuing-authority-code": "604428"
+      }
+    },
+    {
+      "id": "qc-printed-number",
+      "description": "DAQ holds the number as printed, with its dashes.",
+      "payload": "@\n\u001e\rANSI 604428100002DL00410225ZQ02660036DLDCA5\nDCBNONE\nDCDNONE\nDBA20290214\nDCSTREMBLAY\nDACMARIE\nDADNONE\nDBD20210315\nDBB19900214\nDBC2\nDAYBRO\nDAU165 CM\nDAG100 RUE FICTIVE\nDAIMONTREAL\nDAJQC\nDAKH0H0H0     \nDAQT1234-567890-12\nDCFSYNTH2021031500001\nDCGCAN\nDDEN\nDDFN\nDDGN\rZQZQAOPENVERIFY SYNTHETIC TEST DATA\r",
+      "expected": {
+        "name-first": "MARIE",
+        "name-last": "TREMBLAY",
+        "birthdate": "1990-02-14",
+        "sex": "F",
+        "identification-number": "T123456789012",
+        "issue-date": "2021-03-15",
+        "expiration-date": "2029-02-14",
+        "address-subdivision": "QC",
+        "address-postal-code": "H0H 0H0",
+        "issuing-authority-code": "604428"
+      }
+    },
+    {
+      "id": "qc-offset-shift",
+      "description": "The DL designator's offset is two bytes off; the subfile still starts with DL.",
+      "payload": "@\n\u001e\rANSI 604428100002DL00430223ZQ02640036DLDCA5\nDCBNONE\nDCDNONE\nDBA20290214\nDCSTREMBLAY\nDACMARIE\nDADNONE\nDBD20210315\nDBB19900214\nDBC2\nDAYBRO\nDAU165 CM\nDAG100 RUE FICTIVE\nDAIMONTREAL\nDAJQC\nDAKH0H0H0     \nDAQT123456789012\nDCFSYNTH2021031500001\nDCGCAN\nDDEN\nDDFN\nDDGN\rZQZQAOPENVERIFY SYNTHETIC TEST DATA\r",
+      "expected": {
+        "name-first": "MARIE",
+        "name-last": "TREMBLAY",
+        "birthdate": "1990-02-14",
+        "sex": "F",
+        "identification-number": "T123456789012",
+        "issue-date": "2021-03-15",
+        "expiration-date": "2029-02-14",
+        "address-subdivision": "QC",
+        "address-postal-code": "H0H 0H0",
+        "issuing-authority-code": "604428"
+      }
+    },
+    {
+      "id": "qc-v08",
+      "description": "AAMVA version 08 in the header, the same elements.",
+      "payload": "@\n\u001e\rANSI 604428080002DL00410223ZQ02640036DLDCA5\nDCBNONE\nDCDNONE\nDBA20290214\nDCSTREMBLAY\nDACMARIE\nDADNONE\nDBD20210315\nDBB19900214\nDBC2\nDAYBRO\nDAU165 CM\nDAG100 RUE FICTIVE\nDAIMONTREAL\nDAJQC\nDAKH0H0H0     \nDAQT123456789012\nDCFSYNTH2021031500001\nDCGCAN\nDDEN\nDDFN\nDDGN\rZQZQAOPENVERIFY SYNTHETIC TEST DATA\r",
+      "expected": {
+        "name-first": "MARIE",
+        "name-last": "TREMBLAY",
+        "birthdate": "1990-02-14",
+        "sex": "F",
+        "identification-number": "T123456789012",
+        "issue-date": "2021-03-15",
+        "expiration-date": "2029-02-14",
+        "address-subdivision": "QC",
+        "address-postal-code": "H0H 0H0",
+        "issuing-authority-code": "604428"
+      }
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "data": {
+    "type": "role",
+    "id": "role_01M5CJXHK40C71J91F792N0PV6",
+    "attributes": {
+      "name": "Reviewer",
+      "key": "reviewer",
+      "builtin": true,
+      "permissions": [
+        "inquiries:read",
+        "inquiries:write",
+        "inquiries:redact",
+        "inquiry-sessions:read",
+        "verifications:read",
+        "accounts:read",
+        "accounts:write",
+        "accounts:redact",
+        "events:read",
+        "reports:read",
+        "reports:write",
+        "reports:review",
+        "reports:redact",
+        "report-templates:read",
+        "watchlists:read",
+        "lists:read",
+        "lists:write",
+        "importers:read",
+        "graph:read",
+        "graph:write",
+        "transactions:read",
+        "transactions:write",
+        "transactions:redact",
+        "workflows:read",
+        "workflows:trigger",
+        "workflow-runs:read",
+        "devices:write",
+        "cases:read",
+        "cases:write",
+        "cases:assign",
+        "case-templates:read",
+        "case-queues:read",
+        "pii:view",
+        "analytics:read",
+        "connect-connections:read",
+        "connect-share-tokens:read"
+      ],
+      "created-at": "2026-10-20T11:00:00.000Z",
+      "updated-at": "2026-10-20T11:00:00.000Z"
+    }
+  }
+}

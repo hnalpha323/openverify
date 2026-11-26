@@ -1,0 +1,32 @@
+# OpenVerify's gitleaks configuration (C169.4, reviews F02 and P33; Workflow 9B Stage 1a).
+# The pre-commit hook (.githooks/pre-commit) and CI's secrets job pick it up from the repository
+# root. Test: infra/tests/gitleaks-config.test.sh.
+title = "OpenVerify"
+
+# Keep every default rule (aws-access-token, private keys, generic API keys, ...).
+[extend]
+useDefault = true
+
+# OpenVerify's bearer tokens: API keys (`ov_sbx_`, `ov_prod_`) and the session, user-session,
+# one-time-link, MFA, invitation and handoff tokens (`ovs_`, `ovu_`, `ovo_`, `ovm_`, `ovi_`,
+# `ovh_`), each 32 random bytes as 43 unpadded base64url characters
+# (packages/contracts/src/tokens.ts). The run is bounded on both sides, so a longer word that
+# happens to contain one is not a token.
+[[rules]]
+id = "openverify-bearer-token"
+description = "An OpenVerify API key or bearer token"
+regex = '''(?:^|[^A-Za-z0-9_-])((?:ov_(?:sbx|prod)|ov[suomih])_[A-Za-z0-9_-]{43})(?:[^A-Za-z0-9_-]|$)'''
+secretGroup = 1
+# The floor, in Shannon bits per character over the whole token (prefix included), measured on
+# 2026-11-06: 20,000 random tokens scored 4.43 at the lowest (4.93 on average); the tracked test
+# values without "synthetic" score 0.30 and 0.59 (one repeated letter); those that carry it score
+# 2.63 to 4.25 and are allowed by name below. 3.5 sits between, so a real token is never under it.
+entropy = 3.5
+keywords = ["ov_sbx_", "ov_prod_", "ovs_", "ovu_", "ovo_", "ovm_", "ovi_", "ovh_"]
+
+# A test token says what it is: every token-shaped value written in a test carries "synthetic"
+# (any case), which infra/tests/gitleaks-config.test.sh requires of every tracked one.
+[[rules.allowlists]]
+description = "Synthetic test tokens name themselves"
+regexTarget = "secret"
+regexes = ['''(?i)synthetic''']

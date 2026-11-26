@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "This inquiry was reopened and waits for a person to decide.",
+  "instance": "/api/v1/inquiries/inq_01M5CK3190XEVBM5ZXA76E1JSN/decline",
+  "requestId": "00000000-0000-4000-8000-000000001116",
+  "code": "human_review_pending"
+}

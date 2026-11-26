@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:openverify:fixtures:digits-vectors:1",
+  "title": "Digit normalisation vectors (C196.3, C196.4)",
+  "description": "Written by packages/flow-spec/src/export-vectors.test.ts (api-android-10a) from normalizeDigits over its own case table, only under UPDATE_CONTRACT_FIXTURES=1: U+0660-U+0669 and U+06F0-U+06F9 to ASCII, everything else unchanged.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format", "description", "cases"],
+  "properties": {
+    "format": {
+      "const": 1
+    },
+    "description": {
+      "type": "string"
+    },
+    "cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["input", "output"],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "input": {
+            "type": "string"
+          },
+          "output": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

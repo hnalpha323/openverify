@@ -1,0 +1,92 @@
+[
+  {
+    "ident": "template-injection",
+    "desc": "synthetic",
+    "determinations": {
+      "confidence": "High",
+      "severity": "High",
+      "persona": "Regular"
+    },
+    "locations": [
+      {
+        "symbolic": {
+          "key": {
+            "Local": {
+              "verbatim_path": ".github/workflows/synthetic.yml"
+            }
+          },
+          "kind": "Primary",
+          "annotation": "synthetic"
+        },
+        "concrete": {
+          "location": {
+            "start_point": {
+              "row": 9,
+              "column": 0
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "ident": "excessive-permissions",
+    "desc": "synthetic",
+    "determinations": {
+      "confidence": "High",
+      "severity": "Medium",
+      "persona": "Regular"
+    },
+    "locations": [
+      {
+        "symbolic": {
+          "key": {
+            "Local": {
+              "verbatim_path": ".github/workflows/synthetic.yml"
+            }
+          },
+          "kind": "Primary",
+          "annotation": "synthetic"
+        },
+        "concrete": {
+          "location": {
+            "start_point": {
+              "row": 3,
+              "column": 0
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "ident": "self-repository",
+    "desc": "synthetic",
+    "determinations": {
+      "confidence": "High",
+      "severity": "Low",
+      "persona": "Regular"
+    },
+    "locations": [
+      {
+        "symbolic": {
+          "key": {
+            "Local": {
+              "verbatim_path": ".github/workflows/synthetic.yml"
+            }
+          },
+          "kind": "Primary",
+          "annotation": "synthetic"
+        },
+        "concrete": {
+          "location": {
+            "start_point": {
+              "row": 12,
+              "column": 0
+            }
+          }
+        }
+      }
+    ]
+  }
+]

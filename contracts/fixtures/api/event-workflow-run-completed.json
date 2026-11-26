@@ -1,0 +1,74 @@
+{
+  "data": {
+    "type": "event",
+    "id": "evt_01M5CM00000000000000000026",
+    "attributes": {
+      "name": "workflow-run.completed",
+      "payload": {
+        "data": {
+          "type": "workflow-run",
+          "id": "wfr_01M5CM00000000000000000006",
+          "attributes": {
+            "status": "completed",
+            "created-at": "2026-10-20T12:00:00.000Z",
+            "completed-at": "2026-10-20T12:05:00.000Z",
+            "updated-at": "2026-10-20T12:05:00.000Z",
+            "waiting-on": null,
+            "rollout-label": null,
+            "trigger-type": "trigger-event",
+            "error": null,
+            "errored-step": null,
+            "subject-ids": ["inq_01M5CJXHG07XPHF3HRM6NREDH7", "rep_01M5CM00000000000000000012"],
+            "step-outcomes": {
+              "succeeded": 14,
+              "failed-continued": 0,
+              "timed-out": 0,
+              "unknown-effect": 0,
+              "skipped": 1
+            },
+            "test-run-id": null,
+            "overridden-steps": [],
+            "redacted-at": null,
+            "values-purged-at": null,
+            "inputs": null,
+            "variables": null,
+            "outputs": null,
+            "trigger-snapshot": null
+          },
+          "relationships": {
+            "workflow": {
+              "data": {
+                "type": "workflow",
+                "id": "wfl_01M5CM00000000000000000001"
+              }
+            },
+            "workflow-version": {
+              "data": {
+                "type": "workflow-version",
+                "id": "wfv_01M5CM00000000000000000002"
+              }
+            },
+            "creator": {
+              "data": {
+                "type": "event",
+                "id": "evt_01M5CK4VW0MRQ4HKKTBDT6PXEM"
+              }
+            },
+            "rerun-of": {
+              "data": null
+            }
+          },
+          "meta": {
+            "processing-time-seconds": 300
+          }
+        },
+        "meta": {
+          "context": {
+            "output-names": ["decision"]
+          }
+        }
+      },
+      "created-at": "2026-10-20T12:05:00.000Z"
+    }
+  }
+}

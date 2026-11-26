@@ -1,0 +1,17 @@
+- main:
+    - region "Enter your details":
+        - heading "Enter your details" [level=1]
+        - paragraph: We check these details against official records. Enter them as they appear on your official documents.
+        - paragraph: Attempt 1 of 1
+        - paragraph: Fields marked * are required.
+        - text: First name
+        - textbox "First name"
+        - text: Last name
+        - textbox "Last name"
+        - text: Date of birth
+        - textbox "Date of birth"
+        - group "Address":
+            - text: Address Country
+            - combobox "Country":
+                - option "Choose a country" [selected]
+        - button "Continue"

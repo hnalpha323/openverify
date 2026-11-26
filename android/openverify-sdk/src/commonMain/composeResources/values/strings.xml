@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  English copy for the verification flow. It follows the hosted web flow
+  (apps/flow/src/i18n/locales/en.ts) so both clients say the same thing; values-es follows
+  its Spanish (es.ts). The consent texts are recorded by key with the user's consent: never
+  change what a key means; add a new key instead.
+  These are Compose Multiplatform resources (Res.string), shown on Android and iOS alike. Their
+  formatter fills only positional arguments (%1$d, %1$s): Android's %d, %.1f or %% would be
+  shown as written, and a percent sign is written once. Write ' and " as they are: only the
+  \n, \t, \uXXXX and \\ escapes are read, so Android's \' would show its backslash.
+  ResourcesTest checks these rules, and that Spanish uses the English placeholders.
+  The strings that i18n/key-map.json maps to a web catalog key, the consent and notice texts among
+  them, are not here: they live in the generated strings_catalog.xml (C199.1).
+-->
+<resources>
+    <!--
+      BCP 47 tag of the language these strings are written in. The consent screen sends it with
+      consent, so every translation sets its own (ResourcesTest then requires it).
+    -->
+    <string name="openverify_locale">en</string>
+
+    <string name="openverify_loading">Loading your verification…</string>
+    <string name="openverify_cancel">Cancel</string>
+    <string name="openverify_close">Close</string>
+    <string name="openverify_done">Done</string>
+    <string name="openverify_try_again">Try again</string>
+
+    <string name="openverify_camera_title">Camera access</string>
+    <string name="openverify_camera_rationale">Next, we need your camera to take photos of your ID document and a selfie. The photos are used only for this verification.</string>
+    <string name="openverify_camera_allow">Allow camera access</string>
+    <string name="openverify_camera_denied">Camera access is turned off. To continue, allow camera access for this app in Settings.</string>
+    <string name="openverify_camera_open_settings">Open Settings</string>
+    <string name="openverify_camera_unavailable">We could not start the camera on this device.</string>
+
+    <string name="openverify_capture_progress">Photo %1$d of %2$d</string>
+    <string name="openverify_capture_take">Take photo</string>
+    <string name="openverify_capture_preview">Camera preview</string>
+    <string name="openverify_capture_failed">We could not take the photo. Try again.</string>
+    <string name="openverify_capture_check">Check that the photo is sharp, well lit and shows everything we asked for.</string>
+    <string name="openverify_capture_retake">Retake</string>
+    <string name="openverify_capture_use">Use this photo</string>
+    <string name="openverify_capture_upload">Upload a photo instead</string>
+    <string name="openverify_capture_upload_failed">We could not use this file. Choose a JPEG, PNG or WebP photo.</string>
+    <!-- C40.3: each selfie pose is sent before the next prompt. -->
+    <string name="openverify_capture_sending">Sending your photo…</string>
+
+    <string name="openverify_id_front_title">Front of your ID</string>
+    <string name="openverify_id_front_instruction">Fit the front of your ID inside the frame.</string>
+    <string name="openverify_id_front_photo">Your photo of the front of your ID</string>
+    <string name="openverify_id_back_title">Back of your ID</string>
+    <string name="openverify_id_back_instruction">Turn your ID over and fit the back inside the frame.</string>
+    <string name="openverify_id_back_photo">Your photo of the back of your ID</string>
+    <string name="openverify_id_portrait_title">Photo page of your ID</string>
+    <string name="openverify_id_portrait_instruction">Fit the page with your photo inside the frame.</string>
+    <string name="openverify_id_portrait_photo">Your photo of the photo page of your ID</string>
+
+    <string name="openverify_selfie_center_title">Look straight ahead</string>
+    <string name="openverify_selfie_center_instruction">Fit your face inside the oval and look straight at the camera.</string>
+    <string name="openverify_selfie_center_photo">Your selfie, looking straight ahead</string>
+    <string name="openverify_selfie_left_title">Turn your head to the left</string>
+    <string name="openverify_selfie_left_instruction">Keep your face inside the oval and slowly turn your head to the left.</string>
+    <string name="openverify_selfie_left_photo">Your selfie, with your head turned to the left</string>
+    <string name="openverify_selfie_right_title">Turn your head to the right</string>
+    <string name="openverify_selfie_right_instruction">Keep your face inside the oval and slowly turn your head to the right.</string>
+    <string name="openverify_selfie_right_photo">Your selfie, with your head turned to the right</string>
+    <!-- C40.4: a new selfie capture after the previous one could not be used (it expired or was refused). -->
+    <string name="openverify_selfie_capture_restarted">We need to take your selfies again. Follow each prompt in the order shown.</string>
+    <!-- Workflow 4B H015: the selfie capture's lifetime (C40.2, 180 s), in whole minutes. -->
+    <plurals name="openverify_selfie_time_limit">
+        <item quantity="one">Take all your selfies within %1$d minute. If the time runs out, we start again from the first photo.</item>
+        <item quantity="other">Take all your selfies within %1$d minutes. If the time runs out, we start again from the first photo.</item>
+    </plurals>
+
+    <string name="openverify_retry_title">We could not use your last photos</string>
+    <string name="openverify_retry_generic">Something in the photo was not clear enough. Try again in good light.</string>
+    <string name="openverify_retry_image_blurry">The photo was blurry. Hold your device steady and wait for the image to come into focus.</string>
+    <string name="openverify_retry_glare_present">There was glare on your ID. Move away from direct light or tilt the ID slightly.</string>
+    <string name="openverify_retry_portrait_not_present">We could not find the photo on your ID. Make sure the whole front of the ID is in the frame.</string>
+    <string name="openverify_retry_front_not_present">We need a photo of the front of your ID.</string>
+    <string name="openverify_retry_back_not_present">We need a photo of the back of your ID.</string>
+    <string name="openverify_retry_image_too_dark">The photo was too dark. Find a brighter spot.</string>
+    <string name="openverify_retry_image_too_bright">The photo was too bright. Move away from strong light.</string>
+    <string name="openverify_retry_face_not_present">We could not see your face. Fit your face inside the oval.</string>
+    <string name="openverify_retry_multiple_faces_present">More than one face was in the photo. Make sure only you are in the frame.</string>
+    <string name="openverify_retry_image_unreadable">We could not open the photo. Take a new one, or choose a JPEG, PNG or WebP image.</string>
+    <!-- Phase 3 government ID reasons (C29.4): what to do differently, never why it matters. -->
+    <string name="openverify_retry_document_not_found">We could not find your ID in the photo. Place it on a plain surface that contrasts with it, and make sure all four corners are in the frame.</string>
+    <string name="openverify_retry_insufficient_text">We could not read the text on your ID. Make sure the photo is sharp, well lit and free of glare, and shows the whole ID.</string>
+    <string name="openverify_retry_identity_features_not_found">We could not find your photo, or the lines of letters and numbers, on your ID. Photograph the side with your photo on it, with the whole ID in the frame.</string>
+    <string name="openverify_retry_resolution_too_low">Your ID was too small in the photo. Move your device closer, so the ID fills most of the frame.</string>
+    <string name="openverify_retry_back_feature_not_found">We could not read the back of your ID. Turn it over and photograph the back, sharp and without glare, so its barcode or its lines of letters and numbers can be read.</string>
+    <string name="openverify_retry_portrait_too_small">The photo of your face on the ID was too small to see. Move your device closer, so the ID fills most of the frame.</string>
+    <string name="openverify_retry_portrait_blurry">The photo of your face on the ID was not sharp. Hold your device steady and wait for the image to come into focus.</string>
+    <string name="openverify_retry_portrait_obstructed">Something covered the photo of your face on the ID. Keep your fingers and any glare away from it.</string>
+    <string name="openverify_retry_mrz_not_found">We could not find the lines of letters, numbers and &lt;&lt;&lt; signs on your ID. Make sure the whole ID is in the frame, including its bottom edge.</string>
+    <string name="openverify_retry_mrz_unreadable">We could not read the lines of letters, numbers and &lt;&lt;&lt; signs on your ID. Hold your device steady and avoid glare, so those lines are sharp.</string>
+    <string name="openverify_retry_barcode_not_found">We could not find the barcode on your ID. Photograph the side with the barcode, with the whole ID in the frame and no glare on the barcode.</string>
+    <string name="openverify_retry_required_fields_missing">We could not read all the details on your ID. Make sure the whole ID is in the frame, sharp and without glare.</string>
+    <!-- Phase 4 selfie reasons (C39.2): what to do differently. -->
+    <string name="openverify_retry_face_too_small">Your face was too small in the photo. Move closer, so your face fills the oval.</string>
+    <string name="openverify_retry_face_glare">Light was reflecting off your face. Turn away from direct light and try again.</string>
+    <string name="openverify_retry_pose_not_center">Look straight at the camera for the first photo, with your face in the middle of the oval.</string>
+    <string name="openverify_retry_pose_not_left">Your head was not turned far enough to the left. When asked, slowly turn your head to the left and hold it there.</string>
+    <string name="openverify_retry_pose_not_right">Your head was not turned far enough to the right. When asked, slowly turn your head to the right and hold it there.</string>
+    <string name="openverify_retry_face_covered">Part of your face was covered. Remove any mask or scarf, and keep your hands away from your face.</string>
+    <string name="openverify_retry_glasses_detected">Take off your glasses, then try again.</string>
+
+    <string name="openverify_processing_title">Checking your photos</string>
+    <!-- C64.2: a phone, email, form or wallet step is being checked; it has no photos. -->
+    <string name="openverify_processing_verification_title">Checking your verification</string>
+    <string name="openverify_processing_message">This usually takes a few seconds. Keep this screen open.</string>
+
+    <string name="openverify_completion_title">Verification submitted</string>
+    <string name="openverify_flow_completion">Thank you. Your verification has been submitted.</string>
+    <string name="openverify_failure_title">Verification not completed</string>
+    <string name="openverify_flow_failure">We could not verify your identity. Contact the organization that asked you to verify.</string>
+    <string name="openverify_expired_title">This verification has expired</string>
+    <string name="openverify_expired_message">Contact the organization that asked you to verify to start a new one.</string>
+
+    <!-- Screens for a session that cannot continue (C19); none offers a retry. -->
+    <string name="openverify_session_expired_title">Your verification session has expired</string>
+    <string name="openverify_session_expired_message">For your security, a verification session ends after a while. Start the verification again.</string>
+    <string name="openverify_session_canceled_title">This verification session has ended</string>
+    <string name="openverify_session_canceled_message">The session was closed, for example because the verification was finished or withdrawn. If you still need to verify, contact the organization that asked you to verify.</string>
+    <string name="openverify_redacted_title">This verification is no longer available</string>
+    <string name="openverify_redacted_message">The information in this verification has been deleted, so it cannot continue. If you still need to verify, contact the organization that asked you to verify.</string>
+    <string name="openverify_link_refused_title">We could not open your verification</string>
+    <string name="openverify_link_refused_message">This link has already been used or has expired. Each link works only once. Ask the organization that sent it for a new one.</string>
+
+    <!-- Shown on every screen of a sandbox session (C19). -->
+    <string name="openverify_sandbox_label">Sandbox</string>
+    <string name="openverify_sandbox_message">This is a test verification. Use test data only, never a real ID.</string>
+
+    <string name="openverify_error_title">Something went wrong</string>
+    <string name="openverify_error_network">We could not reach the server. Check your connection and try again.</string>
+    <string name="openverify_error_session_expired">This verification session has expired. Start the verification again.</string>
+    <string name="openverify_error_inquiry_mismatch">This session belongs to a different verification. Start the verification again.</string>
+    <string name="openverify_error_rejected">The server could not accept this request. Contact the organization that asked you to verify.</string>
+    <string name="openverify_error_out_of_sync">Your verification changed somewhere else. Try again to continue where it stands.</string>
+    <string name="openverify_error_server">The server had a problem. Try again in a moment.</string>
+    <string name="openverify_error_invalid_response">We received a response we could not read. Try again in a moment.</string>
+    <string name="openverify_error_still_processing">This is taking longer than usual. Check again in a moment.</string>
+
+    <string name="openverify_unsupported_title">This step is not available here</string>
+    <string name="openverify_unsupported_message">This verification includes a step that this version of the app does not support yet. Contact the organization that asked you to verify.</string>
+</resources>

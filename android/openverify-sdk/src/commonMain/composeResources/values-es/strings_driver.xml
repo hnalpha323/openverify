@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Spanish copy of values/strings_driver.xml, machine-drafted by android-driver (Workflow 10A,
+  C199.1; i18n/review-status.json). Compose Multiplatform resources: no placeholders here, ' and "
+  written as they are, no isolate or other bidi control (ResourcesTest).
+-->
+<resources>
+    <string name="openverify_unsupported_server_message">El servicio de verificación al que se conecta esta aplicación es más antiguo que la aplicación. La organización que te pidió la verificación debe actualizarlo.</string>
+</resources>

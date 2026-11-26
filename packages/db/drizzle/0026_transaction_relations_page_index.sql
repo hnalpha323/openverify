@@ -1,0 +1,1 @@
+CREATE INDEX "transaction_relations_transaction_created_at_key_target_idx" ON "transaction_relations" USING btree ("environment_id","transaction_id","created_at" DESC NULLS FIRST,"relation_schema_key" DESC NULLS FIRST,"target_id" DESC NULLS FIRST);

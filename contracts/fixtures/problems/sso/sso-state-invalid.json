@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Bad Request",
+  "status": 400,
+  "detail": "The sign-in attempt could not be matched. Start signing in again.",
+  "instance": "/api/v1/dashboard/sso/callback/ssop_01M5CN0000000000000011B200",
+  "requestId": "00000000-0000-4000-8000-00000011b005",
+  "code": "sso_state_invalid"
+}

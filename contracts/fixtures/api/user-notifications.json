@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "type": "user-notification",
+      "id": "unot_01M5CN00000000000000000016",
+      "attributes": {
+        "kind": "assigned",
+        "read-at": null,
+        "created-at": "2026-10-20T12:05:00.000Z"
+      },
+      "relationships": {
+        "case": {
+          "data": {
+            "type": "case",
+            "id": "case_01M5CN00000000000000000001"
+          }
+        }
+      }
+    }
+  ],
+  "links": {
+    "next": null
+  }
+}

@@ -1,0 +1,189 @@
+{
+  "$comment": "C76.1: the watchlist sources the operator's sync reads (pnpm --filter @openverify/api watchlists:sync, pep:sync, or the watchlists-refresh tick with OPENVERIFY_WATCHLIST_REFRESH=true). Live list data is never committed or shipped (ADR 0005): this file says where the sync fetches each list, which one host a redirect may go to, the content types and byte caps, the deadline, the parser, the refresh and staleness intervals (provisional, from the research's cadence notes), the setting a source needs, its terms note and its attribution line. OFSI's Consolidated List closed on 2026-01-28 and is never a source. No publisher change signal is read: every check downloads the file and compares its SHA-256 (owner decision 10 after Workflow 6B). Sizes measured on 2026-10-22 are in docs/research/phase6-data-sources.md.",
+  "format": "openverify/watchlist-sources/v1",
+  "sources": [
+    {
+      "id": "ofac-sdn",
+      "publisher": "US Treasury OFAC",
+      "kind": "sanctions",
+      "urls": [
+        "https://sanctionslistservice.ofac.treas.gov/api/PublicationPreview/exports/SDN_ENHANCED.ZIP"
+      ],
+      "redirect_host": "wc2h-sls-prod-public-published.s3.us-gov-west-1.amazonaws.com",
+      "content_types": ["application/zip", "application/octet-stream"],
+      "max_bytes": { "compressed": 67108864, "inflated": 536870912 },
+      "timeout_seconds": 300,
+      "parser": "ofac-enhanced-xml",
+      "archive_member": "SDN_ENHANCED.XML",
+      "refresh_interval_hours": 6,
+      "stale_after_hours": 48,
+      "enabled_by_default": true,
+      "sandbox_only": false,
+      "requires": null,
+      "terms": {
+        "note": "A US government work, not protected by copyright in the United States (17 U.S.C. 105). The Federal Register prevails where it differs from the files.",
+        "url": "https://ofac.treasury.gov/sanctions-list-service"
+      },
+      "attribution": "US Treasury OFAC Specially Designated Nationals and Blocked Persons List (a US government work)"
+    },
+    {
+      "id": "ofac-consolidated",
+      "publisher": "US Treasury OFAC",
+      "kind": "sanctions",
+      "urls": [
+        "https://sanctionslistservice.ofac.treas.gov/api/PublicationPreview/exports/CONS_ENHANCED.XML"
+      ],
+      "redirect_host": "wc2h-sls-prod-public-published.s3.us-gov-west-1.amazonaws.com",
+      "content_types": ["application/xml", "text/xml"],
+      "max_bytes": { "compressed": 67108864, "inflated": 67108864 },
+      "timeout_seconds": 300,
+      "parser": "ofac-enhanced-xml",
+      "archive_member": null,
+      "refresh_interval_hours": 6,
+      "stale_after_hours": 48,
+      "enabled_by_default": true,
+      "sandbox_only": false,
+      "requires": null,
+      "terms": {
+        "note": "A US government work, not protected by copyright in the United States (17 U.S.C. 105). The Federal Register prevails where it differs from the files.",
+        "url": "https://ofac.treasury.gov/sanctions-list-service"
+      },
+      "attribution": "US Treasury OFAC Consolidated Sanctions List, the non-SDN lists (a US government work)"
+    },
+    {
+      "id": "eu-fsf",
+      "publisher": "European Commission",
+      "kind": "sanctions",
+      "urls": [
+        "https://webgate.ec.europa.eu/fsd/fsf/public/files/xmlFullSanctionsList_1_1/content"
+      ],
+      "redirect_host": null,
+      "content_types": ["application/xml", "text/xml"],
+      "max_bytes": { "compressed": 134217728, "inflated": 134217728 },
+      "timeout_seconds": 300,
+      "parser": "eu-fsf-xml",
+      "archive_member": null,
+      "refresh_interval_hours": 6,
+      "stale_after_hours": 48,
+      "enabled_by_default": true,
+      "sandbox_only": false,
+      "requires": "eu_fsf_token",
+      "terms": {
+        "note": "Reusable for commercial or non-commercial purposes under Commission Decision 2011/833/EU, crediting the source; only the Official Journal is authentic. The operator supplies the catalogue's token in OPENVERIFY_EU_FSF_TOKEN; until then the source is not configured.",
+        "url": "https://webgate.ec.europa.eu/fsd/fsf"
+      },
+      "attribution": "Source: European Commission, Financial Sanctions Files (Decision 2011/833/EU)"
+    },
+    {
+      "id": "uk-sanctions-list",
+      "publisher": "UK Foreign, Commonwealth and Development Office",
+      "kind": "sanctions",
+      "urls": ["https://sanctionslist.fcdo.gov.uk/docs/UK-Sanctions-List.xml"],
+      "redirect_host": null,
+      "conditional": true,
+      "content_types": ["application/xml", "text/xml"],
+      "max_bytes": { "compressed": 134217728, "inflated": 134217728 },
+      "timeout_seconds": 300,
+      "parser": "uk-sanctions-list-xml",
+      "archive_member": null,
+      "refresh_interval_hours": 6,
+      "stale_after_hours": 48,
+      "enabled_by_default": true,
+      "sandbox_only": false,
+      "requires": null,
+      "terms": {
+        "note": "Open Government Licence v3.0, which does not license personal data: the operator needs its own lawful basis to hold and screen against the list.",
+        "url": "https://www.gov.uk/government/publications/the-uk-sanctions-list"
+      },
+      "attribution": "Contains public sector information licensed under the Open Government Licence v3.0 (FCDO UK Sanctions List)"
+    },
+    {
+      "id": "un-sc",
+      "publisher": "United Nations Security Council",
+      "kind": "sanctions",
+      "urls": ["https://scsanctions.un.org/resources/xml/en/consolidated.xml"],
+      "redirect_host": "unsolprodfiles.blob.core.windows.net",
+      "content_types": ["application/xml", "text/xml"],
+      "max_bytes": { "compressed": 33554432, "inflated": 33554432 },
+      "timeout_seconds": 300,
+      "parser": "un-consolidated-xml",
+      "archive_member": null,
+      "refresh_interval_hours": 24,
+      "stale_after_hours": 72,
+      "enabled_by_default": false,
+      "sandbox_only": false,
+      "requires": null,
+      "terms": {
+        "note": "The UN website terms grant personal, non-commercial use only. The source ships disabled: it is enabled only for an environment whose environment admin opts in with an audited acknowledgement of these terms and a step-up, while the install allows it (OPENVERIFY_WATCHLIST_UN_OPT_IN_ALLOWED, true by default since owner decision Q10; C254.1). Whether your use fits the terms is yours to decide. The OFAC, EU and UK lists carry most UN designations.",
+        "url": "https://www.un.org/en/about-us/terms-of-use"
+      },
+      "attribution": "United Nations Security Council Consolidated List"
+    },
+    {
+      "id": "wikidata-pep",
+      "publisher": "Wikidata",
+      "kind": "pep",
+      "urls": ["https://query.wikidata.org/sparql"],
+      "redirect_host": null,
+      "content_types": ["application/sparql-results+json", "application/json"],
+      "max_bytes": { "compressed": 67108864, "inflated": 67108864 },
+      "timeout_seconds": 75,
+      "parser": "wikidata-sparql",
+      "archive_member": null,
+      "refresh_interval_hours": 168,
+      "stale_after_hours": 192,
+      "enabled_by_default": true,
+      "sandbox_only": false,
+      "requires": "wikidata_user_agent",
+      "terms": {
+        "note": "Structured data under CC0. Queried only by the operator's sync, with the operator's own contact in OPENVERIFY_WIKIDATA_USER_AGENT, within the query service's limits; never with an end user's name. The endpoint is OPENVERIFY_WIKIDATA_SPARQL_URL.",
+        "url": "https://www.wikidata.org/wiki/Wikidata:Licensing"
+      },
+      "attribution": "Wikidata (CC0), cited as a courtesy"
+    },
+    {
+      "id": "openverify-sandbox",
+      "publisher": "OpenVerify",
+      "kind": "sanctions",
+      "urls": [],
+      "redirect_host": null,
+      "content_types": [],
+      "max_bytes": { "compressed": 16777216, "inflated": 16777216 },
+      "timeout_seconds": null,
+      "parser": "normalised-json",
+      "archive_member": null,
+      "refresh_interval_hours": null,
+      "stale_after_hours": null,
+      "enabled_by_default": true,
+      "sandbox_only": true,
+      "requires": null,
+      "terms": {
+        "note": "Synthetic, fictional entries for sandbox environments and tests only, imported by seed:dev; never used for a production environment and never stale.",
+        "url": null
+      },
+      "attribution": "OpenVerify synthetic sandbox list (fictional entries, for tests only)"
+    },
+    {
+      "id": "openverify-sandbox-pep",
+      "publisher": "OpenVerify",
+      "kind": "pep",
+      "urls": [],
+      "redirect_host": null,
+      "content_types": [],
+      "max_bytes": { "compressed": 16777216, "inflated": 16777216 },
+      "timeout_seconds": null,
+      "parser": "normalised-json",
+      "archive_member": null,
+      "refresh_interval_hours": null,
+      "stale_after_hours": null,
+      "enabled_by_default": true,
+      "sandbox_only": true,
+      "requires": null,
+      "terms": {
+        "note": "Synthetic, fictional office holders and one fictional relative for sandbox environments and tests only, imported by seed:dev; never used for a production environment and never stale.",
+        "url": null
+      },
+      "attribution": "OpenVerify synthetic sandbox PEP list (fictional office holders, for tests only)"
+    }
+  ]
+}

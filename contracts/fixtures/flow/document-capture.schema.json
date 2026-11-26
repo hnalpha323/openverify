@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:openverify:fixtures:document-capture:1",
+  "title": "Document capture client constants (C202.2)",
+  "description": "Workflow 10B Stage 1a (contracts-10b) freezes this shape; document-guidance writes contracts/fixtures/flow/document-capture.json, read by the SDK (commonMain capture/document/) and by Python, each with a test that it uses the file. Mirrors selfie-capture.json's client block. Every constant is provisional with its basis, calibrated on synthetic ID renders only (calibration.covers); none is tuned on a test's expected answer.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format", "description", "client", "basis", "calibration"],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "format": {
+      "const": 1
+    },
+    "description": {
+      "type": "string"
+    },
+    "client": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "hold-ms",
+        "guidance-hz",
+        "analysis-width-px",
+        "barcode-analysis-width-px",
+        "manual-shutter-after-ms",
+        "sharpness-laplacian-variance-min",
+        "sharpness-tenengrad-min",
+        "glare-share-max",
+        "brightness-mean-min",
+        "brightness-mean-max",
+        "framing-edge-ratio-min",
+        "mrz-band-edge-density-min"
+      ],
+      "properties": {
+        "hold-ms": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "guidance-hz": {
+          "const": 8
+        },
+        "analysis-width-px": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "barcode-analysis-width-px": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "C201.2 (review F11): the analysis width on a barcode-bearing side, at least 1,280, or the guide-area crop the device test shows cheaper."
+        },
+        "manual-shutter-after-ms": {
+          "const": 10000
+        },
+        "sharpness-laplacian-variance-min": {
+          "type": "number"
+        },
+        "sharpness-tenengrad-min": {
+          "type": "number"
+        },
+        "glare-share-max": {
+          "type": "number"
+        },
+        "brightness-mean-min": {
+          "type": "number"
+        },
+        "brightness-mean-max": {
+          "type": "number"
+        },
+        "framing-edge-ratio-min": {
+          "type": "number"
+        },
+        "mrz-band-edge-density-min": {
+          "type": "number"
+        }
+      }
+    },
+    "basis": {
+      "type": "object",
+      "description": "Each client constant's basis (provisional, ours), by its key.",
+      "propertyNames": {
+        "pattern": "^[a-z][a-z0-9-]*$"
+      },
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "calibration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["report", "covers"],
+      "properties": {
+        "report": {
+          "const": "docs/calibration/android-document-guidance.md"
+        },
+        "covers": {
+          "const": "synthetic renders only"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "media_type": "image/png",
+  "render_document_page_max_side_px": 1600,
+  "convert_portrait_max_side_px": 640,
+  "mask_background_max_side_px": 640,
+  "jpeg2000_max_pixels": 4000000
+}

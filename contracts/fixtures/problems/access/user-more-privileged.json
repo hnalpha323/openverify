@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Forbidden",
+  "status": 403,
+  "detail": "That user holds permissions you do not hold in an environment they can enter.",
+  "instance": "/api/v1/dashboard/users/usr_01M5CN00000000000000009B01/reset-mfa",
+  "requestId": "00000000-0000-4000-8000-000000009b05",
+  "code": "user_more_privileged"
+}

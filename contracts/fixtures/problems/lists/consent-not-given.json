@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The inquiry did not consent to biometric matching.",
+  "instance": "/api/v1/list-item/faces",
+  "requestId": "00000000-0000-4000-8000-000000000801",
+  "code": "consent_not_given",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/inquiry-id",
+      "detail": "has no consent to biometric matching"
+    }
+  ]
+}

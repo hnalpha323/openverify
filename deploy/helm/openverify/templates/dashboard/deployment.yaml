@@ -1,0 +1,13 @@
+{{- /*
+C263 (Workflow 11C Stage 2, chart-11c): the operator console, its custom server (C21) beside the
+standalone output. It reaches the API's Service (OPENVERIFY_API_URL) with its BFF token as a file,
+records the client address behind dashboard.trustedProxyHops proxies, frames the flow
+(OPENVERIFY_FLOW_PUBLIC_URL) and enforces its nonce script policy (OPENVERIFY_DASHBOARD_CSP_MODE
+enforce, Phase 9 C170). Its session cookie stays Secure (never OPENVERIFY_DASHBOARD_INSECURE_COOKIES).
+The image's own command serves port 3001 (dashboard.port names it).
+*/ -}}
+{{- include "openverify.checks" . -}}
+{{- $v := .Values.dashboard -}}
+{{- $ports := printf "- name: http\n  containerPort: %v\n  protocol: TCP" $v.port -}}
+{{- $probes := include "openverify.httpProbes" (dict "path" "/login" "startupFailures" 24) -}}
+{{ include "openverify.deployment" (dict "root" . "component" "dashboard" "process" "dashboard" "c" $v "ports" $ports "probes" $probes "hpa" true) }}

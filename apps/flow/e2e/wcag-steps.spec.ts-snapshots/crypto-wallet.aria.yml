@@ -1,0 +1,10 @@
+- main:
+    - region "Prove that you control your crypto wallet":
+        - heading "Prove that you control your crypto wallet" [level=1]
+        - paragraph: 'You sign a message with your wallet. Signing a message is free: it sends no transaction and moves no funds.'
+        - paragraph: Attempt 1 of 3
+        - paragraph: 'Network: Ethereum'
+        - text: Wallet address
+        - paragraph: Copy it from your wallet, then paste it here.
+        - textbox "Wallet address"
+        - button "Get the message to sign"

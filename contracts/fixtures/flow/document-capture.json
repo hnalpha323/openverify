@@ -1,0 +1,37 @@
+{
+  "$schema": "./document-capture.schema.json",
+  "format": 1,
+  "description": "C202.2: the Android SDK's document capture constants for an analysis frame, read by the SDK (commonMain capture/document/DocumentCaptureConstants.kt, checked by DocumentCaptureConstantsTest) and by Python (services/vision/tools/android_document_guidance.py, checked by test_android_document_calibration.py). Guidance only: they decide when the photo is taken and which hint is shown, never a result; the server re-measures every upload (C202.5). Written by android_document_guidance.py --write; never tuned on a test's expected answer.",
+  "client": {
+    "analysis-width-px": 640,
+    "barcode-analysis-width-px": 1280,
+    "brightness-mean-max": 0.825,
+    "brightness-mean-min": 0.357,
+    "framing-edge-ratio-min": 19.0,
+    "glare-share-max": 0.0202,
+    "guidance-hz": 8,
+    "hold-ms": 500,
+    "manual-shutter-after-ms": 10000,
+    "mrz-band-edge-density-min": 0.172,
+    "sharpness-laplacian-variance-min": 102.0,
+    "sharpness-tenengrad-min": 3500.0
+  },
+  "basis": {
+    "analysis-width-px": "C201.2: about 640 px wide in the sensor's orientation for a document (engineering 3.1, inference); the calibration frames are 480 x 640, upright in portrait.",
+    "barcode-analysis-width-px": "C201.2, review F11: at least 1,280 px on a barcode-bearing side, since a 290-module AAMVA row falls near 1.5 px a module at 640; pdf417-guidance's device test may replace it with a crop of the guide. Not calibrated here.",
+    "brightness-mean-max": "Provisional, synthetic renders only: mean grey of the crop, 0 to 1 (quality.brightness), good against bright; the midpoint by the rule in docs/calibration/android-document-guidance.md.",
+    "brightness-mean-min": "Provisional, synthetic renders only: mean grey of the crop, 0 to 1 (quality.brightness), good against dark; the midpoint by the rule in docs/calibration/android-document-guidance.md.",
+    "framing-edge-ratio-min": "Provisional, synthetic renders only: the second-weakest border's edge energy over the strip beyond it (framing_edge_ratio), good against off and small; the midpoint by the rule in docs/calibration/android-document-guidance.md.",
+    "glare-share-max": "Provisional, synthetic renders only: share of the crop at HSV value >= 250 and saturation <= 40 (quality.glare_ratio), good against glare; the midpoint by the rule in docs/calibration/android-document-guidance.md.",
+    "guidance-hz": "C201.2: frames are sampled at 8 Hz, as selfie-capture.json's guidance-hz.",
+    "hold-ms": "Every gate holds for this long before the photo is taken: four sampled frames at 8 Hz, the same hold as selfie-capture.json's hold-ms (provisional, ours).",
+    "manual-shutter-after-ms": "Decision 19, C202.4: the shutter becomes the primary action after 10 s, as selfie-capture.json's manual-shutter-after-ms.",
+    "mrz-band-edge-density-min": "Provisional, synthetic renders only: edge share of the densest line window in the guide's lower third (mrz_band_edge_density), passport pages, good against mrz-hidden; the midpoint by the rule in docs/calibration/android-document-guidance.md.",
+    "sharpness-laplacian-variance-min": "Provisional, synthetic renders only: variance of the Laplacian of the guide's crop (quality.blur_score), good against blur; the midpoint by the rule in docs/calibration/android-document-guidance.md.",
+    "sharpness-tenengrad-min": "Provisional, synthetic renders only: Tenengrad of the guide's crop (quality.tenengrad), good against blur; the good group's extreme (overlap) by the rule in docs/calibration/android-document-guidance.md."
+  },
+  "calibration": {
+    "report": "docs/calibration/android-document-guidance.md",
+    "covers": "synthetic renders only"
+  }
+}

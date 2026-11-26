@@ -1,0 +1,250 @@
+{
+  "data": {
+    "type": "verification/database",
+    "id": "ver_01M5CKD3E1BYN2G8YH4ZC0RM7A",
+    "attributes": {
+      "status": "passed",
+      "checks": [
+        {
+          "name": "database_identity_comparison",
+          "status": "passed",
+          "reasons": [],
+          "requirement": "required",
+          "metadata": {
+            "authoritative": false,
+            "fields": {
+              "name": {
+                "level": "full",
+                "methods": [],
+                "flags": []
+              },
+              "birthdate": {
+                "level": "full",
+                "methods": [],
+                "flags": []
+              },
+              "address": {
+                "level": "full",
+                "methods": [],
+                "flags": [],
+                "components": {
+                  "country": "exact",
+                  "postal-code": "exact",
+                  "house-number": "exact",
+                  "street": "exact",
+                  "unit": "absent",
+                  "city": "exact",
+                  "subdivision": "exact"
+                }
+              },
+              "identification-number": {
+                "level": "missing",
+                "methods": [],
+                "flags": []
+              },
+              "phone-number": {
+                "level": "missing",
+                "methods": [],
+                "flags": []
+              },
+              "email-address": {
+                "level": "missing",
+                "methods": [],
+                "flags": []
+              }
+            },
+            "groups": [
+              {
+                "fields": {
+                  "name": "partial",
+                  "birthdate": "partial",
+                  "address": "partial"
+                },
+                "outcome": "met"
+              }
+            ],
+            "not-requested-fields": []
+          },
+          "stage": "ga",
+          "confidence": null,
+          "provenance": {
+            "implementation-version": 1,
+            "provider": {
+              "id": "sandbox",
+              "sandbox": true
+            },
+            "thresholds": {
+              "match-groups": [
+                {
+                  "name": "partial",
+                  "birthdate": "partial",
+                  "address": "partial"
+                }
+              ],
+              "accept-precision-limited-birthdate": true,
+              "accept-transposed-birthdate": false
+            },
+            "threshold-basis": {
+              "match-groups": "provisional",
+              "accept-precision-limited-birthdate": "provisional",
+              "accept-transposed-birthdate": "provisional"
+            }
+          },
+          "category": "fraud"
+        },
+        {
+          "name": "database_name_comparison",
+          "status": "passed",
+          "reasons": [],
+          "requirement": "not_required",
+          "metadata": {
+            "level": "full",
+            "methods": [],
+            "flags": []
+          },
+          "stage": "ga",
+          "confidence": null,
+          "provenance": {
+            "implementation-version": 1,
+            "provider": {
+              "id": "sandbox",
+              "sandbox": true
+            },
+            "thresholds": {
+              "min-match-level": "partial"
+            },
+            "threshold-basis": {
+              "min-match-level": "provisional"
+            }
+          },
+          "category": "fraud"
+        },
+        {
+          "name": "database_address_comparison",
+          "status": "passed",
+          "reasons": [],
+          "requirement": "not_required",
+          "metadata": {
+            "level": "full",
+            "methods": [],
+            "flags": [],
+            "components": {
+              "country": "exact",
+              "postal-code": "exact",
+              "house-number": "exact",
+              "street": "exact",
+              "unit": "absent",
+              "city": "exact",
+              "subdivision": "exact"
+            }
+          },
+          "stage": "ga",
+          "confidence": null,
+          "provenance": {
+            "implementation-version": 1,
+            "provider": {
+              "id": "sandbox",
+              "sandbox": true
+            },
+            "thresholds": {
+              "min-match-level": "partial"
+            },
+            "threshold-basis": {
+              "min-match-level": "provisional"
+            }
+          },
+          "category": "fraud"
+        },
+        {
+          "name": "database_birthdate_comparison",
+          "status": "passed",
+          "reasons": [],
+          "requirement": "not_required",
+          "metadata": {
+            "level": "full",
+            "methods": [],
+            "flags": []
+          },
+          "stage": "ga",
+          "confidence": null,
+          "provenance": {
+            "implementation-version": 1,
+            "provider": {
+              "id": "sandbox",
+              "sandbox": true
+            },
+            "thresholds": {
+              "min-match-level": "partial"
+            },
+            "threshold-basis": {
+              "min-match-level": "provisional"
+            }
+          },
+          "category": "fraud"
+        },
+        {
+          "name": "database_inquiry_comparison",
+          "status": "not_applicable",
+          "reasons": ["no_reference_data"],
+          "requirement": "not_required",
+          "metadata": {},
+          "stage": "ga",
+          "confidence": null,
+          "provenance": {
+            "implementation-version": 1,
+            "thresholds": {
+              "min-match-level": "partial"
+            },
+            "threshold-basis": {
+              "min-match-level": "provisional"
+            }
+          },
+          "category": "fraud"
+        },
+        {
+          "name": "database_po_box_detection",
+          "status": "passed",
+          "reasons": [],
+          "requirement": "not_required",
+          "metadata": {
+            "matched-patterns": []
+          },
+          "stage": "ga",
+          "confidence": null,
+          "provenance": {
+            "implementation-version": 1,
+            "thresholds": {}
+          },
+          "category": "user_action_required"
+        }
+      ],
+      "name-first": "Avery",
+      "name-middle": null,
+      "name-last": "Example",
+      "birthdate": "1990-04-12",
+      "address-street-1": "1 Sample Street",
+      "address-street-2": null,
+      "address-city": "Utopia City",
+      "address-subdivision": "UT",
+      "address-postal-code": "00000",
+      "address-country-code": "US",
+      "identification-number": null,
+      "phone-number": null,
+      "email-address": null,
+      "from-rejected-handoff": false,
+      "created-at": "2026-10-20T12:05:00.000Z",
+      "updated-at": "2026-10-20T12:05:30.000Z"
+    },
+    "relationships": {
+      "inquiry": {
+        "data": {
+          "type": "inquiry",
+          "id": "inq_01M5CJXHG07XPHF3HRM6NREDH7"
+        }
+      },
+      "files": {
+        "data": []
+      }
+    }
+  }
+}

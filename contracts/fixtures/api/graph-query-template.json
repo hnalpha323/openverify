@@ -1,0 +1,28 @@
+{
+  "data": {
+    "type": "graph-query-template",
+    "id": "grqt_01M5CK3190XEVBM5ZXA76E1JSN",
+    "attributes": {
+      "name": "Synthetic shared contact details",
+      "status": "active",
+      "latest-version": 1,
+      "published-version": 1,
+      "created-at": "2026-10-31T12:00:00.000Z",
+      "updated-at": "2026-10-31T12:00:00.000Z"
+    },
+    "relationships": {
+      "latest-version": {
+        "data": {
+          "type": "graph-query-template-version",
+          "id": "grqtv_01M5CK3190XEVBM5ZXA76E1JSN"
+        }
+      },
+      "published-version": {
+        "data": {
+          "type": "graph-query-template-version",
+          "id": "grqtv_01M5CK3190XEVBM5ZXA76E1JSN"
+        }
+      }
+    }
+  }
+}

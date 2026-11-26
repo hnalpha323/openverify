@@ -1,0 +1,12 @@
+- main:
+    - region "Enter your business website":
+        - heading "Enter your business website" [level=1]
+        - paragraph: We check that the website’s address exists. We never open the website itself.
+        - paragraph: Attempt 1 of 3
+        - paragraph: Fields marked * are required.
+        - text: Website address
+        - paragraph: Include https:// or http://, like https://www.example.com.
+        - textbox "Website address"
+        - text: Business name
+        - textbox "Business name"
+        - button "Continue"

@@ -1,0 +1,69 @@
+{
+  "model_versions": {
+    "text_detector": "pp-ocrv6-small-det",
+    "text_recognizer": "pp-ocrv6-small-rec",
+    "pdf_renderer": null,
+    "pdf_parser": null
+  },
+  "source": "image",
+  "page_count": 1,
+  "analysed_pages": [1],
+  "pages": [
+    {
+      "number": 1,
+      "width": 1512,
+      "height": 2016,
+      "width_pt": null,
+      "height_pt": null,
+      "text_layer": [],
+      "ocr": [
+        {
+          "text": "UTOPIA WATER BOARD",
+          "confidence": 0.941,
+          "box": [148.0, 157.0, 764.0, 75.0]
+        },
+        {
+          "text": "Statement date: 30 September 2026",
+          "confidence": 0.938,
+          "box": [148.0, 297.0, 824.0, 45.0]
+        },
+        {
+          "text": "Account number: 4471-2208-19",
+          "confidence": 0.935,
+          "box": [148.0, 347.0, 704.0, 45.0]
+        },
+        {
+          "text": "QUINN VALEMONT",
+          "confidence": 0.932,
+          "box": [148.0, 517.0, 424.0, 45.0]
+        },
+        {
+          "text": "14 LANTERN ROW",
+          "confidence": 0.929,
+          "box": [148.0, 567.0, 404.0, 45.0]
+        },
+        {
+          "text": "MERIDALE UT 00000",
+          "confidence": 0.926,
+          "box": [148.0, 617.0, 474.0, 45.0]
+        },
+        {
+          "text": "Amount due: 48.20",
+          "confidence": 0.923,
+          "box": [148.0, 897.0, 434.0, 45.0]
+        }
+      ],
+      "text_layer_ocr_agreement": null
+    }
+  ],
+  "pdf": null,
+  "image": {
+    "exif_software": null,
+    "exif_datetime_original": "2026-10-02T18:41:07",
+    "exif_datetime": "2026-10-02T18:41:07",
+    "jpeg_quality": 87,
+    "double_compression_score": 0.0412,
+    "ela_text_cell_score": 0.0718,
+    "copy_move_score": 0.0106
+  }
+}

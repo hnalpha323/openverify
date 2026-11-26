@@ -1,0 +1,10 @@
+{
+  "extends": "../../packages/config/tsconfig.bundler.json",
+  "compilerOptions": {
+    "types": ["vite/client"],
+    // server.ts runs under Node's type stripping, which needs the .ts extension on imports;
+    // tsconfig.server.json checks it again with Node's resolution and erasable syntax only.
+    "allowImportingTsExtensions": true
+  },
+  "include": ["src", "server.ts", "vite.config.ts", "vitest.config.ts", "vitest.setup.ts"]
+}

@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "The report has no upcoming run to pause.",
+  "instance": "/api/v1/reports/rep_01M5Y5Z4002GV576EACWSHT2BK/pause",
+  "requestId": "00000000-0000-4000-8000-000000000605",
+  "code": "report_no_scheduled_run"
+}

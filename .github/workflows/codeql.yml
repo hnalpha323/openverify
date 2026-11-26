@@ -1,0 +1,132 @@
+# OpenVerify CodeQL (Workflow 11G, codeql-11g; C260.2 as the owner items decide it on 2026-11-21:
+# Q1 granted, the repository is made public at the owner's release step; Q9 declined, no GitHub Code
+# Security licence is bought). Contract test: infra/tests/codeql-workflow.test.sh (also runs
+# actionlint and zizmor).
+#
+# - Informational, never a required gate: findings go to code scanning, every job has
+#   continue-on-error, ci.yml never needs this workflow, and the CI-green record of decision 69 does
+#   not include it. The gating SAST baseline stays ESLint with eslint-plugin-security, ruff's S rules
+#   and Android lint (decision 2).
+# - Public repositories only: every job is skipped while the repository is private (HARD LIMITS (5)),
+#   so on a private repository no runner starts and nothing is billed. GitHub's CodeQL terms allow
+#   code scanning without a licence only on a public repository.
+# - Triggers: a push to main and a hand dispatch, nothing else (no schedule, no pull_request; rule 11,
+#   decision 50).
+# - Pins: github/codeql-action v4.39.3 by commit (THIRD_PARTY_LICENSES.md section 1, contracts-11g),
+#   which runs the CodeQL bundle its own defaults name (codeql-bundle-v2.27.4, Kotlin 2.4.2x since
+#   CodeQL 2.27.1). Every other action, and the Kotlin job's setup steps, are copied from ci.yml's
+#   android job with the same commits.
+#
+# Minutes (an estimate, not a measurement: no run of this workflow has happened, and the first run
+# is measured whenever the owner's Actions minutes allow one, KP10-59), on ubuntu-latest, which on a
+# public repository is a 4-CPU, 16 GB standard runner whose minutes are not billed:
+# - javascript-typescript: about 15 to 30 minutes (about 6,200 tracked TypeScript and JavaScript
+#   files, about 1.1 million lines with the tests, extracted without a build, then security-extended);
+# - python: about 3 to 6 minutes (about 290 files, 82,000 lines, without a build);
+# - java-kotlin: about 20 to 40 minutes (the Temurin and Android SDK setup, a traced assembleDebug
+#   whose dependencies setup-java's Gradle cache shares with the android job, about 27,000 lines of
+#   Kotlin main sources, then security-extended);
+# - each job may first download the bundle (about 1 to 2 minutes) when the runner's tool cache does
+#   not hold 2.27.4.
+# About 40 to 75 runner minutes a push in all; the timeouts (45 and 60) keep each upper estimate out of
+# its last 25%.
+name: codeql
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: codeql-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  analyze:
+    name: codeql (${{ matrix.language }}, informational, public repository only)
+    if: ${{ github.event.repository.private == false && github.event.repository.visibility == 'public' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    continue-on-error: true
+    permissions:
+      contents: read
+      security-events: write
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - language: javascript-typescript
+            build-mode: none
+          - language: python
+            build-mode: none
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: github/codeql-action/init@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
+        with:
+          languages: ${{ matrix.language }}
+          build-mode: ${{ matrix.build-mode }}
+          config-file: ./.github/codeql/codeql-config.yml
+      - uses: github/codeql-action/analyze@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
+        with:
+          category: /language:${{ matrix.language }}
+
+  # Kotlin is extracted only from a traced build (build-mode none would analyse the Java alone). The
+  # build is assembleDebug from the android job's own Gradle line, so every artifact it resolves is
+  # one that job resolves and android/gradle/verification-metadata.xml already holds (written from a
+  # fresh GRADLE_USER_HOME, c539508d): verification stays on, never lenient or off. --no-daemon and
+  # --no-build-cache, because CodeQL cannot see a build delegated to a running daemon or taken from a
+  # cache. assembleDebug needs no Kotlin/Native toolchain (its task graph has no native task), so the
+  # android job's ~/.konan cache and bundletool are not copied.
+  analyze-java-kotlin:
+    name: codeql (java-kotlin, informational, public repository only)
+    if: ${{ github.event.repository.private == false && github.event.repository.visibility == 'public' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    continue-on-error: true
+    permissions:
+      contents: read
+      security-events: write
+    defaults:
+      run:
+        working-directory: android
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Verify the Gradle wrapper JAR against services.gradle.org
+        run: |
+          version=$(sed -n 's#^distributionUrl=.*/gradle-\(.*\)-\(bin\|all\)\.zip$#\1#p' gradle/wrapper/gradle-wrapper.properties)
+          expected=$(curl -fsSL --proto '=https' "https://services.gradle.org/distributions/gradle-${version}-wrapper.jar.sha256")
+          echo "${expected}  gradle/wrapper/gradle-wrapper.jar" | sha256sum -c -
+      - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: gradle
+          cache-dependency-path: |
+            android/**/*.gradle*
+            android/**/gradle-wrapper.properties
+            android/gradle/libs.versions.toml
+      - uses: android-actions/setup-android@be39fa834029ff78f1a44aa3bb0819b8fc2bd8fd # v4.0.4
+      # C205.3: openverify-face's build copies the YuNet model into its AAR and fails without it;
+      # both files are pinned by SHA-256 (the android job's step, unchanged).
+      - name: Fetch the YuNet model and the fixture face (pinned by SHA-256)
+        working-directory: ${{ github.workspace }}
+        run: |
+          python3 -I scripts/fetch_models.py --only face_detection_yunet
+          python3 -I scripts/fetch_fixtures.py --only person_a_id
+      - uses: github/codeql-action/init@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
+        with:
+          languages: java-kotlin
+          build-mode: manual
+          config-file: ./.github/codeql/codeql-config.yml
+      - name: Build the Android code under CodeQL's tracer (the android job's assembleDebug)
+        run: ./gradlew --no-daemon --no-build-cache assembleDebug --stacktrace
+      - uses: github/codeql-action/analyze@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
+        with:
+          category: /language:java-kotlin

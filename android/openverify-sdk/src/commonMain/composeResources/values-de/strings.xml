@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  German copy of values/strings.xml, machine-drafted by android-i18n (Workflow 10A, C199.1;
+  i18n/review-status.json): where the hosted web flow has the same English text, its
+  German words are used, so both clients say the same thing. Compose Multiplatform resources:
+  positional placeholders only, ' and " written as they are, no isolate or other bidi control
+  (ResourcesTest).
+-->
+<resources>
+    <string name="openverify_locale">de</string>
+    <string name="openverify_loading">Ihre Verifizierung wird geladen…</string>
+    <string name="openverify_cancel">Abbrechen</string>
+    <string name="openverify_close">Schließen</string>
+    <string name="openverify_done">Fertig</string>
+    <string name="openverify_try_again">Erneut versuchen</string>
+    <string name="openverify_camera_title">Kamerazugriff</string>
+    <string name="openverify_camera_rationale">Als Nächstes brauchen wir Ihre Kamera, um Fotos Ihres Ausweisdokuments und ein Selfie aufzunehmen. Die Fotos werden nur für diese Verifizierung verwendet.</string>
+    <string name="openverify_camera_allow">Kamerazugriff erlauben</string>
+    <string name="openverify_camera_denied">Der Kamerazugriff ist ausgeschaltet. Erlauben Sie den Kamerazugriff für diese App in den Einstellungen, um fortzufahren.</string>
+    <string name="openverify_camera_open_settings">Einstellungen öffnen</string>
+    <string name="openverify_camera_unavailable">Wir konnten die Kamera auf diesem Gerät nicht starten.</string>
+    <string name="openverify_capture_progress">Foto %1$d von %2$d</string>
+    <string name="openverify_capture_take">Foto aufnehmen</string>
+    <string name="openverify_capture_preview">Kameravorschau</string>
+    <string name="openverify_capture_failed">Wir konnten das Foto nicht aufnehmen. Versuchen Sie es erneut.</string>
+    <string name="openverify_capture_check">Prüfen Sie, ob das Foto scharf und gut beleuchtet ist und alles zeigt, worum wir gebeten haben.</string>
+    <string name="openverify_capture_retake">Neu aufnehmen</string>
+    <string name="openverify_capture_use">Dieses Foto verwenden</string>
+    <string name="openverify_capture_upload">Stattdessen ein Foto hochladen</string>
+    <string name="openverify_capture_upload_failed">Wir konnten diese Datei nicht verwenden. Wählen Sie ein JPEG-, PNG- oder WebP-Foto.</string>
+    <string name="openverify_capture_sending">Ihr Foto wird gesendet…</string>
+    <string name="openverify_id_front_title">Vorderseite Ihres Ausweises</string>
+    <string name="openverify_id_front_instruction">Bringen Sie die Vorderseite Ihres Ausweises in den Rahmen.</string>
+    <string name="openverify_id_front_photo">Ihr Foto der Vorderseite Ihres Ausweises</string>
+    <string name="openverify_id_back_title">Rückseite Ihres Ausweises</string>
+    <string name="openverify_id_back_instruction">Drehen Sie Ihren Ausweis um und bringen Sie die Rückseite in den Rahmen.</string>
+    <string name="openverify_id_back_photo">Ihr Foto der Rückseite Ihres Ausweises</string>
+    <string name="openverify_id_portrait_title">Fotoseite Ihres Ausweises</string>
+    <string name="openverify_id_portrait_instruction">Bringen Sie die Seite mit Ihrem Foto in den Rahmen.</string>
+    <string name="openverify_id_portrait_photo">Ihr Foto der Fotoseite Ihres Ausweises</string>
+    <string name="openverify_selfie_center_title">Schauen Sie geradeaus</string>
+    <string name="openverify_selfie_center_instruction">Bringen Sie Ihr Gesicht in das Oval und schauen Sie direkt in die Kamera.</string>
+    <string name="openverify_selfie_center_photo">Ihr Selfie, geradeaus schauend</string>
+    <string name="openverify_selfie_left_title">Drehen Sie den Kopf nach links</string>
+    <string name="openverify_selfie_left_instruction">Lassen Sie Ihr Gesicht im Oval und drehen Sie den Kopf langsam nach links.</string>
+    <string name="openverify_selfie_left_photo">Ihr Selfie, mit nach links gedrehtem Kopf</string>
+    <string name="openverify_selfie_right_title">Drehen Sie den Kopf nach rechts</string>
+    <string name="openverify_selfie_right_instruction">Lassen Sie Ihr Gesicht im Oval und drehen Sie den Kopf langsam nach rechts.</string>
+    <string name="openverify_selfie_right_photo">Ihr Selfie, mit nach rechts gedrehtem Kopf</string>
+    <string name="openverify_selfie_capture_restarted">Wir müssen Ihre Selfies neu aufnehmen. Folgen Sie jeder Anweisung in der angezeigten Reihenfolge.</string>
+    <plurals name="openverify_selfie_time_limit">
+        <item quantity="one">Nehmen Sie alle Selfies innerhalb von %1$d Minute auf. Wenn die Zeit abläuft, beginnen wir wieder beim ersten Foto.</item>
+        <item quantity="other">Nehmen Sie alle Selfies innerhalb von %1$d Minuten auf. Wenn die Zeit abläuft, beginnen wir wieder beim ersten Foto.</item>
+    </plurals>
+    <string name="openverify_retry_title">Wir konnten Ihre letzten Fotos nicht verwenden</string>
+    <string name="openverify_retry_generic">Etwas auf dem Foto war nicht deutlich genug. Versuchen Sie es bei gutem Licht erneut.</string>
+    <string name="openverify_retry_image_blurry">Das Foto war unscharf. Halten Sie Ihr Gerät ruhig und warten Sie, bis das Bild scharf ist.</string>
+    <string name="openverify_retry_glare_present">Auf Ihrem Ausweis war eine Spiegelung. Gehen Sie aus dem direkten Licht oder kippen Sie den Ausweis leicht.</string>
+    <string name="openverify_retry_portrait_not_present">Wir konnten das Foto auf Ihrem Ausweis nicht finden. Achten Sie darauf, dass die ganze Vorderseite im Rahmen ist.</string>
+    <string name="openverify_retry_front_not_present">Wir brauchen ein Foto der Vorderseite Ihres Ausweises.</string>
+    <string name="openverify_retry_back_not_present">Wir brauchen ein Foto der Rückseite Ihres Ausweises.</string>
+    <string name="openverify_retry_image_too_dark">Das Foto war zu dunkel. Suchen Sie sich einen helleren Ort.</string>
+    <string name="openverify_retry_image_too_bright">Das Foto war zu hell. Gehen Sie aus starkem Licht.</string>
+    <string name="openverify_retry_face_not_present">Wir konnten Ihr Gesicht nicht sehen. Bringen Sie Ihr Gesicht in das Oval.</string>
+    <string name="openverify_retry_multiple_faces_present">Auf dem Foto war mehr als ein Gesicht. Achten Sie darauf, dass nur Sie im Bild sind.</string>
+    <string name="openverify_retry_image_unreadable">Wir konnten das Foto nicht öffnen. Nehmen Sie ein neues auf oder wählen Sie ein JPEG-, PNG- oder WebP-Bild.</string>
+    <string name="openverify_retry_document_not_found">Wir konnten Ihren Ausweis auf dem Foto nicht finden. Legen Sie ihn auf eine einfarbige, kontrastreiche Fläche, sodass alle vier Ecken im Rahmen sind.</string>
+    <string name="openverify_retry_insufficient_text">Wir konnten den Text auf Ihrem Ausweis nicht lesen. Achten Sie darauf, dass das Foto scharf, gut beleuchtet und ohne Spiegelung ist und den ganzen Ausweis zeigt.</string>
+    <string name="openverify_retry_identity_features_not_found">Wir konnten weder Ihr Foto noch die Zeilen aus Buchstaben und Ziffern auf Ihrem Ausweis finden. Fotografieren Sie die Seite mit Ihrem Foto, mit dem ganzen Ausweis im Rahmen.</string>
+    <string name="openverify_retry_resolution_too_low">Ihr Ausweis war auf dem Foto zu klein. Gehen Sie mit dem Gerät näher heran, sodass der Ausweis den größten Teil des Rahmens ausfüllt.</string>
+    <string name="openverify_retry_back_feature_not_found">Wir konnten die Rückseite Ihres Ausweises nicht lesen. Drehen Sie ihn um und fotografieren Sie die Rückseite scharf und ohne Spiegelung, damit ihr Strichcode oder ihre Zeilen aus Buchstaben und Ziffern lesbar sind.</string>
+    <string name="openverify_retry_portrait_too_small">Das Foto Ihres Gesichts auf dem Ausweis war zu klein. Gehen Sie mit dem Gerät näher heran, sodass der Ausweis den größten Teil des Rahmens ausfüllt.</string>
+    <string name="openverify_retry_portrait_blurry">Das Foto Ihres Gesichts auf dem Ausweis war nicht scharf. Halten Sie Ihr Gerät ruhig und warten Sie, bis das Bild scharf ist.</string>
+    <string name="openverify_retry_portrait_obstructed">Etwas hat das Foto Ihres Gesichts auf dem Ausweis verdeckt. Halten Sie Finger und Spiegelungen davon fern.</string>
+    <string name="openverify_retry_mrz_not_found">Wir konnten die Zeilen aus Buchstaben, Ziffern und &lt;&lt;&lt;-Zeichen auf Ihrem Ausweis nicht finden. Achten Sie darauf, dass der ganze Ausweis im Rahmen ist, auch die Unterkante.</string>
+    <string name="openverify_retry_mrz_unreadable">Wir konnten die Zeilen aus Buchstaben, Ziffern und &lt;&lt;&lt;-Zeichen auf Ihrem Ausweis nicht lesen. Halten Sie Ihr Gerät ruhig und vermeiden Sie Spiegelungen, damit diese Zeilen scharf sind.</string>
+    <string name="openverify_retry_barcode_not_found">Wir konnten den Strichcode auf Ihrem Ausweis nicht finden. Fotografieren Sie die Seite mit dem Strichcode, mit dem ganzen Ausweis im Rahmen und ohne Spiegelung auf dem Strichcode.</string>
+    <string name="openverify_retry_required_fields_missing">Wir konnten nicht alle Angaben auf Ihrem Ausweis lesen. Achten Sie darauf, dass der ganze Ausweis scharf und ohne Spiegelung im Rahmen ist.</string>
+    <string name="openverify_retry_face_too_small">Ihr Gesicht war auf dem Foto zu klein. Gehen Sie näher heran, sodass Ihr Gesicht das Oval ausfüllt.</string>
+    <string name="openverify_retry_face_glare">Licht hat sich auf Ihrem Gesicht gespiegelt. Wenden Sie sich vom direkten Licht ab und versuchen Sie es erneut.</string>
+    <string name="openverify_retry_pose_not_center">Schauen Sie beim ersten Foto direkt in die Kamera, mit Ihrem Gesicht in der Mitte des Ovals.</string>
+    <string name="openverify_retry_pose_not_left">Ihr Kopf war nicht weit genug nach links gedreht. Drehen Sie den Kopf auf Aufforderung langsam nach links und halten Sie ihn dort.</string>
+    <string name="openverify_retry_pose_not_right">Ihr Kopf war nicht weit genug nach rechts gedreht. Drehen Sie den Kopf auf Aufforderung langsam nach rechts und halten Sie ihn dort.</string>
+    <string name="openverify_retry_face_covered">Ein Teil Ihres Gesichts war verdeckt. Nehmen Sie Maske oder Schal ab und halten Sie die Hände vom Gesicht fern.</string>
+    <string name="openverify_retry_glasses_detected">Nehmen Sie Ihre Brille ab und versuchen Sie es dann erneut.</string>
+    <string name="openverify_processing_title">Ihre Fotos werden geprüft</string>
+    <string name="openverify_processing_verification_title">Ihre Verifizierung wird geprüft</string>
+    <string name="openverify_processing_message">Das dauert meist nur wenige Sekunden. Lassen Sie diesen Bildschirm geöffnet.</string>
+    <string name="openverify_completion_title">Verifizierung übermittelt</string>
+    <string name="openverify_flow_completion">Vielen Dank. Ihre Verifizierung wurde übermittelt.</string>
+    <string name="openverify_failure_title">Verifizierung nicht abgeschlossen</string>
+    <string name="openverify_flow_failure">Wir konnten Ihre Identität nicht verifizieren. Wenden Sie sich an die Organisation, die Sie um die Verifizierung gebeten hat.</string>
+    <string name="openverify_expired_title">Diese Verifizierung ist abgelaufen</string>
+    <string name="openverify_expired_message">Wenden Sie sich an die Organisation, die Sie um die Verifizierung gebeten hat, um eine neue zu beginnen.</string>
+    <string name="openverify_session_expired_title">Ihre Verifizierungssitzung ist abgelaufen</string>
+    <string name="openverify_session_expired_message">Zu Ihrer Sicherheit endet eine Verifizierungssitzung nach einiger Zeit. Beginnen Sie die Verifizierung erneut.</string>
+    <string name="openverify_session_canceled_title">Diese Verifizierungssitzung ist beendet</string>
+    <string name="openverify_session_canceled_message">Die Sitzung wurde geschlossen, etwa weil die Verifizierung abgeschlossen oder zurückgezogen wurde. Wenn Sie sich noch verifizieren müssen, wenden Sie sich an die Organisation, die Sie darum gebeten hat.</string>
+    <string name="openverify_redacted_title">Diese Verifizierung ist nicht mehr verfügbar</string>
+    <string name="openverify_redacted_message">Die Informationen dieser Verifizierung wurden gelöscht, daher kann sie nicht fortgesetzt werden. Wenn Sie sich noch verifizieren müssen, wenden Sie sich an die Organisation, die Sie darum gebeten hat.</string>
+    <string name="openverify_link_refused_title">Wir konnten Ihre Verifizierung nicht öffnen</string>
+    <string name="openverify_link_refused_message">Dieser Link wurde bereits verwendet oder ist abgelaufen. Jeder Link funktioniert nur einmal. Bitten Sie die Organisation, die ihn gesendet hat, um einen neuen.</string>
+    <string name="openverify_sandbox_label">Testumgebung</string>
+    <string name="openverify_sandbox_message">Dies ist eine Testverifizierung. Verwenden Sie nur Testdaten, niemals einen echten Ausweis.</string>
+    <string name="openverify_error_title">Etwas ist schiefgelaufen</string>
+    <string name="openverify_error_network">Wir konnten den Server nicht erreichen. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut.</string>
+    <string name="openverify_error_session_expired">Diese Verifizierungssitzung ist abgelaufen. Beginnen Sie die Verifizierung erneut.</string>
+    <string name="openverify_error_inquiry_mismatch">Diese Sitzung gehört zu einer anderen Verifizierung. Beginnen Sie die Verifizierung erneut.</string>
+    <string name="openverify_error_rejected">Der Server konnte diese Anfrage nicht annehmen. Wenden Sie sich an die Organisation, die Sie um die Verifizierung gebeten hat.</string>
+    <string name="openverify_error_out_of_sync">Ihre Verifizierung hat sich an anderer Stelle geändert. Versuchen Sie es erneut, um beim aktuellen Stand fortzufahren.</string>
+    <string name="openverify_error_server">Der Server hatte ein Problem. Versuchen Sie es gleich noch einmal.</string>
+    <string name="openverify_error_invalid_response">Wir haben eine Antwort erhalten, die wir nicht lesen konnten. Versuchen Sie es gleich noch einmal.</string>
+    <string name="openverify_error_still_processing">Das dauert länger als üblich. Prüfen Sie es gleich noch einmal.</string>
+    <string name="openverify_unsupported_title">Dieser Schritt ist hier nicht verfügbar</string>
+    <string name="openverify_unsupported_message">Diese Verifizierung enthält einen Schritt, den diese Version der App noch nicht unterstützt. Wenden Sie sich an die Organisation, die Sie um die Verifizierung gebeten hat.</string>
+</resources>

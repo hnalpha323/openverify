@@ -1,0 +1,10 @@
+{
+  "type": "about:blank",
+  "title": "Too Many Requests",
+  "status": 429,
+  "detail": "A new code can be sent once the wait is over.",
+  "instance": "/api/v1/flow/verifications/ver_01M5CK3190XEVBM5ZXA76E1JSM/otp",
+  "requestId": "00000000-0000-4000-8000-000000000105",
+  "code": "otp_resend_too_soon",
+  "resend-available-at": "2026-10-20T12:01:00.000Z"
+}

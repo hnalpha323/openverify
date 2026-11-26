@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "The verification has no decision yet.",
+  "instance": "/api/v1/connect/share-tokens",
+  "requestId": "00000000-0000-4000-8000-00000011a008",
+  "code": "source_not_decided"
+}

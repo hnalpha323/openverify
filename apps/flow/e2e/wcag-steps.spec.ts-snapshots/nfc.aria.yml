@@ -1,0 +1,6 @@
+- main:
+    - region "This step needs the organization’s app":
+        - heading "This step needs the organization’s app" [level=1]
+        - paragraph: Reading a document chip needs the organization’s app; a browser cannot read it.
+        - paragraph: You can continue here another way.
+        - button "Use another way"

@@ -1,0 +1,73 @@
+{
+  "data": {
+    "type": "event",
+    "id": "evt_01M5CN00000000000000000121",
+    "attributes": {
+      "name": "case-template.deleted-field",
+      "payload": {
+        "data": {
+          "type": "case-template",
+          "id": "ctmpl_01M5CN00000000000000000002",
+          "attributes": {
+            "status": "active",
+            "name": "Know your customer review",
+            "resolutions": ["Approved", "Declined"],
+            "created-at": "2026-10-20T12:00:00.000Z",
+            "updated-at": "2026-10-20T12:05:00.000Z",
+            "archived-at": null,
+            "field-schemas": [
+              {
+                "type": "string",
+                "key": "summary",
+                "label": "Summary",
+                "config": {
+                  "max-char-length": 500
+                }
+              },
+              {
+                "type": "multi-choices",
+                "key": "risk-reasons",
+                "label": "Risk reasons",
+                "config": {
+                  "options": ["document", "watchlist", "device"],
+                  "allow-empty": true
+                }
+              },
+              {
+                "type": "email-address",
+                "key": "contact",
+                "label": "Contact",
+                "config": {
+                  "searchable": true
+                }
+              }
+            ],
+            "key": "KYC",
+            "visible-to-roles": ["role_01M5CN00000000000000000012"],
+            "published-version": 1,
+            "draft-version": 2
+          },
+          "relationships": {
+            "published-version": {
+              "data": {
+                "type": "case-template-version",
+                "id": "ctmplv_01M5CN00000000000000000003"
+              }
+            },
+            "draft-version": {
+              "data": {
+                "type": "case-template-version",
+                "id": "ctmplv_01M5CN00000000000000000004"
+              }
+            }
+          }
+        },
+        "meta": {
+          "field-key": "contact",
+          "version-number": 2
+        }
+      },
+      "created-at": "2026-10-20T12:05:00.000Z"
+    }
+  }
+}

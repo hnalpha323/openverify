@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "The chip data lists data groups that were not uploaded.",
+  "instance": "/api/v1/flow/verifications/ver_01M5CK3190XEVBM5ZXA76E1JSM/submit",
+  "requestId": "00000000-0000-4000-8000-000000000120",
+  "code": "chip_data_required"
+}

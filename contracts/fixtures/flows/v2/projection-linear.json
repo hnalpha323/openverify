@@ -1,0 +1,55 @@
+{
+  "metadata": {
+    "specVersion": 2,
+    "id": "projection-linear",
+    "version": 1,
+    "name": "Projection: linear"
+  },
+  "entry": "consent",
+  "steps": [
+    {
+      "id": "consent",
+      "type": "consent",
+      "textKeys": ["consent.biometric"],
+      "required": true
+    },
+    {
+      "id": "id_card",
+      "type": "government_id",
+      "sides": "front",
+      "maxAttempts": 1,
+      "captureMethods": ["camera"]
+    },
+    {
+      "id": "face",
+      "type": "selfie",
+      "poses": ["center"],
+      "liveness": "passive",
+      "maxAttempts": 1
+    },
+    {
+      "id": "done",
+      "type": "completion"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "from": "consent",
+      "port": "next",
+      "to": "id_card"
+    },
+    {
+      "id": "e2",
+      "from": "id_card",
+      "port": "next",
+      "to": "face"
+    },
+    {
+      "id": "e3",
+      "from": "face",
+      "port": "next",
+      "to": "done"
+    }
+  ]
+}

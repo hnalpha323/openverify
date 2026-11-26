@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- C209.6: the reader check's texts. Debug builds with the NFC module only; English only, as the demo's own. -->
+<resources>
+    <string name="reader_check_title">OpenVerify reader check</string>
+    <string name="reader_check_intro">Debug builds only. Reads the chip of a passport or identity card with the installed reader and shows pass or fail per protocol and file. It calls no server, and nothing of the document is shown, stored or logged: what is read is dropped at once.</string>
+    <string name="reader_check_key_mrz">MRZ key</string>
+    <string name="reader_check_key_can">Card access number</string>
+    <string name="reader_check_document_number">Document number</string>
+    <string name="reader_check_birth_date">Date of birth (YYMMDD)</string>
+    <string name="reader_check_expiry_date">Date of expiry (YYMMDD)</string>
+    <string name="reader_check_can">Card access number (6 digits)</string>
+    <string name="reader_check_read">Read the chip</string>
+    <string name="reader_check_stop">Stop</string>
+    <string name="reader_check_no_reader">No chip reader is installed in this build.</string>
+    <string name="reader_check_key_invalid">Check the key: the document number, and both dates as six digits; or the six digits of the card access number.</string>
+    <string name="reader_check_phase">Phase: %1$s</string>
+    <string name="reader_check_stopped">Stopped. Nothing was kept.</string>
+    <string name="reader_check_failed">The read failed: %1$s</string>
+    <string name="reader_check_done">The chip was read. This is what the device did; nothing was verified, and nothing was kept.</string>
+    <string name="reader_check_protocols">Protocols</string>
+    <string name="reader_check_files">Files</string>
+    <string name="reader_check_pass">pass</string>
+    <string name="reader_check_fail">fail</string>
+    <string name="reader_check_not_attempted">not attempted, or not on the chip</string>
+</resources>

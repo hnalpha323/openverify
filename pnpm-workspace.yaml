@@ -1,0 +1,134 @@
+packages:
+  - apps/*
+  - packages/*
+  - e2e
+
+# Every dependency release must be at least 14 days old (20,160 minutes; Phase 9 decision 62).
+# Setting minimumReleaseAge explicitly makes pnpm strict: a version younger than this fails the
+# install instead of falling back to an older one, and every install re-checks the lockfile's
+# entries. There is no exclusion list: pin an older version, or wait (CLAUDE.md).
+minimumReleaseAge: 20160
+
+# Single source of truth for shared dependency versions (reference with "catalog:").
+catalog:
+  # typescript-eslint 8.x supports typescript >=4.8.4 <6.1.0, so stay on 6.0.x.
+  typescript: ~6.0.3
+  '@types/node': ^22.20.5
+  turbo: ^2.11.9
+  eslint: ^10.13.0
+  '@eslint/js': ^10.0.1
+  typescript-eslint: ~8.71.1
+  eslint-config-prettier: ^10.1.8
+  eslint-plugin-react-hooks: ^7.1.1
+  globals: ^17.13.0
+  prettier: ^3.9.10
+  vitest: ^5.0.5
+  '@vitest/coverage-v8': ^5.0.5
+  react: ^19.3.1
+  react-dom: ^19.3.1
+  '@types/react': ^19.3.0
+  '@types/react-dom': ^19.3.0
+  vite: ^8.3.4
+  '@vitejs/plugin-react': ^6.1.2
+  next: 16.4.5
+  '@playwright/test': ^1.64.1
+  # Phase 5 (Workflow 5A Stage 1b): exact pins, each at least 14 days old when adopted.
+  # Crypto-wallet primitives (C57.1): packages/checks at runtime, e2e for the test signers.
+  '@noble/curves': 2.4.0
+  '@noble/hashes': 2.4.0
+  '@scure/base': 2.4.0
+  '@scure/btc-signer': 2.4.1
+  # Phone numbers (C55.8): packages/checks (`/max` metadata) and apps/flow (`/min`).
+  libphonenumber-js: 1.13.14
+  # Phase 7 (Workflow 7A Stage 1a): exact pins, each at least 14 days old when adopted, all MIT.
+  # The user-agent parser (C94.5): packages/checks.
+  bowser: 2.14.1
+  # The network lookups over DB-IP's MMDB files (C92.3): packages/signals.
+  mmdb-lib: 3.0.3
+  # The dashboard's TOTP enrolment code (C22).
+  qrcode: 1.5.4
+  '@types/qrcode': 1.5.6
+  # The flow's device handoff QR (C96.5): the smallest of three measured encoders (decision 24;
+  # uqr and qrcode added more to the gzipped flow bundle and were removed from the flow).
+  lean-qr: 2.7.4
+  # The collector's in-test size budget (C94.1, F19): esbuild's JS API bundles the browser entry
+  # inside the test (its build script stays denied); jsdom runs the collector's DOM tests.
+  esbuild: 0.28.2
+  jsdom: 29.1.1
+  # Phase 7 (Workflow 7B Stage 1a): exact pins, each at least 14 days old when adopted, all MIT.
+  # The list importers' parser (C100.2): apps/api.
+  csv-parse: 7.0.3
+  # The shared CSV writer's base (C100.6): packages/checks.
+  csv-stringify: 6.9.0
+  # Compiles a `json` field's restricted schema on the server (C104.3): apps/api.
+  ajv: 8.20.0
+  # Phase 7 (Workflow 7C Stage 1): exact pins, each at least 14 days old when adopted, all MIT.
+  # The graph explorer (C108, decision 36): apps/dashboard. fcose brings cose-base 2.2.0 and
+  # layout-base 2.0.1.
+  cytoscape: 3.34.3
+  cytoscape-fcose: 2.2.0
+  # Phase 8 (Workflow 8A Stage 1a): exact pins, each at least 14 days old when adopted, all MIT.
+  # The queue library, past 6.3.11 (decision 3): apps/api. Brings cron-parser 5.10.2.
+  bullmq: 6.3.14
+  # Recurring triggers (C118.4): packages/workflow-engine; temporal-polyfill for the DST rules.
+  cron-parser: 5.10.2
+  temporal-polyfill: 1.0.5
+  # Evaluate Code (C123.1): the core and one release variant, never asyncify or quickjs-ng.
+  quickjs-emscripten-core: 0.32.0
+  '@jitl/quickjs-wasmfile-release-sync': 0.32.0
+  # The conditions dialect's differential oracle (C114.1): a dev dependency only.
+  json-logic-js: 2.0.5
+  # Phase 8 (Workflow 8C Stage 1): exact pins, each at least 14 days old when adopted, all MIT.
+  # The workflow editor's canvas (C141.1): apps/dashboard. @xyflow/react brings @xyflow/system
+  # 0.0.83, zustand 4.x, classcat and the d3 3.x modules (ISC, BSD-3-Clause), each resolved to a
+  # release at least 14 days old.
+  '@xyflow/react': 12.12.0
+  # The editor's "tidy up" layout on demand (C141.3); never elkjs (EPL-2.0 or GPL-3.0).
+  '@dagrejs/dagre': 3.1.1
+  # The reviewer's compare panel (C142.3), with our own buttons and focus-scoped keys.
+  '@panzoom/panzoom': 4.6.2
+  # Phase 8 (Workflow 8D Stage 1, `platform-carry`): e2e test tooling only, at least 14 days old.
+  # Axe on every console page (C141.8, C142.6): e2e/tests/support/ui-axe.ts. Brings axe-core
+  # 4.14.0 (MPL-2.0), allowed unmodified as test tooling and never shipped
+  # (THIRD_PARTY_LICENSES.md section 5); nothing outside e2e and, since Workflow 9A (C171.2), the
+  # flow's dev dependencies (its mocked Playwright suite) may depend on it.
+  '@axe-core/playwright': 4.14.0
+  # Phase 9 (the gap after Workflow 9B; owner decision B9 (b), 2026-11-06): the analytics charts'
+  # primitives (C164.9, decision 42), apps/dashboard, ISC, instead of visx, whose @visx/vendor
+  # reaches robust-predicates (The Unlicense, not on rule 4's list). They bring d3-array,
+  # d3-format, d3-interpolate, d3-color, d3-time, d3-time-format, internmap and d3-path (ISC),
+  # each resolved to a release at least 14 days old; the d3 patch releases of 2026-11-03 are not.
+  d3-scale: 4.0.2
+  d3-shape: 3.2.0
+  '@types/d3-scale': 4.0.9
+  '@types/d3-shape': 3.2.0
+  # Phase 11 (Workflow 11B Stage 1a, contracts-11b): OIDC sign-in for the console (C248.2), apps/api,
+  # all MIT, all three published 2026-09-05 (read from the registry on 2026-11-13, 69 days old).
+  # openid-client asks for oauth4webapi ^3.8.8 and jose ^6.2.12; jose is held at 6.2.12 (the
+  # plan's pins are released on or before 2026-10-15; 6.2.13 is of 2026-10-20).
+  openid-client: 6.8.8
+  oauth4webapi: 3.8.8
+  jose: 6.2.12
+
+# Optional dependencies that are never installed. `sharp` (optional for next) serves only the
+# image optimizer, which the dashboard turns off (`images.unoptimized`); its prebuilt binaries
+# bundle LGPL libvips, which must stay out of everything but android/openverify-nfc.
+ignoredOptionalDependencies:
+  - sharp
+
+# Transitive versions held below a newest release that was younger than 14 days when the
+# dependency that pulls them in was adopted. Lift a pin once its newer release is old enough.
+overrides:
+  # eslint-plugin-regexp 3.3.1 asks for ^9.0.0; 9.3.0 (2026-10-19) was 3 days old.
+  jsdoc-type-pratt-parser: 9.2.2
+
+# Dependency build scripts are denied by default; every entry here is an explicit decision.
+# None of these scripts is needed: esbuild resolves its prebuilt @esbuild/<platform> binary
+# without its postinstall, and ssh2/cpu-features (testcontainers -> dockerode) fall back to
+# pure JS. Set an entry to true only after reviewing that package's script.
+allowBuilds:
+  cpu-features: false
+  esbuild: false
+  msgpackr-extract: false
+  protobufjs: false
+  ssh2: false

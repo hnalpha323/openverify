@@ -1,0 +1,501 @@
+diff --git a/apps/api/src/container.ts b/apps/api/src/container.ts
+index 50e9b29f..6abba700 100644
+--- a/apps/api/src/container.ts
++++ b/apps/api/src/container.ts
+@@ -27,7 +27,7 @@ import {
+ } from './jobs/list-queues.js';
+ import { createReportRunQueue, type ClosableReportRunQueue } from './jobs/report-queues.js';
+ import { biometricListsGate } from './services/lists/biometric/index.js';
+-import { unbuiltListService } from './services/lists/item-writer.js';
++import { createListService } from './services/lists/item-writer.js';
+ import { createCacheRedis, createKeyValueCache } from './cache/index.js';
+ import { createOutboundHttp, type OutboundHttp } from './http/index.js';
+ import { createProviderBindings } from './providers/index.js';
+@@ -287,7 +287,7 @@ export function createContainer(config: ApiConfig, overrides: ContainerOverrides
+     // C97.4, C99.1, C99.7, C100.2 (Workflow 7B): the list producers and ports.
+     listImports,
+     listItemEmbeds,
+-    listService: unbuiltListService,
++    listService: createListService({ db, blindIndexKey: config.blindIndexKey, rateLimiter }),
+     biometricListsGate,
+     ...userSessions,
+   };
+diff --git a/apps/api/src/jobs/report-types/custom-list-engine.test.ts b/apps/api/src/jobs/report-types/custom-list-engine.test.ts
+new file mode 100644
+index 00000000..3b9a7b63
+--- /dev/null
++++ b/apps/api/src/jobs/report-types/custom-list-engine.test.ts
+@@ -0,0 +1,142 @@
++/**
++ * C106.2: a custom-list run through the framework: persisted, served and re-run, on the hooks of
++ * persist.ts and resources.ts. Synthetic values.
++ */
++import { reportResourceSchema, newId } from '@openverify/contracts';
++import {
++  createList,
++  createReport,
++  getReport,
++  insertListItems,
++  archiveListItem,
++} from '@openverify/db';
++import {
++  createTestDatabase,
++  createTestTenant,
++  seedReportTemplate,
++  testId,
++  type TestDatabase,
++} from '@openverify/db/testing';
++import { afterAll, beforeAll, describe, expect, it } from 'vitest';
++import { UNMASKED } from '../../auth/pii.js';
++import { PHASE6_DEFAULTS } from '../../config.js';
++import { newListItem } from '../../services/lists/keys.js';
++import { reportResourceOf } from '../../services/reports/reports.js';
++import { createRecordingEventPublisher, fixedClock } from '../../test-support/fakes.js';
++import { createWorkerLogger } from '../logger.js';
++import { createReportRunProcessor, type ReportRunProcessorDeps } from '../reports/run.js';
++
++let database: TestDatabase;
++let environmentId: string;
++const key = new Uint8Array(32).fill(0x3d);
++const clock = fixedClock();
++
++beforeAll(async () => {
++  database = await createTestDatabase();
++  environmentId = (await createTestTenant(database.db)).environment.id;
++}, 120_000);
++
++afterAll(async () => {
++  await database.close();
++});
++
++const deps = (): ReportRunProcessorDeps => ({
++  db: database.db,
++  clock,
++  logger: createWorkerLogger({ level: 'silent' }),
++  events: createRecordingEventPublisher(),
++  keyring: database.keyring,
++  blindIndexKey: key,
++  watchlists: {
++    sourcesDisabled: [],
++    refresh: false,
++    removedRetentionDays: 90,
++    euFsfToken: null,
++    wikidataUserAgent: null,
++    wikidataSparqlUrl: PHASE6_DEFAULTS.wikidataSparqlUrl,
++    pep: {
++      openTenureMaxYears: 20,
++      includeRelatives: false,
++      retentionMonths: 12,
++      headRetentionMonths: 60,
++    },
++  },
++  limits: { perMinute: 600, maxRecurringPerEnvironment: 250_000, maxMediaRunsPerDay: 8_640 },
++});
++
++async function listOf(value: string) {
++  const list = await createList(database.db, environmentId, {
++    id: newId('lst'),
++    type: 'email-address',
++    name: 'Synthetic blocked emails',
++  });
++  const item = newListItem(key, environmentId, list, {
++    id: newId('liea'),
++    value: { value, 'match-type': 'email_address' },
++    creator: { type: 'api-key', id: newId('key') },
++  });
++  await insertListItems(database.db, environmentId, list.id, [item]);
++  return { list, itemId: item.id };
++}
++
++async function runOnce(reportId: string, runId: string) {
++  await createReportRunProcessor()({ environmentId, reportId, runId }, deps(), {
++    lastAttempt: false,
++  });
++  const stored = await getReport(database.db, environmentId, reportId);
++  if (stored === null) {
++    throw new Error('gone');
++  }
++  return reportResourceSchema.parse(await reportResourceOf(database.db, stored, UNMASKED));
++}
++
++describe('a custom-list run through the framework (C106.2)', () => {
++  it('stores list provenance, serves matched-lists, and passes the contract', async () => {
++    const { list, itemId } = await listOf('listed@example.com');
++    const { templateId, versionId } = await seedReportTemplate(database.db, environmentId, {
++      reportType: 'custom-list',
++      config: { 'list-ids': [list.id] },
++    });
++    const runId = testId('rpr');
++    const report = await createReport(database.db, environmentId, {
++      id: testId('rep'),
++      reportType: 'custom-list',
++      reportTemplateId: templateId,
++      reportTemplateVersionId: versionId,
++      origin: 'api',
++      query: { 'email-address': 'listed@example.com' },
++      querySources: { 'email-address': 'request' },
++      inquiryId: null,
++      accountId: null,
++      recurrenceIntervalDays: null,
++      nextRunAt: null,
++      createdAt: clock.now(),
++      initialRun: { id: runId, scheduledFor: clock.now() },
++    });
++
++    const served = await runOnce(report.id, runId);
++
++    expect(served.attributes).toMatchObject({
++      status: 'ready',
++      'has-match': true,
++      'lists-searched': [list.id],
++      sources: [{ 'list-id': list.id, version: 2, 'normaliser-version': 'lists-1' }],
++      'matched-lists': [
++        {
++          'list-id': list.id,
++          'list-type': 'list/email-address',
++          items: [
++            {
++              'list-item': { type: 'list-item/email-address', id: itemId },
++              method: 'exact',
++              score: null,
++              'matched-value': 'listed@example.com',
++            },
++          ],
++        },
++      ],
++      matches: [{ 'source-id': list.id, 'match-types': ['identifier_exact'] }],
++    });
++    await archiveListItem(database.db, environmentId, itemId, new Date());
++  });
++});
+diff --git a/apps/api/src/jobs/report-types/job.ts b/apps/api/src/jobs/report-types/job.ts
+index 806bf323..9841099c 100644
+--- a/apps/api/src/jobs/report-types/job.ts
++++ b/apps/api/src/jobs/report-types/job.ts
+@@ -9,7 +9,11 @@ import type {
+   ReportRunType,
+   ReportType,
+ } from '@openverify/core';
+-import type { REPORT_NOTICES, REPORT_UNAVAILABLE_REASONS } from '@openverify/contracts';
++import type {
++  REPORT_NOTICES,
++  REPORT_UNAVAILABLE_REASONS,
++  ReportListProvenance,
++} from '@openverify/contracts';
+ 
+ type ReportNotice = (typeof REPORT_NOTICES)[number];
+ type ReportUnavailableReason = (typeof REPORT_UNAVAILABLE_REASONS)[number];
+@@ -129,6 +133,8 @@ export interface ReportRunResult {
+   /** Empty for a `ready` run; any error makes the run `errored` whatever it found (C69.4). */
+   errors: readonly ReportRunError[];
+   sources: readonly ReportRunSource[];
++  /** C106.2: a custom-list run's list provenance, stored in place of `sources`. */
++  listSources?: readonly ReportListProvenance[] | undefined;
+   /** C78.5: the summary served as `coverage`; `null` for the types that do not match names. */
+   coverage: { complete: boolean; limits: readonly ReportCoverageLimit[] } | null;
+   /** Sealed in `reports.result`: the type's non-match attributes and the coverage detail. */
+diff --git a/apps/api/src/jobs/reports/persist.ts b/apps/api/src/jobs/reports/persist.ts
+index e0aa88a5..58b069ba 100644
+--- a/apps/api/src/jobs/reports/persist.ts
++++ b/apps/api/src/jobs/reports/persist.ts
+@@ -198,7 +198,10 @@ async function planMatches(
+     }
+   }
+   // Live matches this run did not find, on what it screened: still listed, or removed.
+-  const screened = new Set(result.sources.map((source) => source.sourceId));
++  const screened = new Set([
++    ...result.sources.map((source) => source.sourceId),
++    ...(result.listSources ?? []).map((source) => source['list-id']),
++  ]);
+   const missing = existing.filter(
+     (row) =>
+       (row.status === 'open' || row.status === 'delisted') &&
+@@ -208,7 +211,9 @@ async function planMatches(
+   );
+   const listed = missing.flatMap((row) => {
+     const entry = entryOf(asText(row.snapshot?.['entry-key']) ?? '');
+-    return row.sourceId === null || entry === null ? [] : [entry];
++    return row.sourceId === null || entry === null || result.listSources !== undefined
++      ? []
++      : [entry];
+   });
+   const entries =
+     listed.length === 0
+@@ -337,6 +342,9 @@ const DECIDED = new Set(['approved', 'declined', 'needs_review']);
+ 
+ /** The provenance in the shape the report serves (`sources`). */
+ function servedSources(result: ReportRunResult): Record<string, unknown>[] {
++  if (result.listSources !== undefined) {
++    return result.listSources.map((source) => ({ ...source }));
++  }
+   return result.sources.map((source) => ({
+     'source-id': source.sourceId,
+     'sync-id': source.syncId,
+diff --git a/apps/api/src/routes/server/accounts.ts b/apps/api/src/routes/server/accounts.ts
+index 53d00d9f..f173028e 100644
+--- a/apps/api/src/routes/server/accounts.ts
++++ b/apps/api/src/routes/server/accounts.ts
+@@ -44,6 +44,7 @@ import {
+   type AccountView,
+ } from '../../services/accounts.js';
+ import { serviceContextOf, type ApiDependencies } from '../../services/context.js';
++import { includedListMatchesFor } from '../../services/lists/matches.js';
+ import { includedReportsFor } from '../../services/reports/includes.js';
+ import { includedTransactionsFor } from '../../services/transactions/includes.js';
+ 
+@@ -162,6 +163,9 @@ export const accountRoutes: FastifyPluginCallbackZod<ApiDependencies> = (app, de
+           ...(include.includes('reports')
+             ? await includedReportsFor(deps.db, ctx.environmentId, target, mask)
+             : []),
++          ...(include.includes('list-matches')
++            ? await includedListMatchesFor(deps.db, ctx.environmentId, target, mask)
++            : []),
+           ...(include.includes('transactions')
+             ? await includedTransactionsFor(deps.db, ctx.environmentId, target, mask)
+             : []),
+diff --git a/apps/api/src/services/inquiries.ts b/apps/api/src/services/inquiries.ts
+index d515455e..c3bd1029 100644
+--- a/apps/api/src/services/inquiries.ts
++++ b/apps/api/src/services/inquiries.ts
+@@ -85,6 +85,7 @@ import { createListScreeningInTx } from './lists/screening.js';
+ import { createSignalComputationInTx } from './signals/computation.js';
+ import type { SignalView } from './signals/served.js';
+ import { assertSessionCapInTx, sessionLimitReached } from './signals/sessions.js';
++import { includedListMatchesFor } from './lists/matches.js';
+ import { includedReportsFor } from './reports/includes.js';
+ import { cancelActiveSessions } from './inquiry-sessions.js';
+ import { nextLink, pageRequest, withCursor } from './pagination.js';
+@@ -374,6 +375,12 @@ export async function getInquiryDocument(
+     // C70.5: the inquiry's reports, masked as `GET /reports/:id` serves them.
+     included.push(...(await includedReportsFor(db, environmentId, { inquiryId: id }, acting.mask)));
+   }
++  if (include.includes('list-matches')) {
++    // C107.6: the `GET /list-matches` view.
++    included.push(
++      ...(await includedListMatchesFor(db, environmentId, { inquiryId: id }, acting.mask)),
++    );
++  }
+   return { data, included };
+ }
+ 
+diff --git a/apps/api/src/services/reports/reports.ts b/apps/api/src/services/reports/reports.ts
+index 0195e1ae..19396c8a 100644
+--- a/apps/api/src/services/reports/reports.ts
++++ b/apps/api/src/services/reports/reports.ts
+@@ -63,11 +63,13 @@ import {
+   NotFoundError,
+   RateLimitedError,
+   RedactedError,
++  ListProblemError,
+   ReportProblemError,
+   UnprocessableContentError,
+ } from '../../errors.js';
+ import type { StagedEvent } from '../../events/index.js';
+ import { rateLimitRules } from '../../plugins/rate-limit.js';
++import { customListListProblems } from '../lists/report-view.js';
+ import { auditEntryOf, type ApiDependencies } from '../context.js';
+ import type { Acting } from '../inquiries.js';
+ import { accountResource } from '../accounts.js';
+@@ -520,6 +522,19 @@ export async function createReportResource(
+     );
+   }
+   const config = resolveReportTemplateConfig(type, template.currentVersion.config);
++  if (type === 'custom-list') {
++    // C106.2: a list on the query, or pinned on the template.
++    const problems = await customListListProblems(db, environmentId, {
++      pinned: config['list-ids'] as readonly string[] | null,
++      asked: (attributes.query as { 'list-ids'?: readonly string[] })['list-ids'],
++    });
++    const [first] = problems;
++    if (first !== undefined) {
++      throw new ListProblemError(first.code, first.detail, {
++        errors: problems.map(({ pointer, detail }) => ({ location: 'body', pointer, detail })),
++      });
++    }
++  }
+   const interval = config['recurrence-interval-days'];
+   const recurrence = typeof interval === 'number' ? interval : null;
+   await consumeReportRate(deps, environmentId);
+diff --git a/apps/api/src/services/reports/resources.ts b/apps/api/src/services/reports/resources.ts
+index c8480f2c..218996b3 100644
+--- a/apps/api/src/services/reports/resources.ts
++++ b/apps/api/src/services/reports/resources.ts
+@@ -44,6 +44,7 @@ import type {
+ } from '@openverify/db';
+ import { z } from 'zod';
+ import type { PiiMask } from '../../auth/pii.js';
++import { customListMatchedLists } from '../lists/report-view.js';
+ 
+ /** Where each type with review serves its live matches. */
+ const LIVE_ATTRIBUTE: Partial<Record<ReportType, 'matched-lists' | 'result' | 'articles'>> = {
+@@ -53,6 +54,7 @@ const LIVE_ATTRIBUTE: Partial<Record<ReportType, 'matched-lists' | 'result' | 'a
+   'politically-exposed-person': 'result',
+   'adverse-media': 'articles',
+   'business-adverse-media': 'articles',
++  'custom-list': 'matched-lists',
+ };
+ 
+ /** The list types: their entities are grouped by the list they were found on. */
+@@ -221,7 +223,12 @@ function ignored(
+     'ignored-at': text(dismissal.at) ?? match.updatedAt.toISOString(),
+     'run-id': match.firstRunId,
+     'run-history-completed-at': run?.completedAt?.toISOString() ?? null,
+-    match: GROUPED.has(type) ? (grouped(type, [match])[0] ?? {}) : entityOf(type, match),
++    match:
++      type === 'custom-list'
++        ? (customListMatchedLists([match])[0] ?? {})
++        : GROUPED.has(type)
++          ? (grouped(type, [match])[0] ?? {})
++          : entityOf(type, match),
+     user,
+     'ignore-reason': reason,
+   };
+@@ -255,9 +262,12 @@ function typeAttributes(
+     const view = reviewMatch(match);
+     return view === null ? [] : [view];
+   });
+-  attributes[live] = GROUPED.has(type)
+-    ? grouped(type, current)
+-    : current.map((match) => entityOf(type, match));
++  attributes[live] =
++    type === 'custom-list'
++      ? customListMatchedLists(current)
++      : GROUPED.has(type)
++        ? grouped(type, current)
++        : current.map((match) => entityOf(type, match));
+   attributes['ignore-list'] = kept
+     .filter((match) => match.status === 'dismissed')
+     .flatMap((match) => {
+diff --git a/apps/api/src/services/reports/templates.ts b/apps/api/src/services/reports/templates.ts
+index be7520e8..0871dbb9 100644
+--- a/apps/api/src/services/reports/templates.ts
++++ b/apps/api/src/services/reports/templates.ts
+@@ -44,6 +44,7 @@ import {
+ import type { z } from 'zod';
+ import {
+   InvalidTransitionError,
++  ListProblemError,
+   NotFoundError,
+   ReportProblemError,
+   UnprocessableContentError,
+@@ -52,6 +53,7 @@ import {
+ import type { EnvironmentKind } from '../../ports.js';
+ import { auditEntryOf, type ApiDependencies, type AuditedAction } from '../context.js';
+ import type { Acting } from '../inquiries.js';
++import { customListListProblems } from '../lists/report-view.js';
+ import { nextLink, pageRequest, withCursor, type PageQuery } from '../pagination.js';
+ import { watchlistSourceCatalog } from './source-catalog.js';
+ import { pointerOfPath } from './validation.js';
+@@ -211,6 +213,26 @@ export function assertPublishableConfig(
+   }
+ }
+ 
++/** C106.2: a pinned list must be live; a template with none reads each report's. */
++async function assertCustomListPublishable(
++  db: Db,
++  environmentId: string,
++  type: ReportType,
++  stored: Readonly<Record<string, unknown>>,
++): Promise<void> {
++  const pinned = stored['list-ids'] as readonly string[] | null | undefined;
++  if (type !== 'custom-list' || pinned == null) {
++    return;
++  }
++  const problems = await customListListProblems(db, environmentId, { pinned });
++  const [first] = problems;
++  if (first !== undefined) {
++    throw new ListProblemError(first.code, first.detail, {
++      errors: problems.map(({ pointer, detail }) => ({ location: 'body', pointer, detail })),
++    });
++  }
++}
++
+ /** The template resource, with its published version resolved. */
+ export function reportTemplateResource(row: ReportTemplateWithVersion): ReportTemplateResource {
+   return buildReportTemplateResource({
+@@ -494,10 +516,15 @@ export async function publishReportTemplateVersionResource(
+   const { type } = await findVersion(db, acting.ctx.environmentId, id);
+   const kind = await environmentKindOf(db, acting.ctx.environmentId);
+   const published = await db.transaction(async (tx) => {
+-    const result = await publishReportTemplateVersion(tx, acting.ctx.environmentId, id, (draft) => {
+-      assertPublishableConfig(kind, type, draft.config);
+-      return Promise.resolve();
+-    });
++    const result = await publishReportTemplateVersion(
++      tx,
++      acting.ctx.environmentId,
++      id,
++      async (draft) => {
++        assertPublishableConfig(kind, type, draft.config);
++        await assertCustomListPublishable(tx, acting.ctx.environmentId, type, draft.config);
++      },
++    );
+     if (result === null) {
+       throw new NotFoundError(`Report template version ${id} was not found.`);
+     }
+diff --git a/apps/api/src/services/retention.ts b/apps/api/src/services/retention.ts
+index ff193885..26d17b6d 100644
+--- a/apps/api/src/services/retention.ts
++++ b/apps/api/src/services/retention.ts
+@@ -354,7 +354,16 @@ export async function runRetention(options: RetentionOptions): Promise<Retention
+     nulledAddresses: await drainAddresses(db, batch),
+     deletedDevices: await drain((o) => deleteExpiredDevices(db, o), batch),
+     // C98.4, C100.2 (Workflow 7B): list items past their retention, and imported objects.
+-    redactedListItems: await drain((o) => redactExpiredListItems(db, o), batch),
++    redactedListItems: await drain(
++      (o) =>
++        redactExpiredListItems(db, {
++          ...o,
++          deleteObjects: async (keys) => {
++            await Promise.all(keys.map((key) => storage.delete(key)));
++          },
++        }),
++      batch,
++    ),
+     purgedImportObjects: await drain((o) => purgeExpiredImportObjects({ db, storage }, o), batch),
+     // C96.2 (Workflow 7A, P27): handoff tokens, as one-time links.
+     deletedHandoffTokens: await drain((o) => deleteExpiredHandoffTokens(db, o), batch),
+diff --git a/apps/api/src/worker.ts b/apps/api/src/worker.ts
+index e32a8b30..3a7f2ca7 100644
+--- a/apps/api/src/worker.ts
++++ b/apps/api/src/worker.ts
+@@ -121,7 +121,8 @@ import {
+   createListScreenQueue,
+ } from './jobs/list-queues.js';
+ import { createBiometricListMatcher } from './services/lists/biometric/matcher.js';
+-import { unbuiltListItemWriter } from './services/lists/item-writer.js';
++import { createCompromisedIdLookup } from './services/lists/compromised-ids.js';
++import { createListItemWriter, unbuiltListItemWriter } from './services/lists/item-writer.js';
+ import { reconcileWatchlistSources } from './watchlists/reconcile.js';
+ import { reconcileNetworkSources } from './network/reconcile.js';
+ import { createNetworkSnapshots } from './network/snapshots.js';
+@@ -637,6 +638,16 @@ export function startWorkers(options: StartWorkersOptions): RunningWorkers {
+     logger,
+     blindIndexKey: options.blindIndexKey,
+     providers: options.providers,
++    // C99.9: the opted-in lists of `id_compromised_detection`.
++    ...(options.blindIndexKey === undefined
++      ? {}
++      : {
++          compromisedIds: createCompromisedIdLookup({
++            db,
++            blindIndexKey: options.blindIndexKey,
++            events,
++          }),
++        }),
+     // C54.3, C59.6: the Workflow 5A dependencies of the type hooks.
+     cache: options.cache,
+     outboundHttp: options.outboundHttp,
+@@ -750,7 +761,11 @@ export function startWorkers(options: StartWorkersOptions): RunningWorkers {
+     const importing: ListImportDeps = {
+       ...keyed,
+       storage: options.storage,
+-      writer: lists.writer ?? unbuiltListItemWriter,
++      writer:
++        lists.writer ??
++        (options.blindIndexKey === undefined
++          ? unbuiltListItemWriter
++          : createListItemWriter({ blindIndexKey: options.blindIndexKey })),
+     };
+     const embed: ListItemEmbedDeps = {
+       ...shared,

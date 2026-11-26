@@ -1,0 +1,11 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "A step of this run may have sent a message, so a resume must say so first.",
+  "instance": "/api/v1/workflow-runs/wfr_01M5CK3190XEVBM5ZXA76E1JSN/resume",
+  "requestId": "00000000-0000-4000-8000-000000001111",
+  "code": "run_not_resumable",
+  "blocked-by": "unknown_effect",
+  "step-id": "notify_team"
+}

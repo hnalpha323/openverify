@@ -1,0 +1,79 @@
+{{- /*
+C263.3, C249.3, C249.4 (Workflow 11C Stage 2, chart-11c): the migrate Job, with the migration role
+(OPENVERIFY_MIGRATION_DATABASE_URL as a file from external.postgres.migrationSecret) and the KEK for
+the event-id backfill (secrets.migrate). Its init container runs db:migrate
+(node dist/commands/db-migrate.js), then its container grants the runtime role
+(node dist/commands/db-grant-runtime.js <external.postgres.runtimeRole>), because 11B's
+db:grant-runtime runs after every db:migrate that adds a table; with migrate.grantRuntime false the
+container runs db:migrate alone. The advisory lock (C249.4) serialises a retried hook or a double
+apply: a wait past OPENVERIFY_MIGRATE_LOCK_TIMEOUT_SECONDS exits 75 (apps/api/src/migrate.ts), and
+activeDeadlineSeconds stays above that wait (openverify.checks fails otherwise).
+
+A pre-install,pre-upgrade hook by default; migrate.gitOps renders it as a plain Job named by the
+image it runs, for GitOps tools that run no hooks (a new image is a new Job; the lock keeps two
+apart). Its configuration is inline: a hook runs before the release's ConfigMaps exist.
+*/ -}}
+{{- include "openverify.checks" . -}}
+{{- $v := .Values.migrate -}}
+{{- $image := include "openverify.image" (dict "root" . "image" $v.image) -}}
+{{- $base := include "openverify.componentName" (dict "root" . "component" "migrate") -}}
+{{- $config := include "openverify.envList" (include "openverify.configData" (dict "root" . "process" "migrate")) | trim -}}
+{{- $secret := include "openverify.secretFileEnv" (dict "root" . "process" "migrate") | trim -}}
+{{- $ca := include "openverify.caFileEnv" (dict "root" . "process" "migrate") | trim -}}
+{{- $migrateCommand := list "node" "dist/commands/db-migrate.js" -}}
+{{- $grantCommand := list "node" "dist/commands/db-grant-runtime.js" .Values.external.postgres.runtimeRole -}}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  {{- if $v.gitOps }}
+  name: {{ printf "%s-%s" ($base | trunc 54 | trimSuffix "-") ($image | sha256sum | trunc 8) }}
+  {{- else }}
+  name: {{ $base }}
+  {{- end }}
+  labels:
+    {{- include "openverify.labels" (dict "root" . "component" "migrate") | nindent 4 }}
+  {{- if not $v.gitOps }}
+  annotations:
+    helm.sh/hook: pre-install,pre-upgrade
+    helm.sh/hook-weight: '0'
+    helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
+  {{- end }}
+spec:
+  backoffLimit: {{ $v.backoffLimit }}
+  activeDeadlineSeconds: {{ $v.activeDeadlineSeconds }}
+  template:
+    metadata:
+      labels:
+        {{- include "openverify.labels" (dict "root" . "component" "migrate") | nindent 8 }}
+    spec:
+      restartPolicy: Never
+      {{- include "openverify.podSpecCommon" (dict "root" . "c" (dict)) | nindent 6 }}
+      {{- range $step := ternary (list "init" "main") (list "main") $v.grantRuntime }}
+      {{- if eq $step "init" }}
+      initContainers:
+      {{- else }}
+      containers:
+      {{- end }}
+        - name: {{ ternary "db-migrate" (ternary "db-grant-runtime" "db-migrate" $v.grantRuntime) (eq $step "init") }}
+          image: {{ $image | quote }}
+          imagePullPolicy: {{ $v.image.pullPolicy | default "IfNotPresent" }}
+          command:
+            {{- toYaml (ternary $migrateCommand (ternary $grantCommand $migrateCommand $v.grantRuntime) (eq $step "init")) | nindent 12 }}
+          env:
+            {{- $config | nindent 12 }}
+            {{- with $secret }}
+            {{- . | nindent 12 }}
+            {{- end }}
+            {{- with $ca }}
+            {{- . | nindent 12 }}
+            {{- end }}
+          securityContext:
+            {{- include "openverify.containerSecurityContext" (dict "root" $) | nindent 12 }}
+          resources:
+            requests: { cpu: 100m, memory: 256Mi }
+            limits: { memory: 512Mi }
+          volumeMounts:
+            {{- include "openverify.volumeMounts" (dict "root" $ "process" "migrate") | nindent 12 }}
+      {{- end }}
+      volumes:
+        {{- include "openverify.volumes" (dict "root" . "process" "migrate") | nindent 8 }}

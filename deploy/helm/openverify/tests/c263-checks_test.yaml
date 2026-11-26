@@ -1,0 +1,73 @@
+# C263.2-C263.4 (Workflow 11C Stage 2, chart-11c; checkpoint components): the relational checks
+# (openverify.checks) and the refusals. Each suite renders one template, because helm-unittest
+# reports a failed render against the first template that fails.
+suite: c263 checks (configmap)
+release:
+  name: ov
+templates:
+  - templates/configmap.yaml
+tests:
+  - it: refuses a heartbeat file outside the worker's writable /tmp
+    set:
+      worker.heartbeatFile: /var/run/heartbeat
+    asserts:
+      - failedTemplate:
+          errorPattern: worker.heartbeatFile must be under /tmp/
+  - it: refuses a loopback console URL in production
+    set:
+      publicUrls.dashboard: http://localhost:3001
+    asserts:
+      - failedTemplate:
+          errorPattern: publicUrls.dashboard \(OPENVERIFY_DASHBOARD_PUBLIC_URL\) is a loopback address
+  - it: refuses 127.0.0.1 as the console URL in production too
+    set:
+      publicUrls.dashboard: http://127.0.0.1:3001
+    asserts:
+      - failedTemplate:
+          errorPattern: is a loopback address
+  - it: refuses OPENVERIFY_DASHBOARD_INSECURE_COOKIES=true in the console's extra variables
+    set:
+      dashboard.extraEnv:
+        - name: OPENVERIFY_DASHBOARD_INSECURE_COOKIES
+          value: 'true'
+    asserts:
+      - failedTemplate:
+          errorPattern: OPENVERIFY_DASHBOARD_INSECURE_COOKIES=true
+
+  - it: refuses Play Integrity's service-account key in the API's Secret
+    set:
+      secrets.api.keys:
+        - OPENVERIFY_KEK
+        - OPENVERIFY_PLAY_INTEGRITY_SERVICE_ACCOUNT_JSON
+    asserts:
+      - failedTemplate:
+          errorPattern: belongs in the worker's Secret only
+  - it: never sets OPENVERIFY_SANDBOX_CHIP_FACES through config.extra
+    set:
+      config.extra:
+        OPENVERIFY_SANDBOX_CHIP_FACES: /faces
+    asserts:
+      - failedTemplate:
+          errorPattern: OPENVERIFY_SANDBOX_CHIP_FACES is never set by the chart
+  - it: never sets OPENVERIFY_SANDBOX_CHIP_FACES through a component's extra variables
+    set:
+      worker.extraEnv:
+        - name: OPENVERIFY_SANDBOX_CHIP_FACES
+          value: /faces
+    asserts:
+      - failedTemplate:
+          errorPattern: worker.extraEnv sets OPENVERIFY_SANDBOX_CHIP_FACES
+---
+suite: c263 checks (migrate job)
+release:
+  name: ov
+templates:
+  - templates/migrate-job.yaml
+tests:
+  - it: refuses a deadline at or below the lock's wait
+    set:
+      migrate.lockTimeoutSeconds: 900
+      migrate.activeDeadlineSeconds: 900
+    asserts:
+      - failedTemplate:
+          errorPattern: migrate.activeDeadlineSeconds \(900\) must exceed migrate.lockTimeoutSeconds \(900\)

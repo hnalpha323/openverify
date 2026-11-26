@@ -1,0 +1,17 @@
+{
+  "meta": {
+    "workflow-run-ids": ["wfr_01M5CM00000000000000000006", "wfr_01M5CM00000000000000000011"],
+    "refused": [
+      {
+        "object-id": "inq_01M5CJYRJ014A1YAHN815NCRBC",
+        "row": null,
+        "code": "object_not_found"
+      },
+      {
+        "object-id": null,
+        "row": 3,
+        "code": "invalid_id"
+      }
+    ]
+  }
+}

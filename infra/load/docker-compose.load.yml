@@ -1,0 +1,146 @@
+# The load stack (Phase 11, Workflow 11D; C268.4, review V10; Stage 1a amendment 9; decisions 12, 13
+# and 20 before Workflow 11D; KP11-37): the compose `app` profile on the production images, as its own
+# project, with only what a calibration needs changed. Brought up and down under the e2e lock by
+# whoever takes (never beside another stack's project, volume or port):
+#
+#   infra/load/make-load-env.sh                       # writes /tmp/openverify-load/load.env (0600)
+#   docker compose -p openverify-load -f infra/docker-compose.yml -f infra/load/docker-compose.load.yml \
+#     --env-file /tmp/openverify-load/load.env --profile app up --detach --wait --no-build
+#   ... down --volumes                                # the load data goes with it
+#
+# - Database `openverify_load` (POSTGRES_DB in the env file) with pg_stat_statements preloaded; two
+#   roles as the chart has them: `runtime-role` creates `openverify_runtime` at the first start, migrate
+#   runs db-migrate.js as the migration role (OPENVERIFY_MIGRATION_DATABASE_URL), then
+#   db-grant-runtime.js openverify_runtime, and the API and the worker connect as openverify_runtime.
+# - The core split: every container on logical CPUs 0-9; vegeta runs on 10, the driver and the sampler
+#   on 11 (taskset), read back from each container (`docker inspect`) and each generator's affinity.
+# - KP11-37: the chart's default memory limits (deploy/helm/openverify/values.yaml: api 1Gi, worker
+#   1536Mi, dashboard 512Mi, flow 256Mi, vision 4Gi, code-runner 1Gi), no CPU limit, worker
+#   concurrency 4. With dbip-city-lite on, sizing adds about 168 MiB at rest and 116 MiB at its swap
+#   per API or worker process (the method's item (a)); it stays off here.
+# - Its own bridge network with a fixed subnet: a generator on this host reaches a published port
+#   through Docker Desktop's port forwarding, so the API's socket peer is the network's gateway, which
+#   is OPENVERIFY_TRUST_PROXY (never `true`, never 127.0.0.1). The console trusts one hop, so the
+#   documentation address a generator sends in X-Forwarded-For is the client's.
+# - Development mode (seed:load refuses production, and production refuses the private webhook
+#   receiver); Connect on; the sandbox deviceIntegrity provider for sandbox environments; the worker
+#   reaches the host's webhook receiver as host.docker.internal with private networks allowed.
+# - No rate limit is raised. The fairness ceiling ("ceiling 200") is the env file's
+#   OPENVERIFY_QUEUE_IN_FLIGHT_CAP_MAX, 50 unless that configuration is taken.
+# Contract test: infra/tests/load-compose.test.sh (--static-only for the infra job).
+name: openverify-load
+
+services:
+  postgres:
+    cpuset: '0-9'
+    command:
+      - postgres
+      - -c
+      - log_parameter_max_length=0
+      - -c
+      - log_parameter_max_length_on_error=0
+      - -c
+      - shared_preload_libraries=pg_stat_statements
+      - -c
+      - pg_stat_statements.max=10000
+
+  # One-shot: the runtime role (LOGIN, no privilege yet; db-grant-runtime.js grants them) and the
+  # pg_stat_statements extension, idempotent on every `up`.
+  runtime-role:
+    image: pgvector/pgvector:pg17@sha256:cf134a767f474095eeba57e0117be8e568e011a63f33fbf252f14c9b760f8e6f
+    profiles: [app]
+    restart: 'no'
+    cpuset: '0-9'
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      PGHOST: postgres
+      PGUSER: ${POSTGRES_USER:-openverify}
+      PGPASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required - run infra/load/make-load-env.sh}
+      PGDATABASE: ${POSTGRES_DB:?POSTGRES_DB is required - run infra/load/make-load-env.sh}
+      RUNTIME_PASSWORD: ${OPENVERIFY_LOAD_RUNTIME_PASSWORD:?OPENVERIFY_LOAD_RUNTIME_PASSWORD is required - run infra/load/make-load-env.sh}
+    entrypoint: ['/bin/sh', '-ec']
+    command:
+      - |
+        psql -X -q -v ON_ERROR_STOP=1 -v pw="$$RUNTIME_PASSWORD" <<'SQL'
+        SELECT 'CREATE ROLE openverify_runtime LOGIN' WHERE NOT EXISTS (SELECT FROM pg_roles WHERE rolname = 'openverify_runtime')\gexec
+        ALTER ROLE openverify_runtime LOGIN PASSWORD :'pw';
+        CREATE EXTENSION IF NOT EXISTS pg_stat_statements;
+        SQL
+        echo "runtime-role: openverify_runtime ready"
+
+  redis:
+    cpuset: '0-9'
+
+  objectstore:
+    cpuset: '0-9'
+
+  objectstore-init:
+    cpuset: '0-9'
+
+  mailpit:
+    cpuset: '0-9'
+
+  migrate:
+    cpuset: '0-9'
+    command:
+      [
+        sh,
+        -c,
+        'node dist/commands/db-migrate.js && node dist/commands/db-grant-runtime.js openverify_runtime',
+      ]
+    depends_on:
+      runtime-role:
+        condition: service_completed_successfully
+    environment:
+      OPENVERIFY_MIGRATION_DATABASE_URL: postgres://${POSTGRES_USER:-openverify}:${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}@postgres:5432/${POSTGRES_DB:?POSTGRES_DB is required}
+      DATABASE_URL: postgres://openverify_runtime:${OPENVERIFY_LOAD_RUNTIME_PASSWORD:?OPENVERIFY_LOAD_RUNTIME_PASSWORD is required}@postgres:5432/openverify_load
+
+  code-runner:
+    cpuset: '0-9'
+    mem_limit: 1g
+
+  api:
+    cpuset: '0-9'
+    mem_limit: 1g
+    environment:
+      DATABASE_URL: postgres://openverify_runtime:${OPENVERIFY_LOAD_RUNTIME_PASSWORD:?OPENVERIFY_LOAD_RUNTIME_PASSWORD is required}@postgres:5432/openverify_load
+      OPENVERIFY_MODE: development
+      OPENVERIFY_CONNECT_ENABLED: 'true'
+      OPENVERIFY_TRUST_PROXY: ${OPENVERIFY_LOAD_GATEWAY:?OPENVERIFY_LOAD_GATEWAY is required - run infra/load/make-load-env.sh}
+      OPENVERIFY_PROVIDER_DEVICE_INTEGRITY_SANDBOX: sandbox
+
+  worker:
+    cpuset: '0-9'
+    mem_limit: 1536m
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    environment:
+      DATABASE_URL: postgres://openverify_runtime:${OPENVERIFY_LOAD_RUNTIME_PASSWORD:?OPENVERIFY_LOAD_RUNTIME_PASSWORD is required}@postgres:5432/openverify_load
+      OPENVERIFY_MODE: development
+      OPENVERIFY_CONNECT_ENABLED: 'true'
+      OPENVERIFY_WORKER_CONCURRENCY: '4'
+      OPENVERIFY_WEBHOOK_ALLOW_PRIVATE_NETWORKS: 'true'
+      OPENVERIFY_PROVIDER_DEVICE_INTEGRITY_SANDBOX: sandbox
+
+  vision:
+    cpuset: '0-9'
+    mem_limit: 4g
+
+  flow:
+    cpuset: '0-9'
+    mem_limit: 256m
+
+  dashboard:
+    cpuset: '0-9'
+    mem_limit: 512m
+    environment:
+      OPENVERIFY_DASHBOARD_TRUSTED_PROXY_HOPS: '1'
+
+networks:
+  default:
+    ipam:
+      config:
+        - subnet: ${OPENVERIFY_LOAD_SUBNET:?OPENVERIFY_LOAD_SUBNET is required - run infra/load/make-load-env.sh}
+          gateway: ${OPENVERIFY_LOAD_GATEWAY:?OPENVERIFY_LOAD_GATEWAY is required - run infra/load/make-load-env.sh}

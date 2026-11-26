@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "The environment's default theme set cannot be archived.",
+  "instance": "/api/v1/theme-sets/theset_01M5CN00000000000000009A40",
+  "requestId": "00000000-0000-4000-8000-000000009a41",
+  "code": "theme_set_default"
+}

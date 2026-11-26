@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- C217.3: a host app's one screen. It is never installed or published; it exists so that R8
+         keeps an entry point that reaches the SDK. -->
+    <application
+        android:allowBackup="false"
+        android:label="OpenVerify consumer check">
+        <activity
+            android:name=".ConsumerActivity"
+            android:exported="false" />
+    </application>
+
+</manifest>

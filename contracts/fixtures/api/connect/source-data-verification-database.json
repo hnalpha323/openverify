@@ -1,0 +1,13 @@
+{
+  "type": "connect/source-data/verification/database",
+  "attributes": {
+    "status": {
+      "visibility": "full",
+      "value": "passed"
+    },
+    "name-first": {
+      "visibility": "presence",
+      "value": true
+    }
+  }
+}

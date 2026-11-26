@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "This list cannot be enabled on this installation.",
+  "instance": "/api/v1/dashboard/watchlist-sources/un-sc/opt-in",
+  "requestId": "00000000-0000-4000-8000-00000011b014",
+  "code": "watchlist_source_locked"
+}

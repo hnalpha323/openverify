@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Forbidden",
+  "status": 403,
+  "detail": "No user of this organization matches the identity provider\u2019s account.",
+  "instance": "/api/v1/dashboard/sso/callback/ssop_01M5CN0000000000000011B200",
+  "requestId": "00000000-0000-4000-8000-00000011b007",
+  "code": "sso_user_unknown"
+}

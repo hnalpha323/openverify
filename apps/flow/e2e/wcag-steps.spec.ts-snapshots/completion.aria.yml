@@ -1,0 +1,4 @@
+- main:
+    - region "Verification submitted":
+        - heading "Verification submitted" [level=1]
+        - paragraph: Thank you. Your verification has been submitted, and you can close this page.

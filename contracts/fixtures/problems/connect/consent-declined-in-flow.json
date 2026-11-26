@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "The person declined this sharing in a flow. A decline is not overridden.",
+  "instance": "/api/v1/connect/consent-records",
+  "requestId": "00000000-0000-4000-8000-00000011a023",
+  "code": "consent_declined_in_flow"
+}

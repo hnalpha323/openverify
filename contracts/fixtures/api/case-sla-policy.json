@@ -1,0 +1,15 @@
+{
+  "data": {
+    "type": "case-sla-policy",
+    "id": "cslap_01M5CN00000000000000000007",
+    "attributes": {
+      "name": "Two business days",
+      "target-minutes": 840,
+      "case-calendar-id": "ccal_01M5CN00000000000000000018",
+      "on-reopen": "continue",
+      "revision": 2,
+      "created-at": "2026-10-20T12:00:00.000Z",
+      "updated-at": "2026-10-20T12:05:00.000Z"
+    }
+  }
+}

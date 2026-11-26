@@ -1,0 +1,27 @@
+{
+  "data": {
+    "type": "importer/list-item/email-address",
+    "id": "mprt_01M5CK3190XEVBM5ZXA76E1JSN",
+    "attributes": {
+      "status": "errored",
+      "successful-count": 0,
+      "duplicate-count": 1,
+      "error-count": 1,
+      "created-at": "2026-10-31T12:00:00.000Z",
+      "completed-at": "2026-10-31T12:00:02.000Z",
+      "mode": "all-or-nothing",
+      "row-count": 3,
+      "already-present-count": 1,
+      "encoding": "utf-8",
+      "file-sha256": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+    },
+    "relationships": {
+      "list": {
+        "data": {
+          "type": "list/email-address",
+          "id": "lst_01M5CK3190XEVBM5ZXA76E1JSN"
+        }
+      }
+    }
+  }
+}

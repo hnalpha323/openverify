@@ -1,0 +1,1 @@
+CREATE INDEX "verifications_submitted_at_idx" ON "verifications" USING btree ("submitted_at") WHERE "verifications"."status" = 'submitted';

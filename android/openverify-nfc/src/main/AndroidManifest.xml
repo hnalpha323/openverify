@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- C207.8 (decision 36): reading a document's chip. A normal (install-time) permission, declared
+         here and never by :openverify-sdk, so only a host that adds this module gets it. -->
+    <uses-permission android:name="android.permission.NFC" />
+
+    <!-- Host apps stay installable on phones without NFC; the flow then offers the author's fallback
+         (C207.9). -->
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="false" />
+
+</manifest>

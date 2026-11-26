@@ -1,0 +1,79 @@
+{{- /*
+C263.1, C263.4, C264.5 (Workflow 11C Stage 2, chart-11c): separate hosts for the API, the flow and
+the console, each Ingress only when its host is set (ingress.hosts.<host>). The API host is three
+Ingresses because an ingress controller sets a body limit per Ingress: the ordinary paths
+(ingress.maxBodySize), the list importer (Prefix /api/v1/importer: POST
+/api/v1/importer/list-item/<plural>, maxBodySizeImport) and the transaction routes (Prefix
+/api/v1/transactions, for PUT /api/v1/transactions/{id}/files/{fieldKey}, maxBodySizeTransactionFile;
+a Prefix cannot match inside a path, so every transaction route gets that outer bound while the API
+keeps its own per-route limits). Every backend is a public port (http); the internal listener's port
+(C250.3) is never routed, and chart-policy-11c's openverify.internalPathDeny adds the refusal of
+/api/v1/internal/ to the API host's paths. The annotations (HSTS, C255.1; the body limit) are
+chart-policy-11c's openverify.ingressAnnotations. TLS: each entry of ingress.tls naming the host.
+*/ -}}
+{{- define "openverify.ingressObject" -}}
+{{- $root := .root -}}
+{{- $v := $root.Values.ingress -}}
+{{- $annotations := include "openverify.ingressAnnotations" (dict "root" $root "host" .hostKey "path" .pathClass) | trim -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .name }}
+  labels:
+    {{- include "openverify.labels" (dict "root" $root "component" .component) | nindent 4 }}
+  {{- with $annotations }}
+  annotations:
+    {{- . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- with $v.className }}
+  ingressClassName: {{ . }}
+  {{- end }}
+  {{- $tls := list -}}
+  {{- range $v.tls }}
+  {{- if has $.host (default (list) .hosts) }}
+  {{- $tls = append $tls . }}
+  {{- end }}
+  {{- end }}
+  {{- with $tls }}
+  tls:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  rules:
+    - host: {{ .host | quote }}
+      http:
+        paths:
+          {{- .paths | nindent 10 }}
+{{- end -}}
+
+{{- define "openverify.ingressPath" -}}
+- path: {{ .path }}
+  pathType: Prefix
+  backend:
+    service:
+      name: {{ .service }}
+      port:
+        name: http
+{{- end -}}
+
+{{- if .Values.ingress.enabled }}
+{{- $hosts := .Values.ingress.hosts }}
+{{- $api := include "openverify.componentName" (dict "root" $ "component" "api") }}
+{{- with $hosts.api }}
+{{- $deny := include "openverify.internalPathDeny" (dict "root" $) | trim }}
+{{- $root := include "openverify.ingressPath" (dict "path" "/" "service" $api) }}
+---
+{{ include "openverify.ingressObject" (dict "root" $ "name" $api "component" "api" "hostKey" "api" "host" . "pathClass" "default" "paths" (ternary (printf "%s\n%s" $deny $root) $root (ne $deny ""))) }}
+---
+{{ include "openverify.ingressObject" (dict "root" $ "name" (printf "%s-import" $api) "component" "api" "hostKey" "api" "host" . "pathClass" "import" "paths" (include "openverify.ingressPath" (dict "path" "/api/v1/importer" "service" $api))) }}
+---
+{{ include "openverify.ingressObject" (dict "root" $ "name" (printf "%s-transaction-files" $api) "component" "api" "hostKey" "api" "host" . "pathClass" "transactionFile" "paths" (include "openverify.ingressPath" (dict "path" "/api/v1/transactions" "service" $api))) }}
+{{- end }}
+{{- range $component := list "flow" "dashboard" }}
+{{- with index $hosts $component }}
+{{- $name := include "openverify.componentName" (dict "root" $ "component" $component) }}
+---
+{{ include "openverify.ingressObject" (dict "root" $ "name" $name "component" $component "hostKey" $component "host" . "pathClass" "default" "paths" (include "openverify.ingressPath" (dict "path" "/" "service" $name))) }}
+{{- end }}
+{{- end }}
+{{- end }}

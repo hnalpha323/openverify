@@ -1,0 +1,164 @@
+{
+  "inquiry": {
+    "id": "inq_01M5CJXHG07XPHF3HRM6NREDH7",
+    "status": "pending"
+  },
+  "flow": {
+    "metadata": {
+      "specVersion": 1,
+      "id": "projection-branch",
+      "version": 1,
+      "name": "Projection: branch"
+    },
+    "steps": [
+      {
+        "id": "consent",
+        "type": "consent",
+        "textKeys": ["consent.biometric"],
+        "required": true
+      },
+      {
+        "id": "id_card",
+        "type": "government_id",
+        "sides": "front",
+        "maxAttempts": 1,
+        "captureMethods": ["camera"]
+      },
+      {
+        "id": "continue-1",
+        "type": "server-continuation"
+      }
+    ],
+    "transitions": []
+  },
+  "verifications": [
+    {
+      "type": "verification/government-id",
+      "id": "ver_01M5CJZC301G4JHXZQ3PZBYH3Q",
+      "attributes": {
+        "status": "failed",
+        "retry-hints": [
+          {
+            "name": "id_blur_detection",
+            "reasons": ["image_blurry"]
+          }
+        ],
+        "created-at": "2026-10-20T12:01:00.000Z",
+        "updated-at": "2026-10-20T12:01:30.000Z"
+      }
+    },
+    {
+      "type": "verification/government-id",
+      "id": "ver_01M5CK16P0D13FXHZSS4TCFBVH",
+      "attributes": {
+        "status": "initiated",
+        "retry-hints": [],
+        "created-at": "2026-10-20T12:02:00.000Z",
+        "updated-at": "2026-10-20T12:02:00.000Z"
+      }
+    }
+  ],
+  "consent": {
+    "accepted-at": "2026-10-20T12:00:30.000Z"
+  },
+  "environment": {
+    "kind": "sandbox"
+  },
+  "face-template-retention-days": 365,
+  "signals": {
+    "integrity": true,
+    "recognition": false,
+    "next-sequence": 0
+  },
+  "handoff": null,
+  "handoff-context": null,
+  "position": {
+    "step-id": "extra_details",
+    "state": "active",
+    "previous-step-id": "id_card"
+  },
+  "spec-version": 2,
+  "step": {
+    "id": "extra_details",
+    "type": "screen",
+    "components": [
+      {
+        "id": "title",
+        "kind": "text",
+        "variant": "title",
+        "copyKey": "extra_details.title.body"
+      },
+      {
+        "id": "nickname",
+        "kind": "text_input",
+        "field": "nickname",
+        "labelKey": "extra_details.nickname.label"
+      },
+      {
+        "id": "tax_number",
+        "kind": "masked_text",
+        "field": "tax_number",
+        "labelKey": "extra_details.tax_number.label"
+      },
+      {
+        "id": "continue",
+        "kind": "button",
+        "labelKey": "extra_details.continue.button",
+        "action": "submit"
+      }
+    ]
+  },
+  "values": {
+    "nickname": "Sam",
+    "tax_number": {
+      "set": true
+    }
+  },
+  "theme": {
+    "theme-set-id": null,
+    "revision": null,
+    "mode": "auto",
+    "light": {
+      "primary": "#1f4fd1",
+      "primary-hover": "#1a43b3",
+      "on-primary": "#ffffff",
+      "danger": "#b42318",
+      "danger-hover": "#9a1e14",
+      "surface": "#ffffff",
+      "canvas": "#f6f7f9",
+      "ink": "#14171f",
+      "ink-muted": "#4b5262",
+      "line": "#d5d9e0",
+      "control": "#6b7280",
+      "focus": "#1f4fd1"
+    },
+    "dark": null,
+    "radius": 8,
+    "font": {
+      "kind": "system",
+      "platforms": ["web", "android"]
+    },
+    "logo": null,
+    "placement": "header"
+  },
+  "copy": {
+    "messages": {
+      "en": {
+        "extra_details.title.body": "A few more details"
+      },
+      "es": {
+        "extra_details.title.body": "Algunos datos más"
+      }
+    }
+  },
+  "locales": {
+    "enabled": ["en", "es"],
+    "default": "en"
+  },
+  "embed": {
+    "allowed-origins": ["https://shop.example.com"]
+  },
+  "completion": {
+    "redirect-url": null
+  }
+}

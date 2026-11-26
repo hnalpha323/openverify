@@ -1,0 +1,22 @@
+{
+  "data": {
+    "type": "account",
+    "id": "acc_01M5CJXJF84MR3PHJHBHKQ4ZC8",
+    "attributes": {
+      "reference-id": "ref-test-001",
+      "status": "active",
+      "fields": { "name_first": "Jane", "name_last": "Sample", "birthdate": "1990-01-31" },
+      "tags": ["vip"],
+      "consolidated-into": null,
+      "created-at": "2026-10-20T12:00:00.000Z",
+      "updated-at": "2026-10-20T12:30:00.000Z",
+      "redacted-at": null
+    },
+    "relationships": {
+      "account-type": {
+        "data": { "type": "account-type", "id": "acctp_01M5CJXHZMQ72CZPQ5Y3XGC48W" }
+      },
+      "inquiries": { "data": [{ "type": "inquiry", "id": "inq_01M5CJXHG07XPHF3HRM6NREDH7" }] }
+    }
+  }
+}

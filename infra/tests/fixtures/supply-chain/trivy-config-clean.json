@@ -1,0 +1,18 @@
+{
+  "SchemaVersion": 2,
+  "Results": [
+    {
+      "Target": "docker/synthetic.Dockerfile",
+      "Class": "config",
+      "Misconfigurations": [
+        {
+          "Type": "synthetic",
+          "ID": "DS-0026",
+          "Title": "synthetic check",
+          "Severity": "LOW",
+          "Status": "FAIL"
+        }
+      ]
+    }
+  ]
+}

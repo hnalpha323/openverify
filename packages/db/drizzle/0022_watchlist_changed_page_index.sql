@@ -1,0 +1,1 @@
+CREATE INDEX "watchlist_entries_changed_page_idx" ON "watchlist_entries" USING btree ("source_id","changed_sync_id","entry_id" collate "C") WHERE "watchlist_entries"."removed_at" is null;

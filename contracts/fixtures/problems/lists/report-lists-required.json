@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "A custom list report needs lists, on its query or pinned on its template.",
+  "instance": "/api/v1/reports",
+  "requestId": "00000000-0000-4000-8000-000000000814",
+  "code": "report_lists_required",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/query/list-ids",
+      "detail": "names no list"
+    }
+  ]
+}

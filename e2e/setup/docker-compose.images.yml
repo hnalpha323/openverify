@@ -1,0 +1,148 @@
+# The e2e stack's images mode (Phase 11, Workflow 11C, images-11c; C257.3, review F03, decision 74).
+#
+# With OPENVERIFY_E2E_IMAGES=1 the stack driver (e2e/setup/stack.ts, integration-11c's branch)
+# starts the five production images in place of its host processes, over this run's compose
+# infrastructure, with this file on top of infra/docker-compose.yml's app profile:
+#
+#   docker compose --project-name openverify-e2e --file infra/docker-compose.yml \
+#     --file e2e/setup/docker-compose.images.yml --env-file e2e/.env.e2e --profile app \
+#     up --detach --wait --no-build migrate api worker vision flow dashboard code-runner
+#   ... run --rm --no-deps migrate node dist/commands/seed-dev.js --json [--connect]
+#
+# The images are the ones images-11c's checkpoints build (openverify/<name>:11c-local; nothing is
+# built here). Each app container joins the host's network, so it reads exactly the loopback
+# addresses the host processes read from e2e/.env.e2e (Postgres, Valkey, RustFS and Mailpit on
+# their published ports, the webhook receiver and the OIDC provider of the specs), and listens on
+# the port the host process would. The driver adds three ports to the env file, beside the ones it
+# already writes: OPENVERIFY_E2E_FLOW_PORT, OPENVERIFY_E2E_DASHBOARD_PORT and
+# OPENVERIFY_E2E_VISION_PORT (the flow's, the console's and vision's, which e2e/.env.e2e names only
+# inside URLs). Every other value comes from the env file under its own name. A test stack only:
+# vision shares the host's loopback here instead of its internal network (the compose app profile
+# and the chart keep C60.2), and nothing here is a production setting.
+# Contract test: infra/tests/images.test.sh override.
+
+x-e2e-host: &e2e-host
+  network_mode: host
+  pull_policy: never
+
+# What the API, the worker and migrate read from the env file instead of the compose network's
+# service names.
+x-e2e-api-environment: &e2e-api-environment
+  DATABASE_URL: ${DATABASE_URL:?DATABASE_URL is required - the e2e env file}
+  REDIS_URL: ${REDIS_URL:?REDIS_URL is required - the e2e env file}
+  S3_ENDPOINT: ${S3_ENDPOINT:?S3_ENDPOINT is required - the e2e env file}
+  OPENVERIFY_VISION_URL: ${OPENVERIFY_VISION_URL:?OPENVERIFY_VISION_URL is required - the e2e env file}
+  OPENVERIFY_SMTP_URL: ${OPENVERIFY_SMTP_URL:?OPENVERIFY_SMTP_URL is required - the e2e env file}
+  OPENVERIFY_FLOW_PUBLIC_URL: ${OPENVERIFY_FLOW_PUBLIC_URL:-}
+  OPENVERIFY_DASHBOARD_PUBLIC_URL: ${OPENVERIFY_DASHBOARD_PUBLIC_URL:-}
+  OPENVERIFY_WEBHOOK_ALLOW_PRIVATE_NETWORKS: ${OPENVERIFY_WEBHOOK_ALLOW_PRIVATE_NETWORKS:-false}
+  # The specs' webhook receiver serves TLS with a certificate the run generates (e2e/src/paths.ts).
+  NODE_EXTRA_CA_CERTS: /run/openverify-e2e/receiver.pem
+  # Workflow 10C: the sandbox test chip's generated faces (never baked into an image).
+  OPENVERIFY_SANDBOX_CHIP_FACES: /run/openverify-e2e/sandbox-chip-faces
+
+services:
+  migrate:
+    <<: *e2e-host
+    environment:
+      <<: *e2e-api-environment
+
+  api:
+    <<: *e2e-host
+    networks: !reset []
+    ports: !reset []
+    environment:
+      <<: *e2e-api-environment
+      OPENVERIFY_API_HOST: ${OPENVERIFY_API_HOST:-127.0.0.1}
+      OPENVERIFY_API_PORT: ${OPENVERIFY_API_PORT:?OPENVERIFY_API_PORT is required - the e2e env file}
+    # Added beside the base's mounts (compose merges volumes by their target).
+    volumes:
+      - ${NODE_EXTRA_CA_CERTS:?NODE_EXTRA_CA_CERTS is required - the e2e env file}:/run/openverify-e2e/receiver.pem:ro
+      - ${OPENVERIFY_SANDBOX_CHIP_FACES:?OPENVERIFY_SANDBOX_CHIP_FACES is required - the e2e env file}:/run/openverify-e2e/sandbox-chip-faces:ro
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:${OPENVERIFY_API_PORT}/ready').then((r) => process.exit(r.ok ? 0 : 1), () => process.exit(1))"
+
+  worker:
+    <<: *e2e-host
+    networks: !reset []
+    environment:
+      <<: *e2e-api-environment
+    volumes:
+      - ${NODE_EXTRA_CA_CERTS}:/run/openverify-e2e/receiver.pem:ro
+      - ${OPENVERIFY_SANDBOX_CHIP_FACES}:/run/openverify-e2e/sandbox-chip-faces:ro
+
+  vision:
+    <<: *e2e-host
+    networks: !reset []
+    command:
+      [
+        uvicorn,
+        openverify_vision.app:create_app,
+        --factory,
+        --host,
+        127.0.0.1,
+        --port,
+        '${OPENVERIFY_E2E_VISION_PORT:?OPENVERIFY_E2E_VISION_PORT is required - the stack driver adds it}',
+        --no-server-header,
+      ]
+    environment:
+      OPENVERIFY_VISION_SERVICE_TOKEN: ${OPENVERIFY_VISION_SERVICE_TOKEN:?OPENVERIFY_VISION_SERVICE_TOKEN is required - the e2e env file}
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import sys, urllib.request; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:${OPENVERIFY_E2E_VISION_PORT}/health', timeout=4).status == 200 else 1)"
+
+  flow:
+    <<: *e2e-host
+    ports: !reset []
+    command:
+      [
+        node,
+        server.ts,
+        --hostname,
+        127.0.0.1,
+        --port,
+        '${OPENVERIFY_E2E_FLOW_PORT:?OPENVERIFY_E2E_FLOW_PORT is required - the stack driver adds it}',
+        --dist,
+        dist,
+      ]
+    environment:
+      # C257.1: the image's bundle reads the API's URL from /config.json.
+      OPENVERIFY_FLOW_API_URL: ${VITE_OPENVERIFY_API_URL:?VITE_OPENVERIFY_API_URL is required - the e2e env file}
+      OPENVERIFY_FLOW_SERVER_API_URL: http://127.0.0.1:${OPENVERIFY_API_PORT}
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:${OPENVERIFY_E2E_FLOW_PORT}/').then((r) => process.exit(r.ok ? 0 : 1), () => process.exit(1))"
+
+  dashboard:
+    <<: *e2e-host
+    ports: !reset []
+    command:
+      [
+        node,
+        server.ts,
+        --hostname,
+        127.0.0.1,
+        --port,
+        '${OPENVERIFY_E2E_DASHBOARD_PORT:?OPENVERIFY_E2E_DASHBOARD_PORT is required - the stack driver adds it}',
+      ]
+    environment:
+      OPENVERIFY_API_URL: http://127.0.0.1:${OPENVERIFY_API_PORT}
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:${OPENVERIFY_E2E_DASHBOARD_PORT}/login').then((r) => process.exit(r.ok ? 0 : 1), () => process.exit(1))"
+
+  code-runner:
+    pull_policy: never

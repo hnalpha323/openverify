@@ -1,0 +1,22 @@
+{
+  "data": {
+    "type": "sso-provider",
+    "id": "ssop_01M5CN0000000000000011B200",
+    "attributes": {
+      "display-name": "Example Bank staff",
+      "issuer": "https://idp.example.com/oauth2/default",
+      "client-id": "synthetic-console-client",
+      "client-secret-set": true,
+      "allowed-email-domains": ["example.com"],
+      "tenant-pin": null,
+      "required-amr": ["mfa"],
+      "required-acr": [],
+      "jit-provisioning": false,
+      "default-role-ids": [],
+      "enforced": false,
+      "redirect-uri": "https://console.example.com/sso/callback/ssop_01M5CN0000000000000011B200",
+      "created-at": "2026-11-13T12:00:00.000Z",
+      "updated-at": "2026-11-13T12:00:00.000Z"
+    }
+  }
+}

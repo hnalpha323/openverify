@@ -1,0 +1,16 @@
+{
+  "data": {
+    "type": "user-audit-log",
+    "id": "aud_01M5CK6PF09NC66VKSGJ7SN9DH",
+    "attributes": {
+      "action": "importer.completed",
+      "actor": { "type": "system", "id": null },
+      "resource-type": "importer",
+      "resource-id": "mprt_01M5CK6PF09NC66VKSGJ7SN9DJ",
+      "ip-address": null,
+      "user-agent": null,
+      "metadata": { "status": "succeeded", "row-count": 2, "error-count": 0 },
+      "created-at": "2026-10-20T12:11:00.000Z"
+    }
+  }
+}

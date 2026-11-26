@@ -1,0 +1,80 @@
+{
+  "model_versions": {
+    "detector": "yunet-2026may",
+    "recognizer": "sface-2021dec",
+    "text_detector": "pp-ocrv6-small-det",
+    "text_recognizer": "pp-ocrv6-small-rec"
+  },
+  "sides": {
+    "front": {
+      "quality": {
+        "blur_score": 1022.48,
+        "is_blurry": false,
+        "glare_ratio": 0.0,
+        "has_glare": false,
+        "brightness": 0.9411,
+        "is_too_dark": false,
+        "is_too_bright": false
+      },
+      "faces": [],
+      "portrait": null,
+      "document": {
+        "found": false,
+        "quad": null,
+        "method": "none",
+        "rectified_size": null,
+        "aspect_ratio": null,
+        "area_ratio": null
+      },
+      "document_quality": null,
+      "text": [],
+      "mrz": {
+        "found": false,
+        "format_guess": null,
+        "lines": [],
+        "line_confidences": [],
+        "box": null
+      },
+      "barcodes": [
+        {
+          "format": "PDF417",
+          "bytes_b64": "QAoeDUFOU0kgNjM2MDE0MTAwMDAyREwwMDQxMDA5M1pDMDEzNDAwMzZETERBUVk5ODc2NTQzCkRDU1RFU1RXT1JUSApEQUNKT1JEQU4KREFETk9ORQpEQkIwMjE0MTk5MApEQkEwMjE0MjAzMQpEQkQwMjE0MjAyMwpEQkMyCkRDR1VTQQ1aQ1pDQU9QRU5WRVJJRlkgU1lOVEhFVElDIFRFU1QgREFUQQ0=",
+          "text": "@\n\u001e\rANSI 636014100002DL00410093ZC01340036DLDAQY9876543\nDCSTESTWORTH\nDACJORDAN\nDADNONE\nDBB02141990\nDBA02142031\nDBD02142023\nDBC2\nDCGUSA\rZCZCAOPENVERIFY SYNTHETIC TEST DATA\r",
+          "quad": [
+            [96.0, 160.0],
+            [928.0, 160.0],
+            [928.0, 480.0],
+            [96.0, 480.0]
+          ]
+        }
+      ],
+      "portrait_clarity": null,
+      "forensics": {
+        "exif": {
+          "software": null,
+          "make": null,
+          "model": null,
+          "has_gps": false
+        },
+        "jpeg": null,
+        "ela_score": 0.042,
+        "moire_score": 0.013,
+        "screen_grid_score": 0.008,
+        "chroma": {
+          "mean_saturation": 0.284,
+          "colorfulness": 38.72
+        },
+        "color_cast_score": 0.021,
+        "copy_move_score": 0.0,
+        "portrait_boundary_score": null,
+        "star_glyph": {
+          "found": false,
+          "score": 0.012,
+          "box": null
+        }
+      },
+      "phash": null
+    },
+    "back": null
+  }
+}

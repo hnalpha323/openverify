@@ -1,0 +1,20 @@
+{
+  "data": {
+    "type": "api-key",
+    "id": "key_01M5CN00000000000000009B51",
+    "attributes": {
+      "name": "Back office",
+      "scopes": ["inquiries:read"],
+      "allowed-ips": ["203.0.113.0/24"],
+      "api-version": "2026-10-01",
+      "token-prefix": "ov_sbx_Synt",
+      "expires-at": null,
+      "last-used-at": "2026-10-29T08:00:00.000Z",
+      "created-at": "2026-07-01T08:00:00.000Z",
+      "pii-masked": true,
+      "note": "Rotated by the platform team every quarter",
+      "attribute-blocklist": ["fields", "reference-id"],
+      "age-warning": true
+    }
+  }
+}

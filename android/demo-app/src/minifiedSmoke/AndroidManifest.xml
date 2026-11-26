@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+      C215.2 (review V01): the smoke test's launcher. It exists only in the minifiedSmoke build and is
+      not exported: the instrumentation starts it in-process. This source set brings no network
+      security configuration; the build keeps src/main's (https only).
+    -->
+    <application>
+        <activity
+            android:name="dev.openverify.demo.smoke.SmokeLauncherActivity"
+            android:exported="false" />
+    </application>
+
+</manifest>

@@ -1,0 +1,17 @@
+{
+  "type": "connect/source-data/verification/document",
+  "attributes": {
+    "status": {
+      "visibility": "full",
+      "value": "passed"
+    },
+    "document-type": {
+      "visibility": "full",
+      "value": "utility-bill"
+    }
+  },
+  "files": {
+    "visibility": "presence",
+    "value": true
+  }
+}

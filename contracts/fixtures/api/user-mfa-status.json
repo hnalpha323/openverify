@@ -1,0 +1,31 @@
+{
+  "data": {
+    "type": "user",
+    "id": "usr_01M5CN00000000000000009B21",
+    "attributes": {
+      "email": "reviewer@example.test",
+      "name": "Robin Example",
+      "status": "active",
+      "mfa-enabled": true,
+      "mfa-factors": [
+        {
+          "kind": "totp",
+          "count": 1
+        }
+      ],
+      "last-sign-in-at": "2026-10-29T08:00:00.000Z",
+      "created-at": "2026-10-01T08:00:00.000Z",
+      "updated-at": "2026-10-29T08:00:00.000Z"
+    },
+    "relationships": {
+      "roles": {
+        "data": [
+          {
+            "type": "role",
+            "id": "role_01M5CN00000000000000009B41"
+          }
+        ]
+      }
+    }
+  }
+}

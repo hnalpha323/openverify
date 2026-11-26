@@ -1,0 +1,22 @@
+# C213.3, KP10-42: every exception this module's main sources create, and every one they throw on.
+# The SDK's ExceptionCanaryTest (android/openverify-sdk, privacy/) holds this table to the sources, both
+# ways, and each row to the fixed-message rule (privacy/ModuleExceptions.kt says how a row is read):
+#
+#   file, relative to this module | the call that makes the exception, or rethrow | its message
+#
+# A message is one string literal with no value in it; a ChipReadException takes one ChipReadFailure
+# constant; no cause is passed; only a CancellationException or a ChipReadException that was caught is
+# thrown on. When a source gains or loses a throwing line, change this file in the same commit: the
+# failing test prints the table the sources give. Blank lines and lines starting with # are comments.
+
+src/main/kotlin/dev/openverify/nfc/ChipFailures.kt | ChipReadException | ChipReadFailure.TAG_LOST
+src/main/kotlin/dev/openverify/nfc/ChipFailures.kt | ChipReadException | ChipReadFailure.ACCESS_DENIED
+src/main/kotlin/dev/openverify/nfc/ChipFailures.kt | ChipReadException | ChipReadFailure.UNSUPPORTED_DOCUMENT
+src/main/kotlin/dev/openverify/nfc/ChipFailures.kt | ChipReadException | ChipReadFailure.TIMEOUT
+src/main/kotlin/dev/openverify/nfc/ChipFailures.kt | ChipReadException | ChipReadFailure.NFC_DISABLED
+src/main/kotlin/dev/openverify/nfc/ChipFailures.kt | ChipReadException | ChipReadFailure.READER_BUSY
+src/main/kotlin/dev/openverify/nfc/ChipReadOrchestrator.kt | require | "The challenge is the server's nonce: 8 bytes"
+src/main/kotlin/dev/openverify/nfc/JmrtdChipSession.kt | checkNotNull | "No file is selected"
+src/main/kotlin/dev/openverify/nfc/JmrtdChipSession.kt | checkNotNull | "The chip offers no PACE"
+src/main/kotlin/dev/openverify/nfc/NfcChipReader.kt | rethrow | stopped
+src/main/kotlin/dev/openverify/nfc/NfcLog.kt | require | "NfcLog takes a constant code: lower case, dotted, at most 64 characters"

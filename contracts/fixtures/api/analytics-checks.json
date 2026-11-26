@@ -1,0 +1,125 @@
+{
+  "data": {
+    "type": "analytics-checks",
+    "id": "c743882720c1c87b634b324657d4ac83ca51ab7e6f2456d16deece2c14a55242",
+    "attributes": {
+      "time-zone": "Europe/Paris",
+      "time-zones": ["Europe/Paris"],
+      "from": "2026-10-27",
+      "to": "2026-10-29",
+      "bucket": "day",
+      "threshold": 11,
+      "suppressed-cells": 1,
+      "settle-days": 30,
+      "freshness": {
+        "rolled-up-through": "2026-10-29T13:55:00.000Z",
+        "outcomes-as-of": "2026-10-28T23:05:00.000Z"
+      },
+      "buckets": [
+        {
+          "start": "2026-10-27",
+          "end": "2026-10-27",
+          "time-zone": "Europe/Paris",
+          "live": false,
+          "counts": {
+            "runs": 3618,
+            "failed": 112
+          }
+        },
+        {
+          "start": "2026-10-28",
+          "end": "2026-10-28",
+          "time-zone": "Europe/Paris",
+          "live": false,
+          "counts": {
+            "runs": 3570,
+            "failed": 98
+          }
+        },
+        {
+          "start": "2026-10-29",
+          "end": "2026-10-29",
+          "time-zone": "Europe/Paris",
+          "live": true,
+          "counts": {}
+        }
+      ],
+      "totals": {
+        "checks": [
+          {
+            "check-name": "id_expired_detection",
+            "verification-type": "government-id",
+            "requirement": "required",
+            "tier": "R",
+            "stage": "ga",
+            "ran": true,
+            "counts": {
+              "runs": 799,
+              "passed": 760,
+              "failed": 27,
+              "not-applicable": 0,
+              "errored": 12,
+              "not-configured": 0,
+              "pending": 0,
+              "failed-verifications": 63
+            },
+            "rates": {
+              "failure-share": {
+                "value": 0.42857142857142855
+              }
+            },
+            "reasons": [
+              {
+                "reason": "expired",
+                "count": 27
+              },
+              {
+                "reason": "execution_error",
+                "count": 12
+              }
+            ]
+          },
+          {
+            "check-name": "id_tamper_detection",
+            "verification-type": "government-id",
+            "requirement": "not_required",
+            "tier": "H",
+            "stage": "beta",
+            "ran": true,
+            "counts": {
+              "runs": 799,
+              "passed": 781,
+              "failed": {
+                "suppressed": "small-count"
+              },
+              "not-applicable": 0,
+              "errored": 0,
+              "not-configured": 0,
+              "pending": {
+                "suppressed": "complementary"
+              },
+              "failed-verifications": 63
+            },
+            "rates": {
+              "failure-share": {
+                "below": 16
+              }
+            },
+            "reasons": []
+          },
+          {
+            "check-name": "id_aamva_database_lookup",
+            "verification-type": "government-id",
+            "requirement": "not_required",
+            "tier": "A",
+            "stage": "beta",
+            "ran": false,
+            "counts": {},
+            "rates": {},
+            "reasons": []
+          }
+        ]
+      }
+    }
+  }
+}

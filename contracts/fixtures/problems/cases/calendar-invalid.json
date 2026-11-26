@@ -1,0 +1,17 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "A boundary of this calendar falls in a clock change.",
+  "instance": "/api/v1/case-calendars/ccal_01M5CK3190XEVBM5ZXA76E1JSN",
+  "requestId": "00000000-0000-4000-8000-000000001214",
+  "code": "calendar_invalid",
+  "dates": ["2026-11-01", "2027-03-14"],
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/week/sunday/0/start",
+      "detail": "falls in a clock change"
+    }
+  ]
+}

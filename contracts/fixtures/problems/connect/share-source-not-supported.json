@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "A report cannot be shared.",
+  "instance": "/api/v1/connect/share-tokens",
+  "requestId": "00000000-0000-4000-8000-00000011a011",
+  "code": "share_source_not_supported",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/source-id",
+      "detail": "is of a type that cannot be shared"
+    }
+  ]
+}

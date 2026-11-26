@@ -1,0 +1,47 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The flow breaks a rule it must meet.",
+  "instance": "/api/v1/inquiry-template-versions/itmplv_01M5CN0000000000000011A700",
+  "requestId": "00000000-0000-4000-8000-00000011a702",
+  "code": "definition_invalid",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/flow/steps/0",
+      "detail": "The step names no outbound connection of this organisation.",
+      "code": "share_consent_connection_invalid"
+    },
+    {
+      "location": "body",
+      "pointer": "/data/attributes/flow/steps/1",
+      "detail": "A sharing consent step follows a completion.",
+      "code": "share_consent_after_completion"
+    },
+    {
+      "location": "body",
+      "pointer": "/data/attributes/flow/steps/2",
+      "detail": "A destination-side sharing consent comes after a step whose cloned results the version accepts.",
+      "code": "share_consent_after_cloned_step"
+    },
+    {
+      "location": "body",
+      "pointer": "/data/attributes/flow/steps/0",
+      "detail": "This installation does not serve Connect.",
+      "code": "share_consent_connect_disabled"
+    },
+    {
+      "location": "body",
+      "pointer": "/data/attributes/flow/steps/0/withdrawalContact",
+      "detail": "The step names no way for the person to withdraw.",
+      "code": "share_consent_withdrawal_contact_missing"
+    },
+    {
+      "location": "body",
+      "pointer": "/data/attributes/flow/steps/2",
+      "detail": "A destination-side step that can receive biometric data needs a retention term.",
+      "code": "share_consent_retention_missing"
+    }
+  ]
+}

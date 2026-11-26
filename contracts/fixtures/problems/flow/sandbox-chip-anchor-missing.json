@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "The sandbox trust store does not hold the current test anchor; run trust:sandbox-utopia.",
+  "instance": "/api/v1/flow/verifications/ver_01M5CK3190XEVBM5ZXA76E1JSM/sandbox-chip",
+  "requestId": "00000000-0000-4000-8000-000000010c02",
+  "code": "sandbox_chip_anchor_missing"
+}

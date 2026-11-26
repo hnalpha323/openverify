@@ -1,0 +1,101 @@
+{
+  "data": {
+    "type": "report/phone-number",
+    "id": "rep_01M5Y5Z400PTW11XJ1C9D8PQE8",
+    "attributes": {
+      "status": "ready",
+      "created-at": "2026-10-27T09:00:00.000Z",
+      "completed-at": "2026-10-27T09:00:01.250Z",
+      "redacted-at": null,
+      "report-template-version-name": "v1",
+      "has-match": false,
+      "is-continuous": false,
+      "is-recurring": false,
+      "tags": ["onboarding"],
+      "query": {
+        "phone-number": "+12025550103"
+      },
+      "origin": "api",
+      "errors": [],
+      "unavailable-fields": [
+        {
+          "field": "phone-risk-score",
+          "reason": "no_documented_method"
+        },
+        {
+          "field": "phone-reachable-at-otp",
+          "reason": "not_linked"
+        }
+      ],
+      "coverage": null,
+      "next-run-at": null,
+      "paused-at": null,
+      "paused-reason": null,
+      "sources": [],
+      "query-sources": {
+        "phone-number": "request"
+      },
+      "matcher-version": null,
+      "provider": {
+        "id": "sandbox",
+        "sandbox": true
+      },
+      "thresholds": {
+        "sim-swap-high-hours": 24,
+        "sim-swap-medium-hours": 168,
+        "sim-swap-low-hours": 720,
+        "ported-recent-days": 30
+      },
+      "notices": [],
+      "phone-country-code": "US",
+      "phone-is-possible": true,
+      "phone-is-valid": true,
+      "phone-type": "MOBILE",
+      "phone-type-numbering-plan": "FIXED_LINE_OR_MOBILE",
+      "phone-network-line-type": "mobile",
+      "phone-carrier": "Sandbox Carrier",
+      "phone-risk-level": "high",
+      "phone-risk-recommendation": "block",
+      "phone-risk-confidence": 0.8,
+      "phone-risk-reasons": ["low_risk_type", "sim_swap_24h"],
+      "phone-risk-score": null,
+      "phone-risk-sim-swap": "high",
+      "phone-ported-recently": false,
+      "phone-reachable-at-otp": null
+    },
+    "relationships": {
+      "inquiry": {
+        "data": null
+      },
+      "account": {
+        "data": {
+          "type": "account",
+          "id": "acc_01M5CJXJF84MR3PHJHBHKQ4ZC8"
+        }
+      },
+      "accounts": {
+        "data": [
+          {
+            "type": "account",
+            "id": "acc_01M5CJXJF84MR3PHJHBHKQ4ZC8"
+          }
+        ]
+      },
+      "report-template": {
+        "data": {
+          "type": "report-template",
+          "id": "rptp_01M5Y5Z4000NAK7F99R976H7VW"
+        }
+      },
+      "report-template-version": {
+        "data": {
+          "type": "report-template-version",
+          "id": "rptpv_01M5Y5Z400RP6KKS8G4ANS4EX9"
+        }
+      },
+      "transaction": {
+        "data": null
+      }
+    }
+  }
+}

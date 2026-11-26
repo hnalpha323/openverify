@@ -1,0 +1,17 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "This version cannot be published.",
+  "instance": "/api/v1/case-template-versions/ctmplv_01M5CN00000000000000009B70/publish",
+  "requestId": "00000000-0000-4000-8000-000000009b70",
+  "code": "case_template_invalid",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/field-schemas/0/type",
+      "detail": "A published field keeps its type.",
+      "code": "field_type_changed"
+    }
+  ]
+}

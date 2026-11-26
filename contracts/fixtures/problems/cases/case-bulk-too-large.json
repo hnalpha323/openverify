@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The search matches more cases than one bulk action may take.",
+  "instance": "/api/v1/cases/bulk",
+  "requestId": "00000000-0000-4000-8000-000000001221",
+  "code": "case_bulk_too_large",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/search",
+      "detail": "matches too many cases"
+    }
+  ]
+}

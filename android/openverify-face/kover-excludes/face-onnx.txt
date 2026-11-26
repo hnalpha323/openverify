@@ -1,0 +1,7 @@
+# The Kover exclusion of openverify-face (C205, C219.2; review F18): at most ONE class pattern. The
+# build refuses a second line. Comments start with #.
+#
+# None is needed (face-onnx, Workflow 10E): the ONNX Runtime session glue runs in the host tests on
+# the JVM build of the same ONNX Runtime version (test scope), over the fetched model, so nothing is
+# excluded and the 80% rule holds over every class of the module
+# (docs/tdd/phase10-face-onnx.tdd.md has the measured coverage).

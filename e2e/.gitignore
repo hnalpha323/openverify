@@ -1,0 +1,4 @@
+# Generated per run by setup/global-setup.ts: random secrets and ports for the e2e stack.
+.env.e2e
+# Service logs, the e2e flow build, Playwright traces and reports.
+.artifacts/

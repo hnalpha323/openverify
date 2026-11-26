@@ -1,0 +1,11 @@
+{
+  "fields": {
+    "kind": "chip-dg1"
+  },
+  "file": {
+    "name": "file",
+    "filename": "chip-dg1.bin",
+    "content-type": "application/octet-stream",
+    "size": 93
+  }
+}

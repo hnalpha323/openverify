@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "The flow continues on the other device; this device is waiting.",
+  "instance": "/api/v1/flow/consent",
+  "requestId": "00000000-0000-4000-8000-000000000717",
+  "code": "session_handed_off"
+}

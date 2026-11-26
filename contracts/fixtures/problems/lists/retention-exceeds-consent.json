@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The retention is longer than the window the source consent promises.",
+  "instance": "/api/v1/list/faces",
+  "requestId": "00000000-0000-4000-8000-000000000808",
+  "code": "retention_exceeds_consent",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/item-retention-days",
+      "detail": "exceeds the face template retention"
+    }
+  ]
+}

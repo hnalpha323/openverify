@@ -1,0 +1,276 @@
+{
+  "model_versions": {
+    "text_detector": "pp-ocrv6-small-det",
+    "text_recognizer": "pp-ocrv6-small-rec",
+    "pdf_renderer": "pdfium-156.0.8076.0",
+    "pdf_parser": "pypdf-6.21.4"
+  },
+  "source": "pdf",
+  "page_count": 2,
+  "analysed_pages": [1, 2],
+  "pages": [
+    {
+      "number": 1,
+      "width": 1700,
+      "height": 2200,
+      "width_pt": 612.0,
+      "height_pt": 792.0,
+      "text_layer": [
+        {
+          "text": "UTOPIA WATER BOARD",
+          "box": [150.0, 160.0, 760.0, 70.0],
+          "font_ids": [1],
+          "font_size_pt": 18.0,
+          "visible": true,
+          "hidden_reason": null
+        },
+        {
+          "text": "Statement date: 30 September 2026",
+          "box": [150.0, 300.0, 820.0, 40.0],
+          "font_ids": [0],
+          "font_size_pt": 10.0,
+          "visible": true,
+          "hidden_reason": null
+        },
+        {
+          "text": "Account number: 4471-2208-19",
+          "box": [150.0, 350.0, 700.0, 40.0],
+          "font_ids": [0],
+          "font_size_pt": 10.0,
+          "visible": true,
+          "hidden_reason": null
+        },
+        {
+          "text": "QUINN VALEMONT",
+          "box": [150.0, 520.0, 420.0, 40.0],
+          "font_ids": [0],
+          "font_size_pt": 10.0,
+          "visible": true,
+          "hidden_reason": null
+        },
+        {
+          "text": "14 LANTERN ROW",
+          "box": [150.0, 570.0, 400.0, 40.0],
+          "font_ids": [0],
+          "font_size_pt": 10.0,
+          "visible": true,
+          "hidden_reason": null
+        },
+        {
+          "text": "MERIDALE UT 00000",
+          "box": [150.0, 620.0, 470.0, 40.0],
+          "font_ids": [0],
+          "font_size_pt": 10.0,
+          "visible": true,
+          "hidden_reason": null
+        },
+        {
+          "text": "Billing period: 01 Jul 2026 - 30 Sep 2026",
+          "box": [150.0, 800.0, 980.0, 40.0],
+          "font_ids": [0],
+          "font_size_pt": 10.0,
+          "visible": true,
+          "hidden_reason": null
+        },
+        {
+          "text": "Water used: 18.4 m3",
+          "box": [150.0, 850.0, 470.0, 40.0],
+          "font_ids": [0],
+          "font_size_pt": 10.0,
+          "visible": true,
+          "hidden_reason": null
+        },
+        {
+          "text": "Amount due: 48.20",
+          "box": [150.0, 900.0, 430.0, 40.0],
+          "font_ids": [1],
+          "font_size_pt": 10.0,
+          "visible": true,
+          "hidden_reason": null
+        },
+        {
+          "text": "Due date: 21 October 2026",
+          "box": [150.0, 950.0, 620.0, 40.0],
+          "font_ids": [0],
+          "font_size_pt": 10.0,
+          "visible": true,
+          "hidden_reason": null
+        },
+        {
+          "text": "Previous balance: 0.00",
+          "box": [150.0, 1000.0, 520.0, 40.0],
+          "font_ids": [0],
+          "font_size_pt": 10.0,
+          "visible": false,
+          "hidden_reason": "covered"
+        }
+      ],
+      "ocr": [
+        {
+          "text": "UTOPIA WATER BOARD",
+          "confidence": 0.982,
+          "box": [148.0, 157.0, 764.0, 75.0]
+        },
+        {
+          "text": "Statement date: 30 September 2026",
+          "confidence": 0.979,
+          "box": [148.0, 297.0, 824.0, 45.0]
+        },
+        {
+          "text": "Account number: 4471-2208-19",
+          "confidence": 0.976,
+          "box": [148.0, 347.0, 704.0, 45.0]
+        },
+        {
+          "text": "QUINN VALEMONT",
+          "confidence": 0.973,
+          "box": [148.0, 517.0, 424.0, 45.0]
+        },
+        {
+          "text": "14 LANTERN ROW",
+          "confidence": 0.97,
+          "box": [148.0, 567.0, 404.0, 45.0]
+        },
+        {
+          "text": "MERIDALE UT 00000",
+          "confidence": 0.967,
+          "box": [148.0, 617.0, 474.0, 45.0]
+        },
+        {
+          "text": "Billing period: 01 Jul 2026 - 30 Sep 2026",
+          "confidence": 0.964,
+          "box": [148.0, 797.0, 984.0, 45.0]
+        },
+        {
+          "text": "Water used: 18.4 m3",
+          "confidence": 0.961,
+          "box": [148.0, 847.0, 474.0, 45.0]
+        },
+        {
+          "text": "Amount due: 48.20",
+          "confidence": 0.958,
+          "box": [148.0, 897.0, 434.0, 45.0]
+        },
+        {
+          "text": "Due date: 21 October 2026",
+          "confidence": 0.955,
+          "box": [148.0, 947.0, 624.0, 45.0]
+        }
+      ],
+      "text_layer_ocr_agreement": 0.9731
+    },
+    {
+      "number": 2,
+      "width": 1700,
+      "height": 2200,
+      "width_pt": 612.0,
+      "height_pt": 792.0,
+      "text_layer": [
+        {
+          "text": "UTOPIA WATER BOARD",
+          "box": [150.0, 140.0, 520.0, 48.0],
+          "font_ids": [1],
+          "font_size_pt": 12.0,
+          "visible": true,
+          "hidden_reason": null
+        },
+        {
+          "text": "How to pay your bill",
+          "box": [150.0, 260.0, 520.0, 40.0],
+          "font_ids": [1],
+          "font_size_pt": 10.0,
+          "visible": true,
+          "hidden_reason": null
+        },
+        {
+          "text": "Pay at any Utopia Water Board office before the due date.",
+          "box": [150.0, 320.0, 1380.0, 40.0],
+          "font_ids": [0],
+          "font_size_pt": 10.0,
+          "visible": true,
+          "hidden_reason": null
+        },
+        {
+          "text": "Page 2 of 2",
+          "box": [1350.0, 2080.0, 230.0, 36.0],
+          "font_ids": [0],
+          "font_size_pt": 8.0,
+          "visible": true,
+          "hidden_reason": null
+        }
+      ],
+      "ocr": [
+        {
+          "text": "UTOPIA WATER BOARD",
+          "confidence": 0.976,
+          "box": [148.0, 137.0, 524.0, 53.0]
+        },
+        {
+          "text": "How to pay your bill",
+          "confidence": 0.973,
+          "box": [148.0, 257.0, 524.0, 45.0]
+        },
+        {
+          "text": "Pay at any Utopia Water Board office before the due date.",
+          "confidence": 0.97,
+          "box": [148.0, 317.0, 1384.0, 45.0]
+        },
+        {
+          "text": "Page 2 of 2",
+          "confidence": 0.967,
+          "box": [1348.0, 2077.0, 234.0, 41.0]
+        }
+      ],
+      "text_layer_ocr_agreement": 0.9814
+    }
+  ],
+  "pdf": {
+    "producer": "OpenVerify synthetic PDF writer",
+    "creator": "OpenVerify fixtures",
+    "creation_date": "2026-09-30T09:00:00Z",
+    "modification_date": "2026-09-30T09:00:00Z",
+    "xmp": {
+      "creator_tool": "OpenVerify fixtures",
+      "producer": "OpenVerify synthetic PDF writer",
+      "create_date": "2026-09-30T09:00:00Z",
+      "modify_date": "2026-09-30T09:00:00Z",
+      "metadata_date": "2026-09-30T09:00:00Z",
+      "document_id": "uuid:00000000-0000-4000-8000-000000000001",
+      "instance_id": "uuid:00000000-0000-4000-8000-000000000001",
+      "history_agents": []
+    },
+    "linearized": false,
+    "revisions": 1,
+    "xref_repaired": false,
+    "eof_markers": 1,
+    "bytes_after_last_eof": 0,
+    "object_streams": 0,
+    "fonts": [
+      {
+        "id": 0,
+        "base_name": "Helvetica",
+        "subset_tag": null,
+        "embedded": false
+      },
+      {
+        "id": 1,
+        "base_name": "SyntheticSans-Bold",
+        "subset_tag": "AAAAAB",
+        "embedded": true
+      }
+    ],
+    "annotations": 0,
+    "form_fields": 0,
+    "actions": {
+      "javascript": 0,
+      "launch": 0,
+      "submit_form": 0,
+      "goto_remote": 0,
+      "rich_media": 0,
+      "embedded_files": 0
+    },
+    "signatures": 0,
+    "edits_after_signature": false
+  },
+  "image": null
+}

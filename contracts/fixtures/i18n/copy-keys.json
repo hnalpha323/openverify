@@ -1,0 +1,213 @@
+{
+  "format": 1,
+  "description": "C162.2, C199.7: every built-in copy key an operator may override, with its rules and its legal mark, from COPY_KEYS (packages/flow-spec/src/v2/copy-keys.ts). Written by packages/flow-spec/src/export-vectors.test.ts with UPDATE_CONTRACT_FIXTURES=1; never edited by hand. Android runs every key through its key map: an override it cannot place is ignored, unless the key is legal, when the step renders unsupported.",
+  "legalKinds": ["consent", "notice", "decision", "retention"],
+  "componentAttributes": ["label", "hint", "title", "body", "button", "alt"],
+  "componentMaxLength": 255,
+  "placeholderPattern": "\\{([a-z][a-z0-9_]{0,39})\\}",
+  "keys": {
+    "completion.title": {
+      "maxLength": 120,
+      "placeholders": ["organization"],
+      "consent": false,
+      "multiline": false,
+      "legal": null
+    },
+    "consent.automated-decision": {
+      "maxLength": 2000,
+      "placeholders": ["organization"],
+      "consent": true,
+      "multiline": true,
+      "legal": "consent"
+    },
+    "consent.biometric": {
+      "maxLength": 2000,
+      "placeholders": ["days", "organization"],
+      "consent": true,
+      "multiline": true,
+      "legal": "consent"
+    },
+    "consent.biometric-matching": {
+      "maxLength": 2000,
+      "placeholders": ["days", "organization"],
+      "consent": true,
+      "multiline": true,
+      "legal": "consent"
+    },
+    "consent.checkbox": {
+      "maxLength": 2000,
+      "placeholders": ["organization"],
+      "consent": true,
+      "multiline": true,
+      "legal": "consent"
+    },
+    "consent.continue": {
+      "maxLength": 40,
+      "placeholders": [],
+      "consent": false,
+      "multiline": false,
+      "legal": null
+    },
+    "consent.device-recognition": {
+      "maxLength": 2000,
+      "placeholders": ["organization"],
+      "consent": true,
+      "multiline": true,
+      "legal": "consent"
+    },
+    "consent.processing": {
+      "maxLength": 2000,
+      "placeholders": ["organization"],
+      "consent": true,
+      "multiline": true,
+      "legal": "consent"
+    },
+    "consent.title": {
+      "maxLength": 120,
+      "placeholders": ["organization"],
+      "consent": false,
+      "multiline": false,
+      "legal": null
+    },
+    "failure.title": {
+      "maxLength": 120,
+      "placeholders": ["organization"],
+      "consent": false,
+      "multiline": false,
+      "legal": null
+    },
+    "notice.device-recognition": {
+      "maxLength": 2000,
+      "placeholders": ["organization"],
+      "consent": false,
+      "multiline": true,
+      "legal": "notice"
+    },
+    "notice.play-integrity": {
+      "maxLength": 2000,
+      "placeholders": ["organization"],
+      "consent": false,
+      "multiline": true,
+      "legal": "notice"
+    },
+    "notice.session-integrity": {
+      "maxLength": 2000,
+      "placeholders": ["organization"],
+      "consent": false,
+      "multiline": true,
+      "legal": "notice"
+    },
+    "screen.continue": {
+      "maxLength": 40,
+      "placeholders": [],
+      "consent": false,
+      "multiline": false,
+      "legal": null
+    },
+    "screen.halted.message": {
+      "maxLength": 500,
+      "placeholders": ["organization"],
+      "consent": false,
+      "multiline": true,
+      "legal": null
+    },
+    "screen.halted.title": {
+      "maxLength": 120,
+      "placeholders": ["organization"],
+      "consent": false,
+      "multiline": false,
+      "legal": null
+    },
+    "screen.help": {
+      "maxLength": 80,
+      "placeholders": ["organization"],
+      "consent": false,
+      "multiline": false,
+      "legal": null
+    },
+    "screen.helpLink": {
+      "maxLength": 80,
+      "placeholders": ["organization"],
+      "consent": false,
+      "multiline": false,
+      "legal": null
+    },
+    "screen.privacyLink": {
+      "maxLength": 80,
+      "placeholders": ["organization"],
+      "consent": false,
+      "multiline": false,
+      "legal": null
+    },
+    "screen.waiting.message": {
+      "maxLength": 500,
+      "placeholders": ["organization"],
+      "consent": false,
+      "multiline": true,
+      "legal": null
+    },
+    "screen.waiting.title": {
+      "maxLength": 120,
+      "placeholders": ["organization"],
+      "consent": false,
+      "multiline": false,
+      "legal": null
+    },
+    "share.consent.accept": {
+      "maxLength": 40,
+      "placeholders": [],
+      "consent": false,
+      "multiline": false,
+      "legal": "consent"
+    },
+    "share.consent.biometric-destination": {
+      "maxLength": 2000,
+      "placeholders": ["source", "recipient", "retention"],
+      "consent": false,
+      "multiline": true,
+      "legal": "consent"
+    },
+    "share.consent.biometric-source": {
+      "maxLength": 2000,
+      "placeholders": ["source", "recipient"],
+      "consent": false,
+      "multiline": true,
+      "legal": "consent"
+    },
+    "share.consent.decline": {
+      "maxLength": 40,
+      "placeholders": [],
+      "consent": false,
+      "multiline": false,
+      "legal": "consent"
+    },
+    "share.consent.destination": {
+      "maxLength": 4000,
+      "placeholders": ["source", "recipient", "categories", "expires", "withdraw", "retention"],
+      "consent": false,
+      "multiline": true,
+      "legal": "consent"
+    },
+    "share.consent.source": {
+      "maxLength": 4000,
+      "placeholders": ["source", "recipient", "categories", "expires", "withdraw"],
+      "consent": false,
+      "multiline": true,
+      "legal": "consent"
+    },
+    "share.consent.title": {
+      "maxLength": 120,
+      "placeholders": ["recipient"],
+      "consent": false,
+      "multiline": false,
+      "legal": "consent"
+    },
+    "share.consent.withdraw": {
+      "maxLength": 80,
+      "placeholders": ["recipient"],
+      "consent": false,
+      "multiline": false,
+      "legal": "consent"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "@openverify/core",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Domain types, zod schemas, inquiry/verification state machines, check registry and decision engine",
+  "type": "module",
+  "exports": {
+    ".": {
+      "@openverify/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@openverify/config": "workspace:*",
+    "@types/node": "catalog:",
+    "@vitest/coverage-v8": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  },
+  "dependencies": {
+    "zod": "^4.6.7"
+  }
+}

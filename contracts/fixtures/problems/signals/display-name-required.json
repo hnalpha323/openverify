@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The device handoff step needs the organization display name setting.",
+  "instance": "/api/v1/inquiry-template-versions/itmplv_01M5CK3190XEVBM5ZXA76E1JSN/publish",
+  "requestId": "00000000-0000-4000-8000-000000000712",
+  "code": "display_name_required"
+}

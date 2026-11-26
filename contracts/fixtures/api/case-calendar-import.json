@@ -1,0 +1,92 @@
+{
+  "data": {
+    "type": "case-calendar",
+    "id": "ccal_01M5CN00000000000000000018",
+    "attributes": {
+      "name": "Utopia office hours",
+      "time-zone": "America/New_York",
+      "week": {
+        "monday": [
+          {
+            "start": "09:00",
+            "end": "12:00"
+          },
+          {
+            "start": "13:00",
+            "end": "17:00"
+          }
+        ],
+        "tuesday": [
+          {
+            "start": "09:00",
+            "end": "12:00"
+          },
+          {
+            "start": "13:00",
+            "end": "17:00"
+          }
+        ],
+        "wednesday": [
+          {
+            "start": "09:00",
+            "end": "12:00"
+          },
+          {
+            "start": "13:00",
+            "end": "17:00"
+          }
+        ],
+        "thursday": [
+          {
+            "start": "09:00",
+            "end": "12:00"
+          },
+          {
+            "start": "13:00",
+            "end": "17:00"
+          }
+        ],
+        "friday": [
+          {
+            "start": "09:00",
+            "end": "12:00"
+          },
+          {
+            "start": "13:00",
+            "end": "17:00"
+          }
+        ],
+        "saturday": [],
+        "sunday": []
+      },
+      "holidays": [
+        {
+          "date": "2026-12-25",
+          "label": "Office closed"
+        },
+        {
+          "date": "2027-01-01",
+          "label": "Office closed"
+        }
+      ],
+      "closures": [
+        {
+          "start": "2026-11-26T12:00",
+          "end": "2026-11-26T17:00",
+          "label": "Team training"
+        }
+      ],
+      "created-at": "2026-10-20T12:00:00.000Z",
+      "updated-at": "2026-10-20T12:05:00.000Z"
+    }
+  },
+  "meta": {
+    "imported-count": 1,
+    "refused": [
+      {
+        "row": 3,
+        "code": "date_invalid"
+      }
+    ]
+  }
+}

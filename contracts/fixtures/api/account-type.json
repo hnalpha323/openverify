@@ -1,0 +1,16 @@
+{
+  "data": {
+    "type": "account-type",
+    "id": "acctp_01M5CJXHZMQ72CZPQ5Y3XGC48W",
+    "attributes": {
+      "name": "user",
+      "fields-schema": {
+        "name_first": { "type": "string", "label": "First name" },
+        "name_last": { "type": "string", "label": "Last name" },
+        "birthdate": { "type": "date", "label": "Date of birth" }
+      },
+      "created-at": "2026-10-20T11:00:00.000Z",
+      "contest-route": null
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "A field does not fit the inputs of the live version.",
+  "instance": "/api/v1/workflows/wfl_01M5CK3190XEVBM5ZXA76E1JSN/trigger",
+  "requestId": "00000000-0000-4000-8000-000000001109",
+  "code": "trigger_input_invalid",
+  "source": {
+    "pointer": "/data/attributes/fields/reference_id"
+  }
+}

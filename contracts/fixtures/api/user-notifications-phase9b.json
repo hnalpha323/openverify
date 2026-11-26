@@ -1,0 +1,43 @@
+{
+  "data": [
+    {
+      "type": "user-notification",
+      "id": "unot_01M5CN00000000000000009B54",
+      "attributes": {
+        "kind": "webhook-failure",
+        "subject-type": "webhook",
+        "read-at": null,
+        "created-at": "2026-10-29T09:30:00.000Z"
+      },
+      "relationships": {
+        "webhook": {
+          "data": {
+            "type": "webhook",
+            "id": "wbh_01M5CN00000000000000009B53"
+          }
+        }
+      }
+    },
+    {
+      "type": "user-notification",
+      "id": "unot_01M5CN00000000000000009B55",
+      "attributes": {
+        "kind": "assigned",
+        "subject-type": "case",
+        "read-at": "2026-10-29T09:00:00.000Z",
+        "created-at": "2026-10-29T08:30:00.000Z"
+      },
+      "relationships": {
+        "case": {
+          "data": {
+            "type": "case",
+            "id": "case_01M5CN00000000000000009B50"
+          }
+        }
+      }
+    }
+  ],
+  "links": {
+    "next": null
+  }
+}

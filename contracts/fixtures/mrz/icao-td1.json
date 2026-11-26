@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "description": "TD1 (ID-1 size card, 3 x 30 characters).",
+  "source": {
+    "citation": "ICAO Doc 9303, Eighth Edition (2021), Part 5, the TD1 example of the specimen state Utopia",
+    "url": "https://www.icao.int/sites/default/files/publications/DocSeries/9303_p5_cons_en.pdf"
+  },
+  "vectors": [
+    {
+      "id": "icao-9303-p5-td1",
+      "format": "TD1",
+      "lines": [
+        "I<UTOD231458907<<<<<<<<<<<<<<<",
+        "7408122F1204159UTO<<<<<<<<<<<6",
+        "ERIKSSON<<ANNA<MARIA<<<<<<<<<<"
+      ],
+      "note": "The published example, unchanged.",
+      "valid": true,
+      "check_digits": {
+        "document_number": {
+          "input": "D23145890",
+          "printed": "7",
+          "computed": 7,
+          "valid": true
+        },
+        "birth_date": {
+          "input": "740812",
+          "printed": "2",
+          "computed": 2,
+          "valid": true
+        },
+        "expiration_date": {
+          "input": "120415",
+          "printed": "9",
+          "computed": 9,
+          "valid": true
+        },
+        "optional_data": null,
+        "composite": {
+          "input": "D231458907<<<<<<<<<<<<<<<74081221204159<<<<<<<<<<<",
+          "printed": "6",
+          "computed": 6,
+          "valid": true
+        }
+      },
+      "fields": {
+        "document_code": "I",
+        "issuing_state": "UTO",
+        "surname": "ERIKSSON",
+        "given_names": "ANNA MARIA",
+        "document_number": "D23145890",
+        "nationality": "UTO",
+        "birth_date": "740812",
+        "sex": "F",
+        "expiration_date": "120415",
+        "optional_data_1": "",
+        "optional_data_2": ""
+      }
+    },
+    {
+      "id": "icao-9303-p5-td1-long-document-number",
+      "format": "TD1",
+      "lines": [
+        "I<UTOD23145890<7349<<<<<<<<<<<",
+        "3407127M9507122UTO<<<<<<<<<<<2",
+        "STEVENSON<<PETER<JOHN<<<<<<<<<"
+      ],
+      "note": "The Part 5 long document number example: a filler in the check-digit position, the rest of the number and its check digit in the optional data. The digit covers the full number without the filler.",
+      "valid": true,
+      "check_digits": {
+        "document_number": {
+          "input": "D23145890734",
+          "printed": "9",
+          "computed": 9,
+          "valid": true
+        },
+        "birth_date": {
+          "input": "340712",
+          "printed": "7",
+          "computed": 7,
+          "valid": true
+        },
+        "expiration_date": {
+          "input": "950712",
+          "printed": "2",
+          "computed": 2,
+          "valid": true
+        },
+        "optional_data": null,
+        "composite": {
+          "input": "D23145890<7349<<<<<<<<<<<34071279507122<<<<<<<<<<<",
+          "printed": "2",
+          "computed": 2,
+          "valid": true
+        }
+      },
+      "fields": {
+        "document_code": "I",
+        "issuing_state": "UTO",
+        "surname": "STEVENSON",
+        "given_names": "PETER JOHN",
+        "document_number": "D23145890734",
+        "nationality": "UTO",
+        "birth_date": "340712",
+        "sex": "M",
+        "expiration_date": "950712",
+        "optional_data_1": "",
+        "optional_data_2": ""
+      }
+    }
+  ]
+}

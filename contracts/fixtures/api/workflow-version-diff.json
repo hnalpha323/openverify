@@ -1,0 +1,34 @@
+{
+  "data": {
+    "type": "workflow-version-diff",
+    "id": "wfv_01M5CM00000000000000000003",
+    "attributes": {
+      "against-version-id": "wfv_01M5CM00000000000000000002",
+      "steps": {
+        "added": ["notify_team"],
+        "removed": [],
+        "changed": [
+          {
+            "id": "report_ready",
+            "changes": [
+              {
+                "pointer": "/steps/3/timeout-seconds",
+                "before": 3600,
+                "after": 7200
+              }
+            ]
+          }
+        ]
+      },
+      "edges": {
+        "added": ["e24"],
+        "removed": []
+      },
+      "trigger-changes": [],
+      "input-changes": [],
+      "output-changes": [],
+      "variable-changes": [],
+      "layout-changes": ["fetch_inquiry"]
+    }
+  }
+}

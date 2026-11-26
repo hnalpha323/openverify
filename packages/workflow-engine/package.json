@@ -1,0 +1,47 @@
+{
+  "name": "@openverify/workflow-engine",
+  "version": "0.0.0",
+  "private": true,
+  "description": "The workflow engine's pure logic (plan C113-C117, C122, C123): definitions and their graph check, the conditions dialect, value templates, the variable scope, the interpreter, schedules, stated limits, the action registry contract and the Evaluate Code runner",
+  "type": "module",
+  "exports": {
+    ".": {
+      "@openverify/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./actions": {
+      "@openverify/source": "./src/actions/index.ts",
+      "types": "./dist/actions/index.d.ts",
+      "default": "./dist/actions/index.js"
+    },
+    "./code-runner": {
+      "@openverify/source": "./src/code-runner/index.ts",
+      "types": "./dist/code-runner/index.d.ts",
+      "default": "./dist/code-runner/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@openverify/config": "workspace:*",
+    "@types/node": "catalog:",
+    "@vitest/coverage-v8": "catalog:",
+    "json-logic-js": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  },
+  "dependencies": {
+    "@jitl/quickjs-wasmfile-release-sync": "catalog:",
+    "@openverify/contracts": "workspace:*",
+    "@openverify/core": "workspace:*",
+    "cron-parser": "catalog:",
+    "quickjs-emscripten-core": "catalog:",
+    "temporal-polyfill": "catalog:",
+    "zod": "^4.6.7"
+  }
+}

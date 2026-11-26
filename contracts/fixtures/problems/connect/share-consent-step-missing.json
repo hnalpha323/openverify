@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The template has no destination-side share consent step.",
+  "instance": "/api/v1/inquiries",
+  "requestId": "00000000-0000-4000-8000-00000011a026",
+  "code": "share_consent_step_missing",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/meta/share-token-id",
+      "detail": "needs a template with a destination-side share consent step"
+    }
+  ]
+}

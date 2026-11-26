@@ -1,0 +1,17 @@
+{
+  "data": {
+    "type": "consent-record",
+    "attributes": {
+      "side": "source",
+      "connection-id": "cxn_01M5CN0000000000000011A100",
+      "subject-id": "acc_01M5CN0000000000000011A610",
+      "data-categories": ["identity-fields", "contact-fields"],
+      "explicit-biometric": false,
+      "expires-in-seconds": 1209600,
+      "evidence-reference": "Synthetic signed form SF-0001",
+      "attested-at": "2026-10-19T09:00:00.000Z",
+      "text-locale": "en",
+      "text-body": "Synthetic attested text: I agree that Example Source shares my name and contact details with Example Partner."
+    }
+  }
+}

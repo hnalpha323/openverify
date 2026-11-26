@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "A sandbox outcome is accepted only in a sandbox environment.",
+  "instance": "/api/v1/flow/signals",
+  "requestId": "00000000-0000-4000-8000-000000000705",
+  "code": "sandbox_only_value"
+}

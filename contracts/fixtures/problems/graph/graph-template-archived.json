@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "An archived template runs no new queries.",
+  "instance": "/api/v1/graph-queries",
+  "requestId": "00000000-0000-4000-8000-000000001004",
+  "code": "graph_template_archived"
+}

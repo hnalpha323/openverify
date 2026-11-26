@@ -1,0 +1,25 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "types": ["node"],
+    "allowJs": true,
+    "checkJs": true
+  },
+  "include": [
+    "src",
+    "vitest.config.ts",
+    "scripts/benchmark-*.test.mjs",
+    "scripts/benchmark-independence.mjs",
+    "scripts/benchmark-metrics.mjs",
+    "scripts/benchmark-paired.mjs",
+    "scripts/benchmark-posthoc.mjs",
+    "scripts/benchmark-reads.mjs",
+    "scripts/benchmark-render.mjs",
+    "scripts/benchmark-report.mjs",
+    "scripts/benchmark-scale.mjs",
+    "scripts/benchmark-tables.mjs",
+    "scripts/benchmark-variants.mjs",
+    "scripts/benchmark-write.mjs",
+    "scripts/benchmark-vitest.config.mjs"
+  ]
+}

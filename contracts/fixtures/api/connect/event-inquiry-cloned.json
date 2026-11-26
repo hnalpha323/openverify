@@ -1,0 +1,64 @@
+{
+  "data": {
+    "type": "event",
+    "id": "evt_01M5CN0000000000000011A590",
+    "attributes": {
+      "name": "inquiry.created",
+      "payload": {
+        "data": {
+          "type": "inquiry",
+          "id": "inq_01M5CN0000000000000011A400",
+          "attributes": {
+            "status": "needs_review",
+            "reference-id": null,
+            "fields": {
+              "name_first": "Jane",
+              "name_last": "Sample"
+            },
+            "tags": [],
+            "note": null,
+            "expires-at": "2026-10-21T12:15:20.000Z",
+            "redacted-at": null,
+            "decisioned-at": null,
+            "provenance": {
+              "kind": "connect-clone",
+              "share-token-id": "cnst_01M5CN0000000000000011A200",
+              "source-organization-name": "Example Source",
+              "source-environment-kind": "sandbox",
+              "source-created-at": "2026-10-20T12:00:00.000Z",
+              "source-status": "approved",
+              "cloned-at": "2026-10-20T12:15:20.000Z"
+            },
+            "created-at": "2026-10-20T12:15:20.000Z",
+            "updated-at": "2026-10-20T12:15:20.000Z"
+          },
+          "relationships": {
+            "inquiry-template": {
+              "data": {
+                "type": "inquiry-template",
+                "id": "itmpl_01M5A0GTG0RSTVX9PHA0V7P3X6"
+              }
+            },
+            "verifications": {
+              "data": []
+            },
+            "account": {
+              "data": {
+                "type": "account",
+                "id": "acc_01M5CJXJF84MR3PHJHBHKQ4ZC8"
+              }
+            },
+            "inquiry-template-version": {
+              "data": {
+                "type": "inquiry-template-version",
+                "id": "itmplv_01M5A0GTG0VF5QW51511984D0G"
+              }
+            }
+          }
+        }
+      },
+      "simulated": false,
+      "created-at": "2026-10-20T12:15:20.000Z"
+    }
+  }
+}

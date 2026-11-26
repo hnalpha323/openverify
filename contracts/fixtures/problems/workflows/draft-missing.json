@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "This workflow has no draft.",
+  "instance": "/api/v1/workflows/wfl_01M5CK3190XEVBM5ZXA76E1JSN/publish",
+  "requestId": "00000000-0000-4000-8000-000000001102",
+  "code": "draft_missing"
+}

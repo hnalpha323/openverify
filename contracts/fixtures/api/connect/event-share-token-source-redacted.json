@@ -1,0 +1,78 @@
+{
+  "data": {
+    "type": "event",
+    "id": "evt_01M5CN0000000000000011A513",
+    "attributes": {
+      "name": "connect/share-token.source-redacted",
+      "payload": {
+        "data": {
+          "type": "connect/share-token",
+          "id": "cnst_01M5CN0000000000000011A200",
+          "attributes": {
+            "status": "redeemed",
+            "direction": "inbound",
+            "source-type": "inquiry",
+            "environment-kind": "sandbox",
+            "share-policy-version": 1,
+            "data-categories": [
+              "identity-fields",
+              "contact-fields",
+              "document-images",
+              "biometric",
+              "check-results"
+            ],
+            "source-consent": {
+              "method": "flow",
+              "witnessed": true,
+              "categories": [
+                "identity-fields",
+                "contact-fields",
+                "document-images",
+                "biometric",
+                "check-results"
+              ],
+              "explicit-biometric": true,
+              "text-sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            "redeem-mode": "clone",
+            "redeem-summary": {
+              "policy-version": 1,
+              "verifications": 2,
+              "checks": 14,
+              "files": 3,
+              "fields": 4,
+              "dropped-fields": [],
+              "peek-count": 1
+            },
+            "peek-count": 1,
+            "failure-reason": null,
+            "expiry-reason": null,
+            "created-at": "2026-10-20T12:10:00.000Z",
+            "updated-at": "2026-10-20T12:15:20.000Z",
+            "expires-at": "2026-11-03T12:10:00.000Z",
+            "pending-at": "2026-10-20T12:15:00.000Z",
+            "redeemed-at": "2026-10-20T12:15:20.000Z",
+            "expired-at": null,
+            "failed-at": null
+          },
+          "relationships": {
+            "connection": {
+              "data": {
+                "type": "connect/connection",
+                "id": "cxn_01M5CN0000000000000011A100"
+              }
+            },
+            "destination": {
+              "data": {
+                "type": "inquiry",
+                "id": "inq_01M5CN0000000000000011A400"
+              }
+            }
+          }
+        }
+      },
+      "simulated": false,
+      "created-at": "2026-10-20T12:45:00.000Z"
+    }
+  }
+}

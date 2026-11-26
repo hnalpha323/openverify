@@ -1,0 +1,500 @@
+public final class dev/openverify/sdk/Appearance : java/lang/Enum {
+	public static final field DARK Ldev/openverify/sdk/Appearance;
+	public static final field LIGHT Ldev/openverify/sdk/Appearance;
+	public static final field SYSTEM Ldev/openverify/sdk/Appearance;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Ldev/openverify/sdk/Appearance;
+	public static fun values ()[Ldev/openverify/sdk/Appearance;
+}
+
+public final class dev/openverify/sdk/CaptureFailureReason : java/lang/Enum {
+	public static final field CAMERA_ERROR Ldev/openverify/sdk/CaptureFailureReason;
+	public static final field CAMERA_UNAVAILABLE Ldev/openverify/sdk/CaptureFailureReason;
+	public static final field OUT_OF_MEMORY Ldev/openverify/sdk/CaptureFailureReason;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Ldev/openverify/sdk/CaptureFailureReason;
+	public static fun values ()[Ldev/openverify/sdk/CaptureFailureReason;
+}
+
+public abstract interface annotation class dev/openverify/sdk/ExperimentalOpenVerifyApi : java/lang/annotation/Annotation {
+}
+
+public final class dev/openverify/sdk/FailureReason : java/lang/Enum {
+	public static final field FLOW_HALTED Ldev/openverify/sdk/FailureReason;
+	public static final field INQUIRY_EXPIRED Ldev/openverify/sdk/FailureReason;
+	public static final field INQUIRY_FAILED Ldev/openverify/sdk/FailureReason;
+	public static final field INQUIRY_REDACTED Ldev/openverify/sdk/FailureReason;
+	public static final field INVALID_REQUEST Ldev/openverify/sdk/FailureReason;
+	public static final field LINK_INVALID Ldev/openverify/sdk/FailureReason;
+	public static final field NETWORK_ERROR Ldev/openverify/sdk/FailureReason;
+	public static final field SERVER_ERROR Ldev/openverify/sdk/FailureReason;
+	public static final field SESSION_CANCELED Ldev/openverify/sdk/FailureReason;
+	public static final field SESSION_EXPIRED Ldev/openverify/sdk/FailureReason;
+	public static final field STILL_PROCESSING Ldev/openverify/sdk/FailureReason;
+	public static final field UNSUPPORTED_FLOW Ldev/openverify/sdk/FailureReason;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Ldev/openverify/sdk/FailureReason;
+	public static fun values ()[Ldev/openverify/sdk/FailureReason;
+}
+
+public abstract class dev/openverify/sdk/FlowTransport {
+	public static final field $stable I
+}
+
+public abstract interface class dev/openverify/sdk/InquiryResult {
+	public abstract fun getInquiryId ()Ljava/lang/String;
+}
+
+public final class dev/openverify/sdk/InquiryResult$Canceled : dev/openverify/sdk/InquiryResult {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Ldev/openverify/sdk/InquiryResult$Canceled;
+	public static synthetic fun copy$default (Ldev/openverify/sdk/InquiryResult$Canceled;Ljava/lang/String;ILjava/lang/Object;)Ldev/openverify/sdk/InquiryResult$Canceled;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getInquiryId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/openverify/sdk/InquiryResult$Completed : dev/openverify/sdk/InquiryResult {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;Ldev/openverify/sdk/model/InquiryStatus;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ldev/openverify/sdk/model/InquiryStatus;
+	public final fun copy (Ljava/lang/String;Ldev/openverify/sdk/model/InquiryStatus;)Ldev/openverify/sdk/InquiryResult$Completed;
+	public static synthetic fun copy$default (Ldev/openverify/sdk/InquiryResult$Completed;Ljava/lang/String;Ldev/openverify/sdk/model/InquiryStatus;ILjava/lang/Object;)Ldev/openverify/sdk/InquiryResult$Completed;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getInquiryId ()Ljava/lang/String;
+	public final fun getInquiryStatus ()Ldev/openverify/sdk/model/InquiryStatus;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/openverify/sdk/InquiryResult$Failed : dev/openverify/sdk/InquiryResult {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;Ldev/openverify/sdk/FailureReason;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ldev/openverify/sdk/FailureReason;
+	public final fun copy (Ljava/lang/String;Ldev/openverify/sdk/FailureReason;)Ldev/openverify/sdk/InquiryResult$Failed;
+	public static synthetic fun copy$default (Ldev/openverify/sdk/InquiryResult$Failed;Ljava/lang/String;Ldev/openverify/sdk/FailureReason;ILjava/lang/Object;)Ldev/openverify/sdk/InquiryResult$Failed;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getInquiryId ()Ljava/lang/String;
+	public final fun getReason ()Ldev/openverify/sdk/FailureReason;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/openverify/sdk/InquiryResultKind : java/lang/Enum {
+	public static final field CANCELED Ldev/openverify/sdk/InquiryResultKind;
+	public static final field COMPLETED Ldev/openverify/sdk/InquiryResultKind;
+	public static final field FAILED Ldev/openverify/sdk/InquiryResultKind;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Ldev/openverify/sdk/InquiryResultKind;
+	public static fun values ()[Ldev/openverify/sdk/InquiryResultKind;
+}
+
+public final class dev/openverify/sdk/OpenVerifyAndroid {
+	public static final field $stable I
+	public static final field INSTANCE Ldev/openverify/sdk/OpenVerifyAndroid;
+	public final fun install (Ldev/openverify/sdk/OpenVerifyComponents;)V
+	public final fun installed ()Ldev/openverify/sdk/OpenVerifyComponents;
+}
+
+public final class dev/openverify/sdk/OpenVerifyAndroidTransport {
+	public static final field $stable I
+	public static final field INSTANCE Ldev/openverify/sdk/OpenVerifyAndroidTransport;
+	public final fun okHttp (Lokhttp3/OkHttpClient;)Ldev/openverify/sdk/FlowTransport;
+}
+
+public final class dev/openverify/sdk/OpenVerifyComponents {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun <init> (Ldev/openverify/sdk/chip/ChipReader;Ldev/openverify/sdk/face/FaceDetectorFactory;Ldev/openverify/sdk/integrity/IntegrityTokenProvider;Ldev/openverify/sdk/OpenVerifyEventListener;Ldev/openverify/sdk/FlowTransport;Ldev/openverify/sdk/SandboxSignalOutcome;)V
+	public synthetic fun <init> (Ldev/openverify/sdk/chip/ChipReader;Ldev/openverify/sdk/face/FaceDetectorFactory;Ldev/openverify/sdk/integrity/IntegrityTokenProvider;Ldev/openverify/sdk/OpenVerifyEventListener;Ldev/openverify/sdk/FlowTransport;Ldev/openverify/sdk/SandboxSignalOutcome;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getChipReader ()Ldev/openverify/sdk/chip/ChipReader;
+	public final fun getEventListener ()Ldev/openverify/sdk/OpenVerifyEventListener;
+	public final fun getFaceDetectorFactory ()Ldev/openverify/sdk/face/FaceDetectorFactory;
+	public final fun getIntegrityTokenProvider ()Ldev/openverify/sdk/integrity/IntegrityTokenProvider;
+	public final fun getSandboxSignalOutcome ()Ldev/openverify/sdk/SandboxSignalOutcome;
+	public final fun getTransport ()Ldev/openverify/sdk/FlowTransport;
+}
+
+public abstract interface class dev/openverify/sdk/OpenVerifyEvent {
+}
+
+public final class dev/openverify/sdk/OpenVerifyEvent$CameraPermission : dev/openverify/sdk/OpenVerifyEvent {
+	public static final field $stable I
+	public fun <init> (Z)V
+	public final fun component1 ()Z
+	public final fun copy (Z)Ldev/openverify/sdk/OpenVerifyEvent$CameraPermission;
+	public static synthetic fun copy$default (Ldev/openverify/sdk/OpenVerifyEvent$CameraPermission;ZILjava/lang/Object;)Ldev/openverify/sdk/OpenVerifyEvent$CameraPermission;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getGranted ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/openverify/sdk/OpenVerifyEvent$CaptureFailed : dev/openverify/sdk/OpenVerifyEvent {
+	public static final field $stable I
+	public fun <init> (Ldev/openverify/sdk/CaptureFailureReason;)V
+	public final fun component1 ()Ldev/openverify/sdk/CaptureFailureReason;
+	public final fun copy (Ldev/openverify/sdk/CaptureFailureReason;)Ldev/openverify/sdk/OpenVerifyEvent$CaptureFailed;
+	public static synthetic fun copy$default (Ldev/openverify/sdk/OpenVerifyEvent$CaptureFailed;Ldev/openverify/sdk/CaptureFailureReason;ILjava/lang/Object;)Ldev/openverify/sdk/OpenVerifyEvent$CaptureFailed;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getReason ()Ldev/openverify/sdk/CaptureFailureReason;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/openverify/sdk/OpenVerifyEvent$Ended : dev/openverify/sdk/OpenVerifyEvent {
+	public static final field $stable I
+	public fun <init> (Ldev/openverify/sdk/InquiryResultKind;)V
+	public final fun component1 ()Ldev/openverify/sdk/InquiryResultKind;
+	public final fun copy (Ldev/openverify/sdk/InquiryResultKind;)Ldev/openverify/sdk/OpenVerifyEvent$Ended;
+	public static synthetic fun copy$default (Ldev/openverify/sdk/OpenVerifyEvent$Ended;Ldev/openverify/sdk/InquiryResultKind;ILjava/lang/Object;)Ldev/openverify/sdk/OpenVerifyEvent$Ended;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getResult ()Ldev/openverify/sdk/InquiryResultKind;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/openverify/sdk/OpenVerifyEvent$Started : dev/openverify/sdk/OpenVerifyEvent {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Ldev/openverify/sdk/OpenVerifyEvent$Started;
+	public static synthetic fun copy$default (Ldev/openverify/sdk/OpenVerifyEvent$Started;Ljava/lang/String;ILjava/lang/Object;)Ldev/openverify/sdk/OpenVerifyEvent$Started;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getInquiryId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/openverify/sdk/OpenVerifyEvent$StepShown : dev/openverify/sdk/OpenVerifyEvent {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Ldev/openverify/sdk/OpenVerifyEvent$StepShown;
+	public static synthetic fun copy$default (Ldev/openverify/sdk/OpenVerifyEvent$StepShown;Ljava/lang/String;ILjava/lang/Object;)Ldev/openverify/sdk/OpenVerifyEvent$StepShown;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getStepType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/openverify/sdk/OpenVerifyEvent$Submitted : dev/openverify/sdk/OpenVerifyEvent {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Ldev/openverify/sdk/OpenVerifyEvent$Submitted;
+	public static synthetic fun copy$default (Ldev/openverify/sdk/OpenVerifyEvent$Submitted;Ljava/lang/String;ILjava/lang/Object;)Ldev/openverify/sdk/OpenVerifyEvent$Submitted;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getStepType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/openverify/sdk/OpenVerifyEvent$Waiting : dev/openverify/sdk/OpenVerifyEvent {
+	public static final field $stable I
+	public static final field INSTANCE Ldev/openverify/sdk/OpenVerifyEvent$Waiting;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class dev/openverify/sdk/OpenVerifyEventListener {
+	public abstract fun onEvent (Ldev/openverify/sdk/OpenVerifyEvent;)V
+}
+
+public final class dev/openverify/sdk/OpenVerifyInquiry {
+	public static final field $stable I
+	public static final field INSTANCE Ldev/openverify/sdk/OpenVerifyInquiry;
+	public static final fun fromOneTimeLink (Ljava/lang/String;Ljava/lang/String;)Ldev/openverify/sdk/OpenVerifyInquiry$OneTimeLink;
+	public static final fun fromOneTimeLink (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ldev/openverify/sdk/OpenVerifyInquiry$OneTimeLink;
+	public static final fun fromOneTimeLink (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ldev/openverify/sdk/Appearance;)Ldev/openverify/sdk/OpenVerifyInquiry$OneTimeLink;
+	public static synthetic fun fromOneTimeLink$default (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ldev/openverify/sdk/Appearance;ILjava/lang/Object;)Ldev/openverify/sdk/OpenVerifyInquiry$OneTimeLink;
+}
+
+public final class dev/openverify/sdk/OpenVerifyInquiry$Contract : androidx/activity/result/contract/ActivityResultContract {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun createIntent (Landroid/content/Context;Ldev/openverify/sdk/OpenVerifyInquiry$Request;)Landroid/content/Intent;
+	public synthetic fun createIntent (Landroid/content/Context;Ljava/lang/Object;)Landroid/content/Intent;
+	public fun parseResult (ILandroid/content/Intent;)Ldev/openverify/sdk/InquiryResult;
+	public synthetic fun parseResult (ILandroid/content/Intent;)Ljava/lang/Object;
+}
+
+public final class dev/openverify/sdk/OpenVerifyInquiry$OneTimeLink {
+	public static final field $stable I
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getApiBaseUrl ()Ljava/lang/String;
+	public final fun getAppearance ()Ldev/openverify/sdk/Appearance;
+	public final fun getInquiryId ()Ljava/lang/String;
+	public final fun getLocale ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/openverify/sdk/OpenVerifyInquiry$OneTimeLinkContract : androidx/activity/result/contract/ActivityResultContract {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun createIntent (Landroid/content/Context;Ldev/openverify/sdk/OpenVerifyInquiry$OneTimeLink;)Landroid/content/Intent;
+	public synthetic fun createIntent (Landroid/content/Context;Ljava/lang/Object;)Landroid/content/Intent;
+	public fun parseResult (ILandroid/content/Intent;)Ldev/openverify/sdk/InquiryResult;
+	public synthetic fun parseResult (ILandroid/content/Intent;)Ljava/lang/Object;
+}
+
+public final class dev/openverify/sdk/OpenVerifyInquiry$Request {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ldev/openverify/sdk/Appearance;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ldev/openverify/sdk/Appearance;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ldev/openverify/sdk/Appearance;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ldev/openverify/sdk/Appearance;)Ldev/openverify/sdk/OpenVerifyInquiry$Request;
+	public static synthetic fun copy$default (Ldev/openverify/sdk/OpenVerifyInquiry$Request;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ldev/openverify/sdk/Appearance;ILjava/lang/Object;)Ldev/openverify/sdk/OpenVerifyInquiry$Request;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getApiBaseUrl ()Ljava/lang/String;
+	public final fun getAppearance ()Ldev/openverify/sdk/Appearance;
+	public final fun getInquiryId ()Ljava/lang/String;
+	public final fun getLocale ()Ljava/lang/String;
+	public final fun getSessionToken ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/openverify/sdk/SandboxSignalOutcome : java/lang/Enum {
+	public static final field BOT Ldev/openverify/sdk/SandboxSignalOutcome;
+	public static final field HUMAN Ldev/openverify/sdk/SandboxSignalOutcome;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Ldev/openverify/sdk/SandboxSignalOutcome;
+	public static fun values ()[Ldev/openverify/sdk/SandboxSignalOutcome;
+}
+
+public abstract interface class dev/openverify/sdk/chip/ChipAccess {
+}
+
+public final class dev/openverify/sdk/chip/ChipAccess$Can : dev/openverify/sdk/chip/ChipAccess {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;)V
+	public final fun getCan ()Ljava/lang/String;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/openverify/sdk/chip/ChipAccess$Mrz : dev/openverify/sdk/chip/ChipAccess {
+	public static final field $stable I
+	public fun <init> (Ldev/openverify/sdk/mrz/BacKeySeed;)V
+	public final fun getSeed ()Ldev/openverify/sdk/mrz/BacKeySeed;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/openverify/sdk/chip/ChipDeviceReport {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun <init> (Ljava/util/List;Ljava/lang/Long;)V
+	public synthetic fun <init> (Ljava/util/List;Ljava/lang/Long;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getProtocols ()Ljava/util/List;
+	public final fun getReadMillis ()Ljava/lang/Long;
+}
+
+public final class dev/openverify/sdk/chip/ChipDeviceReport$Attempt {
+	public static final field $stable I
+	public fun <init> (Ldev/openverify/sdk/chip/ChipDeviceReport$Protocol;Ldev/openverify/sdk/chip/ChipDeviceReport$Outcome;)V
+	public final fun getOutcome ()Ldev/openverify/sdk/chip/ChipDeviceReport$Outcome;
+	public final fun getProtocol ()Ldev/openverify/sdk/chip/ChipDeviceReport$Protocol;
+}
+
+public final class dev/openverify/sdk/chip/ChipDeviceReport$Outcome : java/lang/Enum {
+	public static final field FAILED Ldev/openverify/sdk/chip/ChipDeviceReport$Outcome;
+	public static final field NOT_ATTEMPTED Ldev/openverify/sdk/chip/ChipDeviceReport$Outcome;
+	public static final field SUCCEEDED Ldev/openverify/sdk/chip/ChipDeviceReport$Outcome;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Ldev/openverify/sdk/chip/ChipDeviceReport$Outcome;
+	public static fun values ()[Ldev/openverify/sdk/chip/ChipDeviceReport$Outcome;
+}
+
+public final class dev/openverify/sdk/chip/ChipDeviceReport$Protocol : java/lang/Enum {
+	public static final field ACTIVE_AUTHENTICATION Ldev/openverify/sdk/chip/ChipDeviceReport$Protocol;
+	public static final field BAC Ldev/openverify/sdk/chip/ChipDeviceReport$Protocol;
+	public static final field CHIP_AUTHENTICATION Ldev/openverify/sdk/chip/ChipDeviceReport$Protocol;
+	public static final field PACE Ldev/openverify/sdk/chip/ChipDeviceReport$Protocol;
+	public static final field PACE_CAM Ldev/openverify/sdk/chip/ChipDeviceReport$Protocol;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Ldev/openverify/sdk/chip/ChipDeviceReport$Protocol;
+	public static fun values ()[Ldev/openverify/sdk/chip/ChipDeviceReport$Protocol;
+}
+
+public abstract interface class dev/openverify/sdk/chip/ChipProgress {
+}
+
+public final class dev/openverify/sdk/chip/ChipProgress$Authenticating : dev/openverify/sdk/chip/ChipProgress {
+	public static final field $stable I
+	public static final field INSTANCE Ldev/openverify/sdk/chip/ChipProgress$Authenticating;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/openverify/sdk/chip/ChipProgress$Connected : dev/openverify/sdk/chip/ChipProgress {
+	public static final field $stable I
+	public static final field INSTANCE Ldev/openverify/sdk/chip/ChipProgress$Connected;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/openverify/sdk/chip/ChipProgress$Done : dev/openverify/sdk/chip/ChipProgress {
+	public static final field $stable I
+	public static final field INSTANCE Ldev/openverify/sdk/chip/ChipProgress$Done;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/openverify/sdk/chip/ChipProgress$Reading : dev/openverify/sdk/chip/ChipProgress {
+	public static final field $stable I
+	public fun <init> (Ldev/openverify/sdk/model/FileKind;I)V
+	public final fun component1 ()Ldev/openverify/sdk/model/FileKind;
+	public final fun component2 ()I
+	public final fun copy (Ldev/openverify/sdk/model/FileKind;I)Ldev/openverify/sdk/chip/ChipProgress$Reading;
+	public static synthetic fun copy$default (Ldev/openverify/sdk/chip/ChipProgress$Reading;Ldev/openverify/sdk/model/FileKind;IILjava/lang/Object;)Ldev/openverify/sdk/chip/ChipProgress$Reading;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFileKind ()Ldev/openverify/sdk/model/FileKind;
+	public final fun getPercent ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/openverify/sdk/chip/ChipProgress$WaitingForDocument : dev/openverify/sdk/chip/ChipProgress {
+	public static final field $stable I
+	public static final field INSTANCE Ldev/openverify/sdk/chip/ChipProgress$WaitingForDocument;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/openverify/sdk/chip/ChipRead {
+	public static final field $stable I
+	public fun <init> (Ljava/util/Map;[BLdev/openverify/sdk/chip/ChipDeviceReport;)V
+	public final fun getActiveAuthenticationResponse ()[B
+	public final fun getDeviceReport ()Ldev/openverify/sdk/chip/ChipDeviceReport;
+	public final fun getFiles ()Ljava/util/Map;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/openverify/sdk/chip/ChipReadException : java/lang/Exception {
+	public static final field $stable I
+	public fun <init> (Ldev/openverify/sdk/chip/ChipReadFailure;)V
+	public final fun getFailure ()Ldev/openverify/sdk/chip/ChipReadFailure;
+}
+
+public final class dev/openverify/sdk/chip/ChipReadFailure : java/lang/Enum {
+	public static final field ACCESS_DENIED Ldev/openverify/sdk/chip/ChipReadFailure;
+	public static final field NFC_DISABLED Ldev/openverify/sdk/chip/ChipReadFailure;
+	public static final field READER_BUSY Ldev/openverify/sdk/chip/ChipReadFailure;
+	public static final field TAG_LOST Ldev/openverify/sdk/chip/ChipReadFailure;
+	public static final field TIMEOUT Ldev/openverify/sdk/chip/ChipReadFailure;
+	public static final field UNSUPPORTED_DOCUMENT Ldev/openverify/sdk/chip/ChipReadFailure;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Ldev/openverify/sdk/chip/ChipReadFailure;
+	public static fun values ()[Ldev/openverify/sdk/chip/ChipReadFailure;
+}
+
+public abstract interface class dev/openverify/sdk/chip/ChipReader {
+	public abstract fun read (Ldev/openverify/sdk/chip/ChipAccess;[BLkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class dev/openverify/sdk/face/FaceDetector : java/lang/AutoCloseable {
+	public abstract fun detect ([FIILkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class dev/openverify/sdk/face/FaceDetectorFactory {
+	public abstract fun create ()Ldev/openverify/sdk/face/FaceDetector;
+}
+
+public final class dev/openverify/sdk/face/YunetOutputs {
+	public static final field $stable I
+	public static final field Companion Ldev/openverify/sdk/face/YunetOutputs$Companion;
+	public fun <init> ([F[F[F[F[F[F[F[F[F[F[F[F)V
+	public final fun getBbox16 ()[F
+	public final fun getBbox32 ()[F
+	public final fun getBbox8 ()[F
+	public final fun getCls16 ()[F
+	public final fun getCls32 ()[F
+	public final fun getCls8 ()[F
+	public final fun getKps16 ()[F
+	public final fun getKps32 ()[F
+	public final fun getKps8 ()[F
+	public final fun getObj16 ()[F
+	public final fun getObj32 ()[F
+	public final fun getObj8 ()[F
+	public final fun tensor (Ljava/lang/String;)[F
+}
+
+public final class dev/openverify/sdk/face/YunetOutputs$Companion {
+	public final fun getNAMES ()Ljava/util/List;
+}
+
+public abstract interface class dev/openverify/sdk/integrity/IntegrityTokenProvider {
+	public abstract fun token (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class dev/openverify/sdk/model/FileKind : java/lang/Enum {
+	public static final field BACK Ldev/openverify/sdk/model/FileKind;
+	public static final field CHIP_CARD_ACCESS Ldev/openverify/sdk/model/FileKind;
+	public static final field CHIP_CARD_SECURITY Ldev/openverify/sdk/model/FileKind;
+	public static final field CHIP_COM Ldev/openverify/sdk/model/FileKind;
+	public static final field CHIP_DG1 Ldev/openverify/sdk/model/FileKind;
+	public static final field CHIP_DG14 Ldev/openverify/sdk/model/FileKind;
+	public static final field CHIP_DG15 Ldev/openverify/sdk/model/FileKind;
+	public static final field CHIP_DG2 Ldev/openverify/sdk/model/FileKind;
+	public static final field CHIP_PORTRAIT Ldev/openverify/sdk/model/FileKind;
+	public static final field CHIP_SOD Ldev/openverify/sdk/model/FileKind;
+	public static final field DOCUMENT Ldev/openverify/sdk/model/FileKind;
+	public static final field DOCUMENT_PREVIEW Ldev/openverify/sdk/model/FileKind;
+	public static final field FRONT Ldev/openverify/sdk/model/FileKind;
+	public static final field PORTRAIT Ldev/openverify/sdk/model/FileKind;
+	public static final field SELFIE_CENTER Ldev/openverify/sdk/model/FileKind;
+	public static final field SELFIE_LEFT Ldev/openverify/sdk/model/FileKind;
+	public static final field SELFIE_RIGHT Ldev/openverify/sdk/model/FileKind;
+	public static final field UNKNOWN Ldev/openverify/sdk/model/FileKind;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun getWireValue ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Ldev/openverify/sdk/model/FileKind;
+	public static fun values ()[Ldev/openverify/sdk/model/FileKind;
+}
+
+public final class dev/openverify/sdk/model/InquiryStatus : java/lang/Enum {
+	public static final field APPROVED Ldev/openverify/sdk/model/InquiryStatus;
+	public static final field COMPLETED Ldev/openverify/sdk/model/InquiryStatus;
+	public static final field CREATED Ldev/openverify/sdk/model/InquiryStatus;
+	public static final field DECLINED Ldev/openverify/sdk/model/InquiryStatus;
+	public static final field EXPIRED Ldev/openverify/sdk/model/InquiryStatus;
+	public static final field FAILED Ldev/openverify/sdk/model/InquiryStatus;
+	public static final field NEEDS_REVIEW Ldev/openverify/sdk/model/InquiryStatus;
+	public static final field PENDING Ldev/openverify/sdk/model/InquiryStatus;
+	public static final field UNKNOWN Ldev/openverify/sdk/model/InquiryStatus;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun getWireValue ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Ldev/openverify/sdk/model/InquiryStatus;
+	public static fun values ()[Ldev/openverify/sdk/model/InquiryStatus;
+}
+
+public final class dev/openverify/sdk/mrz/BacKeySeed {
+	public static final field $stable I
+	public static final field Companion Ldev/openverify/sdk/mrz/BacKeySeed$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun getDateOfBirth ()Ljava/lang/String;
+	public final fun getDateOfExpiry ()Ljava/lang/String;
+	public final fun getDocumentNumber ()Ljava/lang/String;
+	public final fun getMrzInformation ()Ljava/lang/String;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/openverify/sdk/mrz/BacKeySeed$Companion {
+	public final fun mrzInformation (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+}
+

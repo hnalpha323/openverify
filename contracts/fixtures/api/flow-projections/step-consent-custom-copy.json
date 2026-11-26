@@ -1,0 +1,15 @@
+{
+  "metadata": {
+    "specVersion": 1,
+    "id": "projection-custom-consent",
+    "version": 1,
+    "name": "Projection: custom consent copy"
+  },
+  "steps": [
+    {
+      "id": "continue-1",
+      "type": "server-continuation"
+    }
+  ],
+  "transitions": []
+}

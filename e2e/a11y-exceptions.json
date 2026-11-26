@@ -1,0 +1,4 @@
+{
+  "$comment": "C171.2: the only place an accessibility violation may pass expectAccessible. Each exception names its axe rule, optionally its target (a selector as axe reports it) and page (the helper's where), a reason with its tracking item, and an expiry day (YYYY-MM-DD, UTC); after that day the exception fails every run until it is removed. Keep it empty: fix the violation where it lives.",
+  "exceptions": []
+}

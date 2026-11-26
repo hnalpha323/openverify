@@ -1,0 +1,284 @@
+{
+  "name": "Government ID and selfie",
+  "flow": {
+    "metadata": {
+      "specVersion": 1,
+      "id": "default-gov-id-selfie",
+      "version": 3,
+      "name": "Government ID and selfie",
+      "description": "Consent, a two-sided government ID, then a selfie compared with the ID portrait."
+    },
+    "steps": [
+      {
+        "id": "consent",
+        "type": "consent",
+        "textKeys": ["consent.biometric", "consent.processing", "notice.session-integrity"],
+        "optionalTextKeys": ["consent.biometric-matching"],
+        "required": true
+      },
+      {
+        "id": "government_id",
+        "type": "government_id",
+        "sides": "both",
+        "maxAttempts": 3,
+        "captureMethods": ["upload", "camera"]
+      },
+      {
+        "id": "selfie",
+        "type": "selfie",
+        "poses": ["center", "left", "right"],
+        "liveness": "active",
+        "maxAttempts": 3
+      },
+      {
+        "id": "completion",
+        "type": "completion",
+        "messageKey": "flow.completion"
+      },
+      {
+        "id": "failure",
+        "type": "failure",
+        "messageKey": "flow.failure"
+      }
+    ],
+    "transitions": [
+      {
+        "from": "government_id",
+        "to": "failure",
+        "condition": {
+          "==": [
+            {
+              "var": "inquiry.status"
+            },
+            "failed"
+          ]
+        }
+      },
+      {
+        "from": "selfie",
+        "to": "failure",
+        "condition": {
+          "==": [
+            {
+              "var": "inquiry.status"
+            },
+            "failed"
+          ]
+        }
+      }
+    ]
+  },
+  "verification-config": {
+    "government-id": {
+      "checks": {
+        "id_unprocessable_submission_detection": {
+          "enabled": true,
+          "required": true
+        },
+        "id_blur_detection": {
+          "enabled": true,
+          "required": true
+        },
+        "id_glare_detection": {
+          "enabled": true,
+          "required": true
+        },
+        "id_double_side_detection": {
+          "enabled": true,
+          "required": true
+        },
+        "id_portrait_detection": {
+          "enabled": true,
+          "required": true
+        },
+        "id_portrait_clarity_detection": {
+          "enabled": true,
+          "required": true
+        },
+        "id_mrz_detection": {
+          "enabled": true,
+          "required": true
+        },
+        "id_mrz_inconsistency_detection": {
+          "enabled": true,
+          "required": true
+        },
+        "id_extracted_properties_detection": {
+          "enabled": true,
+          "required": true,
+          "config": {
+            "missing-fields-outcome": "review"
+          }
+        },
+        "id_extraction_inconsistency_detection": {
+          "enabled": true,
+          "required": true
+        },
+        "id_number_format_inconsistency_detection": {
+          "enabled": true,
+          "required": true
+        },
+        "id_expired_detection": {
+          "enabled": true,
+          "required": true
+        },
+        "id_valid_dates_detection": {
+          "enabled": true,
+          "required": true
+        },
+        "id_disallowed_country_detection": {
+          "enabled": true,
+          "required": true
+        },
+        "id_disallowed_type_detection": {
+          "enabled": true,
+          "required": true
+        },
+        "id_compromised_detection": {
+          "enabled": true,
+          "required": true
+        },
+        "id_barcode_detection": {
+          "enabled": true,
+          "required": false
+        },
+        "id_barcode_inconsistency_detection": {
+          "enabled": true,
+          "required": false
+        },
+        "id_real_id_detection": {
+          "enabled": true,
+          "required": false
+        },
+        "id_inquiry_comparison": {
+          "enabled": true,
+          "required": false
+        },
+        "id_account_comparison": {
+          "enabled": true,
+          "required": false
+        },
+        "id_selfie_comparison": {
+          "enabled": true,
+          "required": false
+        },
+        "id_repeat_detection": {
+          "enabled": true,
+          "required": false
+        },
+        "id_inconsistent_repeat_detection": {
+          "enabled": true,
+          "required": false
+        },
+        "id_age_comparison": {
+          "enabled": true,
+          "required": false
+        },
+        "id_po_box_detection": {
+          "enabled": true,
+          "required": false
+        },
+        "id_color_inconsistency_detection": {
+          "enabled": true,
+          "required": false
+        },
+        "id_electronic_replica_detection": {
+          "enabled": true,
+          "required": false
+        },
+        "id_tamper_detection": {
+          "enabled": true,
+          "required": false
+        },
+        "id_fabrication_detection": {
+          "enabled": true,
+          "required": false
+        },
+        "id_handwriting_detection": {
+          "enabled": true,
+          "required": false
+        },
+        "id_entity_detection": {
+          "enabled": true,
+          "required": false
+        },
+        "id_aamva_database_lookup": {
+          "enabled": false,
+          "required": false
+        },
+        "id_public_figure_detection": {
+          "enabled": false,
+          "required": false
+        },
+        "id_age_inconsistency_detection": {
+          "enabled": false,
+          "required": false
+        }
+      }
+    },
+    "selfie": {
+      "checks": {
+        "selfie_image_quality_detection": {
+          "enabled": true,
+          "required": true
+        },
+        "selfie_pose_detection": {
+          "enabled": true,
+          "required": true
+        },
+        "selfie_multiple_faces_detection": {
+          "enabled": true,
+          "required": true
+        },
+        "selfie_liveness_detection": {
+          "enabled": true,
+          "required": true
+        },
+        "selfie_id_comparison": {
+          "enabled": true,
+          "required": true
+        },
+        "selfie_glare_detection": {
+          "enabled": true,
+          "required": false
+        },
+        "selfie_pose_repeat_detection": {
+          "enabled": true,
+          "required": false
+        },
+        "selfie_account_comparison": {
+          "enabled": true,
+          "required": false
+        },
+        "selfie_repeat_detection": {
+          "enabled": true,
+          "required": false
+        },
+        "selfie_similar_background_detection": {
+          "enabled": true,
+          "required": false
+        },
+        "selfie_face_covering_detection": {
+          "enabled": true,
+          "required": false
+        },
+        "selfie_glasses_detection": {
+          "enabled": true,
+          "required": false
+        },
+        "selfie_suspicious_entity_detection": {
+          "enabled": true,
+          "required": false
+        },
+        "selfie_age_comparison": {
+          "enabled": false,
+          "required": false
+        },
+        "selfie_public_figure_detection": {
+          "enabled": false,
+          "required": false
+        }
+      }
+    }
+  }
+}

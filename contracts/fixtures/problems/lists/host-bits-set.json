@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The range has host bits set.",
+  "instance": "/api/v1/list-item/ip-addresses",
+  "requestId": "00000000-0000-4000-8000-000000000811",
+  "code": "host_bits_set",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/value",
+      "detail": "has host bits set"
+    }
+  ]
+}

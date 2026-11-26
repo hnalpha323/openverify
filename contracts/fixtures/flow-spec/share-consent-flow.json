@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "specVersion": 2,
+    "id": "flow_share_consent",
+    "version": 1,
+    "name": "Synthetic sharing flow"
+  },
+  "entry": "share-consent-1",
+  "steps": [
+    {
+      "id": "share-consent-1",
+      "type": "share_consent",
+      "side": "source",
+      "connectionId": "cxn_01M5CN0000000000000011A100",
+      "consentValidSeconds": 1209600,
+      "withdrawalContact": "Write to privacy@example.com"
+    },
+    {
+      "id": "share-consent-2",
+      "type": "share_consent",
+      "side": "destination",
+      "withdrawalContact": "Write to privacy@example.com"
+    },
+    {
+      "id": "done",
+      "type": "completion"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "from": "share-consent-1",
+      "port": "next",
+      "to": "share-consent-2"
+    },
+    {
+      "id": "e2",
+      "from": "share-consent-2",
+      "port": "next",
+      "to": "done"
+    }
+  ]
+}

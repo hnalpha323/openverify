@@ -1,0 +1,15 @@
+{
+  "type": "about:blank",
+  "title": "Bad Request",
+  "status": 400,
+  "detail": "The request body failed validation.",
+  "instance": "/api/v1/inquiries",
+  "requestId": "00000000-0000-4000-8000-000000000001",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/inquiry-template-id",
+      "detail": "must be a itmpl_ ID"
+    }
+  ]
+}

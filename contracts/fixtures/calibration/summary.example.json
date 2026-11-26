@@ -1,0 +1,110 @@
+{
+  "base": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "head": "cccccccccccccccccccccccccccccccccccccccc",
+  "machine": {
+    "cpu": "Synthetic CPU",
+    "disk-class": "SATA SSD",
+    "logical-cpus": 12,
+    "memory-gib": 31.3
+  },
+  "method-commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "report": "docs/calibration/example-phase11.md",
+  "rows": [
+    {
+      "budget": {
+        "comparison": "<=",
+        "metric": "p95",
+        "unit": "ms",
+        "value": 150
+      },
+      "configuration": "default",
+      "contract": "C269.1",
+      "gap": -57.5,
+      "id": "api-reads",
+      "median": 92.5,
+      "owner": "calibration-load-11d",
+      "takes": [
+        {
+          "load-end": 3.25,
+          "load-start": 1.5,
+          "status": "valid",
+          "value": 90.25
+        },
+        {
+          "load-end": 3.5,
+          "load-start": 1.75,
+          "status": "valid",
+          "value": 92.5
+        },
+        {
+          "load-end": 3.75,
+          "load-start": 2.25,
+          "status": "valid",
+          "value": 97.75
+        },
+        {
+          "load-end": 4.25,
+          "load-start": 2.5,
+          "status": "invalid",
+          "value": null
+        }
+      ],
+      "title": "API reads at 100 requests/s",
+      "unit": "ms",
+      "verdict": "met"
+    },
+    {
+      "budget": {
+        "comparison": "<=",
+        "metric": "median",
+        "unit": "s",
+        "value": 60
+      },
+      "configuration": "default",
+      "contract": "C271",
+      "gap": 11.25,
+      "id": "rescreen-1000",
+      "median": 71.25,
+      "owner": "calibration-matcher-11d",
+      "takes": [
+        {
+          "load-end": 1.5,
+          "load-start": 1.75,
+          "status": "valid",
+          "value": 70.75
+        },
+        {
+          "load-end": 2.25,
+          "load-start": 2.25,
+          "status": "valid",
+          "value": 71.25
+        },
+        {
+          "load-end": 2.0,
+          "load-start": 2.0,
+          "status": "valid",
+          "value": 71.5
+        }
+      ],
+      "title": "Re-screen, 1,000 changed entries and 200,000 subjects",
+      "unit": "s",
+      "verdict": "missed"
+    },
+    {
+      "budget": null,
+      "configuration": "default sources",
+      "contract": "Workflow 7A (a)",
+      "gap": null,
+      "id": "process-memory",
+      "median": 512.25,
+      "owner": "calibration-load-11d",
+      "takes": [],
+      "title": "Resident memory of the worker at rest",
+      "unit": "mib",
+      "verdict": "reported"
+    }
+  ],
+  "schema": "openverify/calibration-summary@1",
+  "status": "published",
+  "workflow": "11D"
+}

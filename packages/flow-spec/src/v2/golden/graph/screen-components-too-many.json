@@ -1,0 +1,417 @@
+{
+  "rule": "C147.5 40 components per screen, nested ones included",
+  "description": "Containers holding 41 components in all.",
+  "flow": {
+    "metadata": {
+      "specVersion": 2,
+      "id": "graph-base",
+      "version": 1,
+      "name": "Graph base"
+    },
+    "entry": "consent",
+    "steps": [
+      {
+        "id": "consent",
+        "type": "consent",
+        "textKeys": ["consent.biometric"],
+        "required": true
+      },
+      {
+        "id": "details",
+        "type": "screen",
+        "components": [
+          {
+            "id": "title",
+            "kind": "text",
+            "variant": "title",
+            "copyKey": "details.title.title"
+          },
+          {
+            "id": "nickname",
+            "kind": "text_input",
+            "field": "nickname",
+            "labelKey": "nickname.label",
+            "pattern": "^[a-z]+$"
+          },
+          {
+            "id": "has_middle",
+            "kind": "checkbox",
+            "field": "has_middle",
+            "labelKey": "has_middle.label"
+          },
+          {
+            "id": "middle_name",
+            "kind": "text_input",
+            "field": "middle_name",
+            "labelKey": "middle_name.label",
+            "visibleWhen": {
+              "!!": [
+                {
+                  "var": "screen.has_middle"
+                }
+              ]
+            }
+          },
+          {
+            "id": "continue",
+            "kind": "button",
+            "labelKey": "continue.button",
+            "action": "submit"
+          },
+          {
+            "id": "skip",
+            "kind": "button",
+            "labelKey": "skip.button",
+            "action": "submit",
+            "port": "skip"
+          }
+        ]
+      },
+      {
+        "id": "id_card",
+        "type": "government_id",
+        "sides": "front",
+        "maxAttempts": 2,
+        "captureMethods": ["camera"]
+      },
+      {
+        "id": "proof",
+        "type": "document",
+        "documentTypes": ["utility_bill"],
+        "captureMethods": ["upload"]
+      },
+      {
+        "id": "age_route",
+        "type": "branch",
+        "routes": [
+          {
+            "key": "minor",
+            "label": "Under 18",
+            "condition": {
+              "<": [
+                {
+                  "var": "verifications.id_card.age-years"
+                },
+                18
+              ]
+            },
+            "onNull": "review"
+          }
+        ]
+      },
+      {
+        "id": "guardian",
+        "type": "screen",
+        "components": [
+          {
+            "id": "guardian_name",
+            "kind": "text_input",
+            "field": "guardian_name",
+            "labelKey": "guardian_name.label"
+          },
+          {
+            "id": "continue",
+            "kind": "button",
+            "labelKey": "continue.button",
+            "action": "submit"
+          },
+          {
+            "id": "box",
+            "kind": "container",
+            "direction": "vertical",
+            "children": [
+              {
+                "id": "t0",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t1",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t2",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t3",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t4",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t5",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t6",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t7",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t8",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t9",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t10",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t11",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t12",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t13",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t14",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t15",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t16",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t17",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t18",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t19",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t20",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t21",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t22",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t23",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t24",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t25",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t26",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t27",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t28",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t29",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t30",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t31",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t32",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t33",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t34",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t35",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t36",
+                "kind": "spacer",
+                "size": "s"
+              },
+              {
+                "id": "t37",
+                "kind": "spacer",
+                "size": "s"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "face",
+        "type": "selfie",
+        "poses": ["center"],
+        "liveness": "passive",
+        "maxAttempts": 2
+      },
+      {
+        "id": "tag",
+        "type": "action",
+        "action": {
+          "kind": "tag_inquiry",
+          "add": ["checked"]
+        }
+      },
+      {
+        "id": "done",
+        "type": "completion"
+      },
+      {
+        "id": "rejected",
+        "type": "failure"
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "consent",
+        "port": "next",
+        "to": "details"
+      },
+      {
+        "id": "e2",
+        "from": "details",
+        "port": "next",
+        "to": "id_card"
+      },
+      {
+        "id": "e3",
+        "from": "details",
+        "port": "button:skip",
+        "to": "id_card"
+      },
+      {
+        "id": "e4",
+        "from": "id_card",
+        "port": "next",
+        "to": "age_route"
+      },
+      {
+        "id": "e5",
+        "from": "id_card",
+        "port": "exhausted",
+        "to": "proof"
+      },
+      {
+        "id": "e6",
+        "from": "proof",
+        "port": "next",
+        "to": "age_route"
+      },
+      {
+        "id": "e7",
+        "from": "age_route",
+        "port": "route:minor",
+        "to": "guardian"
+      },
+      {
+        "id": "e8",
+        "from": "age_route",
+        "port": "else",
+        "to": "face"
+      },
+      {
+        "id": "e9",
+        "from": "guardian",
+        "port": "next",
+        "to": "face"
+      },
+      {
+        "id": "e10",
+        "from": "face",
+        "port": "next",
+        "to": "tag"
+      },
+      {
+        "id": "e11",
+        "from": "tag",
+        "port": "next",
+        "to": "done"
+      },
+      {
+        "id": "e12",
+        "from": "tag",
+        "port": "error",
+        "to": "rejected"
+      }
+    ]
+  },
+  "added": [["error", "screen_components_too_many", "/steps/5"]]
+}

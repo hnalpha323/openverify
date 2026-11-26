@@ -1,0 +1,49 @@
+{
+  "name": "@openverify/db",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Drizzle schema and migrations (Postgres + pgvector)",
+  "type": "module",
+  "exports": {
+    ".": {
+      "@openverify/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./testing": {
+      "@openverify/source": "./src/testing.ts",
+      "types": "./dist/testing.d.ts",
+      "default": "./dist/testing.js"
+    },
+    "./cross-env": {
+      "@openverify/source": "./src/cross-env.ts",
+      "types": "./dist/cross-env.d.ts",
+      "default": "./dist/cross-env.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --coverage",
+    "test:integration": "vitest run --config vitest.integration.config.ts",
+    "db:generate": "drizzle-kit generate && prettier --write drizzle",
+    "db:check": "drizzle-kit check"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.4.6",
+    "@openverify/config": "workspace:*",
+    "@testcontainers/postgresql": "12.2.1",
+    "@types/node": "catalog:",
+    "@types/pg": "8.23.1",
+    "@vitest/coverage-v8": "catalog:",
+    "drizzle-kit": "0.31.11",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  },
+  "dependencies": {
+    "@openverify/core": "workspace:*",
+    "drizzle-orm": "0.45.4",
+    "pg": "8.23.1"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "data": [
+    {
+      "type": "saved-view",
+      "id": "svw_01M5CN00000000000000009B30",
+      "attributes": {
+        "list": "inquiries",
+        "name": "Completed this week",
+        "filters": {
+          "filter[status]": ["completed"],
+          "filter[created-at-start]": "2026-10-26T00:00:00Z"
+        },
+        "columns": ["id", "status", "created-at"],
+        "sort": "-created-at",
+        "shared": true,
+        "owner-id": "usr_01M5CN00000000000000009B21",
+        "filters-valid": true,
+        "invalid-filters": [],
+        "created-at": "2026-10-26T10:00:00.000Z",
+        "updated-at": "2026-10-27T10:00:00.000Z"
+      }
+    },
+    {
+      "type": "saved-view",
+      "id": "svw_01M5CN00000000000000009B35",
+      "attributes": {
+        "list": "transactions",
+        "name": "High amount band",
+        "filters": {
+          "filter[fields.amount_band]": "high"
+        },
+        "columns": [],
+        "sort": null,
+        "shared": false,
+        "owner-id": "usr_01M5CN00000000000000009B21",
+        "filters-valid": false,
+        "invalid-filters": ["filter[fields.amount_band]"],
+        "created-at": "2026-10-20T10:00:00.000Z",
+        "updated-at": "2026-10-20T10:00:00.000Z"
+      }
+    }
+  ],
+  "links": {
+    "next": null
+  }
+}

@@ -1,0 +1,65 @@
+/*
+ * The single Tailwind CSS v4 entry shared by every OpenVerify web app.
+ * An app imports it once (`@import '@openverify/ui/styles.css';`) and gets Tailwind,
+ * the design tokens below and the utilities used by this package's components.
+ * The app's own sources are still detected automatically from its working directory.
+ */
+@import 'tailwindcss';
+
+/* This package's components, so apps never configure paths into it. */
+@source './';
+@source not './**/*.test.{ts,tsx}';
+
+/*
+ * Semantic design tokens, stored as hex (C160.4, review H29): the twelve colour tokens a theme set's
+ * palette names. `static` always emits them, so apps can use them with var() even when no utility
+ * references them. Their contrast pairs are asserted by the contrast gate itself
+ * (`packages/core/src/contrast/`, `BUILTIN_PALETTES`), the function the API runs on every theme save;
+ * `line` is for decorative separators only, and form controls are outlined with `control`. How the
+ * former oklch() values were converted is recorded in `docs/themes/README.md`.
+ */
+@theme static {
+  --color-primary: #1447e6;
+  --color-primary-hover: #193cb8;
+  --color-on-primary: #ffffff;
+  --color-danger: #c10007;
+  --color-danger-hover: #9f0712;
+  --color-surface: #ffffff;
+  --color-canvas: #f9fafb;
+  --color-ink: #101828;
+  --color-ink-muted: #4a5565;
+  --color-line: #d1d5dc;
+  --color-control: #6a7282;
+  --color-focus: #000000;
+}
+
+/*
+ * The built-in dark palette (C160.4, review F13), for the flow only: the attribute is set by the
+ * flow's theme application (`apps/flow/src/theme/`) when a session asks for dark with no theme set
+ * of its own, and never by the console, which keeps its light look.
+ */
+:root[data-openverify-variant='dark'] {
+  color-scheme: dark;
+  --color-primary: #3b8bff;
+  --color-primary-hover: #8ec5ff;
+  --color-on-primary: #030712;
+  --color-danger: #ff6467;
+  --color-danger-hover: #ffa2a2;
+  --color-surface: #101828;
+  --color-canvas: #030712;
+  --color-ink: #f9fafb;
+  --color-ink-muted: #99a1af;
+  --color-line: #364153;
+  --color-control: #6a7282;
+  --color-focus: #ffffff;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+
+  body {
+    @apply bg-canvas font-sans text-ink antialiased;
+  }
+}

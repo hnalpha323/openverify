@@ -1,0 +1,42 @@
+{
+  "data": {
+    "type": "verification/selfie",
+    "id": "ver_01M5CK3190XEVBM5ZXA76E1JSM",
+    "attributes": {
+      "status": "passed",
+      "checks": [
+        {
+          "name": "selfie_image_quality_detection",
+          "status": "passed",
+          "reasons": [],
+          "requirement": "required",
+          "metadata": { "blur_score": 212.5, "brightness": 0.5035 },
+          "category": "user_action_required"
+        },
+        {
+          "name": "selfie_multiple_faces_detection",
+          "status": "passed",
+          "reasons": [],
+          "requirement": "required",
+          "metadata": { "face_count": 1 },
+          "category": "fraud"
+        },
+        {
+          "name": "selfie_id_comparison",
+          "status": "passed",
+          "reasons": [],
+          "requirement": "required",
+          "metadata": { "similarity": 0.71, "threshold": 0.363, "confidence_stage": "beta" },
+          "category": "fraud"
+        }
+      ],
+      "from-rejected-handoff": false,
+      "created-at": "2026-10-20T12:03:00.000Z",
+      "updated-at": "2026-10-20T12:03:40.000Z"
+    },
+    "relationships": {
+      "inquiry": { "data": { "type": "inquiry", "id": "inq_01M5CJXHG07XPHF3HRM6NREDH7" } },
+      "files": { "data": [{ "type": "file", "id": "file_01M5CK3288G5K9T8DC51K68DDZ" }] }
+    }
+  }
+}

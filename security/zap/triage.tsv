@@ -1,0 +1,16 @@
+# The DAST alerts' statuses (Phase 11 C283.2, C283.5; Workflow 11F, dast-11f), read by
+# security/zap/dast-zap.py report. One line each: rule TAB route (as the report names it, or * for
+# every route) TAB status TAB reference (a commit, a known item or the fixer that owns the file)
+# TAB note. A High alert is fixed in code, never closed here (rule 10); an IGNORE of a whole rule
+# is security/zap/rules.tsv's, with its evidence.
+10202	*	not a defect	C255.4	the console's state-changing forms are Next.js server actions, which carry no token by design: Next.js refuses an action whose Origin is not the console's, and apps/dashboard/src/security/origin-checks.test.ts holds the origin check on every state-changing handler and action; these pages' GET forms (filters) change nothing
+40014	*	not a defect	the console renders it as text	ZAP's Low, low-confidence weakness: a script tag the scan stored earlier (an operator's own MFA factor name, a request the API log recorded) comes back verbatim in a JSON answer (application/json, never HTML); the console renders these values as React text and apps/dashboard/src holds no dangerouslySetInnerHTML; KP11-70 adds nosniff to the JSON answers
+10021	*	fixed	7f3853539 (KP11-70)	every API answer, JSON, problem+json and /health and /ready among them, carries X-Content-Type-Options: nosniff from buildApp's onRequest hook (apps/api/src/http/nosniff.test.ts); the alerts before the fix were Low
+10055	*	not a defect	6375a0549 (fix-clients)	ZAP's CSP notice fires because report-uri is present at all; the console has named report-to beside it since 61ca9afa5 (Phase 9), proxy.ts sends Reporting-Endpoints on every answer, and report-uri stays for Firefox; apps/dashboard/src/security/console-csp.test.ts holds both on every console route; Low
+10044	/	not a defect	checked	GET / with a session answers 307 to /inquiries with a 5,258-byte body: Next.js's redirect shell (the title and its scripts, checked on this stack: no inquiry id, address or other record in it); Low
+10024	*	not a defect	informational	the API-log filter's user-id in the console's URL is a usr_ handle (review P33), not a secret
+10031	*	not a defect	informational	the console's list filters echo their own query values into form attributes, which React escapes; ZAP's informational heuristic
+10109	*	not a defect	informational	ZAP's note that the page is a modern web application (its spider cannot run the scripts)
+100000	*	not a defect	expected answers	ZAP's informational note of a 4xx answer: the API's validation answers ZAP's generated and attack requests with 400, 404, 409, 415 or 422 (RFC 9457 problem+json); no 5xx answer was recorded
+10104	*	not a defect	informational	ZAP's User Agent Fuzzer saw some answers differ when only the User-Agent header changed (a validation or rate-limit answer between its variants); informational
+10111	*	not a defect	informational	ZAP identified the sign-in request (informational)

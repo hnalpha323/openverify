@@ -1,0 +1,33 @@
+{
+  "data": {
+    "type": "event",
+    "id": "evt_01M5CN00000000000000009A40",
+    "attributes": {
+      "name": "inquiry-template-version.created",
+      "payload": {
+        "data": {
+          "type": "inquiry-template-version",
+          "id": "itmplv_01M5CN00000000000000009A01",
+          "attributes": {
+            "version-number": 3,
+            "status": "draft",
+            "publish-note": null,
+            "flow-sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "spec-version": 2,
+            "created-at": "2026-10-20T12:00:00.000Z",
+            "published-at": null
+          },
+          "relationships": {
+            "inquiry-template": {
+              "data": {
+                "type": "inquiry-template",
+                "id": "itmpl_01M5A0GTG0RSTVX9PHA0V7P3X6"
+              }
+            }
+          }
+        }
+      },
+      "created-at": "2026-10-20T12:00:00.000Z"
+    }
+  }
+}

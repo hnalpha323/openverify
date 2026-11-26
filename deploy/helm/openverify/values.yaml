@@ -1,0 +1,477 @@
+# OpenVerify's Helm chart: every default, commented (C263.2; Workflow 11C Stage 1a, contracts-11c).
+# The keys are frozen: chart-11c and chart-policy-11c build the templates over them, and a new key
+# needs values.schema.json too (an 11C shared file after Stage 1a). No value here is a secret: the
+# chart creates no Secret, and every secret reaches its process as a file from the operator's own
+# Secret (C264.3; C249.2's `<NAME>_FILE`).
+
+# Pull secrets for the operator's registry, as [{name: <secret>}].
+imagePullSecrets: []
+# Overrides of the release-derived resource names.
+nameOverride: ''
+fullnameOverride: ''
+
+# Install-wide switches, read by the API, the worker and migrate (the configuration registry,
+# apps/api/src/config-registry.ts, is the source of truth for every variable the chart sets).
+install:
+  # OPENVERIFY_MODE: production, or development (no production mode's refusals; never for real data).
+  mode: production
+  # OPENVERIFY_CONNECT_ENABLED: Connect stays off unless the install turns it on (decision 71).
+  connectEnabled: false
+  # OPENVERIFY_WATCHLIST_UN_OPT_IN_ALLOWED: true (Q10 granted): an environment admin may enable the UN
+  # list for that environment with an audited acknowledgement of its terms; false locks it here.
+  watchlistUnOptInAllowed: true
+  # OPENVERIFY_QUEUE_IN_FLIGHT_CAP_MAX: the install ceiling of every per-environment queue cap
+  # (C251.2), 1 to 1,000.
+  queueInFlightCapMax: 50
+  # OPENVERIFY_HSTS_MAX_AGE: 0 here; HSTS comes from the ingress (C255.1, ingress.hsts). Set it only
+  # when no ingress of this chart terminates TLS. The console's value is fixed when its image is built.
+  hstsMaxAge: 0
+  # OPENVERIFY_LOG_LEVEL.
+  logLevel: info
+
+# The public URLs the processes need: the API as browsers reach it (also the flow's
+# OPENVERIFY_FLOW_API_URL), the hosted flow (OPENVERIFY_FLOW_PUBLIC_URL) and the console
+# (OPENVERIFY_DASHBOARD_PUBLIC_URL). Usually the ingress hosts with https://.
+publicUrls:
+  api: ''
+  flow: ''
+  dashboard: ''
+
+# The operator's data stores. This chart runs none of them (no subchart, no Bitnami).
+external:
+  postgres:
+    # Secret holding DATABASE_URL, the runtime role's connection (sslmode=verify-full encouraged).
+    existingSecret: ''
+    key: DATABASE_URL
+    # Secret holding OPENVERIFY_MIGRATION_DATABASE_URL, the migration role's connection, read only by
+    # the migrate Job (C249.3).
+    migrationSecret: ''
+    migrationKey: OPENVERIFY_MIGRATION_DATABASE_URL
+    # The runtime role the migrate Job grants after db:migrate (`db:grant-runtime <role>`): the role
+    # of DATABASE_URL, never the migration role, a superuser or an owner.
+    runtimeRole: openverify_runtime
+    # The server's max_connections less a margin: the chart fails when the pools of every replica
+    # could exceed it (C263.4).
+    maxConnections: 100
+    # A CA for OPENVERIFY_POSTGRES_CA_FILE (C249.1): {configMap: <name>} or {secret: <name>}, with
+    # its `key`; mounted at /etc/openverify/ca/postgres.pem. Empty: none.
+    ca: {}
+  valkey:
+    # Secret holding REDIS_URL (rediss:// and a per-process ACL user encouraged).
+    existingSecret: ''
+    key: REDIS_URL
+    # OPENVERIFY_REDIS_CA_FILE, mounted at /etc/openverify/ca/valkey.pem; as postgres.ca.
+    ca: {}
+  s3:
+    # S3_ENDPOINT, S3_REGION, S3_BUCKET and S3_FORCE_PATH_STYLE (not secrets).
+    endpoint: ''
+    region: ''
+    bucket: ''
+    forcePathStyle: false
+    # Secret holding S3_ACCESS_KEY_ID and S3_SECRET_ACCESS_KEY.
+    existingSecret: ''
+    # OPENVERIFY_S3_CA_FILE, mounted at /etc/openverify/ca/s3.pem; as postgres.ca.
+    ca: {}
+  smtp:
+    # Secret holding OPENVERIFY_SMTP_URL; empty sends no mail (invitations and email OTPs then fail).
+    existingSecret: ''
+    key: OPENVERIFY_SMTP_URL
+    # OPENVERIFY_MAIL_FROM.
+    mailFrom: ''
+
+# One Secret per process, each holding only what that process reads (C264.3). Each Secret's keys
+# are the variables' names; the chart mounts the Secret at defaultMode 0440 with the pod's fsGroup
+# and sets `<NAME>_FILE` for every name in `keys` (chart-policy-11c, openverify.secretFileEnv).
+# `keys` defaults to the secrets the process requires; add the optional ones it holds (previous
+# KEKs and peppers, provider credentials, the Play Integrity key).
+secrets:
+  api:
+    existingSecret: ''
+    keys:
+      - OPENVERIFY_KEK
+      - OPENVERIFY_BLIND_INDEX_KEY
+      - OPENVERIFY_API_KEY_PEPPER
+      - OPENVERIFY_VISION_SERVICE_TOKEN
+      - OPENVERIFY_DASHBOARD_BFF_TOKEN
+      - OPENVERIFY_FLOW_SERVER_TOKEN
+  worker:
+    existingSecret: ''
+    keys:
+      - OPENVERIFY_KEK
+      - OPENVERIFY_BLIND_INDEX_KEY
+      - OPENVERIFY_API_KEY_PEPPER
+      - OPENVERIFY_VISION_SERVICE_TOKEN
+      - OPENVERIFY_CODE_RUNNER_TOKEN
+  # The migration role's URL comes from external.postgres.migrationSecret; the KEK is for the
+  # event-id backfill.
+  migrate:
+    existingSecret: ''
+    keys:
+      - OPENVERIFY_KEK
+  dashboard:
+    existingSecret: ''
+    keys:
+      - OPENVERIFY_DASHBOARD_BFF_TOKEN
+  flow:
+    existingSecret: ''
+    keys:
+      - OPENVERIFY_FLOW_SERVER_TOKEN
+  codeRunner:
+    existingSecret: ''
+    keys:
+      - OPENVERIFY_CODE_RUNNER_TOKEN
+  vision:
+    existingSecret: ''
+    keys:
+      - OPENVERIFY_VISION_SERVICE_TOKEN
+
+# The ingress: separate hosts for the API, the flow and the console, TLS required (C264.5).
+ingress:
+  enabled: true
+  className: ''
+  hosts:
+    api: ''
+    flow: ''
+    dashboard: ''
+  # [{secretName: <name>, hosts: [<host>]}]
+  tls: []
+  # Strict-Transport-Security on every host (C255.1, decision 40): one year with subdomains, no
+  # preload by default.
+  hsts:
+    enabled: true
+    maxAge: 31536000
+    includeSubDomains: true
+    preload: false
+  # The request body limits, measured against the API's routes (chart-policy-11c): 15m for the
+  # ordinary paths (PATCH /api/v1/cases/:id takes a base64 attachment up to 14 MiB; the uploads
+  # 10 MiB plus multipart overhead), and Workflow 7B's two larger routes on their own Ingresses: the
+  # list importer (26,670,764 bytes, a 20 MB file as base64) and a transaction file (20,000,000 bytes
+  # plus multipart overhead).
+  maxBodySize: 15m
+  maxBodySizeImport: 28m
+  maxBodySizeTransactionFile: 28m
+  # Extra annotations for the ingress controller.
+  annotations: {}
+# An optional Gateway API HTTPRoute instead of the Ingress (an example route only, C286).
+gateway:
+  httpRoute:
+    enabled: false
+    # The Gateway API parentRefs every route attaches to (name required; namespace, sectionName and
+    # port optional). Empty: the Gateway named like the release, in its namespace. Name one HTTPS
+    # listener (sectionName) to keep the hosts off plain HTTP (ASVS v5.0.0-4.1.2; KP11-84).
+    parentRefs: []
+
+# Default-deny network policies both ways, then allow lists (C264.2). Policies do nothing without a
+# network plugin that enforces them.
+networkPolicy:
+  enabled: true
+  # The cluster resolver every pod may query.
+  dns:
+    namespaceSelector:
+      kubernetes.io/metadata.name: kube-system
+    podSelector:
+      k8s-app: kube-dns
+  # Data stores inside the cluster, reached by selector instead of the CIDRs of egress.dataStores.
+  dataStoresInCluster:
+    enabled: false
+    namespaceSelector: {}
+    postgres:
+      podSelector: {}
+      port: 5432
+    valkey:
+      podSelector: {}
+      port: 6379
+    s3:
+      podSelector: {}
+      port: 9000
+  # The ranges the public-internet rule leaves out: private, loopback, link-local (cloud metadata
+  # among it), CGNAT and the IPv6 equivalents (the SSRF guard's second layer, B10-I1).
+  publicInternetExcept:
+    - 0.0.0.0/8
+    - 10.0.0.0/8
+    - 100.64.0.0/10
+    - 127.0.0.0/8
+    - 169.254.0.0/16
+    - 172.16.0.0/12
+    - 192.168.0.0/16
+    - ::1/128
+    - fc00::/7
+    - fe80::/10
+  # Extra destinations, each {cidr: <CIDR>, ports: [<port>]}. webhooks, providers and listSyncs add
+  # to the public-internet rule the API and the worker have; modelHosts replaces it for the
+  # models-fetch Job; dataStores (required while a store is external), smtp (required while SMTP is
+  # set) and identityProviders (required while api.ssoPrivateIssuers names one) are private ranges.
+  egress:
+    webhooks: []
+    providers: []
+    listSyncs: []
+    modelHosts: []
+    dataStores: []
+    smtp: []
+    identityProviders: []
+
+# Model weights for vision (C263.5, decision 5): never in an image. `job` runs
+# `python3 -I scripts/fetch_models.py` (pinned SHA-256s) in a separate models-fetch hook Job into a
+# claim vision mounts read-only at /models/<manifest digest>; `pvc` mounts a claim the operator filled
+# once with the same script. More than one vision replica needs ReadOnlyMany or ReadWriteMany.
+models:
+  source: job
+  existingClaim: ''
+  storageClass: ''
+  accessMode: ReadWriteOnce
+  size: 2Gi
+
+# Workflow 7A's network data: no publisher is called until the operator asks.
+network:
+  # OPENVERIFY_NETWORK_SOURCES_DISABLED and OPENVERIFY_NETWORK_SOURCES_ENABLED (comma-separated ids).
+  sourcesDisabled: ''
+  sourcesEnabled: ''
+  # OPENVERIFY_NETWORK_REFRESH: the worker's scheduled refresh.
+  refresh: false
+# OPENVERIFY_IP_REPUTATION_MMDB_PATH: an operator-licensed anonymous-IP MMDB on a claim mounted
+# read-only at /var/lib/openverify/ip-reputation in the API's and the worker's pods; `path` is the
+# file's absolute path under it, such as /var/lib/openverify/ip-reputation/anonymous-ip.mmdb. No
+# default file (ADR 0006); set both or neither.
+ipReputation:
+  existingClaim: ''
+  path: ''
+
+# The migrate Job: db:migrate, then `db:grant-runtime <external.postgres.runtimeRole>`, with the
+# migration role (C249.3, C263.3). A pre-install,pre-upgrade hook unless gitOps renders it as a plain,
+# versioned Job for tools that do not run hooks; the advisory lock serialises two runs (C249.4).
+migrate:
+  gitOps: false
+  # OPENVERIFY_MIGRATE_LOCK_TIMEOUT_SECONDS: 1 to 3,600; the Job's deadline stays above it.
+  lockTimeoutSeconds: 600
+  activeDeadlineSeconds: 900
+  backoffLimit: 1
+  grantRuntime: true
+  image:
+    registry: ''
+    repository: openverify/api
+    tag: ''
+    digest: ''
+    pullPolicy: IfNotPresent
+
+# The models-fetch Job's image (vision's image carries scripts/fetch_models.py and the manifest).
+modelsFetch:
+  image:
+    registry: ''
+    repository: openverify/vision
+    tag: ''
+    digest: ''
+    pullPolicy: IfNotPresent
+
+# Settings the chart writes into the API's, the worker's and migrate's ConfigMap as given: the
+# provider bindings OPENVERIFY_PROVIDER_{KIND}_{MODE} (none bound by default; the deviceIntegrity
+# binding stays unset) and any other non-secret variable, as {NAME: value}.
+providers: {}
+config:
+  extra: {}
+
+# The components. Each takes image (the digest preferred over the tag; an empty tag is the chart's
+# appVersion), replicaCount, resources, autoscaling, podDisruptionBudget, topologySpreadConstraints,
+# priorityClassName, nodeSelector, tolerations, affinity, terminationGracePeriodSeconds and extraEnv
+# ([{name, value}], non-secret).
+api:
+  image:
+    registry: ''
+    repository: openverify/api
+    tag: ''
+    digest: ''
+    pullPolicy: IfNotPresent
+  replicaCount: 2
+  # The memory limit holds one Node process at rest (about 96 MiB), Workflow 7A's default network
+  # sources (46 to 53 MiB RSS) and their largest swap (about 9 MiB more), the request bodies the API
+  # keeps in memory (Workflow 7B: a list importer body up to 26,670,764 bytes as base64, a
+  # transaction file up to its field's max-file-size-bytes, at most 20,000,000) times the concurrent
+  # uploads, and the rest of the heap. With dbip-city-lite enabled (network.sourcesEnabled) add about
+  # 168 MiB at rest and 115.5 MiB more at its swap (docs/network/README.md). Workflow 11D's load stack
+  # reads these limits.
+  resources:
+    requests: { cpu: 250m, memory: 512Mi }
+    limits: { memory: 1Gi }
+  # An HPA on CPU (templates/hpa.yaml). Its maxReplicas counts in the pool check (each API pod opens
+  # up to 10 database connections), so a larger maximum needs external.postgres.maxConnections raised.
+  autoscaling:
+    { enabled: false, minReplicas: 2, maxReplicas: 4, targetCPUUtilizationPercentage: 70 }
+  podDisruptionBudget: { enabled: true, minAvailable: 1 }
+  topologySpreadConstraints: []
+  priorityClassName: ''
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+  terminationGracePeriodSeconds: 30
+  extraEnv: []
+  # OPENVERIFY_TRUST_PROXY: the proxies in front of the API (a hop count or a list of addresses).
+  trustProxy: ''
+  port: 3000
+  # OPENVERIFY_INTERNAL_LISTEN's port (C250.3): /api/v1/internal/* answers only there; the flow
+  # server reaches it through its own Service port, and the ingress never routes it.
+  internalListen:
+    port: 3101
+  # OPENVERIFY_HANDOFF_SENDS_PER_HOUR.
+  handoffSendsPerHour: 200
+  # OPENVERIFY_CONSOLE_IDLE_TIMEOUT_SECONDS and OPENVERIFY_CONSOLE_ABSOLUTE_TIMEOUT_SECONDS (C245.1).
+  console:
+    idleTimeoutSeconds: 1800
+    absoluteTimeoutSeconds: 43200
+  # OPENVERIFY_SSO_PRIVATE_ISSUERS: exact issuer URLs the console may reach on a private address.
+  ssoPrivateIssuers: []
+worker:
+  image:
+    registry: ''
+    repository: openverify/api
+    tag: ''
+    digest: ''
+    pullPolicy: IfNotPresent
+  # The worker scales by replicas (each opens up to 10 database connections, counted by the pool
+  # check); a queue-depth example belongs to the guide.
+  replicaCount: 1
+  # The memory limit holds one Node process at rest (about 96 MiB), Workflow 7A's default network
+  # sources (46 to 53 MiB RSS) and their largest swap (about 9 MiB more), Workflow 7B's biometric
+  # template cache (at most 64 MB a worker process), the jobs running at once
+  # (OPENVERIFY_WORKER_CONCURRENCY each, an importer's file or a transaction file held in memory, up to
+  # 20,000,000 bytes) and the rest of the heap. With dbip-city-lite enabled add about 168 MiB at rest
+  # and 115.5 MiB more at its swap (docs/network/README.md). Workflow 11D's load stack reads these limits.
+  resources:
+    requests: { cpu: 250m, memory: 768Mi }
+    limits: { memory: 1536Mi }
+  # Not rendered: no HPA owns the worker (C263.4).
+  autoscaling:
+    { enabled: false, minReplicas: 1, maxReplicas: 4, targetCPUUtilizationPercentage: 70 }
+  podDisruptionBudget: { enabled: false, minAvailable: 1 }
+  topologySpreadConstraints: []
+  priorityClassName: ''
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+  # Above the longest job lease (C250.4, C263.4): 15 minutes, the report bulk jobs, the exports and
+  # the case exports (packages/db/src/repositories/report-bulk-jobs.ts REPORT_BULK_CLAIM_LEASE_MS,
+  # exports.ts EXPORT_CLAIM_LEASE_MS, case-exports.ts CASE_EXPORT_CLAIM_LEASE_MS), plus a minute. The
+  # rest end sooner: a report run's claim 10 minutes, the e-mail leases 5, a list import (Workflow 7B:
+  # up to 100,000 rows in one transaction) 1.5 to 3 minutes measured, a graph query at most 59 s. On
+  # SIGTERM the worker drains (BullMQ's close waits for its running jobs) and exits as soon as they
+  # end, so this is only a bound.
+  terminationGracePeriodSeconds: 960
+  extraEnv: []
+  # OPENVERIFY_WORKER_CONCURRENCY.
+  concurrency: 4
+  # OPENVERIFY_WORKER_HEARTBEAT_FILE, under the writable /tmp; the exec probe is node dist/worker-health.js.
+  heartbeatFile: /tmp/openverify-worker-heartbeat
+  # Containers and volumes added to the worker's pod: the operator's clamd for
+  # OPENVERIFY_CLAMD_SOCKET (ClamAV is GPL-2.0 and never ships in an image). Given any container, the
+  # chart adds a shared emptyDir named clamd-socket at /run/clamd to the worker and sets
+  # OPENVERIFY_CLAMD_SOCKET=/run/clamd/clamd.sock: mount clamd-socket at /run/clamd in clamd and have
+  # it listen on that socket. Each container runs under the restricted container context (read-only
+  # root, no privilege escalation), so give clamd's database and temporary paths in extraVolumes.
+  extraContainers: []
+  extraVolumes: []
+  # Play Integrity's OPENVERIFY_PLAY_INTEGRITY_PACKAGE_NAME and _CERTIFICATE_DIGESTS (the service
+  # account key goes in the worker's Secret only, OPENVERIFY_PLAY_INTEGRITY_SERVICE_ACCOUNT_JSON).
+  playIntegrity:
+    packageName: ''
+    certificateDigests: ''
+dashboard:
+  image:
+    registry: ''
+    repository: openverify/dashboard
+    tag: ''
+    digest: ''
+    pullPolicy: IfNotPresent
+  replicaCount: 2
+  resources:
+    requests: { cpu: 100m, memory: 256Mi }
+    limits: { memory: 512Mi }
+  autoscaling:
+    { enabled: false, minReplicas: 2, maxReplicas: 4, targetCPUUtilizationPercentage: 70 }
+  podDisruptionBudget: { enabled: true, minAvailable: 1 }
+  topologySpreadConstraints: []
+  priorityClassName: ''
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+  terminationGracePeriodSeconds: 30
+  extraEnv: []
+  # OPENVERIFY_DASHBOARD_TRUSTED_PROXY_HOPS.
+  trustedProxyHops: 0
+  port: 3001
+flow:
+  image:
+    registry: ''
+    repository: openverify/flow
+    tag: ''
+    digest: ''
+    pullPolicy: IfNotPresent
+  replicaCount: 2
+  resources:
+    requests: { cpu: 50m, memory: 128Mi }
+    limits: { memory: 256Mi }
+  autoscaling:
+    { enabled: false, minReplicas: 2, maxReplicas: 4, targetCPUUtilizationPercentage: 70 }
+  podDisruptionBudget: { enabled: true, minAvailable: 1 }
+  topologySpreadConstraints: []
+  priorityClassName: ''
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+  terminationGracePeriodSeconds: 30
+  extraEnv: []
+  # The flow server's port, and OPENVERIFY_FLOW_SERVER_TRUSTED_PROXY_HOPS (0 to 32). The image
+  # without face guidance (Phase 10 P2's decline outcome, C289) is the same repository with the tag
+  # suffix -noguidance.
+  port: 4173
+  trustedProxyHops: 0
+vision:
+  image:
+    registry: ''
+    repository: openverify/vision
+    tag: ''
+    digest: ''
+    pullPolicy: IfNotPresent
+  replicaCount: 1
+  # Phase 5 C60.2: a 4 GiB memory limit, no egress.
+  resources:
+    requests: { cpu: 500m, memory: 2Gi }
+    limits: { memory: 4Gi }
+  # Not rendered: vision scales by replicas (more than one needs a ReadOnlyMany or ReadWriteMany
+  # models claim).
+  autoscaling:
+    { enabled: false, minReplicas: 1, maxReplicas: 2, targetCPUUtilizationPercentage: 80 }
+  podDisruptionBudget: { enabled: false, minAvailable: 1 }
+  topologySpreadConstraints: []
+  priorityClassName: ''
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+  terminationGracePeriodSeconds: 30
+  extraEnv: []
+  port: 8000
+codeRunner:
+  # Phase 8 P17's runner as its own Deployment with no egress, reached by the worker at
+  # OPENVERIFY_WORKFLOW_CODE_RUNNER=tcp:<service>:<port> with OPENVERIFY_CODE_RUNNER_TOKEN (C263.6).
+  enabled: true
+  image:
+    registry: ''
+    repository: openverify/code-runner
+    tag: ''
+    digest: ''
+    pullPolicy: IfNotPresent
+  replicaCount: 1
+  resources:
+    requests: { cpu: 250m, memory: 256Mi }
+    limits: { memory: 1Gi }
+  # Not rendered: the runner scales by replicas.
+  autoscaling:
+    { enabled: false, minReplicas: 1, maxReplicas: 2, targetCPUUtilizationPercentage: 80 }
+  podDisruptionBudget: { enabled: false, minAvailable: 1 }
+  topologySpreadConstraints: []
+  priorityClassName: ''
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+  terminationGracePeriodSeconds: 30
+  extraEnv: []
+  port: 7700
+  # OPENVERIFY_CODE_RUNNER_POOL_SIZE; 0 is max(1, CPUs - 1).
+  poolSize: 0

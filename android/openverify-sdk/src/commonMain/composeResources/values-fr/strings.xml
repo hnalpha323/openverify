@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  French copy of values/strings.xml, machine-drafted by android-i18n (Workflow 10A, C199.1;
+  i18n/review-status.json): where the hosted web flow has the same English text, its
+  French words are used, so both clients say the same thing. Compose Multiplatform resources:
+  positional placeholders only, ' and " written as they are, no isolate or other bidi control
+  (ResourcesTest).
+-->
+<resources>
+    <string name="openverify_locale">fr</string>
+    <string name="openverify_loading">Chargement de votre vérification…</string>
+    <string name="openverify_cancel">Annuler</string>
+    <string name="openverify_close">Fermer</string>
+    <string name="openverify_done">Terminé</string>
+    <string name="openverify_try_again">Réessayer</string>
+    <string name="openverify_camera_title">Accès à la caméra</string>
+    <string name="openverify_camera_rationale">Nous avons maintenant besoin de votre caméra pour prendre des photos de votre pièce d’identité et un selfie. Les photos servent uniquement à cette vérification.</string>
+    <string name="openverify_camera_allow">Autoriser l’accès à la caméra</string>
+    <string name="openverify_camera_denied">L’accès à la caméra est désactivé. Pour continuer, autorisez l’accès à la caméra pour cette application dans les Réglages.</string>
+    <string name="openverify_camera_open_settings">Ouvrir les Réglages</string>
+    <string name="openverify_camera_unavailable">Nous n’avons pas pu démarrer la caméra sur cet appareil.</string>
+    <string name="openverify_capture_progress">Photo %1$d sur %2$d</string>
+    <string name="openverify_capture_take">Prendre la photo</string>
+    <string name="openverify_capture_preview">Aperçu de la caméra</string>
+    <string name="openverify_capture_failed">Nous n’avons pas pu prendre la photo. Réessayez.</string>
+    <string name="openverify_capture_check">Vérifiez que la photo est nette, bien éclairée et montre tout ce que nous avons demandé.</string>
+    <string name="openverify_capture_retake">Reprendre</string>
+    <string name="openverify_capture_use">Utiliser cette photo</string>
+    <string name="openverify_capture_upload">Téléverser une photo à la place</string>
+    <string name="openverify_capture_upload_failed">Nous n’avons pas pu utiliser ce fichier. Choisissez une photo JPEG, PNG ou WebP.</string>
+    <string name="openverify_capture_sending">Envoi de votre photo…</string>
+    <string name="openverify_id_front_title">Recto de votre pièce d’identité</string>
+    <string name="openverify_id_front_instruction">Placez le recto de votre pièce d’identité dans le cadre.</string>
+    <string name="openverify_id_front_photo">Votre photo du recto de votre pièce d’identité</string>
+    <string name="openverify_id_back_title">Verso de votre pièce d’identité</string>
+    <string name="openverify_id_back_instruction">Retournez votre pièce d’identité et placez le verso dans le cadre.</string>
+    <string name="openverify_id_back_photo">Votre photo du verso de votre pièce d’identité</string>
+    <string name="openverify_id_portrait_title">Page avec photo de votre pièce d’identité</string>
+    <string name="openverify_id_portrait_instruction">Placez la page avec votre photo dans le cadre.</string>
+    <string name="openverify_id_portrait_photo">Votre photo de la page avec photo de votre pièce d’identité</string>
+    <string name="openverify_selfie_center_title">Regardez droit devant</string>
+    <string name="openverify_selfie_center_instruction">Placez votre visage dans l’ovale et regardez droit vers la caméra.</string>
+    <string name="openverify_selfie_center_photo">Votre selfie, en regardant droit devant</string>
+    <string name="openverify_selfie_left_title">Tournez la tête vers la gauche</string>
+    <string name="openverify_selfie_left_instruction">Gardez votre visage dans l’ovale et tournez lentement la tête vers la gauche.</string>
+    <string name="openverify_selfie_left_photo">Votre selfie, la tête tournée vers la gauche</string>
+    <string name="openverify_selfie_right_title">Tournez la tête vers la droite</string>
+    <string name="openverify_selfie_right_instruction">Gardez votre visage dans l’ovale et tournez lentement la tête vers la droite.</string>
+    <string name="openverify_selfie_right_photo">Votre selfie, la tête tournée vers la droite</string>
+    <string name="openverify_selfie_capture_restarted">Nous devons reprendre vos selfies. Suivez chaque consigne dans l’ordre indiqué.</string>
+    <plurals name="openverify_selfie_time_limit">
+        <item quantity="one">Prenez tous vos selfies en %1$d minute. Si le temps est écoulé, nous recommençons à la première photo.</item>
+        <item quantity="other">Prenez tous vos selfies en %1$d minutes. Si le temps est écoulé, nous recommençons à la première photo.</item>
+    </plurals>
+    <string name="openverify_retry_title">Nous n’avons pas pu utiliser vos dernières photos</string>
+    <string name="openverify_retry_generic">Un élément de la photo n’était pas assez net. Réessayez avec un bon éclairage.</string>
+    <string name="openverify_retry_image_blurry">La photo était floue. Tenez votre appareil immobile et attendez que l’image soit nette.</string>
+    <string name="openverify_retry_glare_present">Un reflet couvrait votre pièce d’identité. Éloignez-vous de la lumière directe ou inclinez légèrement la pièce.</string>
+    <string name="openverify_retry_portrait_not_present">Nous n’avons pas trouvé la photo sur votre pièce d’identité. Assurez-vous que tout le recto est dans le cadre.</string>
+    <string name="openverify_retry_front_not_present">Nous avons besoin d’une photo du recto de votre pièce d’identité.</string>
+    <string name="openverify_retry_back_not_present">Nous avons besoin d’une photo du verso de votre pièce d’identité.</string>
+    <string name="openverify_retry_image_too_dark">La photo était trop sombre. Trouvez un endroit plus lumineux.</string>
+    <string name="openverify_retry_image_too_bright">La photo était trop claire. Éloignez-vous de la lumière forte.</string>
+    <string name="openverify_retry_face_not_present">Nous n’avons pas vu votre visage. Placez votre visage dans l’ovale.</string>
+    <string name="openverify_retry_multiple_faces_present">Il y avait plus d’un visage sur la photo. Assurez-vous qu’il n’y a que vous dans le cadre.</string>
+    <string name="openverify_retry_image_unreadable">Nous n’avons pas pu ouvrir la photo. Prenez-en une nouvelle, ou choisissez une image JPEG, PNG ou WebP.</string>
+    <string name="openverify_retry_document_not_found">Nous n’avons pas trouvé votre pièce d’identité sur la photo. Posez-la sur une surface unie qui contraste avec elle, avec ses quatre coins dans le cadre.</string>
+    <string name="openverify_retry_insufficient_text">Nous n’avons pas pu lire le texte de votre pièce d’identité. Assurez-vous que la photo est nette, bien éclairée, sans reflet, et montre toute la pièce.</string>
+    <string name="openverify_retry_identity_features_not_found">Nous n’avons trouvé ni votre photo ni les lignes de lettres et de chiffres sur votre pièce d’identité. Photographiez la face qui porte votre photo, avec toute la pièce dans le cadre.</string>
+    <string name="openverify_retry_resolution_too_low">Votre pièce d’identité était trop petite sur la photo. Rapprochez votre appareil pour qu’elle remplisse la plus grande partie du cadre.</string>
+    <string name="openverify_retry_back_feature_not_found">Nous n’avons pas pu lire le verso de votre pièce d’identité. Retournez-la et photographiez le verso, net et sans reflet, pour que son code-barres ou ses lignes de lettres et de chiffres soient lisibles.</string>
+    <string name="openverify_retry_portrait_too_small">La photo de votre visage sur la pièce d’identité était trop petite. Rapprochez votre appareil pour que la pièce remplisse la plus grande partie du cadre.</string>
+    <string name="openverify_retry_portrait_blurry">La photo de votre visage sur la pièce d’identité n’était pas nette. Tenez votre appareil immobile et attendez que l’image soit nette.</string>
+    <string name="openverify_retry_portrait_obstructed">Quelque chose couvrait la photo de votre visage sur la pièce d’identité. Écartez vos doigts et les reflets de cette zone.</string>
+    <string name="openverify_retry_mrz_not_found">Nous n’avons pas trouvé les lignes de lettres, de chiffres et de signes &lt;&lt;&lt; sur votre pièce d’identité. Assurez-vous que toute la pièce est dans le cadre, bord inférieur compris.</string>
+    <string name="openverify_retry_mrz_unreadable">Nous n’avons pas pu lire les lignes de lettres, de chiffres et de signes &lt;&lt;&lt; sur votre pièce d’identité. Tenez votre appareil immobile et évitez les reflets pour que ces lignes soient nettes.</string>
+    <string name="openverify_retry_barcode_not_found">Nous n’avons pas trouvé le code-barres de votre pièce d’identité. Photographiez la face qui porte le code-barres, avec toute la pièce dans le cadre et sans reflet sur le code-barres.</string>
+    <string name="openverify_retry_required_fields_missing">Nous n’avons pas pu lire toutes les informations de votre pièce d’identité. Assurez-vous que toute la pièce est dans le cadre, nette et sans reflet.</string>
+    <string name="openverify_retry_face_too_small">Votre visage était trop petit sur la photo. Rapprochez-vous pour que votre visage remplisse l’ovale.</string>
+    <string name="openverify_retry_face_glare">La lumière se reflétait sur votre visage. Détournez-vous de la lumière directe et réessayez.</string>
+    <string name="openverify_retry_pose_not_center">Pour la première photo, regardez droit vers la caméra, le visage au centre de l’ovale.</string>
+    <string name="openverify_retry_pose_not_left">Votre tête n’était pas assez tournée vers la gauche. Quand on vous le demande, tournez lentement la tête vers la gauche et gardez-la ainsi.</string>
+    <string name="openverify_retry_pose_not_right">Votre tête n’était pas assez tournée vers la droite. Quand on vous le demande, tournez lentement la tête vers la droite et gardez-la ainsi.</string>
+    <string name="openverify_retry_face_covered">Une partie de votre visage était couverte. Retirez masque ou écharpe, et écartez vos mains de votre visage.</string>
+    <string name="openverify_retry_glasses_detected">Retirez vos lunettes, puis réessayez.</string>
+    <string name="openverify_processing_title">Vérification de vos photos</string>
+    <string name="openverify_processing_verification_title">Vérification en cours</string>
+    <string name="openverify_processing_message">Cela prend généralement quelques secondes. Gardez cet écran ouvert.</string>
+    <string name="openverify_completion_title">Vérification envoyée</string>
+    <string name="openverify_flow_completion">Merci. Votre vérification a été envoyée.</string>
+    <string name="openverify_failure_title">Vérification non terminée</string>
+    <string name="openverify_flow_failure">Nous n’avons pas pu vérifier votre identité. Contactez l’organisation qui vous a demandé de vous vérifier.</string>
+    <string name="openverify_expired_title">Cette vérification a expiré</string>
+    <string name="openverify_expired_message">Contactez l’organisation qui vous a demandé de vous vérifier pour en commencer une nouvelle.</string>
+    <string name="openverify_session_expired_title">Votre session de vérification a expiré</string>
+    <string name="openverify_session_expired_message">Pour votre sécurité, une session de vérification se termine au bout d’un certain temps. Recommencez la vérification.</string>
+    <string name="openverify_session_canceled_title">Cette session de vérification est terminée</string>
+    <string name="openverify_session_canceled_message">La session a été fermée, par exemple parce que la vérification a été terminée ou retirée. Si vous devez encore vous vérifier, contactez l’organisation qui vous l’a demandé.</string>
+    <string name="openverify_redacted_title">Cette vérification n’est plus disponible</string>
+    <string name="openverify_redacted_message">Les informations de cette vérification ont été supprimées, elle ne peut donc pas continuer. Si vous devez encore vous vérifier, contactez l’organisation qui vous l’a demandé.</string>
+    <string name="openverify_link_refused_title">Nous n’avons pas pu ouvrir votre vérification</string>
+    <string name="openverify_link_refused_message">Ce lien a déjà été utilisé ou a expiré. Chaque lien ne fonctionne qu’une seule fois. Demandez-en un nouveau à l’organisation qui vous l’a envoyé.</string>
+    <string name="openverify_sandbox_label">Bac à sable</string>
+    <string name="openverify_sandbox_message">Ceci est une vérification de test. Utilisez uniquement des données de test, jamais une vraie pièce d’identité.</string>
+    <string name="openverify_error_title">Un problème est survenu</string>
+    <string name="openverify_error_network">Nous n’avons pas pu joindre le serveur. Vérifiez votre connexion et réessayez.</string>
+    <string name="openverify_error_session_expired">Cette session de vérification a expiré. Recommencez la vérification.</string>
+    <string name="openverify_error_inquiry_mismatch">Cette session appartient à une autre vérification. Recommencez la vérification.</string>
+    <string name="openverify_error_rejected">Le serveur n’a pas pu accepter cette demande. Contactez l’organisation qui vous a demandé de vous vérifier.</string>
+    <string name="openverify_error_out_of_sync">Votre vérification a changé ailleurs. Réessayez pour reprendre là où elle en est.</string>
+    <string name="openverify_error_server">Le serveur a rencontré un problème. Réessayez dans un instant.</string>
+    <string name="openverify_error_invalid_response">Nous avons reçu une réponse illisible. Réessayez dans un instant.</string>
+    <string name="openverify_error_still_processing">Cela prend plus de temps que d’habitude. Vérifiez à nouveau dans un instant.</string>
+    <string name="openverify_unsupported_title">Cette étape n’est pas disponible ici</string>
+    <string name="openverify_unsupported_message">Cette vérification comprend une étape que cette version de l’application ne prend pas encore en charge. Contactez l’organisation qui vous a demandé de vous vérifier.</string>
+</resources>

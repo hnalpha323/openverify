@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Service Unavailable",
+  "status": 503,
+  "detail": "Signing in is unavailable for the moment. Try again shortly.",
+  "instance": "/api/v1/dashboard/sessions",
+  "requestId": "00000000-0000-4000-8000-00000011b003",
+  "code": "login_unavailable"
+}

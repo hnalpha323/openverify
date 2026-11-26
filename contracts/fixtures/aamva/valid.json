@@ -1,0 +1,331 @@
+{
+  "schema_version": 1,
+  "description": "AAMVA PDF417 payloads (Annex D, AAMVA version 10) that parse and validate, each with its expected parse.",
+  "source": {
+    "citation": "AAMVA DL/ID Card Design Standard (2020), Version 1.0, Annex D (normative), Tables D.1-D.4: the layout only. The payloads and the people in them are OpenVerify's own and fictional; no jurisdiction issued them.",
+    "url": "https://www.aamva.org/getmedia/99ac7057-0f4d-4461-b0a2-3a5532e1b35c/AAMVA-2020-DLID-Card-Design-Standard.pdf"
+  },
+  "vectors": [
+    {
+      "id": "dl-636014-real-id",
+      "note": "A driver licence subfile for a fictional person under the California IIN, REAL ID compliant (DDA F), with the synthetic marker subfile ZC. No jurisdiction issued it.",
+      "payload": "@\n\u001e\rANSI 636014100002DL00410232ZC02730036DLDCAC\nDCBNONE\nDCDNONE\nDBA02142031\nDCSTESTWORTH\nDACJORDAN\nDADNONE\nDBD02142023\nDBB02141990\nDBC2\nDAYBRO\nDAU067 IN\nDAG1200 VERIFICATION AVE\nDAISACRAMENTO\nDAJCA\nDAK958140000  \nDAQY9876543\nDCF20230214SYNTH0001\nDCGUSA\nDDEN\nDDFN\nDDGN\nDDAF\rZCZCAOPENVERIFY SYNTHETIC TEST DATA\r",
+      "valid": true,
+      "header": {
+        "compliance_indicator": "@",
+        "file_type": "ANSI ",
+        "iin": "636014",
+        "aamva_version": 10,
+        "jurisdiction_version": 0,
+        "number_of_entries": 2
+      },
+      "subfiles": [
+        {
+          "type": "DL",
+          "offset": 41,
+          "length": 232
+        },
+        {
+          "type": "ZC",
+          "offset": 273,
+          "length": 36
+        }
+      ],
+      "elements": {
+        "DL": {
+          "DCA": "C",
+          "DCB": "NONE",
+          "DCD": "NONE",
+          "DBA": "02142031",
+          "DCS": "TESTWORTH",
+          "DAC": "JORDAN",
+          "DAD": "NONE",
+          "DBD": "02142023",
+          "DBB": "02141990",
+          "DBC": "2",
+          "DAY": "BRO",
+          "DAU": "067 IN",
+          "DAG": "1200 VERIFICATION AVE",
+          "DAI": "SACRAMENTO",
+          "DAJ": "CA",
+          "DAK": "958140000  ",
+          "DAQ": "Y9876543",
+          "DCF": "20230214SYNTH0001",
+          "DCG": "USA",
+          "DDE": "N",
+          "DDF": "N",
+          "DDG": "N",
+          "DDA": "F"
+        },
+        "ZC": {
+          "ZCA": "OPENVERIFY SYNTHETIC TEST DATA"
+        }
+      },
+      "synthetic_marker": true,
+      "document_type": "DL",
+      "fields": {
+        "name-first": "JORDAN",
+        "name-middle": null,
+        "name-last": "TESTWORTH",
+        "birthdate": "1990-02-14",
+        "sex": "F",
+        "nationality": null,
+        "identification-number": "Y9876543",
+        "personal-number": null,
+        "issue-date": "2023-02-14",
+        "expiration-date": "2031-02-14",
+        "issuing-authority-code": "636014",
+        "address-street-1": "1200 VERIFICATION AVE",
+        "address-street-2": null,
+        "address-city": "SACRAMENTO",
+        "address-subdivision": "CA",
+        "address-postal-code": "95814",
+        "address-country-code": "US",
+        "endorsements": "NONE",
+        "restrictions": "NONE",
+        "vehicle-class": "C"
+      },
+      "real_id_compliance": "F"
+    },
+    {
+      "id": "id-636020-not-real-id",
+      "note": "An identification card subfile (no vehicle class, endorsements or restrictions) for a fictional person under the Colorado IIN 636020 (the AAMVA list misprints its abbreviation as GM), not REAL ID compliant (DDA N), with the synthetic marker subfile ZC.",
+      "payload": "@\n\u001e\rANSI 636020100002ID00410214ZC02550036IDDBA06302032\nDCSELLISFIELD\nDACMORGAN\nDADREED\nDBD06302024\nDBB11071985\nDBC1\nDAYGRN\nDAU071 IN\nDAG77 PLACEHOLDER LN\nDAHAPT 4\nDAIDENVER\nDAJCO\nDAK802020000  \nDAQ987654321\nDCF20240630SYNTH0002\nDCGUSA\nDDEN\nDDFN\nDDGN\nDDAN\rZCZCAOPENVERIFY SYNTHETIC TEST DATA\r",
+      "valid": true,
+      "header": {
+        "compliance_indicator": "@",
+        "file_type": "ANSI ",
+        "iin": "636020",
+        "aamva_version": 10,
+        "jurisdiction_version": 0,
+        "number_of_entries": 2
+      },
+      "subfiles": [
+        {
+          "type": "ID",
+          "offset": 41,
+          "length": 214
+        },
+        {
+          "type": "ZC",
+          "offset": 255,
+          "length": 36
+        }
+      ],
+      "elements": {
+        "ID": {
+          "DBA": "06302032",
+          "DCS": "ELLISFIELD",
+          "DAC": "MORGAN",
+          "DAD": "REED",
+          "DBD": "06302024",
+          "DBB": "11071985",
+          "DBC": "1",
+          "DAY": "GRN",
+          "DAU": "071 IN",
+          "DAG": "77 PLACEHOLDER LN",
+          "DAH": "APT 4",
+          "DAI": "DENVER",
+          "DAJ": "CO",
+          "DAK": "802020000  ",
+          "DAQ": "987654321",
+          "DCF": "20240630SYNTH0002",
+          "DCG": "USA",
+          "DDE": "N",
+          "DDF": "N",
+          "DDG": "N",
+          "DDA": "N"
+        },
+        "ZC": {
+          "ZCA": "OPENVERIFY SYNTHETIC TEST DATA"
+        }
+      },
+      "synthetic_marker": true,
+      "document_type": "ID",
+      "fields": {
+        "name-first": "MORGAN",
+        "name-middle": "REED",
+        "name-last": "ELLISFIELD",
+        "birthdate": "1985-11-07",
+        "sex": "M",
+        "nationality": null,
+        "identification-number": "987654321",
+        "personal-number": null,
+        "issue-date": "2024-06-30",
+        "expiration-date": "2032-06-30",
+        "issuing-authority-code": "636020",
+        "address-street-1": "77 PLACEHOLDER LN",
+        "address-street-2": "APT 4",
+        "address-city": "DENVER",
+        "address-subdivision": "CO",
+        "address-postal-code": "80202",
+        "address-country-code": "US",
+        "endorsements": null,
+        "restrictions": null,
+        "vehicle-class": null
+      },
+      "real_id_compliance": "N"
+    },
+    {
+      "id": "dl-636012-canada",
+      "note": "A driver licence subfile for a fictional person under the Ontario IIN, dated CCYYMMDD as Canadian payloads are, with a six-character postal code and the synthetic marker subfile ZO (Z and the jurisdiction's first letter). No jurisdiction issued it.",
+      "payload": "@\n\u001e\rANSI 636012100002DL00410218ZO02590036DLDCAG\nDCBNONE\nDCDNONE\nDBA20310214\nDCSNORTHCOTE\nDACAVERY\nDADNONE\nDBD20260214\nDBB19900214\nDBC1\nDAYBLU\nDAU175 CM\nDAG5 MAPLEWOOD CRES\nDAIKINGSTON\nDAJON\nDAKA1A1A1     \nDAQT12345678901234\nDCFSYNTH0003\nDCGCAN\nDDEN\nDDFN\nDDGN\rZOZOAOPENVERIFY SYNTHETIC TEST DATA\r",
+      "valid": true,
+      "header": {
+        "compliance_indicator": "@",
+        "file_type": "ANSI ",
+        "iin": "636012",
+        "aamva_version": 10,
+        "jurisdiction_version": 0,
+        "number_of_entries": 2
+      },
+      "subfiles": [
+        {
+          "type": "DL",
+          "offset": 41,
+          "length": 218
+        },
+        {
+          "type": "ZO",
+          "offset": 259,
+          "length": 36
+        }
+      ],
+      "elements": {
+        "DL": {
+          "DCA": "G",
+          "DCB": "NONE",
+          "DCD": "NONE",
+          "DBA": "20310214",
+          "DCS": "NORTHCOTE",
+          "DAC": "AVERY",
+          "DAD": "NONE",
+          "DBD": "20260214",
+          "DBB": "19900214",
+          "DBC": "1",
+          "DAY": "BLU",
+          "DAU": "175 CM",
+          "DAG": "5 MAPLEWOOD CRES",
+          "DAI": "KINGSTON",
+          "DAJ": "ON",
+          "DAK": "A1A1A1     ",
+          "DAQ": "T12345678901234",
+          "DCF": "SYNTH0003",
+          "DCG": "CAN",
+          "DDE": "N",
+          "DDF": "N",
+          "DDG": "N"
+        },
+        "ZO": {
+          "ZOA": "OPENVERIFY SYNTHETIC TEST DATA"
+        }
+      },
+      "synthetic_marker": true,
+      "document_type": "DL",
+      "fields": {
+        "name-first": "AVERY",
+        "name-middle": null,
+        "name-last": "NORTHCOTE",
+        "birthdate": "1990-02-14",
+        "sex": "M",
+        "nationality": null,
+        "identification-number": "T12345678901234",
+        "personal-number": null,
+        "issue-date": "2026-02-14",
+        "expiration-date": "2031-02-14",
+        "issuing-authority-code": "636012",
+        "address-street-1": "5 MAPLEWOOD CRES",
+        "address-street-2": null,
+        "address-city": "KINGSTON",
+        "address-subdivision": "ON",
+        "address-postal-code": "A1A 1A1",
+        "address-country-code": "CA",
+        "endorsements": "NONE",
+        "restrictions": "NONE",
+        "vehicle-class": "G"
+      },
+      "real_id_compliance": null
+    },
+    {
+      "id": "dl-636015-version-08-zip-plus-4",
+      "note": "A driver licence for a fictional person under the Texas IIN in the 2013 layout (AAMVA version 08, jurisdiction version 01), with a full ZIP+4, sex unspecified (DBC 9) and the synthetic marker subfile ZT.",
+      "payload": "@\n\u001e\rANSI 636015080102DL00410215ZT02560036DLDCAC\nDCBNONE\nDCDNONE\nDBA08012033\nDCSQUILLFEATHER\nDACRORY\nDADLEE\nDBD08012025\nDBB03151988\nDBC9\nDAYHAZ\nDAU070 IN\nDAG400 EXAMPLE BLVD\nDAIAUSTIN\nDAJTX\nDAK787011234  \nDAQ12345678\nDCFSYNTH0004\nDCGUSA\nDDEN\nDDFN\nDDGN\nDDAF\rZTZTAOPENVERIFY SYNTHETIC TEST DATA\r",
+      "valid": true,
+      "header": {
+        "compliance_indicator": "@",
+        "file_type": "ANSI ",
+        "iin": "636015",
+        "aamva_version": 8,
+        "jurisdiction_version": 1,
+        "number_of_entries": 2
+      },
+      "subfiles": [
+        {
+          "type": "DL",
+          "offset": 41,
+          "length": 215
+        },
+        {
+          "type": "ZT",
+          "offset": 256,
+          "length": 36
+        }
+      ],
+      "elements": {
+        "DL": {
+          "DCA": "C",
+          "DCB": "NONE",
+          "DCD": "NONE",
+          "DBA": "08012033",
+          "DCS": "QUILLFEATHER",
+          "DAC": "RORY",
+          "DAD": "LEE",
+          "DBD": "08012025",
+          "DBB": "03151988",
+          "DBC": "9",
+          "DAY": "HAZ",
+          "DAU": "070 IN",
+          "DAG": "400 EXAMPLE BLVD",
+          "DAI": "AUSTIN",
+          "DAJ": "TX",
+          "DAK": "787011234  ",
+          "DAQ": "12345678",
+          "DCF": "SYNTH0004",
+          "DCG": "USA",
+          "DDE": "N",
+          "DDF": "N",
+          "DDG": "N",
+          "DDA": "F"
+        },
+        "ZT": {
+          "ZTA": "OPENVERIFY SYNTHETIC TEST DATA"
+        }
+      },
+      "synthetic_marker": true,
+      "document_type": "DL",
+      "fields": {
+        "name-first": "RORY",
+        "name-middle": "LEE",
+        "name-last": "QUILLFEATHER",
+        "birthdate": "1988-03-15",
+        "sex": "X",
+        "nationality": null,
+        "identification-number": "12345678",
+        "personal-number": null,
+        "issue-date": "2025-08-01",
+        "expiration-date": "2033-08-01",
+        "issuing-authority-code": "636015",
+        "address-street-1": "400 EXAMPLE BLVD",
+        "address-street-2": null,
+        "address-city": "AUSTIN",
+        "address-subdivision": "TX",
+        "address-postal-code": "78701-1234",
+        "address-country-code": "US",
+        "endorsements": "NONE",
+        "restrictions": "NONE",
+        "vehicle-class": "C"
+      },
+      "real_id_compliance": "F"
+    }
+  ]
+}

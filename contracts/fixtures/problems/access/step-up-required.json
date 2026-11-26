@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Forbidden",
+  "status": 403,
+  "detail": "Verify your second factor again before acting on another user.",
+  "instance": "/api/v1/dashboard/users/usr_01M5CN00000000000000009B01/reactivate",
+  "requestId": "00000000-0000-4000-8000-000000009b06",
+  "code": "step_up_required"
+}

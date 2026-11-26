@@ -1,0 +1,27 @@
+{
+  "metadata": {
+    "specVersion": 1,
+    "id": "projection-exhausted",
+    "version": 1,
+    "name": "Projection: exhausted"
+  },
+  "steps": [
+    {
+      "id": "consent",
+      "type": "consent",
+      "textKeys": ["consent.biometric"],
+      "required": true
+    },
+    {
+      "id": "proof",
+      "type": "document",
+      "documentTypes": ["utility_bill"],
+      "captureMethods": ["upload"]
+    },
+    {
+      "id": "done",
+      "type": "completion"
+    }
+  ],
+  "transitions": []
+}

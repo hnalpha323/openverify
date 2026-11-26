@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "The case template is archived, so it takes no new case.",
+  "instance": "/api/v1/cases",
+  "requestId": "00000000-0000-4000-8000-000000001217",
+  "code": "case_template_archived"
+}

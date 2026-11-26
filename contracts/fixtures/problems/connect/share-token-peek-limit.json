@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Too Many Requests",
+  "status": 429,
+  "detail": "This share token was peeked as often as a token may be.",
+  "instance": "/api/v1/connect/share-tokens/cnst_01M5CN0000000000000011A200",
+  "requestId": "00000000-0000-4000-8000-00000011a017",
+  "code": "share_token_peek_limit"
+}

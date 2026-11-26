@@ -1,0 +1,275 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:openverify:fixtures:selfie-guidance-vectors:1",
+  "title": "Selfie guidance vectors (C204.1, C221.8)",
+  "description": "Workflow 10B Stage 1a (contracts-10b) freezes this shape; selfie-guidance's assert-only TypeScript test (apps/flow/src/guidance/export-vectors.test.ts) writes the file from the web flow's own modules (yunet-input, yunet-decode, head-pose, guidance-machine) and selfie-capture.json's constants, only under UPDATE_CONTRACT_FIXTURES=1. The Kotlin port (commonMain capture/selfie/) passes every case. Model outputs are synthetic tensors, never a face (rule 3).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format", "description", "constants", "letterbox", "decode", "yaw", "machine"],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "format": {
+      "const": 1
+    },
+    "description": {
+      "type": "string"
+    },
+    "constants": {
+      "type": "object",
+      "additionalProperties": {
+        "type": ["number", "boolean", "array"]
+      },
+      "description": "The decoder's and the machine's constants as the web modules hold them (strides 8, 16, 32; score 0.9; NMS; hold-ms; the trigger factors)."
+    },
+    "letterbox": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "source", "input"],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "source": {
+            "type": "object",
+            "required": ["width", "height"],
+            "additionalProperties": false,
+            "properties": {
+              "width": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "height": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          },
+          "input": {
+            "type": "object",
+            "description": "The model input's size, scale and offsets as yunet-input computes them."
+          }
+        }
+      }
+    },
+    "decode": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "input-width", "input-height", "outputs", "faces"],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "input-width": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "input-height": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "outputs": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "cls_8",
+              "cls_16",
+              "cls_32",
+              "obj_8",
+              "obj_16",
+              "obj_32",
+              "bbox_8",
+              "bbox_16",
+              "bbox_32",
+              "kps_8",
+              "kps_16",
+              "kps_32"
+            ],
+            "properties": {
+              "cls_8": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "cls_16": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "cls_32": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "obj_8": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "obj_16": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "obj_32": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "bbox_8": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "bbox_16": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "bbox_32": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "kps_8": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "kps_16": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "kps_32": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              }
+            },
+            "description": "YunetOutputs' twelve named tensors, each flattened row-major (C204.2, review F17)."
+          },
+          "faces": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["box", "score", "landmarks"],
+              "properties": {
+                "box": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "minItems": 4,
+                  "maxItems": 4
+                },
+                "score": {
+                  "type": "number"
+                },
+                "landmarks": {
+                  "type": "array",
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "minItems": 2,
+                    "maxItems": 2
+                  },
+                  "minItems": 5,
+                  "maxItems": 5
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "yaw": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "landmarks", "ratio"],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "landmarks": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "minItems": 5,
+            "maxItems": 5
+          },
+          "ratio": {
+            "type": ["number", "null"]
+          }
+        }
+      }
+    },
+    "machine": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "prompt", "steps"],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "prompt": {
+            "enum": ["center", "left", "right"]
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["t-ms", "ratio", "state"],
+              "properties": {
+                "t-ms": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "ratio": {
+                  "type": ["number", "null"]
+                },
+                "state": {
+                  "type": "string"
+                },
+                "captures": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

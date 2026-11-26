@@ -1,0 +1,17 @@
+# C258.2, C259.1 (Workflow 11C Stage 1a, contracts-11c): pip-audit publishes no release binary, so it
+# runs from this uv tool project of its own, never from an unpinned copy. Every transitive licence of
+# uv.lock is recorded in THIRD_PARTY_LICENSES.md (section 2.1.22, certifi in section 5; review F09).
+# Run it only through infra/scripts/supply-chain.sh:
+#   uv run --project security/pip-audit --frozen pip-audit --require-hashes --disable-pip --no-deps -r <exported requirements>
+[project]
+name = "openverify-pip-audit"
+version = "0.0.0"
+description = "pip-audit 2.10.1 as a pinned tool environment for the supply-chain checks"
+requires-python = ">=3.12,<3.13"
+dependencies = ["pip-audit==2.10.1"]
+
+[tool.uv]
+# Every resolution takes only releases at least 14 days old (Phase 9 decision 62), as
+# services/vision/pyproject.toml does; never an --exclude-newer on a command line.
+package = false
+exclude-newer = "14 days"

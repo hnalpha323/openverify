@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "description": "MRV-A (2 x 44) and MRV-B (2 x 36) machine-readable visas.",
+  "source": {
+    "citation": "ICAO Doc 9303, Eighth Edition (2021), Part 7, the MRV-A and MRV-B visa examples of the specimen state Utopia",
+    "url": "https://www.icao.int/sites/default/files/publications/DocSeries/9303_p7_cons_en.pdf"
+  },
+  "vectors": [
+    {
+      "id": "icao-9303-p7-mrv-a",
+      "format": "MRVA",
+      "lines": [
+        "V<UTOERIKSSON<<ANNA<MARIA<<<<<<<<<<<<<<<<<<<",
+        "L8988901C4XXX4009078F96121096ZE184226B<<<<<<"
+      ],
+      "note": "The published MRV-A example, unchanged. Visas have no composite check digit; nationality XXX is unspecified.",
+      "valid": true,
+      "check_digits": {
+        "document_number": {
+          "input": "L8988901C",
+          "printed": "4",
+          "computed": 4,
+          "valid": true
+        },
+        "birth_date": {
+          "input": "400907",
+          "printed": "8",
+          "computed": 8,
+          "valid": true
+        },
+        "expiration_date": {
+          "input": "961210",
+          "printed": "9",
+          "computed": 9,
+          "valid": true
+        },
+        "optional_data": null,
+        "composite": null
+      },
+      "fields": {
+        "document_code": "V",
+        "issuing_state": "UTO",
+        "surname": "ERIKSSON",
+        "given_names": "ANNA MARIA",
+        "document_number": "L8988901C",
+        "nationality": "XXX",
+        "birth_date": "400907",
+        "sex": "F",
+        "expiration_date": "961210",
+        "optional_data_1": "6ZE184226B",
+        "optional_data_2": null
+      }
+    },
+    {
+      "id": "icao-9303-p7-mrv-b",
+      "format": "MRVB",
+      "lines": ["V<UTOERIKSSON<<ANNA<MARIA<<<<<<<<<<<", "L8988901C4XXX4009078F9612109<<<<<<<<"],
+      "note": "The published MRV-B example, unchanged.",
+      "valid": true,
+      "check_digits": {
+        "document_number": {
+          "input": "L8988901C",
+          "printed": "4",
+          "computed": 4,
+          "valid": true
+        },
+        "birth_date": {
+          "input": "400907",
+          "printed": "8",
+          "computed": 8,
+          "valid": true
+        },
+        "expiration_date": {
+          "input": "961210",
+          "printed": "9",
+          "computed": 9,
+          "valid": true
+        },
+        "optional_data": null,
+        "composite": null
+      },
+      "fields": {
+        "document_code": "V",
+        "issuing_state": "UTO",
+        "surname": "ERIKSSON",
+        "given_names": "ANNA MARIA",
+        "document_number": "L8988901C",
+        "nationality": "XXX",
+        "birth_date": "400907",
+        "sex": "F",
+        "expiration_date": "961210",
+        "optional_data_1": "",
+        "optional_data_2": null
+      }
+    }
+  ]
+}

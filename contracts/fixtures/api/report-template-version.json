@@ -1,0 +1,36 @@
+{
+  "data": {
+    "type": "report-template-version",
+    "id": "rptpv_01M5Y5Z400BSXX21JQ991CDRK5",
+    "attributes": {
+      "version-number": 1,
+      "status": "published",
+      "report-type": "watchlist",
+      "config": {
+        "recurrence-interval-days": 30,
+        "pause-on-match": false,
+        "resume-delay-minutes": 30,
+        "search-lists": ["openverify-sandbox"],
+        "max-list-age-hours": 48,
+        "name-matching": {
+          "preset": "tolerant"
+        },
+        "birthdate-matching": "year_plus_minus_one",
+        "birthdate-filter": "penalty",
+        "country-fields": ["birthplace", "citizenship", "nationality", "residency"],
+        "country-filter": "penalty",
+        "screen-weak-aliases": false
+      },
+      "created-at": "2026-10-27T09:00:00.000Z",
+      "published-at": "2026-10-27T09:00:00.000Z"
+    },
+    "relationships": {
+      "report-template": {
+        "data": {
+          "type": "report-template",
+          "id": "rptp_01M5Y5Z400VF5JFP7ER3C45AY2"
+        }
+      }
+    }
+  }
+}

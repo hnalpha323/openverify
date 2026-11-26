@@ -1,0 +1,18 @@
+{
+  "data": [
+    {
+      "type": "transaction-label",
+      "id": "txnl_01M5CK3190XEVBM5ZXA76E1JSN",
+      "attributes": {
+        "model-label": "chargeback",
+        "model-version": "synthetic-1",
+        "score": 0.5,
+        "created-at": "2026-10-31T12:00:00.000Z",
+        "updated-at": "2026-10-31T12:00:00.000Z"
+      }
+    }
+  ],
+  "links": {
+    "next": null
+  }
+}

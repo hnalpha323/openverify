@@ -1,0 +1,25 @@
+{
+  "capture": {
+    "id": "self_01M5CJXHG07XPHF3HRM6NREDH9",
+    "nonce": "E2eSyntheticNonce00000",
+    "device": {
+      "label": "Synthetic Test Camera",
+      "settings": {
+        "width": 640,
+        "height": 480,
+        "frame-rate": 30,
+        "facing-mode": "user",
+        "resize-mode": "none"
+      },
+      "capabilities": {
+        "width-max": 1280,
+        "height-max": 720,
+        "frame-rate-max": 30,
+        "facing-modes": ["user"]
+      },
+      "frame-stats": { "delivered": 240, "discarded": 2, "total": 242 },
+      "webdriver": false,
+      "image-mirrored": false
+    }
+  }
+}

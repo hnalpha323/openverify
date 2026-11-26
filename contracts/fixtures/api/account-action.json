@@ -1,0 +1,29 @@
+{
+  "data": {
+    "type": "account-action",
+    "id": "accac_01M5CM00000000000000000010",
+    "attributes": {
+      "label": "Re-check the account",
+      "status": "active",
+      "prefill": {
+        "reference_id": "account.reference-id"
+      },
+      "created-at": "2026-10-20T12:00:00.000Z",
+      "updated-at": "2026-10-20T12:05:00.000Z"
+    },
+    "relationships": {
+      "workflow": {
+        "data": {
+          "type": "workflow",
+          "id": "wfl_01M5CM00000000000000000001"
+        }
+      },
+      "account-type": {
+        "data": {
+          "type": "account-type",
+          "id": "acctp_01M5CJXHZMQ72CZPQ5Y3XGC48W"
+        }
+      }
+    }
+  }
+}

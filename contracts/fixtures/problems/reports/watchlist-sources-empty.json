@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The source list is empty, so nothing would be screened.",
+  "instance": "/api/v1/report-templates",
+  "requestId": "00000000-0000-4000-8000-000000000612",
+  "code": "watchlist_sources_empty",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/config/search-lists",
+      "detail": "no source is selected"
+    }
+  ]
+}

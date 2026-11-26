@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Spanish for strings_form.xml (values). -->
+<resources>
+    <string name="openverify_database_title">Escribe tus datos</string>
+    <string name="openverify_database_intro">Comprobamos estos datos con registros. Escríbelos tal como aparecen en tus documentos oficiales.</string>
+    <string name="openverify_aamva_title">Escribe los datos de tu licencia de conducir o tarjeta de identificación</string>
+    <string name="openverify_aamva_intro">Escribe los datos exactamente como aparecen impresos en tu licencia de conducir o tarjeta de identificación estatal de EE. UU.</string>
+
+    <string name="openverify_field_name_first">Nombre</string>
+    <string name="openverify_field_name_middle">Segundo nombre</string>
+    <string name="openverify_field_name_last">Apellidos</string>
+    <string name="openverify_field_birthdate">Fecha de nacimiento</string>
+    <string name="openverify_field_address_street_1">Dirección</string>
+    <string name="openverify_field_address_street_2">Apartamento, oficina o unidad</string>
+    <string name="openverify_field_address_city">Ciudad</string>
+    <string name="openverify_field_address_subdivision">Estado, provincia o región</string>
+    <string name="openverify_field_address_postal_code">Código postal</string>
+    <string name="openverify_field_address_country_code">País de residencia</string>
+    <string name="openverify_field_identification_number">Número de identificación nacional</string>
+    <string name="openverify_field_phone_number">Número de teléfono</string>
+    <string name="openverify_field_email_address">Correo electrónico</string>
+    <string name="openverify_field_license_number">Número de licencia o tarjeta de identificación</string>
+    <string name="openverify_field_issuing_authority">Estado o territorio emisor</string>
+    <string name="openverify_field_issue_date">Fecha de expedición</string>
+    <string name="openverify_field_expiration_date">Fecha de vencimiento</string>
+    <string name="openverify_field_zip_code">Código postal (ZIP)</string>
+
+    <string name="openverify_field_optional">Opcional</string>
+    <string name="openverify_field_date_hint">Año, mes y día, como 1990-04-23.</string>
+    <string name="openverify_field_phone_hint">Empieza por + y el código del país, como +1 555 555 0100.</string>
+    <string name="openverify_field_choose">Elegir</string>
+
+    <string name="openverify_field_error_missing">Completa este campo.</string>
+    <string name="openverify_field_error_invalid">Revisa este valor: no tiene el formato esperado.</string>
+    <string name="openverify_field_error_date">Escribe una fecha real con año, mes y día, como 1990-04-23.</string>
+    <string name="openverify_field_error_too_long">Es demasiado largo. Acórtalo.</string>
+    <string name="openverify_field_error_refused">Revisa este campo: no pudimos aceptarlo.</string>
+    <string name="openverify_form_refused">No pudimos aceptar estos datos. Revísalos y vuelve a intentarlo.</string>
+
+    <string name="openverify_form_continue">Continuar</string>
+    <string name="openverify_form_submitting">Enviando tus datos…</string>
+</resources>

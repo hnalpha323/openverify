@@ -1,0 +1,13 @@
+{
+  "type": "connect/source-data/verification/selfie",
+  "attributes": {
+    "status": {
+      "visibility": "full",
+      "value": "passed"
+    }
+  },
+  "files": {
+    "visibility": "presence",
+    "value": true
+  }
+}

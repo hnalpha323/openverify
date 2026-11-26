@@ -1,0 +1,183 @@
+{
+  "data": {
+    "type": "analytics-inquiries",
+    "id": "0dec23db37eb26a7d55652d840321ac603ddae84cf60757d0efb3a878fd8810f",
+    "attributes": {
+      "time-zone": "Europe/Paris",
+      "time-zones": ["Europe/Paris"],
+      "from": "2026-10-27",
+      "to": "2026-10-29",
+      "bucket": "day",
+      "threshold": 11,
+      "suppressed-cells": 4,
+      "settle-days": 30,
+      "freshness": {
+        "rolled-up-through": "2026-10-29T13:55:00.000Z",
+        "outcomes-as-of": "2026-10-28T23:05:00.000Z"
+      },
+      "buckets": [
+        {
+          "start": "2026-10-27",
+          "end": "2026-10-27",
+          "time-zone": "Europe/Paris",
+          "live": false,
+          "counts": {
+            "created": 412,
+            "started": 388,
+            "interacted": 371,
+            "finished": 344,
+            "completed": 251,
+            "completed-verified": 230,
+            "completed-with-fallback": 21,
+            "completed-unverified": 0,
+            "failed": 37,
+            "expired-before-start": 24,
+            "expired-after-start": 17,
+            "approved": 31,
+            "declined": {
+              "suppressed": "small-count"
+            },
+            "needs-review": 19,
+            "marked-for-review": 26,
+            "decided-automatic": 0,
+            "decided-manual": 44,
+            "decided-not-declared": {
+              "suppressed": "complementary"
+            }
+          },
+          "rates": {
+            "success-rate": {
+              "value": 0.8197674418604651
+            },
+            "rejected-rate": {
+              "value": 0.12790697674418605
+            },
+            "needs-review-rate": {
+              "value": 0.05523255813953488
+            },
+            "expiration-rate": {
+              "value": 0.04381443298969072
+            },
+            "completed-unverified-rate": {
+              "suppressed": true
+            }
+          },
+          "time-to-finish": {
+            "lower": 296.0,
+            "upper": 365.0
+          }
+        },
+        {
+          "start": "2026-10-28",
+          "end": "2026-10-28",
+          "time-zone": "Europe/Paris",
+          "live": false,
+          "counts": {
+            "created": 405,
+            "started": 377,
+            "interacted": 362,
+            "finished": 331,
+            "completed": 262,
+            "completed-verified": 249,
+            "completed-with-fallback": 13,
+            "completed-unverified": 0,
+            "failed": 33,
+            "expired-before-start": 20,
+            "expired-after-start": 15,
+            "approved": 21,
+            "declined": 0,
+            "needs-review": 15,
+            "marked-for-review": 18,
+            "decided-automatic": 0,
+            "decided-manual": 21,
+            "decided-not-declared": 0
+          },
+          "rates": {
+            "success-rate": {
+              "value": 0.8549848942598187
+            },
+            "rejected-rate": {
+              "value": 0.09969788519637462
+            },
+            "needs-review-rate": {
+              "value": 0.045317220543806644
+            },
+            "expiration-rate": {
+              "value": 0.03978779840848806
+            },
+            "completed-unverified-rate": {
+              "below": 4
+            }
+          },
+          "time-to-finish": {
+            "lower": 296.0,
+            "upper": 365.0
+          }
+        },
+        {
+          "start": "2026-10-29",
+          "end": "2026-10-29",
+          "time-zone": "Europe/Paris",
+          "live": true,
+          "counts": {
+            "created": 166,
+            "started": 141
+          }
+        }
+      ],
+      "totals": {
+        "counts": {
+          "created": 983,
+          "started": 906,
+          "interacted": 733,
+          "finished": 675,
+          "completed": 513,
+          "completed-verified": 479,
+          "completed-with-fallback": 34,
+          "completed-unverified": 0,
+          "failed": 70,
+          "expired-before-start": 44,
+          "expired-after-start": 32,
+          "approved": 52,
+          "declined": {
+            "suppressed": "small-count"
+          },
+          "needs-review": 34,
+          "marked-for-review": 44,
+          "decided-automatic": 0,
+          "decided-manual": 65,
+          "decided-not-declared": {
+            "suppressed": "complementary"
+          }
+        },
+        "rates": {
+          "success-rate": {
+            "value": 0.837037037037037
+          },
+          "completed-verified-rate": {
+            "value": 0.7096296296296296
+          },
+          "completed-with-fallback-rate": {
+            "value": 0.05037037037037037
+          },
+          "completed-unverified-rate": {
+            "below": 2
+          },
+          "rejected-rate": {
+            "above": 10
+          },
+          "needs-review-rate": {
+            "value": 0.05037037037037037
+          },
+          "expiration-rate": {
+            "value": 0.03532008830022075
+          }
+        },
+        "time-to-finish": {
+          "lower": 296.0,
+          "upper": 365.0
+        }
+      }
+    }
+  }
+}

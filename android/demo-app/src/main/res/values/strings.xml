@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">OpenVerify Demo</string>
+    <string name="start_verification_title">Verify your identity</string>
+    <string name="start_verification_body">Paste an inquiry ID and a session token that your server created (POST /api/v1/inquiries/:id/resume), then start the flow. This app contains no credentials.</string>
+    <string name="start_verification_button">Start verification</string>
+    <string name="one_time_link_body">Or paste a one-time link that your server generated (POST /api/v1/inquiries/:id/generate-one-time-link). It works once; the API base URL above is used.</string>
+    <string name="field_one_time_link">One-time link</string>
+    <string name="start_one_time_link_button">Start from the one-time link</string>
+    <string name="field_inquiry_id">Inquiry ID (inq_…)</string>
+    <string name="field_session_token">Session token (ovs_…)</string>
+    <string name="field_api_base_url">API base URL</string>
+    <string name="field_api_base_url_hint">10.0.2.2 is your computer, as the emulator sees it. Use https for anything else.</string>
+    <string name="result_title">Last result</string>
+    <string name="result_completed">Flow completed. Inquiry %1$s is %2$s. Confirm the outcome on your server.</string>
+    <string name="result_failed">Flow failed for inquiry %1$s: %2$s.</string>
+    <string name="result_canceled">Flow canceled for inquiry %1$s.</string>
+    <string name="harness_notice">A test harness for sandbox inquiries, not a product.</string>
+    <string name="picker_locale_title">Language</string>
+    <string name="locale_device">Device</string>
+    <string name="picker_appearance_title">Appearance</string>
+    <string name="appearance_system">System</string>
+    <string name="appearance_light">Light</string>
+    <string name="appearance_dark">Dark</string>
+    <string name="picker_sandbox_outcome_title">Sandbox bot-detection outcome</string>
+    <string name="sandbox_outcome_none">None</string>
+    <string name="sandbox_outcome_bot">Bot</string>
+    <string name="sandbox_outcome_human">Human</string>
+    <string name="sandbox_outcome_hint">Sent with a sandbox inquiry\'s signals only. A production server ignores it.</string>
+    <string name="artifacts_sdk">Optional modules in this build: none (the SDK only).</string>
+    <string name="artifacts_sdk_nfc">Optional modules in this build: the NFC module, with its chip reader.</string>
+    <string name="artifacts_sdk_face">Optional modules in this build: the face module, with its face detector.</string>
+    <string name="artifacts_sdk_nfc_face">Optional modules in this build: the NFC module, with its chip reader, and the face module, with its face detector.</string>
+    <string name="event_log_title">Events (names only)</string>
+    <string name="event_log_empty">No events yet.</string>
+    <string name="app_link_refused">The link was refused: it is not a one-time link for this app\'s verification domain.</string>
+</resources>

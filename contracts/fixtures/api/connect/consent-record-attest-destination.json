@@ -1,0 +1,17 @@
+{
+  "data": {
+    "type": "consent-record",
+    "attributes": {
+      "side": "destination",
+      "connection-id": "cxn_01M5CN0000000000000011A100",
+      "share-token-id": "cnst_01M5CN0000000000000011A200",
+      "data-categories": ["identity-fields", "contact-fields"],
+      "explicit-biometric": false,
+      "expires-in-seconds": 86400,
+      "evidence-reference": "Synthetic call log CL-0002",
+      "attested-at": "2026-10-20T12:12:00.000Z",
+      "text-locale": "en",
+      "text-body": "Synthetic attested text: I agree that Example Partner receives my name and contact details from Example Source."
+    }
+  }
+}

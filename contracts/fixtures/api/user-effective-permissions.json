@@ -1,0 +1,21 @@
+{
+  "data": {
+    "type": "user-effective-permissions",
+    "id": "usr_01M5CN00000000000000009B21",
+    "attributes": {
+      "organization": ["users:read"],
+      "environments": [
+        {
+          "environment-id": "env_01M5CN00000000000000009B40",
+          "may-enter": true,
+          "permissions": ["inquiries:read", "inquiries:write"]
+        },
+        {
+          "environment-id": "env_01M5CN00000000000000009B43",
+          "may-enter": false,
+          "permissions": ["inquiries:read"]
+        }
+      ]
+    }
+  }
+}

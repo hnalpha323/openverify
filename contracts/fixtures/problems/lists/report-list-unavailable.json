@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The template pins a list that is archived or deleted.",
+  "instance": "/api/v1/report-template-versions/rptpv_01M5CK3190XEVBM5ZXA76E1JSN/publish",
+  "requestId": "00000000-0000-4000-8000-000000000815",
+  "code": "report_list_unavailable",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/config/list-ids/0",
+      "detail": "is not an active list"
+    }
+  ]
+}

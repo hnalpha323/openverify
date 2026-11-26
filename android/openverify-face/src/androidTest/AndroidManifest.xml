@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The device test's own APK is a host app of openverify-face (C205.2, fourth layer).
+
+     As a host with no other use for it, it removes ONNX Runtime's ACCESS_NETWORK_STATE in its own
+     manifest, with no tools:selector (Workflow 10E Stage 1a amendment 2). INTERNET stays (the SDK and
+     ONNX Runtime both ask for it), so the telemetry test's "no bytes counted" is measured in an app
+     that could send.
+
+     OrtProbeService runs in a second process, so that the telemetry test can watch a process from
+     before its first OrtEnvironment, and then start a new one (the restart a queued event would be
+     flushed by). The runner's own process never loads ONNX Runtime in that test. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission
+        android:name="android.permission.ACCESS_NETWORK_STATE"
+        tools:node="remove" />
+
+    <application android:largeHeap="true">
+        <!-- Keeps the screen on while the telemetry window is measured, so that the device is neither
+             suspended nor dozing (a sleeping phone sends nothing whatever the app holds). -->
+        <activity
+            android:name="dev.openverify.face.KeepAwakeActivity"
+            android:exported="false" />
+        <service
+            android:name="dev.openverify.face.OrtProbeService"
+            android:exported="false"
+            android:process=":ort" />
+    </application>
+
+</manifest>

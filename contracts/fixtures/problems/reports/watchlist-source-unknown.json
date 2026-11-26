@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The source list names a source the manifest does not know.",
+  "instance": "/api/v1/report-templates",
+  "requestId": "00000000-0000-4000-8000-000000000610",
+  "code": "watchlist_source_unknown",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/config/search-lists/0",
+      "detail": "unknown source"
+    }
+  ]
+}

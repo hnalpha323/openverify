@@ -1,0 +1,404 @@
+# OpenVerify Android release (C217.4, C220.3). Started by hand on `main` only, by the orchestrator,
+# never by an agent and never on a push. Contract test: infra/tests/ci-workflow.test.sh.
+#
+# What a dispatch does:
+#   gate     checks the version, runs the Android gate as ci.yml's android job does, the 16 KB checks,
+#            the consumer rules and the size of every configuration whose artifacts exist (C216), then
+#            stages the Maven repository (C217.3), builds the consumer check against it, writes each
+#            published module's CycloneDX SBOM with the licence check over it (C261; Workflow 11C),
+#            scans its unzipped contents with gitleaks and uploads it and the SBOMs as workflow
+#            artifacts.
+#   devices  runs the device tests on three emulator images (C220.3), on the standard runner.
+#   publish  only when the dispatch asks for it, only from `main`, only inside the GitHub environment
+#            `maven-central`: signs from an in-memory key and deploys to the Central Portal, where the
+#            release waits for a manual click. Without the owner's secrets it exits with a notice.
+#
+# Who can reach the secrets (review P18): a workflow_dispatch runs the workflow file of whatever
+# branch it names, so the `if:` below protects nothing against someone who can push a branch. The
+# signing key and the Portal token therefore live in the environment `maven-central`, with a
+# deployment-branch rule for `main` (the owner's step, Phase 10 P4), never as repository secrets.
+# Until that environment holds them, the staged repository is the release.
+#
+# Every action is pinned to a full commit SHA with its release tag in a trailing comment, as in
+# ci.yml. Top-level permissions are `contents: read`; no job adds more.
+name: android-release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: The version to release. It must equal openverifyVersion in android/gradle.properties.
+        required: true
+        type: string
+      publish:
+        description: Deploy to the Central Portal (needs the owner's maven-central environment). Off stages only.
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: android-release
+  cancel-in-progress: false
+
+jobs:
+  gate:
+    name: gate (the Android gate, 16 KB, sizes, the staged repository)
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    defaults:
+      run:
+        working-directory: android
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      # Only the version the build declares, written as a release (three numbers), is released. The
+      # input reaches the script through the environment, so it is never read as shell text.
+      - name: Check the version against openverifyVersion
+        id: version
+        env:
+          VERSION: ${{ inputs.version }}
+        run: |
+          declared=$(sed -n 's/^openverifyVersion=//p' gradle.properties)
+          if ! [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error title=android-release::The version must be three numbers (1.2.3), with no -SNAPSHOT or other suffix."
+            exit 1
+          fi
+          if [ "$VERSION" != "$declared" ]; then
+            echo "::error title=android-release::The version asked for is not openverifyVersion ($declared) in android/gradle.properties."
+            exit 1
+          fi
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+      - name: Verify the Gradle wrapper JAR against services.gradle.org
+        run: |
+          version=$(sed -n 's#^distributionUrl=.*/gradle-\(.*\)-\(bin\|all\)\.zip$#\1#p' gradle/wrapper/gradle-wrapper.properties)
+          expected=$(curl -fsSL --proto '=https' "https://services.gradle.org/distributions/gradle-${version}-wrapper.jar.sha256")
+          echo "${expected}  gradle/wrapper/gradle-wrapper.jar" | sha256sum -c -
+      - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: gradle
+          cache-dependency-path: |
+            android/**/*.gradle*
+            android/**/gradle-wrapper.properties
+            android/gradle/libs.versions.toml
+      - uses: android-actions/setup-android@be39fa834029ff78f1a44aa3bb0819b8fc2bd8fd # v4.0.4
+      - name: Read the Kotlin version from the version catalog
+        id: kotlin
+        run: |
+          version=$(sed -n 's/^kotlin = "\(.*\)"$/\1/p' gradle/libs.versions.toml)
+          test -n "$version"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+      - name: Cache the Kotlin/Native toolchain
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ~/.konan
+          key: konan-${{ runner.os }}-${{ steps.kotlin.outputs.version }}
+      # KP10-52 (scanners-11c): the verified jar is cached, keyed on the fetch script's pin; the fetch
+      # retries a failed download and uses a cached copy only when its size and SHA-256 match.
+      - name: Cache the verified bundletool
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ runner.temp }}/bundletool-cache
+          key: bundletool-${{ hashFiles('scripts/fetch_bundletool.py') }}
+      # C214.7: the pinned bundletool (SHA-256 checked), before any Gradle call.
+      - name: Fetch the pinned bundletool
+        working-directory: ${{ github.workspace }}
+        run: python3 -I scripts/fetch_bundletool.py --cache-dir "$RUNNER_TEMP/bundletool-cache"
+      # C205.3 (Workflow 10E): the pinned YuNet model, which openverify-face's build packages, and
+      # the one fixture face its tests read, before any Gradle call.
+      - name: Fetch the YuNet model and the fixture face (pinned by SHA-256)
+        working-directory: ${{ github.workspace }}
+        run: |
+          python3 -I scripts/fetch_models.py --only face_detection_yunet
+          python3 -I scripts/fetch_fixtures.py --only person_a_id
+      - name: The release-check scripts' own tests
+        run: python3 -I -m unittest discover -s scripts/tests
+      # The Android gate, as ci.yml's android job runs it. (ci.yml also holds the SDK host-test floor;
+      # it runs on the same commit and is not repeated here.)
+      - name: Host tests, coverage verification, debug build, the SDK's AAR and iOS klibs, lint
+        run: ./gradlew testDebugUnitTest testAndroidHostTest koverVerify assembleDebug :openverify-sdk:assemble lint --stacktrace
+      - name: Screenshots with comparison, the ABI check, the minified demo and its bundle
+        run: ./gradlew :openverify-sdk:screenshotTest -Proborazzi.test.verify=true checkKotlinAbi :demo-app:assembleRelease :demo-app:bundleRelease :openverify-nfc:assembleRelease :openverify-face:assembleRelease --stacktrace
+      - name: The device tests compile (the SDK's, the demo's on the minified build, and both optional artifacts')
+        run: ./gradlew :openverify-sdk:assembleAndroidDeviceTest :demo-app:assembleAndroidTest :openverify-nfc:assembleDebugAndroidTest :openverify-face:assembleDebugAndroidTest --stacktrace
+      # C216.1: ELF p_align of every native library in every AAR and in the minified demo APK,
+      # zipalign -c -P 16, and bundletool's PAGE_ALIGNMENT_16K on the bundle.
+      - name: The 16 KB checks
+        run: python3 -I scripts/check-elf-alignment.py
+      # C215.4: the consumer rules, read back from what R8 wrote for the minified demo.
+      - name: The consumer rules in the minified demo
+        run: python3 -I scripts/check-consumer-rules.py
+      # C216.2, C216.3: every size configuration whose artifacts exist, each against the committed
+      # baseline (10%) and its absolute cap. There are four since Workflow 10E: the SDK only, with
+      # openverify-nfc (the reader), with openverify-face (ONNX Runtime), and with both. No Play
+      # Integrity configuration exists (Phase 10 P3 was declined). A bundle is recognised by what
+      # only its artifacts bring, so each step measures the bundle its own Gradle line just built.
+      - name: The size of the SDK-only configuration
+        run: python3 -I scripts/check-size.py
+      - name: The size of the configuration with openverify-nfc
+        run: |
+          ./gradlew -PopenverifyDemoArtifacts=sdk,nfc :demo-app:bundleRelease --stacktrace
+          python3 -I scripts/check-size.py --configuration sdk,nfc
+      - name: The size of the configuration with openverify-face
+        run: |
+          ./gradlew -PopenverifyDemoArtifacts=sdk,face :demo-app:bundleRelease --stacktrace
+          python3 -I scripts/check-size.py --configuration sdk,face
+      # The fullest build also gives its minified APK to the 16 KB checks: openverify-face's own AAR
+      # holds no native library (ONNX Runtime's arrive as its dependency), so libonnxruntime.so and
+      # libonnxruntime4j_jni.so are checked where a host ships them (C216.1).
+      - name: The size of the configuration with both, and the 16 KB checks over ONNX Runtime's libraries
+        run: |
+          ./gradlew -PopenverifyDemoArtifacts=sdk,nfc,face :demo-app:assembleRelease :demo-app:bundleRelease --stacktrace
+          python3 -I scripts/check-elf-alignment.py
+          python3 -I scripts/check-size.py --configuration sdk,nfc,face
+      # C217.3: the complete local Maven repository (POMs, Gradle metadata, sources, Dokka javadoc,
+      # checksums), then a host app built against it and nothing else.
+      - name: Stage the repository
+        run: ./gradlew publishAllPublicationsToStagingRepository --stacktrace
+      - name: The consumer check against the staged repository
+        run: ./gradlew -p consumer-check build --stacktrace
+      # C261.1, C261.2 (Workflow 11C; review H23): one CycloneDX SBOM per published module, over its
+      # release runtime classpath, and the licence check over each, so section 6's rows of
+      # THIRD_PARTY_LICENSES.md are named only where they ship (openverify-nfc: SCUBA's two files;
+      # openverify-face: Eigen inside onnxruntime-android). consumer-check is a test build that never
+      # ships, so it gets no SBOM. An SBOM lists what the plugin resolved (C261.4).
+      - name: The published modules' SBOMs and the licence check over each
+        run: |
+          ./gradlew cyclonedxBom --stacktrace
+          mkdir -p build/sbom
+          rc=0
+          for module in openverify-sdk openverify-nfc openverify-face; do
+            sbom="build/sbom/$module.cdx.json"
+            cp "$module/build/reports/cyclonedx/bom.json" "$sbom"
+            python3 -I ../security/check-sbom-licences.py --artifact "aar:$module" --sbom "$sbom" --report "${sbom%.cdx.json}.licences.json" || rc=1
+          done
+          for report in build/sbom/*.licences.json; do
+            if grep -q '"pending-owner": true' "$report"; then
+              echo "::warning title=android-release::$report reports an owner item: stage that AAR as pending-owner until the owner decides"
+            fi
+          done
+          exit "$rc"
+      # Review P25: nothing leaves the runner before gitleaks has read the unzipped AARs and jars.
+      - name: Cache the verified gitleaks release
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ runner.temp }}/gitleaks-cache
+          key: gitleaks-linux-x64-${{ hashFiles('infra/scripts/install-gitleaks.sh') }}
+      - name: Install gitleaks (pinned release, SHA-256 verified)
+        working-directory: ${{ github.workspace }}
+        run: |
+          GITLEAKS_CACHE_DIR="$RUNNER_TEMP/gitleaks-cache" INSTALL_DIR="$RUNNER_TEMP/bin" infra/scripts/install-gitleaks.sh
+          echo "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
+      - name: Scan the unzipped staged repository for secrets
+        run: bash scripts/scan-staged-repository.sh
+      - name: Upload the staged repository
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: openverify-android-${{ steps.version.outputs.version }}-staged-repository
+          path: android/build/staging-repo/
+          if-no-files-found: error
+          retention-days: 30
+      - name: Upload the AAR SBOMs and their licence reports
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: openverify-android-${{ steps.version.outputs.version }}-sboms
+          path: android/build/sbom/
+          if-no-files-found: error
+          retention-days: 30
+      - name: Say what was released
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          echo "::notice title=android-release::The staged repository of $VERSION is this run's workflow artifact, unsigned. Nothing reached Maven Central in this job: the upload is the publish job's, which needs the owner's maven-central environment (Phase 10 P4)."
+
+  devices:
+    name: devices (API ${{ matrix.api-level }} ${{ matrix.target }})
+    needs: gate
+    # C220.3 (Phase 10 P5, declined): the standard runner for every leg, the 16 KB image included.
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # minSdk. Automated Test Device images exist only from API 30, so google_apis (review F13).
+          - api-level: 26
+            target: google_apis
+            boot-may-fail: false
+          # The image ci.yml's android-instrumented job uses.
+          - api-level: 34
+            target: google_apis
+            boot-may-fail: false
+          # The 16 KB page-size image. An API 36 image never booted within 600 s on this runner, so
+          # this one may not boot within its 900 s either. Then the leg says so and stays an open item
+          # of the release gate (the per-push 16 KB checks of C216.1 are the proof that exists); it
+          # never reports its tests as passed, because they do not run.
+          - api-level: 35
+            target: google_apis_ps16k
+            boot-may-fail: true
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      # A default AVD needs about 7.4 GB for userdata; the runner has about 6.6 GB free.
+      - name: Free disk space for the emulator
+        run: |
+          sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/.ghcup /opt/hostedtoolcache/CodeQL /usr/local/share/boost
+          df -h /
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          ls -l /dev/kvm
+      - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: gradle
+          cache-dependency-path: |
+            android/**/*.gradle*
+            android/**/gradle-wrapper.properties
+            android/gradle/libs.versions.toml
+      - uses: android-actions/setup-android@be39fa834029ff78f1a44aa3bb0819b8fc2bd8fd # v4.0.4
+      # C205.3 (Workflow 10E): openverify-face's device-test APK holds the YuNet model and one
+      # fetched public-domain face; both are pinned by SHA-256 and fetched before the build.
+      - name: Fetch the YuNet model and the fixture face (pinned by SHA-256)
+        run: |
+          python3 -I scripts/fetch_models.py --only face_detection_yunet
+          python3 -I scripts/fetch_fixtures.py --only person_a_id
+      # The AVD with the snapshot the boot step saves, so a later run starts from the snapshot.
+      - name: Cache the AVD and its snapshot
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            ~/.android/avd/*
+            ~/.android/adb*
+          key: avd-${{ matrix.api-level }}-${{ matrix.target }}-x86_64
+      # The image boots once on its own, inside the 900 s budget, and its snapshot is saved. Only the
+      # 16 KB leg may fail here without failing the job; a failure of the tests below always fails it.
+      - name: Boot the image (900 s budget)
+        id: boot
+        continue-on-error: ${{ matrix.boot-may-fail }}
+        timeout-minutes: 25
+        uses: reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d # v2.38.0
+        with:
+          api-level: ${{ matrix.api-level }}
+          target: ${{ matrix.target }}
+          arch: x86_64
+          force-avd-creation: false
+          emulator-boot-timeout: 900
+          disk-size: 4096M
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-metrics -camera-back emulated -camera-front emulated
+          script: echo "The image booted; its snapshot is saved for the cache."
+      - name: Report an image that did not boot as an open item
+        if: steps.boot.outcome == 'failure'
+        env:
+          API_LEVEL: ${{ matrix.api-level }}
+          TARGET: ${{ matrix.target }}
+        run: |
+          echo "::warning title=android-release::The API $API_LEVEL $TARGET image did not boot within 900 s on the standard runner. Its device tests did not run: the 16 KB emulator leg is an open item of the release gate (C220.3), and the static 16 KB checks of the gate job are the only 16 KB proof of this run."
+      - name: Device tests on the emulator
+        if: steps.boot.outcome == 'success'
+        timeout-minutes: 35
+        uses: reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d # v2.38.0
+        with:
+          api-level: ${{ matrix.api-level }}
+          target: ${{ matrix.target }}
+          arch: x86_64
+          working-directory: android
+          force-avd-creation: false
+          emulator-boot-timeout: 900
+          disk-size: 4096M
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-metrics -camera-back emulated -camera-front emulated
+          # The SDK's device tests and the demo's smoke test on the minified build (C215.2). On failure,
+          # print the JUnit XML. The second line fails the step if a test skipped itself or none ran.
+          # The third prints what only a device measures (the probes' time, the barcode frame costs).
+          script: |
+            ./gradlew :openverify-sdk:connectedAndroidDeviceTest :demo-app:connectedAndroidTest :openverify-nfc:connectedDebugAndroidTest :openverify-face:connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.openverifyDeviceKind=emulator --stacktrace || { find . -path '*androidTest-results*' -name '*.xml' -exec cat {} +; adb logcat -d | grep -iE 'camerax|camera2|imagecapture|cameraservice|openverify' | tail -400; exit 1; }
+            bash ../infra/scripts/check-connected-results.sh . openverify-sdk=14 demo-app=2 openverify-nfc=2 openverify-face=4
+            adb logcat -d -s openverify-probes OpenVerifyCameraTest || true
+      - name: Upload the connected test reports
+        if: failure()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: android-release-device-reports-${{ matrix.api-level }}
+          path: |
+            android/**/build/reports/androidTests/
+            android/**/build/outputs/androidTest-results/
+          if-no-files-found: warn
+          retention-days: 14
+
+  publish:
+    name: publish (the Central Portal; a manual click releases)
+    needs: [gate, devices]
+    # Both conditions, and the environment's deployment-branch rule for `main`, which is the one that
+    # protects the secrets (review P18).
+    if: inputs.publish && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    environment: maven-central
+    defaults:
+      run:
+        working-directory: android
+    steps:
+      # Without the owner's secrets (the environment does not exist yet, or holds nothing) the job
+      # says so and does nothing else.
+      - name: Check that the owner's secrets are present
+        id: secrets
+        working-directory: ${{ github.workspace }}
+        env:
+          MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+          SIGNING_IN_MEMORY_KEY: ${{ secrets.SIGNING_IN_MEMORY_KEY }}
+          SIGNING_IN_MEMORY_KEY_PASSWORD: ${{ secrets.SIGNING_IN_MEMORY_KEY_PASSWORD }}
+        run: |
+          if [ -n "$MAVEN_CENTRAL_USERNAME" ] && [ -n "$MAVEN_CENTRAL_PASSWORD" ] && [ -n "$SIGNING_IN_MEMORY_KEY" ] && [ -n "$SIGNING_IN_MEMORY_KEY_PASSWORD" ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "::notice title=android-release::The maven-central environment holds no Portal token or signing key (Phase 10 P4). Nothing was signed or uploaded; the staged repository of the gate job is the release."
+          fi
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        if: steps.secrets.outputs.present == 'true'
+        with:
+          persist-credentials: false
+      - name: Check the version against openverifyVersion
+        if: steps.secrets.outputs.present == 'true'
+        env:
+          VERSION: ${{ inputs.version }}
+        run: |
+          declared=$(sed -n 's/^openverifyVersion=//p' gradle.properties)
+          if ! [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || [ "$VERSION" != "$declared" ]; then
+            echo "::error title=android-release::The version asked for is not a release version equal to openverifyVersion ($declared)."
+            exit 1
+          fi
+      - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
+        if: steps.secrets.outputs.present == 'true'
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: gradle
+          cache-dependency-path: |
+            android/**/*.gradle*
+            android/**/gradle-wrapper.properties
+            android/gradle/libs.versions.toml
+      - uses: android-actions/setup-android@be39fa834029ff78f1a44aa3bb0819b8fc2bd8fd # v4.0.4
+        if: steps.secrets.outputs.present == 'true'
+      # The publishing plugin's own switches, given per call so that no build file signs or uploads
+      # by default: Central Portal publishing on, automatic release off (the release waits for a
+      # manual click in the Portal), every publication signed from the in-memory key. The iOS
+      # publications' tasks stay skipped (C217.1).
+      - name: Sign and deploy to the Central Portal (no automatic release)
+        if: steps.secrets.outputs.present == 'true'
+        env:
+          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.SIGNING_IN_MEMORY_KEY }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_IN_MEMORY_KEY_PASSWORD }}
+        run: ./gradlew publishToMavenCentral -PmavenCentralPublishing=true -PmavenCentralAutomaticPublishing=false -PsignAllPublications=true --no-configuration-cache --stacktrace

@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The value does not fit this list kind.",
+  "instance": "/api/v1/list-item/strings",
+  "requestId": "00000000-0000-4000-8000-000000000809",
+  "code": "invalid_value",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/value",
+      "detail": "is not a valid value"
+    }
+  ]
+}

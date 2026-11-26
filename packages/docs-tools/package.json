@@ -1,0 +1,41 @@
+{
+  "name": "@openverify/docs-tools",
+  "version": "0.0.0",
+  "private": true,
+  "description": "The document generators, record tests and release check of Phase 11 (Workflow 11E, C273-C284): each area renders its committed pages from the repository's own facts, and a test fails when a committed page differs from a fresh render. Private, never published.",
+  "type": "module",
+  "exports": {
+    ".": {
+      "@openverify/source": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --coverage",
+    "docs:security": "node --experimental-transform-types --no-warnings --conditions=@openverify/source --import ./scripts/register-ts.mjs src/cli.ts render security",
+    "docs:records": "node --experimental-transform-types --no-warnings --conditions=@openverify/source --import ./scripts/register-ts.mjs src/cli.ts render records",
+    "docs:selfhost": "node --experimental-transform-types --no-warnings --conditions=@openverify/source --import ./scripts/register-ts.mjs src/cli.ts render selfhost",
+    "docs:compliance": "node --experimental-transform-types --no-warnings --conditions=@openverify/source --import ./scripts/register-ts.mjs src/cli.ts render compliance",
+    "docs:catalog": "node --experimental-transform-types --no-warnings --conditions=@openverify/source --import ./scripts/register-ts.mjs src/cli.ts routes && node --experimental-transform-types --no-warnings --conditions=@openverify/source --import ./scripts/register-ts.mjs src/cli.ts render catalog",
+    "docs:release": "node --experimental-transform-types --no-warnings --conditions=@openverify/source --import ./scripts/register-ts.mjs src/cli.ts render release",
+    "docs:all": "node --experimental-transform-types --no-warnings --conditions=@openverify/source --import ./scripts/register-ts.mjs src/cli.ts routes && node --experimental-transform-types --no-warnings --conditions=@openverify/source --import ./scripts/register-ts.mjs src/cli.ts render all",
+    "docs:stubs": "node --experimental-transform-types --no-warnings --conditions=@openverify/source --import ./scripts/register-ts.mjs src/cli.ts stubs",
+    "release:check": "node --experimental-transform-types --no-warnings --conditions=@openverify/source --import ./scripts/register-ts.mjs src/cli.ts release-check"
+  },
+  "devDependencies": {
+    "@openverify/config": "workspace:*",
+    "@types/node": "catalog:",
+    "@vitest/coverage-v8": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  },
+  "dependencies": {
+    "@openverify/contracts": "workspace:*",
+    "@openverify/core": "workspace:*",
+    "ajv": "catalog:",
+    "csv-parse": "catalog:",
+    "csv-stringify": "catalog:"
+  }
+}

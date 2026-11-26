@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Arabic copy of values/strings_screen.xml, machine-drafted by android-screens (Workflow 10A,
+  C199.1; i18n/review-status.json): the web flow's Arabic words where it has the same text
+  (contracts/fixtures/i18n/ar.json, screen.*), drafted here otherwise. Positional placeholders only,
+  ' and " written as they are, no isolate or other bidi control (ResourcesTest).
+-->
+<resources>
+    <string name="openverify_screen_heading">بياناتك</string>
+    <string name="openverify_screen_required">الحقول المميزة بعلامة * مطلوبة.</string>
+    <string name="openverify_screen_choose">الاختيار…</string>
+    <string name="openverify_screen_set">سبق تقديمه. يُرجى كتابة قيمة جديدة لتغييره.</string>
+    <string name="openverify_screen_summary">يُرجى مراجعة هذه الإجابات:</string>
+    <string name="openverify_screen_error_required">يُرجى إدخال قيمة أو اختيارها.</string>
+    <string name="openverify_screen_error_too_short">يُرجى إدخال %1$s حرفًا على الأقل.</string>
+    <string name="openverify_screen_error_too_long">يُرجى إدخال %1$s حرفًا على الأكثر.</string>
+    <string name="openverify_screen_error_pattern">هذه القيمة ليست بالتنسيق المتوقع.</string>
+    <string name="openverify_screen_error_number">يُرجى إدخال رقم.</string>
+    <string name="openverify_screen_error_too_small">يُرجى إدخال %1$s أو أكثر.</string>
+    <string name="openverify_screen_error_too_large">يُرجى إدخال %1$s أو أقل.</string>
+    <string name="openverify_screen_error_date">يُرجى إدخال تاريخ.</string>
+    <string name="openverify_screen_error_date_too_early">يُرجى إدخال %1$s أو تاريخ لاحق.</string>
+    <string name="openverify_screen_error_date_too_late">يُرجى إدخال %1$s أو تاريخ سابق.</string>
+    <string name="openverify_screen_error_email">يُرجى إدخال عنوان بريد إلكتروني، مثل name@example.com.</string>
+    <string name="openverify_screen_error_phone">يُرجى إدخال رقم هاتف مع رمز البلد.</string>
+    <string name="openverify_screen_error_url">يُرجى إدخال عنوان ويب يبدأ بـ https://.</string>
+    <string name="openverify_screen_error_option">يُرجى اختيار أحد الخيارات.</string>
+    <string name="openverify_screen_error_country">يُرجى اختيار أحد البلدان.</string>
+    <string name="openverify_screen_error_refused">لم تُقبل هذه القيمة. يُرجى التحقق منها والمحاولة مرة أخرى.</string>
+    <string name="openverify_screen_address_street1">عنوان الشارع</string>
+    <string name="openverify_screen_address_street2">الشقة أو المبنى (اختياري)</string>
+    <string name="openverify_screen_address_city">المدينة</string>
+    <string name="openverify_screen_address_subdivision">الولاية أو المقاطعة أو المنطقة</string>
+    <string name="openverify_screen_address_postal_code">الرمز البريدي</string>
+    <string name="openverify_screen_address_country">البلد</string>
+    <string name="openverify_screen_saving">جارٍ حفظ إجاباتك…</string>
+    <string name="openverify_screen_cancel_title">التوقف الآن؟</string>
+    <string name="openverify_screen_cancel_message">تُحفظ إجاباتك حتى الآن. يمكن العودة بالرابط نفسه للمتابعة.</string>
+    <string name="openverify_screen_cancel_confirm">نعم، التوقف الآن</string>
+    <string name="openverify_screen_cancel_keep">لا، المتابعة</string>
+    <string name="openverify_screen_date_pick">اختيار تاريخ</string>
+    <string name="openverify_screen_date_use">استخدام هذا التاريخ</string>
+    <string name="openverify_screen_required_mark">مطلوب</string>
+    <string name="openverify_screen_stepper_current">الخطوة الحالية</string>
+</resources>

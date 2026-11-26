@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Precondition Failed",
+  "status": 412,
+  "detail": "The version changed since the ETag the request names.",
+  "instance": "/api/v1/inquiry-template-versions/itmplv_01M5CN00000000000000009A01",
+  "requestId": "00000000-0000-4000-8000-000000009a08",
+  "code": "precondition_failed"
+}

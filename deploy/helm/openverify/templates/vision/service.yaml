@@ -1,0 +1,2 @@
+{{- /* C263 (Workflow 11C Stage 2, chart-11c): vision's Service, reached by the API and the worker only (C264.2). */ -}}
+{{ include "openverify.service" (dict "root" . "component" "vision" "name" (include "openverify.componentName" (dict "root" . "component" "vision")) "ports" (printf "- name: http\n  port: %v\n  targetPort: http\n  protocol: TCP" .Values.vision.port)) }}

@@ -1,0 +1,17 @@
+{
+  "data": [
+    {
+      "type": "workflow-recipe",
+      "id": "reopen-review-summary",
+      "attributes": {
+        "name": "Summarise a reopened inquiry",
+        "description": "A synthetic recipe, shown disabled.",
+        "trigger-type": "trigger-event",
+        "needs-configuration": ["decision-basis", "contest-route"]
+      }
+    }
+  ],
+  "links": {
+    "next": null
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "about:blank",
+  "title": "Unauthorized",
+  "status": 401,
+  "detail": "You were signed out after a period without activity. Sign in again.",
+  "instance": "/api/v1/dashboard/me",
+  "requestId": "00000000-0000-4000-8000-00000011b001",
+  "code": "session_expired",
+  "reason": "idle"
+}

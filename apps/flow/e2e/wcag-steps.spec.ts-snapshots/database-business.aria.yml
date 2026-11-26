@@ -1,0 +1,29 @@
+- main:
+    - region "Tell us about your business":
+        - heading "Tell us about your business" [level=1]
+        - paragraph: We look these details up in official business registers. Enter them as the business is registered.
+        - paragraph: Attempt 1 of 3
+        - paragraph: Fields marked * are required.
+        - text: Business name
+        - textbox "Business name"
+        - text: Country of registration
+        - combobox "Country of registration":
+            - option "Choose a country" [selected]
+        - text: Registration number
+        - paragraph: "/The number the business register gives the business: up to \\d+ letters and digits\\./"
+        - textbox "Registration number"
+        - text: Legal Entity Identifier (LEI)
+        - paragraph: /The \d+-character code from the global LEI register\. Leave it out if the business has none\./
+        - textbox "Legal Entity Identifier (LEI)"
+        - group "Registered address":
+            - text: Registered address Address line 1
+            - textbox "Address line 1"
+            - text: Address line 2
+            - textbox "Address line 2"
+            - text: Town or city
+            - textbox "Town or city"
+            - text: State, province or region
+            - textbox "State, province or region"
+            - text: Postal code
+            - textbox "Postal code"
+        - button "Continue"

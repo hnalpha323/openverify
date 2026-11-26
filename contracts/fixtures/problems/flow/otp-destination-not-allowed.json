@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "Codes cannot be sent to this destination in this verification.",
+  "instance": "/api/v1/flow/verifications/ver_01M5CK3190XEVBM5ZXA76E1JSM/otp",
+  "requestId": "00000000-0000-4000-8000-000000000104",
+  "code": "otp_destination_not_allowed"
+}

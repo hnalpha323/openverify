@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  pdf417-guidance (Workflow 10B, C203.3): the barcode guide's two hints on a barcode-bearing side. "Found",
+  never "readable" or "valid": the server re-decodes the uploaded photo and decides every barcode check
+  (review H21). English, the source. No placeholders, no legal text.
+-->
+<resources>
+    <string name="openverify_pdf417_guide">Fit the barcode in the box</string>
+    <string name="openverify_pdf417_found">Barcode found</string>
+</resources>

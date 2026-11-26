@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Forbidden",
+  "status": 403,
+  "detail": "The identity provider did not confirm a verified email address.",
+  "instance": "/api/v1/dashboard/sso/callback/ssop_01M5CN0000000000000011B200",
+  "requestId": "00000000-0000-4000-8000-00000011b006",
+  "code": "sso_email_unverified"
+}

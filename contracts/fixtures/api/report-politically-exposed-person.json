@@ -1,0 +1,159 @@
+{
+  "data": {
+    "type": "report/politically-exposed-person",
+    "id": "rep_01M5Y5Z400KJJBPFQTV8J7KYSA",
+    "attributes": {
+      "status": "ready",
+      "created-at": "2026-10-27T09:00:00.000Z",
+      "completed-at": "2026-10-27T09:00:01.250Z",
+      "redacted-at": null,
+      "report-template-version-name": "v1",
+      "has-match": true,
+      "is-continuous": false,
+      "is-recurring": false,
+      "tags": ["onboarding"],
+      "query": {
+        "name-first": "Marlowe",
+        "name-last": "Testerton",
+        "country-code": "GB"
+      },
+      "origin": "api",
+      "errors": [],
+      "unavailable-fields": [],
+      "coverage": {
+        "complete": true,
+        "limits": []
+      },
+      "next-run-at": null,
+      "paused-at": null,
+      "paused-reason": null,
+      "sources": [
+        {
+          "source-id": "openverify-sandbox-pep",
+          "sync-id": "wsync-sandbox-pep-0001",
+          "published-at": "2026-10-26T00:00:00.000Z",
+          "checked-at": "2026-10-26T00:05:00.000Z",
+          "sha256": "d90231422f710921555229fd634c5c481accf0ccc9f3897f05cc72150c41b966",
+          "origin": "import",
+          "attribution": "OpenVerify synthetic sandbox PEP list (fictional office holders, for tests only)"
+        }
+      ],
+      "query-sources": {
+        "name-first": "request",
+        "name-last": "request",
+        "country-code": "request"
+      },
+      "matcher-version": "openverify-watchlist/0.1.0+keys.1",
+      "provider": null,
+      "thresholds": {
+        "name-matching": "strict",
+        "min-score": 0.85,
+        "pep-classes": "1,2"
+      },
+      "notices": ["pep_coverage_uneven"],
+      "result": [
+        {
+          "entity-id": "openverify-sandbox-pep:Q-test-1001",
+          "match-id": "rpm_01M5Y5Z400JH59ZH2NJ465G70E",
+          "name": "Marlowe Testerton",
+          "birthdates": [
+            {
+              "day": null,
+              "month": null,
+              "year": 1971,
+              "granularity": "year"
+            }
+          ],
+          "death-dates": [],
+          "country": "GB",
+          "sex": null,
+          "match-types": ["name_exact"],
+          "pep-type": "pep",
+          "score": 0.9,
+          "positions": [
+            {
+              "position": "Minister of Synthetic Affairs",
+              "pep-class": 1,
+              "country": "GB",
+              "start": "2024-01-15",
+              "end": null,
+              "in-office": "yes",
+              "source-key": "Q-test-2001"
+            }
+          ],
+          "associates": [],
+          "sources": {
+            "Q-test-1001": "https://pep.sandbox.example/Q-test-1001",
+            "Q-test-2001": "https://pep.sandbox.example/Q-test-2001"
+          }
+        }
+      ],
+      "ignore-list": [],
+      "matches": [
+        {
+          "id": "rpm_01M5Y5Z400JH59ZH2NJ465G70E",
+          "entity-id": "openverify-sandbox-pep:Q-test-1001",
+          "source-id": "openverify-sandbox-pep",
+          "name": "Marlowe Testerton",
+          "status": "open",
+          "review-status": "pending",
+          "risk-level": null,
+          "notify-on-change": false,
+          "present-in-last-run": true,
+          "score": 0.9,
+          "match-types": ["name_exact"],
+          "qualifiers": [],
+          "lapsed-from": null,
+          "delisted-at": null,
+          "reviewed-at": null,
+          "created-at": "2026-10-27T09:00:01.250Z",
+          "updated-at": "2026-10-27T09:00:01.250Z",
+          "first-run": "rpr_01M5Y5Z400Y79N3ZYHADV6NXAX",
+          "last-run": "rpr_01M5Y5Z400Y79N3ZYHADV6NXAX",
+          "components": {
+            "subject-name": "Marlowe Testerton",
+            "list-name": "Marlowe Testerton",
+            "name-level": "full",
+            "methods": ["exact"],
+            "preset": "strict",
+            "min-score": 0.85
+          }
+        }
+      ]
+    },
+    "relationships": {
+      "inquiry": {
+        "data": null
+      },
+      "account": {
+        "data": {
+          "type": "account",
+          "id": "acc_01M5CJXJF84MR3PHJHBHKQ4ZC8"
+        }
+      },
+      "accounts": {
+        "data": [
+          {
+            "type": "account",
+            "id": "acc_01M5CJXJF84MR3PHJHBHKQ4ZC8"
+          }
+        ]
+      },
+      "report-template": {
+        "data": {
+          "type": "report-template",
+          "id": "rptp_01M5Y5Z400P7AQ8S3QX3K8S2E1"
+        }
+      },
+      "report-template-version": {
+        "data": {
+          "type": "report-template-version",
+          "id": "rptpv_01M5Y5Z400KFNKM7QNPCMEEXJC"
+        }
+      },
+      "transaction": {
+        "data": null
+      }
+    }
+  }
+}

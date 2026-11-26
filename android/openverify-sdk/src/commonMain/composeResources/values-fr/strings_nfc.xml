@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  nfc-sdk (Workflow 10C, C207, C208.2): the NFC step. The device reads and the server checks: no text here
+  says a document or a chip is verified, authentic or genuine, in any language (C207.5; NfcWordingTest).
+  The phases read "connecting", "reading", "signing the check code" and "read; we will check it now".
+  Machine-drafted (i18n/review-status.json). No placeholders, no legal text.
+-->
+<resources>
+    <string name="openverify_nfc_mrz_title">Saisissez les données de votre document</string>
+    <string name="openverify_nfc_mrz_intro">La puce de votre document s’ouvre avec trois données imprimées sur le document. Saisissez-les telles qu’elles y figurent.</string>
+    <string name="openverify_nfc_document_number">Numéro du document</string>
+    <string name="openverify_nfc_birth_date">Date de naissance</string>
+    <string name="openverify_nfc_expiry_date">Date d’expiration</string>
+    <string name="openverify_nfc_date_hint">6 chiffres : année, mois, jour. Par exemple, le 12 août 1974 s’écrit 740812.</string>
+    <string name="openverify_nfc_continue">Continuer</string>
+    <string name="openverify_nfc_use_can">Utiliser le numéro d’accès de la carte</string>
+    <string name="openverify_nfc_use_mrz">Utiliser les données du document</string>
+    <string name="openverify_nfc_error_document_number">Saisissez le numéro du document avec des lettres et des chiffres uniquement.</string>
+    <string name="openverify_nfc_error_birth_date">Saisissez la date de naissance en 6 chiffres : année, mois, jour.</string>
+    <string name="openverify_nfc_error_expiry_date">Saisissez la date d’expiration en 6 chiffres : année, mois, jour.</string>
+    <string name="openverify_nfc_error_can">Saisissez les 6 chiffres du numéro d’accès de la carte.</string>
+    <string name="openverify_nfc_error_refused">La puce ne s’est pas ouverte avec ces données. Comparez-les avec votre document et réessayez.</string>
+    <string name="openverify_nfc_can_title">Saisissez le numéro d’accès de la carte</string>
+    <string name="openverify_nfc_can_intro">Certaines cartes portent au recto un numéro d’accès (CAN) à 6 chiffres. Saisissez-le tel qu’il y figure.</string>
+    <string name="openverify_nfc_can">Numéro d’accès de la carte</string>
+    <string name="openverify_nfc_tap_title">Posez votre téléphone sur le document</string>
+    <string name="openverify_nfc_tap_hint_passport">Passeport : ouvrez-le à la page de la photo et posez le dos de votre téléphone à plat sur cette page.</string>
+    <string name="openverify_nfc_tap_hint_card">Carte : posez-la sur une table et placez dessus le haut du dos de votre téléphone.</string>
+    <string name="openverify_nfc_tap_ready_note">Prenez le temps qu’il vous faut. Quand le document et le téléphone sont en place, appuyez sur le bouton et ne les bougez plus.</string>
+    <string name="openverify_nfc_ready">Je suis prêt</string>
+    <string name="openverify_nfc_change_details">Modifier les données du document</string>
+    <string name="openverify_nfc_stop">Arrêter la lecture</string>
+    <string name="openverify_nfc_phase_requesting">Préparation…</string>
+    <string name="openverify_nfc_phase_waiting">En attente de votre document. Posez votre téléphone dessus.</string>
+    <string name="openverify_nfc_phase_connecting">Connexion…</string>
+    <string name="openverify_nfc_phase_reading">Lecture…</string>
+    <string name="openverify_nfc_phase_signing">Signature du code de contrôle…</string>
+    <string name="openverify_nfc_phase_read">Lu. Nous allons maintenant le contrôler.</string>
+    <string name="openverify_nfc_file_security">Données de sécurité</string>
+    <string name="openverify_nfc_file_details">Données du document</string>
+    <string name="openverify_nfc_file_photo">Photo d’identité</string>
+    <string name="openverify_nfc_file_contents">Liste du contenu</string>
+    <string name="openverify_nfc_notice_expired">Cela a pris du temps : la lecture doit recommencer. Appuyez sur le bouton quand vous êtes prêt.</string>
+    <string name="openverify_nfc_notice_keep_still">Le document a bougé. Gardez-le immobile contre votre téléphone.</string>
+    <string name="openverify_nfc_notice_lifted">Le document s’est éloigné trop souvent. Posez-le avec votre téléphone sur une table et réessayez.</string>
+    <string name="openverify_nfc_notice_unsupported">Cette application n’a pas pu lire la puce de ce document. Assurez-vous qu’il s’agit du bon document et réessayez.</string>
+    <string name="openverify_nfc_notice_timeout">Aucun document n’a été trouvé. Déplacez lentement votre téléphone sur le document jusqu’à ce qu’il réagisse.</string>
+    <string name="openverify_nfc_notice_busy">Le lecteur est occupé. Patientez un instant et réessayez.</string>
+    <string name="openverify_nfc_notice_failed">La lecture s’est arrêtée. Réessayez.</string>
+    <string name="openverify_nfc_notice_one_more_tap">L’envoi a pris trop de temps : la puce doit être lue une fois de plus.</string>
+    <string name="openverify_nfc_notice_again">Nouvelle lecture de la puce.</string>
+    <string name="openverify_nfc_sandbox_label">Puce de test (bac à sable)</string>
+    <string name="openverify_nfc_sandbox_scenario">Scénario de la puce de test</string>
+    <string name="openverify_nfc_sandbox_use">Utiliser la puce de test</string>
+    <string name="openverify_nfc_review_title">S’agit-il de vos données ?</string>
+    <string name="openverify_nfc_review_intro">Voici ce qu’indique la puce. Rien n’a encore été envoyé.</string>
+    <string name="openverify_nfc_review_name">Nom</string>
+    <string name="openverify_nfc_review_nationality">Nationalité</string>
+    <string name="openverify_nfc_review_date_note">Les dates sont affichées telles que la puce les contient : année, mois, jour.</string>
+    <string name="openverify_nfc_review_confirm">Oui, envoyer</string>
+    <string name="openverify_nfc_review_refuse">Ce ne sont pas mes données</string>
+    <string name="openverify_nfc_review_again">La puce a été lue à nouveau. Si ce ne sont toujours pas vos données, vous pouvez vous arrêter ici et continuer plus tard.</string>
+    <string name="openverify_nfc_tips_title">Un problème pour lire la puce ?</string>
+    <string name="openverify_nfc_tip_cover">Sortez le document de tout étui ou protège-document.</string>
+    <string name="openverify_nfc_tip_case">Retirez la coque de votre téléphone si elle est épaisse ou contient du métal.</string>
+    <string name="openverify_nfc_tip_move">Déplacez lentement votre téléphone sur le document. Le lecteur se trouve souvent en haut ou au milieu du dos.</string>
+    <string name="openverify_nfc_tip_still">Ne bougez ni l’un ni l’autre jusqu’à la fin de la lecture.</string>
+    <string name="openverify_nfc_try_again">Réessayer</string>
+    <string name="openverify_nfc_unable_reader_title">Cette application ne peut pas lire les puces de documents</string>
+    <string name="openverify_nfc_unable_reader_message">L’application que vous utilisez n’a pas de lecteur de puce.</string>
+    <string name="openverify_nfc_unable_phone_title">Ce téléphone ne peut pas lire les puces de documents</string>
+    <string name="openverify_nfc_unable_phone_message">La lecture d’une puce nécessite le NFC, dont ce téléphone est dépourvu.</string>
+    <string name="openverify_nfc_unable_off_title">Le NFC est désactivé</string>
+    <string name="openverify_nfc_unable_off_message">La lecture de la puce de votre document nécessite le NFC. Activez-le dans les réglages du téléphone, puis revenez ici.</string>
+    <string name="openverify_nfc_open_settings">Ouvrir les réglages NFC</string>
+    <string name="openverify_nfc_recheck">Je l’ai activé</string>
+    <string name="openverify_nfc_unable_spent_title">La puce n’a pas pu être lue</string>
+    <string name="openverify_nfc_unable_spent_message">La lecture a été lancée trop de fois pour cette tentative : elle ne peut plus être relancée pour le moment.</string>
+    <string name="openverify_nfc_another_way">Utiliser un autre moyen</string>
+    <string name="openverify_nfc_continue_later">Continuer plus tard</string>
+    <string name="openverify_nfc_fallback_note">Vous pouvez continuer par un autre moyen ou revenir plus tard.</string>
+    <string name="openverify_nfc_later_note">Vous pouvez revenir plus tard pour continuer.</string>
+    <string name="openverify_nfc_sending">Envoi…</string>
+</resources>

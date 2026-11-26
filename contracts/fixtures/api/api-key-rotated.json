@@ -1,0 +1,25 @@
+{
+  "data": {
+    "type": "api-key",
+    "id": "key_01M5CN00000000000000009B52",
+    "attributes": {
+      "name": "Back office",
+      "scopes": ["inquiries:read"],
+      "allowed-ips": ["203.0.113.0/24"],
+      "api-version": "2026-10-01",
+      "token-prefix": "ov_sbx_Synt",
+      "expires-at": null,
+      "last-used-at": null,
+      "created-at": "2026-10-29T09:00:00.000Z",
+      "pii-masked": true,
+      "note": "Rotated by the platform team every quarter",
+      "attribute-blocklist": ["fields", "reference-id"],
+      "age-warning": false
+    }
+  },
+  "meta": {
+    "token": "ov_sbx_Synthetic0RotatedTokenAAAAAAAAAAAAAAAAAAAAA",
+    "previous-key-id": "key_01M5CN00000000000000009B51",
+    "previous-expires-at": "2026-10-30T09:00:00.000Z"
+  }
+}

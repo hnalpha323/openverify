@@ -1,0 +1,18 @@
+{
+  "data": {
+    "type": "sso-provider",
+    "attributes": {
+      "display-name": "Example Bank staff",
+      "issuer": "https://idp.example.com/oauth2/default",
+      "client-id": "synthetic-console-client",
+      "client-secret": "synthetic-client-secret-change-me",
+      "allowed-email-domains": ["example.com"],
+      "tenant-pin": null,
+      "required-amr": ["mfa"],
+      "required-acr": [],
+      "jit-provisioning": false,
+      "default-role-ids": [],
+      "enforced": false
+    }
+  }
+}

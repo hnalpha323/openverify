@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "The value is already active in this list.",
+  "instance": "/api/v1/list-item/strings",
+  "requestId": "00000000-0000-4000-8000-000000000806",
+  "code": "list_item_exists"
+}

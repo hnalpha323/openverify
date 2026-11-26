@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "Only a draft version can change.",
+  "instance": "/api/v1/transaction-type-versions/txntpv_01M5CK3190XEVBM5ZXA76E1JSN",
+  "requestId": "00000000-0000-4000-8000-000000000909",
+  "code": "transaction_type_version_not_draft"
+}

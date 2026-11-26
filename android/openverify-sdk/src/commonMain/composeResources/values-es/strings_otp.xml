@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Spanish for strings_otp.xml (values), as the web flow words it (apps/flow/src/steps/otp/locales/es.ts). -->
+<resources>
+    <string name="openverify_otp_phone_title">Confirma tu número de teléfono</string>
+    <string name="openverify_otp_phone_intro">Te enviaremos un código por mensaje de texto. Pueden aplicarse las tarifas habituales de mensajes.</string>
+    <string name="openverify_otp_country">País</string>
+    <string name="openverify_otp_phone_number">Número de teléfono</string>
+    <string name="openverify_otp_phone_hint">Elige tu país y escribe tu número. También puedes escribir el número completo, empezando por + y el código del país.</string>
+    <string name="openverify_otp_email_title">Confirma tu correo electrónico</string>
+    <string name="openverify_otp_email_intro">Te enviaremos un código a tu correo electrónico.</string>
+    <string name="openverify_otp_email_address">Correo electrónico</string>
+    <string name="openverify_otp_send">Enviar código</string>
+    <string name="openverify_otp_sending">Enviando tu código…</string>
+    <string name="openverify_otp_phone_required">Escribe tu número de teléfono.</string>
+    <string name="openverify_otp_email_invalid">Escribe un correo electrónico con el formato correcto, como nombre@ejemplo.com.</string>
+
+    <string name="openverify_otp_code_title">Escribe el código</string>
+    <string name="openverify_otp_sent_to">Enviamos un código a %1$s.</string>
+    <string name="openverify_otp_sent_again">Enviamos un código nuevo a %1$s.</string>
+    <string name="openverify_otp_sent">Te enviamos un código.</string>
+    <string name="openverify_otp_code">Código</string>
+    <string name="openverify_otp_code_hint">El código tiene %1$d dígitos.</string>
+    <string name="openverify_otp_confirm">Confirmar</string>
+    <string name="openverify_otp_checking">Comprobando tu código…</string>
+    <plurals name="openverify_otp_attempts_left">
+        <item quantity="one">Te queda %1$d intento para este código.</item>
+        <item quantity="other">Te quedan %1$d intentos para este código.</item>
+    </plurals>
+    <plurals name="openverify_otp_expires_in">
+        <item quantity="one">El código caduca en %1$d minuto.</item>
+        <item quantity="other">El código caduca en %1$d minutos.</item>
+    </plurals>
+    <string name="openverify_otp_code_expired">Este código ha caducado. Pide un código nuevo.</string>
+    <string name="openverify_otp_resend">Enviar un código nuevo</string>
+    <plurals name="openverify_otp_resend_in">
+        <item quantity="one">Puedes pedir un código nuevo dentro de %1$d segundo.</item>
+        <item quantity="other">Puedes pedir un código nuevo dentro de %1$d segundos.</item>
+    </plurals>
+    <plurals name="openverify_otp_sends_left">
+        <item quantity="one">Puedes pedir %1$d código más.</item>
+        <item quantity="other">Puedes pedir %1$d códigos más.</item>
+    </plurals>
+    <string name="openverify_otp_no_sends_left">No se pueden enviar más códigos.</string>
+    <string name="openverify_otp_finish">Continuar sin código</string>
+    <string name="openverify_otp_change_phone">Cambiar el número de teléfono</string>
+    <string name="openverify_otp_change_email">Cambiar el correo electrónico</string>
+
+    <string name="openverify_otp_error_destination_invalid_phone">Este número no puede recibir un código. Revísalo o usa otro número de teléfono.</string>
+    <string name="openverify_otp_error_destination_invalid_email">Este correo electrónico no puede recibir un código. Revísalo o usa otro correo electrónico.</string>
+    <string name="openverify_otp_error_not_allowed_phone">Aquí no se pueden enviar códigos a este número. Usa un número de uno de los países de la lista.</string>
+    <string name="openverify_otp_error_not_allowed_email">Aquí no se pueden enviar códigos a este correo electrónico. Usa otro correo electrónico.</string>
+    <string name="openverify_otp_error_delivery_failed_phone">No pudimos enviar un código a este número. Revísalo y vuelve a intentarlo, o usa otro número.</string>
+    <string name="openverify_otp_error_delivery_failed_email">No pudimos enviar un código a este correo electrónico. Revísalo y vuelve a intentarlo, o usa otro correo electrónico.</string>
+    <string name="openverify_otp_error_incorrect">Ese código no es correcto. Revísalo y vuelve a intentarlo.</string>
+    <string name="openverify_otp_error_exhausted">Demasiados intentos incorrectos para este código. Pide un código nuevo.</string>
+    <string name="openverify_otp_error_not_sent">Primero pide un código.</string>
+    <string name="openverify_otp_error_too_soon">Espera un poco antes de pedir un código nuevo.</string>
+    <string name="openverify_otp_error_too_long_phone">Este número es demasiado largo. Escribe solo el número de teléfono, sin otro texto.</string>
+    <string name="openverify_otp_error_too_long_email">Este correo electrónico es demasiado largo. Revísalo y vuelve a intentarlo.</string>
+
+    <string name="openverify_otp_limited_title">No podemos enviarte un código ahora</string>
+    <string name="openverify_otp_limited_message">No pudimos enviarte ni comprobar un código en este momento. Puedes continuar, y la organización que te pidió la verificación la revisará.</string>
+    <string name="openverify_otp_limited_continue">Continuar</string>
+    <string name="openverify_otp_limited_continuing">Enviando tu verificación…</string>
+    <string name="openverify_otp_limited_refused">No pudimos continuar. Espera un rato y vuelve a intentarlo.</string>
+
+    <string name="openverify_retry_title_attempt">Tu último intento no se pudo completar</string>
+</resources>

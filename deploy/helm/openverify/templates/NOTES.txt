@@ -1,0 +1,57 @@
+OpenVerify {{ .Chart.AppVersion }} is installed as {{ include "openverify.fullname" . }} in {{ .Release.Namespace }}.
+
+What this chart does and does not do:
+- It is a secure default, not a guarantee: what it achieves depends on your cluster, its network
+  plugin, your secret store and your data stores. Nothing in this release is signed or attested;
+  check each image by the SHA-256 digest the release notes give, and pin it in <component>.image.digest.
+- The network policies take effect only with a network plugin that enforces NetworkPolicy. Without
+  one, every pod can reach every other pod and the internet.
+- The chart creates no Secret. Each process reads its own Secret (secrets.<process>.existingSecret)
+  as files through the <NAME>_FILE variables, and opens no metrics port: metrics are log events.
+- The project's ASVS and MASVS rows are self-assessed.
+- Strict-Transport-Security comes from the ingress (ingress.hsts); install.hstsMaxAge stays 0.
+- The migrate Job runs db:migrate as the migration role, then grants the runtime role
+  {{ .Values.external.postgres.runtimeRole | quote }}{{ if not .Values.migrate.grantRuntime }} (switched off: run db:grant-runtime yourself after every db:migrate){{ end }}.
+{{- if .Values.migrate.gitOps }}
+- migrate.gitOps is on: the migrate Job is a plain Job named by its image; the new pods may restart
+  until it has finished.
+{{- end }}
+{{- if not .Values.api.trustProxy }}
+- api.trustProxy is unset, so the API sees your ingress controller's address as every client's
+  address. Set it to the addresses of the proxies in front of the API (your ingress controller's
+  pods or load balancer), never to "true", which nulls every production network fact
+  (client_address_untrusted).
+{{- else if eq (toString .Values.api.trustProxy) "true" }}
+- api.trustProxy is "true": every production network fact is null (client_address_untrusted). List
+  the ingress's addresses instead.
+{{- end }}
+{{- if eq .Values.models.source "job" }}
+- Model weights: the models-fetch Job fetched them (pinned SHA-256s) into
+  {{ include "openverify.modelsClaim" . }}/{{ include "openverify.modelsDigest" . }}/, which vision reads read-only.
+  The claim is kept after an uninstall; delete it by hand.
+{{- else }}
+- Model weights: vision reads {{ .Values.models.existingClaim }}/{{ include "openverify.modelsDigest" . }}/ read-only; fill
+  it once with python3 -I scripts/fetch_models.py --dest <mount>/{{ include "openverify.modelsDigest" . }}.
+{{- end }}
+{{- if .Values.worker.extraContainers }}
+- The worker's pod runs your worker.extraContainers; OPENVERIFY_CLAMD_SOCKET is
+  /run/clamd/clamd.sock on the shared clamd-socket volume.
+{{- else }}
+- No clamd is shipped (ClamAV is GPL-2.0): to bind the attachment scanner to clamd, run your own in
+  worker.extraContainers; the chart then shares /run/clamd with the worker and sets
+  OPENVERIFY_CLAMD_SOCKET=/run/clamd/clamd.sock. Nothing of it renders without them.
+{{- end }}
+- Connect is {{ ternary "on" "off" .Values.install.connectEnabled }}; the UN Security Council list's
+  opt-in is {{ ternary "allowed" "locked" .Values.install.watchlistUnOptInAllowed }}.
+{{- $api := include "openverify.publicUrl" (dict "root" . "host" "api") }}
+{{- $flow := include "openverify.publicUrl" (dict "root" . "host" "flow") }}
+{{- $console := include "openverify.publicUrl" (dict "root" . "host" "dashboard") }}
+{{- if or (not $api) (not $flow) (not $console) }}
+- Set publicUrls (or ingress.hosts) for the API, the flow and the console: the API refuses to start
+  without OPENVERIFY_FLOW_PUBLIC_URL, and the console's links need OPENVERIFY_DASHBOARD_PUBLIC_URL.
+{{- else }}
+
+API: {{ $api }}
+Flow: {{ $flow }}
+Console: {{ $console }}
+{{- end }}

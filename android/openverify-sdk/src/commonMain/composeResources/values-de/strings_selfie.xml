@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  German copy of values/strings_selfie.xml, machine-drafted by selfie-guidance (Workflow 10B,
+  C199.1; i18n/review-status.json): the web flow's German words where it has the same text
+  (selfie.guidance, screen.extend), drafted here otherwise. Positional placeholders only, ' and "
+  written as they are, no isolate or other bidi control (ResourcesTest).
+-->
+<resources>
+    <!-- C204.3: one hint at a time; the shutter stays on screen (C202.4). -->
+    <string name="openverify_selfie_guidance_starting">Die Gesichtsführung wird vorbereitet…</string>
+    <string name="openverify_selfie_guidance_manual">Halten Sie die Position und wählen Sie dann „Foto aufnehmen“.</string>
+    <string name="openverify_selfie_guidance_no_face">Wir sehen Ihr Gesicht nicht. Bringen Sie Ihr Gesicht in das Oval.</string>
+    <string name="openverify_selfie_guidance_multiple_faces">Achten Sie darauf, dass nur Ihr Gesicht im Bild ist.</string>
+    <string name="openverify_selfie_guidance_too_far">Gehen Sie näher an die Kamera heran.</string>
+    <string name="openverify_selfie_guidance_too_close">Gehen Sie etwas zurück.</string>
+    <string name="openverify_selfie_guidance_off_centre">Bringen Sie Ihr Gesicht in die Mitte des Ovals.</string>
+    <string name="openverify_selfie_guidance_look_straight">Schauen Sie direkt in die Kamera.</string>
+    <string name="openverify_selfie_guidance_turn_left">Drehen Sie den Kopf langsam nach links.</string>
+    <string name="openverify_selfie_guidance_turn_right">Drehen Sie den Kopf langsam nach rechts.</string>
+    <string name="openverify_selfie_guidance_hold_still">Bitte stillhalten…</string>
+    <!-- C204.5 (WCAG 2.2.1): 20 s before the capture ends, in a polite live region; the count is shown once. -->
+    <plurals name="openverify_selfie_extend_warning">
+        <item quantity="one">Noch etwa %1$d Sekunde für Ihre Fotos. Brauchen Sie mehr Zeit?</item>
+        <item quantity="other">Noch etwa %1$d Sekunden für Ihre Fotos. Brauchen Sie mehr Zeit?</item>
+    </plurals>
+    <string name="openverify_selfie_extend_more_time">Mehr Zeit</string>
+    <string name="openverify_selfie_extend_extended">Sie haben mehr Zeit.</string>
+    <string name="openverify_selfie_extend_failed">Wir konnten keine Zeit hinzufügen. Machen Sie Ihre Fotos jetzt, oder beginnen Sie neu, wenn die Zeit abläuft.</string>
+    <string name="openverify_selfie_extend_already_sent">Ihre Fotos wurden bereits gesendet. Sie brauchen keine weitere Zeit.</string>
+</resources>

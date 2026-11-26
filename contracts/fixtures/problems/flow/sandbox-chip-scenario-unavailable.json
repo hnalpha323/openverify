@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "This sandbox chip scenario is not available on this server.",
+  "instance": "/api/v1/flow/verifications/ver_01M5CK3190XEVBM5ZXA76E1JSM/sandbox-chip",
+  "requestId": "00000000-0000-4000-8000-000000010c03",
+  "code": "sandbox_chip_scenario_unavailable"
+}

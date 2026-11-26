@@ -1,0 +1,65 @@
+{
+  "data": {
+    "type": "consent-record",
+    "id": "cnsr_01M5CN0000000000000011A300",
+    "attributes": {
+      "side": "source",
+      "outcome": "accepted",
+      "status": "withdrawn",
+      "purpose": "share.reuse-kyc",
+      "recipient-organization-id": "org_01M5CN0000000000000011A020",
+      "recipient-name": "Example Partner",
+      "data-categories": [
+        "identity-fields",
+        "contact-fields",
+        "document-images",
+        "biometric",
+        "check-results"
+      ],
+      "explicit-biometric": true,
+      "text": {
+        "locale": "en",
+        "keys": ["share.consent.source"],
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "biometric-text-sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "method": "flow",
+      "witnessed": true,
+      "evidence": {
+        "session-id": "iqse_01M5CJZC30W7PFE0GD30HJWEA4",
+        "accepted-at": "2026-10-20T12:08:00.000Z",
+        "declined-at": null
+      },
+      "evidence-reference": null,
+      "ip-address": null,
+      "user-agent": null,
+      "text-body": null,
+      "expires-at": "2026-11-03T12:08:00.000Z",
+      "withdrawn-at": "2026-10-21T08:00:00.000Z",
+      "withdrawn-via": "api",
+      "withdrawal-reason": "subject-request",
+      "redacted-at": null,
+      "created-at": "2026-10-20T12:08:00.000Z"
+    },
+    "relationships": {
+      "subject": {
+        "data": {
+          "type": "inquiry",
+          "id": "inq_01M5CJXHG07XPHF3HRM6NREDH7"
+        }
+      },
+      "connection": {
+        "data": {
+          "type": "connect/connection",
+          "id": "cxn_01M5CN0000000000000011A100"
+        }
+      },
+      "share-token": {
+        "data": {
+          "type": "connect/share-token",
+          "id": "cnst_01M5CN0000000000000011A200"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The share policy is not valid.",
+  "instance": "/api/v1/connect/connections",
+  "requestId": "00000000-0000-4000-8000-00000011a005",
+  "code": "share_policy_invalid",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/share-policy/verifications/types/1",
+      "detail": "selfie needs biometric: true"
+    },
+    {
+      "location": "body",
+      "pointer": "/data/attributes/share-policy/peek/account.fields.name_first",
+      "detail": "the policy does not share this path"
+    }
+  ]
+}

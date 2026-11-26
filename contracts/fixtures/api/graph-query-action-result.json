@@ -1,0 +1,20 @@
+{
+  "data": {
+    "type": "graph-query-action",
+    "attributes": {
+      "action": "add-tag",
+      "preview": false,
+      "selected-count": 2,
+      "outcomes": [
+        {
+          "account-id": "acc_01M5CK3190XEVBM5ZXA76E1JSN",
+          "outcome": "done"
+        },
+        {
+          "account-id": "acc_01M5CK3190XEVBM5ZXA76E1JSP",
+          "outcome": "skipped_consolidated"
+        }
+      ]
+    }
+  }
+}

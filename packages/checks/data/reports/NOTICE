@@ -1,0 +1,27 @@
+OpenVerify report tables (packages/checks/data/reports)
+=======================================================
+
+The authored tables (free-mail-domains.json, relay-domains.json, role-local-parts.json,
+mx-providers.json) are OpenVerify's own, under the repository's Apache-2.0 licence; the domain,
+provider and host names in them are facts, each provider cited at its own page. The generated
+tables are written by packages/checks/src/reports/build-data.ts from files data/manifest.json pins
+with their commit and SHA-256. Their notices follow.
+
+
+1. us-zip-prefixes.json
+-----------------------
+
+Derived from Google's libaddressinput address metadata
+(https://github.com/google/libaddressinput), commit 81eb9628382b07d371d8ea0b11badf7de3857fd5,
+testdata/countryinfo.txt: the data/US entry's sub_keys and sub_zips (the state ZIP prefixes).
+Changes: only those two members are kept, as a map from each code to its prefix pattern. Used under
+the Creative Commons Attribution 4.0 International licence
+(https://creativecommons.org/licenses/by/4.0/). Copyright Google LLC.
+
+
+2. email-tables-check.json
+--------------------------
+
+A record of the check that no free-mail or relay domain is on the disposable list
+(disposable-email-domains, CC0-1.0, pinned as disposable_email_domains). It holds two SHA-256
+digests and no data from the list.

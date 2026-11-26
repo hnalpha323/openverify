@@ -1,0 +1,122 @@
+{
+  "@programName": "ZAP",
+  "@version": "2.17.0",
+  "@generated": "synthetic",
+  "created": "2026-11-20T00:00:00Z",
+  "insights": [],
+  "sequences": [],
+  "site": [
+    {
+      "@name": "http://127.0.0.1:43000",
+      "@host": "127.0.0.1",
+      "@port": "43000",
+      "@ssl": "false",
+      "alerts": [
+        {
+          "pluginid": "10038",
+          "alertRef": "10038-1",
+          "alert": "Content Security Policy (CSP) Header Not Set",
+          "name": "Content Security Policy (CSP) Header Not Set",
+          "riskcode": "2",
+          "confidence": "3",
+          "riskdesc": "Medium (High)",
+          "desc": "<p>synthetic</p>",
+          "count": "2",
+          "solution": "",
+          "otherinfo": "",
+          "reference": "",
+          "cweid": "693",
+          "wascid": "15",
+          "sourceid": "10",
+          "systemic": false,
+          "instances": [
+            {
+              "id": "1",
+              "uri": "http://127.0.0.1:43000/api/v1/inquiries/inq_01ARZ3NDEKTSV4RRFFQ69G5FAV?include=files",
+              "nodeName": "",
+              "method": "GET",
+              "param": "",
+              "attack": "",
+              "evidence": "Authorization: Bearer ov_sbx_syntheticKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK",
+              "otherinfo": "Cookie: openverify_session=ovu_syntheticUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU",
+              "requestHeader": "GET /api/v1/inquiries/inq_01ARZ3NDEKTSV4RRFFQ69G5FAV HTTP/1.1\r\nAuthorization: Bearer ov_sbx_syntheticKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK\r\nCookie: openverify_session=ovu_syntheticUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU\r\n",
+              "responseHeader": "HTTP/1.1 200 OK\r\nSet-Cookie: openverify_session=ovu_syntheticUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU\r\n"
+            },
+            {
+              "id": "2",
+              "uri": "http://127.0.0.1:43000/api/v1/flow/session",
+              "nodeName": "",
+              "method": "GET",
+              "param": "",
+              "attack": "",
+              "evidence": "Bearer ovs_syntheticSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS",
+              "otherinfo": ""
+            }
+          ]
+        },
+        {
+          "pluginid": "40018",
+          "alertRef": "40018",
+          "alert": "SQL Injection",
+          "name": "SQL Injection",
+          "riskcode": "3",
+          "confidence": "2",
+          "riskdesc": "High (Medium)",
+          "desc": "",
+          "count": "1",
+          "solution": "",
+          "otherinfo": "",
+          "reference": "",
+          "cweid": "89",
+          "wascid": "19",
+          "sourceid": "1",
+          "systemic": false,
+          "instances": [
+            {
+              "id": "3",
+              "uri": "http://127.0.0.1:43000/api/v1/inquiries",
+              "nodeName": "",
+              "method": "POST",
+              "param": "reference-id",
+              "attack": "' OR '1'='1",
+              "evidence": "syntax error at or near",
+              "otherinfo": "",
+              "requestBody": "{\"reference-id\":\"x\"}",
+              "requestHeader": "POST /api/v1/inquiries HTTP/1.1\r\nAuthorization: Bearer ov_sbx_syntheticKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK\r\n"
+            }
+          ]
+        },
+        {
+          "pluginid": "10021",
+          "alertRef": "10021",
+          "alert": "X-Content-Type-Options Header Missing",
+          "name": "X-Content-Type-Options Header Missing",
+          "riskcode": "1",
+          "confidence": "2",
+          "riskdesc": "Low (Medium)",
+          "desc": "",
+          "count": "1",
+          "solution": "",
+          "otherinfo": "",
+          "reference": "",
+          "cweid": "693",
+          "wascid": "15",
+          "sourceid": "1",
+          "systemic": false,
+          "instances": [
+            {
+              "id": "4",
+              "uri": "http://127.0.0.1:43000/api/v1/accounts/act_01ARZ3NDEKTSV4RRFFQ69G5FAV/redact",
+              "nodeName": "",
+              "method": "POST",
+              "param": "x-content-type-options",
+              "attack": "",
+              "evidence": "",
+              "otherinfo": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

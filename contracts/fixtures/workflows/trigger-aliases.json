@@ -1,0 +1,58 @@
+{
+  "template": {
+    "kind": "relationship",
+    "relationship": "inquiry-template"
+  },
+  "token": {
+    "kind": "member",
+    "member": "id"
+  },
+  "country_code": {
+    "kind": "member",
+    "member": "country"
+  },
+  "verification_government_id": {
+    "kind": "verification",
+    "resource-type": "verification/government-id"
+  },
+  "verification_selfie": {
+    "kind": "verification",
+    "resource-type": "verification/selfie"
+  },
+  "verification_document": {
+    "kind": "verification",
+    "resource-type": "verification/document"
+  },
+  "verification_database": {
+    "kind": "verification",
+    "resource-type": "verification/database"
+  },
+  "verification_aamva": {
+    "kind": "verification",
+    "resource-type": "verification/aamva"
+  },
+  "verification_phone_number": {
+    "kind": "verification",
+    "resource-type": "verification/phone-number"
+  },
+  "verification_email_address": {
+    "kind": "verification",
+    "resource-type": "verification/email-address"
+  },
+  "verification_government_id_nfc": {
+    "kind": "verification",
+    "resource-type": "verification/government-id-nfc"
+  },
+  "verification_crypto_wallet": {
+    "kind": "verification",
+    "resource-type": "verification/crypto-wallet"
+  },
+  "verification_database_business": {
+    "kind": "verification",
+    "resource-type": "verification/database-business"
+  },
+  "verification_business_website": {
+    "kind": "verification",
+    "resource-type": "verification/business-website"
+  }
+}

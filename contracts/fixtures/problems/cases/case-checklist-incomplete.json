@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "A required checklist item of that status is not checked.",
+  "instance": "/api/v1/cases/case_01M5CN00000000000000009B02/set-status",
+  "requestId": "00000000-0000-4000-8000-000000009b07",
+  "code": "case_checklist_incomplete",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/meta/status",
+      "detail": "The checklist item id-document-reviewed is required for resolved."
+    }
+  ]
+}

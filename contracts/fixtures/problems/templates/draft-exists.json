@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "The template already holds a draft, which a restore never replaces.",
+  "instance": "/api/v1/inquiry-templates/itmpl_01M5CN00000000000000009A02/restore",
+  "requestId": "00000000-0000-4000-8000-000000009a09",
+  "code": "draft_exists"
+}

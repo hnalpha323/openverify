@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "description": "MRZ lines as OCR might read them, with the corrections ICAO-position rules allow (C31.3): only a character impossible for its position, at most one per field, never digit for digit or letter for letter.",
+  "source": {
+    "citation": "Derived from the ICAO Doc 9303 examples by OpenVerify; the position rules are ICAO 9303 Part 3 §4 and Parts 4-7",
+    "url": "https://www.icao.int/sites/default/files/publications/DocSeries/9303_p3_cons_en.pdf"
+  },
+  "vectors": [
+    {
+      "id": "td1-birth-date-letter-o",
+      "format": "TD1",
+      "lines": [
+        "I<UTOD231458907<<<<<<<<<<<<<<<",
+        "74O8122F1204159UTO<<<<<<<<<<<6",
+        "ERIKSSON<<ANNA<MARIA<<<<<<<<<<"
+      ],
+      "corrected_lines": [
+        "I<UTOD231458907<<<<<<<<<<<<<<<",
+        "7408122F1204159UTO<<<<<<<<<<<6",
+        "ERIKSSON<<ANNA<MARIA<<<<<<<<<<"
+      ],
+      "corrections": [
+        {
+          "line": 1,
+          "position": 2,
+          "field": "birth_date",
+          "from": "O",
+          "to": "0"
+        }
+      ],
+      "valid": true,
+      "note": "A letter O where the birth date needs a digit: corrected to 0, and the check digits then hold."
+    },
+    {
+      "id": "td1-birth-date-check-digit-letter-z",
+      "format": "TD1",
+      "lines": [
+        "I<UTOD231458907<<<<<<<<<<<<<<<",
+        "740812ZF1204159UTO<<<<<<<<<<<6",
+        "ERIKSSON<<ANNA<MARIA<<<<<<<<<<"
+      ],
+      "corrected_lines": [
+        "I<UTOD231458907<<<<<<<<<<<<<<<",
+        "7408122F1204159UTO<<<<<<<<<<<6",
+        "ERIKSSON<<ANNA<MARIA<<<<<<<<<<"
+      ],
+      "corrections": [
+        {
+          "line": 1,
+          "position": 6,
+          "field": "birth_date_check_digit",
+          "from": "Z",
+          "to": "2"
+        }
+      ],
+      "valid": true,
+      "note": "A letter Z in a check-digit position: corrected to 2."
+    },
+    {
+      "id": "td3-issuing-state-digit-zero",
+      "format": "TD3",
+      "lines": [
+        "P<UT0ERIKSSON<<ANNA<MARIA<<<<<<<<<<<<<<<<<<<",
+        "L898902C36UTO7408122F1204159ZE184226B<<<<<10"
+      ],
+      "corrected_lines": [
+        "P<UTOERIKSSON<<ANNA<MARIA<<<<<<<<<<<<<<<<<<<",
+        "L898902C36UTO7408122F1204159ZE184226B<<<<<10"
+      ],
+      "corrections": [
+        {
+          "line": 0,
+          "position": 4,
+          "field": "issuing_state",
+          "from": "0",
+          "to": "O"
+        }
+      ],
+      "valid": true,
+      "note": "A digit 0 where the issuing state needs a letter: corrected to O."
+    },
+    {
+      "id": "td1-name-digit-zero",
+      "format": "TD1",
+      "lines": [
+        "I<UTOD231458907<<<<<<<<<<<<<<<",
+        "7408122F1204159UTO<<<<<<<<<<<6",
+        "ERIKSS0N<<ANNA<MARIA<<<<<<<<<<"
+      ],
+      "corrected_lines": [
+        "I<UTOD231458907<<<<<<<<<<<<<<<",
+        "7408122F1204159UTO<<<<<<<<<<<6",
+        "ERIKSSON<<ANNA<MARIA<<<<<<<<<<"
+      ],
+      "corrections": [
+        {
+          "line": 2,
+          "position": 6,
+          "field": "name",
+          "from": "0",
+          "to": "O"
+        }
+      ],
+      "valid": true,
+      "note": "A digit 0 inside the name: corrected to O."
+    },
+    {
+      "id": "td3-composite-letter-o",
+      "format": "TD3",
+      "lines": [
+        "P<UTOERIKSSON<<ANNA<MARIA<<<<<<<<<<<<<<<<<<<",
+        "L898902C36UTO7408122F1204159ZE184226B<<<<<1O"
+      ],
+      "corrected_lines": [
+        "P<UTOERIKSSON<<ANNA<MARIA<<<<<<<<<<<<<<<<<<<",
+        "L898902C36UTO7408122F1204159ZE184226B<<<<<10"
+      ],
+      "corrections": [
+        {
+          "line": 1,
+          "position": 43,
+          "field": "composite_check_digit",
+          "from": "O",
+          "to": "0"
+        }
+      ],
+      "valid": true,
+      "note": "A letter O for the composite check digit: corrected to 0."
+    },
+    {
+      "id": "mrva-expiration-date-letter-i",
+      "format": "MRVA",
+      "lines": [
+        "V<UTOERIKSSON<<ANNA<MARIA<<<<<<<<<<<<<<<<<<<",
+        "L8988901C4XXX4009078F9612I096ZE184226B<<<<<<"
+      ],
+      "corrected_lines": [
+        "V<UTOERIKSSON<<ANNA<MARIA<<<<<<<<<<<<<<<<<<<",
+        "L8988901C4XXX4009078F96121096ZE184226B<<<<<<"
+      ],
+      "corrections": [
+        {
+          "line": 1,
+          "position": 25,
+          "field": "expiration_date",
+          "from": "I",
+          "to": "1"
+        }
+      ],
+      "valid": true,
+      "note": "A letter I where a visa expiration date needs a digit: corrected to 1."
+    },
+    {
+      "id": "td1-birth-date-two-letters",
+      "format": "TD1",
+      "lines": [
+        "I<UTOD231458907<<<<<<<<<<<<<<<",
+        "7O08I22F1204159UTO<<<<<<<<<<<6",
+        "ERIKSSON<<ANNA<MARIA<<<<<<<<<<"
+      ],
+      "corrected_lines": [
+        "I<UTOD231458907<<<<<<<<<<<<<<<",
+        "7O08I22F1204159UTO<<<<<<<<<<<6",
+        "ERIKSSON<<ANNA<MARIA<<<<<<<<<<"
+      ],
+      "corrections": [],
+      "valid": false,
+      "note": "Two impossible characters in one field: C31.3 corrects at most one per field, so none is corrected and the MRZ fails."
+    },
+    {
+      "id": "td1-birth-date-digit-for-digit",
+      "format": "TD1",
+      "lines": [
+        "I<UTOD231458907<<<<<<<<<<<<<<<",
+        "7408132F1204159UTO<<<<<<<<<<<6",
+        "ERIKSSON<<ANNA<MARIA<<<<<<<<<<"
+      ],
+      "corrected_lines": [
+        "I<UTOD231458907<<<<<<<<<<<<<<<",
+        "7408132F1204159UTO<<<<<<<<<<<6",
+        "ERIKSSON<<ANNA<MARIA<<<<<<<<<<"
+      ],
+      "corrections": [],
+      "valid": false,
+      "note": "A wrong digit (3 for 2): never corrected digit for digit, so the check digit fails."
+    },
+    {
+      "id": "td3-document-number-letter-o",
+      "format": "TD3",
+      "lines": [
+        "P<UTOERIKSSON<<ANNA<MARIA<<<<<<<<<<<<<<<<<<<",
+        "L8989O2C36UTO7408122F1204159ZE184226B<<<<<10"
+      ],
+      "corrected_lines": [
+        "P<UTOERIKSSON<<ANNA<MARIA<<<<<<<<<<<<<<<<<<<",
+        "L8989O2C36UTO7408122F1204159ZE184226B<<<<<10"
+      ],
+      "corrections": [],
+      "valid": false,
+      "note": "A letter O inside the document number, where letters are allowed: not corrected, so the document number check digit fails."
+    },
+    {
+      "id": "td1-birth-date-letter-x",
+      "format": "TD1",
+      "lines": [
+        "I<UTOD231458907<<<<<<<<<<<<<<<",
+        "74X8122F1204159UTO<<<<<<<<<<<6",
+        "ERIKSSON<<ANNA<MARIA<<<<<<<<<<"
+      ],
+      "corrected_lines": [
+        "I<UTOD231458907<<<<<<<<<<<<<<<",
+        "74X8122F1204159UTO<<<<<<<<<<<6",
+        "ERIKSSON<<ANNA<MARIA<<<<<<<<<<"
+      ],
+      "corrections": [],
+      "valid": false,
+      "note": "A letter with no digit counterpart (X) in the birth date: not corrected."
+    }
+  ]
+}

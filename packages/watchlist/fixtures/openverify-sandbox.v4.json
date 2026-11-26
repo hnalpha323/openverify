@@ -1,0 +1,3719 @@
+{
+  "source": "openverify-sandbox",
+  "published_at": "2026-01-04T00:00:00Z",
+  "entries": [
+    {
+      "entry_id": "SBX-1001",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Avery Sandbox Quillfeather",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Avery"
+            },
+            {
+              "role": "middle",
+              "value": "Sandbox"
+            },
+            {
+              "role": "family",
+              "value": "Quillfeather"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        },
+        {
+          "full": "Эйвери Сэндбокс Квиллфезер",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Эйвери"
+            },
+            {
+              "role": "middle",
+              "value": "Сэндбокс"
+            },
+            {
+              "role": "family",
+              "value": "Квиллфезер"
+            }
+          ],
+          "script": "cyrillic",
+          "quality": "strong",
+          "primary": false
+        },
+        {
+          "full": "Avy Quill",
+          "parts": [],
+          "script": "latin",
+          "quality": "weak",
+          "primary": false
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1980-04-12",
+          "precision": "day"
+        }
+      ],
+      "birth_places": ["Sandbox City"],
+      "countries": [
+        {
+          "code": "GB",
+          "role": "nationality"
+        }
+      ],
+      "gender": "female",
+      "identifiers": [
+        {
+          "kind": "passport",
+          "value": "SBXP12345",
+          "country": "GB"
+        }
+      ],
+      "addresses": [
+        {
+          "country": "GB",
+          "city": "Sandbox City",
+          "postcode": "SB1 1ZZ",
+          "lines": ["1 Synthetic Lane"]
+        }
+      ],
+      "crypto_addresses": [],
+      "programs": ["SANDBOX-PROGRAM-1"],
+      "listed_at": "2025-06-01",
+      "positions": [],
+      "relations": [],
+      "remarks": "Sandbox entry: every value in it is fictional."
+    },
+    {
+      "entry_id": "SBX-1002",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Rowan Fixturedale",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Rowan"
+            },
+            {
+              "role": "family",
+              "value": "Fixturedale"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1975-10-30",
+          "precision": "day"
+        }
+      ],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "FR",
+          "role": "nationality"
+        }
+      ],
+      "gender": "male",
+      "identifiers": [],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SANDBOX-PROGRAM-1", "SANDBOX-PROGRAM-2"],
+      "listed_at": "2026-01-02",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SBX-2001",
+      "kind": "entity",
+      "names": [
+        {
+          "full": "Sandbox Sanctioned Holdings Ltd",
+          "parts": [],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "GB",
+          "role": "registration"
+        }
+      ],
+      "identifiers": [
+        {
+          "kind": "lei",
+          "value": "5299000SANDBOXLEI047"
+        },
+        {
+          "kind": "registration_number",
+          "value": "SBX00000001",
+          "country": "GB"
+        },
+        {
+          "kind": "website",
+          "value": "sanctioned-holdings.example"
+        }
+      ],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SANDBOX-PROGRAM-1"],
+      "listed_at": "2025-06-01",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SBX-2002",
+      "kind": "entity",
+      "names": [
+        {
+          "full": "Sandbox Listed Party",
+          "parts": [],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "GB",
+          "role": "registration"
+        }
+      ],
+      "identifiers": [],
+      "addresses": [],
+      "crypto_addresses": [
+        {
+          "raw": "0x5aAeb6053F3E94C9b9A09f33669435E7Ef1BeAed",
+          "ticker": "ETH"
+        },
+        {
+          "raw": "bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t4",
+          "ticker": "XBT"
+        },
+        {
+          "raw": "TR6pXpdtRVYNZRugmQKsZxP2WMUjr1evGj",
+          "ticker": "USDT"
+        }
+      ],
+      "programs": ["SANDBOX-PROGRAM-1"],
+      "listed_at": "2025-06-01",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SBX-2003",
+      "kind": "entity",
+      "names": [
+        {
+          "full": "Corvanel Sectoral Ironworks",
+          "parts": [],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "GB",
+          "role": "registration"
+        }
+      ],
+      "identifiers": [],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SANDBOX-SSI-1"],
+      "listed_at": "2025-06-01",
+      "positions": [],
+      "relations": [],
+      "list_memberships": [
+        {
+          "list": "Sectoral Sanctions Identifications List",
+          "program": "SANDBOX-SSI-1"
+        }
+      ]
+    },
+    {
+      "entry_id": "SBX-3001",
+      "kind": "vessel",
+      "names": [
+        {
+          "full": "Sandbox Voyager",
+          "parts": [],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "GB",
+          "role": "registration"
+        }
+      ],
+      "identifiers": [
+        {
+          "kind": "imo",
+          "value": "9999993"
+        },
+        {
+          "kind": "mmsi",
+          "value": "100999993"
+        }
+      ],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SANDBOX-PROGRAM-1"],
+      "listed_at": "2025-06-01",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6001",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Traipen Thashegrus Louzimore",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Traipen"
+            },
+            {
+              "role": "middle",
+              "value": "Thashegrus"
+            },
+            {
+              "role": "family",
+              "value": "Louzimore"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        },
+        {
+          "full": "Трайпен Ташегрус Лузимор",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Трайпен"
+            },
+            {
+              "role": "middle",
+              "value": "Ташегрус"
+            },
+            {
+              "role": "family",
+              "value": "Лузимор"
+            }
+          ],
+          "script": "cyrillic",
+          "quality": "strong",
+          "primary": false
+        },
+        {
+          "full": "Budroux Louzimore",
+          "parts": [],
+          "script": "latin",
+          "quality": "weak",
+          "primary": false
+        },
+        {
+          "full": "Traipen Nepumore",
+          "parts": [],
+          "script": "latin",
+          "quality": "strong",
+          "primary": false
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1968-03-22",
+          "precision": "day"
+        }
+      ],
+      "birth_places": ["Klaxnaiford Crossing"],
+      "countries": [
+        {
+          "code": "IT",
+          "role": "nationality"
+        },
+        {
+          "code": "ZA",
+          "role": "citizenship"
+        },
+        {
+          "code": null,
+          "role": "residence"
+        }
+      ],
+      "gender": "female",
+      "identifiers": [
+        {
+          "kind": "passport",
+          "value": "SP2243508",
+          "country": "IT"
+        },
+        {
+          "kind": "national_id",
+          "value": "NI126065893",
+          "country": "IT"
+        }
+      ],
+      "addresses": [
+        {
+          "country": "IT",
+          "city": "Droushaw Bay",
+          "postcode": "SY76 9ZZ",
+          "lines": ["148 Shostaiton Street"]
+        }
+      ],
+      "crypto_addresses": [
+        {
+          "raw": "0x513987c87C46F3b43A21e683FeDe0029486BE07E",
+          "ticker": "ETH"
+        },
+        {
+          "raw": "TSbB9HSdkJGomU2sfYifpbBabaNVDDWWNC",
+          "ticker": "USDT"
+        },
+        {
+          "raw": "bc1qtjpdm6exsutlvz4aztwatty5mgmfyrurc2t5f3",
+          "ticker": "XBT"
+        }
+      ],
+      "programs": ["SYNTHETIC-GAMMA", "SYNTHETIC-ALPHA"],
+      "listed_at": "2025-12-06",
+      "positions": [],
+      "relations": [],
+      "remarks": "Synthetic entry: every value in it is fictional."
+    },
+    {
+      "entry_id": "SYN-6002",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Shamos Gevezaix Mabrook",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Shamos"
+            },
+            {
+              "role": "middle",
+              "value": "Gevezaix"
+            },
+            {
+              "role": "family",
+              "value": "Mabrook"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1976",
+          "precision": "year",
+          "range": {
+            "from": "1975",
+            "to": "1977"
+          }
+        }
+      ],
+      "birth_places": ["Fuholm"],
+      "countries": [
+        {
+          "code": "NZ",
+          "role": "nationality"
+        }
+      ],
+      "gender": "male",
+      "identifiers": [
+        {
+          "kind": "passport",
+          "value": "SP5107292",
+          "country": "NZ"
+        },
+        {
+          "kind": "tax_id",
+          "value": "TX42665440",
+          "country": "NZ"
+        }
+      ],
+      "addresses": [
+        {
+          "country": "NZ",
+          "city": "Klefield",
+          "postcode": "SY77 3ZZ",
+          "lines": ["132 Sonemmarsh Street"]
+        }
+      ],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-BETA", "SYNTHETIC-GAMMA"],
+      "listed_at": "2017-10-25",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6003",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Sumai Thiford",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Sumai"
+            },
+            {
+              "role": "family",
+              "value": "Thiford"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        },
+        {
+          "full": "سوماي ثيفورد",
+          "parts": [],
+          "script": "arabic",
+          "quality": "strong",
+          "primary": false
+        },
+        {
+          "full": "Sogrubix Thiford",
+          "parts": [],
+          "script": "latin",
+          "quality": "weak",
+          "primary": false
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1960-11",
+          "precision": "month"
+        }
+      ],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "DE",
+          "role": "nationality"
+        }
+      ],
+      "identifiers": [
+        {
+          "kind": "passport",
+          "value": "SP7500293",
+          "country": "DE"
+        }
+      ],
+      "addresses": [
+        {
+          "country": "DE",
+          "city": "Daimore",
+          "postcode": "SY34 8ZZ",
+          "lines": ["55 Bruwick Street"]
+        }
+      ],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-GAMMA"],
+      "listed_at": "2016-08-03",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6004",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Memoklom Fittraishaw",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Memoklom"
+            },
+            {
+              "role": "family",
+              "value": "Fittraishaw"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1991",
+          "precision": "year"
+        }
+      ],
+      "birth_places": ["Staibrefield Hollow"],
+      "countries": [
+        {
+          "code": "DE",
+          "role": "nationality"
+        }
+      ],
+      "identifiers": [],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-DELTA", "SYNTHETIC-ALPHA"],
+      "listed_at": "2015-01-04",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6005",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Zevoukan Bouklashaw",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Zevoukan"
+            },
+            {
+              "role": "family",
+              "value": "Bouklashaw"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1964-06-19",
+          "precision": "day"
+        }
+      ],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "GB",
+          "role": "nationality"
+        }
+      ],
+      "gender": "male",
+      "identifiers": [],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-DELTA"],
+      "listed_at": "2024-04-04",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6006",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Roromik Bedale",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Roromik"
+            },
+            {
+              "role": "family",
+              "value": "Bedale"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        },
+        {
+          "full": "Роромик Бедейл",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Роромик"
+            },
+            {
+              "role": "family",
+              "value": "Бедейл"
+            }
+          ],
+          "script": "cyrillic",
+          "quality": "strong",
+          "primary": false
+        },
+        {
+          "full": "Roromik Kikarwick",
+          "parts": [],
+          "script": "latin",
+          "quality": "strong",
+          "primary": false
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1974-09",
+          "precision": "month"
+        }
+      ],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "JP",
+          "role": "nationality"
+        }
+      ],
+      "gender": "male",
+      "identifiers": [],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-DELTA", "SYNTHETIC-BETA"],
+      "listed_at": "2019-05-11",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6007",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Thedruzoum Raifield",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Thedruzoum"
+            },
+            {
+              "role": "family",
+              "value": "Raifield"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        },
+        {
+          "full": "Тедрузум Райфилд",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Тедрузум"
+            },
+            {
+              "role": "family",
+              "value": "Райфилд"
+            }
+          ],
+          "script": "cyrillic",
+          "quality": "strong",
+          "primary": false
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1960-01-04",
+          "precision": "day"
+        }
+      ],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "IE",
+          "role": "nationality"
+        }
+      ],
+      "gender": "male",
+      "identifiers": [],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-GAMMA", "SYNTHETIC-BETA"],
+      "listed_at": "2017-09-07",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6008",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Klalil Noukkloufield",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Klalil"
+            },
+            {
+              "role": "family",
+              "value": "Noukkloufield"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1978",
+          "precision": "year"
+        }
+      ],
+      "birth_places": ["Treshaw Vale"],
+      "countries": [
+        {
+          "code": "FR",
+          "role": "nationality"
+        }
+      ],
+      "gender": "male",
+      "identifiers": [
+        {
+          "kind": "passport",
+          "value": "SP4142021",
+          "country": "FR"
+        }
+      ],
+      "addresses": [
+        {
+          "country": "FR",
+          "city": "Zonormarsh",
+          "postcode": "SY28 2ZZ",
+          "lines": ["96 Klirmore Street"]
+        }
+      ],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-DELTA"],
+      "listed_at": "2017-03-22",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6009",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Lounouk Naitmoumore",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Lounouk"
+            },
+            {
+              "role": "family",
+              "value": "Naitmoumore"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1992",
+          "precision": "year"
+        }
+      ],
+      "birth_places": ["Luroumarsh Crossing"],
+      "countries": [
+        {
+          "code": "CA",
+          "role": "nationality"
+        }
+      ],
+      "gender": "female",
+      "identifiers": [],
+      "addresses": [
+        {
+          "country": "CA",
+          "city": "Muntouwick",
+          "postcode": "SY59 7ZZ",
+          "lines": ["29 Melstead Street"]
+        }
+      ],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-DELTA"],
+      "listed_at": "2023-03-01",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6010",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Braite Hougrur Fodale",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Braite"
+            },
+            {
+              "role": "middle",
+              "value": "Hougrur"
+            },
+            {
+              "role": "family",
+              "value": "Fodale"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        },
+        {
+          "full": "Брайте Хугрур Фодейл",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Брайте"
+            },
+            {
+              "role": "middle",
+              "value": "Хугрур"
+            },
+            {
+              "role": "family",
+              "value": "Фодейл"
+            }
+          ],
+          "script": "cyrillic",
+          "quality": "strong",
+          "primary": false
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1972-12-09",
+          "precision": "day"
+        }
+      ],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "KE",
+          "role": "nationality"
+        }
+      ],
+      "identifiers": [],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-ALPHA"],
+      "listed_at": "2025-08-10",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6011",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Brakix Boley",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Brakix"
+            },
+            {
+              "role": "family",
+              "value": "Boley"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1989-06-13",
+          "precision": "day"
+        }
+      ],
+      "birth_places": ["Limore"],
+      "countries": [
+        {
+          "code": "SG",
+          "role": "nationality"
+        }
+      ],
+      "identifiers": [],
+      "addresses": [
+        {
+          "country": "SG",
+          "city": "Zavale",
+          "postcode": "SY85 2ZZ",
+          "lines": ["191 Saigrairton Street"]
+        }
+      ],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-BETA", "SYNTHETIC-ALPHA"],
+      "listed_at": "2017-08-08",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6012",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Sovou Bagravim Kumvaiwick",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Sovou"
+            },
+            {
+              "role": "middle",
+              "value": "Bagravim"
+            },
+            {
+              "role": "family",
+              "value": "Kumvaiwick"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "NZ",
+          "role": "nationality"
+        }
+      ],
+      "identifiers": [
+        {
+          "kind": "passport",
+          "value": "SP3404267",
+          "country": "NZ"
+        }
+      ],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-DELTA"],
+      "listed_at": "2016-02-27",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6013",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Tregridrer Foufield",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Tregridrer"
+            },
+            {
+              "role": "family",
+              "value": "Foufield"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        },
+        {
+          "full": "Griluthair Foufield",
+          "parts": [],
+          "script": "latin",
+          "quality": "weak",
+          "primary": false
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "2000-11-05",
+          "precision": "day"
+        }
+      ],
+      "birth_places": ["Hicroft"],
+      "countries": [
+        {
+          "code": "SE",
+          "role": "nationality"
+        }
+      ],
+      "identifiers": [],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-DELTA", "SYNTHETIC-GAMMA"],
+      "listed_at": "2022-09-10",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6014",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Nori Fahutshaw",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Nori"
+            },
+            {
+              "role": "family",
+              "value": "Fahutshaw"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        },
+        {
+          "full": "Nofuk Fahutshaw",
+          "parts": [],
+          "script": "latin",
+          "quality": "weak",
+          "primary": false
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1954-07-04",
+          "precision": "day"
+        }
+      ],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "GB",
+          "role": "nationality"
+        }
+      ],
+      "gender": "female",
+      "identifiers": [
+        {
+          "kind": "passport",
+          "value": "SP2372808",
+          "country": "GB"
+        }
+      ],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-GAMMA", "SYNTHETIC-BETA"],
+      "listed_at": "2017-05-11",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6015",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Vogaibrais Kulis Groufield",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Vogaibrais"
+            },
+            {
+              "role": "middle",
+              "value": "Kulis"
+            },
+            {
+              "role": "family",
+              "value": "Groufield"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1961-02-15",
+          "precision": "day"
+        }
+      ],
+      "birth_places": ["Voudroumley"],
+      "countries": [
+        {
+          "code": "GB",
+          "role": "nationality"
+        }
+      ],
+      "gender": "male",
+      "identifiers": [
+        {
+          "kind": "passport",
+          "value": "SP6274128",
+          "country": "GB"
+        }
+      ],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-ALPHA"],
+      "listed_at": "2015-05-13",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6016",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Trestat Bralader Thourtaton",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Trestat"
+            },
+            {
+              "role": "middle",
+              "value": "Bralader"
+            },
+            {
+              "role": "family",
+              "value": "Thourtaton"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1974-06-08",
+          "precision": "day"
+        }
+      ],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "IT",
+          "role": "nationality"
+        }
+      ],
+      "gender": "male",
+      "identifiers": [
+        {
+          "kind": "passport",
+          "value": "SP5020222",
+          "country": "IT"
+        }
+      ],
+      "addresses": [],
+      "crypto_addresses": [
+        {
+          "raw": "0xc19b554fe8331d81ead99a17a19054876458902c",
+          "ticker": "ETH"
+        }
+      ],
+      "programs": ["SYNTHETIC-GAMMA", "SYNTHETIC-ALPHA"],
+      "listed_at": "2021-10-28",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6017",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Buloun Bithoul Limheholm",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Buloun"
+            },
+            {
+              "role": "middle",
+              "value": "Bithoul"
+            },
+            {
+              "role": "family",
+              "value": "Limheholm"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1979-01",
+          "precision": "month"
+        }
+      ],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "JP",
+          "role": "nationality"
+        }
+      ],
+      "gender": "male",
+      "identifiers": [
+        {
+          "kind": "passport",
+          "value": "SP6657025",
+          "country": "JP"
+        }
+      ],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-GAMMA", "SYNTHETIC-ALPHA"],
+      "listed_at": "2025-10-12",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6018",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Pagagrut Damgranvale",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Pagagrut"
+            },
+            {
+              "role": "family",
+              "value": "Damgranvale"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        },
+        {
+          "full": "Пагагрут Дамгранвейл",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Пагагрут"
+            },
+            {
+              "role": "family",
+              "value": "Дамгранвейл"
+            }
+          ],
+          "script": "cyrillic",
+          "quality": "strong",
+          "primary": false
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1975-11-11",
+          "precision": "day"
+        }
+      ],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "NZ",
+          "role": "nationality"
+        }
+      ],
+      "gender": "male",
+      "identifiers": [],
+      "addresses": [
+        {
+          "country": "NZ",
+          "city": "Vanaidale Hollow",
+          "postcode": "SY96 1ZZ",
+          "lines": ["177 Graimbrook Street"]
+        }
+      ],
+      "crypto_addresses": [
+        {
+          "raw": "1EuiXTBKRGD7ep4jaBBgBJq2gvV7CNwQrR",
+          "ticker": "XBT"
+        }
+      ],
+      "programs": ["SYNTHETIC-GAMMA", "SYNTHETIC-DELTA"],
+      "listed_at": "2016-10-24",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6019",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Gibraisoum Klushaw",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Gibraisoum"
+            },
+            {
+              "role": "family",
+              "value": "Klushaw"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        },
+        {
+          "full": "Гибрайсум Клушоу",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Гибрайсум"
+            },
+            {
+              "role": "family",
+              "value": "Клушоу"
+            }
+          ],
+          "script": "cyrillic",
+          "quality": "strong",
+          "primary": false
+        }
+      ],
+      "birth_dates": [],
+      "birth_places": ["Thishaw Crossing"],
+      "countries": [
+        {
+          "code": "NL",
+          "role": "nationality"
+        }
+      ],
+      "gender": "male",
+      "identifiers": [
+        {
+          "kind": "passport",
+          "value": "SP0309840",
+          "country": "NL"
+        }
+      ],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-BETA", "SYNTHETIC-ALPHA"],
+      "listed_at": "2022-12-11",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6020",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Zoufin Bufuwick",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Zoufin"
+            },
+            {
+              "role": "family",
+              "value": "Bufuwick"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        },
+        {
+          "full": "Зуфин Буфувик",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Зуфин"
+            },
+            {
+              "role": "family",
+              "value": "Буфувик"
+            }
+          ],
+          "script": "cyrillic",
+          "quality": "strong",
+          "primary": false
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1957",
+          "precision": "year"
+        }
+      ],
+      "birth_places": ["Shefaiholm"],
+      "countries": [
+        {
+          "code": "PT",
+          "role": "nationality"
+        }
+      ],
+      "gender": "male",
+      "identifiers": [],
+      "addresses": [
+        {
+          "country": "PT",
+          "city": "Thiford Bay",
+          "postcode": "SY57 2ZZ",
+          "lines": ["105 Broxholm Street"]
+        }
+      ],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-ALPHA", "SYNTHETIC-BETA"],
+      "listed_at": "2020-01-01",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6021",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Zidri Tithakla Steraton",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Zidri"
+            },
+            {
+              "role": "middle",
+              "value": "Tithakla"
+            },
+            {
+              "role": "family",
+              "value": "Steraton"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        },
+        {
+          "full": "Daivedram Steraton",
+          "parts": [],
+          "script": "latin",
+          "quality": "weak",
+          "primary": false
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1953-05-28",
+          "precision": "day"
+        }
+      ],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "ZA",
+          "role": "nationality"
+        }
+      ],
+      "gender": "male",
+      "identifiers": [
+        {
+          "kind": "passport",
+          "value": "SP7430423",
+          "country": "ZA"
+        }
+      ],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-ALPHA", "SYNTHETIC-GAMMA"],
+      "listed_at": "2022-01-13",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6022",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Graitounen Shoushoun Laimore",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Graitounen"
+            },
+            {
+              "role": "middle",
+              "value": "Shoushoun"
+            },
+            {
+              "role": "family",
+              "value": "Laimore"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        },
+        {
+          "full": "Thaivepoum Laimore",
+          "parts": [],
+          "script": "latin",
+          "quality": "weak",
+          "primary": false
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1995",
+          "precision": "year"
+        }
+      ],
+      "birth_places": ["Drancroft Harbour"],
+      "countries": [
+        {
+          "code": "ES",
+          "role": "nationality"
+        }
+      ],
+      "gender": "female",
+      "identifiers": [],
+      "addresses": [
+        {
+          "country": "ES",
+          "city": "Klamore Bay",
+          "postcode": "SY33 7ZZ",
+          "lines": ["139 Robilmarsh Street"]
+        }
+      ],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-GAMMA"],
+      "listed_at": "2018-08-13",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6023",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Vezut Leklom Koushaw",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Vezut"
+            },
+            {
+              "role": "middle",
+              "value": "Leklom"
+            },
+            {
+              "role": "family",
+              "value": "Koushaw"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [],
+      "birth_places": ["Fonaley"],
+      "countries": [
+        {
+          "code": "DE",
+          "role": "nationality"
+        }
+      ],
+      "gender": "male",
+      "identifiers": [],
+      "addresses": [
+        {
+          "country": "DE",
+          "city": "Faibrerstead",
+          "postcode": "SY38 2ZZ",
+          "lines": ["89 Thammore Street"]
+        }
+      ],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-DELTA"],
+      "listed_at": "2018-05-15",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6024",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Tukoux Nouklunux Dabremarsh",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Tukoux"
+            },
+            {
+              "role": "middle",
+              "value": "Nouklunux"
+            },
+            {
+              "role": "family",
+              "value": "Dabremarsh"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        },
+        {
+          "full": "توكوكس دابرمارش",
+          "parts": [],
+          "script": "arabic",
+          "quality": "strong",
+          "primary": false
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1959",
+          "precision": "year"
+        }
+      ],
+      "birth_places": ["Dishaw Springs"],
+      "countries": [
+        {
+          "code": "GB",
+          "role": "nationality"
+        }
+      ],
+      "gender": "male",
+      "identifiers": [
+        {
+          "kind": "passport",
+          "value": "SP9634107",
+          "country": "GB"
+        }
+      ],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-ALPHA"],
+      "listed_at": "2025-07-16",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6025",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Kuketros Tamore",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Kuketros"
+            },
+            {
+              "role": "family",
+              "value": "Tamore"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1991-09-17",
+          "precision": "day"
+        }
+      ],
+      "birth_places": ["Gratmarsh Vale"],
+      "countries": [
+        {
+          "code": "JP",
+          "role": "nationality"
+        }
+      ],
+      "identifiers": [],
+      "addresses": [
+        {
+          "country": "JP",
+          "city": "Fahastead Bay",
+          "postcode": "SY73 8ZZ",
+          "lines": ["34 Paklexcroft Street"]
+        }
+      ],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-ALPHA"],
+      "listed_at": "2021-12-06",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6026",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Drogul Steshuk Draibrook",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Drogul"
+            },
+            {
+              "role": "middle",
+              "value": "Steshuk"
+            },
+            {
+              "role": "family",
+              "value": "Draibrook"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1982",
+          "precision": "year"
+        }
+      ],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "PL",
+          "role": "nationality"
+        }
+      ],
+      "gender": "female",
+      "identifiers": [],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-BETA", "SYNTHETIC-GAMMA"],
+      "listed_at": "2024-03-09",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6027",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Zazipe Gutom Tudouford",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Zazipe"
+            },
+            {
+              "role": "middle",
+              "value": "Gutom"
+            },
+            {
+              "role": "family",
+              "value": "Tudouford"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1997",
+          "precision": "year"
+        }
+      ],
+      "birth_places": ["Faimarsh"],
+      "countries": [
+        {
+          "code": "AU",
+          "role": "nationality"
+        }
+      ],
+      "gender": "female",
+      "identifiers": [
+        {
+          "kind": "passport",
+          "value": "SP5663959",
+          "country": "AU"
+        }
+      ],
+      "addresses": [],
+      "crypto_addresses": [
+        {
+          "raw": "TXMLKDwCMy8pGZvrqo4sxWMPDczYhkT2LK",
+          "ticker": "TRX"
+        }
+      ],
+      "programs": ["SYNTHETIC-GAMMA"],
+      "listed_at": "2019-03-16",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6028",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Houkodren Vasto Brouxrutford",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Houkodren"
+            },
+            {
+              "role": "middle",
+              "value": "Vasto"
+            },
+            {
+              "role": "family",
+              "value": "Brouxrutford"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        },
+        {
+          "full": "هوكودرن بروكسروتفورد",
+          "parts": [],
+          "script": "arabic",
+          "quality": "strong",
+          "primary": false
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1958-09-28",
+          "precision": "day"
+        }
+      ],
+      "birth_places": ["Grexdrairbrook Hollow"],
+      "countries": [
+        {
+          "code": "DE",
+          "role": "nationality"
+        }
+      ],
+      "identifiers": [
+        {
+          "kind": "passport",
+          "value": "SP5346993",
+          "country": "DE"
+        }
+      ],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-GAMMA"],
+      "listed_at": "2016-12-10",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6029",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Kluzabit Gopok Daford",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Kluzabit"
+            },
+            {
+              "role": "middle",
+              "value": "Gopok"
+            },
+            {
+              "role": "family",
+              "value": "Daford"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        },
+        {
+          "full": "Kluzabit Theford",
+          "parts": [],
+          "script": "latin",
+          "quality": "strong",
+          "primary": false
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1999-08-16",
+          "precision": "day"
+        }
+      ],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "ES",
+          "role": "nationality"
+        }
+      ],
+      "identifiers": [],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-DELTA", "SYNTHETIC-BETA"],
+      "listed_at": "2015-07-24",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6030",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Stirum Givos Stocroft",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Stirum"
+            },
+            {
+              "role": "middle",
+              "value": "Givos"
+            },
+            {
+              "role": "family",
+              "value": "Stocroft"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        },
+        {
+          "full": "Стирум Гивос Стокрофт",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Стирум"
+            },
+            {
+              "role": "middle",
+              "value": "Гивос"
+            },
+            {
+              "role": "family",
+              "value": "Стокрофт"
+            }
+          ],
+          "script": "cyrillic",
+          "quality": "strong",
+          "primary": false
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1972-01-05",
+          "precision": "day"
+        }
+      ],
+      "birth_places": ["Pobiwick Crossing"],
+      "countries": [
+        {
+          "code": "SE",
+          "role": "nationality"
+        }
+      ],
+      "identifiers": [
+        {
+          "kind": "passport",
+          "value": "SP4140869",
+          "country": "SE"
+        }
+      ],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-GAMMA", "SYNTHETIC-ALPHA"],
+      "listed_at": "2017-09-26",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6031",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Houdridros Loudriridge",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Houdridros"
+            },
+            {
+              "role": "family",
+              "value": "Loudriridge"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        },
+        {
+          "full": "هودريدروس لودريريدج",
+          "parts": [],
+          "script": "arabic",
+          "quality": "strong",
+          "primary": false
+        },
+        {
+          "full": "Naidrisher Loudriridge",
+          "parts": [],
+          "script": "latin",
+          "quality": "weak",
+          "primary": false
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1980-08-28",
+          "precision": "day"
+        }
+      ],
+      "birth_places": ["Toumarsh Crossing"],
+      "countries": [
+        {
+          "code": "GB",
+          "role": "nationality"
+        }
+      ],
+      "gender": "female",
+      "identifiers": [],
+      "addresses": [],
+      "crypto_addresses": [
+        {
+          "raw": "0xb6f4310a631ed9602ec467e608d283b201d2f67f",
+          "ticker": "ETH"
+        }
+      ],
+      "programs": ["SYNTHETIC-GAMMA", "SYNTHETIC-DELTA"],
+      "listed_at": "2019-08-03",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6032",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Mouvorais Tellimarsh",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Mouvorais"
+            },
+            {
+              "role": "family",
+              "value": "Tellimarsh"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1968-06-13",
+          "precision": "day"
+        }
+      ],
+      "birth_places": ["Trermore Springs"],
+      "countries": [
+        {
+          "code": "PT",
+          "role": "nationality"
+        }
+      ],
+      "gender": "male",
+      "identifiers": [
+        {
+          "kind": "passport",
+          "value": "SP3795205",
+          "country": "PT"
+        }
+      ],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-GAMMA"],
+      "listed_at": "2024-12-11",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6033",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Naizous Bridaimarsh",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Naizous"
+            },
+            {
+              "role": "family",
+              "value": "Bridaimarsh"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        },
+        {
+          "full": "Найзус Бридаймарш",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Найзус"
+            },
+            {
+              "role": "family",
+              "value": "Бридаймарш"
+            }
+          ],
+          "script": "cyrillic",
+          "quality": "strong",
+          "primary": false
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1953-11-07",
+          "precision": "day"
+        }
+      ],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "KE",
+          "role": "nationality"
+        }
+      ],
+      "gender": "female",
+      "identifiers": [],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-ALPHA"],
+      "listed_at": "2021-02-23",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6034",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Studista Drefouholm",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Studista"
+            },
+            {
+              "role": "family",
+              "value": "Drefouholm"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        },
+        {
+          "full": "Студиста Дрефухольм",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Студиста"
+            },
+            {
+              "role": "family",
+              "value": "Дрефухольм"
+            }
+          ],
+          "script": "cyrillic",
+          "quality": "strong",
+          "primary": false
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1958-05-09",
+          "precision": "day"
+        }
+      ],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "IT",
+          "role": "nationality"
+        }
+      ],
+      "gender": "male",
+      "identifiers": [
+        {
+          "kind": "passport",
+          "value": "SP6171072",
+          "country": "IT"
+        }
+      ],
+      "addresses": [
+        {
+          "country": "IT",
+          "city": "Brecroft Bay",
+          "postcode": "SY25 4ZZ",
+          "lines": ["99 Lilnoumholm Street"]
+        }
+      ],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-DELTA", "SYNTHETIC-ALPHA"],
+      "listed_at": "2020-02-16",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6035",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Klasa Kougroumarsh",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Klasa"
+            },
+            {
+              "role": "family",
+              "value": "Kougroumarsh"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        },
+        {
+          "full": "Klasa Voumshouworth",
+          "parts": [],
+          "script": "latin",
+          "quality": "strong",
+          "primary": false
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1985",
+          "precision": "year"
+        }
+      ],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "DE",
+          "role": "nationality"
+        }
+      ],
+      "gender": "female",
+      "identifiers": [],
+      "addresses": [],
+      "crypto_addresses": [
+        {
+          "raw": "0x6d30a60ffa966667faa8dc974fa33b3defcbe38d",
+          "ticker": "ETH"
+        }
+      ],
+      "programs": ["SYNTHETIC-BETA"],
+      "listed_at": "2017-03-13",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6036",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Gredor Trougobrook",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Gredor"
+            },
+            {
+              "role": "family",
+              "value": "Trougobrook"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1984-04-21",
+          "precision": "day"
+        }
+      ],
+      "birth_places": ["Dobrook"],
+      "countries": [
+        {
+          "code": "IT",
+          "role": "nationality"
+        }
+      ],
+      "gender": "female",
+      "identifiers": [],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-GAMMA", "SYNTHETIC-DELTA"],
+      "listed_at": "2016-09-14",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6037",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Koutos Fitkevale",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Koutos"
+            },
+            {
+              "role": "family",
+              "value": "Fitkevale"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1977",
+          "precision": "year"
+        }
+      ],
+      "birth_places": ["Voford Bay"],
+      "countries": [
+        {
+          "code": "SE",
+          "role": "nationality"
+        }
+      ],
+      "gender": "female",
+      "identifiers": [
+        {
+          "kind": "passport",
+          "value": "SP2489994",
+          "country": "SE"
+        }
+      ],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-BETA", "SYNTHETIC-GAMMA"],
+      "listed_at": "2022-06-03",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6038",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Tivabir Kigaitoux Brofield",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Tivabir"
+            },
+            {
+              "role": "middle",
+              "value": "Kigaitoux"
+            },
+            {
+              "role": "family",
+              "value": "Brofield"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1979",
+          "precision": "year"
+        }
+      ],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "IE",
+          "role": "nationality"
+        }
+      ],
+      "gender": "male",
+      "identifiers": [],
+      "addresses": [
+        {
+          "country": "IE",
+          "city": "Shoutubrook Springs",
+          "postcode": "SY97 3ZZ",
+          "lines": ["88 Stasholm Street"]
+        }
+      ],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-GAMMA", "SYNTHETIC-BETA"],
+      "listed_at": "2023-09-07",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6039",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Maklun Homworth",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Maklun"
+            },
+            {
+              "role": "family",
+              "value": "Homworth"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        },
+        {
+          "full": "Маклун Хомуорт",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Маклун"
+            },
+            {
+              "role": "family",
+              "value": "Хомуорт"
+            }
+          ],
+          "script": "cyrillic",
+          "quality": "strong",
+          "primary": false
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1988-04-08",
+          "precision": "day"
+        }
+      ],
+      "birth_places": ["Britsaimarsh Vale"],
+      "countries": [
+        {
+          "code": "MX",
+          "role": "nationality"
+        }
+      ],
+      "gender": "female",
+      "identifiers": [
+        {
+          "kind": "passport",
+          "value": "SP4481463",
+          "country": "MX"
+        }
+      ],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-DELTA", "SYNTHETIC-ALPHA"],
+      "listed_at": "2019-10-01",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6040",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Shoubune Naiford",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Shoubune"
+            },
+            {
+              "role": "family",
+              "value": "Naiford"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1964-08-03",
+          "precision": "day"
+        }
+      ],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "PT",
+          "role": "nationality"
+        }
+      ],
+      "identifiers": [],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-GAMMA"],
+      "listed_at": "2025-12-16",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6041",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Figutron Kouledem Foumarsh",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Figutron"
+            },
+            {
+              "role": "middle",
+              "value": "Kouledem"
+            },
+            {
+              "role": "family",
+              "value": "Foumarsh"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1986-04-09",
+          "precision": "day"
+        }
+      ],
+      "birth_places": ["Naholm Vale"],
+      "countries": [
+        {
+          "code": "MX",
+          "role": "nationality"
+        }
+      ],
+      "gender": "male",
+      "identifiers": [],
+      "addresses": [
+        {
+          "country": "MX",
+          "city": "Steford",
+          "postcode": "SY10 8ZZ",
+          "lines": ["12 Studale Street"]
+        }
+      ],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-GAMMA"],
+      "listed_at": "2025-07-16",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6042",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Fega Gouthumvale",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Fega"
+            },
+            {
+              "role": "family",
+              "value": "Gouthumvale"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1950-10-15",
+          "precision": "day"
+        }
+      ],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "SG",
+          "role": "nationality"
+        }
+      ],
+      "identifiers": [
+        {
+          "kind": "passport",
+          "value": "SP0016436",
+          "country": "SG"
+        }
+      ],
+      "addresses": [
+        {
+          "country": "SG",
+          "city": "Gishinford Hollow",
+          "postcode": "SY74 3ZZ",
+          "lines": ["188 Poutrismarsh Street"]
+        }
+      ],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-BETA"],
+      "listed_at": "2024-11-17",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6043",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Fedaik Famarsh",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Fedaik"
+            },
+            {
+              "role": "family",
+              "value": "Famarsh"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        },
+        {
+          "full": "Федайк Фамарш",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Федайк"
+            },
+            {
+              "role": "family",
+              "value": "Фамарш"
+            }
+          ],
+          "script": "cyrillic",
+          "quality": "strong",
+          "primary": false
+        },
+        {
+          "full": "Stibrolu Famarsh",
+          "parts": [],
+          "script": "latin",
+          "quality": "weak",
+          "primary": false
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1978",
+          "precision": "year"
+        }
+      ],
+      "birth_places": ["Groley Hollow"],
+      "countries": [
+        {
+          "code": "ES",
+          "role": "nationality"
+        }
+      ],
+      "gender": "male",
+      "identifiers": [],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-GAMMA"],
+      "listed_at": "2019-04-04",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6044",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Brasudrur Shomore",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Brasudrur"
+            },
+            {
+              "role": "family",
+              "value": "Shomore"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        },
+        {
+          "full": "Брасудрур Шомор",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Брасудрур"
+            },
+            {
+              "role": "family",
+              "value": "Шомор"
+            }
+          ],
+          "script": "cyrillic",
+          "quality": "strong",
+          "primary": false
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1972-11-23",
+          "precision": "day"
+        }
+      ],
+      "birth_places": ["Trimashaw"],
+      "countries": [
+        {
+          "code": "GB",
+          "role": "nationality"
+        }
+      ],
+      "identifiers": [],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-ALPHA"],
+      "listed_at": "2018-09-04",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6045",
+      "kind": "individual",
+      "names": [
+        {
+          "full": "Trougoul Foutouridge",
+          "parts": [
+            {
+              "role": "given",
+              "value": "Trougoul"
+            },
+            {
+              "role": "family",
+              "value": "Foutouridge"
+            }
+          ],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [
+        {
+          "value": "1987-09-08",
+          "precision": "day"
+        }
+      ],
+      "birth_places": ["Klaford Bay"],
+      "countries": [
+        {
+          "code": "IN",
+          "role": "nationality"
+        }
+      ],
+      "gender": "male",
+      "identifiers": [],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-GAMMA", "SYNTHETIC-ALPHA"],
+      "listed_at": "2022-06-19",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6046",
+      "kind": "entity",
+      "names": [
+        {
+          "full": "Sosizus JSC",
+          "parts": [],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        },
+        {
+          "full": "Gidoukout AG",
+          "parts": [],
+          "script": "latin",
+          "quality": "strong",
+          "primary": false
+        },
+        {
+          "full": "Sosizus",
+          "parts": [],
+          "script": "latin",
+          "quality": "weak",
+          "primary": false
+        }
+      ],
+      "birth_dates": [],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "IE",
+          "role": "registration"
+        },
+        {
+          "code": "AU",
+          "role": "address"
+        }
+      ],
+      "identifiers": [
+        {
+          "kind": "registration_number",
+          "value": "RN97618577",
+          "country": "IE"
+        },
+        {
+          "kind": "lei",
+          "value": "SYNT00SP6NWQYRZFCH97"
+        },
+        {
+          "kind": "website",
+          "value": "sezebrar.example"
+        },
+        {
+          "kind": "email",
+          "value": "office@sezebrar.example"
+        },
+        {
+          "kind": "tax_id",
+          "value": "TX97892285",
+          "country": "IE"
+        },
+        {
+          "kind": "swift_bic",
+          "value": "DTAKIE30"
+        }
+      ],
+      "addresses": [
+        {
+          "country": "IE",
+          "city": "Duwick Hollow",
+          "postcode": "SY76 6ZZ",
+          "lines": ["196 Pedroholm Street"]
+        }
+      ],
+      "crypto_addresses": [
+        {
+          "raw": "TJhqyARe88ut7T6rSMbmhRBcjYytpBvc1U",
+          "ticker": "USDT"
+        },
+        {
+          "raw": "1NRtnDjxm6Y6ugYPAL2MdZxTbsChtSD8T8",
+          "ticker": "XBT"
+        },
+        {
+          "raw": "1PZ4RUDA4oZYB4US24UaP3gub2DQTHNi3d",
+          "ticker": "XBT"
+        },
+        {
+          "raw": "SYN-F69335ECA5488A89E996D6072A47D5",
+          "ticker": "SYN"
+        }
+      ],
+      "programs": ["SYNTHETIC-GAMMA"],
+      "listed_at": "2024-04-11",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6047",
+      "kind": "entity",
+      "names": [
+        {
+          "full": "Fagouthim Metals PLC",
+          "parts": [],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "JP",
+          "role": "registration"
+        },
+        {
+          "code": "PL",
+          "role": "address"
+        }
+      ],
+      "identifiers": [
+        {
+          "kind": "registration_number",
+          "value": "RN53392431",
+          "country": "JP"
+        },
+        {
+          "kind": "lei",
+          "value": "SYNT007OFWD29PGCKT70"
+        },
+        {
+          "kind": "website",
+          "value": "trouteshum.example"
+        }
+      ],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-DELTA"],
+      "listed_at": "2024-04-07",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6048",
+      "kind": "entity",
+      "names": [
+        {
+          "full": "Goukaidrus Logistics S.A.",
+          "parts": [],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "IT",
+          "role": "registration"
+        },
+        {
+          "code": "SG",
+          "role": "address"
+        }
+      ],
+      "identifiers": [
+        {
+          "kind": "lei",
+          "value": "SYNT00PBO8QMV4NAHG26"
+        }
+      ],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-DELTA", "SYNTHETIC-BETA"],
+      "listed_at": "2018-09-02",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6049",
+      "kind": "entity",
+      "names": [
+        {
+          "full": "Thufoun B.V.",
+          "parts": [],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "IE",
+          "role": "registration"
+        },
+        {
+          "code": "ZA",
+          "role": "address"
+        }
+      ],
+      "identifiers": [
+        {
+          "kind": "registration_number",
+          "value": "RN21991645",
+          "country": "IE"
+        },
+        {
+          "kind": "website",
+          "value": "fezaim.example"
+        }
+      ],
+      "addresses": [
+        {
+          "country": "IE",
+          "city": "Shoucroft",
+          "postcode": "SY46 5ZZ",
+          "lines": ["154 Briklaiwick Street"]
+        }
+      ],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-ALPHA", "SYNTHETIC-GAMMA"],
+      "listed_at": "2017-08-22",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6050",
+      "kind": "entity",
+      "names": [
+        {
+          "full": "Trefok Ventures B.V.",
+          "parts": [],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "IT",
+          "role": "registration"
+        },
+        {
+          "code": "FR",
+          "role": "address"
+        }
+      ],
+      "identifiers": [
+        {
+          "kind": "lei",
+          "value": "SYNT006Z828JLR2ZJT98"
+        }
+      ],
+      "addresses": [
+        {
+          "country": "IT",
+          "city": "Brithuford",
+          "postcode": "SY82 6ZZ",
+          "lines": ["109 Dratstead Street"]
+        }
+      ],
+      "crypto_addresses": [
+        {
+          "raw": "bitcoincash:qqvkxj4279xh20vr6jhpq087ap8zk6ynrs8a2lcmwc",
+          "ticker": "BCH"
+        }
+      ],
+      "programs": ["SYNTHETIC-DELTA", "SYNTHETIC-BETA"],
+      "listed_at": "2023-07-24",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6051",
+      "kind": "entity",
+      "names": [
+        {
+          "full": "Shaifo Driklat Resources Limited",
+          "parts": [],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "MX",
+          "role": "registration"
+        },
+        {
+          "code": "JP",
+          "role": "address"
+        }
+      ],
+      "identifiers": [
+        {
+          "kind": "registration_number",
+          "value": "RN30988642",
+          "country": "MX"
+        }
+      ],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-ALPHA", "SYNTHETIC-DELTA"],
+      "listed_at": "2025-12-15",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6052",
+      "kind": "entity",
+      "names": [
+        {
+          "full": "Bogroster Braivoko Metals LLC",
+          "parts": [],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "IT",
+          "role": "registration"
+        },
+        {
+          "code": "MX",
+          "role": "address"
+        }
+      ],
+      "identifiers": [
+        {
+          "kind": "registration_number",
+          "value": "RN72913897",
+          "country": "IT"
+        }
+      ],
+      "addresses": [
+        {
+          "country": "IT",
+          "city": "Mukmore Springs",
+          "postcode": "SY70 5ZZ",
+          "lines": ["168 Bapemore Street"]
+        }
+      ],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-ALPHA"],
+      "listed_at": "2017-07-18",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6053",
+      "kind": "entity",
+      "names": [
+        {
+          "full": "Tozo Paivoum Resources GmbH",
+          "parts": [],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "ES",
+          "role": "registration"
+        },
+        {
+          "code": "ZA",
+          "role": "address"
+        }
+      ],
+      "identifiers": [
+        {
+          "kind": "lei",
+          "value": "SYNT00JAYE01VSRKP133"
+        }
+      ],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-ALPHA"],
+      "listed_at": "2021-04-14",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6054",
+      "kind": "entity",
+      "names": [
+        {
+          "full": "Koukon Capital GmbH",
+          "parts": [],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "FR",
+          "role": "registration"
+        },
+        {
+          "code": "ES",
+          "role": "address"
+        }
+      ],
+      "identifiers": [],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-DELTA"],
+      "listed_at": "2023-02-07",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6055",
+      "kind": "entity",
+      "names": [
+        {
+          "full": "Zathon Zohail Capital PLC",
+          "parts": [],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "NZ",
+          "role": "registration"
+        },
+        {
+          "code": "IT",
+          "role": "address"
+        }
+      ],
+      "identifiers": [],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-BETA"],
+      "listed_at": "2025-07-05",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6056",
+      "kind": "entity",
+      "names": [
+        {
+          "full": "Kagraik PLC",
+          "parts": [],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "NL",
+          "role": "registration"
+        },
+        {
+          "code": "CA",
+          "role": "address"
+        }
+      ],
+      "identifiers": [
+        {
+          "kind": "registration_number",
+          "value": "RN99778742",
+          "country": "NL"
+        }
+      ],
+      "addresses": [
+        {
+          "country": "NL",
+          "city": "Sabrook Crossing",
+          "postcode": "SY71 7ZZ",
+          "lines": ["65 Kouxbrook Street"]
+        }
+      ],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-DELTA", "SYNTHETIC-BETA"],
+      "listed_at": "2025-03-11",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6057",
+      "kind": "entity",
+      "names": [
+        {
+          "full": "Grostetroux Fogrorum Inc.",
+          "parts": [],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "BR",
+          "role": "registration"
+        },
+        {
+          "code": "FR",
+          "role": "address"
+        }
+      ],
+      "identifiers": [
+        {
+          "kind": "website",
+          "value": "klodraim.example"
+        }
+      ],
+      "addresses": [
+        {
+          "country": "BR",
+          "city": "Gastead",
+          "postcode": "SY92 4ZZ",
+          "lines": ["16 Houmarsh Street"]
+        }
+      ],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-ALPHA"],
+      "listed_at": "2020-04-14",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6058",
+      "kind": "entity",
+      "names": [
+        {
+          "full": "Hathathak Mebraix Limited",
+          "parts": [],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "NL",
+          "role": "registration"
+        },
+        {
+          "code": "FR",
+          "role": "address"
+        }
+      ],
+      "identifiers": [
+        {
+          "kind": "registration_number",
+          "value": "RN80773162",
+          "country": "NL"
+        },
+        {
+          "kind": "website",
+          "value": "nuthaishon.example"
+        }
+      ],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-ALPHA"],
+      "listed_at": "2022-06-03",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6059",
+      "kind": "entity",
+      "names": [
+        {
+          "full": "Studrousto LLP",
+          "parts": [],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "BR",
+          "role": "registration"
+        },
+        {
+          "code": "AU",
+          "role": "address"
+        }
+      ],
+      "identifiers": [
+        {
+          "kind": "lei",
+          "value": "SYNT00OMRQ67HDX2K503"
+        },
+        {
+          "kind": "website",
+          "value": "maitron.example"
+        }
+      ],
+      "addresses": [
+        {
+          "country": "BR",
+          "city": "Kouford",
+          "postcode": "SY36 9ZZ",
+          "lines": ["178 Drusgembrook Street"]
+        }
+      ],
+      "crypto_addresses": [
+        {
+          "raw": "bitcoincash:qqumek8492kf7feq94fl7r5euyvpc93v2qlnp6strh",
+          "ticker": "BCH"
+        }
+      ],
+      "programs": ["SYNTHETIC-DELTA", "SYNTHETIC-BETA"],
+      "listed_at": "2018-11-08",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6060",
+      "kind": "entity",
+      "names": [
+        {
+          "full": "Duklou Metals AG",
+          "parts": [],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "NZ",
+          "role": "registration"
+        },
+        {
+          "code": "KE",
+          "role": "address"
+        }
+      ],
+      "identifiers": [
+        {
+          "kind": "website",
+          "value": "nuthoumem.example"
+        }
+      ],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-ALPHA", "SYNTHETIC-BETA"],
+      "listed_at": "2019-07-23",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6061",
+      "kind": "vessel",
+      "names": [
+        {
+          "full": "Haibustan Pioneer",
+          "parts": [],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "ZA",
+          "role": "registration"
+        }
+      ],
+      "identifiers": [
+        {
+          "kind": "imo",
+          "value": "1369350"
+        },
+        {
+          "kind": "mmsi",
+          "value": "100889250"
+        }
+      ],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-DELTA", "SYNTHETIC-BETA"],
+      "listed_at": "2023-02-27",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6062",
+      "kind": "vessel",
+      "names": [
+        {
+          "full": "Bruthex Tide",
+          "parts": [],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "NZ",
+          "role": "registration"
+        }
+      ],
+      "identifiers": [
+        {
+          "kind": "imo",
+          "value": "1257911"
+        },
+        {
+          "kind": "mmsi",
+          "value": "100078665"
+        }
+      ],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-ALPHA", "SYNTHETIC-BETA"],
+      "listed_at": "2016-11-13",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6063",
+      "kind": "aircraft",
+      "names": [
+        {
+          "full": "Vibun Jet",
+          "parts": [],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "BR",
+          "role": "registration"
+        }
+      ],
+      "identifiers": [
+        {
+          "kind": "aircraft_serial",
+          "value": "SYN-96344"
+        },
+        {
+          "kind": "aircraft_tail",
+          "value": "SBX-QIE"
+        }
+      ],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-DELTA", "SYNTHETIC-ALPHA"],
+      "listed_at": "2018-06-07",
+      "positions": [],
+      "relations": []
+    },
+    {
+      "entry_id": "SYN-6064",
+      "kind": "aircraft",
+      "names": [
+        {
+          "full": "Zouger Freighter",
+          "parts": [],
+          "script": "latin",
+          "quality": "strong",
+          "primary": true
+        }
+      ],
+      "birth_dates": [],
+      "birth_places": [],
+      "countries": [
+        {
+          "code": "JP",
+          "role": "registration"
+        }
+      ],
+      "identifiers": [
+        {
+          "kind": "aircraft_serial",
+          "value": "SYN-72421"
+        },
+        {
+          "kind": "aircraft_tail",
+          "value": "SBX-RGY"
+        }
+      ],
+      "addresses": [],
+      "crypto_addresses": [],
+      "programs": ["SYNTHETIC-DELTA", "SYNTHETIC-GAMMA"],
+      "listed_at": "2021-10-19",
+      "positions": [],
+      "relations": []
+    }
+  ]
+}

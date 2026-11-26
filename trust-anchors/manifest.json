@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "description": "C62.7: the CSCA master-list sources the operator's trust-anchors:sync fetches. Each source pins its publisher's root CSCA certificate by URL and SHA-256 (the SHA-256 of the DER certificate, inside the zip where the publisher ships one), recorded on 2026-10-24 from the publisher's page and cross-checked with the fingerprint published there. No list, certificate or CRL is committed: the sync fetches them at run time and verifies every list against its pinned root.",
+  "sources": [
+    {
+      "id": "bsi-de",
+      "enabled": true,
+      "publisher": "Bundesamt für Sicherheit in der Informationstechnik (Germany)",
+      "list_url": "https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/ElekAusweise/CSCA/GermanMasterList.zip?__blob=publicationFile",
+      "root_certificate_url": "https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/ElekAusweise/CSCA/csca-germany_10-2024_self_signed.zip?__blob=publicationFile",
+      "root_certificate_sha256": "2084aed7a991b3158e63ad750d3dc38bc6c9dcf5958f28d1162f49884e91ada8",
+      "fingerprint_checked_against": "The SHA-256 printed for the self-signed CSCA certificate 10/24 (CSCA07) on https://www.bsi.bund.de/EN/Themen/Oeffentliche-Verwaltung/Elektronische-Identitaeten/Public-Key-Infrastrukturen/CSCA/Root_Cert_Germany/Root_Certificate_node.html, equal to the SHA-256 of [ROOT-CA]_CSCA07.cer in the zip (2026-10-24).",
+      "content_type": "2.23.136.1.1.2",
+      "signer_eku": "2.23.136.1.1.3",
+      "terms": "The list page allows commercial use as long as the list is not used in advertising and no cooperation with the BSI is implied; the BSI's general terms ask for unchanged downloads and prior written consent for mirroring. OpenVerify fetches it only when the operator runs the sync, never ships or mirrors it (decision 38)."
+    },
+    {
+      "id": "npkd-nl",
+      "enabled": false,
+      "publisher": "Justid PKD department for the RvIG (Netherlands)",
+      "list_url": "https://www.npkd.nl/files/ml/NL_MASTERLIST.mls",
+      "root_certificate_url": "https://www.npkd.nl/files/certificates/nl-csca-certificates/(240621000000Z-370630000000Z)%20Serialnumber=7,CN=CSCA%20NL,OU=Kingdom%20of%20the%20Netherlands,O=Kingdom%20of%20the%20Netherlands,C=NL.cer",
+      "root_certificate_sha256": "411356d206b99da15efadf4b84149f8600ee6260c6727cd6bc230d6b6e151a24",
+      "fingerprint_checked_against": "The SHA-256 printed for the current self-signed CSCA NL certificate (serial number 7) on https://www.npkd.nl/, equal to the SHA-256 of the downloaded certificate (2026-10-24).",
+      "content_type": "2.23.136.1.1.2",
+      "signer_eku": "2.23.136.1.1.3",
+      "terms": "The site states only that all rights are reserved, with no licence for reuse; off until the owner's legal review (decision 40)."
+    },
+    {
+      "id": "ita",
+      "enabled": false,
+      "publisher": "Ministero dell'Interno (Italy)",
+      "list_url": "https://csca-ita.interno.gov.it/certificatiCSCA/IT_MasterListCSCA.zip",
+      "root_certificate_url": "https://csca-ita.interno.gov.it/certificatiCSCA/CSCA05.cer",
+      "root_certificate_sha256": "615bd40cd7bc63aeb572cf168ccb78162003b31cd98130dd71f7d2d69c83fa3a",
+      "fingerprint_checked_against": "Italy publishes only a SHA-1 fingerprint: the SHA-1 printed for the current self-signed CSCA05 on https://csca-ita.interno.gov.it/html/csca.html equals the SHA-1 of the downloaded certificate, whose SHA-256 is recorded here (2026-10-24).",
+      "content_type": "2.23.136.1.1.2",
+      "signer_eku": "2.23.136.1.1.3",
+      "terms": "The site publishes no terms; whether Italian public-body data is open by default needs legal review, so it stays off (decision 40)."
+    },
+    {
+      "id": "che",
+      "enabled": false,
+      "publisher": "Federal Office of Information Technology for fedpol (Switzerland)",
+      "list_url": "https://www.pki.admin.ch/MasterList/Current-Swiss-MasterList.ml",
+      "root_certificate_url": "https://www.pki.admin.ch/certificates/csca/prod/CSCA_Self-Signed_Certificate_2026.der",
+      "root_certificate_sha256": "843990bd13ba69083ab0afee994c4f7116d764a5be1d47d70c9da039f99587bc",
+      "fingerprint_checked_against": "The SHA-256 printed for the CSCA Self-Signed Certificate 2026 (CN=CSCA-CHE) on https://www.bit.admin.ch/en/sg-pki-csca-production-en, equal to the SHA-256 of the downloaded certificate (2026-10-24).",
+      "content_type": "2.23.136.1.1.2",
+      "signer_eku": "2.23.136.1.1.3",
+      "terms": "The federal site's terms ask for prior written consent before any reproduction; off until the owner's legal review (decision 40)."
+    }
+  ]
+}

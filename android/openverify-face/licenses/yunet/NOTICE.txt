@@ -1,0 +1,17 @@
+The face-detection model in this artifact
+
+  face_detection_yunet_2026may.onnx
+  SHA-256 ebafce4e3c118d6554634be5c27ab333b4c047a9a8c3faf1d7cf93101c22f0f0
+  From OpenCV Zoo, https://github.com/opencv/opencv_zoo, at commit
+  47534e27c9851bb1128ccc0102f1145e27f23f98 (models/face_detection_yunet).
+  Upstream training code: https://github.com/ShiqiYu/libfacedetection.train
+
+The model file is licensed under the MIT License; its text, as published at
+that commit, is in LICENSE.txt beside this file. The file is unmodified.
+
+Training data. The model was trained on the WIDER FACE dataset, whose
+dataset card states the licence CC BY-NC-ND 4.0. The model file's own
+licence is permissive, and OpenVerify's rule is that a weight file's licence
+governs; the training data's terms are stated here so that whoever ships
+this artifact can judge them for their own use. See THIRD_PARTY_LICENSES.md,
+section 3, in the OpenVerify repository.

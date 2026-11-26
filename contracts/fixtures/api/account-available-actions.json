@@ -1,0 +1,36 @@
+{
+  "data": [
+    {
+      "type": "account-action",
+      "id": "accac_01M5CM00000000000000000010",
+      "attributes": {
+        "label": "Re-check the account",
+        "form": [
+          {
+            "name": "reference_id",
+            "type": "string",
+            "required": true,
+            "prefilled-value": "ref-test-001"
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "required": false,
+            "prefilled-value": null
+          }
+        ]
+      },
+      "relationships": {
+        "workflow": {
+          "data": {
+            "type": "workflow",
+            "id": "wfl_01M5CM00000000000000000001"
+          }
+        }
+      }
+    }
+  ],
+  "links": {
+    "next": null
+  }
+}

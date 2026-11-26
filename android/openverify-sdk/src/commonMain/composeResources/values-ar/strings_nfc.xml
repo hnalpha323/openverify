@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  nfc-sdk (Workflow 10C, C207, C208.2): the NFC step. The device reads and the server checks: no text here
+  says a document or a chip is verified, authentic or genuine, in any language (C207.5; NfcWordingTest).
+  The phases read "connecting", "reading", "signing the check code" and "read; we will check it now".
+  Machine-drafted (i18n/review-status.json). No placeholders, no legal text.
+-->
+<resources>
+    <string name="openverify_nfc_mrz_title">أدخل بيانات وثيقتك</string>
+    <string name="openverify_nfc_mrz_intro">تُفتح شريحة وثيقتك بثلاث معلومات مطبوعة على الوثيقة. اكتبها كما تظهر هناك.</string>
+    <string name="openverify_nfc_document_number">رقم الوثيقة</string>
+    <string name="openverify_nfc_birth_date">تاريخ الميلاد</string>
+    <string name="openverify_nfc_expiry_date">تاريخ انتهاء الصلاحية</string>
+    <string name="openverify_nfc_date_hint">6 أرقام: السنة ثم الشهر ثم اليوم. مثلًا، 12 أغسطس 1974 يُكتب 740812.</string>
+    <string name="openverify_nfc_continue">متابعة</string>
+    <string name="openverify_nfc_use_can">استخدام رقم الوصول إلى البطاقة</string>
+    <string name="openverify_nfc_use_mrz">استخدام بيانات الوثيقة</string>
+    <string name="openverify_nfc_error_document_number">أدخل رقم الوثيقة بالحروف والأرقام فقط.</string>
+    <string name="openverify_nfc_error_birth_date">أدخل تاريخ الميلاد في 6 أرقام: السنة ثم الشهر ثم اليوم.</string>
+    <string name="openverify_nfc_error_expiry_date">أدخل تاريخ انتهاء الصلاحية في 6 أرقام: السنة ثم الشهر ثم اليوم.</string>
+    <string name="openverify_nfc_error_can">أدخل الأرقام الستة لرقم الوصول إلى البطاقة.</string>
+    <string name="openverify_nfc_error_refused">لم تُفتح الشريحة بهذه البيانات. قارنها بوثيقتك وحاول مرة أخرى.</string>
+    <string name="openverify_nfc_can_title">أدخل رقم الوصول إلى البطاقة</string>
+    <string name="openverify_nfc_can_intro">تحمل بعض البطاقات على وجهها رقم وصول (CAN) من 6 أرقام. اكتبه كما يظهر.</string>
+    <string name="openverify_nfc_can">رقم الوصول إلى البطاقة</string>
+    <string name="openverify_nfc_tap_title">ضع هاتفك على الوثيقة</string>
+    <string name="openverify_nfc_tap_hint_passport">جواز السفر: افتحه على صفحة الصورة وضع ظهر هاتفك مسطحًا على تلك الصفحة.</string>
+    <string name="openverify_nfc_tap_hint_card">البطاقة: ضعها على طاولة وضع الجزء العلوي من ظهر هاتفك عليها.</string>
+    <string name="openverify_nfc_tap_ready_note">خذ الوقت الذي تحتاجه. عندما تصبح الوثيقة والهاتف في مكانهما، اضغط الزر وأبقهما ثابتين.</string>
+    <string name="openverify_nfc_ready">أنا جاهز</string>
+    <string name="openverify_nfc_change_details">تغيير بيانات الوثيقة</string>
+    <string name="openverify_nfc_stop">إيقاف القراءة</string>
+    <string name="openverify_nfc_phase_requesting">جارٍ التحضير…</string>
+    <string name="openverify_nfc_phase_waiting">بانتظار وثيقتك. ضع هاتفك عليها.</string>
+    <string name="openverify_nfc_phase_connecting">جارٍ الاتصال…</string>
+    <string name="openverify_nfc_phase_reading">جارٍ القراءة…</string>
+    <string name="openverify_nfc_phase_signing">جارٍ توقيع رمز الفحص…</string>
+    <string name="openverify_nfc_phase_read">تمت القراءة. سنفحصها الآن.</string>
+    <string name="openverify_nfc_file_security">بيانات الأمان</string>
+    <string name="openverify_nfc_file_details">بيانات الوثيقة</string>
+    <string name="openverify_nfc_file_photo">الصورة</string>
+    <string name="openverify_nfc_file_contents">قائمة المحتويات</string>
+    <string name="openverify_nfc_notice_expired">مرّ بعض الوقت، لذا يجب بدء القراءة من جديد. اضغط الزر عندما تكون جاهزًا.</string>
+    <string name="openverify_nfc_notice_keep_still">تحركت الوثيقة. أبقها ثابتة على هاتفك.</string>
+    <string name="openverify_nfc_notice_lifted">ابتعدت الوثيقة مرات كثيرة. ضعها مع هاتفك على طاولة وحاول مرة أخرى.</string>
+    <string name="openverify_nfc_notice_unsupported">لم يتمكن هذا التطبيق من قراءة شريحة هذه الوثيقة. تأكد من أنها الوثيقة المطلوبة وحاول مرة أخرى.</string>
+    <string name="openverify_nfc_notice_timeout">لم يُعثر على وثيقة. حرّك هاتفك ببطء فوق الوثيقة حتى يستجيب.</string>
+    <string name="openverify_nfc_notice_busy">القارئ مشغول. انتظر لحظة وحاول مرة أخرى.</string>
+    <string name="openverify_nfc_notice_failed">توقفت القراءة. حاول مرة أخرى.</string>
+    <string name="openverify_nfc_notice_one_more_tap">استغرق الإرسال وقتًا طويلًا، لذا يجب قراءة الشريحة مرة أخرى.</string>
+    <string name="openverify_nfc_notice_again">جارٍ قراءة الشريحة مرة أخرى.</string>
+    <string name="openverify_nfc_sandbox_label">شريحة اختبار (بيئة تجريبية)</string>
+    <string name="openverify_nfc_sandbox_scenario">سيناريو شريحة الاختبار</string>
+    <string name="openverify_nfc_sandbox_use">استخدام شريحة الاختبار</string>
+    <string name="openverify_nfc_review_title">هل هذه بياناتك؟</string>
+    <string name="openverify_nfc_review_intro">هذا ما تقوله الشريحة. لم يُرسل أي شيء بعد.</string>
+    <string name="openverify_nfc_review_name">الاسم</string>
+    <string name="openverify_nfc_review_nationality">الجنسية</string>
+    <string name="openverify_nfc_review_date_note">تُعرض التواريخ كما تحفظها الشريحة: السنة ثم الشهر ثم اليوم.</string>
+    <string name="openverify_nfc_review_confirm">نعم، أرسلها</string>
+    <string name="openverify_nfc_review_refuse">هذه ليست بياناتي</string>
+    <string name="openverify_nfc_review_again">تمت قراءة الشريحة مرة أخرى. إن لم تكن هذه بياناتك بعد، يمكنك التوقف هنا والمتابعة لاحقًا.</string>
+    <string name="openverify_nfc_tips_title">هل تواجه مشكلة في قراءة الشريحة؟</string>
+    <string name="openverify_nfc_tip_cover">أخرج الوثيقة من أي غلاف أو حافظة.</string>
+    <string name="openverify_nfc_tip_case">انزع غطاء هاتفك إذا كان سميكًا أو يحتوي على معدن.</string>
+    <string name="openverify_nfc_tip_move">حرّك هاتفك ببطء فوق الوثيقة. يكون القارئ عادةً قرب أعلى ظهر الهاتف أو وسطه.</string>
+    <string name="openverify_nfc_tip_still">أبقهما ثابتين حتى تنتهي القراءة.</string>
+    <string name="openverify_nfc_try_again">حاول مرة أخرى</string>
+    <string name="openverify_nfc_unable_reader_title">هذا التطبيق لا يستطيع قراءة شرائح الوثائق</string>
+    <string name="openverify_nfc_unable_reader_message">التطبيق الذي تستخدمه لا يحتوي على قارئ شرائح.</string>
+    <string name="openverify_nfc_unable_phone_title">هذا الهاتف لا يستطيع قراءة شرائح الوثائق</string>
+    <string name="openverify_nfc_unable_phone_message">قراءة الشريحة تتطلب تقنية NFC، وهي غير متوفرة في هذا الهاتف.</string>
+    <string name="openverify_nfc_unable_off_title">تقنية NFC متوقفة</string>
+    <string name="openverify_nfc_unable_off_message">قراءة شريحة وثيقتك تتطلب تقنية NFC. شغّلها من إعدادات هاتفك ثم عد إلى هنا.</string>
+    <string name="openverify_nfc_open_settings">فتح إعدادات NFC</string>
+    <string name="openverify_nfc_recheck">لقد شغّلتها</string>
+    <string name="openverify_nfc_unable_spent_title">تعذّرت قراءة الشريحة</string>
+    <string name="openverify_nfc_unable_spent_message">بدأت القراءة مرات كثيرة في هذه المحاولة، لذا لا يمكن بدؤها من جديد الآن.</string>
+    <string name="openverify_nfc_another_way">استخدام طريقة أخرى</string>
+    <string name="openverify_nfc_continue_later">المتابعة لاحقًا</string>
+    <string name="openverify_nfc_fallback_note">يمكنك المتابعة بطريقة أخرى أو العودة لاحقًا.</string>
+    <string name="openverify_nfc_later_note">يمكنك العودة لاحقًا للمتابعة.</string>
+    <string name="openverify_nfc_sending">جارٍ الإرسال…</string>
+</resources>

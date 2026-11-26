@@ -1,0 +1,24 @@
+- main:
+    - region "Enter your driver’s license details":
+        - heading "Enter your driver’s license details" [level=1]
+        - paragraph: Enter the details exactly as they are printed on your US driver’s license or state ID card. We check them with the office that issued it.
+        - paragraph: Attempt 1 of 1
+        - paragraph: Fields marked * are required.
+        - text: First name
+        - textbox "First name"
+        - text: Last name
+        - textbox "Last name"
+        - text: Date of birth
+        - textbox "Date of birth"
+        - text: Driver’s license or ID card number
+        - textbox "Driver’s license or ID card number"
+        - text: Issuing state or territory
+        - combobox "Issuing state or territory":
+            - option "Choose a state or territory" [selected]
+        - text: Issue date
+        - textbox "Issue date"
+        - text: Expiration date
+        - textbox "Expiration date"
+        - text: ZIP code
+        - textbox "ZIP code"
+        - button "Continue"

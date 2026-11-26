@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "The attachment could not be scanned, so it is never served.",
+  "instance": "/api/v1/cases/case_01M5CN00000000000000009B50/attachments/catt_01M5CN00000000000000009B72/content",
+  "requestId": "00000000-0000-4000-8000-000000009b72",
+  "code": "attachment_scan_failed"
+}

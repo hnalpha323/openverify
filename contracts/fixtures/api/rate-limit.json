@@ -1,0 +1,16 @@
+{
+  "data": [
+    {
+      "type": "rate-limit",
+      "id": "api",
+      "attributes": {
+        "name": "api",
+        "limit": 300,
+        "window-seconds": 60,
+        "remaining": 297,
+        "reset-at": "2026-10-20T12:01:00.000Z"
+      }
+    }
+  ],
+  "links": { "next": null }
+}

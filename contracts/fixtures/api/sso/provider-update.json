@@ -1,0 +1,8 @@
+{
+  "data": {
+    "attributes": {
+      "client-secret": "synthetic-rotated-client-secret",
+      "enforced": true
+    }
+  }
+}

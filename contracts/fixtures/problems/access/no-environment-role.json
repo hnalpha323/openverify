@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Forbidden",
+  "status": 403,
+  "detail": "You hold no role in this environment.",
+  "instance": "/api/v1/dashboard/sessions/current/environment",
+  "requestId": "00000000-0000-4000-8000-000000009b04",
+  "code": "no_environment_role"
+}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The retry messages of the frozen Phase 5 user-behaviour reasons (C51.2), the same copy as the
+  web flow (apps/flow/src/i18n/locales/en.ts); values-es holds their Spanish. Compose
+  Multiplatform resources: no placeholders here, ' and " written as they are (ResourcesTest).
+-->
+<resources>
+    <string name="openverify_retry_document_type_not_accepted">This type of document is not accepted here. Upload one of the document types this step lists.</string>
+    <string name="openverify_retry_document_unreadable">We could not open or read your document. Upload a clear photo or a PDF of the whole document.</string>
+    <string name="openverify_retry_document_password_protected">Your PDF is protected with a password. Upload a copy without a password, or a photo of the document.</string>
+    <string name="openverify_retry_document_too_large">Your file is too large. Upload a smaller file, such as a photo of the document or a PDF with fewer pages.</string>
+    <string name="openverify_retry_document_too_many_pages">Your PDF has too many pages. Upload only the pages that show your name, your address and the date.</string>
+    <string name="openverify_retry_name_not_found">We could not find a name on your document. Upload a document that shows your full name.</string>
+    <string name="openverify_retry_address_not_found">We could not find an address on your document. Upload a document that shows your full address.</string>
+    <string name="openverify_retry_issue_date_not_found">We could not find the date your document was issued. Upload a document that shows its issue date.</string>
+    <string name="openverify_retry_issuer_not_found">We could not find who issued your document. Upload a document that shows the company or office that issued it.</string>
+    <string name="openverify_retry_document_expired">Your document has expired. Upload one that is still valid.</string>
+    <string name="openverify_retry_document_too_old">Your document is too old. Upload a more recent one.</string>
+    <string name="openverify_retry_po_box_detected">A post office box cannot be used as your address. Enter the address where you live.</string>
+    <string name="openverify_retry_otp_attempts_exhausted">Too many incorrect codes were entered. Start again to get a new code.</string>
+    <string name="openverify_retry_otp_not_confirmed">The code was not confirmed in time. Start again to get a new code.</string>
+    <string name="openverify_retry_domain_not_found">The part of your email address after the @ does not exist. Check it for typing mistakes.</string>
+    <string name="openverify_retry_domain_rejects_mail">This email domain does not accept email. Use another email address.</string>
+    <string name="openverify_retry_no_mail_server">No email can be delivered to this address. Check it, or use another email address.</string>
+    <string name="openverify_retry_address_invalid">This wallet address is not valid for the network you chose. Check that you copied the whole address.</string>
+    <string name="openverify_retry_address_checksum_invalid">This wallet address has a typing mistake. Copy it again from your wallet instead of typing it.</string>
+    <string name="openverify_retry_signature_invalid">The signature could not be read. Sign the message again in your wallet and paste the whole signature.</string>
+    <string name="openverify_retry_signature_address_mismatch">The message was signed by a different wallet address. Sign it with the address you entered.</string>
+    <string name="openverify_retry_expected_address_mismatch">This is not the wallet address you were asked to verify. Use the expected wallet address.</string>
+    <string name="openverify_retry_country_not_enabled">Businesses from this country cannot be verified here. Check the country you selected.</string>
+    <string name="openverify_retry_domain_not_resolving">We could not find this website. Check the web address for typing mistakes.</string>
+    <string name="openverify_retry_document_name_mismatch">The name on your document does not match yours. Upload a document in your own name.</string>
+</resources>

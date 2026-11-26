@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The server-position driver's own screens (Workflow 10A android-driver; C193.2): the unsupported
+  screen's sentence for a server older than flow-spec 2. The waiting and halted words (C197.1,
+  C197.2) are the web's, key-mapped into strings_catalog.xml (KP10-10). values-es, values-fr,
+  values-de and values-ar hold machine-drafted translations (i18n/review-status.json). Compose
+  Multiplatform resources: no placeholders here, ' and " written as they are (ResourcesTest).
+-->
+<resources>
+    <string name="openverify_unsupported_server_message">The verification service this app connects to is older than the app. The organization that asked you to verify needs to update it.</string>
+</resources>

@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Service Unavailable",
+  "status": 503,
+  "detail": "Peeking is unavailable for the moment. Try again shortly.",
+  "instance": "/api/v1/connect/share-tokens/cnst_01M5CN0000000000000011A200",
+  "requestId": "00000000-0000-4000-8000-00000011a016",
+  "code": "connect_peek_unavailable"
+}

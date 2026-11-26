@@ -1,0 +1,19 @@
+# OpenVerify nickname table (plan C58.3): candidate pairs, reviewed by hand before any enters
+# packages/checks/data/nicknames.json. A hypocorism item (P31 Q1130279) linked by "said to be the
+# same as" (P460, either direction) to a given-name item that is not itself a hypocorism, where
+# both carry a native label (P1705) in the same language. P460 also links translations and
+# spelling variants, so most candidates are rejected in review. Wikidata is CC0.
+SELECT DISTINCT ?nick ?nickLabel ?formal ?formalLabel ?lang WHERE {
+  ?nick wdt:P31 wd:Q1130279 .
+  { ?nick wdt:P460 ?formal . } UNION { ?formal wdt:P460 ?nick . }
+  ?formal wdt:P31 ?type .
+  VALUES ?type { wd:Q202444 wd:Q12308941 wd:Q11879590 wd:Q3409032 }
+  FILTER NOT EXISTS { ?formal wdt:P31 wd:Q1130279 . }
+  ?nick wdt:P1705 ?nickNative .
+  ?formal wdt:P1705 ?formalNative .
+  BIND(LANG(?nickNative) AS ?lang)
+  FILTER(?lang = LANG(?formalNative))
+  BIND(STR(?nickNative) AS ?nickLabel)
+  BIND(STR(?formalNative) AS ?formalLabel)
+}
+ORDER BY ?lang ?formalLabel ?nickLabel ?nick ?formal

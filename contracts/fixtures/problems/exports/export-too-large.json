@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The export would hold more rows than one export may: narrow the filter.",
+  "instance": "/api/v1/exports",
+  "requestId": "00000000-0000-4000-8000-000000009b02",
+  "code": "export_too_large"
+}

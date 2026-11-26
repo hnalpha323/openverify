@@ -1,0 +1,24 @@
+{
+  "data": {
+    "type": "account-export",
+    "id": "aexp_01M5CN0000000000000011B100",
+    "attributes": {
+      "status": "expired",
+      "schema-version": "openverify.account-export.v1",
+      "created-at": "2026-11-13T12:00:00.000Z",
+      "ready-at": "2026-11-13T12:00:20.000Z",
+      "expires-at": "2026-11-20T12:00:20.000Z",
+      "item-count": 14,
+      "byte-count": null,
+      "error-code": null
+    },
+    "relationships": {
+      "account": {
+        "data": {
+          "type": "account",
+          "id": "acc_01M5CJXJF84MR3PHJHBHKQ4ZC8"
+        }
+      }
+    }
+  }
+}

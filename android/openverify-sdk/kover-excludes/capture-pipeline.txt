@@ -1,0 +1,9 @@
+# Kover exclusions of capture-pipeline (C219.2; review F18): one class pattern per line, for glue a host test cannot
+# reach (each one named with its reason in docs/tdd/phase10-capture-pipeline.tdd.md). Comments start with #.
+# foundation-10b proposed dev.openverify.sdk.camera.CameraXFrameAnalyzer* for the ImageAnalysis analyzer; the analyzer
+# is dev.openverify.sdk.camera.FrameAnalyzer, which FrameAnalyzerTest covers over a fake ImageProxy, so it is not excluded.
+# CameraXCaptureCamera* stays excluded by the build file itself (10A).
+#
+# The binder over CameraX's ProcessCameraProvider: every line calls the provider, which needs a camera stack (the device
+# tests run it on the CI emulator); the host tests use a fake CameraBinder.
+dev.openverify.sdk.camera.ProcessCameraBinder*

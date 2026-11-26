@@ -1,0 +1,871 @@
+# OpenVerify release (C267.1, C262, C261.3; Workflow 11C, sbom-release-11c). Started by hand on
+# `main` only, by the orchestrator, never by an agent and never on a push (rule 27: nobody dispatches
+# it while the owner has no Actions minutes). Contract test: infra/tests/release-workflow.test.sh
+# (with the durable checks of infra/tests/supply-chain-skeletons.test.sh).
+#
+# What a dispatch does:
+#   build    checks the version, then builds the five production images for linux/amd64
+#            (openverify/api, dashboard, flow and its no-guidance variant, vision, code-runner), the
+#            chart package and the three npm tarballs (@openverify/js, @openverify/node,
+#            @openverify/react). Nothing is pushed or published.
+#   verify   Trivy `image` and Grype on each image under C259.2's gate (every critical or high fails
+#            unless security/allowlist.yaml names it; each vulnerability database fetched fresh,
+#            refused when older than 24 hours, its build date in the step summary); Syft SBOMs in
+#            CycloneDX JSON of each image, each source tree and each npm tarball, and
+#            security/check-sbom-licences.py over each (C261.2); the chart's kind install, smoke and
+#            upgrade on Kubernetes 1.35 and 1.37 through deploy/helm/openverify/ci/kind.sh (C265.4),
+#            with the weights fetched on the runner; gitleaks over every artifact's unpacked
+#            contents, image layers included (Phase 10 C217.4), and a search of them for *.mmdb,
+#            *.mmdb.gz, stack.json and .env.e2e (ADR 0006; Workflow 7A). No DAST runs here: ZAP
+#            stays local (C283.4, review F15).
+#   stage    every artifact, SBOM, licence and scan report, SHA256SUMS and RELEASE-NOTES.md uploaded
+#            as workflow artifacts kept 30 days; an artifact whose licence report says
+#            pending-owner (an "owner to confirm" row that ships, such as nodemailer's MIT-0 in the
+#            API image while Q11 is open) carries -pending-owner in its file name and in the notes.
+#   publish  only in the GitHub environment `release` (deployment branch `main`, the owner's
+#            reviewer, who approves each run) and only when the repository variable
+#            OPENVERIFY_PUBLISH is 'true' (C262.2; Q1-Q4 granted 2026-11-21, wired in Workflow 11G by
+#            publish-11g). It refuses a ref other than main, checks every staged file against
+#            SHA256SUMS, refuses a pending-owner artifact (fail closed: while one image is staged
+#            pending-owner, nothing is published), and dry-runs each npm tarball. With the dispatch's
+#            dry-run input true, the default, it then prints every push, signature, attestation and
+#            npm publication it would make and makes none. With dry-run false it pushes each loaded
+#            image, checked against the build's IMAGE-IDS.txt, to ghcr.io/<owner>/openverify-<image>
+#            with the version tag, signs the digest the push returned keyless with cosign and
+#            attests its CycloneDX SBOM to it, pushes the chart package to oci://ghcr.io/<owner>/charts,
+#            writes build provenance with actions/attest-build-provenance over every staged file
+#            and every pushed digest (slsa-github-generator's reusable workflow is the recorded
+#            alternative, THIRD_PARTY_LICENSES.md section 1), and publishes the three npm tarballs
+#            with pnpm, provenance and public access through npm's trusted publishing (the job's
+#            OIDC token, no stored npm token; C285, Stage 1a amendment 5). Without the variable the
+#            run ends after staging with a notice: nothing is published, signed or attested.
+#
+# Duration: about 35 to 45 minutes a run (C267.1), an estimate until integration-11c measures one
+# (C267.5): build about 15, verify about 20 to 25 (the two kind installs most of it), stage about 5.
+#
+# Every action is GitHub's own and pinned to a full commit SHA with its release tag in a trailing
+# comment, as ci.yml pins it; every tool comes from its infra/scripts/install-<tool>.sh (version and
+# SHA-256 pinned, signature checked with the checksummed cosign where published; rule 20), never a
+# scanner action. No action cache: a release does not read state another run could have written.
+# Top-level permissions are `contents: read`; only publish widens its own token.
+name: release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: The version to stage, as in the root package.json and Chart.yaml's appVersion.
+        required: true
+        type: string
+      dry-run:
+        description: >-
+          Keep true (the default) for a dry run, in which the publish job prints every push,
+          signature, attestation and npm publication it would make and makes none. Set false only
+          for the publication the owner approves in the release environment.
+        required: false
+        default: true
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: build (images, chart package, npm tarballs)
+    # A dispatch runs the workflow file of the branch it names; only main's runs build anything.
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      VERSION: ${{ inputs.version }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Check the version
+        run: |
+          if ! printf '%s\n' "$VERSION" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "::error title=release::the version input must be three numbers, major.minor.patch"
+            exit 1
+          fi
+          # 11E's release:check reconciles the version strings (C284.2); until then a file that
+          # names another version is reported here, and the artifacts carry the input's version.
+          for file in package.json packages/sdk-js/package.json packages/node/package.json packages/sdk-react/package.json; do
+            found=$(python3 -I -c 'import json, sys; print(json.load(open(sys.argv[1], encoding="utf-8"))["version"])' "$file")
+            if [ "$found" != "$VERSION" ]; then
+              echo "::warning title=release::$file says $found; release:check (11E) reconciles the version strings"
+            fi
+          done
+          chart=$(sed -n "s/^appVersion: *'\{0,1\}\([^']*\)'\{0,1\} *$/\1/p" deploy/helm/openverify/Chart.yaml)
+          if [ "$chart" != "$VERSION" ]; then
+            echo "::warning title=release::Chart.yaml's appVersion says $chart; the package is built with the input's version"
+          fi
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22.23.4'
+          package-manager-cache: false
+      - name: Install the workspace (frozen lockfile)
+        env:
+          COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
+        run: |
+          corepack enable
+          pnpm install --frozen-lockfile
+      # The API image bakes the pinned data files (each checked by SHA-256) and the variant groups;
+      # the flow image with guidance carries YuNet (pinned SHA-256). No other weight is baked (Q6).
+      - name: Fetch the data the API image bakes in and the flow's YuNet
+        run: |
+          python3 -I scripts/fetch_data.py
+          python3 -I scripts/fetch_models.py --only face_detection_yunet
+          pnpm --filter @openverify/watchlist build:variant-groups
+      - name: Build the five images for linux/amd64
+        run: |
+          set -euo pipefail
+          revision="$GITHUB_SHA"
+          source_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY"
+          docker build --platform linux/amd64 -f infra/docker/api.Dockerfile \
+            --build-arg VERSION="$VERSION" --build-arg REVISION="$revision" --build-arg SOURCE_URL="$source_url" \
+            -t openverify/api:"$VERSION" .
+          docker build --platform linux/amd64 -f infra/docker/dashboard.Dockerfile \
+            --build-arg VERSION="$VERSION" --build-arg REVISION="$revision" --build-arg SOURCE_URL="$source_url" \
+            -t openverify/dashboard:"$VERSION" .
+          docker build --platform linux/amd64 -f infra/docker/flow.Dockerfile \
+            --build-arg VERSION="$VERSION" --build-arg REVISION="$revision" --build-arg SOURCE_URL="$source_url" \
+            -t openverify/flow:"$VERSION" .
+          # C289 (review H20): the decline outcome of Phase 10 P2, staged beside the flow image.
+          docker build --platform linux/amd64 -f infra/docker/flow.Dockerfile \
+            --build-arg VERSION="$VERSION" --build-arg REVISION="$revision" --build-arg SOURCE_URL="$source_url" \
+            --build-arg OPENVERIFY_FLOW_FACE_GUIDANCE=off \
+            -t openverify/flow:"$VERSION"-noguidance .
+          docker build --platform linux/amd64 -f infra/docker/code-runner.Dockerfile \
+            --build-arg VERSION="$VERSION" --build-arg REVISION="$revision" --build-arg SOURCE_URL="$source_url" \
+            -t openverify/code-runner:"$VERSION" .
+          # The named context repo carries models/manifest.json and scripts/fetch_models.py into the
+          # vision image for the chart's models-fetch Job (images-11c).
+          docker build --platform linux/amd64 -f services/vision/Dockerfile --build-context repo=. \
+            --build-arg VERSION="$VERSION" --build-arg REVISION="$revision" --build-arg SOURCE_URL="$source_url" \
+            -t openverify/vision:"$VERSION" services/vision
+      - name: Save each image for the jobs after this one
+        run: |
+          set -euo pipefail
+          mkdir -p dist/images
+          for image in api dashboard flow code-runner vision; do
+            docker save -o "dist/images/$image.tar" "openverify/$image:$VERSION"
+          done
+          docker save -o dist/images/flow-noguidance.tar "openverify/flow:$VERSION-noguidance"
+          {
+            for image in api dashboard flow code-runner vision; do
+              printf '%s %s\n' "openverify/$image:$VERSION" "$(docker image inspect --format '{{.Id}}' "openverify/$image:$VERSION")"
+            done
+            printf '%s %s\n' "openverify/flow:$VERSION-noguidance" "$(docker image inspect --format '{{.Id}}' "openverify/flow:$VERSION-noguidance")"
+          } > dist/images/IMAGE-IDS.txt
+          cat dist/images/IMAGE-IDS.txt
+      - name: Install cosign (pinned, checked by SHA-256)
+        run: INSTALL_DIR="$RUNNER_TEMP/bin" infra/scripts/install-cosign.sh
+      - name: Install Helm (pinned, checksummed)
+        run: |
+          INSTALL_DIR="$RUNNER_TEMP/bin" infra/scripts/install-helm.sh
+          echo "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
+      - name: Package the chart
+        run: |
+          mkdir -p dist/chart
+          helm package deploy/helm/openverify --destination dist/chart --version "$VERSION" --app-version "$VERSION"
+      - name: Build the three npm packages
+        run: pnpm turbo run build --filter=@openverify/js --filter=@openverify/node --filter=@openverify/react
+      # C266.1, C266.4, C266.5: sdk-web-11c's pack tool writes the packed manifest (the release's
+      # version, no source condition, no private flag or scripts), vendors @openverify/node's private
+      # closure under dist/vendor/ and refuses anything but the manifest, README, LICENSE and built
+      # modules. Packed, never published: publication waits for the owner (Q4, C285).
+      - name: Pack the three npm packages
+        run: |
+          set -euo pipefail
+          mkdir -p dist/npm
+          node packages/sdk-react/scripts/pack-release.ts --out dist/npm --version "$VERSION" packages/sdk-js packages/node packages/sdk-react
+          ls -l dist/npm
+      - name: Hand the images to verify
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: release-build-images
+          path: dist/images/
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 0
+      - name: Hand the chart and the npm tarballs to verify
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: release-build-packages
+          path: |
+            dist/chart/
+            dist/npm/
+          if-no-files-found: error
+          retention-days: 1
+
+  verify:
+    name: verify (image scans, SBOMs and the licence check, kind install and upgrade, gitleaks)
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      VERSION: ${{ inputs.version }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: release-build-images
+          path: dist/images
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: release-build-packages
+          path: dist
+      # Rule 20: cosign first (checked by SHA-256 only), then each tool, whose checksum file's
+      # signature the installer checks with that cosign where the project publishes one.
+      - name: Install cosign (pinned, checked by SHA-256)
+        run: INSTALL_DIR="$RUNNER_TEMP/bin" infra/scripts/install-cosign.sh
+      - name: Install the tools (pinned, checksummed, signatures checked)
+        run: |
+          set -euo pipefail
+          export INSTALL_DIR="$RUNNER_TEMP/bin"
+          infra/scripts/install-syft.sh
+          infra/scripts/install-grype.sh
+          infra/scripts/install-trivy.sh
+          infra/scripts/install-helm.sh
+          infra/scripts/install-kind.sh
+          infra/scripts/install-kubectl.sh
+          infra/scripts/install-chart-testing.sh
+          infra/scripts/install-gitleaks.sh
+          echo "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
+      # C259.2: the allowlist's package entries become the scanners' ignore rules (an entry matches
+      # its advisory id in its package only); an expired entry, or one that expires more than 90 days
+      # from today, fails the run before anything is scanned.
+      - name: The allowlist as the scanners' ignore rules (security/allowlist.yaml)
+        run: |
+          mkdir -p "$RUNNER_TEMP/scan"
+          python3 -I - security/allowlist.yaml "$RUNNER_TEMP/scan" <<'PY'
+          import datetime
+          import json
+          import sys
+
+          try:
+              import yaml
+          except ImportError:
+              print("::error title=release::PyYAML is missing from the runner's python3; the allowlist cannot be read, so nothing is scanned")
+              sys.exit(1)
+
+          path, out = sys.argv[1], sys.argv[2]
+          with open(path, encoding="utf-8") as fh:
+              entries = yaml.safe_load(fh) or []
+          today = datetime.datetime.now(datetime.timezone.utc).date()
+          problems = []
+          for entry in entries:
+              expires = entry["expires"]
+              if isinstance(expires, str):
+                  expires = datetime.date.fromisoformat(expires)
+              if expires < today:
+                  problems.append(f"{entry['id']} expired on {expires}")
+              elif (expires - today).days > 90:
+                  problems.append(f"{entry['id']} expires {expires}, more than 90 days ahead")
+          for problem in problems:
+              print(f"::error title=allowlist::{problem}")
+          if problems:
+              sys.exit(1)
+          allowed = [{"id": e["id"], "package": e["package"]} for e in entries if "package" in e]
+          with open(f"{out}/grype.yaml", "w", encoding="utf-8") as fh:
+              json.dump({"ignore": [{"vulnerability": a["id"], "package": {"name": a["package"]}} for a in allowed]}, fh)
+          # One rule per entry, its id as Trivy's id or one of the advisory's vendor ids (a GHSA beside
+          # a CVE); JSON strings are Rego strings. An empty allowlist leaves only the default.
+          rules = ["package trivy\n\nimport rego.v1\n\ndefault ignore := false\n"]
+          for a in allowed:
+              vid, pkg = json.dumps(a["id"]), json.dumps(a["package"])
+              rules.append(f"ignore if {{\n\tinput.VulnerabilityID == {vid}\n\tinput.PkgName == {pkg}\n}}\n")
+              rules.append(f"ignore if {{\n\t{vid} in input.VendorIDs\n\tinput.PkgName == {pkg}\n}}\n")
+          with open(f"{out}/trivy-ignore.rego", "w", encoding="utf-8") as fh:
+              fh.write("\n".join(rules))
+          print(f"{len(entries)} allowlist entries, {len(allowed)} by package")
+          PY
+      # C259.3 (review H14): each vulnerability database fetched fresh in this run, refused when its
+      # build is older than 24 hours, and its build date written to the step summary.
+      - name: Fresh vulnerability databases
+        env:
+          GRYPE_DB_MAX_ALLOWED_BUILT_AGE: 24h
+          GRYPE_DB_VALIDATE_AGE: 'true'
+        run: |
+          set -euo pipefail
+          trivy image --download-db-only --no-progress --skip-version-check
+          grype db update
+          trivy version --format json > "$RUNNER_TEMP/scan/trivy-version.json"
+          grype db status -o json > "$RUNNER_TEMP/scan/grype-db.json"
+          python3 -I - "$RUNNER_TEMP/scan/trivy-version.json" "$RUNNER_TEMP/scan/grype-db.json" >> "$GITHUB_STEP_SUMMARY" <<'PY'
+          import datetime
+          import json
+          import sys
+
+          trivy = json.load(open(sys.argv[1], encoding="utf-8"))["VulnerabilityDB"]["UpdatedAt"]
+          grype = json.load(open(sys.argv[2], encoding="utf-8"))["built"]
+          now = datetime.datetime.now(datetime.timezone.utc)
+          print("### Vulnerability databases\n")
+          for name, built in (("Trivy", trivy), ("Grype", grype)):
+              when = datetime.datetime.fromisoformat(built.replace("Z", "+00:00"))
+              print(f"- {name}: built {built}")
+              if now - when > datetime.timedelta(hours=24):
+                  print(f"::error title=release::{name}'s database was built {built}, more than 24 hours ago", file=sys.stderr)
+                  sys.exit(1)
+          PY
+      - name: Trivy and Grype on each image (critical and high fail unless allowlisted)
+        env:
+          GRYPE_DB_MAX_ALLOWED_BUILT_AGE: 24h
+          GRYPE_DB_VALIDATE_AGE: 'true'
+          GRYPE_DB_AUTO_UPDATE: 'false'
+        run: |
+          mkdir -p dist/scans
+          rc=0
+          for image in api dashboard flow flow-noguidance vision code-runner; do
+            echo "::group::trivy image $image"
+            trivy image --input "dist/images/$image.tar" --scanners vuln --severity CRITICAL,HIGH --exit-code 1 --ignore-policy "$RUNNER_TEMP/scan/trivy-ignore.rego" --no-progress --skip-version-check || rc=1
+            echo "::endgroup::"
+            echo "::group::grype $image"
+            grype "docker-archive:dist/images/$image.tar" -c "$RUNNER_TEMP/scan/grype.yaml" --fail-on high -o table -o "json=dist/scans/$image.grype.json" || rc=1
+            echo "::endgroup::"
+          done
+          # Medium and low findings are reported, never gated (C259.2).
+          python3 -I - dist/scans >> "$GITHUB_STEP_SUMMARY" <<'PY'
+          import collections
+          import json
+          import pathlib
+          import sys
+
+          print("### Image findings by severity (Grype; critical and high gate the run)\n")
+          for report in sorted(pathlib.Path(sys.argv[1]).glob("*.grype.json")):
+              matches = json.loads(report.read_text(encoding="utf-8"))["matches"]
+              counts = collections.Counter(m["vulnerability"]["severity"] for m in matches)
+              found = ", ".join(f"{k} {v}" for k, v in sorted(counts.items())) or "none"
+              print(f"- {report.name.removesuffix('.grype.json')}: {found}")
+          PY
+          exit "$rc"
+      - name: Syft SBOMs of every image, source tree and npm tarball (CycloneDX JSON)
+        run: |
+          set -euo pipefail
+          mkdir -p dist/sbom "$RUNNER_TEMP/npm"
+          for image in api dashboard flow flow-noguidance vision code-runner; do
+            syft scan docker-archive:"dist/images/$image.tar" -o cyclonedx-json="dist/sbom/image-$image.cdx.json"
+          done
+          # The source trees (Stage 1a amendment 21: no licences offline, so the check only lists them).
+          syft scan dir:. --override-default-catalogers javascript-lock-cataloger,javascript-package-cataloger \
+            --exclude './android/**' --exclude './services/**' --exclude '**/node_modules/**' --exclude './dist/**' \
+            -o cyclonedx-json=dist/sbom/source-pnpm.cdx.json
+          syft scan file:services/vision/uv.lock -o cyclonedx-json=dist/sbom/source-vision.cdx.json
+          if [ -f load/uv.lock ]; then
+            syft scan file:load/uv.lock -o cyclonedx-json=dist/sbom/source-load.cdx.json
+          fi
+          for name in js node react; do
+            mkdir -p "$RUNNER_TEMP/npm/openverify-$name"
+            tar -xzf dist/npm/openverify-"$name"-*.tgz -C "$RUNNER_TEMP/npm/openverify-$name"
+            # A directory scan leaves the package.json cataloguer out by default; without it the
+            # SBOM lists nothing. It lists the package itself: its declared dependencies install at
+            # the consumer and are in the source tree's SBOM.
+            syft scan dir:"$RUNNER_TEMP/npm/openverify-$name" --override-default-catalogers javascript-package-cataloger -o cyclonedx-json="dist/sbom/npm-openverify-$name.cdx.json"
+          done
+      # C261.2: every SBOM is read before the step fails; an owner item passes and marks its artifact
+      # pending-owner in its report, which stage reads.
+      - name: The licence check over every SBOM
+        run: |
+          rc=0
+          while read -r artifact sbom; do
+            if [ "$artifact" = source:load ] && [ ! -f "$sbom" ]; then
+              continue
+            fi
+            python3 -I security/check-sbom-licences.py --artifact "$artifact" --sbom "$sbom" --report "${sbom%.cdx.json}.licences.json" || rc=1
+          done <<'LIST'
+          image:api dist/sbom/image-api.cdx.json
+          image:dashboard dist/sbom/image-dashboard.cdx.json
+          image:flow dist/sbom/image-flow.cdx.json
+          image:flow-noguidance dist/sbom/image-flow-noguidance.cdx.json
+          image:vision dist/sbom/image-vision.cdx.json
+          image:code-runner dist/sbom/image-code-runner.cdx.json
+          npm:openverify-js dist/sbom/npm-openverify-js.cdx.json
+          npm:openverify-node dist/sbom/npm-openverify-node.cdx.json
+          npm:openverify-react dist/sbom/npm-openverify-react.cdx.json
+          source:pnpm dist/sbom/source-pnpm.cdx.json
+          source:vision dist/sbom/source-vision.cdx.json
+          source:load dist/sbom/source-load.cdx.json
+          LIST
+          for report in dist/sbom/*.licences.json; do
+            if grep -q '"pending-owner": true' "$report"; then
+              echo "::warning title=release::$report reports an owner item: its artifact is staged as pending-owner"
+            fi
+          done
+          exit "$rc"
+      # C265.4: the weights are fetched here, on the runner; kind.sh models copies them into the
+      # node (models.source: pvc), so no test run downloads anything (verification V15).
+      - name: Fetch the model weights (pinned SHA-256)
+        run: python3 -I scripts/fetch_models.py
+      - name: Load the images into the runner's Docker
+        run: |
+          set -euo pipefail
+          for image in api dashboard flow flow-noguidance vision code-runner; do
+            docker load -i "dist/images/$image.tar"
+          done
+      - name: The chart on kind 1.35 (create, load, fixtures, models, install, smoke, upgrade)
+        run: |
+          set -euo pipefail
+          export OPENVERIFY_KIND_IMAGE_TAG="$VERSION" SUPPLY_CHAIN_TOOLS_DIR="$RUNNER_TEMP/bin"
+          bash deploy/helm/openverify/ci/kind.sh create 1.35
+          bash deploy/helm/openverify/ci/kind.sh load 1.35
+          bash deploy/helm/openverify/ci/kind.sh fixtures 1.35
+          bash deploy/helm/openverify/ci/kind.sh models 1.35
+          bash deploy/helm/openverify/ci/kind.sh install 1.35
+          bash deploy/helm/openverify/ci/kind.sh smoke 1.35
+          # upgrade re-runs the pre-upgrade hook, then the smoke (kind.sh).
+          bash deploy/helm/openverify/ci/kind.sh upgrade 1.35
+      - name: Delete the 1.35 cluster
+        if: always()
+        run: bash deploy/helm/openverify/ci/kind.sh delete 1.35
+      - name: The chart on kind 1.37 (create, load, fixtures, models, install, smoke, upgrade)
+        run: |
+          set -euo pipefail
+          export OPENVERIFY_KIND_IMAGE_TAG="$VERSION" SUPPLY_CHAIN_TOOLS_DIR="$RUNNER_TEMP/bin"
+          bash deploy/helm/openverify/ci/kind.sh create 1.37
+          bash deploy/helm/openverify/ci/kind.sh load 1.37
+          bash deploy/helm/openverify/ci/kind.sh fixtures 1.37
+          bash deploy/helm/openverify/ci/kind.sh models 1.37
+          bash deploy/helm/openverify/ci/kind.sh install 1.37
+          bash deploy/helm/openverify/ci/kind.sh smoke 1.37
+          # upgrade re-runs the pre-upgrade hook, then the smoke (kind.sh).
+          bash deploy/helm/openverify/ci/kind.sh upgrade 1.37
+      - name: Delete the 1.37 cluster
+        if: always()
+        run: bash deploy/helm/openverify/ci/kind.sh delete 1.37
+      # Phase 10 C217.4 (review P25): nothing is staged before gitleaks has read every artifact's
+      # unpacked contents: each image's layers, the chart and the npm tarballs.
+      - name: Unpack every artifact
+        run: |
+          set -euo pipefail
+          unpacked="$RUNNER_TEMP/unpacked"
+          for image in api dashboard flow flow-noguidance vision code-runner; do
+            mkdir -p "$unpacked/image-$image/archive"
+            tar -xf "dist/images/$image.tar" -C "$unpacked/image-$image/archive"
+            # docker save writes every layer as a tar inside the archive; each is unpacked beside it.
+            index=0
+            while IFS= read -r -d '' blob; do
+              if tar -tf "$blob" >/dev/null 2>&1; then
+                index=$((index + 1))
+                mkdir -p "$unpacked/image-$image/layer-$index"
+                tar -x --no-same-owner --no-same-permissions --exclude='dev/*' -f "$blob" -C "$unpacked/image-$image/layer-$index"
+              fi
+            done < <(find "$unpacked/image-$image/archive" -type f -print0)
+            echo "$image: $index layers"
+          done
+          mkdir -p "$unpacked/chart" "$unpacked/npm"
+          tar -xzf dist/chart/openverify-"$VERSION".tgz -C "$unpacked/chart"
+          for tarball in dist/npm/*.tgz; do
+            mkdir -p "$unpacked/npm/$(basename "$tarball" .tgz)"
+            tar -xzf "$tarball" -C "$unpacked/npm/$(basename "$tarball" .tgz)"
+          done
+      # The repository's rules (.gitleaks.toml) plus one reviewed allowlist entry: the python base
+      # image sets ENV GPG_KEY to the CPython release manager's public OpenPGP fingerprint, which the
+      # generic-api-key rule reads in vision's image config blob. It applies only to that pattern in
+      # an archive blob, so the same text in a layer's file still fails.
+      - name: gitleaks over every unpacked artifact
+        run: |
+          set -euo pipefail
+          config="$RUNNER_TEMP/gitleaks-release.toml"
+          printf '%s\n' \
+            'title = "OpenVerify release artifacts"' \
+            '[extend]' \
+            "path = \"$GITHUB_WORKSPACE/.gitleaks.toml\"" \
+            '[[allowlists]]' \
+            'description = "The public OpenPGP fingerprint in the python base image config (ENV GPG_KEY), not a secret"' \
+            'condition = "AND"' \
+            'regexTarget = "match"' \
+            "regexes = ['''GPG_KEY=[0-9A-F]{40}''']" \
+            "paths = ['''/archive/blobs/sha256/[0-9a-f]{64}\$''']" > "$config"
+          gitleaks dir --config "$config" --redact --no-banner --no-color "$RUNNER_TEMP/unpacked"
+      - name: No *.mmdb, *.mmdb.gz, stack.json or .env.e2e in any artifact (ADR 0006; Workflow 7A)
+        run: |
+          found=$(find "$RUNNER_TEMP/unpacked" \( -name '*.mmdb' -o -name '*.mmdb.gz' -o -name 'stack.json' -o -name '.env.e2e' \) -print)
+          if [ -n "$found" ]; then
+            echo "::error title=release::an artifact holds a file that must never ship:"
+            printf '%s\n' "$found"
+            exit 1
+          fi
+      - name: Hand the SBOMs and reports to stage
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: release-verify-reports
+          path: |
+            dist/sbom/
+            dist/scans/
+          if-no-files-found: error
+          retention-days: 1
+
+  stage:
+    name: stage (workflow artifacts)
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      VERSION: ${{ inputs.version }}
+      PUBLISH: ${{ vars.OPENVERIFY_PUBLISH }}
+      DRY_RUN: ${{ inputs.dry-run }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: release-build-images
+          path: dist/images
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: release-build-packages
+          path: dist
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: release-verify-reports
+          path: dist
+      # C261.2 (review H19): an artifact whose licence report says "pending-owner" carries
+      # -pending-owner in its file name, beside its SBOM and its reports.
+      - name: Name the staged files, pending-owner where the licence check says so
+        run: |
+          set -euo pipefail
+          pending_owner() {
+            python3 -I -c 'import json, sys; sys.exit(0 if json.load(open(sys.argv[1], encoding="utf-8"))["pending-owner"] else 1)' "$1"
+          }
+          mkdir -p staged/images staged/chart staged/npm staged/sbom staged/scans
+          : > "$RUNNER_TEMP/pending-owner.txt"
+          for image in api dashboard flow flow-noguidance vision code-runner; do
+            label=""
+            if pending_owner "dist/sbom/image-$image.licences.json"; then
+              label="-pending-owner"
+              echo "image:$image" >> "$RUNNER_TEMP/pending-owner.txt"
+            fi
+            mv "dist/images/$image.tar" "staged/images/openverify-$image-$VERSION$label.tar"
+            mv "dist/sbom/image-$image.cdx.json" "staged/sbom/openverify-$image-$VERSION$label.cdx.json"
+            mv "dist/sbom/image-$image.licences.json" "staged/sbom/openverify-$image-$VERSION$label.licences.json"
+            mv "dist/scans/$image.grype.json" "staged/scans/openverify-$image-$VERSION$label.grype.json"
+          done
+          for name in js node react; do
+            label=""
+            if pending_owner "dist/sbom/npm-openverify-$name.licences.json"; then
+              label="-pending-owner"
+              echo "npm:openverify-$name" >> "$RUNNER_TEMP/pending-owner.txt"
+            fi
+            mv dist/npm/openverify-"$name"-*.tgz "staged/npm/openverify-$name-$VERSION$label.tgz"
+            mv "dist/sbom/npm-openverify-$name.cdx.json" "staged/sbom/npm-openverify-$name-$VERSION$label.cdx.json"
+            mv "dist/sbom/npm-openverify-$name.licences.json" "staged/sbom/npm-openverify-$name-$VERSION$label.licences.json"
+          done
+          mv dist/chart/openverify-"$VERSION".tgz staged/chart/
+          mv dist/sbom/source-*.json staged/sbom/
+          cp dist/images/IMAGE-IDS.txt staged/images/
+          cat "$RUNNER_TEMP/pending-owner.txt"
+      # C262.4: nothing is signed, so the notes give every file's SHA-256; C257.5: the images
+      # redistribute their base distribution's packages, whose sources the notes name.
+      - name: SHA256SUMS and RELEASE-NOTES.md
+        run: |
+          set -euo pipefail
+          (cd staged && find . -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum) > "$RUNNER_TEMP/SHA256SUMS"
+          mv "$RUNNER_TEMP/SHA256SUMS" staged/SHA256SUMS
+          python3 -I - staged "$RUNNER_TEMP/pending-owner.txt" <<'PY'
+          import json
+          import os
+          import pathlib
+          import re
+          import sys
+
+          staged, pending_file = pathlib.Path(sys.argv[1]), pathlib.Path(sys.argv[2])
+          version, revision = os.environ["VERSION"], os.environ["GITHUB_SHA"]
+          pending = pending_file.read_text(encoding="utf-8").split()
+          lines = [f"# OpenVerify {version} (staged, not published)", "", f"Revision {revision}.", ""]
+          lines += [
+              "Staged workflow artifacts are unsigned (C262): check each file against SHA256SUMS, from this",
+              "run's workflow artifacts. Signatures, SBOM attestations, build provenance and npm provenance",
+              "exist only from the first approved publication on: the publish job, approved by the owner's",
+              "reviewer in the release environment with OPENVERIFY_PUBLISH 'true' and dry-run false, pushes",
+              "each image by digest, signs it keyless and attests its SBOM, pushes the chart, writes",
+              "provenance and publishes the npm packages with provenance.",
+              "",
+              "Network data is the operator's own sync (network:sync, or the worker's network-refresh job):",
+              "no network database is baked into an image (ADR 0006), and this run's verify job searched",
+              "every artifact's unpacked contents for *.mmdb, *.mmdb.gz, stack.json and .env.e2e.",
+              "",
+              "## pending-owner",
+              "",
+          ]
+          if not pending:
+              lines.append("None: every shipped component passed the licence check with a recorded decision.")
+          for report in sorted(staged.glob("sbom/*-pending-owner.licences.json")):
+              data = json.loads(report.read_text(encoding="utf-8"))
+              lines.append(f"- {data['artifact']}: staged as pending-owner until the owner decides:")
+              for item in data["owner"]:
+                  lines.append(f"  - {item['name']} {item['version']} ({', '.join(item['licences'])}): {item['reason']}")
+          lines += ["", "## Base images and their sources (C257.5)", ""]
+          lines.append("The images redistribute their base distribution's packages; each image's SBOM lists them, and")
+          lines.append("Debian's source for each listed version is at https://snapshot.debian.org/.")
+          for dockerfile in ("infra/docker/api.Dockerfile", "infra/docker/dashboard.Dockerfile", "infra/docker/flow.Dockerfile", "infra/docker/code-runner.Dockerfile", "services/vision/Dockerfile"):
+              text = pathlib.Path(dockerfile).read_text(encoding="utf-8")
+              # The runtime bases only: the uv image is a build stage of vision and does not ship.
+              for base in re.findall(r"^ARG (?:NODE|PYTHON)_IMAGE=(\S+)$", text, re.M):
+                  lines.append(f"- {dockerfile}: {base}")
+          lines += ["", "## SHA-256", "", "```", (staged / "SHA256SUMS").read_text(encoding="utf-8").rstrip(), "```", ""]
+          (staged / "RELEASE-NOTES.md").write_text("\n".join(lines), encoding="utf-8")
+          PY
+          cat staged/RELEASE-NOTES.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Stage the images
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: openverify-${{ inputs.version }}-images
+          path: staged/images/
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 0
+      - name: Stage the chart, the npm tarballs, the SBOMs, the reports, SHA256SUMS and the notes
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: openverify-${{ inputs.version }}-staged
+          path: |
+            staged/chart/
+            staged/npm/
+            staged/sbom/
+            staged/scans/
+            staged/SHA256SUMS
+            staged/RELEASE-NOTES.md
+          if-no-files-found: error
+          retention-days: 30
+      - name: Say what was staged
+        run: |
+          if [ "$PUBLISH" = "true" ]; then
+            echo "::notice title=release::staged $VERSION; the publish job waits for the release environment's reviewer (dry-run: $DRY_RUN)"
+          else
+            echo "::notice title=release::staged $VERSION as workflow artifacts (30 days); nothing was published, signed or attested (OPENVERIFY_PUBLISH is not 'true'; Q1-Q4)"
+          fi
+
+  # C262, C285 (Workflow 11G, publish-11g; Q1-Q4 granted 2026-11-21): the publication, run only by
+  # the owner's switch inside the release environment, whose reviewer approves each run. Every
+  # dry-run test is against an explicit false, so a missing or true input is a dry run.
+  publish:
+    name: publish (owner-gated)
+    needs: stage
+    if: vars.OPENVERIFY_PUBLISH == 'true' && github.ref == 'refs/heads/main'
+    environment: release
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    concurrency:
+      group: release-publish
+      cancel-in-progress: false
+    permissions:
+      contents: read # the checkout
+      id-token: write # cosign's keyless signature, the provenance attestations and npm's trusted publishing
+      packages: write # the images and the chart pushed to the owner's registry (Q2)
+      attestations: write # actions/attest-build-provenance
+    env:
+      VERSION: ${{ inputs.version }}
+      DRY_RUN: ${{ inputs.dry-run }}
+      REGISTRY_OWNER: ${{ github.repository_owner }}
+    steps:
+      # The job's own branch check: a dispatch of another branch's workflow file never publishes,
+      # whatever the environment's deployment rule says.
+      - name: Publish only from main
+        run: |
+          if [ "$GITHUB_REF" != refs/heads/main ]; then
+            echo "::error title=release::the publish job runs only on main, and this run is on $GITHUB_REF"
+            exit 1
+          fi
+          if [ "$DRY_RUN" = false ]; then
+            echo "::notice title=release::publishing $VERSION: the images, the chart, their signatures and attestations, and the npm packages"
+          else
+            echo "::notice title=release::dry run of $VERSION: nothing is pushed, signed, attested or published"
+          fi
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: openverify-${{ inputs.version }}-images
+          path: staged/images
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: openverify-${{ inputs.version }}-staged
+          path: staged
+      # Exactly the staged bytes: the files stage summed after verify read them, never a rebuild.
+      - name: Check every staged file against SHA256SUMS
+        run: |
+          set -euo pipefail
+          (cd staged && sha256sum --check --strict SHA256SUMS)
+      # C261.2: a pending-owner artifact never leaves the runner.
+      - name: Refuse a pending-owner artifact
+        run: |
+          found=$(find staged -name '*-pending-owner*' -print)
+          if [ -n "$found" ]; then
+            echo "::error title=release::pending-owner artifacts cannot be published until the owner decides:"
+            printf '%s\n' "$found"
+            exit 1
+          fi
+      - name: Install cosign (pinned, checked by SHA-256)
+        run: INSTALL_DIR="$RUNNER_TEMP/bin" infra/scripts/install-cosign.sh
+      - name: Install Helm (pinned, checksummed)
+        run: |
+          INSTALL_DIR="$RUNNER_TEMP/bin" infra/scripts/install-helm.sh
+          echo "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22.23.4'
+          package-manager-cache: false
+      # Before anything is pushed: each tarball's packed manifest (its name, the release's version,
+      # public access with provenance, this repository, which npm's provenance checks), then a dry
+      # run of the publication with the OIDC request variables removed, so this call can neither
+      # authenticate nor sign.
+      - name: Check the npm tarballs and dry-run their publication
+        env:
+          COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
+        run: |
+          set -euo pipefail
+          corepack enable
+          mkdir -p "$RUNNER_TEMP/npm"
+          for name in js node react; do
+            tar -xzOf "staged/npm/openverify-$name-$VERSION.tgz" package/package.json > "$RUNNER_TEMP/npm/$name.json"
+          done
+          python3 -I - "$RUNNER_TEMP/npm" <<'PY'
+          import json
+          import os
+          import pathlib
+          import sys
+
+          version, repository = os.environ["VERSION"], os.environ["GITHUB_REPOSITORY"].lower()
+          problems = []
+          for name in ("js", "node", "react"):
+              manifest = json.loads((pathlib.Path(sys.argv[1]) / f"{name}.json").read_text(encoding="utf-8"))
+              url = str((manifest.get("repository") or {}).get("url", "")).lower()
+              config = manifest.get("publishConfig") or {}
+              if manifest.get("name") != f"@openverify/{name}":
+                  problems.append(f"openverify-{name}: the manifest names {manifest.get('name')}")
+              if manifest.get("version") != version:
+                  problems.append(f"@openverify/{name}: version {manifest.get('version')}, not {version}")
+              if "private" in manifest:
+                  problems.append(f"@openverify/{name}: the packed manifest is still private")
+              if config.get("access") != "public" or config.get("provenance") is not True:
+                  problems.append(f"@openverify/{name}: publishConfig is not public access with provenance")
+              if url.removeprefix("git+").removesuffix(".git") != f"https://github.com/{repository}":
+                  problems.append(f"@openverify/{name}: repository.url {url} is not this repository, so npm would refuse its provenance")
+          for problem in problems:
+              print(f"::error title=release::{problem}")
+          sys.exit(1 if problems else 0)
+          PY
+          for name in js node react; do
+            env -u ACTIONS_ID_TOKEN_REQUEST_URL -u ACTIONS_ID_TOKEN_REQUEST_TOKEN \
+              pnpm publish "staged/npm/openverify-$name-$VERSION.tgz" --provenance --access public --no-git-checks --dry-run
+          done
+      # Exactly the images the build job made: each staged archive is loaded and its image id
+      # compared with the build's IMAGE-IDS.txt before any login or push.
+      - name: Load each staged image and check it against IMAGE-IDS.txt
+        run: |
+          set -euo pipefail
+          for image in api dashboard flow flow-noguidance vision code-runner; do
+            docker load -i "staged/images/openverify-$image-$VERSION.tar"
+            source_tag="openverify/$image:$VERSION"
+            if [ "$image" = flow-noguidance ]; then source_tag="openverify/flow:$VERSION-noguidance"; fi
+            built=$(awk -v tag="$source_tag" '$1 == tag { print $2 }' staged/images/IMAGE-IDS.txt)
+            loaded=$(docker image inspect --format '{{.Id}}' "$source_tag")
+            if [ -z "$built" ] || [ "$loaded" != "$built" ]; then
+              echo "::error title=release::$source_tag loaded as $loaded, not the image the build job recorded in IMAGE-IDS.txt ($built)"
+              exit 1
+            fi
+            echo "$source_tag is $loaded, as built"
+          done
+      # images-and-chart (Q2) and sign-keyless (Q3): each image pushed with its version tag, then
+      # signed and its SBOM attested by the digest the push returned, never by tag.
+      - name: Push, sign and attest each image by digest
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          owner=$(printf '%s' "$REGISTRY_OWNER" | tr '[:upper:]' '[:lower:]')
+          if [ "$DRY_RUN" = false ]; then
+            printf '%s' "$GH_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
+          fi
+          : > staged/PUBLISHED-DIGESTS
+          for image in api dashboard flow flow-noguidance vision code-runner; do
+            source_tag="openverify/$image:$VERSION"
+            if [ "$image" = flow-noguidance ]; then source_tag="openverify/flow:$VERSION-noguidance"; fi
+            repository="ghcr.io/$owner/openverify-$image"
+            sbom="staged/sbom/openverify-$image-$VERSION.cdx.json"
+            docker tag "$source_tag" "$repository:$VERSION"
+            if [ "$DRY_RUN" != false ]; then
+              echo "dry run: would push $repository:$VERSION ($source_tag), sign the digest the push returns keyless with cosign and attest $sbom to it"
+              continue
+            fi
+            docker push "$repository:$VERSION"
+            digest=$(docker image inspect --format '{{range .RepoDigests}}{{println .}}{{end}}' "$repository:$VERSION" | awk -F@ -v repo="$repository" '$1 == repo { print $2; exit }')
+            if [ -z "$digest" ]; then
+              echo "::error title=release::the push of $repository:$VERSION returned no digest"
+              exit 1
+            fi
+            cosign sign --yes "$repository@$digest"
+            cosign attest --yes --type cyclonedx --predicate "$sbom" "$repository@$digest"
+            printf '%s  %s\n' "${digest#sha256:}" "$repository" >> staged/PUBLISHED-DIGESTS
+          done
+      - name: Push the chart to the registry as an OCI artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          owner=$(printf '%s' "$REGISTRY_OWNER" | tr '[:upper:]' '[:lower:]')
+          chart="staged/chart/openverify-$VERSION.tgz"
+          helm show chart "$chart"
+          if [ "$DRY_RUN" != false ]; then
+            echo "dry run: would push $chart to oci://ghcr.io/$owner/charts as openverify:$VERSION"
+            exit 0
+          fi
+          printf '%s' "$GH_TOKEN" | helm registry login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
+          helm push "$chart" "oci://ghcr.io/$owner/charts" 2>&1 | tee "$RUNNER_TEMP/helm-push.txt"
+          digest=$(sed -n 's/^Digest: *//p' "$RUNNER_TEMP/helm-push.txt")
+          if [ -z "$digest" ]; then
+            echo "::error title=release::helm push returned no digest for $chart"
+            exit 1
+          fi
+          printf '%s  %s\n' "${digest#sha256:}" "ghcr.io/$owner/charts/openverify" >> staged/PUBLISHED-DIGESTS
+      # attestations (Q1 public at the release, with Q3): SLSA Build-track provenance over every
+      # staged file and over every digest pushed above. The alternative, if the owner prefers it,
+      # is slsa-framework/slsa-github-generator's reusable workflow (v2.1.0, by commit
+      # f7dd8c54c2067bafc12ca7a55595d5ee9b75204a, THIRD_PARTY_LICENSES.md section 1).
+      - name: Build provenance for every staged file
+        if: inputs.dry-run == false
+        uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
+        with:
+          subject-checksums: staged/SHA256SUMS
+      - name: Build provenance for every pushed image and the chart, by digest
+        if: inputs.dry-run == false
+        uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
+        with:
+          subject-checksums: staged/PUBLISHED-DIGESTS
+      - name: Say what the provenance would cover (dry run)
+        if: inputs.dry-run != false
+        run: |
+          files=$(wc -l < staged/SHA256SUMS)
+          echo "dry run: actions/attest-build-provenance would attest the $files files of staged/SHA256SUMS, then the six image digests and the chart digest the pushes return"
+      # npm (Q4): the staged tarballs, published with provenance and public access by pnpm through
+      # npm's trusted publishing (the job's OIDC token; the owner's trusted-publisher entry per
+      # package is a release-time step). No npm token exists or is read.
+      - name: Publish the npm packages with provenance
+        env:
+          COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
+        run: |
+          set -euo pipefail
+          if [ "$DRY_RUN" != false ]; then
+            echo "dry run: would publish staged/npm/openverify-{js,node,react}-$VERSION.tgz with pnpm publish --provenance --access public (dry-run published above)"
+            exit 0
+          fi
+          corepack enable
+          for name in js node react; do
+            pnpm publish "staged/npm/openverify-$name-$VERSION.tgz" --provenance --access public --no-git-checks
+          done
+      - name: Say what was published
+        run: |
+          if [ "$DRY_RUN" = false ]; then
+            echo "::notice title=release::published $VERSION: six images by digest, signed keyless with their SBOMs attested, the chart as an OCI artifact, provenance for every staged file and digest, and the three npm packages with provenance"
+          else
+            echo "::notice title=release::dry run of $VERSION done: nothing was pushed, signed, attested or published"
+          fi

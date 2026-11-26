@@ -1,0 +1,38 @@
+{
+  "data": [
+    {
+      "type": "case-history-entry",
+      "id": "2",
+      "attributes": {
+        "kind": "assigned",
+        "actor-type": "case-assignment-policy",
+        "actor-id": "cap_01M5CN00000000000000000006",
+        "from": null,
+        "to": {
+          "assignee-id": "usr_01M5CN00000000000000000011",
+          "strategy": "round-robin"
+        },
+        "request-id": null,
+        "created-at": "2026-10-20T12:05:00.000Z"
+      }
+    },
+    {
+      "type": "case-history-entry",
+      "id": "1",
+      "attributes": {
+        "kind": "created",
+        "actor-type": "workflow-run",
+        "actor-id": "wfr_01M5CM00000000000000000003",
+        "from": null,
+        "to": {
+          "status": "open"
+        },
+        "request-id": null,
+        "created-at": "2026-10-20T12:00:00.000Z"
+      }
+    }
+  ],
+  "links": {
+    "next": null
+  }
+}

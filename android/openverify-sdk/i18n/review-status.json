@@ -1,0 +1,1479 @@
+{
+  "$schema": "./review-status.schema.json",
+  "format": 1,
+  "description": "C199.1, C161.5 (review H14): the review status of each SDK locale, in the form of Phase 9's LOCALE_REVIEW_STATUS (source, machine-drafted, partially-reviewed, reviewed {by, date, catalogSha256}); a reviewed record also keeps keySha256, the SHA-256 of each NFC text as reviewed, so a key whose text changed downgrades the locale to partially-reviewed (android-i18n's test). keys lists every SDK string with the file that defines it: an agent that adds strings adds their keys here (a named borrowed edit, rule 20). Every non-English SDK catalog is machine-drafted: no translation is called reviewed without a record.",
+  "locales": {
+    "en": {
+      "status": "source"
+    },
+    "es": {
+      "status": "machine-drafted"
+    },
+    "fr": {
+      "status": "machine-drafted"
+    },
+    "de": {
+      "status": "machine-drafted"
+    },
+    "ar": {
+      "status": "machine-drafted"
+    }
+  },
+  "keys": {
+    "openverify_aamva_intro": {
+      "file": "strings_form.xml"
+    },
+    "openverify_aamva_title": {
+      "file": "strings_form.xml"
+    },
+    "openverify_business_intro": {
+      "file": "strings_business.xml"
+    },
+    "openverify_business_title": {
+      "file": "strings_business.xml"
+    },
+    "openverify_camera_allow": {
+      "file": "strings.xml"
+    },
+    "openverify_camera_denied": {
+      "file": "strings.xml"
+    },
+    "openverify_camera_open_settings": {
+      "file": "strings.xml"
+    },
+    "openverify_camera_rationale": {
+      "file": "strings.xml"
+    },
+    "openverify_camera_title": {
+      "file": "strings.xml"
+    },
+    "openverify_camera_unavailable": {
+      "file": "strings.xml"
+    },
+    "openverify_cancel": {
+      "file": "strings.xml"
+    },
+    "openverify_capture_check": {
+      "file": "strings.xml"
+    },
+    "openverify_capture_failed": {
+      "file": "strings.xml"
+    },
+    "openverify_capture_preview": {
+      "file": "strings.xml"
+    },
+    "openverify_capture_progress": {
+      "file": "strings.xml"
+    },
+    "openverify_capture_retake": {
+      "file": "strings.xml"
+    },
+    "openverify_capture_sending": {
+      "file": "strings.xml"
+    },
+    "openverify_capture_take": {
+      "file": "strings.xml"
+    },
+    "openverify_capture_upload": {
+      "file": "strings.xml"
+    },
+    "openverify_capture_upload_failed": {
+      "file": "strings.xml"
+    },
+    "openverify_capture_use": {
+      "file": "strings.xml"
+    },
+    "openverify_close": {
+      "file": "strings.xml"
+    },
+    "openverify_completion_title": {
+      "file": "strings.xml"
+    },
+    "openverify_consent_automated_decision": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_consent_automated_decision_checkbox": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_consent_biometric": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_consent_biometric_matching": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_consent_biometric_matching_checkbox": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_consent_checkbox": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_consent_continue": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_consent_device_recognition": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_consent_device_recognition_checkbox": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_consent_processing": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_consent_saving": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_consent_text_changed": {
+      "file": "strings_consent.xml"
+    },
+    "openverify_consent_title": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_contest_contact": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_contest_heading": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_contest_host": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_contest_intro": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_contest_link": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_crypto_address": {
+      "file": "strings_crypto_wallet.xml"
+    },
+    "openverify_crypto_chain": {
+      "file": "strings_crypto_wallet.xml"
+    },
+    "openverify_crypto_change": {
+      "file": "strings_crypto_wallet.xml"
+    },
+    "openverify_crypto_copied": {
+      "file": "strings_crypto_wallet.xml"
+    },
+    "openverify_crypto_copy": {
+      "file": "strings_crypto_wallet.xml"
+    },
+    "openverify_crypto_error_address_invalid": {
+      "file": "strings_crypto_wallet.xml"
+    },
+    "openverify_crypto_error_chain_not_offered": {
+      "file": "strings_crypto_wallet.xml"
+    },
+    "openverify_crypto_error_challenge_invalid": {
+      "file": "strings_crypto_wallet.xml"
+    },
+    "openverify_crypto_error_expected_address": {
+      "file": "strings_crypto_wallet.xml"
+    },
+    "openverify_crypto_error_signature_too_long": {
+      "file": "strings_crypto_wallet.xml"
+    },
+    "openverify_crypto_error_signed_message_too_long": {
+      "file": "strings_crypto_wallet.xml"
+    },
+    "openverify_crypto_evm_chain": {
+      "file": "strings_crypto_wallet.xml"
+    },
+    "openverify_crypto_expires_in": {
+      "file": "strings_crypto_wallet.xml"
+    },
+    "openverify_crypto_get_message": {
+      "file": "strings_crypto_wallet.xml"
+    },
+    "openverify_crypto_getting_message": {
+      "file": "strings_crypto_wallet.xml"
+    },
+    "openverify_crypto_intro": {
+      "file": "strings_crypto_wallet.xml"
+    },
+    "openverify_crypto_message_instructions": {
+      "file": "strings_crypto_wallet.xml"
+    },
+    "openverify_crypto_message_title": {
+      "file": "strings_crypto_wallet.xml"
+    },
+    "openverify_crypto_new_message": {
+      "file": "strings_crypto_wallet.xml"
+    },
+    "openverify_crypto_restarted": {
+      "file": "strings_crypto_wallet.xml"
+    },
+    "openverify_crypto_signature": {
+      "file": "strings_crypto_wallet.xml"
+    },
+    "openverify_crypto_signed_message": {
+      "file": "strings_crypto_wallet.xml"
+    },
+    "openverify_crypto_signed_message_hint": {
+      "file": "strings_crypto_wallet.xml"
+    },
+    "openverify_crypto_submit": {
+      "file": "strings_crypto_wallet.xml"
+    },
+    "openverify_crypto_submitting": {
+      "file": "strings_crypto_wallet.xml"
+    },
+    "openverify_crypto_title": {
+      "file": "strings_crypto_wallet.xml"
+    },
+    "openverify_database_intro": {
+      "file": "strings_form.xml"
+    },
+    "openverify_database_title": {
+      "file": "strings_form.xml"
+    },
+    "openverify_decimal_separator": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_accepted": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_capture_back": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_capture_instruction": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_capture_photo": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_capture_title": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_choose": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_choose_another": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_error_empty": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_error_too_large": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_error_unreadable": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_error_unsupported": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_formats": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_guidance_auto": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_guidance_fit_card": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_guidance_fit_page": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_guidance_hold_still": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_guidance_more_light": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_guidance_move_closer": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_guidance_show_mrz": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_guidance_tilt_away": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_intro": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_name_bank_statement": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_name_lease": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_name_pay_stub": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_name_tax_document": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_name_utility_bill": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_pages": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_photo": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_picked": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_picked_hint": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_title": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_type_bank_statement": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_type_lease": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_type_pay_stub": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_type_tax_document": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_type_utility_bill": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_unavailable": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_unnamed": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_upload": {
+      "file": "strings_document.xml"
+    },
+    "openverify_document_uploading": {
+      "file": "strings_document.xml"
+    },
+    "openverify_done": {
+      "file": "strings.xml"
+    },
+    "openverify_error_inquiry_mismatch": {
+      "file": "strings.xml"
+    },
+    "openverify_error_invalid_response": {
+      "file": "strings.xml"
+    },
+    "openverify_error_network": {
+      "file": "strings.xml"
+    },
+    "openverify_error_out_of_sync": {
+      "file": "strings.xml"
+    },
+    "openverify_error_rejected": {
+      "file": "strings.xml"
+    },
+    "openverify_error_server": {
+      "file": "strings.xml"
+    },
+    "openverify_error_session_expired": {
+      "file": "strings.xml"
+    },
+    "openverify_error_still_processing": {
+      "file": "strings.xml"
+    },
+    "openverify_error_title": {
+      "file": "strings.xml"
+    },
+    "openverify_expired_message": {
+      "file": "strings.xml"
+    },
+    "openverify_expired_title": {
+      "file": "strings.xml"
+    },
+    "openverify_failure_title": {
+      "file": "strings.xml"
+    },
+    "openverify_field_address_city": {
+      "file": "strings_form.xml"
+    },
+    "openverify_field_address_country_code": {
+      "file": "strings_form.xml"
+    },
+    "openverify_field_address_postal_code": {
+      "file": "strings_form.xml"
+    },
+    "openverify_field_address_street_1": {
+      "file": "strings_form.xml"
+    },
+    "openverify_field_address_street_2": {
+      "file": "strings_form.xml"
+    },
+    "openverify_field_address_subdivision": {
+      "file": "strings_form.xml"
+    },
+    "openverify_field_birthdate": {
+      "file": "strings_form.xml"
+    },
+    "openverify_field_business_name": {
+      "file": "strings_business.xml"
+    },
+    "openverify_field_choose": {
+      "file": "strings_form.xml"
+    },
+    "openverify_field_country_code": {
+      "file": "strings_business.xml"
+    },
+    "openverify_field_date_hint": {
+      "file": "strings_form.xml"
+    },
+    "openverify_field_email_address": {
+      "file": "strings_form.xml"
+    },
+    "openverify_field_error_birth_month": {
+      "file": "strings_business.xml"
+    },
+    "openverify_field_error_date": {
+      "file": "strings_form.xml"
+    },
+    "openverify_field_error_invalid": {
+      "file": "strings_form.xml"
+    },
+    "openverify_field_error_lei": {
+      "file": "strings_business.xml"
+    },
+    "openverify_field_error_missing": {
+      "file": "strings_form.xml"
+    },
+    "openverify_field_error_refused": {
+      "file": "strings_form.xml"
+    },
+    "openverify_field_error_registration": {
+      "file": "strings_business.xml"
+    },
+    "openverify_field_error_registration_gb": {
+      "file": "strings_business.xml"
+    },
+    "openverify_field_error_registration_us": {
+      "file": "strings_business.xml"
+    },
+    "openverify_field_error_too_long": {
+      "file": "strings_form.xml"
+    },
+    "openverify_field_error_url": {
+      "file": "strings_business.xml"
+    },
+    "openverify_field_expiration_date": {
+      "file": "strings_form.xml"
+    },
+    "openverify_field_identification_number": {
+      "file": "strings_form.xml"
+    },
+    "openverify_field_issue_date": {
+      "file": "strings_form.xml"
+    },
+    "openverify_field_issuing_authority": {
+      "file": "strings_form.xml"
+    },
+    "openverify_field_lei": {
+      "file": "strings_business.xml"
+    },
+    "openverify_field_lei_hint": {
+      "file": "strings_business.xml"
+    },
+    "openverify_field_license_number": {
+      "file": "strings_form.xml"
+    },
+    "openverify_field_name_first": {
+      "file": "strings_form.xml"
+    },
+    "openverify_field_name_last": {
+      "file": "strings_form.xml"
+    },
+    "openverify_field_name_middle": {
+      "file": "strings_form.xml"
+    },
+    "openverify_field_optional": {
+      "file": "strings_form.xml"
+    },
+    "openverify_field_person_birthdate": {
+      "file": "strings_business.xml"
+    },
+    "openverify_field_person_birthdate_hint": {
+      "file": "strings_business.xml"
+    },
+    "openverify_field_phone_hint": {
+      "file": "strings_form.xml"
+    },
+    "openverify_field_phone_number": {
+      "file": "strings_form.xml"
+    },
+    "openverify_field_registration_hint": {
+      "file": "strings_business.xml"
+    },
+    "openverify_field_registration_hint_gb": {
+      "file": "strings_business.xml"
+    },
+    "openverify_field_registration_hint_us": {
+      "file": "strings_business.xml"
+    },
+    "openverify_field_registration_number": {
+      "file": "strings_business.xml"
+    },
+    "openverify_field_website_hint": {
+      "file": "strings_business.xml"
+    },
+    "openverify_field_website_url": {
+      "file": "strings_business.xml"
+    },
+    "openverify_field_zip_code": {
+      "file": "strings_form.xml"
+    },
+    "openverify_flow_completion": {
+      "file": "strings.xml"
+    },
+    "openverify_flow_failure": {
+      "file": "strings.xml"
+    },
+    "openverify_form_continue": {
+      "file": "strings_form.xml"
+    },
+    "openverify_form_refused": {
+      "file": "strings_form.xml"
+    },
+    "openverify_form_submitting": {
+      "file": "strings_form.xml"
+    },
+    "openverify_halted_message": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_halted_title": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_help_link": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_id_back_instruction": {
+      "file": "strings.xml"
+    },
+    "openverify_id_back_photo": {
+      "file": "strings.xml"
+    },
+    "openverify_id_back_title": {
+      "file": "strings.xml"
+    },
+    "openverify_id_front_instruction": {
+      "file": "strings.xml"
+    },
+    "openverify_id_front_photo": {
+      "file": "strings.xml"
+    },
+    "openverify_id_front_title": {
+      "file": "strings.xml"
+    },
+    "openverify_id_portrait_instruction": {
+      "file": "strings.xml"
+    },
+    "openverify_id_portrait_photo": {
+      "file": "strings.xml"
+    },
+    "openverify_id_portrait_title": {
+      "file": "strings.xml"
+    },
+    "openverify_language": {
+      "file": "strings_theme.xml"
+    },
+    "openverify_language_change": {
+      "file": "strings_theme.xml"
+    },
+    "openverify_link_refused_message": {
+      "file": "strings.xml"
+    },
+    "openverify_link_refused_title": {
+      "file": "strings.xml"
+    },
+    "openverify_loading": {
+      "file": "strings.xml"
+    },
+    "openverify_locale": {
+      "file": "strings.xml"
+    },
+    "openverify_logo_description": {
+      "file": "strings_theme.xml"
+    },
+    "openverify_nfc_another_way": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_birth_date": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_can": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_can_intro": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_can_title": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_change_details": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_continue": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_continue_later": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_date_hint": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_document_number": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_error_birth_date": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_error_can": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_error_document_number": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_error_expiry_date": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_error_refused": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_expiry_date": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_fallback_note": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_file_contents": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_file_details": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_file_photo": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_file_security": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_later_note": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_mrz_intro": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_mrz_title": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_notice_again": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_notice_busy": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_notice_expired": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_notice_failed": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_notice_keep_still": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_notice_lifted": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_notice_one_more_tap": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_notice_timeout": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_notice_unsupported": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_open_settings": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_phase_connecting": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_phase_read": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_phase_reading": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_phase_requesting": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_phase_signing": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_phase_waiting": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_ready": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_recheck": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_review_again": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_review_confirm": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_review_date_note": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_review_intro": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_review_name": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_review_nationality": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_review_refuse": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_review_title": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_sandbox_label": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_sandbox_scenario": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_sandbox_use": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_sending": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_stop": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_tap_hint_card": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_tap_hint_passport": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_tap_ready_note": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_tap_title": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_tip_case": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_tip_cover": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_tip_move": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_tip_still": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_tips_title": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_try_again": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_unable_off_message": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_unable_off_title": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_unable_phone_message": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_unable_phone_title": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_unable_reader_message": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_unable_reader_title": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_unable_spent_message": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_unable_spent_title": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_use_can": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_nfc_use_mrz": {
+      "file": "strings_nfc.xml"
+    },
+    "openverify_notice_device_recognition": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_notice_play_integrity": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_notice_session_integrity": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_otp_attempts_left": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_change_email": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_change_phone": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_checking": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_code": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_code_expired": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_code_hint": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_code_title": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_confirm": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_country": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_email_address": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_email_intro": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_email_invalid": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_email_title": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_error_delivery_failed_email": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_error_delivery_failed_phone": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_error_destination_invalid_email": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_error_destination_invalid_phone": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_error_exhausted": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_error_incorrect": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_error_not_allowed_email": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_error_not_allowed_phone": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_error_not_sent": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_error_too_long_email": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_error_too_long_phone": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_error_too_soon": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_expires_in": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_finish": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_limited_continue": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_limited_continuing": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_limited_message": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_limited_refused": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_limited_title": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_no_sends_left": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_phone_hint": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_phone_intro": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_phone_number": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_phone_required": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_phone_title": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_resend": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_resend_in": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_send": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_sending": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_sends_left": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_sent": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_sent_again": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_otp_sent_to": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_pdf417_found": {
+      "file": "strings_pdf417.xml"
+    },
+    "openverify_pdf417_guide": {
+      "file": "strings_pdf417.xml"
+    },
+    "openverify_person_add": {
+      "file": "strings_business.xml"
+    },
+    "openverify_person_remove": {
+      "file": "strings_business.xml"
+    },
+    "openverify_person_title": {
+      "file": "strings_business.xml"
+    },
+    "openverify_persons_full": {
+      "file": "strings_business.xml"
+    },
+    "openverify_persons_intro": {
+      "file": "strings_business.xml"
+    },
+    "openverify_persons_title": {
+      "file": "strings_business.xml"
+    },
+    "openverify_privacy_link": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_processing_message": {
+      "file": "strings.xml"
+    },
+    "openverify_processing_title": {
+      "file": "strings.xml"
+    },
+    "openverify_processing_verification_title": {
+      "file": "strings.xml"
+    },
+    "openverify_redacted_message": {
+      "file": "strings.xml"
+    },
+    "openverify_redacted_title": {
+      "file": "strings.xml"
+    },
+    "openverify_retry_address_checksum_invalid": {
+      "file": "strings_retry.xml"
+    },
+    "openverify_retry_address_invalid": {
+      "file": "strings_retry.xml"
+    },
+    "openverify_retry_address_not_found": {
+      "file": "strings_retry.xml"
+    },
+    "openverify_retry_back_feature_not_found": {
+      "file": "strings.xml"
+    },
+    "openverify_retry_back_not_present": {
+      "file": "strings.xml"
+    },
+    "openverify_retry_barcode_not_found": {
+      "file": "strings.xml"
+    },
+    "openverify_retry_country_not_enabled": {
+      "file": "strings_retry.xml"
+    },
+    "openverify_retry_document_expired": {
+      "file": "strings_retry.xml"
+    },
+    "openverify_retry_document_name_mismatch": {
+      "file": "strings_retry.xml"
+    },
+    "openverify_retry_document_not_found": {
+      "file": "strings.xml"
+    },
+    "openverify_retry_document_password_protected": {
+      "file": "strings_retry.xml"
+    },
+    "openverify_retry_document_too_large": {
+      "file": "strings_retry.xml"
+    },
+    "openverify_retry_document_too_many_pages": {
+      "file": "strings_retry.xml"
+    },
+    "openverify_retry_document_too_old": {
+      "file": "strings_retry.xml"
+    },
+    "openverify_retry_document_type_not_accepted": {
+      "file": "strings_retry.xml"
+    },
+    "openverify_retry_document_unreadable": {
+      "file": "strings_retry.xml"
+    },
+    "openverify_retry_domain_not_found": {
+      "file": "strings_retry.xml"
+    },
+    "openverify_retry_domain_not_resolving": {
+      "file": "strings_retry.xml"
+    },
+    "openverify_retry_domain_rejects_mail": {
+      "file": "strings_retry.xml"
+    },
+    "openverify_retry_expected_address_mismatch": {
+      "file": "strings_retry.xml"
+    },
+    "openverify_retry_face_covered": {
+      "file": "strings.xml"
+    },
+    "openverify_retry_face_glare": {
+      "file": "strings.xml"
+    },
+    "openverify_retry_face_not_present": {
+      "file": "strings.xml"
+    },
+    "openverify_retry_face_too_small": {
+      "file": "strings.xml"
+    },
+    "openverify_retry_front_not_present": {
+      "file": "strings.xml"
+    },
+    "openverify_retry_generic": {
+      "file": "strings.xml"
+    },
+    "openverify_retry_glare_present": {
+      "file": "strings.xml"
+    },
+    "openverify_retry_glasses_detected": {
+      "file": "strings.xml"
+    },
+    "openverify_retry_identity_features_not_found": {
+      "file": "strings.xml"
+    },
+    "openverify_retry_image_blurry": {
+      "file": "strings.xml"
+    },
+    "openverify_retry_image_too_bright": {
+      "file": "strings.xml"
+    },
+    "openverify_retry_image_too_dark": {
+      "file": "strings.xml"
+    },
+    "openverify_retry_image_unreadable": {
+      "file": "strings.xml"
+    },
+    "openverify_retry_insufficient_text": {
+      "file": "strings.xml"
+    },
+    "openverify_retry_issue_date_not_found": {
+      "file": "strings_retry.xml"
+    },
+    "openverify_retry_issuer_not_found": {
+      "file": "strings_retry.xml"
+    },
+    "openverify_retry_mrz_not_found": {
+      "file": "strings.xml"
+    },
+    "openverify_retry_mrz_unreadable": {
+      "file": "strings.xml"
+    },
+    "openverify_retry_multiple_faces_present": {
+      "file": "strings.xml"
+    },
+    "openverify_retry_name_not_found": {
+      "file": "strings_retry.xml"
+    },
+    "openverify_retry_no_mail_server": {
+      "file": "strings_retry.xml"
+    },
+    "openverify_retry_otp_attempts_exhausted": {
+      "file": "strings_retry.xml"
+    },
+    "openverify_retry_otp_not_confirmed": {
+      "file": "strings_retry.xml"
+    },
+    "openverify_retry_po_box_detected": {
+      "file": "strings_retry.xml"
+    },
+    "openverify_retry_portrait_blurry": {
+      "file": "strings.xml"
+    },
+    "openverify_retry_portrait_not_present": {
+      "file": "strings.xml"
+    },
+    "openverify_retry_portrait_obstructed": {
+      "file": "strings.xml"
+    },
+    "openverify_retry_portrait_too_small": {
+      "file": "strings.xml"
+    },
+    "openverify_retry_pose_not_center": {
+      "file": "strings.xml"
+    },
+    "openverify_retry_pose_not_left": {
+      "file": "strings.xml"
+    },
+    "openverify_retry_pose_not_right": {
+      "file": "strings.xml"
+    },
+    "openverify_retry_required_fields_missing": {
+      "file": "strings.xml"
+    },
+    "openverify_retry_resolution_too_low": {
+      "file": "strings.xml"
+    },
+    "openverify_retry_signature_address_mismatch": {
+      "file": "strings_retry.xml"
+    },
+    "openverify_retry_signature_invalid": {
+      "file": "strings_retry.xml"
+    },
+    "openverify_retry_title": {
+      "file": "strings.xml"
+    },
+    "openverify_retry_title_attempt": {
+      "file": "strings_otp.xml"
+    },
+    "openverify_sandbox_label": {
+      "file": "strings.xml"
+    },
+    "openverify_sandbox_message": {
+      "file": "strings.xml"
+    },
+    "openverify_screen_address_city": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_address_country": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_address_postal_code": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_address_street1": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_address_street2": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_address_subdivision": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_cancel_confirm": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_cancel_keep": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_cancel_message": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_cancel_title": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_choose": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_continue": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_screen_date_pick": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_date_use": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_error_country": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_error_date": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_error_date_too_early": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_error_date_too_late": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_error_email": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_error_number": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_error_option": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_error_pattern": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_error_phone": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_error_refused": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_error_required": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_error_too_large": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_error_too_long": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_error_too_short": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_error_too_small": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_error_url": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_heading": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_required": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_required_mark": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_saving": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_set": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_stepper_current": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_screen_summary": {
+      "file": "strings_screen.xml"
+    },
+    "openverify_selfie_capture_restarted": {
+      "file": "strings.xml"
+    },
+    "openverify_selfie_center_instruction": {
+      "file": "strings.xml"
+    },
+    "openverify_selfie_center_photo": {
+      "file": "strings.xml"
+    },
+    "openverify_selfie_center_title": {
+      "file": "strings.xml"
+    },
+    "openverify_selfie_extend_already_sent": {
+      "file": "strings_selfie.xml"
+    },
+    "openverify_selfie_extend_extended": {
+      "file": "strings_selfie.xml"
+    },
+    "openverify_selfie_extend_failed": {
+      "file": "strings_selfie.xml"
+    },
+    "openverify_selfie_extend_more_time": {
+      "file": "strings_selfie.xml"
+    },
+    "openverify_selfie_extend_warning": {
+      "file": "strings_selfie.xml"
+    },
+    "openverify_selfie_guidance_hold_still": {
+      "file": "strings_selfie.xml"
+    },
+    "openverify_selfie_guidance_look_straight": {
+      "file": "strings_selfie.xml"
+    },
+    "openverify_selfie_guidance_manual": {
+      "file": "strings_selfie.xml"
+    },
+    "openverify_selfie_guidance_multiple_faces": {
+      "file": "strings_selfie.xml"
+    },
+    "openverify_selfie_guidance_no_face": {
+      "file": "strings_selfie.xml"
+    },
+    "openverify_selfie_guidance_off_centre": {
+      "file": "strings_selfie.xml"
+    },
+    "openverify_selfie_guidance_starting": {
+      "file": "strings_selfie.xml"
+    },
+    "openverify_selfie_guidance_too_close": {
+      "file": "strings_selfie.xml"
+    },
+    "openverify_selfie_guidance_too_far": {
+      "file": "strings_selfie.xml"
+    },
+    "openverify_selfie_guidance_turn_left": {
+      "file": "strings_selfie.xml"
+    },
+    "openverify_selfie_guidance_turn_right": {
+      "file": "strings_selfie.xml"
+    },
+    "openverify_selfie_left_instruction": {
+      "file": "strings.xml"
+    },
+    "openverify_selfie_left_photo": {
+      "file": "strings.xml"
+    },
+    "openverify_selfie_left_title": {
+      "file": "strings.xml"
+    },
+    "openverify_selfie_right_instruction": {
+      "file": "strings.xml"
+    },
+    "openverify_selfie_right_photo": {
+      "file": "strings.xml"
+    },
+    "openverify_selfie_right_title": {
+      "file": "strings.xml"
+    },
+    "openverify_selfie_time_limit": {
+      "file": "strings.xml"
+    },
+    "openverify_session_canceled_message": {
+      "file": "strings.xml"
+    },
+    "openverify_session_canceled_title": {
+      "file": "strings.xml"
+    },
+    "openverify_session_expired_message": {
+      "file": "strings.xml"
+    },
+    "openverify_session_expired_title": {
+      "file": "strings.xml"
+    },
+    "openverify_share_biometric_required": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_share_category_biometric": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_share_category_check_results": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_share_category_contact_fields": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_share_category_document_images": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_share_category_identity_fields": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_share_category_other_fields": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_share_consent_accept": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_share_consent_decline": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_share_consent_title": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_share_consent_withdraw": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_share_saving": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_share_shared_by": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_share_shared_with": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_share_what_is_shared": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_share_withdraw_heading": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_share_withdraw_intro": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_share_withdrawing": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_share_withdrawn": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_try_again": {
+      "file": "strings.xml"
+    },
+    "openverify_unsupported_message": {
+      "file": "strings.xml"
+    },
+    "openverify_unsupported_server_message": {
+      "file": "strings_driver.xml"
+    },
+    "openverify_unsupported_title": {
+      "file": "strings.xml"
+    },
+    "openverify_waiting_message": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_waiting_title": {
+      "file": "strings_catalog.xml"
+    },
+    "openverify_website_intro": {
+      "file": "strings_business.xml"
+    },
+    "openverify_website_title": {
+      "file": "strings_business.xml"
+    }
+  }
+}

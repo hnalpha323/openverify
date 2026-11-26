@@ -1,0 +1,48 @@
+{
+  "format": 1,
+  "description": "C205, C219.5: YuNet (face_detection_yunet_2026may) through the vision service's onnxruntime on the public-domain portrait person_a_id of fixtures/manifest.json, given as the Android SDK gives a camera frame (upright, nearest-pixel sampled to 320 wide, BGR 0-255, zero-padded to multiples of 32), decoded by the web flow's rules. Numbers only, no pixel. Written by services/vision/tests/test_android_yunet_vectors.py under UPDATE_CONTRACT_FIXTURES=1 and asserted by it otherwise; android/openverify-face's host and device tests compare ONNX Runtime's result with it within tolerance.",
+  "model": {
+    "name": "face_detection_yunet_2026may.onnx",
+    "sha256": "ebafce4e3c118d6554634be5c27ab333b4c047a9a8c3faf1d7cf93101c22f0f0"
+  },
+  "frame": {
+    "source": "person_a_id",
+    "filename": "person-a-id.jpg",
+    "sha256": "926c4ddf6e0817830612f55c186b9cca4c2289f78d6481b7cf03986a123d1698",
+    "license": "PD-USGov-NASA",
+    "width": 3000,
+    "height": 4000,
+    "rotation-degrees": 0,
+    "layout": "RGBA_8888"
+  },
+  "input": {
+    "width": 320,
+    "height": 427,
+    "padded-width": 320,
+    "padded-height": 448,
+    "layout": "NCHW float32 BGR 0-255, zero-padded right and bottom to multiples of 32",
+    "sampling": "nearest: source index ((2 * i + 1) * source) / (2 * target), floored"
+  },
+  "score-threshold": 0.6,
+  "nms-threshold": 0.3,
+  "expected": [
+    {
+      "score": 0.951985,
+      "box": [108.08, 74.99, 102.768, 153.429],
+      "landmarks": [
+        [125.991, 139.497],
+        [178.222, 134.273],
+        [151.346, 166.778],
+        [132.664, 189.105],
+        [183.593, 185.18]
+      ],
+      "yaw-ratio": -0.0710777
+    }
+  ],
+  "tolerance": {
+    "pixels": 0.25,
+    "score": 0.005,
+    "yaw-ratio": 0.005,
+    "basis": "Provisional. Measured on 2026-11-11 against these numbers: the host JVM's ONNX Runtime 1.31.0 (Java's JPEG decoder) and ONNX Runtime's Android library on a Pixel 9 (Android 17, arm64-v8a, the platform's JPEG decoder) each differed by at most 0.0005 pixels, 0.000001 in the score and 0.000001 in the yaw ratio. The bound is a quarter of a guidance pixel: it leaves room for another platform's JPEG decoder, which no run has measured (one guidance pixel is 9.4 source pixels of this frame), and it is far below what would move a guidance decision (the yaw gates are tenths of a ratio)."
+  }
+}

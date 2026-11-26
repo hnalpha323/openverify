@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The database and AAMVA forms (C52.3, C64.2); values-es holds their Spanish. The entered values
+  are never part of a text. Compose Multiplatform resources: positional placeholders only, ' and "
+  written as they are (ResourcesTest).
+-->
+<resources>
+    <string name="openverify_database_title">Enter your details</string>
+    <string name="openverify_database_intro">We check these details against records. Enter them as they appear on your official documents.</string>
+    <string name="openverify_aamva_title">Enter your driver's license or ID card details</string>
+    <string name="openverify_aamva_intro">Enter the details exactly as they are printed on your US driver's license or state ID card.</string>
+
+    <string name="openverify_field_name_first">First name</string>
+    <string name="openverify_field_name_middle">Middle name</string>
+    <string name="openverify_field_name_last">Last name</string>
+    <string name="openverify_field_birthdate">Date of birth</string>
+    <string name="openverify_field_address_street_1">Street address</string>
+    <string name="openverify_field_address_street_2">Apartment, suite or unit</string>
+    <string name="openverify_field_address_city">City</string>
+    <string name="openverify_field_address_subdivision">State, province or region</string>
+    <string name="openverify_field_address_postal_code">Postal code</string>
+    <string name="openverify_field_address_country_code">Country</string>
+    <string name="openverify_field_identification_number">National ID number</string>
+    <string name="openverify_field_phone_number">Phone number</string>
+    <string name="openverify_field_email_address">Email address</string>
+    <string name="openverify_field_license_number">License or ID card number</string>
+    <string name="openverify_field_issuing_authority">Issuing state or territory</string>
+    <string name="openverify_field_issue_date">Issue date</string>
+    <string name="openverify_field_expiration_date">Expiration date</string>
+    <string name="openverify_field_zip_code">ZIP code</string>
+
+    <string name="openverify_field_optional">Optional</string>
+    <string name="openverify_field_date_hint">Year, month and day, such as 1990-04-23.</string>
+    <string name="openverify_field_phone_hint">Start with + and the country code, such as +1 555 555 0100.</string>
+    <string name="openverify_field_choose">Choose</string>
+
+    <string name="openverify_field_error_missing">Fill in this field.</string>
+    <string name="openverify_field_error_invalid">Check this value: it is not in the expected format.</string>
+    <string name="openverify_field_error_date">Enter a real date as year, month and day, such as 1990-04-23.</string>
+    <string name="openverify_field_error_too_long">This is too long. Shorten it.</string>
+    <string name="openverify_field_error_refused">Check this field: we could not accept it.</string>
+    <string name="openverify_form_refused">We could not accept these details. Check them and try again.</string>
+
+    <string name="openverify_form_continue">Continue</string>
+    <string name="openverify_form_submitting">Sending your details…</string>
+</resources>

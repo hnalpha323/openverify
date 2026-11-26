@@ -1,0 +1,132 @@
+{
+  "data": {
+    "type": "case",
+    "id": "case_01M5CN00000000000000000001",
+    "attributes": {
+      "status": "open",
+      "name": "KYC-6",
+      "resolution": null,
+      "created-at": "2026-10-20T12:00:00.000Z",
+      "updated-at": "2026-10-20T12:05:00.000Z",
+      "assigned-at": "2026-10-20T12:05:00.000Z",
+      "resolved-at": null,
+      "redacted-at": null,
+      "sla-expires-at": "2026-10-21T09:30:00.000Z",
+      "creator-id": "wfr_01M5CM00000000000000000003",
+      "creator-type": "workflow-run",
+      "assignee-id": "usr_01M5CN00000000000000000011",
+      "assigner-id": "cap_01M5CN00000000000000000006",
+      "assigner-type": "case-assignment-policy",
+      "resolver-id": null,
+      "resolver-type": null,
+      "updater-id": null,
+      "updater-type": null,
+      "tags": ["manual-review"],
+      "fields": {
+        "summary": {
+          "type": "string",
+          "value": "Synthetic review note"
+        },
+        "risk-reasons": {
+          "type": "multi-choices",
+          "value": ["document"]
+        },
+        "contact": {
+          "type": "email-address",
+          "value": "reviewee@example.test"
+        }
+      },
+      "status-category": "initial",
+      "lock-version": 2,
+      "held-object-counts": {
+        "accounts": 1,
+        "inquiries": 1,
+        "reports": 1,
+        "report-runs": 0,
+        "transactions": 0,
+        "verifications": 0,
+        "graph-queries": 0
+      },
+      "sla-state": "running",
+      "attachments": [
+        {
+          "id": "catt_01M5CN00000000000000000019",
+          "filename": "synthetic-statement.pdf",
+          "url": "/api/v1/cases/case_01M5CN00000000000000000001/attachments/catt_01M5CN00000000000000000019/content",
+          "byte-size": 48213,
+          "attachment-type": "pdf",
+          "scan-status": "clean",
+          "scan-provider": "sandbox",
+          "scanned-at": "2026-10-20T12:05:00.000Z",
+          "rendition-status": "ready",
+          "page-count": 2,
+          "created-at": "2026-10-20T12:00:00.000Z"
+        }
+      ]
+    },
+    "relationships": {
+      "case-template": {
+        "data": {
+          "type": "case-template",
+          "id": "ctmpl_01M5CN00000000000000000002"
+        }
+      },
+      "case-template-version": {
+        "data": {
+          "type": "case-template-version",
+          "id": "ctmplv_01M5CN00000000000000000003"
+        }
+      },
+      "case-queue": {
+        "data": {
+          "type": "case-queue",
+          "id": "cqueue_01M5CN00000000000000000005"
+        }
+      },
+      "case-comments": {
+        "data": [
+          {
+            "type": "case-comment",
+            "id": "cscm_01M5CN00000000000000000008"
+          }
+        ]
+      },
+      "accounts": {
+        "data": [
+          {
+            "type": "account",
+            "id": "acc_01M5CJXJF84MR3PHJHBHKQ4ZC8"
+          }
+        ]
+      },
+      "inquiries": {
+        "data": [
+          {
+            "type": "inquiry",
+            "id": "inq_01M5CJXHG07XPHF3HRM6NREDH7"
+          }
+        ]
+      },
+      "reports": {
+        "data": [
+          {
+            "type": "report/watchlist",
+            "id": "rep_01M5CN00000000000000000013"
+          }
+        ]
+      },
+      "verifications": {
+        "data": []
+      },
+      "txns": {
+        "data": []
+      },
+      "report-runs": {
+        "data": []
+      },
+      "graph-queries": {
+        "data": []
+      }
+    }
+  }
+}

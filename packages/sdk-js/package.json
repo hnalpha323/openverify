@@ -1,0 +1,47 @@
+{
+  "name": "@openverify/js",
+  "version": "0.0.0",
+  "private": true,
+  "description": "The OpenVerify embed client (plan C159): mounts the hosted flow in an iframe on a customer's page, with no runtime dependency; published with the release (Phase 11)",
+  "license": "Apache-2.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "@openverify/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./openverify.iife.js": "./dist/openverify.iife.js"
+  },
+  "unpkg": "./dist/openverify.iife.js",
+  "jsdelivr": "./dist/openverify.iife.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hnalpha323/openverify.git",
+    "directory": "packages/sdk-js"
+  },
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "build": "vite build && tsc -p tsconfig.build.json",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@openverify/config": "workspace:*",
+    "@openverify/contracts": "workspace:*",
+    "@types/node": "catalog:",
+    "@vitest/coverage-v8": "catalog:",
+    "jsdom": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vitest": "catalog:"
+  }
+}

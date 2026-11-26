@@ -1,0 +1,144 @@
+{
+  "results": [
+    {
+      "source": {
+        "path": "/repo/pnpm-lock.yaml",
+        "type": "lockfile"
+      },
+      "packages": [
+        {
+          "package": {
+            "name": "synthetic-high",
+            "version": "1.0.0",
+            "ecosystem": "npm"
+          },
+          "vulnerabilities": [],
+          "groups": [
+            {
+              "ids": ["GHSA-syn1-high-0001"],
+              "aliases": ["CVE-2099-0001", "GHSA-syn1-high-0001"],
+              "max_severity": "7.5"
+            }
+          ]
+        },
+        {
+          "package": {
+            "name": "synthetic-medium",
+            "version": "2.0.0",
+            "ecosystem": "npm"
+          },
+          "vulnerabilities": [],
+          "groups": [
+            {
+              "ids": ["GHSA-syn1-medi-0002"],
+              "aliases": ["GHSA-syn1-medi-0002"],
+              "max_severity": "5.3"
+            }
+          ]
+        },
+        {
+          "package": {
+            "name": "synthetic-low",
+            "version": "3.0.0",
+            "ecosystem": "npm"
+          },
+          "vulnerabilities": [],
+          "groups": [
+            {
+              "ids": ["GHSA-syn1-loww-0003"],
+              "aliases": [],
+              "max_severity": "2.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "/repo/android/openverify-sdk/gradle.lockfile",
+        "type": "lockfile"
+      },
+      "packages": [
+        {
+          "package": {
+            "name": "org.example:synthetic-critical",
+            "version": "4.0.0",
+            "ecosystem": "Maven"
+          },
+          "vulnerabilities": [],
+          "groups": [
+            {
+              "ids": ["GHSA-syn1-crit-0004"],
+              "aliases": ["GHSA-syn1-crit-0004"],
+              "max_severity": "9.8"
+            }
+          ]
+        },
+        {
+          "package": {
+            "name": "synthetic-high",
+            "version": "1.0.0",
+            "ecosystem": "npm"
+          },
+          "vulnerabilities": [],
+          "groups": [
+            {
+              "ids": ["GHSA-syn1-high-0001"],
+              "aliases": ["CVE-2099-0001"],
+              "max_severity": "7.5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "/repo/services/vision/uv.lock",
+        "type": "lockfile"
+      },
+      "packages": [
+        {
+          "package": {
+            "name": "synthetic-advisory-high",
+            "version": "5.0.0",
+            "ecosystem": "PyPI"
+          },
+          "vulnerabilities": [
+            {
+              "id": "PYSEC-2099-5",
+              "database_specific": {
+                "severity": "HIGH"
+              }
+            }
+          ],
+          "groups": [
+            {
+              "ids": ["PYSEC-2099-5"],
+              "aliases": ["PYSEC-2099-5"],
+              "max_severity": ""
+            }
+          ]
+        },
+        {
+          "package": {
+            "name": "synthetic-unscored",
+            "version": "6.0.0",
+            "ecosystem": "PyPI"
+          },
+          "vulnerabilities": [
+            {
+              "id": "PYSEC-2099-6"
+            }
+          ],
+          "groups": [
+            {
+              "ids": ["PYSEC-2099-6"],
+              "aliases": ["PYSEC-2099-6"],
+              "max_severity": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

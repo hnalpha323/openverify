@@ -1,0 +1,1040 @@
+# OpenVerify CI. Contract test: infra/tests/ci-workflow.test.sh (also runs actionlint).
+# Every action is pinned to a full commit SHA, resolved with `gh api`, with its release tag in a
+# trailing comment (F009). gradle/actions and gitleaks/gitleaks-action are deliberately not used
+# (non-permissive license terms).
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  TURBO_TELEMETRY_DISABLED: '1'
+  NEXT_TELEMETRY_DISABLED: '1'
+  # setup-pnpm no longer exports it through $GITHUB_ENV (zizmor github-env, Workflow 11C), so every
+  # job's later pnpm calls get it here.
+  COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
+
+jobs:
+  # CI run 41257053492: type-aware lint ran out of the runner's default heap (about 2 GB on a 7 GB
+  # runner) in @openverify/contracts. Measured peaks: lint api 3.35 GB, contracts 2.85 GB, so lint
+  # runs alone, one package at a time, under a 4 GB heap.
+  lint:
+    name: lint (every package, one at a time)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-pnpm
+      - name: Lint
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+        run: pnpm turbo run lint --concurrency=1
+
+  node:
+    name: node (typecheck, unit tests + coverage of every package but api and dashboard)
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-pnpm
+      # The api typecheck peaks at 2.4 GB: two at a time under a 4 GB heap fits the runner.
+      - name: Typecheck
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+        run: pnpm turbo run typecheck --concurrency=2
+      # Headroom (Workflow 2C): with the 2C dashboard tests, `pnpm test` ran past 13 min 15 s
+      # here and the job hit its 20-minute limit (run 39487535832; before 2C it took 9 min 19 s).
+      # The two largest suites, api and dashboard, run in jobs of their own (unit-api,
+      # unit-dashboard); this step runs every other package's. The contract test checks that
+      # together they cover every package.
+      # Workflow 9A Stage 1b: node took 21.2 of 25 minutes on Phase 8's push (CI 41802158981), its
+      # unit tests 16.7, bounded by db (994 s) and watchlist (770 s), which now run in unit-db.
+      - name: Unit tests with coverage (each package runs `vitest run --coverage`, thresholds 80%)
+        run: >-
+          pnpm turbo run test --filter='!@openverify/api' --filter='!@openverify/dashboard'
+          --filter='!@openverify/db' --filter='!@openverify/watchlist'
+      # C157 (Workflow 9A): the flow server's entries and headers, from source over a synthetic
+      # dist/ and a stub of the API's internal route (the apps image's live half stays local).
+      - name: The flow server contract
+        run: bash infra/tests/flow-server.test.sh
+      - name: Upload coverage reports
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: node-coverage
+          path: |
+            apps/*/coverage/
+            packages/*/coverage/
+          if-no-files-found: warn
+          retention-days: 14
+
+  unit-api:
+    name: unit-api (api unit tests, shard ${{ matrix.shard }} of 3)
+    runs-on: ubuntu-latest
+    # Owner decision 9 (Workflow 6B, K6A-13): the API suite used 19.7 of 20 minutes in CI at the end
+    # of Phase 5 (3,786 tests) and has grown by about a fifth in Phase 6, so it runs as two shards.
+    # Each writes a blob report with its coverage; a shard covers about half the code, so its own
+    # thresholds are off, and unit-api-coverage applies the 80% gate to the merged whole.
+    # Workflow 8B Stage 4: shard 1 took 22.3 of 30 minutes on 8A's push (CI 41557289819); 8B adds
+    # about 6% more tests (8,137), past the last 25% of 30, so each shard has 40.
+    # Workflow 9B Stage 4: shard 1 of 2 took 28.1 of 40 minutes on 9A's push (CI 42070468737) and 9B
+    # adds about 9% more tests (9,304), past the last 25% of 40, so the suite runs as three shards.
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-pnpm
+      - name: Unit tests, one shard, as a blob report with its coverage (the gate is unit-api-coverage's)
+        working-directory: apps/api
+        run: >-
+          pnpm exec vitest run --coverage
+          --coverage.thresholds.lines=0 --coverage.thresholds.functions=0
+          --coverage.thresholds.branches=0 --coverage.thresholds.statements=0
+          --shard=${{ matrix.shard }}/3 --reporter=blob
+          --outputFile=.vitest-reports/blob-${{ matrix.shard }}.json
+      - name: Upload the shard's blob report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: unit-api-blob-${{ matrix.shard }}
+          path: apps/api/.vitest-reports/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 1
+
+  unit-api-coverage:
+    name: unit-api-coverage (the api shards merged, coverage thresholds 80%)
+    needs: unit-api
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-pnpm
+      - name: Download every shard's blob report
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          pattern: unit-api-blob-*
+          merge-multiple: true
+          path: apps/api/.vitest-reports
+      - name: Merge the reports and apply the 80% coverage gate to the whole suite
+        working-directory: apps/api
+        run: pnpm exec vitest run --merge-reports=.vitest-reports --coverage
+      - name: Upload coverage report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: unit-api-coverage
+          path: apps/api/coverage/
+          if-no-files-found: warn
+          retention-days: 14
+
+  unit-dashboard:
+    name: unit-dashboard (dashboard unit tests, shard ${{ matrix.shard }} of 2)
+    runs-on: ubuntu-latest
+    # Workflow 9C (orchestrator decision 5 before 9C, Phase 8 F08): the suite took 16.2 of 20 minutes
+    # on 9B's push (CI 42331362147, 5,602 tests), inside the last 25% of its timeout, and 9C adds
+    # about 930 tests (6,535; 346 s locally at a load of 3 to 7). It runs as two blob shards, each with
+    # its coverage and its own thresholds off; unit-dashboard-coverage applies the 80% gate to the
+    # merged whole, as unit-api does.
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-pnpm
+      - name: Unit tests, one shard, as a blob report with its coverage (the gate is unit-dashboard-coverage's)
+        working-directory: apps/dashboard
+        run: >-
+          pnpm exec vitest run --coverage
+          --coverage.thresholds.lines=0 --coverage.thresholds.functions=0
+          --coverage.thresholds.branches=0 --coverage.thresholds.statements=0
+          --shard=${{ matrix.shard }}/2 --reporter=blob
+          --outputFile=.vitest-reports/blob-${{ matrix.shard }}.json
+      - name: Upload the shard's blob report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: unit-dashboard-blob-${{ matrix.shard }}
+          path: apps/dashboard/.vitest-reports/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 1
+
+  unit-dashboard-coverage:
+    name: unit-dashboard-coverage (the dashboard shards merged, coverage thresholds 80%)
+    needs: unit-dashboard
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-pnpm
+      - name: Download every shard's blob report
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          pattern: unit-dashboard-blob-*
+          merge-multiple: true
+          path: apps/dashboard/.vitest-reports
+      - name: Merge the reports and apply the 80% coverage gate to the whole suite
+        working-directory: apps/dashboard
+        run: pnpm exec vitest run --merge-reports=.vitest-reports --coverage
+      - name: Upload coverage report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: unit-dashboard-coverage
+          path: apps/dashboard/coverage/
+          if-no-files-found: warn
+          retention-days: 14
+
+  # Workflow 9A Stage 1b (Phase 8 F08's rule): the two longest suites of the node job, which took
+  # 994 s and 770 s of vitest time there beside every other package (CI 41802158981).
+  unit-db:
+    name: unit-db (db and watchlist unit tests + coverage)
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-pnpm
+      - name: Unit tests with coverage (vitest run --coverage, thresholds 80%)
+        run: pnpm turbo run test --filter=@openverify/db --filter=@openverify/watchlist
+      - name: Upload coverage reports
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: unit-db-coverage
+          path: |
+            packages/db/coverage/
+            packages/watchlist/coverage/
+          if-no-files-found: warn
+          retention-days: 14
+
+  format:
+    name: format (prettier --check)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-pnpm
+      - name: Prettier (markdown, android/ and services/ are formatted by their own tools)
+        run: pnpm format:check
+
+  integration:
+    name: integration (Testcontainers)
+    runs-on: ubuntu-latest # Docker is preinstalled on GitHub-hosted Ubuntu runners
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-pnpm
+      - name: Docker info
+        run: docker version --format 'docker {{.Server.Version}}'
+      # Owner decision 2 after 6B: the C78.7 gate measures the real case, with the shipped variant
+      # groups, so the data files are fetched (cached, as the e2e job does) and the groups built.
+      - name: Cache the data files
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            data/*
+            !data/manifest.json
+            !data/malicious-feeds.json
+          key: data-v1-${{ hashFiles('data/manifest.json') }}
+      - name: Fetch every data file in data/manifest.json (pinned SHA-256)
+        run: python3 scripts/fetch_data.py
+      - name: Build the shipped variant groups (data/variant-groups.json, its digest checked)
+        run: pnpm --filter @openverify/watchlist build:variant-groups
+      - name: Integration tests (Postgres/pgvector, Redis protocol, S3 via Testcontainers)
+        run: pnpm test:integration
+
+  infra:
+    name: infra (the static parts of the infra tests)
+    runs-on: ubuntu-latest # Docker Compose and jq are preinstalled on GitHub-hosted Ubuntu runners
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Docker Compose and jq versions
+        run: |
+          docker compose version
+          jq --version
+      # Workflow 5C review P019 (C60.2), on `docker compose --profile app config` with the
+      # placeholders of .env.example: vision alone on its internal network, uid 10001, a read-only
+      # root with a tmpfs /tmp, every capability dropped, no-new-privileges, Docker's default
+      # seccomp profile, no published port, a memory limit, and an image without jbig2dec. The live
+      # half builds the vision image and starts it with the model weights, so it runs locally
+      # (docs/checks/document.md).
+      - name: The vision isolation contract, static half
+        run: bash infra/tests/vision-container.test.sh --static-only
+      # Phase 5 carry-forward P5-7: the static parts of the other infra tests. The compose
+      # contract's live half starts the stack and the gitleaks installer's test downloads every
+      # release, so both stay local (and the secrets job runs the installer).
+      - name: The compose contract, static half
+        run: bash infra/tests/compose.test.sh --static-only
+      # C157.3 (C107.9 before it): compose's flow service is the flow server, and development's
+      # fixed headers. The live half needs the apps image, so it stays local.
+      - name: The flow headers contract, static half
+        run: bash infra/tests/flow-headers.test.sh --static-only
+      # C123.3, C123.9 (P17): this one is live: it builds the code-runner image and proves the
+      # container has no network, a read-only root, no capability and no secret.
+      - name: The code-runner image and container
+        run: bash infra/tests/code-runner.test.sh
+      - name: The apps image build context
+        run: bash infra/tests/apps-image-context.test.sh
+      - name: The connected-test results checker
+        run: bash infra/tests/check-connected-results.test.sh
+      # KP10-2 (Workflow 10A): one 5xx from GitHub's release host failed this job; the installer
+      # retries, and the verified release is cached, keyed on the installer's pins. The installer
+      # verifies a cached copy again (the release checksums file and the pinned SHA-256).
+      - name: Cache the verified gitleaks release
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ runner.temp }}/gitleaks-cache
+          key: gitleaks-linux-x64-${{ hashFiles('infra/scripts/install-gitleaks.sh') }}
+      - name: Install gitleaks for the pre-commit hook test (pinned release, SHA-256 verified)
+        run: |
+          GITLEAKS_CACHE_DIR="$RUNNER_TEMP/gitleaks-cache" INSTALL_DIR="$RUNNER_TEMP/bin" infra/scripts/install-gitleaks.sh
+          echo "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
+      # KP10-33 (Workflow 10D): gitleaks is installed before the CI workflow contract, because that
+      # contract's release section scans a synthetic staged repository with it, and in CI a missing
+      # gitleaks fails the contract instead of skipping the scan.
+      - name: The CI workflow contract
+        run: bash infra/tests/ci-workflow.test.sh
+      - name: The gitleaks pre-commit hook
+        run: bash infra/tests/pre-commit-hook.test.sh
+      # C169.4 (reviews F02, P33; Workflow 9B): .gitleaks.toml's OpenVerify token rule catches a
+      # generated token, keeps the defaults, and every tracked test token names itself synthetic.
+      # This checkout is shallow; the secrets job scans the full history with the same file.
+      - name: The gitleaks configuration
+        run: bash infra/tests/gitleaks-config.test.sh
+      # C260.3 (sast-pii-11c): the PII-pattern configuration catches its positive cases, passes its
+      # negative ones and reads no generated file; it needs the pinned gitleaks installed above.
+      - name: The PII-pattern configuration
+        run: bash infra/tests/gitleaks-pii.test.sh
+      # Workflow 11D (C268.4; Stage 1a amendment 17): the load stack's compose override and env
+      # template, read as YAML and text with no Docker; the live half runs the stack locally only.
+      - name: The load stack's compose override (static half)
+        run: bash infra/tests/load-compose.test.sh --static-only
+
+  # C259, C267.2 (decision 49, review F04): every per-push supply-chain check in one job, so its
+  # minutes round once. Each tool comes from its installer (pinned version and SHA-256, the release's
+  # checksum file, cosign where the project signs; never a scanner action, curl | sh or a package
+  # manager: C258.2, the Trivy compromise of 2026-03-19), and the verified releases are cached on the
+  # installers' pins (each installer verifies a cached copy again before use). No secret and no
+  # token: supply-chain.sh refuses one in its environment (C259.3), so zizmor runs offline. A clean
+  # run means the scanners found no known, published weakness in what they could see (C259.5).
+  # Timeout: integration-11c's local estimate is about 2 minutes of checks and tests beside the
+  # setup (docs/tdd/phase11-integration-11c.tdd.md); 20 keeps a run of up to 15 minutes out of the
+  # last 25%. The measured time waits for the first run once the owner has Actions minutes (KP10-59).
+  supply-chain:
+    name: supply-chain (scanners, chart checks, the PII scan, the allowlist, 11C's static contracts)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    env:
+      UV_LOCKED: '1'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-pnpm
+      - uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+        with:
+          version: '0.13.7'
+          checksum: c5221ff41b7892bfc223543883600125f6a47fe845093e0f5bdff4f359196d83
+          enable-cache: true
+          cache-dependency-glob: |
+            services/vision/uv.lock
+            security/pip-audit/uv.lock
+            security/python/uv.lock
+      - name: Cache the verified tool releases
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ runner.temp }}/tool-cache
+          key: supply-chain-tools-${{ runner.os }}-${{ hashFiles('infra/scripts/install-*.sh', 'infra/scripts/lib/install-common.sh') }}
+      # cosign first: the Trivy installer verifies its checksum file's Sigstore bundle with it.
+      - name: Install cosign (pinned SHA-256)
+        run: INSTALL_DIR="$RUNNER_TEMP/bin" COSIGN_CACHE_DIR="$RUNNER_TEMP/tool-cache/cosign" bash infra/scripts/install-cosign.sh
+      - name: Install osv-scanner, zizmor, Trivy, Helm 4 and 3, helm-unittest, kubeconform and gitleaks
+        run: |
+          INSTALL_DIR="$RUNNER_TEMP/bin" OSV_SCANNER_CACHE_DIR="$RUNNER_TEMP/tool-cache/osv-scanner" bash infra/scripts/install-osv-scanner.sh
+          INSTALL_DIR="$RUNNER_TEMP/bin" ZIZMOR_CACHE_DIR="$RUNNER_TEMP/tool-cache/zizmor" bash infra/scripts/install-zizmor.sh
+          INSTALL_DIR="$RUNNER_TEMP/bin" TRIVY_CACHE_DIR="$RUNNER_TEMP/tool-cache/trivy" bash infra/scripts/install-trivy.sh
+          INSTALL_DIR="$RUNNER_TEMP/bin" HELM_CACHE_DIR="$RUNNER_TEMP/tool-cache/helm" bash infra/scripts/install-helm.sh
+          INSTALL_DIR="$RUNNER_TEMP/bin" HELM_UNITTEST_CACHE_DIR="$RUNNER_TEMP/tool-cache/helm-unittest" bash infra/scripts/install-helm-unittest.sh
+          INSTALL_DIR="$RUNNER_TEMP/bin" KUBECONFORM_CACHE_DIR="$RUNNER_TEMP/tool-cache/kubeconform" bash infra/scripts/install-kubeconform.sh
+          INSTALL_DIR="$RUNNER_TEMP/bin" GITLEAKS_CACHE_DIR="$RUNNER_TEMP/tool-cache/gitleaks" bash infra/scripts/install-gitleaks.sh
+      # The Kubernetes 1.35.9, 1.36.5 and 1.37.1 schema bundles kubeconform reads offline, generated by
+      # scripts/fetch_k8s_schemas.py from the pinned OpenAPI documents (each checked by SHA-256).
+      - name: Cache the Kubernetes schema bundles
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: data/k8s-schemas
+          key: k8s-schemas-v1-${{ hashFiles('scripts/fetch_k8s_schemas.py') }}
+      - name: osv-scanner over every lockfile (C259.1)
+        if: ${{ !cancelled() }}
+        env:
+          SUPPLY_CHAIN_TOOLS_DIR: ${{ runner.temp }}/bin
+        run: bash infra/scripts/supply-chain.sh osv
+      - name: pnpm audit at high, and the registry signatures
+        if: ${{ !cancelled() }}
+        env:
+          SUPPLY_CHAIN_TOOLS_DIR: ${{ runner.temp }}/bin
+        run: bash infra/scripts/supply-chain.sh pnpm-audit
+      - name: pip-audit over services/vision (and load/ once it exists)
+        if: ${{ !cancelled() }}
+        env:
+          SUPPLY_CHAIN_TOOLS_DIR: ${{ runner.temp }}/bin
+        run: bash infra/scripts/supply-chain.sh pip-audit
+      - name: zizmor over .github/workflows and .github/actions, failing at medium
+        if: ${{ !cancelled() }}
+        env:
+          SUPPLY_CHAIN_TOOLS_DIR: ${{ runner.temp }}/bin
+        run: bash infra/scripts/supply-chain.sh zizmor
+      - name: Trivy config over infra/ and the rendered chart, failing at high
+        if: ${{ !cancelled() }}
+        env:
+          SUPPLY_CHAIN_TOOLS_DIR: ${{ runner.temp }}/bin
+        run: bash infra/scripts/supply-chain.sh trivy-config
+      - name: The chart checks (lint on Helm 4 and 3, helm-unittest, kubeconform 1.35-1.37, Trivy)
+        if: ${{ !cancelled() }}
+        env:
+          SUPPLY_CHAIN_TOOLS_DIR: ${{ runner.temp }}/bin
+        run: bash infra/scripts/supply-chain.sh chart
+      - name: The PII-pattern scan (security/gitleaks-pii.toml through its checksum filter)
+        if: ${{ !cancelled() }}
+        env:
+          SUPPLY_CHAIN_TOOLS_DIR: ${{ runner.temp }}/bin
+        run: bash infra/scripts/supply-chain.sh pii
+      - name: The allowlist's schema and expiry
+        if: ${{ !cancelled() }}
+        env:
+          SUPPLY_CHAIN_TOOLS_DIR: ${{ runner.temp }}/bin
+        run: bash infra/scripts/supply-chain.sh allowlist
+      # The static halves of 11C's own contracts (C267.2): the scripts above, the installers, the
+      # images' Dockerfiles and digests, the release workflow, the chart, the ADR.
+      - name: The supply-chain script and its gate, over recorded reports
+        if: ${{ !cancelled() }}
+        run: bash infra/tests/supply-chain.test.sh
+      - name: The installers' pins and fail-closed skeleton runs
+        if: ${{ !cancelled() }}
+        run: bash infra/tests/supply-chain-skeletons.test.sh
+      - name: The installers' static checks (a synthetic release through a fake curl)
+        if: ${{ !cancelled() }}
+        run: |
+          bash infra/tests/install-common.test.sh --offline-only
+          bash infra/tests/install-cosign.test.sh --offline-only
+          bash infra/tests/install-osv-scanner.test.sh --offline-only
+          bash infra/tests/install-zizmor.test.sh --offline-only
+          bash infra/tests/install-trivy.test.sh --offline-only
+          bash infra/tests/install-syft.test.sh --offline-only
+          bash infra/tests/install-grype.test.sh --offline-only
+          bash infra/tests/install-helm.test.sh --offline-only
+          bash infra/tests/install-helm-unittest.test.sh --offline-only
+          bash infra/tests/install-kubeconform.test.sh --offline-only
+          bash infra/tests/install-chart-testing.test.sh --offline-only
+          bash infra/tests/install-kind.test.sh --offline-only
+          bash infra/tests/install-kubectl.test.sh --offline-only
+          bash infra/tests/install-vegeta.test.sh --offline-only
+      - name: The release workflow's contract (C262, C267.1)
+        if: ${{ !cancelled() }}
+        env:
+          SUPPLY_CHAIN_TOOLS_DIR: ${{ runner.temp }}/bin
+        run: bash infra/tests/release-workflow.test.sh
+      - name: The images' static contract, the digest pins and the e2e images-mode override (C257, C258.1)
+        if: ${{ !cancelled() }}
+        run: |
+          bash infra/tests/images.test.sh static
+          bash infra/tests/images.test.sh pins
+          bash infra/tests/images.test.sh override
+      - name: The digest refresher, offline
+        if: ${{ !cancelled() }}
+        run: bash infra/tests/refresh-digests.test.sh
+      # Workflow 11F (dast-11f; C283): the DAST scans' static contract (the ZAP pin, the rules and API
+      # groups, the report without headers, revocation on every exit path), no Docker and no network.
+      # The scans themselves run only locally, under the e2e lock (C283.4).
+      - name: The DAST scans' static contract
+        if: ${{ !cancelled() }}
+        run: bash infra/tests/zap.test.sh
+      # Workflow 11G (codeql-11g; C260.2 under Q1): codeql.yml's static contract. CodeQL itself runs
+      # only in codeql.yml, informational and only on a public repository, never in this job.
+      - name: The CodeQL workflow's contract
+        if: ${{ !cancelled() }}
+        env:
+          SUPPLY_CHAIN_TOOLS_DIR: ${{ runner.temp }}/bin
+        run: bash infra/tests/codeql-workflow.test.sh
+      - name: The ADR's deployment half
+        if: ${{ !cancelled() }}
+        run: bash infra/tests/adr-deployment.test.sh
+      - name: The chart's skeleton contract on both Helms
+        if: ${{ !cancelled() }}
+        env:
+          HELM4: ${{ runner.temp }}/bin/helm
+          HELM3: ${{ runner.temp }}/bin/helm3
+        run: bash infra/tests/chart-skeleton.test.sh
+      - name: The chart checks' and kind.sh's contracts, and the render-wide policy test (C264, C265)
+        if: ${{ !cancelled() }}
+        env:
+          HELM: ${{ runner.temp }}/bin/helm
+        run: |
+          bash deploy/helm/openverify/ci/tests/chart-checks.test.sh
+          bash deploy/helm/openverify/ci/tests/kind.test.sh
+          bash deploy/helm/openverify/ci/tests/chart-policy.test.sh
+      - name: The chart's models-fetch program (chart-11c)
+        if: ${{ !cancelled() }}
+        run: python3 -I -m unittest discover -s deploy/helm/openverify/files -p 'test_*.py'
+      # contracts-11c amendment item 20: the licence check, the schema fetcher and the PII filter.
+      - name: security/python's tests (80% coverage), ruff and mypy --strict
+        if: ${{ !cancelled() }}
+        run: |
+          uv run --project security/python --frozen pytest -c security/python/pyproject.toml --rootdir .
+          uv run --project security/python --frozen ruff check security scripts/fetch_k8s_schemas.py scripts/tests
+          uv run --project security/python --frozen ruff format --check security scripts/fetch_k8s_schemas.py scripts/tests
+          uv run --project security/python --frozen mypy --strict security/check-sbom-licences.py security/gitleaks-pii-filter.py scripts/fetch_k8s_schemas.py security/zap/dast-zap.py security/zap/zap-hooks.py
+
+  vision:
+    name: vision (ruff, mypy, pytest + coverage)
+    runs-on: ubuntu-latest
+    # Phase 5: about 2,450 tests (8 to 11 minutes locally) and three benchmarks.
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: services/vision
+    env:
+      UV_LOCKED: '1' # every uv command asserts that uv.lock is up to date
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+        with:
+          version: '0.13.7'
+          checksum: c5221ff41b7892bfc223543883600125f6a47fe845093e0f5bdff4f359196d83
+          working-directory: services/vision
+          enable-cache: true
+          cache-dependency-glob: services/vision/uv.lock
+      - name: Sync the locked environment (Python from .python-version)
+        run: uv sync --locked
+      - name: Ruff lint
+        run: uv run ruff check
+      - name: Ruff format
+        run: uv run ruff format --check
+      - name: Mypy (strict)
+        run: uv run mypy src tools
+      - name: Cache the model weights
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          # Every file models/manifest.json downloads: the weights, the OCR dictionary (K103) and
+          # the canonical face mesh (Phase 4, C41.1).
+          path: |
+            models/*.onnx
+            models/*.yml
+            models/*.obj
+          key: models-v3-${{ hashFiles('models/manifest.json') }}
+      - name: Fetch every model in models/manifest.json (pinned SHA-256), so the real-model tests run
+        run: python3 ../../scripts/fetch_models.py
+      # C60.7: the blank federal forms fixtures/manifest.json pins (prior-year IRS PDFs), cached so
+      # an irs.gov outage cannot fail the job; fetch_fixtures.py skips files whose digest matches.
+      - name: Cache the federal forms
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: fixtures/generated/federal-forms
+          key: federal-forms-v1-${{ hashFiles('fixtures/manifest.json') }}
+      - name: Fetch the public-domain test faces and the federal forms (pinned SHA-256)
+        run: python3 ../../scripts/fetch_fixtures.py
+      - name: Pytest (coverage gate --cov-fail-under=80 is set in pyproject.toml)
+        run: uv run pytest -rs
+      # C32.4: both sides of a 1,600-pixel card, median of 10 runs with the real models, and the
+      # runner's CPU model. Logged to the job summary, never gated: a shared runner is not the
+      # development machine the 5 s budget is set on. bash's pipefail fails the step if the
+      # benchmark itself cannot run.
+      - name: Benchmark the government ID analysis (C32.4, logged)
+        shell: bash
+        run: uv run python tools/benchmark_government_id.py | tee -a "$GITHUB_STEP_SUMMARY"
+      # C41.5: the selfie analysis of centre, left and right at 1,280 pixels, median of 10 runs
+      # with the real models, its per-stage breakdown and the runner's CPU model. Logged like
+      # C32.4, never gated: the 3 s budget is set on the development machine.
+      - name: Benchmark the selfie analysis (C41.5, logged)
+        shell: bash
+        run: uv run python tools/benchmark_selfie.py | tee -a "$GITHUB_STEP_SUMMARY"
+      # C60 (Workflow 5B): a 3-page born-digital PDF through the guarded child and the OCR of its
+      # text-layer boxes, median of 10 runs with the real models, its stage breakdown and the
+      # runner's CPU model. Logged like C32.4, never gated: the 4 s budget is set on the
+      # development machine.
+      - name: Benchmark the document analysis (C60, logged)
+        shell: bash
+        run: uv run python tools/benchmark_document.py --runs 10 | tee -a "$GITHUB_STEP_SUMMARY"
+      # Workflow 11D (C268.1, C268.2; Stage 1a amendment 15, decision 49): the HTTP load harness's own
+      # lint, types and tests, as one step of this job, which already set up uv (load/ has its own
+      # lock and Python 3.12; it is dev tooling, never in an image). No take runs here: the load
+      # test and the calibration run locally only, never in shared CI (C267.3).
+      - name: The load harness (load/'s ruff, mypy and pytest)
+        working-directory: load
+        run: uv sync --frozen && uv run ruff check && uv run ruff format --check && uv run mypy . && uv run pytest
+
+  android:
+    name: android (host tests, Kover, assemble, iOS klibs, lint)
+    runs-on: ubuntu-latest
+    # Workflow 10D review (A004; Phase 8 F08's rule): 21.8 minutes on the 10B push (CI 42762952128),
+    # the last run that reached the end. On the 10C push (CI 42937477615) the job had spent 27.7
+    # minutes when it failed before the size check, the floors and the sdk,nfc call, and 10D added
+    # host tests and goldens. Not split on an estimate: 60 keeps a run of up to 45 minutes out of the
+    # last 25%, and the first run that reaches the end gives the time a split is decided on.
+    timeout-minutes: 60
+    defaults:
+      run:
+        working-directory: android
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Verify the Gradle wrapper JAR against services.gradle.org
+        run: |
+          version=$(sed -n 's#^distributionUrl=.*/gradle-\(.*\)-\(bin\|all\)\.zip$#\1#p' gradle/wrapper/gradle-wrapper.properties)
+          expected=$(curl -fsSL --proto '=https' "https://services.gradle.org/distributions/gradle-${version}-wrapper.jar.sha256")
+          echo "${expected}  gradle/wrapper/gradle-wrapper.jar" | sha256sum -c -
+      - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: gradle
+          cache-dependency-path: |
+            android/**/*.gradle*
+            android/**/gradle-wrapper.properties
+            android/gradle/libs.versions.toml
+      - uses: android-actions/setup-android@be39fa834029ff78f1a44aa3bb0819b8fc2bd8fd # v4.0.4
+      # openverify-sdk is a Kotlin Multiplatform library (docs/plans/kmp-migration.plan.md K8). Its
+      # `assemble` cross-compiles the iOS klibs with the Kotlin/Native toolchain, about 820 MB that
+      # the Kotlin Gradle plugin downloads into ~/.konan on first use; the cache key is the Kotlin version.
+      - name: Read the Kotlin version from the version catalog
+        id: kotlin
+        run: |
+          version=$(sed -n 's/^kotlin = "\(.*\)"$/\1/p' gradle/libs.versions.toml)
+          test -n "$version"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+      - name: Cache the Kotlin/Native toolchain
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ~/.konan
+          key: konan-${{ runner.os }}-${{ steps.kotlin.outputs.version }}
+      # C214.7 (Phase 10, Workflow 10C): bundletool is fetched, pinned by version and SHA-256, before any
+      # Gradle step; the 16 KB and size checks below read the release bundle with it. Then the release
+      # checks' own unit tests (synthetic ELF files, POMs and R8 outputs; no build output needed).
+      # KP10-52 (scanners-11c): the fetch retries a failed download and keeps the verified jar in a
+      # cache, keyed on the script's pin and used only when its size and SHA-256 match.
+      - name: Cache the verified bundletool
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ runner.temp }}/bundletool-cache
+          key: bundletool-${{ hashFiles('scripts/fetch_bundletool.py') }}
+      - name: Fetch bundletool (pinned by SHA-256)
+        working-directory: ${{ github.workspace }}
+        run: python3 -I scripts/fetch_bundletool.py --cache-dir "$RUNNER_TEMP/bundletool-cache"
+      # C205.3 (Phase 10, Workflow 10E): openverify-face's build copies the YuNet model into its AAR
+      # and fails without it, and its host tests and device-test compile read one fetched
+      # public-domain face. Both are pinned by SHA-256 and fetched before any Gradle step.
+      - name: Fetch the YuNet model and the fixture face (pinned by SHA-256)
+        working-directory: ${{ github.workspace }}
+        run: |
+          python3 -I scripts/fetch_models.py --only face_detection_yunet
+          python3 -I scripts/fetch_fixtures.py --only person_a_id
+      - name: The release checks' own tests
+        run: python3 -I -m unittest discover -s scripts/tests
+      # testDebugUnitTest runs the demo-app's tests (the debug variant's, then the smoke test's host
+      # twins on minifiedSmoke, which it is finalized by) and the host tests of openverify-nfc and
+      # openverify-face (Workflow 10E); the SDK's run in testAndroidHostTest. koverVerify holds every
+      # module with sources to 80%.
+      # :openverify-sdk:assemble builds the AAR and compiles the iOS main and test klibs.
+      - name: Host tests, coverage verification, debug build, the SDK's AAR and iOS klibs, lint
+        run: ./gradlew testDebugUnitTest testAndroidHostTest koverVerify assembleDebug :openverify-sdk:assemble lint --stacktrace
+      # C220.1 (Phase 10, Workflow 10A): the Roborazzi screenshots with comparison on (a missing or
+      # changed golden fails; goldens are recorded only by an explicit local record call), the ABI
+      # dumps of every published module (checkKotlinAbi), and the minified demo's release bundle.
+      # Workflow 10C (C215, C216): also the minified release APK, which the three checks after this
+      # step read beside the bundle: the 16 KB checks (ELF segment alignment, zipalign, the bundle's
+      # page-alignment setting), the SDK's consumer rules as R8 applied them, and the SDK-only
+      # download and install sizes against android/size-baseline.json (10% tolerance). All three are
+      # static: nothing is loaded or run on a device here.
+      - name: Screenshots with comparison, the ABI check, the release bundle and the minified release APK
+        run: ./gradlew :openverify-sdk:screenshotTest -Proborazzi.test.verify=true checkKotlinAbi :demo-app:bundleRelease :demo-app:assembleRelease :openverify-nfc:assembleRelease :openverify-face:assembleRelease --stacktrace
+      - name: 16 KB page-size checks
+        run: python3 -I scripts/check-elf-alignment.py
+      - name: The consumer rules as R8 applied them
+        run: python3 -I scripts/check-consumer-rules.py
+      - name: The SDK-only size against the baseline
+        run: python3 -I scripts/check-size.py
+      # A renamed test task or source set would let the SDK suite stop running while Gradle stays
+      # green. 2739 is the count Workflow 11F reached: 11A's 2732 plus fix-clients' KP11-79, KP10-53
+      # and KP10-56 cases, in three groups of 533, 427 and 1779 (docs/tdd/phase11-fix-clients.tdd.md).
+      # 2732 is the count Workflow 11A reached: 10E's 2691, plus contracts-11a's 5 and
+      # clients-connect's 36, in three groups of 532, 427 and 1773 (docs/tdd/phase11-integration-11a.tdd.md).
+      # 2691 is the count Workflow 10E reached: 10D's 2677, plus contracts-10e's 13 net of the
+      # cases K10A-1 removed with the finalizing state (2690), plus integration-10e's 1, in three
+      # groups of 522, 416 and 1753 (docs/tdd/phase10-integration-10e.tdd.md).
+      # 2677 is the count Workflow 10D's fixers reached: 10C's 2602, plus android-a11y-audit's
+      # 49 (2651) and fix-sdk's 26, measured again by fix-records as three groups of 524, 414 and 1739
+      # (docs/tdd/phase10-fix-records.tdd.md). 2602 is the count Workflow 10C reached: 10B's 2321, plus carry-10c's 40 and
+      # contracts-10c's 25, plus nfc-sdk's 113 less the 1 stub pin it removed, privacy-checks' 90 and
+      # docs-android's 12, plus integration-10c's 2 (docs/tdd/phase10-integration-10c.tdd.md).
+      # 2321 is the count Workflow 10B reached: 10A's 1934, plus contracts-10b's 26, plus 352
+      # from Stage 1b and the five Stage 2 agents, plus integration-10b's 10, less the 1 stub test it
+      # removed (docs/tdd/phase10-integration-10b.tdd.md). 1934 is the count Workflow 10A reached: 9B's 1366, lowered once by the 78 test
+      # invocations android-driver deleted with FlowNavigator, JsonLogic and the v1 projection
+      # (C219.6), to 1288, then raised by the 646 10A added (docs/tdd/phase10-integration-10a.tdd.md).
+      # 1366 is the count Workflow 9B reached (contracts-9b's two decoded fixtures); 1364 was
+      # the count Workflow 9A ended with (FlowCoordinatorProjectionTest and the new
+      # session fixtures, docs/tdd/phase9-contracts-9a.tdd.md; 8A's floor was 1334, 7C's 1333, 7A's
+      # 1327, 5C's 1264, 5B's 1256, 5A's 1176, the Kotlin Multiplatform migration's 928); raise
+      # it when a phase adds tests.
+      - name: SDK host test floor (at least 2739 tests, none skipped)
+        shell: bash
+        run: |
+          python3 -I - openverify-sdk/build/test-results/testAndroidHostTest 2739 <<'PY'
+          import glob
+          import sys
+          import xml.etree.ElementTree as ET
+
+          results, floor = sys.argv[1], int(sys.argv[2])
+          paths = sorted(glob.glob(results + "/*.xml"))
+          tests = skipped = failed = 0
+          for path in paths:
+              for case in ET.parse(path).getroot().iter("testcase"):
+                  tests += 1
+                  skipped += case.find("skipped") is not None
+                  failed += case.find("failure") is not None or case.find("error") is not None
+          print(f"SDK host tests: {tests} in {len(paths)} classes, {skipped} skipped, {failed} failed; the floor is {floor}")
+          if tests < floor or skipped or failed:
+              print(f"::error title=SDK host tests::{tests} ran, {skipped} skipped, {failed} failed: at least {floor} must pass and none may be skipped")
+              sys.exit(1)
+          PY
+      # The demo's own floor (Workflow 10C; C219.6): with testBuildType = minifiedSmoke the gate once
+      # ran none of the demo's tests and stayed green. 97 run on the debug variant and 9 host twins on
+      # minifiedSmoke in the default configuration (Workflow 10E: 10D's 81 and 8, contracts-10e's 7
+      # for the per-artifact hooks, nfc-reader's 8 and 1 for the reader check, integration-10e's 1;
+      # docs/tdd/phase10-demo-app.tdd.md, phase10-fix-sdk.tdd.md, phase10-integration-10e.tdd.md).
+      - name: Demo host test floor (at least 97 on debug and 9 smoke twins, none skipped)
+        shell: bash
+        run: |
+          python3 -I - demo-app/build/test-results/testDebugUnitTest=97 demo-app/build/test-results/testMinifiedSmokeUnitTest=9 <<'PY'
+          import glob
+          import sys
+          import xml.etree.ElementTree as ET
+
+          bad = False
+          for argument in sys.argv[1:]:
+              results, floor = argument.rsplit("=", 1)
+              tests = skipped = failed = 0
+              for path in sorted(glob.glob(results + "/*.xml")):
+                  for case in ET.parse(path).getroot().iter("testcase"):
+                      tests += 1
+                      skipped += case.find("skipped") is not None
+                      failed += case.find("failure") is not None or case.find("error") is not None
+              print(f"{results}: {tests} tests, {skipped} skipped, {failed} failed; the floor is {floor}")
+              if tests < int(floor) or skipped or failed:
+                  print(f"::error title=Demo host tests::{results}: {tests} ran, {skipped} skipped, {failed} failed: at least {floor} must pass and none may be skipped")
+                  bad = True
+          sys.exit(1 if bad else 0)
+          PY
+      # Each optional artifact's own floor (Workflow 10E; C219.6): the gate line's testDebugUnitTest
+      # runs openverify-nfc's 116 host tests (the reader over a scripted chip and JMRTD's real service
+      # against the synthetic Utopia chip) and openverify-face's 51 (YuNet through ONNX Runtime's JVM
+      # build, the telemetry layers, the merged manifest). A module whose tests stop running fails here.
+      - name: Optional artifacts' host test floors (at least 116 in openverify-nfc and 51 in openverify-face, none skipped)
+        shell: bash
+        run: |
+          python3 -I - openverify-nfc/build/test-results/testDebugUnitTest=116 openverify-face/build/test-results/testDebugUnitTest=51 <<'PY'
+          import glob
+          import sys
+          import xml.etree.ElementTree as ET
+
+          bad = False
+          for argument in sys.argv[1:]:
+              results, floor = argument.rsplit("=", 1)
+              tests = skipped = failed = 0
+              for path in sorted(glob.glob(results + "/*.xml")):
+                  for case in ET.parse(path).getroot().iter("testcase"):
+                      tests += 1
+                      skipped += case.find("skipped") is not None
+                      failed += case.find("failure") is not None or case.find("error") is not None
+              print(f"{results}: {tests} tests, {skipped} skipped, {failed} failed; the floor is {floor}")
+              if tests < int(floor) or skipped or failed:
+                  print(f"::error title=Optional artifact host tests::{results}: {tests} ran, {skipped} skipped, {failed} failed: at least {floor} must pass and none may be skipped")
+                  bad = True
+          sys.exit(1 if bad else 0)
+          PY
+      # C215.3 (Workflow 10C): the sdk,nfc configuration's merged manifest against its allowlist
+      # (manifest-allowlist/sdk-nfc.json), by the demo's own host tests built with openverify-nfc. After
+      # the checks above, which read the default configuration: each of these rebuilds the demo's manifests.
+      - name: The sdk,nfc merged manifest against its allowlist
+        run: ./gradlew -PopenverifyDemoArtifacts=sdk,nfc :demo-app:testDebugUnitTest --stacktrace
+      # Workflow 10E: the two configurations with openverify-face, each against its own allowlist
+      # (sdk-face.json, sdk-nfc-face.json): ONNX Runtime's telemetry provider is gone and the demo's
+      # own manifest removes ACCESS_NETWORK_STATE, so nothing beyond C213.5's lists arrives.
+      - name: The sdk,face merged manifest against its allowlist
+        run: ./gradlew -PopenverifyDemoArtifacts=sdk,face :demo-app:testDebugUnitTest --stacktrace
+      - name: The sdk,nfc,face merged manifest against its allowlist
+        run: ./gradlew -PopenverifyDemoArtifacts=sdk,nfc,face :demo-app:testDebugUnitTest --stacktrace
+      - name: Upload test and coverage reports
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: android-reports
+          path: |
+            android/**/build/reports/
+            android/**/build/outputs/roborazzi/
+          if-no-files-found: warn
+          retention-days: 14
+
+  android-instrumented:
+    name: android-instrumented (emulator)
+    needs: android
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      # system-images;android-34;google_apis;x86_64. Private repositories get 2-vCPU runners, where
+      # the API 36 image never finished booting within 600 s (run 39402046263); API 34 boots in minutes.
+      # The SDK targets 36 and supports 26+, so 34 is still a supported device level.
+      EMULATOR_API_LEVEL: 34
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      # No-op until device tests exist; the emulator only boots when there is something to run. The
+      # KMP SDK keeps them in src/androidDeviceTest; a plain Android module keeps src/androidTest.
+      - name: Detect device test sources
+        id: detect
+        run: |
+          if find android \( -path '*/src/androidDeviceTest/*' -o -path '*/src/androidTest/*' \) -type f \( -name '*.kt' -o -name '*.java' \) -print -quit | grep -q .; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "::notice title=android-instrumented::No device test sources yet; skipping the emulator run."
+          fi
+      # A default AVD needs about 7.4 GB for userdata; the runner has about 6.6 GB free (run 39404568458).
+      - name: Free disk space for the emulator
+        if: steps.detect.outputs.present == 'true'
+        run: |
+          sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/.ghcup /opt/hostedtoolcache/CodeQL /usr/local/share/boost
+          df -h /
+      - name: Enable KVM
+        if: steps.detect.outputs.present == 'true'
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          ls -l /dev/kvm
+      - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
+        if: steps.detect.outputs.present == 'true'
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: gradle
+          cache-dependency-path: |
+            android/**/*.gradle*
+            android/**/gradle-wrapper.properties
+            android/gradle/libs.versions.toml
+      - uses: android-actions/setup-android@be39fa834029ff78f1a44aa3bb0819b8fc2bd8fd # v4.0.4
+        if: steps.detect.outputs.present == 'true'
+      # C205.3 (Workflow 10E): openverify-face's device-test APK holds the YuNet model and one
+      # fetched public-domain face; both are pinned by SHA-256 and fetched before the build.
+      - name: Fetch the YuNet model and the fixture face (pinned by SHA-256)
+        if: steps.detect.outputs.present == 'true'
+        run: |
+          python3 -I scripts/fetch_models.py --only face_detection_yunet
+          python3 -I scripts/fetch_fixtures.py --only person_a_id
+      - name: Instrumented tests on an emulator
+        if: steps.detect.outputs.present == 'true'
+        # Boot plus build take about 6 minutes. A hung test fails this step rather than the whole
+        # job being cancelled, so the report upload below still runs.
+        timeout-minutes: 35
+        uses: reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d # v2.38.0
+        with:
+          api-level: ${{ env.EMULATOR_API_LEVEL }}
+          target: google_apis
+          arch: x86_64
+          working-directory: android
+          emulator-boot-timeout: 900
+          disk-size: 4096M
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -no-metrics -camera-back emulated -camera-front emulated
+          # On failure, print the JUnit XML: the HTML report is the only other place the cause appears.
+          # The check-connected-results.sh line fails the step if a test skipped itself (or none ran), which Gradle reports as green.
+          # The KMP SDK's device tests write to androidTest-results/connected/androidMain, which both globs match.
+          # The last line prints what only the emulator measures (Workflow 10B): the probes' total time
+          # (openverify-probes, C210.3) and the barcode frame copy costs (OpenVerifyCameraTest, C201.2).
+          # The second Gradle line (Workflow 10C, C215.2) runs the demo's smoke test on its R8-minified
+          # minifiedSmoke build, over TLS on loopback. The third (Workflow 10E, KP10-46) runs the
+          # optional artifacts' device tests: the reader with whatever NFC the image has (none: its
+          # nfc_disabled branch), and YuNet through ONNX Runtime's Android library with the telemetry
+          # window, whose byte count holds a 120 s quiet period twice (about 5 minutes).
+          # check-connected-results.sh reads all four modules, each held to its minimum.
+          script: |
+            ./gradlew :openverify-sdk:connectedAndroidDeviceTest -Pandroid.testInstrumentationRunnerArguments.openverifyDeviceKind=emulator --stacktrace || { find . -path '*androidTest-results*' -name '*.xml' -exec cat {} +; adb logcat -d | grep -iE 'camerax|camera2|imagecapture|cameraservice|openverify' | tail -400; exit 1; }
+            ./gradlew :demo-app:connectedMinifiedSmokeAndroidTest --stacktrace || { find demo-app -path '*androidTest-results*' -name '*.xml' -exec cat {} +; adb logcat -d | grep -iE 'openverify|AndroidRuntime' | tail -200; exit 1; }
+            ./gradlew :openverify-nfc:connectedDebugAndroidTest :openverify-face:connectedDebugAndroidTest --stacktrace || { find openverify-nfc openverify-face -path '*androidTest-results*' -name '*.xml' -exec cat {} +; adb logcat -d | grep -iE 'openverify|AndroidRuntime' | tail -200; exit 1; }
+            bash ../infra/scripts/check-connected-results.sh . openverify-sdk=14 demo-app=2 openverify-nfc=2 openverify-face=4
+            adb logcat -d -s openverify-probes OpenVerifyCameraTest || true
+      - name: Upload the connected test reports
+        if: failure() && steps.detect.outputs.present == 'true'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: android-instrumented-reports
+          path: |
+            android/**/build/reports/androidTests/
+            android/**/build/outputs/androidTest-results/
+          if-no-files-found: warn
+          retention-days: 14
+
+  e2e:
+    name: e2e (mocked flow suite; full stack in Chromium with the API and dashboard UI specs)
+    runs-on: ubuntu-latest
+    # Workflow 5B measured the suite (docs/tdd/phase5-integration-5b.tdd.md): about 9.5 minutes
+    # locally, 21 minutes for the whole job in CI before 5B. The Chromium install alone can take 10,
+    # so the job covers it, the setup, the mocked suite and the full Playwright globalTimeout.
+    # Workflow 9D (R006): the full-stack globalTimeout is 60 minutes; 20 more cover the installs,
+    # the fixtures and the mocked flow suite (328 tests, 1.8 minutes locally).
+    timeout-minutes: 80
+    env:
+      UV_LOCKED: '1'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-pnpm
+      - uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+        with:
+          version: '0.13.7'
+          checksum: c5221ff41b7892bfc223543883600125f6a47fe845093e0f5bdff4f359196d83
+          working-directory: services/vision
+          enable-cache: true
+          cache-dependency-glob: services/vision/uv.lock
+      # The e2e global setup starts these itself, as the compose project openverify-e2e with
+      # random secrets (e2e/.env.e2e); pulling first keeps registry problems out of the tests.
+      - name: Pull the compose infrastructure images
+        run: >-
+          docker compose -f infra/docker-compose.yml --env-file .env.example
+          pull postgres redis objectstore objectstore-init mailpit
+      - name: Cache the model weights
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          # Every file models/manifest.json downloads: the weights, the OCR dictionary (K103) and
+          # the canonical face mesh (Phase 4, C41.1).
+          path: |
+            models/*.onnx
+            models/*.yml
+            models/*.obj
+          key: models-v3-${{ hashFiles('models/manifest.json') }}
+      - name: Fetch every model in models/manifest.json (pinned SHA-256)
+        run: python3 scripts/fetch_models.py
+      - name: Cache the data files
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          # Every file data/manifest.json downloads (Phase 5, C56: the disposable email list);
+          # the manifests themselves are committed.
+          path: |
+            data/*
+            !data/manifest.json
+            !data/malicious-feeds.json
+          key: data-v1-${{ hashFiles('data/manifest.json') }}
+      - name: Fetch every data file in data/manifest.json (pinned SHA-256)
+        run: python3 scripts/fetch_data.py
+      # C60.7: the blank federal forms the generator fills (prior-year IRS PDFs, pinned in
+      # fixtures/manifest.json), cached so an irs.gov outage cannot fail the job.
+      - name: Cache the federal forms
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: fixtures/generated/federal-forms
+          key: federal-forms-v1-${{ hashFiles('fixtures/manifest.json') }}
+      - name: Fetch the public-domain test faces and the federal forms (pinned SHA-256)
+        run: python3 scripts/fetch_fixtures.py
+      # C36, C65.2, C65.3: the synthetic ID, the camera clips, the proof-of-address and held-out
+      # sets and person A's JPEG 2000 chip portrait with the TD3 page's MRZ record.
+      - name: Generate the synthetic fixtures (ID, camera clips, proof of address, chip portrait)
+        working-directory: services/vision
+        run: |
+          uv sync --locked
+          uv run python tools/make_synthetic_fixtures.py
+      # C160.9 (Workflow 9B, review F19): the theme CSP spec also runs in Firefox and WebKit. The
+      # browsers are cached by the lockfile (the Playwright version); --with-deps still installs
+      # their system packages. Estimated cost: about 1 to 2 minutes of install from a cold cache
+      # and well under 1 minute for the spec's 5 tests in each engine (integration-9b's estimate;
+      # read the first run's step times, and move the step under a schedule trigger past 3 minutes).
+      - name: Cache the Playwright browsers
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ~/.cache/ms-playwright
+          key: ms-playwright-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+      - name: Install Chromium for Playwright
+        run: pnpm --filter @openverify/e2e exec playwright install --with-deps chromium
+      - name: Install Firefox and WebKit for the flow suite's theme CSP spec (C160.9)
+        run: pnpm --filter @openverify/flow exec playwright install --with-deps firefox webkit
+      - name: End-to-end tests
+        run: pnpm e2e
+      # Service logs carry no credentials. Failure traces can hold this run's throwaway
+      # session tokens and seeded password; the stack they belong to is gone after teardown.
+      # KP10-1 (Workflow 10A): e2e/.artifacts is a dot-directory, which upload-artifact leaves out
+      # unless include-hidden-files is true (CI 42476248527 uploaded no full-stack trace).
+      - name: Upload service logs, traces and Playwright reports
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: e2e-artifacts
+          path: |
+            e2e/.artifacts/
+            apps/flow/test-results/
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 14
+
+  secrets:
+    name: secrets (gitleaks, full history)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      # KP10-2: as in the infra job, a cache of the verified release, verified again on use.
+      - name: Cache the verified gitleaks release
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ runner.temp }}/gitleaks-cache
+          key: gitleaks-linux-x64-${{ hashFiles('infra/scripts/install-gitleaks.sh') }}
+      - name: Install gitleaks (pinned release, SHA-256 verified)
+        run: |
+          GITLEAKS_CACHE_DIR="$RUNNER_TEMP/gitleaks-cache" INSTALL_DIR="$RUNNER_TEMP/bin" infra/scripts/install-gitleaks.sh
+          echo "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
+      - name: Scan the full git history
+        run: gitleaks git --redact --verbose --no-banner --no-color .

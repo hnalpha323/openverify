@@ -1,0 +1,48 @@
+{
+  "data": {
+    "type": "list-match",
+    "id": "lmt_01M5CK3190XEVBM5ZXA76E1JSN",
+    "attributes": {
+      "status": "open",
+      "source": "otp.email-address",
+      "method": "exact",
+      "tier": "R",
+      "confidence": null,
+      "approximate": false,
+      "score": null,
+      "distance-meters": null,
+      "list-version": 2,
+      "matched-value": "listed@example.test",
+      "dismissed-at": null,
+      "reason": null,
+      "created-at": "2026-10-31T12:00:00.000Z",
+      "redacted-at": null
+    },
+    "relationships": {
+      "list": {
+        "data": {
+          "type": "list/email-address",
+          "id": "lst_01M5CK3190XEVBM5ZXA76E1JSN"
+        }
+      },
+      "list-item": {
+        "data": {
+          "type": "list-item/email-address",
+          "id": "liea_01M5CK3190XEVBM5ZXA76E1JSN"
+        }
+      },
+      "inquiry": {
+        "data": {
+          "type": "inquiry",
+          "id": "inq_01M5CK3190XEVBM5ZXA76E1JSN"
+        }
+      },
+      "account": {
+        "data": {
+          "type": "account",
+          "id": "acc_01M5CK3190XEVBM5ZXA76E1JSN"
+        }
+      }
+    }
+  }
+}

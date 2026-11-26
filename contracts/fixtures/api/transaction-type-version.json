@@ -1,0 +1,71 @@
+{
+  "data": {
+    "type": "transaction-type-version",
+    "id": "txntpv_01M5CK3190XEVBM5ZXA76E1JSN",
+    "attributes": {
+      "version-number": 1,
+      "status": "published",
+      "field-schemas": [
+        {
+          "type": "string",
+          "key": "order_id",
+          "label": "Order",
+          "config": {
+            "required": true,
+            "searchable": true,
+            "write-policy": "write_once"
+          }
+        },
+        {
+          "type": "number",
+          "key": "amount",
+          "label": "Amount",
+          "config": {
+            "min": 0
+          }
+        },
+        {
+          "type": "hash",
+          "key": "payment_method",
+          "label": "Payment method",
+          "config": {
+            "item-schemas": [
+              {
+                "type": "string",
+                "key": "processor_token",
+                "label": "Processor token"
+              }
+            ]
+          }
+        },
+        {
+          "type": "file",
+          "key": "invoice",
+          "label": "Invoice",
+          "config": {
+            "supported-mime-types": ["application/pdf"]
+          }
+        }
+      ],
+      "statuses": ["created", "approved", "declined", "needs review"],
+      "relation-schemas": [
+        {
+          "key": "buyer",
+          "target": "account",
+          "cardinality": "one"
+        }
+      ],
+      "allow-card-like-strings": false,
+      "created-at": "2026-10-31T12:00:00.000Z",
+      "published-at": "2026-10-31T12:00:00.000Z"
+    },
+    "relationships": {
+      "transaction-type": {
+        "data": {
+          "type": "transaction-type",
+          "id": "txntp_01M5CK3190XEVBM5ZXA76E1JSN"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "description": "OpenVerify privacy-relay domains (plan C82.1, decision 19): addresses at these domains, or at a subdomain of one, forward to a mailbox the sender cannot see, so the email band is null with privacy_relay. Authored by risk-logic (Workflow 6A Stage 2); every domain had MX records (mx, a host-name suffix) when observed.",
+  "licence": "Authored by OpenVerify (Apache-2.0, as the repository); domain and provider names are facts, each provider cited at its own page.",
+  "observed": "2026-10-27",
+  "providers": [
+    {
+      "id": "apple-private-relay",
+      "name": "Apple Private Email Relay",
+      "source": "https://developer.apple.com/documentation/signinwithapple/communicating-using-the-private-email-relay-service",
+      "mx": "privaterelay.appleid.com",
+      "domains": [
+        "privaterelay.appleid.com"
+      ]
+    },
+    {
+      "id": "firefox-relay",
+      "name": "Firefox Relay",
+      "source": "https://relay.firefox.com/",
+      "mx": "amazonaws.com",
+      "domains": [
+        "mozmail.com"
+      ]
+    },
+    {
+      "id": "duckduckgo",
+      "name": "DuckDuckGo Email Protection",
+      "source": "https://duckduckgo.com/email/",
+      "mx": "duck.com",
+      "domains": [
+        "duck.com"
+      ]
+    },
+    {
+      "id": "simplelogin",
+      "name": "SimpleLogin",
+      "source": "https://simplelogin.io/",
+      "mx": "simplelogin.co",
+      "domains": [
+        "simplelogin.com",
+        "simplelogin.co",
+        "aleeas.com",
+        "slmail.me",
+        "8alias.com",
+        "8shield.net"
+      ]
+    },
+    {
+      "id": "proton-pass",
+      "name": "Proton Pass aliases",
+      "source": "https://proton.me/pass",
+      "mx": "simplelogin.co",
+      "domains": [
+        "passmail.net",
+        "passinbox.com",
+        "passmail.com",
+        "passfwd.com"
+      ]
+    },
+    {
+      "id": "addy",
+      "name": "addy.io",
+      "source": "https://addy.io/",
+      "mx": "addy.io",
+      "domains": [
+        "addy.io",
+        "anonaddy.com",
+        "anonaddy.me"
+      ]
+    },
+    {
+      "id": "33mail",
+      "name": "33Mail",
+      "source": "https://www.33mail.com/",
+      "mx": "google.com",
+      "domains": [
+        "33mail.com"
+      ]
+    }
+  ]
+}

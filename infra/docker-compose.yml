@@ -1,0 +1,681 @@
+# OpenVerify local development services.
+#
+#   cp .env.example .env        # then replace every change-me-* value
+#   docker compose -f infra/docker-compose.yml --env-file .env up -d --wait
+#   docker compose -f infra/docker-compose.yml --env-file .env down   # keeps the data volumes
+#
+# The apps themselves (profile `app`, off by default) run in the five production images built from
+# this repository (Phase 11, Workflow 11C, C257.3: openverify/{api,dashboard,flow,vision,code-runner}
+# :11c-local, each read-only with a writable /tmp); fetch the model weights and data first
+# (python3 scripts/fetch_models.py && python3 scripts/fetch_data.py && pnpm --filter
+# @openverify/watchlist build:variant-groups):
+#   docker compose -f infra/docker-compose.yml --env-file .env --profile app up -d --wait --build
+#   docker compose -f infra/docker-compose.yml --env-file .env --profile app \
+#     run --rm migrate node dist/commands/seed-dev.js    # prints a new API key once; refuses production
+# Then the API is on :OPENVERIFY_API_PORT, the flow on :OPENVERIFY_FLOW_PORT and the dashboard
+# on :OPENVERIFY_DASHBOARD_PORT (loopback). The e2e suite starts its own copy of the
+# infrastructure as the project `openverify-e2e` (e2e/setup/stack.ts).
+#
+# Every host port binds to ${OPENVERIFY_BIND_ADDRESS} (127.0.0.1 by default), so these
+# development services are not reachable from the LAN. Secrets have no defaults: compose
+# refuses to start until they are set. Contract test: infra/tests/compose.test.sh.
+# Licensing of each image: THIRD_PARTY_LICENSES.md. Choices and alternatives: docs/adr/0001-stack.md.
+name: openverify
+
+# Shared by the Node app services (profile `app`; Phase 11, Workflow 11C, C257.3): each production
+# image runs as its own uid 10001 on a read-only root with a writable /tmp only.
+x-node-app: &node-app
+  profiles: [app]
+  restart: unless-stopped
+  read_only: true
+  tmpfs:
+    - /tmp:size=256m,mode=1777
+  cap_drop: [ALL]
+  security_opt: ['no-new-privileges:true']
+
+# openverify/api: the API, the worker, the worker's probe and the compiled operator commands.
+x-api-image: &api-image
+  image: openverify/api:11c-local
+  build:
+    context: ..
+    dockerfile: infra/docker/api.Dockerfile
+
+# The API's and worker's settings inside the compose network: same secrets as the infrastructure
+# above, service names instead of 127.0.0.1.
+x-api-environment: &api-environment
+  OPENVERIFY_MODE: ${OPENVERIFY_MODE:-development}
+  OPENVERIFY_LOG_LEVEL: ${OPENVERIFY_LOG_LEVEL:-info}
+  DATABASE_URL: postgres://${POSTGRES_USER:-openverify}:${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required - copy .env.example to .env}@postgres:5432/${POSTGRES_DB:-openverify}
+  REDIS_URL: redis://:${REDIS_PASSWORD:?REDIS_PASSWORD is required - copy .env.example to .env}@redis:6379
+  S3_ENDPOINT: http://objectstore:9000
+  S3_REGION: ${S3_REGION:-us-east-1}
+  S3_BUCKET: ${S3_BUCKET:-openverify-files}
+  S3_ACCESS_KEY_ID: ${S3_ACCESS_KEY_ID:?S3_ACCESS_KEY_ID is required - copy .env.example to .env}
+  S3_SECRET_ACCESS_KEY: ${S3_SECRET_ACCESS_KEY:?S3_SECRET_ACCESS_KEY is required - copy .env.example to .env}
+  S3_FORCE_PATH_STYLE: 'true'
+  OPENVERIFY_KEK: ${OPENVERIFY_KEK:?OPENVERIFY_KEK is required - copy .env.example to .env}
+  OPENVERIFY_KEK_PREVIOUS: ${OPENVERIFY_KEK_PREVIOUS:-}
+  OPENVERIFY_API_KEY_PEPPER: ${OPENVERIFY_API_KEY_PEPPER:?OPENVERIFY_API_KEY_PEPPER is required - copy .env.example to .env}
+  OPENVERIFY_BLIND_INDEX_KEY: ${OPENVERIFY_BLIND_INDEX_KEY:?OPENVERIFY_BLIND_INDEX_KEY is required - copy .env.example to .env}
+  OPENVERIFY_FLOW_PUBLIC_URL: ${OPENVERIFY_FLOW_PUBLIC_URL:-http://127.0.0.1:5173}
+  OPENVERIFY_FLOW_CORS_ORIGINS: ${OPENVERIFY_FLOW_CORS_ORIGINS:-}
+  OPENVERIFY_VISION_URL: http://vision:8000
+  OPENVERIFY_VISION_SERVICE_TOKEN: ${OPENVERIFY_VISION_SERVICE_TOKEN:?OPENVERIFY_VISION_SERVICE_TOKEN is required - copy .env.example to .env}
+  # C231.10 (Workflow 11A): Connect is off when the variable is unset; .env.example turns it on.
+  OPENVERIFY_CONNECT_ENABLED: ${OPENVERIFY_CONNECT_ENABLED:-false}
+  # Workflow 11B: the previous peppers (C247.1), the stores' CA files (C249.1), the queue cap ceiling
+  # (C251.2), the UN opt-in, locked unless the install sets it (C254.1, Q10) and HSTS, off (C255.1).
+  OPENVERIFY_API_KEY_PEPPER_PREVIOUS: ${OPENVERIFY_API_KEY_PEPPER_PREVIOUS:-}
+  OPENVERIFY_POSTGRES_CA_FILE: ${OPENVERIFY_POSTGRES_CA_FILE:-}
+  OPENVERIFY_REDIS_CA_FILE: ${OPENVERIFY_REDIS_CA_FILE:-}
+  OPENVERIFY_S3_CA_FILE: ${OPENVERIFY_S3_CA_FILE:-}
+  OPENVERIFY_VISION_CA_FILE: ${OPENVERIFY_VISION_CA_FILE:-}
+  OPENVERIFY_QUEUE_IN_FLIGHT_CAP_MAX: ${OPENVERIFY_QUEUE_IN_FLIGHT_CAP_MAX:-50}
+  OPENVERIFY_WATCHLIST_UN_OPT_IN_ALLOWED: ${OPENVERIFY_WATCHLIST_UN_OPT_IN_ALLOWED:-true}
+  OPENVERIFY_HSTS_MAX_AGE: ${OPENVERIFY_HSTS_MAX_AGE:-0}
+
+# C63 (P25): each process receives only the provider bindings it reads, and only its own
+# provider secrets. Both the API (publish rules) and the worker (checks) read database and AAMVA.
+x-shared-provider-environment: &shared-provider-environment
+  OPENVERIFY_PROVIDER_DATABASE_SANDBOX: ${OPENVERIFY_PROVIDER_DATABASE_SANDBOX:-}
+  OPENVERIFY_PROVIDER_DATABASE_PRODUCTION: ${OPENVERIFY_PROVIDER_DATABASE_PRODUCTION:-}
+  # C35: the AAMVA check and type, per environment kind (empty: none).
+  OPENVERIFY_PROVIDER_AAMVA_SANDBOX: ${OPENVERIFY_PROVIDER_AAMVA_SANDBOX:-}
+  OPENVERIFY_PROVIDER_AAMVA_PRODUCTION: ${OPENVERIFY_PROVIDER_AAMVA_PRODUCTION:-}
+  # C93.5 (Phase 7, F26): IP reputation, read by the API (each session's network) and the worker
+  # (the ip-address report); the mmdb-file adapter's file sits in the read-only mount of
+  # x-ip-reputation-volume.
+  OPENVERIFY_PROVIDER_IP_REPUTATION_SANDBOX: ${OPENVERIFY_PROVIDER_IP_REPUTATION_SANDBOX:-}
+  OPENVERIFY_PROVIDER_IP_REPUTATION_PRODUCTION: ${OPENVERIFY_PROVIDER_IP_REPUTATION_PRODUCTION:-}
+  OPENVERIFY_IP_REPUTATION_MMDB_PATH: ${OPENVERIFY_IP_REPUTATION_MMDB_PATH:-}
+
+# The SMS binding and Twilio's credentials: the API sends phone OTP codes (C55.1), and since Phase 8
+# the worker sends workflow messages (C126.6, C143.8, decision 76).
+x-sms-environment: &sms-environment
+  OPENVERIFY_PROVIDER_SMS_SANDBOX: ${OPENVERIFY_PROVIDER_SMS_SANDBOX:-}
+  OPENVERIFY_PROVIDER_SMS_PRODUCTION: ${OPENVERIFY_PROVIDER_SMS_PRODUCTION:-}
+  OPENVERIFY_TWILIO_ACCOUNT_SID: ${OPENVERIFY_TWILIO_ACCOUNT_SID:-}
+  OPENVERIFY_TWILIO_API_KEY_SID: ${OPENVERIFY_TWILIO_API_KEY_SID:-}
+  OPENVERIFY_TWILIO_API_KEY_SECRET: ${OPENVERIFY_TWILIO_API_KEY_SECRET:-}
+  OPENVERIFY_TWILIO_MESSAGING_SERVICE_SID: ${OPENVERIFY_TWILIO_MESSAGING_SERVICE_SID:-}
+  OPENVERIFY_TWILIO_FROM: ${OPENVERIFY_TWILIO_FROM:-}
+
+# Invitations and email codes from the API, and workflow messages from the worker (decision 76).
+x-mail-environment: &mail-environment
+  OPENVERIFY_SMTP_URL: smtp://mailpit:1025
+  OPENVERIFY_MAIL_FROM: '${OPENVERIFY_MAIL_FROM:-OpenVerify <no-reply@localhost>}'
+
+# C143.8 (Workflow 8A): the engine's install settings, read the same way by the API (the catalogue,
+# publishing) and the worker (the runs).
+x-workflow-environment: &workflow-environment
+  OPENVERIFY_WORKFLOW_CODE_ENABLED: ${OPENVERIFY_WORKFLOW_CODE_ENABLED:-true}
+  # C123.3 (P17): this profile runs code in the `code-runner` service below, never in the worker's
+  # network namespace, whatever .env says for a process on the host.
+  OPENVERIFY_WORKFLOW_CODE_RUNNER: socket:/run/code-runner/code-runner.sock
+  OPENVERIFY_WORKFLOW_HTTP_ALLOW_LOOPBACK: ${OPENVERIFY_WORKFLOW_HTTP_ALLOW_LOOPBACK:-false}
+  OPENVERIFY_NAT64_PREFIXES: ${OPENVERIFY_NAT64_PREFIXES:-}
+  OPENVERIFY_WORKFLOW_IN_FLIGHT_CAP: ${OPENVERIFY_WORKFLOW_IN_FLIGHT_CAP:-50}
+  # C122.5, C126.3: the worker binds Slack; the API reads these by name, so the catalogue and publish
+  # say what a step can reach (Stage 1b amendment 52). Neither holds a credential.
+  OPENVERIFY_PROVIDER_SLACK_SANDBOX: ${OPENVERIFY_PROVIDER_SLACK_SANDBOX:-}
+  OPENVERIFY_PROVIDER_SLACK_PRODUCTION: ${OPENVERIFY_PROVIDER_SLACK_PRODUCTION:-}
+  # C135.5 (Workflow 8B, Stage 1b item 40): the worker scans; the API reads these two names alone,
+  # to serve only `clean` while a scanner is bound. The clamd socket stays the worker's.
+  OPENVERIFY_PROVIDER_ATTACHMENT_SCANNER_SANDBOX: ${OPENVERIFY_PROVIDER_ATTACHMENT_SCANNER_SANDBOX:-}
+  OPENVERIFY_PROVIDER_ATTACHMENT_SCANNER_PRODUCTION: ${OPENVERIFY_PROVIDER_ATTACHMENT_SCANNER_PRODUCTION:-}
+  # C211.1 (Workflow 10B): the API reads the deviceIntegrity binding to say whether the session asks
+  # for an integrity token; the worker decodes the token with it. Unset: no request (off by default).
+  OPENVERIFY_PROVIDER_DEVICE_INTEGRITY_SANDBOX: ${OPENVERIFY_PROVIDER_DEVICE_INTEGRITY_SANDBOX:-}
+  OPENVERIFY_PROVIDER_DEVICE_INTEGRITY_PRODUCTION: ${OPENVERIFY_PROVIDER_DEVICE_INTEGRITY_PRODUCTION:-}
+
+# The API's provider kinds.
+x-api-provider-environment: &api-provider-environment
+  <<: [*shared-provider-environment, *sms-environment]
+
+# The worker runs the checks: every other provider kind, the EVM node URLs (C57.5) and the
+# register credentials (C61.1).
+x-worker-provider-environment: &worker-provider-environment
+  <<: *shared-provider-environment
+  # C35: the provider of each other A-tier government ID check, per environment kind.
+  OPENVERIFY_PROVIDER_PUBLIC_FIGURE_SANDBOX: ${OPENVERIFY_PROVIDER_PUBLIC_FIGURE_SANDBOX:-}
+  OPENVERIFY_PROVIDER_PUBLIC_FIGURE_PRODUCTION: ${OPENVERIFY_PROVIDER_PUBLIC_FIGURE_PRODUCTION:-}
+  OPENVERIFY_PROVIDER_AGE_ESTIMATE_SANDBOX: ${OPENVERIFY_PROVIDER_AGE_ESTIMATE_SANDBOX:-}
+  OPENVERIFY_PROVIDER_AGE_ESTIMATE_PRODUCTION: ${OPENVERIFY_PROVIDER_AGE_ESTIMATE_PRODUCTION:-}
+  # C44: the provider of each A-tier selfie check, per environment kind (empty: none).
+  OPENVERIFY_PROVIDER_SELFIE_AGE_ESTIMATE_SANDBOX: ${OPENVERIFY_PROVIDER_SELFIE_AGE_ESTIMATE_SANDBOX:-}
+  OPENVERIFY_PROVIDER_SELFIE_AGE_ESTIMATE_PRODUCTION: ${OPENVERIFY_PROVIDER_SELFIE_AGE_ESTIMATE_PRODUCTION:-}
+  OPENVERIFY_PROVIDER_SELFIE_PUBLIC_FIGURE_SANDBOX: ${OPENVERIFY_PROVIDER_SELFIE_PUBLIC_FIGURE_SANDBOX:-}
+  OPENVERIFY_PROVIDER_SELFIE_PUBLIC_FIGURE_PRODUCTION: ${OPENVERIFY_PROVIDER_SELFIE_PUBLIC_FIGURE_PRODUCTION:-}
+  OPENVERIFY_PROVIDER_SUSPICIOUS_ENTITY_SANDBOX: ${OPENVERIFY_PROVIDER_SUSPICIOUS_ENTITY_SANDBOX:-}
+  OPENVERIFY_PROVIDER_SUSPICIOUS_ENTITY_PRODUCTION: ${OPENVERIFY_PROVIDER_SUSPICIOUS_ENTITY_PRODUCTION:-}
+  OPENVERIFY_PROVIDER_EVM_RPC_SANDBOX: ${OPENVERIFY_PROVIDER_EVM_RPC_SANDBOX:-}
+  OPENVERIFY_PROVIDER_EVM_RPC_PRODUCTION: ${OPENVERIFY_PROVIDER_EVM_RPC_PRODUCTION:-}
+  OPENVERIFY_EVM_RPC_URLS: ${OPENVERIFY_EVM_RPC_URLS:-}
+  OPENVERIFY_EVM_RPC_ALLOW_PRIVATE_NETWORKS: ${OPENVERIFY_EVM_RPC_ALLOW_PRIVATE_NETWORKS:-false}
+  # C61, C63: the KYB kinds (empty: GLEIF and RDAP for the register and the domain age, `none`
+  # turns them off; the malicious-website and backlink kinds unbound), the Companies House keys
+  # and the EDGAR contact, each of which turns its register on.
+  OPENVERIFY_PROVIDER_BUSINESS_REGISTRY_SANDBOX: ${OPENVERIFY_PROVIDER_BUSINESS_REGISTRY_SANDBOX:-}
+  OPENVERIFY_PROVIDER_BUSINESS_REGISTRY_PRODUCTION: ${OPENVERIFY_PROVIDER_BUSINESS_REGISTRY_PRODUCTION:-}
+  OPENVERIFY_PROVIDER_DOMAIN_AGE_SANDBOX: ${OPENVERIFY_PROVIDER_DOMAIN_AGE_SANDBOX:-}
+  OPENVERIFY_PROVIDER_DOMAIN_AGE_PRODUCTION: ${OPENVERIFY_PROVIDER_DOMAIN_AGE_PRODUCTION:-}
+  OPENVERIFY_PROVIDER_MALICIOUS_WEBSITE_SANDBOX: ${OPENVERIFY_PROVIDER_MALICIOUS_WEBSITE_SANDBOX:-}
+  OPENVERIFY_PROVIDER_MALICIOUS_WEBSITE_PRODUCTION: ${OPENVERIFY_PROVIDER_MALICIOUS_WEBSITE_PRODUCTION:-}
+  OPENVERIFY_PROVIDER_BACKLINK_SANDBOX: ${OPENVERIFY_PROVIDER_BACKLINK_SANDBOX:-}
+  OPENVERIFY_PROVIDER_BACKLINK_PRODUCTION: ${OPENVERIFY_PROVIDER_BACKLINK_PRODUCTION:-}
+  OPENVERIFY_COMPANIES_HOUSE_API_KEY: ${OPENVERIFY_COMPANIES_HOUSE_API_KEY:-}
+  OPENVERIFY_COMPANIES_HOUSE_SANDBOX_API_KEY: ${OPENVERIFY_COMPANIES_HOUSE_SANDBOX_API_KEY:-}
+  OPENVERIFY_SEC_EDGAR_USER_AGENT: ${OPENVERIFY_SEC_EDGAR_USER_AGENT:-}
+  # C135.5, C143.8: the clamd socket, the worker's alone (the scanner names are in the workflow block).
+  OPENVERIFY_CLAMD_SOCKET: ${OPENVERIFY_CLAMD_SOCKET:-}
+  # C211.4 (Workflow 10B): Play Integrity's settings, read by the worker while play-integrity is bound;
+  # the service account key is a secret, never the API's.
+  OPENVERIFY_PLAY_INTEGRITY_PACKAGE_NAME: ${OPENVERIFY_PLAY_INTEGRITY_PACKAGE_NAME:-}
+  OPENVERIFY_PLAY_INTEGRITY_CERTIFICATE_DIGESTS: ${OPENVERIFY_PLAY_INTEGRITY_CERTIFICATE_DIGESTS:-}
+  OPENVERIFY_PLAY_INTEGRITY_SERVICE_ACCOUNT_JSON: ${OPENVERIFY_PLAY_INTEGRITY_SERVICE_ACCOUNT_JSON:-}
+  # C83 (Phase 6): the report provider kinds (empty: unbound), the GDELT disclosure acknowledgement
+  # and each adapter's credentials, read only while its kind is bound to it. The Twilio Lookup
+  # credentials are the worker's own, never the API's SMS ones (decision 32).
+  OPENVERIFY_PROVIDER_ADVERSE_MEDIA_SANDBOX: ${OPENVERIFY_PROVIDER_ADVERSE_MEDIA_SANDBOX:-}
+  OPENVERIFY_PROVIDER_ADVERSE_MEDIA_PRODUCTION: ${OPENVERIFY_PROVIDER_ADVERSE_MEDIA_PRODUCTION:-}
+  OPENVERIFY_PROVIDER_EMAIL_INTELLIGENCE_SANDBOX: ${OPENVERIFY_PROVIDER_EMAIL_INTELLIGENCE_SANDBOX:-}
+  OPENVERIFY_PROVIDER_EMAIL_INTELLIGENCE_PRODUCTION: ${OPENVERIFY_PROVIDER_EMAIL_INTELLIGENCE_PRODUCTION:-}
+  OPENVERIFY_PROVIDER_PHONE_INTELLIGENCE_SANDBOX: ${OPENVERIFY_PROVIDER_PHONE_INTELLIGENCE_SANDBOX:-}
+  OPENVERIFY_PROVIDER_PHONE_INTELLIGENCE_PRODUCTION: ${OPENVERIFY_PROVIDER_PHONE_INTELLIGENCE_PRODUCTION:-}
+  OPENVERIFY_PROVIDER_ADDRESS_VERIFICATION_SANDBOX: ${OPENVERIFY_PROVIDER_ADDRESS_VERIFICATION_SANDBOX:-}
+  OPENVERIFY_PROVIDER_ADDRESS_VERIFICATION_PRODUCTION: ${OPENVERIFY_PROVIDER_ADDRESS_VERIFICATION_PRODUCTION:-}
+  OPENVERIFY_PROVIDER_CRYPTO_EXPOSURE_SANDBOX: ${OPENVERIFY_PROVIDER_CRYPTO_EXPOSURE_SANDBOX:-}
+  OPENVERIFY_PROVIDER_CRYPTO_EXPOSURE_PRODUCTION: ${OPENVERIFY_PROVIDER_CRYPTO_EXPOSURE_PRODUCTION:-}
+  OPENVERIFY_GDELT_ACKNOWLEDGE_DISCLOSURE: ${OPENVERIFY_GDELT_ACKNOWLEDGE_DISCLOSURE:-false}
+  OPENVERIFY_HIBP_API_KEY: ${OPENVERIFY_HIBP_API_KEY:-}
+  OPENVERIFY_TWILIO_LOOKUP_ACCOUNT_SID: ${OPENVERIFY_TWILIO_LOOKUP_ACCOUNT_SID:-}
+  OPENVERIFY_TWILIO_LOOKUP_API_KEY_SID: ${OPENVERIFY_TWILIO_LOOKUP_API_KEY_SID:-}
+  OPENVERIFY_TWILIO_LOOKUP_API_KEY_SECRET: ${OPENVERIFY_TWILIO_LOOKUP_API_KEY_SECRET:-}
+  OPENVERIFY_SMARTY_AUTH_ID: ${OPENVERIFY_SMARTY_AUTH_ID:-}
+  OPENVERIFY_SMARTY_AUTH_TOKEN: ${OPENVERIFY_SMARTY_AUTH_TOKEN:-}
+
+# C72.5, C76.4 (Phase 6): what every process that runs reports reads the same way: the
+# per-environment report limits and the install-wide disabled sources (the API, the worker, and
+# seed:dev in migrate, which reconciles the source rows first).
+x-report-environment: &report-environment
+  OPENVERIFY_WATCHLIST_SOURCES_DISABLED: ${OPENVERIFY_WATCHLIST_SOURCES_DISABLED:-}
+  OPENVERIFY_RATE_LIMIT_REPORTS_PER_MINUTE: ${OPENVERIFY_RATE_LIMIT_REPORTS_PER_MINUTE:-600}
+  OPENVERIFY_REPORTS_MAX_RECURRING_PER_ENVIRONMENT: ${OPENVERIFY_REPORTS_MAX_RECURRING_PER_ENVIRONMENT:-250000}
+  OPENVERIFY_REPORTS_MAX_MEDIA_RUNS_PER_DAY: ${OPENVERIFY_REPORTS_MAX_MEDIA_RUNS_PER_DAY:-8640}
+
+# C76, C80 (Phase 6): the list sync settings, read by the worker's refresh tick and by the
+# watchlist CLIs run in the worker's container (`run --rm worker pnpm --filter @openverify/api
+# watchlists:sync`). The EU token is a secret; the API never receives it.
+x-watchlist-sync-environment: &watchlist-sync-environment
+  OPENVERIFY_WATCHLIST_REFRESH: ${OPENVERIFY_WATCHLIST_REFRESH:-false}
+  OPENVERIFY_WATCHLIST_REMOVED_RETENTION_DAYS: ${OPENVERIFY_WATCHLIST_REMOVED_RETENTION_DAYS:-90}
+  OPENVERIFY_EU_FSF_TOKEN: ${OPENVERIFY_EU_FSF_TOKEN:-}
+  OPENVERIFY_WIKIDATA_USER_AGENT: ${OPENVERIFY_WIKIDATA_USER_AGENT:-}
+  OPENVERIFY_WIKIDATA_SPARQL_URL: ${OPENVERIFY_WIKIDATA_SPARQL_URL:-https://query.wikidata.org/sparql}
+  OPENVERIFY_PEP_OPEN_TENURE_MAX_YEARS: ${OPENVERIFY_PEP_OPEN_TENURE_MAX_YEARS:-20}
+  OPENVERIFY_PEP_INCLUDE_RELATIVES: ${OPENVERIFY_PEP_INCLUDE_RELATIVES:-false}
+  OPENVERIFY_PEP_RETENTION_MONTHS: ${OPENVERIFY_PEP_RETENTION_MONTHS:-12}
+  OPENVERIFY_PEP_HEAD_RETENTION_MONTHS: ${OPENVERIFY_PEP_HEAD_RETENTION_MONTHS:-60}
+
+# C92.5 (Phase 7): the network sources turned off or on install-wide, read the same way by every
+# process that reconciles the source rows (the API, the worker, and seed:dev in migrate).
+x-network-environment: &network-environment
+  OPENVERIFY_NETWORK_SOURCES_DISABLED: ${OPENVERIFY_NETWORK_SOURCES_DISABLED:-}
+  OPENVERIFY_NETWORK_SOURCES_ENABLED: ${OPENVERIFY_NETWORK_SOURCES_ENABLED:-}
+
+# C92.2 (Phase 7): the worker's network refresh tick; `network:sync` runs in the worker's container.
+x-network-sync-environment: &network-sync-environment
+  OPENVERIFY_NETWORK_REFRESH: ${OPENVERIFY_NETWORK_REFRESH:-false}
+
+# C93.5 (Phase 7): the operator's IP reputation MMDB, mounted read-only for the API and the worker.
+x-ip-reputation-volume: &ip-reputation-volume ../data/ip-reputation:/var/lib/openverify/ip-reputation:ro
+
+# C62.7: the trust-store refresh job and ICAO PKD CRLs, both off unless the operator says so. The
+# worker acts on them; the API reports them on the trust-anchors route (C66, owner decision 6
+# after Workflow 5B). Neither is a secret.
+x-trust-store-environment: &trust-store-environment
+  OPENVERIFY_NFC_ALLOW_ICAO_CRLS: ${OPENVERIFY_NFC_ALLOW_ICAO_CRLS:-false}
+  OPENVERIFY_TRUST_ANCHOR_REFRESH: ${OPENVERIFY_TRUST_ANCHOR_REFRESH:-false}
+
+services:
+  # Postgres 17 with pgvector (face/background embeddings, ANN search).
+  postgres:
+    image: pgvector/pgvector:pg17@sha256:cf134a767f474095eeba57e0117be8e568e011a63f33fbf252f14c9b760f8e6f
+    restart: unless-stopped
+    # C73.8 (P18): screening binds the subject's names as query parameters, so the server never logs
+    # bind parameters, whatever statement or duration logging an operator turns on.
+    command: [postgres, -c, log_parameter_max_length=0, -c, log_parameter_max_length_on_error=0]
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-openverify}
+      POSTGRES_DB: ${POSTGRES_DB:-openverify}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required - copy .env.example to .env}
+    ports:
+      - '${OPENVERIFY_BIND_ADDRESS:-127.0.0.1}:${POSTGRES_PORT:-5432}:5432'
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./postgres/initdb:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      # TCP (-h 127.0.0.1) only answers once initdb has finished; the init-time server is socket-only.
+      test: ['CMD-SHELL', 'pg_isready -h 127.0.0.1 -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}"']
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 30s
+      start_interval: 1s
+
+  # Redis-protocol store for BullMQ queues, rate limits and caches. It runs Valkey
+  # (BSD-3-Clause), the wire-compatible fork, because Redis 7.4+ is not permissively
+  # licensed (see docs/adr/0001-stack.md). Clients use the REDIS_* settings unchanged.
+  redis:
+    image: valkey/valkey:9.1@sha256:3add1a336a920ea54770a001ab6feb3da5fceea96a40373a3a2cd469b815f0b7
+    restart: unless-stopped
+    command:
+      - valkey-server
+      - --requirepass
+      - ${REDIS_PASSWORD:?REDIS_PASSWORD is required - copy .env.example to .env}
+      - --appendonly
+      - 'yes'
+    environment:
+      # Lets valkey-cli (healthcheck, `compose exec`) authenticate without a password argument.
+      REDISCLI_AUTH: ${REDIS_PASSWORD:?REDIS_PASSWORD is required - copy .env.example to .env}
+    ports:
+      - '${OPENVERIFY_BIND_ADDRESS:-127.0.0.1}:${REDIS_PORT:-6379}:6379'
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ['CMD-SHELL', 'valkey-cli ping | grep -q PONG']
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 10s
+      start_interval: 1s
+
+  # S3-compatible object storage for uploaded files (encrypted by the API before upload).
+  # RustFS (Apache-2.0) replaces MinIO: MinIO is AGPL-3.0, its repositories are archived
+  # and its images are no longer published (see docs/adr/0001-stack.md).
+  objectstore:
+    image: rustfs/rustfs:1.0.3@sha256:9ca9559533b537d10482fe923288b676ad08f92a7069d9a17327fbae3cab688b
+    restart: unless-stopped
+    environment:
+      RUSTFS_ACCESS_KEY: ${S3_ACCESS_KEY_ID:?S3_ACCESS_KEY_ID is required - copy .env.example to .env}
+      RUSTFS_SECRET_KEY: ${S3_SECRET_ACCESS_KEY:?S3_SECRET_ACCESS_KEY is required - copy .env.example to .env}
+      RUSTFS_REGION: ${S3_REGION:-us-east-1}
+      RUSTFS_ADDRESS: ':9000'
+      RUSTFS_CONSOLE_ENABLE: 'true'
+      RUSTFS_CONSOLE_ADDRESS: ':9001'
+    ports:
+      - '${OPENVERIFY_BIND_ADDRESS:-127.0.0.1}:${S3_PORT:-9000}:9000'
+      - '${OPENVERIFY_BIND_ADDRESS:-127.0.0.1}:${S3_CONSOLE_PORT:-9001}:9001'
+    volumes:
+      - objectstore-data:/data
+    healthcheck:
+      test: ['CMD', 'curl', '-fsS', '-o', '/dev/null', 'http://127.0.0.1:9000/health/ready']
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 10s
+      start_interval: 1s
+
+  # One-shot init: creates the files bucket and enables versioning, then exits 0.
+  # Idempotent, so it is safe on every `up`. Uses the AWS CLI (Apache-2.0) as the S3 client;
+  # the minio/mc image is no longer published. `up --wait` does not wait for a one-shot job
+  # unless something depends on it, so any app service added here must declare
+  #   depends_on: { objectstore-init: { condition: service_completed_successfully } }
+  # Check it by hand with: docker compose ... ps -a objectstore-init   (expect "Exited (0)").
+  objectstore-init:
+    image: amazon/aws-cli:2.38.2@sha256:5d39fd52f236ed01c5c25fba66c9aebcfc6cbb88e7bb1b727c5fe1f150540597
+    restart: 'no'
+    depends_on:
+      objectstore:
+        condition: service_healthy
+    environment:
+      AWS_ACCESS_KEY_ID: ${S3_ACCESS_KEY_ID:?S3_ACCESS_KEY_ID is required - copy .env.example to .env}
+      AWS_SECRET_ACCESS_KEY: ${S3_SECRET_ACCESS_KEY:?S3_SECRET_ACCESS_KEY is required - copy .env.example to .env}
+      AWS_DEFAULT_REGION: ${S3_REGION:-us-east-1}
+      AWS_ENDPOINT_URL: http://objectstore:9000
+      S3_BUCKET: ${S3_BUCKET:-openverify-files}
+    entrypoint: ['/bin/sh', '-ec']
+    command:
+      - |
+        if ! aws s3api head-bucket --bucket "$$S3_BUCKET" >/dev/null 2>&1; then
+          aws s3api create-bucket --bucket "$$S3_BUCKET" >/dev/null
+        fi
+        aws s3api put-bucket-versioning --bucket "$$S3_BUCKET" --versioning-configuration Status=Enabled
+        status=$$(aws s3api get-bucket-versioning --bucket "$$S3_BUCKET" --query Status --output text)
+        if [ "$$status" != "Enabled" ]; then
+          echo "objectstore-init: versioning on $$S3_BUCKET is '$$status', expected Enabled" >&2
+          exit 1
+        fi
+        echo "objectstore-init: bucket $$S3_BUCKET ready (versioning $$status)"
+
+  # Development mail sink: SMTP on MAILPIT_SMTP_PORT, web UI and API on MAILPIT_UI_PORT.
+  mailpit:
+    image: axllent/mailpit:v1.31@sha256:23fe39e81bde596a918000b3135c0f85dc8bb4c9ea6be274b051143f3e300387
+    restart: unless-stopped
+    environment:
+      MP_DATABASE: /data/mailpit.db
+      MP_MAX_MESSAGES: '5000'
+      # Accept any SMTP credentials over plain SMTP, so apps configured with auth still work in dev.
+      MP_SMTP_AUTH_ACCEPT_ANY: 'true'
+      MP_SMTP_AUTH_ALLOW_INSECURE: 'true'
+    ports:
+      - '${OPENVERIFY_BIND_ADDRESS:-127.0.0.1}:${MAILPIT_SMTP_PORT:-1025}:1025'
+      - '${OPENVERIFY_BIND_ADDRESS:-127.0.0.1}:${MAILPIT_UI_PORT:-8025}:8025'
+    volumes:
+      - mailpit-data:/data
+    healthcheck:
+      test: ['CMD', '/mailpit', 'readyz']
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 10s
+      start_interval: 1s
+
+  # ---------------------------------------------------------- apps (profile app) ----
+  # One-shot: applies pending migrations, then exits 0. Also runs the dev seed on demand (see
+  # the header). Needs DATABASE_URL and, for the seed, the pepper and OPENVERIFY_SEED_ADMIN_*.
+  migrate:
+    <<: [*node-app, *api-image]
+    restart: 'no'
+    command: [node, dist/commands/db-migrate.js]
+    depends_on:
+      postgres:
+        condition: service_healthy
+      objectstore-init:
+        condition: service_completed_successfully
+    environment:
+      <<: [*api-environment, *report-environment, *network-environment]
+      # C249.4 (Workflow 11B): the migrate lock's wait. No migration URL: db:migrate uses DATABASE_URL,
+      # one role, and db:grant-runtime is not run (KP11-83: why, in docs/self-hosting/install-compose.md).
+      OPENVERIFY_MIGRATE_LOCK_TIMEOUT_SECONDS: ${OPENVERIFY_MIGRATE_LOCK_TIMEOUT_SECONDS:-600}
+      OPENVERIFY_SEED_ADMIN_EMAIL: ${OPENVERIFY_SEED_ADMIN_EMAIL:-}
+      OPENVERIFY_SEED_ADMIN_PASSWORD: ${OPENVERIFY_SEED_ADMIN_PASSWORD:-}
+      OPENVERIFY_SEED_DEVELOPER_EMAIL: ${OPENVERIFY_SEED_DEVELOPER_EMAIL:-}
+      OPENVERIFY_SEED_DEVELOPER_PASSWORD: ${OPENVERIFY_SEED_DEVELOPER_PASSWORD:-}
+      OPENVERIFY_SEED_REVIEWER_EMAIL: ${OPENVERIFY_SEED_REVIEWER_EMAIL:-}
+      OPENVERIFY_SEED_REVIEWER_PASSWORD: ${OPENVERIFY_SEED_REVIEWER_PASSWORD:-}
+      OPENVERIFY_SEED_VIEWER_EMAIL: ${OPENVERIFY_SEED_VIEWER_EMAIL:-}
+      OPENVERIFY_SEED_VIEWER_PASSWORD: ${OPENVERIFY_SEED_VIEWER_PASSWORD:-}
+      OPENVERIFY_SEED_MFA_ADMIN_EMAIL: ${OPENVERIFY_SEED_MFA_ADMIN_EMAIL:-}
+      OPENVERIFY_SEED_MFA_ADMIN_PASSWORD: ${OPENVERIFY_SEED_MFA_ADMIN_PASSWORD:-}
+
+  # Evaluate Code (C123.3, P17): no network, a read-only root, no capability and no secret, reached
+  # only over the Unix socket on `code-runner-socket`. A child holds about 100 MB at the 64 MiB limit
+  # and the server 82 MB, so the limit fits the pool; pids allow 12 threads a process, as measured.
+  code-runner:
+    image: openverify/code-runner:11c-local
+    build:
+      context: ..
+      dockerfile: infra/docker/code-runner.Dockerfile
+    profiles: [app]
+    restart: unless-stopped
+    network_mode: none
+    read_only: true
+    user: '10001:10001'
+    cap_drop: [ALL]
+    security_opt: ['no-new-privileges:true']
+    mem_limit: ${OPENVERIFY_CODE_RUNNER_MEMORY:-640m}
+    pids_limit: 64
+    environment:
+      OPENVERIFY_CODE_RUNNER_POOL_SIZE: ${OPENVERIFY_CODE_RUNNER_POOL_SIZE:-4}
+    volumes:
+      - code-runner-socket:/run/code-runner
+    healthcheck:
+      test: [CMD, node, bin/code-runner-server.mjs, --health]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 10s
+      start_interval: 1s
+
+  # REST API (contracts C2-C4, C10-C15) on container port 3000. Invitation email goes to Mailpit.
+  api:
+    <<: [*node-app, *api-image]
+    command: [node, dist/server.js]
+    depends_on:
+      redis:
+        condition: service_healthy
+      mailpit:
+        condition: service_healthy
+      objectstore-init:
+        condition: service_completed_successfully
+      migrate:
+        condition: service_completed_successfully
+    # C60.2: the API also reaches vision, on vision's own internal network.
+    networks: [default, vision]
+    environment:
+      <<:
+        - *api-environment
+        - *api-provider-environment
+        - *mail-environment
+        - *workflow-environment
+        - *trust-store-environment
+        - *report-environment
+        - *network-environment
+      OPENVERIFY_API_HOST: 0.0.0.0
+      OPENVERIFY_API_PORT: '3000'
+      OPENVERIFY_TRUST_PROXY: ${OPENVERIFY_TRUST_PROXY:-false}
+      OPENVERIFY_RATE_LIMIT_API_PER_MINUTE: ${OPENVERIFY_RATE_LIMIT_API_PER_MINUTE:-300}
+      OPENVERIFY_DASHBOARD_PUBLIC_URL: ${OPENVERIFY_DASHBOARD_PUBLIC_URL:-http://localhost:3001}
+      OPENVERIFY_DASHBOARD_BFF_TOKEN: ${OPENVERIFY_DASHBOARD_BFF_TOKEN:-}
+      OPENVERIFY_WEBAUTHN_RP_ID: ${OPENVERIFY_WEBAUTHN_RP_ID:-localhost}
+      OPENVERIFY_WEBAUTHN_RP_NAME: ${OPENVERIFY_WEBAUTHN_RP_NAME:-OpenVerify}
+      OPENVERIFY_WEBAUTHN_ORIGIN: ${OPENVERIFY_WEBAUTHN_ORIGIN:-http://localhost:3001}
+      # C55.7: the install ceiling of each environment's otp-sms-max-per-hour.
+      OPENVERIFY_OTP_SMS_MAX_PER_HOUR_CEILING: ${OPENVERIFY_OTP_SMS_MAX_PER_HOUR_CEILING:-1000}
+      # C96.3 (Workflow 7A): the email and SMS handoff sends of each environment per hour.
+      OPENVERIFY_HANDOFF_SENDS_PER_HOUR: ${OPENVERIFY_HANDOFF_SENDS_PER_HOUR:-200}
+      # C157.2, C174.7 (Workflow 9A): the flow server's token on the internal embed-policy route.
+      OPENVERIFY_FLOW_SERVER_TOKEN: ${OPENVERIFY_FLOW_SERVER_TOKEN:-}
+      OPENVERIFY_FLOW_SERVER_TOKEN_PREVIOUS: ${OPENVERIFY_FLOW_SERVER_TOKEN_PREVIOUS:-}
+      # Workflow 11B: the console's session limits (C245.1), the private SSO issuers (C248.3) and
+      # the internal listener, unset so the internal routes stay public (C250.3).
+      OPENVERIFY_CONSOLE_IDLE_TIMEOUT_SECONDS: ${OPENVERIFY_CONSOLE_IDLE_TIMEOUT_SECONDS:-1800}
+      OPENVERIFY_CONSOLE_ABSOLUTE_TIMEOUT_SECONDS: ${OPENVERIFY_CONSOLE_ABSOLUTE_TIMEOUT_SECONDS:-43200}
+      OPENVERIFY_SSO_PRIVATE_ISSUERS: ${OPENVERIFY_SSO_PRIVATE_ISSUERS:-}
+      OPENVERIFY_INTERNAL_LISTEN: ${OPENVERIFY_INTERNAL_LISTEN:-}
+    volumes:
+      - *ip-reputation-volume
+    ports:
+      - '${OPENVERIFY_BIND_ADDRESS:-127.0.0.1}:${OPENVERIFY_API_PORT:-3000}:3000'
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        # C250.1 (orchestrator decision 20): ready once Postgres and Valkey answer.
+        - "fetch('http://127.0.0.1:3000/ready').then((r) => process.exit(r.ok ? 0 : 1), () => process.exit(1))"
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 20s
+      start_interval: 1s
+
+  # BullMQ workers: process-verification (calls vision, runs the checks) and webhook-delivery.
+  worker:
+    <<: [*node-app, *api-image]
+    command: [node, dist/worker.js]
+    depends_on:
+      redis:
+        condition: service_healthy
+      objectstore-init:
+        condition: service_completed_successfully
+      migrate:
+        condition: service_completed_successfully
+      vision:
+        condition: service_healthy
+      code-runner:
+        condition: service_healthy
+    # C60.2: the worker calls vision on vision's own internal network.
+    networks: [default, vision]
+    environment:
+      <<:
+        - *api-environment
+        - *worker-provider-environment
+        - *sms-environment
+        - *mail-environment
+        - *workflow-environment
+        - *trust-store-environment
+        - *report-environment
+        - *watchlist-sync-environment
+        - *network-environment
+        - *network-sync-environment
+      OPENVERIFY_WORKER_CONCURRENCY: ${OPENVERIFY_WORKER_CONCURRENCY:-4}
+      OPENVERIFY_WEBHOOK_ALLOW_PRIVATE_NETWORKS: ${OPENVERIFY_WEBHOOK_ALLOW_PRIVATE_NETWORKS:-false}
+      # C250.2 (Workflow 11B): the heartbeat file of the worker's exec probe.
+      OPENVERIFY_WORKER_HEARTBEAT_FILE: ${OPENVERIFY_WORKER_HEARTBEAT_FILE:-/tmp/openverify-worker-heartbeat}
+    volumes:
+      - *ip-reputation-volume
+      - code-runner-socket:/run/code-runner
+    # C250.2 (orchestrator decision 20): the heartbeat under the tmpfs /tmp, read by the exec probe.
+    healthcheck:
+      test: [CMD, node, dist/worker-health.js]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 30s
+      start_interval: 2s
+
+  # Internal vision service (contract C6). Not published. Model weights are mounted read-only from
+  # ../models (python3 scripts/fetch_models.py). C60.2: vision parses hostile PDFs and JPEG 2000
+  # portraits (in a guarded child), so it sits alone on the internal `vision` network, which only
+  # the API and the worker share: it reaches no data store, no other service and no internet. It
+  # runs as uid 10001 on a read-only root filesystem (a tmpfs /tmp holds the multipart spool of
+  # uploads over 1 MiB), with every capability dropped, no new privileges and Docker's default
+  # seccomp profile. Memory: two guarded children of at most 1.5 GiB of address space each
+  # (max_concurrent_jobs 2), the models and the rasters fit in 4 GiB.
+  # Contract test: infra/tests/vision-container.test.sh.
+  vision:
+    image: openverify/vision:11c-local
+    build:
+      context: ../services/vision
+      # Phase 11 (C257.1, Workflow 11C): models/manifest.json and scripts/fetch_models.py.
+      additional_contexts:
+        repo: ..
+    profiles: [app]
+    restart: unless-stopped
+    networks: [vision]
+    user: '10001:10001'
+    read_only: true
+    tmpfs:
+      - /tmp:size=512m,mode=1777
+    cap_drop: [ALL]
+    security_opt: ['no-new-privileges:true']
+    mem_limit: 4g
+    depends_on:
+      objectstore-init:
+        condition: service_completed_successfully
+    environment:
+      OPENVERIFY_VISION_SERVICE_TOKEN: ${OPENVERIFY_VISION_SERVICE_TOKEN:?OPENVERIFY_VISION_SERVICE_TOKEN is required - copy .env.example to .env}
+      # C41.4: ONNX Runtime's Linux builds send Microsoft telemetry unless this is set.
+      ORT_DISABLE_TELEMETRY: '1'
+      OPENVERIFY_VISION_BRIGHTNESS_MIN: ${OPENVERIFY_VISION_BRIGHTNESS_MIN:-0.15}
+      OPENVERIFY_VISION_BRIGHTNESS_MAX: ${OPENVERIFY_VISION_BRIGHTNESS_MAX:-0.9}
+      OPENVERIFY_VISION_FACE_SCORE_THRESHOLD: ${OPENVERIFY_VISION_FACE_SCORE_THRESHOLD:-0.9}
+    volumes:
+      - ../models:/models:ro
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import sys, urllib.request; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=4).status == 200 else 1)"
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 20s
+      start_interval: 1s
+
+  # Hosted verification flow: the production bundle, served by `vite preview` on port 4173.
+  # C157.3 (Workflow 9A): the flow server (apps/flow/server.ts) serves the built flow and computes
+  # each entry's headers per request: hosted frame-ancestors 'none', the preview framed by the
+  # console only, an embed by the inquiry's allowed origins read from the API's internal route
+  # with the shared token ('none' on any failure). Node strips the types of the source it runs
+  # (the image's Node 22.22), so no build of the server is needed. Development keeps `vite` and
+  # `vite preview` with Phase 7's fixed headers.
+  flow:
+    <<: *node-app
+    image: openverify/flow:11c-local
+    build:
+      context: ..
+      dockerfile: infra/docker/flow.Dockerfile
+    command: [node, server.ts, --hostname, 0.0.0.0, --port, '4173', --dist, dist]
+    depends_on:
+      objectstore-init:
+        condition: service_completed_successfully
+    # C157, C174.7 (Workflow 9A): what the flow server reads. C257.1 (Workflow 11C): the image's
+    # bundle is built without an API origin; the server reads OPENVERIFY_FLOW_API_URL (else
+    # VITE_OPENVERIFY_API_URL), the API as the browser reaches it, at start, sends it in connect-src
+    # and serves it to the bundle as /config.json.
+    environment:
+      OPENVERIFY_FLOW_API_URL: ${OPENVERIFY_FLOW_API_URL:-}
+      VITE_OPENVERIFY_API_URL: ${VITE_OPENVERIFY_API_URL:-http://127.0.0.1:3000}
+      OPENVERIFY_FLOW_SERVER_TOKEN: ${OPENVERIFY_FLOW_SERVER_TOKEN:-}
+      OPENVERIFY_FLOW_SERVER_API_URL: http://api:3000
+      OPENVERIFY_FLOW_SERVER_TRUSTED_PROXY_HOPS: ${OPENVERIFY_FLOW_SERVER_TRUSTED_PROXY_HOPS:-0}
+      OPENVERIFY_DASHBOARD_PUBLIC_URL: ${OPENVERIFY_DASHBOARD_PUBLIC_URL:-http://localhost:3001}
+    ports:
+      - '${OPENVERIFY_BIND_ADDRESS:-127.0.0.1}:${OPENVERIFY_FLOW_PORT:-5173}:4173'
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:4173/').then((r) => process.exit(r.ok ? 0 : 1), () => process.exit(1))"
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 20s
+      start_interval: 1s
+
+  # Operator dashboard; its server side calls the API over the compose network. It runs the
+  # custom server (apps/dashboard/server.ts, C21), which records each request's socket peer for
+  # the operator's address; behind Docker's port publishing that peer is the bridge gateway, so
+  # set OPENVERIFY_DASHBOARD_TRUSTED_PROXY_HOPS when a reverse proxy in front appends
+  # X-Forwarded-For.
+  dashboard:
+    <<: *node-app
+    image: openverify/dashboard:11c-local
+    build:
+      context: ..
+      dockerfile: infra/docker/dashboard.Dockerfile
+    # C257.1: the custom server over the standalone output, on port 3000 inside its container.
+    command: [node, server.ts, --hostname, 0.0.0.0, --port, '3000']
+    depends_on:
+      objectstore-init:
+        condition: service_completed_successfully
+      api:
+        condition: service_healthy
+    environment:
+      OPENVERIFY_API_URL: http://api:3000
+      OPENVERIFY_DASHBOARD_INSECURE_COOKIES: ${OPENVERIFY_DASHBOARD_INSECURE_COOKIES:-false}
+      OPENVERIFY_DASHBOARD_BFF_TOKEN: ${OPENVERIFY_DASHBOARD_BFF_TOKEN:-}
+      OPENVERIFY_DASHBOARD_TRUSTED_PROXY_HOPS: ${OPENVERIFY_DASHBOARD_TRUSTED_PROXY_HOPS:-0}
+      # C170, C174.7 (Workflow 9A): the flow origin the console frames and its script policy mode.
+      OPENVERIFY_FLOW_PUBLIC_URL: ${OPENVERIFY_FLOW_PUBLIC_URL:-http://127.0.0.1:5173}
+      OPENVERIFY_DASHBOARD_CSP_MODE: ${OPENVERIFY_DASHBOARD_CSP_MODE:-enforce}
+    ports:
+      - '${OPENVERIFY_BIND_ADDRESS:-127.0.0.1}:${OPENVERIFY_DASHBOARD_PORT:-3001}:3000'
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:3000/login').then((r) => process.exit(r.ok ? 0 : 1), () => process.exit(1))"
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 20s
+      start_interval: 1s
+
+networks:
+  # C60.2: vision's network. `internal`: no gateway, so nothing on it reaches beyond it.
+  vision:
+    internal: true
+
+volumes:
+  postgres-data:
+  redis-data:
+  objectstore-data:
+  mailpit-data:
+  code-runner-socket:

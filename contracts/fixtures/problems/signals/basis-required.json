@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "Device recognition without consent needs a recorded basis.",
+  "instance": "/api/v1/dashboard/settings",
+  "requestId": "00000000-0000-4000-8000-000000000704",
+  "code": "basis_required",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/signal-collection/device-recognition-basis",
+      "detail": "is required in exempt mode"
+    }
+  ]
+}

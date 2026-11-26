@@ -1,0 +1,67 @@
+{
+  "data": {
+    "type": "event",
+    "id": "evt_01M5CM00000000000000000022",
+    "attributes": {
+      "name": "workflow-version.published",
+      "payload": {
+        "data": {
+          "type": "workflow-version",
+          "id": "wfv_01M5CM00000000000000000002",
+          "attributes": {
+            "status": "published",
+            "trigger-type": "trigger-event",
+            "live": true,
+            "rollout-label": null,
+            "rollout-percentage": null,
+            "last-updater": "usr_01M5CJXHG03PHEQZPRWAH2RXM5",
+            "inputs": [],
+            "outputs": [
+              {
+                "name": "decision"
+              }
+            ],
+            "description": "Reads the watchlist report and marks a match for review.",
+            "published-at": "2026-10-20T12:05:00.000Z",
+            "created-at": "2026-10-20T12:00:00.000Z",
+            "updated-at": "2026-10-20T12:05:00.000Z",
+            "version-number": 1,
+            "schema-version": 1,
+            "lock-version": 7,
+            "definition": null,
+            "definition-sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+            "grant": {
+              "scopes": ["inquiries:read", "inquiries:write", "reports:write", "workflows:trigger"],
+              "pii": false
+            },
+            "egress": [],
+            "acknowledgements": [
+              {
+                "key": "heuristic:mark_review",
+                "acknowledged-by": "usr_01M5CJXHG03PHEQZPRWAH2RXM5",
+                "acknowledged-at": "2026-10-20T12:05:00.000Z"
+              }
+            ],
+            "warnings": [
+              {
+                "pointer": "/steps/6/routes/0/condition",
+                "code": "coverage_not_read",
+                "detail": "A condition reads has-match without coverage.complete."
+              }
+            ],
+            "promoted-from": null
+          },
+          "relationships": {
+            "workflow": {
+              "data": {
+                "type": "workflow",
+                "id": "wfl_01M5CM00000000000000000001"
+              }
+            }
+          }
+        }
+      },
+      "created-at": "2026-10-20T12:05:00.000Z"
+    }
+  }
+}

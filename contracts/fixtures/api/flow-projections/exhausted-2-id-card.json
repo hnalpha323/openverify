@@ -1,0 +1,21 @@
+{
+  "metadata": {
+    "specVersion": 1,
+    "id": "projection-exhausted",
+    "version": 1,
+    "name": "Projection: exhausted"
+  },
+  "steps": [
+    {
+      "id": "consent",
+      "type": "consent",
+      "textKeys": ["consent.biometric"],
+      "required": true
+    },
+    {
+      "id": "continue-1",
+      "type": "server-continuation"
+    }
+  ],
+  "transitions": []
+}

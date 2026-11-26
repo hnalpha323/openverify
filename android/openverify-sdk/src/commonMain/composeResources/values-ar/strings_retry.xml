@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Arabic copy of values/strings_retry.xml, machine-drafted by android-i18n (Workflow 10A, C199.1;
+  i18n/review-status.json): where the hosted web flow has the same English text, its
+  Arabic words are used, so both clients say the same thing. Compose Multiplatform resources:
+  positional placeholders only, ' and " written as they are, no isolate or other bidi control
+  (ResourcesTest).
+-->
+<resources>
+    <string name="openverify_retry_document_type_not_accepted">هذا النوع من المستندات غير مقبول هنا. يُرجى رفع أحد أنواع المستندات المدرجة في هذه الخطوة.</string>
+    <string name="openverify_retry_document_unreadable">تعذّر فتح المستند أو قراءته. يُرجى رفع صورة واضحة أو ملف PDF للمستند كاملًا.</string>
+    <string name="openverify_retry_document_password_protected">ملف PDF محمي بكلمة مرور. يُرجى رفع نسخة دون كلمة مرور، أو صورة للمستند.</string>
+    <string name="openverify_retry_document_too_large">الملف كبير جدًا. يُرجى رفع ملف أصغر، مثل صورة للمستند أو ملف PDF بعدد صفحات أقل.</string>
+    <string name="openverify_retry_document_too_many_pages">يحتوي ملف PDF على عدد كبير جدًا من الصفحات. يُرجى رفع الصفحات التي تُظهر الاسم والعنوان والتاريخ فقط.</string>
+    <string name="openverify_retry_name_not_found">لم نعثر على اسم في المستند. يُرجى رفع مستند يُظهر الاسم الكامل.</string>
+    <string name="openverify_retry_address_not_found">لم نعثر على عنوان في المستند. يُرجى رفع مستند يُظهر العنوان الكامل.</string>
+    <string name="openverify_retry_issue_date_not_found">لم نعثر على تاريخ إصدار المستند. يُرجى رفع مستند يُظهر تاريخ إصداره.</string>
+    <string name="openverify_retry_issuer_not_found">لم نعثر على الجهة التي أصدرت المستند. يُرجى رفع مستند يُظهر الشركة أو الجهة المُصدِرة.</string>
+    <string name="openverify_retry_document_expired">انتهت صلاحية المستند. يُرجى رفع مستند ما زال ساريًا.</string>
+    <string name="openverify_retry_document_too_old">المستند قديم جدًا. يُرجى رفع مستند أحدث.</string>
+    <string name="openverify_retry_po_box_detected">لا يمكن استخدام صندوق بريد عنوانًا. يُرجى إدخال عنوان السكن.</string>
+    <string name="openverify_retry_otp_attempts_exhausted">أُدخل عدد كبير جدًا من الرموز الخاطئة. يُرجى البدء من جديد للحصول على رمز جديد.</string>
+    <string name="openverify_retry_otp_not_confirmed">لم يُؤكَّد الرمز في الوقت المحدد. يُرجى البدء من جديد للحصول على رمز جديد.</string>
+    <string name="openverify_retry_domain_not_found">الجزء الذي يلي @ في عنوان البريد الإلكتروني غير موجود. يُرجى التحقق من عدم وجود أخطاء كتابية.</string>
+    <string name="openverify_retry_domain_rejects_mail">لا يستقبل نطاق البريد هذا رسائل بريد إلكتروني. يُرجى استخدام عنوان بريد إلكتروني آخر.</string>
+    <string name="openverify_retry_no_mail_server">لا يمكن توصيل أي بريد إلكتروني إلى هذا العنوان. يُرجى التحقق منه، أو استخدام عنوان بريد إلكتروني آخر.</string>
+    <string name="openverify_retry_address_invalid">عنوان المحفظة هذا غير صالح للشبكة المختارة. يُرجى التأكد من نسخ العنوان كاملًا.</string>
+    <string name="openverify_retry_address_checksum_invalid">يحتوي عنوان المحفظة هذا على خطأ كتابي. يُرجى نسخه مرة أخرى من المحفظة بدلًا من كتابته.</string>
+    <string name="openverify_retry_signature_invalid">تعذّرت قراءة التوقيع. يُرجى توقيع الرسالة مرة أخرى في المحفظة ولصق التوقيع كاملًا.</string>
+    <string name="openverify_retry_signature_address_mismatch">وُقّعت الرسالة بعنوان محفظة مختلف. يُرجى توقيعها بالعنوان الذي أُدخل.</string>
+    <string name="openverify_retry_expected_address_mismatch">هذا ليس عنوان المحفظة المطلوب التحقق منه. يُرجى استخدام عنوان المحفظة المتوقع.</string>
+    <string name="openverify_retry_country_not_enabled">لا يمكن التحقق من الأنشطة التجارية من هذا البلد هنا. يُرجى مراجعة البلد المختار.</string>
+    <string name="openverify_retry_domain_not_resolving">لم نعثر على هذا الموقع الإلكتروني. يُرجى التحقق من عنوان الويب بحثًا عن أخطاء كتابية.</string>
+    <string name="openverify_retry_document_name_mismatch">الاسم في المستند لا يطابق اسمك. يُرجى رفع مستند باسمك.</string>
+</resources>

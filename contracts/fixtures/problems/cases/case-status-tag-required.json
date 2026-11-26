@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "This status needs a status tag from its list.",
+  "instance": "/api/v1/cases/case_01M5CK3190XEVBM5ZXA76E1JSN/set-status",
+  "requestId": "00000000-0000-4000-8000-000000001202",
+  "code": "case_status_tag_required",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/meta/status-tag",
+      "detail": "must be a status tag of this status"
+    }
+  ]
+}

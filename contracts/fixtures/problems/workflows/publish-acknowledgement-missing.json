@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "A step needs an acknowledgement this publish does not carry.",
+  "instance": "/api/v1/workflows/wfl_01M5CK3190XEVBM5ZXA76E1JSN/publish",
+  "requestId": "00000000-0000-4000-8000-000000001107",
+  "code": "publish_acknowledgement_missing",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/meta/acknowledgements",
+      "detail": "egress:notify_team"
+    }
+  ]
+}

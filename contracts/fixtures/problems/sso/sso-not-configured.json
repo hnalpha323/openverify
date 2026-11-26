@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Not Found",
+  "status": 404,
+  "detail": "Single sign-on is not available for this organization.",
+  "instance": "/api/v1/dashboard/sso/example-bank/start",
+  "requestId": "00000000-0000-4000-8000-00000011b004",
+  "code": "sso_not_configured"
+}

@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "No code was confirmed and no send is left; the verification was submitted.",
+  "instance": "/api/v1/flow/verifications/ver_01M5CK3190XEVBM5ZXA76E1JSM/otp",
+  "requestId": "00000000-0000-4000-8000-000000000113",
+  "code": "otp_not_confirmed"
+}

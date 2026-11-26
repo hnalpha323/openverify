@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "A sandbox-only source cannot screen a production environment.",
+  "instance": "/api/v1/report-templates",
+  "requestId": "00000000-0000-4000-8000-000000000611",
+  "code": "watchlist_source_not_allowed",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/config/search-lists/0",
+      "detail": "sandbox-only source"
+    }
+  ]
+}

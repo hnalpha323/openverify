@@ -1,0 +1,22 @@
+{
+  "data": {
+    "type": "webhook-delivery",
+    "id": "whd_01M5CK55MG5CV42K2QC9PQH0WE",
+    "attributes": {
+      "status": "pending",
+      "webhook-id": "wbh_01M5CJXJF8RTHTZ2WC4QENGB0C",
+      "event-id": "evt_01M5CK4VW0MRQ4HKKTBDT6PXEM",
+      "event-name": "inquiry.completed",
+      "attempts": [
+        {
+          "attempted-at": "2026-10-20T12:04:00.000Z",
+          "response-status": 503,
+          "duration-ms": 184,
+          "error": null
+        }
+      ],
+      "next-attempt-at": "2026-10-20T12:05:00.000Z",
+      "created-at": "2026-10-20T12:04:00.000Z"
+    }
+  }
+}

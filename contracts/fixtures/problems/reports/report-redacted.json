@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Gone",
+  "status": 410,
+  "detail": "The report was redacted.",
+  "instance": "/api/v1/reports/rep_01M5Y5Z4002GV576EACWSHT2BK/dismiss",
+  "requestId": "00000000-0000-4000-8000-000000000608",
+  "code": "report_redacted"
+}

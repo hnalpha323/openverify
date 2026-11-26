@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The business registry and business website forms (C52.3, C61, C64.2); values-es holds their
+  Spanish. The entered values are never part of a text. Compose Multiplatform resources: positional
+  placeholders only, ' and " written as they are (ResourcesTest).
+-->
+<resources>
+    <string name="openverify_business_title">Tell us about your business</string>
+    <string name="openverify_business_intro">We look these details up in official business registers. Enter them as the business is registered.</string>
+    <string name="openverify_website_title">Enter your business website</string>
+    <string name="openverify_website_intro">We check that the website's address exists. We never open the website itself.</string>
+
+    <string name="openverify_field_business_name">Business name</string>
+    <string name="openverify_field_country_code">Country of registration</string>
+    <string name="openverify_field_registration_number">Registration number</string>
+    <string name="openverify_field_lei">Legal Entity Identifier (LEI)</string>
+    <string name="openverify_field_website_url">Website address</string>
+
+    <string name="openverify_field_registration_hint_gb">For a UK company, the 8-character Companies House number, such as 01234567 or SC123456.</string>
+    <string name="openverify_field_registration_hint_us">For a US company, its SEC Central Index Key (CIK), up to 10 digits.</string>
+    <string name="openverify_field_registration_hint">The number the business register gives the business: up to 20 letters and digits.</string>
+    <string name="openverify_field_lei_hint">The 20-character code from the global LEI register. Leave it out if the business has none.</string>
+    <string name="openverify_field_website_hint">Include https:// or http://, such as https://www.example.com.</string>
+
+    <string name="openverify_field_error_registration_gb">Enter the 8-character company number, such as 01234567 or SC123456.</string>
+    <string name="openverify_field_error_registration_us">Enter the CIK: up to 10 digits.</string>
+    <string name="openverify_field_error_registration">Enter up to 20 letters and digits, without spaces.</string>
+    <string name="openverify_field_error_lei">Enter the 20-character LEI exactly as it is registered.</string>
+    <string name="openverify_field_error_url">Enter the full web address, starting with https:// or http://.</string>
+    <!-- A business step's associated persons (C52.3), up to ten. -->
+    <string name="openverify_persons_title">People who own or run the business</string>
+    <string name="openverify_persons_intro">You can add up to %1$d directors, officers or owners for us to check against the register.</string>
+    <string name="openverify_person_title">Person %1$d</string>
+    <string name="openverify_person_add">Add a person</string>
+    <string name="openverify_person_remove">Remove person %1$d</string>
+    <string name="openverify_persons_full">You have added as many people as you can.</string>
+    <string name="openverify_field_person_birthdate">Month or date of birth</string>
+    <string name="openverify_field_person_birthdate_hint">Year and month, such as 1980-04, or the full date.</string>
+    <string name="openverify_field_error_birth_month">Enter the year and month, such as 1980-04, or the full date, such as 1980-04-23.</string>
+</resources>

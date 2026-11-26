@@ -1,0 +1,54 @@
+{
+  "data": {
+    "type": "inquiry-template-version-diff",
+    "id": "itmplv_01M5CN00000000000000009A01..itmplv_01M5A0GTG0VF5QW51511984D0G",
+    "attributes": {
+      "from-version-id": "itmplv_01M5CN00000000000000009A01",
+      "to-version-id": "itmplv_01M5A0GTG0VF5QW51511984D0G",
+      "steps": {
+        "added": ["age_route", "extra_details"],
+        "removed": ["selfie"],
+        "changed": [
+          {
+            "step-id": "id_card",
+            "changes": [
+              {
+                "pointer": "/maxAttempts",
+                "before": 3,
+                "after": 1
+              }
+            ]
+          }
+        ]
+      },
+      "edges": {
+        "added": ["e3", "e4"],
+        "removed": [],
+        "retargeted": ["e2"]
+      },
+      "route-order": [],
+      "verification-config": [],
+      "settings": [],
+      "report-config": [],
+      "field-schemas": [
+        {
+          "pointer": "/0",
+          "before": null,
+          "after": {
+            "key": "nickname"
+          }
+        }
+      ],
+      "copy": [],
+      "theme-set-id": null,
+      "locales": [],
+      "layout-only": false,
+      "consequences": [
+        {
+          "code": "verification_step_removed",
+          "pointer": "/steps/selfie"
+        }
+      ]
+    }
+  }
+}

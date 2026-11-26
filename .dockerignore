@@ -1,0 +1,43 @@
+# Build context of infra/docker/{api,dashboard,flow,code-runner}.Dockerfile (the repository root; Phase 11,
+# Workflow 11C), and vision's named context `repo`, from which it copies two files. services/vision has its
+# own context and .dockerignore.
+**/node_modules
+**/dist
+**/.next
+**/.turbo
+**/coverage
+**/test-results
+**/playwright-report
+.git
+# Docker's patterns are rooted, unlike .gitignore's: a bare `.env.*` would miss e2e/.env.e2e.
+**/.env
+**/.env.*
+!**/.env.example
+android
+services
+models
+# C46.1: the web flow runs YuNet in the browser; its build copies the model (C48, review F10)
+# and checks it against its pin in the manifest (infra/tests/apps-image-context.test.sh).
+!models/face_detection_yunet_2026may.onnx
+!models/manifest.json
+data
+# Phase 5 (C56, C61.5, C67, F15): the API reads these data files at run time. The disposable list
+# comes from python3 scripts/fetch_data.py; data/raw and other downloads stay out.
+!data/manifest.json
+!data/malicious-feeds.json
+!data/disposable_email_blocklist.conf
+# Phase 6 (C78.3, F14): the filtered variant groups the worker, seed:dev and the watchlist CLIs
+# load, built by `pnpm --filter @openverify/watchlist build:variant-groups` after fetch_data.py.
+# The unfiltered rigour file it is built from stays out (ADR 0005: only the filtered file ships).
+!data/variant-groups.json
+# Workflow 7A (C92.6): the pinned hosting and VPN ASN seeds (scripts/fetch_data.py), which the network
+# facts read. ADR 0006: no live network data and no operator anonymous-IP file enters the image;
+# data/ip-reputation is mounted read-only by compose instead.
+!data/x4bnet-datacenter-ASN.txt
+!data/x4bnet-vpn-ASN.txt
+!data/bad-asn-list.csv
+**/*.mmdb
+**/*.mmdb.gz
+fixtures/faces
+fixtures/generated
+e2e/.artifacts

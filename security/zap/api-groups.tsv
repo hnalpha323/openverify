@@ -1,0 +1,40 @@
+# The API scan's groups (Phase 11 C283.1; Workflow 11F, dast-11f): each OpenAPI tag of the stack's
+# /openapi.json in exactly one group, so each group's scan fits one 10-minute call (rule 8), and the
+# credential each group's requests carry, as its operations declare it:
+#   apiKey       the run's sandbox API key holding every sandbox scope (the server API);
+#   userSession  a seeded sandbox admin's console session, its own (the dashboard API);
+#   sessionToken the run's hosted-flow session (the flow API; `run.sh flow routes` scans it, with
+#                the run's own handoff as the example of the three public handoff routes).
+# One line each: group TAB auth TAB tag,tag,...; or hold TAB METHOD /path TAB reason for an
+# operation the scan must not call (it would end a credential another scan of the run still holds).
+# Each group is small enough that ZAP's 38 active rules finish within its call: at 6 minutes, a
+# group of 58 operations finished 17 of them, and groups whose parameters are many (the API log's
+# search, the case routes) finished 23 to 28 of 38 at 30 operations (2026-11-21, docs/security/dast-*.md).
+# A tag@/prefix entry takes one tag's operations under that path prefix (the dashboard tag's 70).
+# security/tests/test_dast_zap.py and infra/tests/zap.test.sh hold this file against
+# docs/api/openapi.json: a new tag fails them until it is placed here.
+inquiries	apiKey	inquiries,inquiry-sessions,verifications,decisions,devices
+templates	apiKey	inquiry-templates,inquiry-template-versions,theme-sets
+accounts	apiKey	accounts,account-actions,account-exports
+platform	apiKey	connect,events,rate-limits,system,deployments,sandbox
+logs	apiKey	api-logs,user-audit-logs
+case-records	apiKey	cases@/api/v1/cases/
+cases	apiKey	cases
+case-settings	apiKey	case-actions,case-templates
+case-queues	apiKey	case-queues,case-calendars,case-sla-policies,case-assignment-policies
+lists	apiKey	lists,list-matches,importers
+list-items	apiKey	list-items
+transactions	apiKey	transactions,transaction-types,transaction-type-versions
+graph	apiKey	graph-queries,graph-query-templates
+workflows	apiKey	workflows,workflow-versions,workflow-recipes
+workflow-runs	apiKey	workflow-runs,workflow-secrets
+reports	apiKey	reports,report-templates
+webhooks	apiKey	webhooks,api-keys,analytics,exports
+dashboard-sign-in	userSession	dashboard@/api/v1/dashboard/sessions,dashboard@/api/v1/dashboard/sso,dashboard@/api/v1/dashboard/invitations,dashboard@/api/v1/dashboard/me
+dashboard-users	userSession	dashboard@/api/v1/dashboard/users,dashboard@/api/v1/dashboard/roles,dashboard@/api/v1/dashboard/sso-providers
+dashboard-records	userSession	dashboard@/api/v1/dashboard/audit-logs,dashboard@/api/v1/dashboard/inquiries,dashboard@/api/v1/dashboard/files,dashboard@/api/v1/dashboard/reports,dashboard@/api/v1/dashboard/notifications,dashboard@/api/v1/dashboard/notification-preferences,dashboard@/api/v1/dashboard/print-audits
+dashboard-settings	userSession	dashboard@/api/v1/dashboard/settings
+dashboard	userSession	dashboard
+flow	sessionToken	flow
+hold	DELETE /api/v1/dashboard/sessions/current	it signs out the console session the dashboard group's scan holds; revoke ends it at the run's end
+hold	POST /api/v1/dashboard/sessions/revoke-others	it would end the console scan's session, a sibling of the one the dashboard group holds

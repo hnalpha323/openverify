@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The environment collects no value of this list kind.",
+  "instance": "/api/v1/inquiry-template-versions/itmplv_01M5CK3190XEVBM5ZXA76E1JSN/publish",
+  "requestId": "00000000-0000-4000-8000-000000000802",
+  "code": "kind_not_collected",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/list-config/screen/0",
+      "detail": "is of a kind the environment does not collect"
+    }
+  ]
+}

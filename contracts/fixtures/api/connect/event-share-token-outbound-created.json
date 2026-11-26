@@ -1,0 +1,82 @@
+{
+  "data": {
+    "type": "event",
+    "id": "evt_01M5CN0000000000000011A506",
+    "attributes": {
+      "name": "connect/share-token.outbound-created",
+      "payload": {
+        "data": {
+          "type": "connect/share-token",
+          "id": "cnst_01M5CN0000000000000011A200",
+          "attributes": {
+            "status": "created",
+            "direction": "outbound",
+            "source-type": "inquiry",
+            "environment-kind": "sandbox",
+            "share-policy-version": 1,
+            "data-categories": [
+              "identity-fields",
+              "contact-fields",
+              "document-images",
+              "biometric",
+              "check-results"
+            ],
+            "source-consent": {
+              "method": "flow",
+              "witnessed": true,
+              "categories": [
+                "identity-fields",
+                "contact-fields",
+                "document-images",
+                "biometric",
+                "check-results"
+              ],
+              "explicit-biometric": true,
+              "text-sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            "redeem-mode": null,
+            "redeem-summary": null,
+            "peek-count": 0,
+            "failure-reason": null,
+            "expiry-reason": null,
+            "created-at": "2026-10-20T12:10:00.000Z",
+            "updated-at": "2026-10-20T12:10:00.000Z",
+            "expires-at": "2026-11-03T12:10:00.000Z",
+            "pending-at": null,
+            "redeemed-at": null,
+            "expired-at": null,
+            "failed-at": null
+          },
+          "relationships": {
+            "connection": {
+              "data": {
+                "type": "connect/connection",
+                "id": "cxn_01M5CN0000000000000011A100"
+              }
+            },
+            "creator": {
+              "data": {
+                "type": "api-key",
+                "id": "key_01M5CJXHG0RVK7X4H9941FSM5K"
+              }
+            },
+            "source": {
+              "data": {
+                "type": "inquiry",
+                "id": "inq_01M5CJXHG07XPHF3HRM6NREDH7"
+              }
+            },
+            "consent-record": {
+              "data": {
+                "type": "consent-record",
+                "id": "cnsr_01M5CN0000000000000011A300"
+              }
+            }
+          }
+        }
+      },
+      "simulated": false,
+      "created-at": "2026-10-20T12:10:00.000Z"
+    }
+  }
+}

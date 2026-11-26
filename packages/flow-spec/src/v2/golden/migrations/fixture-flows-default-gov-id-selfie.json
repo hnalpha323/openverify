@@ -1,0 +1,129 @@
+{
+  "source": "contracts/fixtures/flows/default-gov-id-selfie.json#/flow",
+  "flow": {
+    "metadata": {
+      "specVersion": 2,
+      "id": "default-gov-id-selfie",
+      "version": 3,
+      "name": "Government ID and selfie",
+      "description": "Consent, a two-sided government ID, then a selfie compared with the ID portrait."
+    },
+    "entry": "consent",
+    "steps": [
+      {
+        "id": "consent",
+        "type": "consent",
+        "textKeys": ["consent.biometric", "consent.processing", "notice.session-integrity"],
+        "optionalTextKeys": ["consent.biometric-matching"],
+        "required": true
+      },
+      {
+        "id": "government_id",
+        "type": "government_id",
+        "sides": "both",
+        "maxAttempts": 3,
+        "captureMethods": ["upload", "camera"]
+      },
+      {
+        "id": "selfie",
+        "type": "selfie",
+        "poses": ["center", "left", "right"],
+        "liveness": "active",
+        "maxAttempts": 3
+      },
+      {
+        "id": "completion",
+        "type": "completion",
+        "messageKey": "flow.completion"
+      },
+      {
+        "id": "failure",
+        "type": "failure",
+        "messageKey": "flow.failure"
+      },
+      {
+        "id": "government_id-routes",
+        "type": "branch",
+        "routes": [
+          {
+            "key": "r1",
+            "label": "Transition 1",
+            "condition": {
+              "==": [
+                {
+                  "var": "inquiry.status"
+                },
+                "failed"
+              ]
+            },
+            "onNull": "else"
+          }
+        ]
+      },
+      {
+        "id": "selfie-routes",
+        "type": "branch",
+        "routes": [
+          {
+            "key": "r1",
+            "label": "Transition 2",
+            "condition": {
+              "==": [
+                {
+                  "var": "inquiry.status"
+                },
+                "failed"
+              ]
+            },
+            "onNull": "else"
+          }
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "consent",
+        "port": "next",
+        "to": "government_id"
+      },
+      {
+        "id": "e2",
+        "from": "government_id",
+        "port": "next",
+        "to": "government_id-routes"
+      },
+      {
+        "id": "e3",
+        "from": "government_id-routes",
+        "port": "route:r1",
+        "to": "failure"
+      },
+      {
+        "id": "e4",
+        "from": "government_id-routes",
+        "port": "else",
+        "to": "selfie"
+      },
+      {
+        "id": "e5",
+        "from": "selfie",
+        "port": "next",
+        "to": "selfie-routes"
+      },
+      {
+        "id": "e6",
+        "from": "selfie-routes",
+        "port": "route:r1",
+        "to": "failure"
+      },
+      {
+        "id": "e7",
+        "from": "selfie-routes",
+        "port": "else",
+        "to": "completion"
+      }
+    ]
+  },
+  "notes": []
+}

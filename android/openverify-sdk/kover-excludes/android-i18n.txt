@@ -1,0 +1,2 @@
+# Kover exclusions of android-i18n (C219.2; review F18): one class pattern per line, for glue a host test cannot
+# reach (each one named with its reason in docs/tdd/phase10-android-i18n.tdd.md). Comments start with #.

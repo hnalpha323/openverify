@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- C205.2 (Workflow 10E Stage 1a): merged into the demo's manifest only when openverifyDemoArtifacts
+     includes face (android/demo-app/build.gradle.kts). ONNX Runtime's manifest asks for
+     ACCESS_NETWORK_STATE, which nothing in this app uses once openverify-face has removed ONNX
+     Runtime's telemetry provider, so the demo, as a host, removes the permission. Only a host can: it
+     knows whether another of its libraries needs it. No tools:selector (a marker with one stays in the
+     merged manifest as a declaration of its own). face-onnx owns this file. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission
+        android:name="android.permission.ACCESS_NETWORK_STATE"
+        tools:node="remove" />
+
+</manifest>

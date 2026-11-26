@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "Another case template of this environment has this key.",
+  "instance": "/api/v1/case-templates",
+  "requestId": "00000000-0000-4000-8000-000000001220",
+  "code": "case_template_key_taken",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/key",
+      "detail": "is taken"
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Arabic copy of values/strings.xml, machine-drafted by android-i18n (Workflow 10A, C199.1;
+  i18n/review-status.json): where the hosted web flow has the same English text, its
+  Arabic words are used, so both clients say the same thing. Compose Multiplatform resources:
+  positional placeholders only, ' and " written as they are, no isolate or other bidi control
+  (ResourcesTest).
+-->
+<resources>
+    <string name="openverify_locale">ar</string>
+    <string name="openverify_loading">جارٍ تحميل عملية التحقق…</string>
+    <string name="openverify_cancel">إلغاء</string>
+    <string name="openverify_close">إغلاق</string>
+    <string name="openverify_done">تم</string>
+    <string name="openverify_try_again">إعادة المحاولة</string>
+    <string name="openverify_camera_title">الوصول إلى الكاميرا</string>
+    <string name="openverify_camera_rationale">نحتاج الآن إلى الكاميرا لالتقاط صور لوثيقة الهوية وصورة سيلفي. تُستخدم الصور لهذا التحقق فقط.</string>
+    <string name="openverify_camera_allow">السماح بالوصول إلى الكاميرا</string>
+    <string name="openverify_camera_denied">الوصول إلى الكاميرا متوقف. للمتابعة، يُرجى السماح لهذا التطبيق بالوصول إلى الكاميرا من الإعدادات.</string>
+    <string name="openverify_camera_open_settings">فتح الإعدادات</string>
+    <string name="openverify_camera_unavailable">تعذّر تشغيل الكاميرا على هذا الجهاز.</string>
+    <string name="openverify_capture_progress">الصورة %1$d من %2$d</string>
+    <string name="openverify_capture_take">التقاط الصورة</string>
+    <string name="openverify_capture_preview">معاينة الكاميرا</string>
+    <string name="openverify_capture_failed">تعذّر التقاط الصورة. يُرجى المحاولة مرة أخرى.</string>
+    <string name="openverify_capture_check">يُرجى التأكد من أن الصورة واضحة وجيدة الإضاءة وتُظهر كل ما طلبناه.</string>
+    <string name="openverify_capture_retake">إعادة الالتقاط</string>
+    <string name="openverify_capture_use">استخدام هذه الصورة</string>
+    <string name="openverify_capture_upload">رفع صورة بدلًا من ذلك</string>
+    <string name="openverify_capture_upload_failed">تعذّر استخدام هذا الملف. يُرجى اختيار صورة بصيغة JPEG أو PNG أو WebP.</string>
+    <string name="openverify_capture_sending">جارٍ إرسال الصورة…</string>
+    <string name="openverify_id_front_title">الوجه الأمامي لوثيقة الهوية</string>
+    <string name="openverify_id_front_instruction">يُرجى وضع الوجه الأمامي لوثيقة الهوية داخل الإطار.</string>
+    <string name="openverify_id_front_photo">صورتك للوجه الأمامي لوثيقة الهوية</string>
+    <string name="openverify_id_back_title">الوجه الخلفي لوثيقة الهوية</string>
+    <string name="openverify_id_back_instruction">يُرجى قلب وثيقة الهوية ووضع وجهها الخلفي داخل الإطار.</string>
+    <string name="openverify_id_back_photo">صورتك للوجه الخلفي لوثيقة الهوية</string>
+    <string name="openverify_id_portrait_title">صفحة الصورة في وثيقة الهوية</string>
+    <string name="openverify_id_portrait_instruction">يُرجى وضع الصفحة التي تحمل الصورة داخل الإطار.</string>
+    <string name="openverify_id_portrait_photo">صورتك لصفحة الصورة في وثيقة الهوية</string>
+    <string name="openverify_selfie_center_title">النظر إلى الأمام مباشرة</string>
+    <string name="openverify_selfie_center_instruction">يُرجى وضع الوجه داخل الشكل البيضاوي والنظر مباشرة إلى الكاميرا.</string>
+    <string name="openverify_selfie_center_photo">صورتك السيلفي مع النظر إلى الأمام مباشرة</string>
+    <string name="openverify_selfie_left_title">إدارة الرأس إلى اليسار</string>
+    <string name="openverify_selfie_left_instruction">يُرجى إبقاء الوجه داخل الشكل البيضاوي وإدارة الرأس ببطء إلى اليسار.</string>
+    <string name="openverify_selfie_left_photo">صورتك السيلفي مع إدارة الرأس إلى اليسار</string>
+    <string name="openverify_selfie_right_title">إدارة الرأس إلى اليمين</string>
+    <string name="openverify_selfie_right_instruction">يُرجى إبقاء الوجه داخل الشكل البيضاوي وإدارة الرأس ببطء إلى اليمين.</string>
+    <string name="openverify_selfie_right_photo">صورتك السيلفي مع إدارة الرأس إلى اليمين</string>
+    <string name="openverify_selfie_capture_restarted">يلزم التقاط صور السيلفي من جديد. يُرجى اتباع كل تعليمة بالترتيب المعروض.</string>
+    <plurals name="openverify_selfie_time_limit">
+        <item quantity="zero">يُرجى التقاط كل صور السيلفي خلال %1$d دقيقة. إذا انتهى الوقت، نبدأ من جديد من الصورة الأولى.</item>
+        <item quantity="one">يُرجى التقاط كل صور السيلفي خلال دقيقة واحدة. إذا انتهى الوقت، نبدأ من جديد من الصورة الأولى.</item>
+        <item quantity="two">يُرجى التقاط كل صور السيلفي خلال دقيقتين. إذا انتهى الوقت، نبدأ من جديد من الصورة الأولى.</item>
+        <item quantity="few">يُرجى التقاط كل صور السيلفي خلال %1$d دقائق. إذا انتهى الوقت، نبدأ من جديد من الصورة الأولى.</item>
+        <item quantity="many">يُرجى التقاط كل صور السيلفي خلال %1$d دقيقة. إذا انتهى الوقت، نبدأ من جديد من الصورة الأولى.</item>
+        <item quantity="other">يُرجى التقاط كل صور السيلفي خلال %1$d دقيقة. إذا انتهى الوقت، نبدأ من جديد من الصورة الأولى.</item>
+    </plurals>
+    <string name="openverify_retry_title">تعذّر استخدام الصور الأخيرة</string>
+    <string name="openverify_retry_generic">لم يكن جزء من الصورة واضحًا بما يكفي. يُرجى المحاولة مرة أخرى في إضاءة جيدة.</string>
+    <string name="openverify_retry_image_blurry">كانت الصورة ضبابية. يُرجى تثبيت الجهاز والانتظار حتى تتضح الصورة.</string>
+    <string name="openverify_retry_glare_present">كان هناك انعكاس ضوء على وثيقة الهوية. يُرجى الابتعاد عن الضوء المباشر أو إمالة الوثيقة قليلًا.</string>
+    <string name="openverify_retry_portrait_not_present">لم نعثر على الصورة في وثيقة الهوية. يُرجى التأكد من ظهور الوجه الأمامي للوثيقة كاملًا داخل الإطار.</string>
+    <string name="openverify_retry_front_not_present">نحتاج إلى صورة للوجه الأمامي لوثيقة الهوية.</string>
+    <string name="openverify_retry_back_not_present">نحتاج إلى صورة للوجه الخلفي لوثيقة الهوية.</string>
+    <string name="openverify_retry_image_too_dark">كانت الصورة مظلمة جدًا. يُرجى اختيار مكان أكثر إضاءة.</string>
+    <string name="openverify_retry_image_too_bright">كانت الصورة ساطعة جدًا. يُرجى الابتعاد عن الضوء القوي.</string>
+    <string name="openverify_retry_face_not_present">لم يظهر الوجه. يُرجى وضع الوجه داخل الشكل البيضاوي.</string>
+    <string name="openverify_retry_multiple_faces_present">ظهر أكثر من وجه في الصورة. يُرجى التأكد من عدم وجود أحد غيرك داخل الإطار.</string>
+    <string name="openverify_retry_image_unreadable">تعذّر فتح الصورة. يُرجى التقاط صورة جديدة، أو اختيار صورة بصيغة JPEG أو PNG أو WebP.</string>
+    <string name="openverify_retry_document_not_found">لم نعثر على وثيقة الهوية في الصورة. يُرجى وضعها على سطح سادة يختلف لونه عنها، مع ظهور زواياها الأربع داخل الإطار.</string>
+    <string name="openverify_retry_insufficient_text">تعذّرت قراءة النص على وثيقة الهوية. يُرجى التأكد من أن الصورة واضحة وجيدة الإضاءة وخالية من الانعكاسات وتُظهر الوثيقة كاملة.</string>
+    <string name="openverify_retry_identity_features_not_found">لم نعثر على صورتك أو على أسطر الحروف والأرقام في وثيقة الهوية. يُرجى تصوير الوجه الذي يحمل صورتك، مع ظهور الوثيقة كاملة داخل الإطار.</string>
+    <string name="openverify_retry_resolution_too_low">كانت وثيقة الهوية صغيرة جدًا في الصورة. يُرجى تقريب الجهاز حتى تملأ الوثيقة معظم الإطار.</string>
+    <string name="openverify_retry_back_feature_not_found">تعذّرت قراءة الوجه الخلفي لوثيقة الهوية. يُرجى قلبها وتصوير الوجه الخلفي بوضوح ودون انعكاسات، حتى يمكن قراءة الرمز الشريطي أو أسطر الحروف والأرقام.</string>
+    <string name="openverify_retry_portrait_too_small">كانت صورة الوجه على وثيقة الهوية صغيرة جدًا. يُرجى تقريب الجهاز حتى تملأ الوثيقة معظم الإطار.</string>
+    <string name="openverify_retry_portrait_blurry">لم تكن صورة الوجه على وثيقة الهوية واضحة. يُرجى تثبيت الجهاز والانتظار حتى تتضح الصورة.</string>
+    <string name="openverify_retry_portrait_obstructed">كان شيء ما يغطي صورة الوجه على وثيقة الهوية. يُرجى إبعاد الأصابع وأي انعكاس ضوء عنها.</string>
+    <string name="openverify_retry_mrz_not_found">لم نعثر على أسطر الحروف والأرقام وعلامات &lt;&lt;&lt; في وثيقة الهوية. يُرجى التأكد من ظهور الوثيقة كاملة داخل الإطار، بما في ذلك حافتها السفلية.</string>
+    <string name="openverify_retry_mrz_unreadable">تعذّرت قراءة أسطر الحروف والأرقام وعلامات &lt;&lt;&lt; في وثيقة الهوية. يُرجى تثبيت الجهاز وتجنّب الانعكاسات حتى تكون هذه الأسطر واضحة.</string>
+    <string name="openverify_retry_barcode_not_found">لم نعثر على الرمز الشريطي في وثيقة الهوية. يُرجى تصوير الوجه الذي يحمل الرمز الشريطي، مع ظهور الوثيقة كاملة داخل الإطار ودون انعكاس على الرمز.</string>
+    <string name="openverify_retry_required_fields_missing">تعذّرت قراءة جميع البيانات في وثيقة الهوية. يُرجى التأكد من ظهور الوثيقة كاملة داخل الإطار، بوضوح ودون انعكاسات.</string>
+    <string name="openverify_retry_face_too_small">كان الوجه صغيرًا جدًا في الصورة. يُرجى الاقتراب حتى يملأ الوجه الشكل البيضاوي.</string>
+    <string name="openverify_retry_face_glare">كان الضوء ينعكس على الوجه. يُرجى الابتعاد عن الضوء المباشر والمحاولة مرة أخرى.</string>
+    <string name="openverify_retry_pose_not_center">في الصورة الأولى، يُرجى النظر مباشرة إلى الكاميرا مع وضع الوجه في منتصف الشكل البيضاوي.</string>
+    <string name="openverify_retry_pose_not_left">لم يكن الرأس مُدارًا إلى اليسار بما يكفي. عند الطلب، يُرجى إدارة الرأس ببطء إلى اليسار والثبات على ذلك.</string>
+    <string name="openverify_retry_pose_not_right">لم يكن الرأس مُدارًا إلى اليمين بما يكفي. عند الطلب، يُرجى إدارة الرأس ببطء إلى اليمين والثبات على ذلك.</string>
+    <string name="openverify_retry_face_covered">كان جزء من الوجه مغطى. يُرجى إزالة أي كمامة أو وشاح، وإبعاد اليدين عن الوجه.</string>
+    <string name="openverify_retry_glasses_detected">يُرجى خلع النظارات، ثم المحاولة مرة أخرى.</string>
+    <string name="openverify_processing_title">جارٍ فحص الصور</string>
+    <string name="openverify_processing_verification_title">جارٍ فحص عملية التحقق</string>
+    <string name="openverify_processing_message">يستغرق ذلك عادةً بضع ثوانٍ. يُرجى إبقاء هذه الشاشة مفتوحة.</string>
+    <string name="openverify_completion_title">تم إرسال عملية التحقق</string>
+    <string name="openverify_flow_completion">شكرًا. تم إرسال عملية التحقق.</string>
+    <string name="openverify_failure_title">لم تكتمل عملية التحقق</string>
+    <string name="openverify_flow_failure">تعذّر التحقق من هويتك. يُرجى التواصل مع الجهة التي طلبت التحقق.</string>
+    <string name="openverify_expired_title">انتهت صلاحية عملية التحقق هذه</string>
+    <string name="openverify_expired_message">يُرجى التواصل مع الجهة التي طلبت التحقق لبدء عملية جديدة.</string>
+    <string name="openverify_session_expired_title">انتهت صلاحية جلسة التحقق</string>
+    <string name="openverify_session_expired_message">حفاظًا على الأمان، تنتهي جلسة التحقق بعد فترة. يُرجى بدء التحقق من جديد.</string>
+    <string name="openverify_session_canceled_title">انتهت جلسة التحقق هذه</string>
+    <string name="openverify_session_canceled_message">أُغلقت الجلسة، مثلًا لأن عملية التحقق اكتملت أو سُحبت. إذا كان التحقق ما زال مطلوبًا، يُرجى التواصل مع الجهة التي طلبته.</string>
+    <string name="openverify_redacted_title">لم تعد عملية التحقق هذه متاحة</string>
+    <string name="openverify_redacted_message">حُذفت المعلومات في عملية التحقق هذه، لذا لا يمكن متابعتها. إذا كان التحقق ما زال مطلوبًا، يُرجى التواصل مع الجهة التي طلبته.</string>
+    <string name="openverify_link_refused_title">تعذّر فتح عملية التحقق</string>
+    <string name="openverify_link_refused_message">سبق استخدام هذا الرابط أو انتهت صلاحيته. يعمل كل رابط مرة واحدة فقط. يُرجى طلب رابط جديد من الجهة التي أرسلته.</string>
+    <string name="openverify_sandbox_label">بيئة الاختبار</string>
+    <string name="openverify_sandbox_message">هذه عملية تحقق تجريبية. يُرجى استخدام بيانات اختبار فقط، وعدم استخدام وثيقة هوية حقيقية أبدًا.</string>
+    <string name="openverify_error_title">حدث خطأ</string>
+    <string name="openverify_error_network">تعذّر الوصول إلى الخادم. يُرجى التحقق من الاتصال والمحاولة مرة أخرى.</string>
+    <string name="openverify_error_session_expired">انتهت صلاحية جلسة التحقق هذه. يُرجى بدء التحقق من جديد.</string>
+    <string name="openverify_error_inquiry_mismatch">تخص هذه الجلسة عملية تحقق أخرى. يُرجى بدء التحقق من جديد.</string>
+    <string name="openverify_error_rejected">تعذّر على الخادم قبول هذا الطلب. يُرجى التواصل مع الجهة التي طلبت التحقق.</string>
+    <string name="openverify_error_out_of_sync">تغيّرت عملية التحقق في مكان آخر. يُرجى المحاولة مرة أخرى للمتابعة من حيث توقفت.</string>
+    <string name="openverify_error_server">واجه الخادم مشكلة. يُرجى المحاولة مرة أخرى بعد قليل.</string>
+    <string name="openverify_error_invalid_response">تلقينا ردًا تعذّرت قراءته. يُرجى المحاولة مرة أخرى بعد قليل.</string>
+    <string name="openverify_error_still_processing">يستغرق ذلك وقتًا أطول من المعتاد. يُرجى التحقق مرة أخرى بعد قليل.</string>
+    <string name="openverify_unsupported_title">هذه الخطوة غير متاحة هنا</string>
+    <string name="openverify_unsupported_message">تتضمن عملية التحقق هذه خطوة لا يدعمها هذا الإصدار من التطبيق بعد. يُرجى التواصل مع الجهة التي طلبت التحقق.</string>
+</resources>

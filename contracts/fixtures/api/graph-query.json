@@ -1,0 +1,64 @@
+{
+  "data": {
+    "type": "graph-query",
+    "id": "grphq_01M5CK3190XEVBM5ZXA76E1JSN",
+    "attributes": {
+      "status": "completed",
+      "params": {
+        "email": "linked@example.test"
+      },
+      "created-at": "2026-10-31T12:00:00.000Z",
+      "updated-at": "2026-10-31T12:00:00.000Z",
+      "errored-at": null,
+      "completed-at": "2026-10-31T12:00:00.000Z",
+      "redacted-at": null,
+      "stats": {},
+      "explorer-url": "https://console.example.test/graph/grphq_01M5CK3190XEVBM5ZXA76E1JSN",
+      "node-limit-reached": false,
+      "nodes": [
+        {
+          "type": "account",
+          "value": "acc_01M5CK3190XEVBM5ZXA76E1JSN"
+        },
+        {
+          "type": "email_address",
+          "value": "gn_0123456789abcdefghijkl"
+        },
+        {
+          "type": "account",
+          "value": "acc_01M5CK3190XEVBM5ZXA76E1JSP"
+        }
+      ],
+      "index-complete": false,
+      "kinds-not-indexed": ["device_fingerprint"],
+      "skipped-hub-values": 0,
+      "template-version-id": "grqtv_01M5CK3190XEVBM5ZXA76E1JSN",
+      "links": [
+        {
+          "from": "acc_01M5CK3190XEVBM5ZXA76E1JSN",
+          "to": "gn_0123456789abcdefghijkl",
+          "kind": "email_address"
+        },
+        {
+          "from": "gn_0123456789abcdefghijkl",
+          "to": "acc_01M5CK3190XEVBM5ZXA76E1JSP",
+          "kind": "email_address"
+        }
+      ]
+    },
+    "relationships": {
+      "accounts": {
+        "data": [
+          {
+            "type": "account",
+            "id": "acc_01M5CK3190XEVBM5ZXA76E1JSN"
+          },
+          {
+            "type": "account",
+            "id": "acc_01M5CK3190XEVBM5ZXA76E1JSP"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "No producer exists for this relation target.",
+  "instance": "/api/v1/transaction-type-versions/txntpv_01M5CK3190XEVBM5ZXA76E1JSN/publish",
+  "requestId": "00000000-0000-4000-8000-000000000904",
+  "code": "relation_target_unsupported",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/field-schemas/0/config/target",
+      "detail": "has no producer"
+    }
+  ]
+}

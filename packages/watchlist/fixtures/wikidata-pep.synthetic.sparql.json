@@ -1,0 +1,242 @@
+{
+  "head": {
+    "vars": [
+      "person",
+      "personLabel",
+      "alias",
+      "position",
+      "positionLabel",
+      "class",
+      "start",
+      "end",
+      "replacedBy",
+      "birth",
+      "death",
+      "gender",
+      "citizenship",
+      "relative",
+      "relativeLabel",
+      "relation",
+      "relativeBirth",
+      "relativeDeath"
+    ]
+  },
+  "results": {
+    "bindings": [
+      {
+        "person": {
+          "type": "uri",
+          "value": "http://www.wikidata.org/entity/Q-test-1001"
+        },
+        "personLabel": {
+          "type": "literal",
+          "value": "Marlowe Testerton",
+          "xml:lang": "en"
+        },
+        "position": {
+          "type": "uri",
+          "value": "http://www.wikidata.org/entity/Q-test-2001"
+        },
+        "positionLabel": {
+          "type": "literal",
+          "value": "Synthetic Head of Government",
+          "xml:lang": "en"
+        },
+        "class": {
+          "type": "uri",
+          "value": "http://www.wikidata.org/entity/Q-test-class-pep-1"
+        },
+        "start": {
+          "type": "literal",
+          "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "value": "2023-05-01T00:00:00Z"
+        },
+        "birth": {
+          "type": "literal",
+          "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "value": "1968-03-14T00:00:00Z"
+        },
+        "citizenship": {
+          "type": "literal",
+          "value": "GB"
+        }
+      },
+      {
+        "person": {
+          "type": "uri",
+          "value": "http://www.wikidata.org/entity/Q-test-1004"
+        },
+        "personLabel": {
+          "type": "literal",
+          "value": "Tamsin Samplewick",
+          "xml:lang": "en"
+        },
+        "position": {
+          "type": "uri",
+          "value": "http://www.wikidata.org/entity/Q-test-2003"
+        },
+        "positionLabel": {
+          "type": "literal",
+          "value": "Synthetic Ambassador",
+          "xml:lang": "en"
+        },
+        "class": {
+          "type": "uri",
+          "value": "http://www.wikidata.org/entity/Q-test-class-pep-2"
+        },
+        "start": {
+          "type": "literal",
+          "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "value": "2022-09-01T00:00:00Z"
+        },
+        "birth": {
+          "type": "literal",
+          "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "value": "1972-05-19T00:00:00Z"
+        },
+        "citizenship": {
+          "type": "literal",
+          "value": "FR"
+        }
+      },
+      {
+        "person": {
+          "type": "uri",
+          "value": "http://www.wikidata.org/entity/Q-test-1005"
+        },
+        "personLabel": {
+          "type": "literal",
+          "value": "Orla Mockfield",
+          "xml:lang": "en"
+        },
+        "position": {
+          "type": "uri",
+          "value": "http://www.wikidata.org/entity/Q-test-2004"
+        },
+        "positionLabel": {
+          "type": "literal",
+          "value": "Synthetic Secretary-General of an International Organisation",
+          "xml:lang": "en"
+        },
+        "class": {
+          "type": "uri",
+          "value": "http://www.wikidata.org/entity/Q-test-class-pep-2"
+        },
+        "start": {
+          "type": "literal",
+          "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "value": "2024-01-15T00:00:00Z"
+        },
+        "birth": {
+          "type": "literal",
+          "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "value": "1965-12-08T00:00:00Z"
+        },
+        "citizenship": {
+          "type": "literal",
+          "value": "IE"
+        }
+      },
+      {
+        "person": {
+          "type": "uri",
+          "value": "http://www.wikidata.org/entity/Q-test-1006"
+        },
+        "personLabel": {
+          "type": "literal",
+          "value": "Idris Sandmoor",
+          "xml:lang": "en"
+        },
+        "position": {
+          "type": "uri",
+          "value": "http://www.wikidata.org/entity/Q-test-2005"
+        },
+        "positionLabel": {
+          "type": "literal",
+          "value": "Synthetic State Enterprise Board Member",
+          "xml:lang": "en"
+        },
+        "class": {
+          "type": "uri",
+          "value": "http://www.wikidata.org/entity/Q-test-class-pep-3"
+        },
+        "start": {
+          "type": "literal",
+          "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "value": "2021-06-01T00:00:00Z"
+        },
+        "birth": {
+          "type": "literal",
+          "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "value": "1977-01-25T00:00:00Z"
+        },
+        "citizenship": {
+          "type": "literal",
+          "value": "NL"
+        }
+      },
+      {
+        "person": {
+          "type": "uri",
+          "value": "http://www.wikidata.org/entity/Q-test-1007"
+        },
+        "personLabel": {
+          "type": "literal",
+          "value": "Wren Stubhollow",
+          "xml:lang": "en"
+        },
+        "position": {
+          "type": "uri",
+          "value": "http://www.wikidata.org/entity/Q-test-2006"
+        },
+        "positionLabel": {
+          "type": "literal",
+          "value": "Synthetic Mayor",
+          "xml:lang": "en"
+        },
+        "class": {
+          "type": "uri",
+          "value": "http://www.wikidata.org/entity/Q-test-class-pep-4"
+        },
+        "start": {
+          "type": "literal",
+          "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "value": "2024-07-01T00:00:00Z"
+        },
+        "birth": {
+          "type": "literal",
+          "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "value": "1981-08-30T00:00:00Z"
+        },
+        "citizenship": {
+          "type": "literal",
+          "value": "NZ"
+        }
+      },
+      {
+        "person": {
+          "type": "uri",
+          "value": "http://www.wikidata.org/entity/Q-test-1001"
+        },
+        "relative": {
+          "type": "uri",
+          "value": "http://www.wikidata.org/entity/Q-test-1002"
+        },
+        "relativeLabel": {
+          "type": "literal",
+          "value": "Imogen Testerton",
+          "xml:lang": "en"
+        },
+        "relation": {
+          "type": "uri",
+          "value": "http://www.wikidata.org/prop/direct/P26"
+        },
+        "relativeBirth": {
+          "type": "literal",
+          "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "value": "1970-07-22T00:00:00Z"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "No sender is configured for this one-time code channel in this environment.",
+  "instance": "/api/v1/inquiry-templates",
+  "requestId": "00000000-0000-4000-8000-000000000102",
+  "code": "otp_channel_not_configured"
+}

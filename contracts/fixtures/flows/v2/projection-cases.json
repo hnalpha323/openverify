@@ -1,0 +1,290 @@
+{
+  "description": "C151.6: each golden v1 projection, the v2 flow it projects and the position it is served at. flow-spec-logic's projection(flow, position) must produce each projection; the session builder serves each byte for byte.",
+  "cases": [
+    {
+      "projection": "api/flow-projections/linear-1-consent.json",
+      "flow": "flows/v2/projection-linear.json",
+      "position": {
+        "current": "consent",
+        "exited": [],
+        "verificationStatuses": {},
+        "consentRecorded": false,
+        "customConsentCopy": false
+      }
+    },
+    {
+      "projection": "api/flow-projections/linear-2-id-card.json",
+      "flow": "flows/v2/projection-linear.json",
+      "position": {
+        "current": "id_card",
+        "exited": [
+          {
+            "stepId": "consent",
+            "port": "next"
+          }
+        ],
+        "verificationStatuses": {},
+        "consentRecorded": true,
+        "customConsentCopy": false
+      }
+    },
+    {
+      "projection": "api/flow-projections/linear-3-face.json",
+      "flow": "flows/v2/projection-linear.json",
+      "position": {
+        "current": "face",
+        "exited": [
+          {
+            "stepId": "consent",
+            "port": "next"
+          },
+          {
+            "stepId": "id_card",
+            "port": "next"
+          }
+        ],
+        "verificationStatuses": {
+          "id_card": "passed"
+        },
+        "consentRecorded": true,
+        "customConsentCopy": false
+      }
+    },
+    {
+      "projection": "api/flow-projections/linear-4-done.json",
+      "flow": "flows/v2/projection-linear.json",
+      "position": {
+        "current": "done",
+        "exited": [
+          {
+            "stepId": "consent",
+            "port": "next"
+          },
+          {
+            "stepId": "id_card",
+            "port": "next"
+          },
+          {
+            "stepId": "face",
+            "port": "next"
+          }
+        ],
+        "verificationStatuses": {
+          "id_card": "passed",
+          "face": "passed"
+        },
+        "consentRecorded": true,
+        "customConsentCopy": false
+      }
+    },
+    {
+      "projection": "api/flow-projections/branch-1-consent.json",
+      "flow": "flows/v2/projection-branch.json",
+      "position": {
+        "current": "consent",
+        "exited": [],
+        "verificationStatuses": {},
+        "consentRecorded": false,
+        "customConsentCopy": false
+      }
+    },
+    {
+      "projection": "api/flow-projections/branch-2-id-card.json",
+      "flow": "flows/v2/projection-branch.json",
+      "position": {
+        "current": "id_card",
+        "exited": [
+          {
+            "stepId": "consent",
+            "port": "next"
+          }
+        ],
+        "verificationStatuses": {},
+        "consentRecorded": true,
+        "customConsentCopy": false
+      }
+    },
+    {
+      "projection": "api/flow-projections/branch-3-screen.json",
+      "flow": "flows/v2/projection-branch.json",
+      "position": {
+        "current": "extra_details",
+        "exited": [
+          {
+            "stepId": "consent",
+            "port": "next"
+          },
+          {
+            "stepId": "id_card",
+            "port": "next"
+          },
+          {
+            "stepId": "age_route",
+            "port": "route:minor"
+          }
+        ],
+        "verificationStatuses": {
+          "id_card": "passed"
+        },
+        "consentRecorded": true,
+        "customConsentCopy": false
+      }
+    },
+    {
+      "projection": "api/flow-projections/branch-3-done.json",
+      "flow": "flows/v2/projection-branch.json",
+      "position": {
+        "current": "done",
+        "exited": [
+          {
+            "stepId": "consent",
+            "port": "next"
+          },
+          {
+            "stepId": "id_card",
+            "port": "next"
+          },
+          {
+            "stepId": "age_route",
+            "port": "else"
+          }
+        ],
+        "verificationStatuses": {
+          "id_card": "passed"
+        },
+        "consentRecorded": true,
+        "customConsentCopy": false
+      }
+    },
+    {
+      "projection": "api/flow-projections/exhausted-1-consent.json",
+      "flow": "flows/v2/projection-exhausted.json",
+      "position": {
+        "current": "consent",
+        "exited": [],
+        "verificationStatuses": {},
+        "consentRecorded": false,
+        "customConsentCopy": false
+      }
+    },
+    {
+      "projection": "api/flow-projections/exhausted-2-id-card.json",
+      "flow": "flows/v2/projection-exhausted.json",
+      "position": {
+        "current": "id_card",
+        "exited": [
+          {
+            "stepId": "consent",
+            "port": "next"
+          }
+        ],
+        "verificationStatuses": {},
+        "consentRecorded": true,
+        "customConsentCopy": false
+      }
+    },
+    {
+      "projection": "api/flow-projections/exhausted-3-proof.json",
+      "flow": "flows/v2/projection-exhausted.json",
+      "position": {
+        "current": "proof",
+        "exited": [
+          {
+            "stepId": "consent",
+            "port": "next"
+          },
+          {
+            "stepId": "id_card",
+            "port": "exhausted"
+          }
+        ],
+        "verificationStatuses": {
+          "id_card": "failed"
+        },
+        "consentRecorded": true,
+        "customConsentCopy": false
+      }
+    },
+    {
+      "projection": "api/flow-projections/exhausted-4-done.json",
+      "flow": "flows/v2/projection-exhausted.json",
+      "position": {
+        "current": "done",
+        "exited": [
+          {
+            "stepId": "consent",
+            "port": "next"
+          },
+          {
+            "stepId": "id_card",
+            "port": "exhausted"
+          },
+          {
+            "stepId": "proof",
+            "port": "next"
+          }
+        ],
+        "verificationStatuses": {
+          "id_card": "failed",
+          "proof": "passed"
+        },
+        "consentRecorded": true,
+        "customConsentCopy": false
+      }
+    },
+    {
+      "projection": "api/flow-projections/step-screen.json",
+      "flow": "flows/v2/projection-screen.json",
+      "position": {
+        "current": "extra_details",
+        "exited": [
+          {
+            "stepId": "consent",
+            "port": "next"
+          }
+        ],
+        "verificationStatuses": {},
+        "consentRecorded": true,
+        "customConsentCopy": false
+      }
+    },
+    {
+      "projection": "api/flow-projections/step-action.json",
+      "flow": "flows/v2/projection-action.json",
+      "position": {
+        "current": "consent",
+        "exited": [],
+        "verificationStatuses": {},
+        "consentRecorded": false,
+        "customConsentCopy": false
+      }
+    },
+    {
+      "projection": "api/flow-projections/step-branch.json",
+      "flow": "flows/v2/projection-branch-step.json",
+      "position": {
+        "current": "id_card",
+        "exited": [
+          {
+            "stepId": "consent",
+            "port": "next"
+          }
+        ],
+        "verificationStatuses": {},
+        "consentRecorded": true,
+        "customConsentCopy": false
+      }
+    },
+    {
+      "projection": "api/flow-projections/step-consent-custom-copy.json",
+      "flow": "flows/v2/projection-custom-consent.json",
+      "position": {
+        "current": "consent",
+        "exited": [],
+        "verificationStatuses": {},
+        "consentRecorded": false,
+        "customConsentCopy": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "data": {
+    "type": "theme-asset",
+    "id": "tsa_01M5CN00000000000000009A43",
+    "attributes": {
+      "kind": "font",
+      "media-type": "font/woff2",
+      "byte-size": 48210,
+      "width": null,
+      "height": null,
+      "licence-attestation": {
+        "by": {
+          "type": "user",
+          "id": "usr_01M5CJXHG03PHEQZPRWAH2RXM5"
+        },
+        "at": "2026-10-20T11:56:00.000Z"
+      },
+      "unicode-range": "U+0000-00FF, U+0131, U+0152-0153",
+      "created-at": "2026-10-20T11:56:00.000Z"
+    }
+  }
+}

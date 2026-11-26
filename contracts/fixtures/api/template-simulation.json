@@ -1,0 +1,77 @@
+{
+  "data": {
+    "type": "inquiry-template-simulation",
+    "id": "itmplv_01M5CN00000000000000009A01",
+    "attributes": {
+      "simulated": true,
+      "steps": [
+        {
+          "step-id": "consent",
+          "step-type": "consent",
+          "port": "next",
+          "route": null,
+          "waited": false,
+          "notes": [],
+          "facts": []
+        },
+        {
+          "step-id": "id_card",
+          "step-type": "government_id",
+          "port": "next",
+          "route": null,
+          "waited": false,
+          "notes": [],
+          "facts": []
+        },
+        {
+          "step-id": "age_route",
+          "step-type": "branch",
+          "port": "route:minor",
+          "route": {
+            "key": "minor",
+            "condition-result": true,
+            "on-null": null,
+            "null-paths": []
+          },
+          "waited": false,
+          "notes": [],
+          "facts": [
+            {
+              "path": "verifications.id_card.age-years",
+              "tier": "R/H",
+              "stage": "beta",
+              "source": "verification"
+            }
+          ]
+        },
+        {
+          "step-id": "extra_details",
+          "step-type": "screen",
+          "port": "next",
+          "route": null,
+          "waited": false,
+          "notes": [],
+          "facts": []
+        },
+        {
+          "step-id": "done",
+          "step-type": "completion",
+          "port": null,
+          "route": null,
+          "waited": false,
+          "notes": [],
+          "facts": []
+        }
+      ],
+      "outcome": {
+        "status": "completed",
+        "flow-outcome": {
+          "verification-types-on-path": ["government-id"],
+          "fallbacks-taken": [],
+          "flags": []
+        }
+      },
+      "halted": null
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "data": {
+    "type": "event",
+    "id": "evt_01M5CN0000000000000011A515",
+    "attributes": {
+      "name": "consent-record.declined",
+      "payload": {
+        "data": {
+          "type": "consent-record",
+          "id": "cnsr_01M5CN0000000000000011A320",
+          "attributes": {
+            "side": "source",
+            "outcome": "declined",
+            "status": "declined",
+            "purpose": "share.reuse-kyc",
+            "recipient-organization-id": "org_01M5CN0000000000000011A020",
+            "recipient-name": "Example Partner",
+            "data-categories": [
+              "identity-fields",
+              "contact-fields",
+              "document-images",
+              "biometric",
+              "check-results"
+            ],
+            "explicit-biometric": false,
+            "text": {
+              "locale": "en",
+              "keys": ["share.consent.source"],
+              "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            "biometric-text-sha256": null,
+            "method": "flow",
+            "witnessed": true,
+            "evidence": {
+              "session-id": "iqse_01M5CJZC30W7PFE0GD30HJWEA4",
+              "accepted-at": null,
+              "declined-at": "2026-10-20T12:08:00.000Z"
+            },
+            "evidence-reference": null,
+            "ip-address": null,
+            "user-agent": null,
+            "text-body": null,
+            "expires-at": "2026-11-03T12:08:00.000Z",
+            "withdrawn-at": null,
+            "withdrawn-via": null,
+            "withdrawal-reason": null,
+            "redacted-at": null,
+            "created-at": "2026-10-20T12:08:00.000Z"
+          },
+          "relationships": {
+            "subject": {
+              "data": {
+                "type": "inquiry",
+                "id": "inq_01M5CJXHG07XPHF3HRM6NREDH7"
+              }
+            },
+            "connection": {
+              "data": {
+                "type": "connect/connection",
+                "id": "cxn_01M5CN0000000000000011A100"
+              }
+            },
+            "share-token": {
+              "data": null
+            }
+          }
+        }
+      },
+      "simulated": false,
+      "created-at": "2026-10-20T12:08:00.000Z"
+    }
+  }
+}

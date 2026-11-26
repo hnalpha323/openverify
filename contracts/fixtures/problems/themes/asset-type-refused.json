@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Unsupported Media Type",
+  "status": 415,
+  "detail": "A theme asset is a PNG, JPEG or WebP logo or a WOFF2 font.",
+  "instance": "/api/v1/theme-sets/assets",
+  "requestId": "00000000-0000-4000-8000-000000009a42",
+  "code": "asset_type_refused"
+}

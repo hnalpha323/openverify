@@ -1,0 +1,902 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:openverify:flow-spec:1",
+  "title": "OpenVerify verification flow",
+  "description": "Server-driven verification flow. Cross-reference rules are enforced by parseFlow() in @openverify/flow-spec.",
+  "type": "object",
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "specVersion": {
+          "type": "number",
+          "const": 1
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$"
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      },
+      "required": ["specVersion", "id", "version", "name"],
+      "additionalProperties": false
+    },
+    "steps": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/$defs/ConsentStep"
+          },
+          {
+            "$ref": "#/$defs/FormStep"
+          },
+          {
+            "$ref": "#/$defs/GovernmentIdStep"
+          },
+          {
+            "$ref": "#/$defs/SelfieStep"
+          },
+          {
+            "$ref": "#/$defs/DocumentStep"
+          },
+          {
+            "$ref": "#/$defs/PhoneOtpStep"
+          },
+          {
+            "$ref": "#/$defs/EmailOtpStep"
+          },
+          {
+            "$ref": "#/$defs/DatabaseStep"
+          },
+          {
+            "$ref": "#/$defs/AamvaStep"
+          },
+          {
+            "$ref": "#/$defs/NfcStep"
+          },
+          {
+            "$ref": "#/$defs/CryptoWalletStep"
+          },
+          {
+            "$ref": "#/$defs/DatabaseBusinessStep"
+          },
+          {
+            "$ref": "#/$defs/BusinessWebsiteStep"
+          },
+          {
+            "$ref": "#/$defs/DeviceHandoffStep"
+          },
+          {
+            "$ref": "#/$defs/CompletionStep"
+          },
+          {
+            "$ref": "#/$defs/FailureStep"
+          }
+        ]
+      }
+    },
+    "transitions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Transition"
+      }
+    }
+  },
+  "required": ["metadata", "steps", "transitions"],
+  "additionalProperties": false,
+  "$defs": {
+    "ConsentStep": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": {
+          "type": "string",
+          "const": "consent"
+        },
+        "textKeys": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 200,
+            "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+          }
+        },
+        "optionalTextKeys": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 200,
+            "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+          },
+          "uniqueItems": true
+        },
+        "required": {
+          "type": "boolean"
+        }
+      },
+      "required": ["id", "type", "textKeys", "required"],
+      "additionalProperties": false
+    },
+    "FormStep": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": {
+          "type": "string",
+          "const": "form"
+        },
+        "fields": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "const": "text"
+                  },
+                  "name": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]{0,63}$"
+                  },
+                  "labelKey": {
+                    "type": "string",
+                    "maxLength": 200,
+                    "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+                  },
+                  "required": {
+                    "type": "boolean"
+                  },
+                  "validation": {
+                    "type": "object",
+                    "properties": {
+                      "minLength": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 9007199254740991
+                      },
+                      "maxLength": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 10000
+                      },
+                      "pattern": {
+                        "type": "string",
+                        "maxLength": 500
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "required": ["type", "name", "labelKey", "required"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "const": "date"
+                  },
+                  "name": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]{0,63}$"
+                  },
+                  "labelKey": {
+                    "type": "string",
+                    "maxLength": 200,
+                    "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+                  },
+                  "required": {
+                    "type": "boolean"
+                  },
+                  "validation": {
+                    "type": "object",
+                    "properties": {
+                      "min": {
+                        "type": "string",
+                        "format": "date",
+                        "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+                      },
+                      "max": {
+                        "type": "string",
+                        "format": "date",
+                        "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "required": ["type", "name", "labelKey", "required"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "const": "email"
+                  },
+                  "name": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]{0,63}$"
+                  },
+                  "labelKey": {
+                    "type": "string",
+                    "maxLength": 200,
+                    "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+                  },
+                  "required": {
+                    "type": "boolean"
+                  }
+                },
+                "required": ["type", "name", "labelKey", "required"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "const": "phone"
+                  },
+                  "name": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]{0,63}$"
+                  },
+                  "labelKey": {
+                    "type": "string",
+                    "maxLength": 200,
+                    "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+                  },
+                  "required": {
+                    "type": "boolean"
+                  },
+                  "validation": {
+                    "type": "object",
+                    "properties": {
+                      "allowedCountries": {
+                        "minItems": 1,
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "pattern": "^[A-Z]{2}$"
+                        },
+                        "uniqueItems": true
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "required": ["type", "name", "labelKey", "required"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "const": "select"
+                  },
+                  "name": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]{0,63}$"
+                  },
+                  "labelKey": {
+                    "type": "string",
+                    "maxLength": 200,
+                    "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+                  },
+                  "required": {
+                    "type": "boolean"
+                  },
+                  "options": {
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "value": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 200
+                        },
+                        "labelKey": {
+                          "type": "string",
+                          "maxLength": 200,
+                          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+                        }
+                      },
+                      "required": ["value", "labelKey"],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "required": ["type", "name", "labelKey", "required", "options"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "const": "country"
+                  },
+                  "name": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]{0,63}$"
+                  },
+                  "labelKey": {
+                    "type": "string",
+                    "maxLength": 200,
+                    "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+                  },
+                  "required": {
+                    "type": "boolean"
+                  },
+                  "validation": {
+                    "type": "object",
+                    "properties": {
+                      "allowedCountries": {
+                        "minItems": 1,
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "pattern": "^[A-Z]{2}$"
+                        },
+                        "uniqueItems": true
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "required": ["type", "name", "labelKey", "required"],
+                "additionalProperties": false
+              }
+            ]
+          }
+        }
+      },
+      "required": ["id", "type", "fields"],
+      "additionalProperties": false
+    },
+    "GovernmentIdStep": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": {
+          "type": "string",
+          "const": "government_id"
+        },
+        "sides": {
+          "type": "string",
+          "enum": ["front", "back", "both"]
+        },
+        "allowedCountries": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z]{2}$"
+          },
+          "uniqueItems": true
+        },
+        "allowedIdClasses": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "passport",
+              "passport_card",
+              "drivers_license",
+              "national_id",
+              "residence_permit",
+              "visa",
+              "work_permit",
+              "military_id",
+              "voter_id",
+              "travel_document"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "maxAttempts": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "captureMethods": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["upload", "camera"]
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": ["id", "type", "sides", "maxAttempts", "captureMethods"],
+      "additionalProperties": false
+    },
+    "SelfieStep": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": {
+          "type": "string",
+          "const": "selfie"
+        },
+        "poses": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["center", "left", "right"]
+          },
+          "uniqueItems": true
+        },
+        "liveness": {
+          "type": "string",
+          "enum": ["passive", "active"]
+        },
+        "maxAttempts": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        }
+      },
+      "required": ["id", "type", "poses", "liveness", "maxAttempts"],
+      "additionalProperties": false
+    },
+    "DocumentStep": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": {
+          "type": "string",
+          "const": "document"
+        },
+        "documentTypes": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["utility_bill", "bank_statement", "lease", "pay_stub", "tax_document"]
+          },
+          "uniqueItems": true
+        },
+        "captureMethods": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["upload", "camera"]
+          },
+          "uniqueItems": true
+        },
+        "maxAttempts": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        }
+      },
+      "required": ["id", "type", "documentTypes", "captureMethods"],
+      "additionalProperties": false
+    },
+    "PhoneOtpStep": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": {
+          "type": "string",
+          "const": "phone_otp"
+        },
+        "allowedCountries": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z]{2}$"
+          },
+          "uniqueItems": true
+        },
+        "codeLength": {
+          "type": "integer",
+          "minimum": 6,
+          "maximum": 10
+        },
+        "allowVoip": {
+          "type": "boolean"
+        },
+        "maxAttempts": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        }
+      },
+      "required": ["id", "type", "allowedCountries"],
+      "additionalProperties": false
+    },
+    "EmailOtpStep": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": {
+          "type": "string",
+          "const": "email_otp"
+        },
+        "codeLength": {
+          "type": "integer",
+          "minimum": 6,
+          "maximum": 10
+        },
+        "maxAttempts": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        }
+      },
+      "required": ["id", "type"],
+      "additionalProperties": false
+    },
+    "DatabaseStep": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": {
+          "type": "string",
+          "const": "database"
+        },
+        "fields": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "name_first",
+              "name_middle",
+              "name_last",
+              "birthdate",
+              "address_street_1",
+              "address_street_2",
+              "address_city",
+              "address_subdivision",
+              "address_postal_code",
+              "address_country_code",
+              "identification_number",
+              "phone_number",
+              "email_address"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "requiredFields": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "name_first",
+              "name_middle",
+              "name_last",
+              "birthdate",
+              "address_street_1",
+              "address_street_2",
+              "address_city",
+              "address_subdivision",
+              "address_postal_code",
+              "address_country_code",
+              "identification_number",
+              "phone_number",
+              "email_address"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "maxAttempts": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        }
+      },
+      "required": ["id", "type", "fields"],
+      "additionalProperties": false
+    },
+    "AamvaStep": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": {
+          "type": "string",
+          "const": "aamva"
+        },
+        "source": {
+          "type": "string",
+          "enum": ["government_id", "form"]
+        },
+        "maxAttempts": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        }
+      },
+      "required": ["id", "type", "source"],
+      "additionalProperties": false
+    },
+    "NfcStep": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": {
+          "type": "string",
+          "const": "nfc"
+        },
+        "androidOnly": {
+          "type": "boolean",
+          "const": true
+        },
+        "maxAttempts": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        }
+      },
+      "required": ["id", "type", "androidOnly"],
+      "additionalProperties": false
+    },
+    "CryptoWalletStep": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": {
+          "type": "string",
+          "const": "crypto_wallet"
+        },
+        "chains": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 64
+          },
+          "uniqueItems": true
+        },
+        "signing": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["wallet", "paste"]
+          },
+          "uniqueItems": true
+        },
+        "maxAttempts": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        }
+      },
+      "required": ["id", "type", "chains", "signing"],
+      "additionalProperties": false
+    },
+    "DatabaseBusinessStep": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": {
+          "type": "string",
+          "const": "database_business"
+        },
+        "collectAssociatedPersons": {
+          "type": "boolean"
+        },
+        "maxAttempts": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        }
+      },
+      "required": ["id", "type"],
+      "additionalProperties": false
+    },
+    "BusinessWebsiteStep": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": {
+          "type": "string",
+          "const": "business_website"
+        },
+        "maxAttempts": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        }
+      },
+      "required": ["id", "type"],
+      "additionalProperties": false
+    },
+    "DeviceHandoffStep": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": {
+          "type": "string",
+          "const": "device_handoff"
+        },
+        "methods": {
+          "minItems": 1,
+          "maxItems": 3,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["qr", "email", "sms"]
+          }
+        },
+        "qrTtlSeconds": {
+          "type": "integer",
+          "minimum": 120,
+          "maximum": 900
+        },
+        "linkTtlSeconds": {
+          "type": "integer",
+          "minimum": 300,
+          "maximum": 3600
+        },
+        "confirmationCode": {
+          "type": "boolean"
+        },
+        "skipOnMobile": {
+          "type": "boolean"
+        },
+        "allowContinueHere": {
+          "type": "boolean"
+        }
+      },
+      "required": ["id", "type"],
+      "additionalProperties": false
+    },
+    "CompletionStep": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": {
+          "type": "string",
+          "const": "completion"
+        },
+        "messageKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        }
+      },
+      "required": ["id", "type"],
+      "additionalProperties": false
+    },
+    "FailureStep": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "type": {
+          "type": "string",
+          "const": "failure"
+        },
+        "messageKey": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*$"
+        }
+      },
+      "required": ["id", "type"],
+      "additionalProperties": false
+    },
+    "Transition": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "to": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+          "description": "Step identifier, unique within the flow."
+        },
+        "condition": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {}
+        }
+      },
+      "required": ["from", "to"],
+      "additionalProperties": false
+    }
+  }
+}

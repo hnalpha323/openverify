@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "An archived transaction type takes no new transactions.",
+  "instance": "/api/v1/transactions",
+  "requestId": "00000000-0000-4000-8000-000000000907",
+  "code": "transaction_type_archived"
+}

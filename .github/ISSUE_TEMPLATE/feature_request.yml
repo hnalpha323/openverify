@@ -1,0 +1,38 @@
+name: Feature request
+description: Suggest a new capability, check or improvement.
+title: '[Feature]: '
+labels: ['enhancement', 'triage']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the suggestion. For an open-ended idea, a [discussion](https://github.com/hnalpha323/openverify/discussions/categories/ideas) is often a better start.
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What are you trying to do, and what stops you today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: The proposal
+      description: What should OpenVerify do? For a new check, say what it detects, what it needs as input, and what it cannot detect.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you considered
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Standards, regulations or data sources involved, with their licences if any. Data sources must be under a permissive licence (CONTRIBUTING.md, rule 4).
+  - type: checkboxes
+    id: contribute
+    attributes:
+      label: Contributing
+      options:
+        - label: I would like to work on this myself.

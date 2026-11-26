@@ -1,0 +1,17 @@
+# kind.sh fixtures (Workflow 11C chart-policy-11c; C265.4): the chart's namespace under the restricted
+# Pod Security Standard (enforced, so a pod that is not restricted is refused at admission, C264.1),
+# and the stores' namespace beside it, which the chart's policies reach by selector.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: openverify
+  labels:
+    pod-security.kubernetes.io/enforce: restricted
+    pod-security.kubernetes.io/enforce-version: latest
+    pod-security.kubernetes.io/warn: restricted
+    pod-security.kubernetes.io/audit: restricted
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: openverify-fixtures

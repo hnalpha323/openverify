@@ -1,0 +1,11 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The serialised fields pass their size limit.",
+  "instance": "/api/v1/inquiries",
+  "requestId": "00000000-0000-4000-8000-000000009a04",
+  "code": "fields_too_large",
+  "size": 262145,
+  "limit": 262144
+}

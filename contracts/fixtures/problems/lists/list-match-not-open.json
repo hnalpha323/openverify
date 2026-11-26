@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "The list match was already dismissed.",
+  "instance": "/api/v1/list-matches/lmt_01M5CK3190XEVBM5ZXA76E1JSN/dismiss",
+  "requestId": "00000000-0000-4000-8000-000000000807",
+  "code": "list_match_not_open"
+}

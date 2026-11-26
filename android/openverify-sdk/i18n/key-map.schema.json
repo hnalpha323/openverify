@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:openverify:android:key-map:1",
+  "title": "Android SDK string to web catalog key map (C199.1)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "description",
+    "entries"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "format": {
+      "const": 1
+    },
+    "description": {
+      "type": "string"
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resource",
+          "flowKey",
+          "catalogKey",
+          "legal"
+        ],
+        "properties": {
+          "resource": {
+            "type": "string",
+            "pattern": "^openverify_[a-z0-9_]+$"
+          },
+          "flowKey": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*$"
+          },
+          "catalogKey": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)+$"
+          },
+          "legal": {
+            "enum": [
+              "consent",
+              "notice",
+              "decision",
+              "retention",
+              null
+            ]
+          }
+        }
+      }
+    },
+    "serverComposed": {
+      "type": "array",
+      "description": "C238.3, C238.7 (Workflow 11A): legal copy keys the server composes into a client view; never an SDK string.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "flowKey",
+          "legal",
+          "contract"
+        ],
+        "properties": {
+          "flowKey": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*$"
+          },
+          "legal": {
+            "enum": [
+              "consent",
+              "notice",
+              "decision",
+              "retention"
+            ]
+          },
+          "contract": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

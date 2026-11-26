@@ -1,0 +1,16 @@
+{
+  "data": {
+    "type": "user-audit-log",
+    "id": "aud_01M5CK6PF09NC66VKSGJ7SN9DG",
+    "attributes": {
+      "action": "inquiry.approved",
+      "actor": { "type": "user", "id": "usr_01M5CJXHG03PHEQZPRWAH2RXM5" },
+      "resource-type": "inquiry",
+      "resource-id": "inq_01M5CJXHG07XPHF3HRM6NREDH7",
+      "ip-address": "198.51.100.23",
+      "user-agent": "Mozilla/5.0 (X11; Linux x86_64) OpenVerifyTest/1.0",
+      "metadata": { "from": "completed", "to": "approved" },
+      "created-at": "2026-10-20T12:10:00.000Z"
+    }
+  }
+}

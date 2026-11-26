@@ -1,0 +1,106 @@
+{
+  "data": [
+    {
+      "type": "decision",
+      "id": "idec_01M5CM00000000000000000020",
+      "attributes": {
+        "kind": "decline",
+        "actor": {
+          "type": "workflow-run",
+          "id": "wfr_01M5CM00000000000000000006"
+        },
+        "run": {
+          "workflow-id": "wfl_01M5CM00000000000000000001",
+          "workflow-version-id": "wfv_01M5CM00000000000000000002",
+          "node-id": "decline_it",
+          "routes": [
+            {
+              "node-id": "check_report",
+              "route-key": "matched"
+            }
+          ],
+          "condition-sha256": ["0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f"],
+          "code-sha256": []
+        },
+        "flow": null,
+        "solely-automated": true,
+        "human-step": null,
+        "evidence": [
+          {
+            "kind": "report-match",
+            "id": "rpm_01M5CJXHG07XPHF3HRM6NREDH8",
+            "name": null,
+            "status": "matched",
+            "tier": "H",
+            "stage": "beta",
+            "confidence": 0.82
+          }
+        ],
+        "pending-evidence": [
+          {
+            "kind": "list-screening",
+            "id": null,
+            "name": null
+          }
+        ],
+        "decision-basis": "contract",
+        "contest-route": {
+          "url": "https://example.com/contest",
+          "contact": "review@example.test"
+        },
+        "biometric-basis": null,
+        "comment": null,
+        "needs-review": false,
+        "human-review-pending": false,
+        "error-code": null,
+        "test-run-id": null,
+        "created-at": "2026-10-20T12:10:00.000Z"
+      },
+      "relationships": {
+        "subject": {
+          "data": {
+            "type": "inquiry",
+            "id": "inq_01M5CJXHG07XPHF3HRM6NREDH7"
+          }
+        }
+      }
+    },
+    {
+      "type": "decision",
+      "id": "idec_01M5CM00000000000000000021",
+      "attributes": {
+        "kind": "reopen",
+        "actor": {
+          "type": "user",
+          "id": "usr_01M5CJZC30W7PFE0GD30HJWEC6"
+        },
+        "run": null,
+        "flow": null,
+        "solely-automated": null,
+        "human-step": null,
+        "evidence": [],
+        "pending-evidence": [],
+        "decision-basis": null,
+        "contest-route": null,
+        "biometric-basis": null,
+        "comment": null,
+        "needs-review": false,
+        "human-review-pending": true,
+        "error-code": null,
+        "test-run-id": null,
+        "created-at": "2026-10-20T12:20:00.000Z"
+      },
+      "relationships": {
+        "subject": {
+          "data": {
+            "type": "inquiry",
+            "id": "inq_01M5CJXHG07XPHF3HRM6NREDH7"
+          }
+        }
+      }
+    }
+  ],
+  "links": {
+    "next": null
+  }
+}

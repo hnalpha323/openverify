@@ -1,0 +1,34 @@
+{
+  "data": {
+    "type": "report-template",
+    "id": "rptp_01M5Y5Z400VF5JFP7ER3C45AY2",
+    "attributes": {
+      "name": "Default watchlist",
+      "report-type": "watchlist",
+      "status": "active",
+      "current-version": {
+        "id": "rptpv_01M5Y5Z400BSXX21JQ991CDRK5",
+        "version-number": 1,
+        "config": {
+          "recurrence-interval-days": 30,
+          "pause-on-match": false,
+          "resume-delay-minutes": 30,
+          "search-lists": ["openverify-sandbox"],
+          "max-list-age-hours": 48,
+          "name-matching": {
+            "preset": "tolerant"
+          },
+          "birthdate-matching": "year_plus_minus_one",
+          "birthdate-filter": "penalty",
+          "country-fields": ["birthplace", "citizenship", "nationality", "residency"],
+          "country-filter": "penalty",
+          "screen-weak-aliases": false
+        },
+        "created-at": "2026-10-27T09:00:00.000Z",
+        "published-at": "2026-10-27T09:00:00.000Z"
+      },
+      "created-at": "2026-10-27T09:00:00.000Z",
+      "updated-at": "2026-10-27T09:00:00.000Z"
+    }
+  }
+}

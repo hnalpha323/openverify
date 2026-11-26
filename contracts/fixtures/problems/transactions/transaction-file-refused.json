@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The file does not fit this field.",
+  "instance": "/api/v1/transactions/txn_01M5CK3190XEVBM5ZXA76E1JSN/files/invoice",
+  "requestId": "00000000-0000-4000-8000-000000000912",
+  "code": "transaction_file_refused"
+}

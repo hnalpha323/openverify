@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "A review rule tests a signal the template does not collect, or compares it with a value of another type.",
+  "instance": "/api/v1/inquiry-template-versions/itmplv_01M5CK3190XEVBM5ZXA76E1JSN/publish",
+  "requestId": "00000000-0000-4000-8000-000000000702",
+  "code": "signal_rule_invalid",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/signal-config/review-rules/0",
+      "detail": "does not fit the signal"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  French copy of values/strings_retry.xml, machine-drafted by android-i18n (Workflow 10A, C199.1;
+  i18n/review-status.json): where the hosted web flow has the same English text, its
+  French words are used, so both clients say the same thing. Compose Multiplatform resources:
+  positional placeholders only, ' and " written as they are, no isolate or other bidi control
+  (ResourcesTest).
+-->
+<resources>
+    <string name="openverify_retry_document_type_not_accepted">Ce type de document n’est pas accepté ici. Téléversez l’un des types de documents indiqués par cette étape.</string>
+    <string name="openverify_retry_document_unreadable">Nous n’avons pas pu ouvrir ou lire votre document. Téléversez une photo nette ou un PDF du document entier.</string>
+    <string name="openverify_retry_document_password_protected">Votre PDF est protégé par un mot de passe. Téléversez une copie sans mot de passe, ou une photo du document.</string>
+    <string name="openverify_retry_document_too_large">Votre fichier est trop volumineux. Téléversez un fichier plus petit, par exemple une photo du document ou un PDF avec moins de pages.</string>
+    <string name="openverify_retry_document_too_many_pages">Votre PDF comporte trop de pages. Téléversez uniquement les pages qui montrent votre nom, votre adresse et la date.</string>
+    <string name="openverify_retry_name_not_found">Nous n’avons trouvé aucun nom sur votre document. Téléversez un document qui indique votre nom complet.</string>
+    <string name="openverify_retry_address_not_found">Nous n’avons trouvé aucune adresse sur votre document. Téléversez un document qui indique votre adresse complète.</string>
+    <string name="openverify_retry_issue_date_not_found">Nous n’avons pas trouvé la date d’émission de votre document. Téléversez un document qui indique sa date d’émission.</string>
+    <string name="openverify_retry_issuer_not_found">Nous n’avons pas trouvé qui a émis votre document. Téléversez un document qui indique l’entreprise ou l’administration émettrice.</string>
+    <string name="openverify_retry_document_expired">Votre document a expiré. Téléversez-en un qui est encore valide.</string>
+    <string name="openverify_retry_document_too_old">Votre document est trop ancien. Téléversez-en un plus récent.</string>
+    <string name="openverify_retry_po_box_detected">Une boîte postale ne peut pas servir d’adresse. Saisissez l’adresse où vous habitez.</string>
+    <string name="openverify_retry_otp_attempts_exhausted">Trop de codes incorrects ont été saisis. Recommencez pour obtenir un nouveau code.</string>
+    <string name="openverify_retry_otp_not_confirmed">Le code n’a pas été confirmé à temps. Recommencez pour obtenir un nouveau code.</string>
+    <string name="openverify_retry_domain_not_found">La partie de votre adresse e-mail après le @ n’existe pas. Vérifiez qu’il n’y a pas de faute de frappe.</string>
+    <string name="openverify_retry_domain_rejects_mail">Ce domaine de messagerie n’accepte pas les e-mails. Utilisez une autre adresse e-mail.</string>
+    <string name="openverify_retry_no_mail_server">Aucun e-mail ne peut être distribué à cette adresse. Vérifiez-la, ou utilisez une autre adresse e-mail.</string>
+    <string name="openverify_retry_address_invalid">Cette adresse de portefeuille n’est pas valide pour le réseau choisi. Vérifiez que vous avez copié l’adresse entière.</string>
+    <string name="openverify_retry_address_checksum_invalid">Cette adresse de portefeuille contient une faute de frappe. Copiez-la à nouveau depuis votre portefeuille au lieu de la saisir.</string>
+    <string name="openverify_retry_signature_invalid">La signature n’a pas pu être lue. Signez à nouveau le message dans votre portefeuille et collez la signature entière.</string>
+    <string name="openverify_retry_signature_address_mismatch">Le message a été signé par une autre adresse de portefeuille. Signez-le avec l’adresse que vous avez saisie.</string>
+    <string name="openverify_retry_expected_address_mismatch">Ce n’est pas l’adresse de portefeuille qu’on vous a demandé de vérifier. Utilisez l’adresse attendue.</string>
+    <string name="openverify_retry_country_not_enabled">Les entreprises de ce pays ne peuvent pas être vérifiées ici. Vérifiez le pays choisi.</string>
+    <string name="openverify_retry_domain_not_resolving">Nous n’avons pas trouvé ce site web. Vérifiez qu’il n’y a pas de faute de frappe dans l’adresse.</string>
+    <string name="openverify_retry_document_name_mismatch">Le nom sur votre document ne correspond pas au vôtre. Téléversez un document à votre nom.</string>
+</resources>

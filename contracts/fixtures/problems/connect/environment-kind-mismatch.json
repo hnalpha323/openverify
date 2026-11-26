@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The destination organisation has no environment of this kind.",
+  "instance": "/api/v1/connect/share-tokens",
+  "requestId": "00000000-0000-4000-8000-00000011a006",
+  "code": "environment_kind_mismatch"
+}

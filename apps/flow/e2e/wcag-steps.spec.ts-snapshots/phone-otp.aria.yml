@@ -1,0 +1,13 @@
+- main:
+    - region "Confirm your phone number":
+        - heading "Confirm your phone number" [level=1]
+        - paragraph: We will send a code to your phone by text message. Your usual message rates may apply.
+        - paragraph: Attempt 1 of 5
+        - text: Country
+        - combobox "Country":
+            - option /United Kingdom \(\+\d+\)/
+            - option "United States (+1)" [selected]
+        - text: ''
+        - paragraph: You can leave out the country code.
+        - textbox "Phone number"
+        - button "Send code"

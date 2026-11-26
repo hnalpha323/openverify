@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "The destination inquiry is no longer open.",
+  "instance": "/api/v1/connect/share-tokens/cnst_01M5CN0000000000000011A200/redeem",
+  "requestId": "00000000-0000-4000-8000-00000011a022",
+  "code": "destination_inquiry_not_open"
+}

@@ -1,0 +1,5 @@
+{
+  "$comment": "C92.6: our own additions to and removals from the pinned hosting and VPN ASN seeds, one row per ASN and list, each with its evidence. Starts empty.",
+  "format": "openverify/asn-overrides/v1",
+  "overrides": []
+}

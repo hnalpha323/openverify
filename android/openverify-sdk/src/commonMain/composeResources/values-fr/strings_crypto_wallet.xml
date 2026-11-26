@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  French copy of values/strings_crypto_wallet.xml, machine-drafted by android-i18n (Workflow 10A, C199.1;
+  i18n/review-status.json): where the hosted web flow has the same English text, its
+  French words are used, so both clients say the same thing. Compose Multiplatform resources:
+  positional placeholders only, ' and " written as they are, no isolate or other bidi control
+  (ResourcesTest).
+-->
+<resources>
+    <string name="openverify_crypto_title">Prouvez que vous contrôlez votre portefeuille</string>
+    <string name="openverify_crypto_intro">Choisissez le réseau et saisissez l’adresse de votre portefeuille. Nous vous montrons ensuite un message à signer dans l’application de votre portefeuille.</string>
+    <string name="openverify_crypto_chain">Réseau</string>
+    <string name="openverify_crypto_evm_chain">Réseau EVM %1$s</string>
+    <string name="openverify_crypto_address">Adresse du portefeuille</string>
+    <string name="openverify_crypto_get_message">Obtenir le message à signer</string>
+    <string name="openverify_crypto_getting_message">Récupération du message…</string>
+    <string name="openverify_crypto_message_title">Signez ce message</string>
+    <string name="openverify_crypto_message_instructions">Copiez ce message, signez-le dans l’application de votre portefeuille avec l’adresse saisie, puis collez la signature ci-dessous.</string>
+    <string name="openverify_crypto_copy">Copier le message</string>
+    <string name="openverify_crypto_copied">Message copié.</string>
+    <plurals name="openverify_crypto_expires_in">
+        <item quantity="one">Le message expire dans %1$d minute.</item>
+        <item quantity="other">Le message expire dans %1$d minutes.</item>
+    </plurals>
+    <string name="openverify_crypto_signature">Signature</string>
+    <string name="openverify_crypto_signed_message">Message signé, si votre portefeuille en affiche un</string>
+    <string name="openverify_crypto_signed_message_hint">Certains portefeuilles Solana ajoutent du contenu au message avant de le signer. Si le vôtre affiche le message qu’il a signé, collez-le aussi ici.</string>
+    <string name="openverify_crypto_submit">Envoyer la signature</string>
+    <string name="openverify_crypto_submitting">Envoi de votre signature…</string>
+    <string name="openverify_crypto_change">Utiliser un autre portefeuille</string>
+    <string name="openverify_crypto_new_message">Obtenir un nouveau message</string>
+    <string name="openverify_crypto_error_chain_not_offered">Ce réseau ne peut pas être utilisé ici. Choisissez l’un des réseaux proposés.</string>
+    <string name="openverify_crypto_error_address_invalid">Cette adresse n’est pas valide pour le réseau choisi. Vérifiez que vous avez copié l’adresse entière.</string>
+    <string name="openverify_crypto_error_expected_address">Ce n’est pas l’adresse de portefeuille qu’on vous a demandé de vérifier. Utilisez l’adresse attendue.</string>
+    <string name="openverify_crypto_error_challenge_invalid">Ce message a expiré ou a été remplacé. Obtenez un nouveau message à signer.</string>
+    <string name="openverify_crypto_error_signature_too_long">Cette signature est trop longue. Collez uniquement la signature.</string>
+    <string name="openverify_crypto_error_signed_message_too_long">Ce message signé est trop long. Collez uniquement les octets signés par votre portefeuille.</string>
+    <string name="openverify_crypto_restarted">Votre tentative précédente s’est arrêtée parce que trop de messages ont été demandés. Recommencez.</string>
+</resources>

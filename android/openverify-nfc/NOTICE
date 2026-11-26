@@ -1,0 +1,96 @@
+OpenVerify NFC module (openverify-nfc)
+
+This module is shipped separately from the OpenVerify core Android SDK
+(openverify-sdk). The core SDK is licensed under the Apache License 2.0
+and does not depend on this module.
+
+This module's own code is licensed under LGPL-3.0 (LGPL-3.0-or-later).
+
+The module holds OpenVerify's reader of the chip in electronic passports
+and identity cards. It declares the android.permission.NFC permission and
+the android.hardware.nfc feature (not required). It depends on the
+libraries below by Maven coordinates, never shaded or copied: its AAR
+holds none of their code, and an app that adds the module receives them
+through the module's POM.
+
+
+Dependencies (adopted in Phase 10, Workflow 10E, 2026-11-11)
+
+  JMRTD     (org.jmrtd:jmrtd, 0.8.9)              https://jmrtd.org/
+            License: LGPL-2.1-or-later
+            (the source files say "version 2.1 ... or (at your option) any
+            later version"; the POM says "LGPL" without a version)
+
+  cert-cvc  (org.ejbca.cvc:cert-cvc, 1.4.13)           a dependency of JMRTD
+            License: LGPL-2.1-or-later
+
+  SCUBA     (net.sf.scuba:scuba-smartcards, 0.0.21;
+             net.sf.scuba:scuba-sc-android, 0.0.27)
+            https://sourceforge.net/projects/scuba/
+            License: LGPL-2.1-or-later AND
+                     GPL-2.0-only WITH Classpath-exception-2.0
+            (CommandAPDU.java and ResponseAPDU.java are Oracle files under
+            GPL version 2 only with the Classpath exception; the rest is
+            LGPL-2.1-or-later)
+
+  Bouncy Castle  (org.bouncycastle:bcprov-jdk18on and bcutil-jdk18on,
+                  1.86)                         https://www.bouncycastle.org/
+            License: MIT (its text travels in both jars, META-INF/LICENSE.md)
+
+The licences were read in the source jars on 2026-10-21
+(docs/research/phase5-nfc.md, section 7.1), on 2026-10-29
+(docs/research/phase10-android-engineering.md, section 5.1), and again on
+2026-11-11, the day the libraries were adopted (THIRD_PARTY_LICENSES.md,
+section 2.1.20 and section 6). This module's own code is licensed under
+LGPL-3.0, a choice the "or later" grants allow.
+
+
+The licence texts
+
+The module's AAR carries the texts, as resources of its classes, so they
+travel into every app that adds the module:
+
+  META-INF/openverify-nfc/licenses/LGPL-2.1-or-later.txt
+  META-INF/openverify-nfc/licenses/LGPL-3.0-or-later.txt
+      (with the GNU General Public License version 3 it adds to)
+  META-INF/openverify-nfc/licenses/GPL-2.0-only.txt
+  META-INF/openverify-nfc/licenses/Classpath-exception-2.0.txt
+  META-INF/openverify-nfc/NOTICE          (this file)
+
+Each text was copied by a command, unchanged, from release v3.27.0 of
+SPDX's licence list (https://github.com/spdx/license-list-data, folder
+text/); the module's tests hold each to its SHA-256.
+
+
+The two SCUBA files
+
+OpenVerify's licence rule refuses GPL code. A narrow, recorded exception
+was granted on 2026-11-08 under the owner's delegation (Phase 10 owner
+item P1, docs/plans/phase-10.plan.md, "Orchestrator decisions before
+Workflow 10A"): CommandAPDU.java and ResponseAPDU.java, unmodified, taken
+from Maven Central inside scuba-smartcards, only in this optional
+artifact. The Classpath exception lets independent modules link these
+files on their own terms.
+
+Licence of the two files: GPL-2.0-only WITH Classpath-exception-2.0
+
+Source location of the two files:
+  https://repo1.maven.org/maven2/net/sf/scuba/scuba-smartcards/0.0.21/
+  scuba-smartcards-0.0.21-sources.jar
+  (net/sf/scuba/smartcards/CommandAPDU.java and ResponseAPDU.java)
+
+Source of the other libraries: the sources jars beside each artifact on
+Maven Central, for the versions above.
+
+
+What a distributor takes on (not legal advice)
+
+Because of these dependencies, this module is kept out of the core SDK.
+Distributors of an app that includes this module must meet the LGPL terms
+for JMRTD, SCUBA and cert-cvc, including letting users replace them with
+modified versions and not forbidding the reverse engineering needed to
+debug such a replacement, and the GPL-2.0 with Classpath exception terms
+for the two SCUBA files. The module's consumer rules keep those libraries
+whole and under their own names in a minified app, so that they stay
+replaceable. An app that does not include this module distributes none of
+this code. The module's README says more.

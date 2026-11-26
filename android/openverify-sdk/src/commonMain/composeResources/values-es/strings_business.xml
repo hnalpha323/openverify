@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Spanish texts of strings_business.xml (C52.3, C61, C64.2). -->
+<resources>
+    <string name="openverify_business_title">Háblanos de tu empresa</string>
+    <string name="openverify_business_intro">Buscamos estos datos en registros mercantiles oficiales. Escríbelos tal como está registrada la empresa.</string>
+    <string name="openverify_website_title">Introduce el sitio web de tu empresa</string>
+    <string name="openverify_website_intro">Comprobamos que la dirección del sitio web existe. Nunca abrimos el sitio web.</string>
+
+    <string name="openverify_field_business_name">Nombre de la empresa</string>
+    <string name="openverify_field_country_code">País de registro</string>
+    <string name="openverify_field_registration_number">Número de registro</string>
+    <string name="openverify_field_lei">Identificador de entidad jurídica (LEI)</string>
+    <string name="openverify_field_website_url">Dirección del sitio web</string>
+
+    <string name="openverify_field_registration_hint_gb">Para una empresa del Reino Unido, el número de 8 caracteres de Companies House, como 01234567 o SC123456.</string>
+    <string name="openverify_field_registration_hint_us">Para una empresa de EE. UU., su Central Index Key (CIK) de la SEC, de hasta 10 dígitos.</string>
+    <string name="openverify_field_registration_hint">El número que el registro mercantil asignó a la empresa: hasta 20 letras y dígitos.</string>
+    <string name="openverify_field_lei_hint">El código de 20 caracteres del registro mundial de LEI. Déjalo vacío si la empresa no tiene.</string>
+    <string name="openverify_field_website_hint">Incluye https:// o http://, como https://www.ejemplo.com.</string>
+
+    <string name="openverify_field_error_registration_gb">Escribe el número de empresa de 8 caracteres, como 01234567 o SC123456.</string>
+    <string name="openverify_field_error_registration_us">Escribe el CIK: hasta 10 dígitos.</string>
+    <string name="openverify_field_error_registration">Escribe hasta 20 letras y dígitos, sin espacios.</string>
+    <string name="openverify_field_error_lei">Escribe el LEI de 20 caracteres exactamente como está registrado.</string>
+    <string name="openverify_field_error_url">Escribe la dirección web completa, que empiece por https:// o http://.</string>
+    <string name="openverify_persons_title">Personas que son dueñas de la empresa o la dirigen</string>
+    <string name="openverify_persons_intro">Puedes añadir hasta %1$d administradores, directivos o propietarios para que los comprobemos en el registro.</string>
+    <string name="openverify_person_title">Persona %1$d</string>
+    <string name="openverify_person_add">Añadir una persona</string>
+    <string name="openverify_person_remove">Quitar la persona %1$d</string>
+    <string name="openverify_persons_full">Ya añadiste todas las personas que se pueden añadir.</string>
+    <string name="openverify_field_person_birthdate">Mes o fecha de nacimiento</string>
+    <string name="openverify_field_person_birthdate_hint">Año y mes, como 1980-04, o la fecha completa.</string>
+    <string name="openverify_field_error_birth_month">Escribe el año y el mes, como 1980-04, o la fecha completa, como 1980-04-23.</string>
+</resources>

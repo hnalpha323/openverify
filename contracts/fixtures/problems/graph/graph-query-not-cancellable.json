@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "Only a submitted query can be cancelled.",
+  "instance": "/api/v1/graph-queries/grphq_01M5CK3190XEVBM5ZXA76E1JSN/cancel",
+  "requestId": "00000000-0000-4000-8000-000000001007",
+  "code": "graph_query_not_cancellable"
+}

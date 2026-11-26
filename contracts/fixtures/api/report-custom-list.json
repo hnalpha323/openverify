@@ -1,0 +1,131 @@
+{
+  "data": {
+    "type": "report/custom-list",
+    "id": "rep_01M5CK3190XEVBM5ZXA76E1JSN",
+    "attributes": {
+      "status": "ready",
+      "created-at": "2026-10-31T12:00:00.000Z",
+      "completed-at": "2026-10-31T12:00:05.000Z",
+      "redacted-at": null,
+      "report-template-version-name": "v1",
+      "has-match": true,
+      "is-continuous": false,
+      "is-recurring": false,
+      "tags": [],
+      "query": {
+        "email-address": "listed@example.test",
+        "list-ids": ["lst_01M5CK3190XEVBM5ZXA76E1JSN"]
+      },
+      "origin": "api",
+      "errors": [],
+      "unavailable-fields": [],
+      "coverage": null,
+      "next-run-at": null,
+      "paused-at": null,
+      "paused-reason": null,
+      "sources": [
+        {
+          "list-id": "lst_01M5CK3190XEVBM5ZXA76E1JSN",
+          "version": 3,
+          "normaliser-version": "lists-1",
+          "item-count": 2,
+          "screened-at": "2026-10-31T12:00:05.000Z"
+        }
+      ],
+      "query-sources": {
+        "email-address": "request"
+      },
+      "matcher-version": null,
+      "provider": null,
+      "thresholds": null,
+      "notices": [],
+      "matched-lists": [
+        {
+          "list-id": "lst_01M5CK3190XEVBM5ZXA76E1JSN",
+          "list-type": "list/email-address",
+          "name": "Synthetic blocked emails",
+          "version": 3,
+          "items": [
+            {
+              "entity-id": "lst_01M5CK3190XEVBM5ZXA76E1JSN:liea_01M5CK3190XEVBM5ZXA76E1JSN",
+              "match-id": "rpm_01M5CK3190XEVBM5ZXA76E1JSN",
+              "list-item": {
+                "type": "list-item/email-address",
+                "id": "liea_01M5CK3190XEVBM5ZXA76E1JSN"
+              },
+              "source": "report.query",
+              "method": "exact",
+              "tier": "R",
+              "confidence": null,
+              "approximate": false,
+              "score": null,
+              "distance-meters": null,
+              "matched-value": "listed@example.test"
+            }
+          ]
+        }
+      ],
+      "lists-searched": ["lst_01M5CK3190XEVBM5ZXA76E1JSN"],
+      "unscreened": [],
+      "not-applicable": [],
+      "ignore-list": [],
+      "matches": [
+        {
+          "id": "rpm_01M5CK3190XEVBM5ZXA76E1JSN",
+          "entity-id": "lst_01M5CK3190XEVBM5ZXA76E1JSN:liea_01M5CK3190XEVBM5ZXA76E1JSN",
+          "source-id": "lst_01M5CK3190XEVBM5ZXA76E1JSN",
+          "name": "Synthetic blocked emails",
+          "status": "open",
+          "review-status": "pending",
+          "risk-level": null,
+          "notify-on-change": false,
+          "present-in-last-run": true,
+          "score": 1,
+          "match-types": ["identifier_exact"],
+          "qualifiers": [],
+          "lapsed-from": null,
+          "delisted-at": null,
+          "reviewed-at": null,
+          "created-at": "2026-10-31T12:00:05.000Z",
+          "updated-at": "2026-10-31T12:00:05.000Z",
+          "first-run": "rpr_01M5CK3190XEVBM5ZXA76E1JSN",
+          "last-run": "rpr_01M5CK3190XEVBM5ZXA76E1JSN",
+          "components": {
+            "subject-name": null,
+            "list-name": null,
+            "name-level": null,
+            "methods": ["exact"],
+            "preset": null,
+            "min-score": null
+          }
+        }
+      ]
+    },
+    "relationships": {
+      "inquiry": {
+        "data": null
+      },
+      "account": {
+        "data": null
+      },
+      "accounts": {
+        "data": []
+      },
+      "report-template": {
+        "data": {
+          "type": "report-template",
+          "id": "rptp_01M5CK3190XEVBM5ZXA76E1JSN"
+        }
+      },
+      "report-template-version": {
+        "data": {
+          "type": "report-template-version",
+          "id": "rptpv_01M5CK3190XEVBM5ZXA76E1JSN"
+        }
+      },
+      "transaction": {
+        "data": null
+      }
+    }
+  }
+}

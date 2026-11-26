@@ -1,0 +1,66 @@
+{
+  "data": {
+    "type": "grantable",
+    "id": "usr_01M5CN00000000000000009B21",
+    "attributes": {
+      "scopes": [
+        {
+          "environment-id": "env_01M5CN00000000000000009B40",
+          "permissions": [
+            {
+              "permission": "inquiries:read",
+              "grantable": true,
+              "reason": null
+            },
+            {
+              "permission": "users:write",
+              "grantable": false,
+              "reason": "organization-level"
+            }
+          ],
+          "roles": [
+            {
+              "role-id": "role_01M5CN00000000000000009B41",
+              "grantable": true,
+              "reason": null
+            }
+          ]
+        },
+        {
+          "environment-id": "env_01M5CN00000000000000009B43",
+          "permissions": [
+            {
+              "permission": "inquiries:read",
+              "grantable": false,
+              "reason": "not-held"
+            }
+          ],
+          "roles": [
+            {
+              "role-id": "role_01M5CN00000000000000009B41",
+              "grantable": false,
+              "reason": "not-held"
+            }
+          ]
+        },
+        {
+          "environment-id": null,
+          "permissions": [
+            {
+              "permission": "users:write",
+              "grantable": true,
+              "reason": null
+            }
+          ],
+          "roles": [
+            {
+              "role-id": "role_01M5CN00000000000000009B44",
+              "grantable": false,
+              "reason": "admin-organization-wide"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

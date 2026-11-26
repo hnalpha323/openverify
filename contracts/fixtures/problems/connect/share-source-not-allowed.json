@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The share policy does not share this kind of source.",
+  "instance": "/api/v1/connect/share-tokens",
+  "requestId": "00000000-0000-4000-8000-00000011a010",
+  "code": "share_source_not_allowed",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/source-id",
+      "detail": "is of a type the share policy does not share"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "data": {
+    "type": "inquiry-template-usage",
+    "id": "itmpl_01M5A0GTG0RSTVX9PHA0V7P3X6",
+    "attributes": {
+      "workflows": [
+        {
+          "id": "wfl_01M5CM00000000000000000001",
+          "name": "Review on completion"
+        }
+      ],
+      "workflows-hidden": 2,
+      "report-templates": [],
+      "report-templates-hidden": 0,
+      "case-templates": [],
+      "case-templates-hidden": 1,
+      "embed-origins": ["https://shop.example.com"]
+    }
+  }
+}

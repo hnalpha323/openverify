@@ -1,0 +1,21 @@
+{
+  "data": {
+    "type": "export",
+    "id": "exp_01M5CN00000000000000009B33",
+    "attributes": {
+      "object-type": "inquiries",
+      "format": "csv",
+      "status": "completed",
+      "filter-keys": ["filter[status]"],
+      "saved-view-id": null,
+      "include-personal-data": false,
+      "row-count": 1342,
+      "byte-size": 201734,
+      "error-code": null,
+      "created-at": "2026-10-29T09:00:00.000Z",
+      "cut-at": "2026-10-29T09:00:02.000Z",
+      "completed-at": "2026-10-29T09:00:07.000Z",
+      "expires-at": "2026-10-30T09:00:07.000Z"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "The environment or the list is at its limit.",
+  "instance": "/api/v1/list/strings",
+  "requestId": "00000000-0000-4000-8000-000000000805",
+  "code": "list_limit_reached"
+}

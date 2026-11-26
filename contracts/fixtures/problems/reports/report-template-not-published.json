@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The report template is unknown, archived or has no published version.",
+  "instance": "/api/v1/inquiry-template-versions/itmplv_01M5CKS0D00R8HR9SJ7N456QK9/publish",
+  "requestId": "00000000-0000-4000-8000-000000000601",
+  "code": "report_template_not_published",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/report-config/on-completion/0",
+      "detail": "the report template has no published version"
+    }
+  ]
+}

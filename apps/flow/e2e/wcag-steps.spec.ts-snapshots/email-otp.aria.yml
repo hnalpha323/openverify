@@ -1,0 +1,8 @@
+- main:
+    - region "Confirm your email address":
+        - heading "Confirm your email address" [level=1]
+        - paragraph: We will send a code to your email address.
+        - paragraph: Attempt 1 of 5
+        - text: ''
+        - textbox "Email address"
+        - button "Send code"

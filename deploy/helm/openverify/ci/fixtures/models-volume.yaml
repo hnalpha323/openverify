@@ -1,0 +1,35 @@
+# kind.sh models (Workflow 11C chart-policy-11c; C265.4, verification V15): the chart installs with
+# models.source pvc, so nothing is downloaded inside the run. kind.sh models copies the weights that
+# python3 scripts/fetch_models.py already placed in models/ on the host into the kind node at
+# /var/local/openverify-models/<SHA-256 of models/manifest.json>/, readable by gid 10001; this
+# PersistentVolume holds that directory and the claim binds it in the chart's namespace
+# (models.existingClaim: openverify-models). Vision mounts it read-only at /models.
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: openverify-ci-models
+spec:
+  capacity:
+    storage: 2Gi
+  accessModes: [ReadWriteOnce]
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: openverify-ci-models
+  claimRef:
+    namespace: openverify
+    name: openverify-models
+  hostPath:
+    path: /var/local/openverify-models
+    type: Directory
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: openverify-models
+  namespace: openverify
+spec:
+  accessModes: [ReadWriteOnce]
+  storageClassName: openverify-ci-models
+  volumeName: openverify-ci-models
+  resources:
+    requests:
+      storage: 2Gi

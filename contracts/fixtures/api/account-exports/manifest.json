@@ -1,0 +1,184 @@
+{
+  "schema": "openverify.account-export.v1",
+  "export-id": "aexp_01M5CN0000000000000011B100",
+  "environment-id": "env_01M5CJXHGAKAJV1EY6T7EEFWQX",
+  "account-id": "acc_01M5CJXJF84MR3PHJHBHKQ4ZC8",
+  "generated-at": "2026-11-13T12:00:20.000Z",
+  "item-count": 14,
+  "subject": {
+    "account": {
+      "type": "account",
+      "id": "acc_01M5CJXJF84MR3PHJHBHKQ4ZC8",
+      "attributes": {
+        "reference-id": "synthetic-customer-0001",
+        "fields": {
+          "name-first": "Jane",
+          "name-last": "Example",
+          "email-address": "jane.example@example.com"
+        },
+        "created-at": "2026-10-20T12:00:00.000Z"
+      }
+    },
+    "inquiries": [
+      {
+        "type": "inquiry",
+        "id": "inq_01M5CJXHG07XPHF3HRM6NREDH7",
+        "attributes": {
+          "status": "approved",
+          "fields": {
+            "name-first": "Jane",
+            "name-last": "Example"
+          },
+          "created-at": "2026-10-20T12:00:00.000Z"
+        }
+      }
+    ],
+    "inquiry-sessions": [
+      {
+        "type": "inquiry-session",
+        "id": "iqse_01M5CJZC30W7PFE0GD30HJWEA4",
+        "attributes": {
+          "ip-address": "192.0.2.10",
+          "user-agent": "Synthetic Browser/1.0",
+          "consent": {
+            "accepted-at": "2026-10-20T12:01:00.000Z",
+            "locale": "en"
+          }
+        }
+      }
+    ],
+    "verifications": [
+      {
+        "type": "verification/government-id",
+        "id": "ver_01M5CK16P0D13FXHZSS4TCFBVH",
+        "attributes": {
+          "status": "passed",
+          "name-first": "Jane",
+          "name-last": "Example",
+          "birthdate": "1990-01-01"
+        }
+      }
+    ],
+    "decisions": [
+      {
+        "type": "inquiry-decision",
+        "id": "idec_01M5CN0000000000000011B400",
+        "attributes": {
+          "outcome": "approved",
+          "decided-at": "2026-10-20T12:05:00.000Z"
+        }
+      }
+    ],
+    "reports": [
+      {
+        "type": "report/watchlist",
+        "id": "rep_01M5CN0000000000000011B500",
+        "attributes": {
+          "status": "no_matches",
+          "has-match": false
+        }
+      }
+    ],
+    "devices": [
+      {
+        "type": "device",
+        "id": "dev_01M5CN0000000000000011B600",
+        "attributes": {
+          "first-seen-at": "2026-10-20T12:00:00.000Z"
+        }
+      }
+    ],
+    "transactions": [],
+    "consent-records": [
+      {
+        "type": "consent-record",
+        "id": "cnsr_01M5CN0000000000000011B700",
+        "attributes": {
+          "side": "source",
+          "method": "flow",
+          "recipient-name": "Example Partner",
+          "accepted-at": "2026-10-21T09:00:00.000Z"
+        }
+      }
+    ],
+    "connect-shares": [
+      {
+        "share-token-id": "cnst_01M5CN0000000000000011A200",
+        "direction": "outbound",
+        "status": "redeemed",
+        "data-categories": ["identity-fields", "document-images"],
+        "created-at": "2026-10-21T09:01:00.000Z",
+        "redeemed-at": "2026-10-21T09:05:00.000Z",
+        "recipient": {
+          "organization-id": "org_01M5CN0000000000000011A300",
+          "organization-name": "Example Partner"
+        },
+        "source": null
+      }
+    ],
+    "face-templates": {
+      "present": true,
+      "count": 2
+    }
+  },
+  "operator-review": {
+    "label": "review before disclosure",
+    "cases": [],
+    "list-memberships": [],
+    "signals": [
+      {
+        "type": "inquiry-signal",
+        "id": "inq_01M5CJXHG07XPHF3HRM6NREDH7",
+        "attributes": {
+          "name": "proxy-detected",
+          "value": false
+        }
+      }
+    ],
+    "integrity-verdicts": []
+  },
+  "files": [
+    {
+      "id": "file_01M5CK17N82ZP0PQ8RZRRTT5V5",
+      "kind": "verification-file",
+      "media-type": "image/jpeg",
+      "size": 1228800,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "belongs-to": "ver_01M5CK16P0D13FXHZSS4TCFBVH"
+    },
+    {
+      "id": "file_01M5CK18MGP7DK00CDQ1KEB2N2",
+      "kind": "verification-file",
+      "media-type": "image/jpeg",
+      "size": 1228000,
+      "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "belongs-to": "ver_01M5CK16P0D13FXHZSS4TCFBVH"
+    }
+  ],
+  "not-covered": [
+    {
+      "kind": "api-logs",
+      "detail": "API logs are kept for a short time and are not indexed by account."
+    },
+    {
+      "kind": "webhook-deliveries",
+      "detail": "Webhook deliveries are kept for a short time and are not indexed by account."
+    },
+    {
+      "kind": "event-payloads",
+      "detail": "Event payloads are not included; after a redaction they hold no personal data."
+    },
+    {
+      "kind": "backups",
+      "detail": "Backups keep data until they expire and are not searched."
+    },
+    {
+      "kind": "outside-install",
+      "detail": "Data held outside this installation, by the organization or by a share's recipient, is not included."
+    },
+    {
+      "kind": "face-templates",
+      "detail": "Face templates are derived numbers, listed as present with their count and not exported."
+    }
+  ]
+}

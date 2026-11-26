@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "A deactivated user is reactivated through POST /dashboard/users/:id/reactivate, which sends a new invitation and gives no role back.",
+  "instance": "/api/v1/dashboard/users/usr_01M5CN00000000000000009C01",
+  "requestId": "00000000-0000-4000-8000-000000009c01",
+  "code": "user_reactivation_required",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/status",
+      "detail": "Status active is set only by POST /dashboard/users/:id/reactivate."
+    }
+  ]
+}

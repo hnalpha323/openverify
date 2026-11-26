@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  German copy of values/strings_crypto_wallet.xml, machine-drafted by android-i18n (Workflow 10A, C199.1;
+  i18n/review-status.json): where the hosted web flow has the same English text, its
+  German words are used, so both clients say the same thing. Compose Multiplatform resources:
+  positional placeholders only, ' and " written as they are, no isolate or other bidi control
+  (ResourcesTest).
+-->
+<resources>
+    <string name="openverify_crypto_title">Weisen Sie nach, dass Sie Ihre Wallet kontrollieren</string>
+    <string name="openverify_crypto_intro">Wählen Sie das Netzwerk und geben Sie Ihre Wallet-Adresse ein. Danach zeigen wir Ihnen eine Nachricht, die Sie in Ihrer Wallet-App signieren.</string>
+    <string name="openverify_crypto_chain">Netzwerk</string>
+    <string name="openverify_crypto_evm_chain">EVM-Netzwerk %1$s</string>
+    <string name="openverify_crypto_address">Wallet-Adresse</string>
+    <string name="openverify_crypto_get_message">Nachricht zum Signieren abrufen</string>
+    <string name="openverify_crypto_getting_message">Die Nachricht wird abgerufen…</string>
+    <string name="openverify_crypto_message_title">Signieren Sie diese Nachricht</string>
+    <string name="openverify_crypto_message_instructions">Kopieren Sie diese Nachricht, signieren Sie sie in Ihrer Wallet-App mit der eingegebenen Adresse und fügen Sie die Signatur unten ein.</string>
+    <string name="openverify_crypto_copy">Nachricht kopieren</string>
+    <string name="openverify_crypto_copied">Nachricht kopiert.</string>
+    <plurals name="openverify_crypto_expires_in">
+        <item quantity="one">Die Nachricht läuft in %1$d Minute ab.</item>
+        <item quantity="other">Die Nachricht läuft in %1$d Minuten ab.</item>
+    </plurals>
+    <string name="openverify_crypto_signature">Signatur</string>
+    <string name="openverify_crypto_signed_message">Signierte Nachricht, falls Ihre Wallet eine anzeigt</string>
+    <string name="openverify_crypto_signed_message_hint">Manche Solana-Wallets ergänzen die Nachricht, bevor sie sie signieren. Wenn Ihre Wallet die signierte Nachricht anzeigt, fügen Sie sie hier ebenfalls ein.</string>
+    <string name="openverify_crypto_submit">Signatur senden</string>
+    <string name="openverify_crypto_submitting">Ihre Signatur wird gesendet…</string>
+    <string name="openverify_crypto_change">Andere Wallet verwenden</string>
+    <string name="openverify_crypto_new_message">Neue Nachricht anfordern</string>
+    <string name="openverify_crypto_error_chain_not_offered">Dieses Netzwerk kann hier nicht verwendet werden. Wählen Sie eines der aufgeführten Netzwerke.</string>
+    <string name="openverify_crypto_error_address_invalid">Diese Adresse ist für das gewählte Netzwerk nicht gültig. Prüfen Sie, ob Sie die ganze Adresse kopiert haben.</string>
+    <string name="openverify_crypto_error_expected_address">Das ist nicht die Wallet-Adresse, die Sie verifizieren sollen. Verwenden Sie die erwartete Wallet-Adresse.</string>
+    <string name="openverify_crypto_error_challenge_invalid">Diese Nachricht ist abgelaufen oder wurde ersetzt. Fordern Sie eine neue Nachricht zum Signieren an.</string>
+    <string name="openverify_crypto_error_signature_too_long">Diese Signatur ist zu lang. Fügen Sie nur die Signatur ein.</string>
+    <string name="openverify_crypto_error_signed_message_too_long">Diese signierte Nachricht ist zu lang. Fügen Sie nur die Bytes ein, die Ihre Wallet signiert hat.</string>
+    <string name="openverify_crypto_restarted">Ihr vorheriger Versuch wurde beendet, weil zu viele Nachrichten angefordert wurden. Beginnen Sie von vorn.</string>
+</resources>

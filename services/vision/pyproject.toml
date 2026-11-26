@@ -1,0 +1,120 @@
+[project]
+name = "openverify-vision"
+version = "0.1.0"
+description = "OpenVerify vision service: image quality, face detection and related identity-verification checks."
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "fastapi>=0.150.0",
+    "numpy>=2.5.4",
+    "onnxruntime>=1.31.0",
+    "opencv-python-headless>=5.0.0.93",
+    "pillow>=13.0.0",
+    "pydantic>=2.14.1",
+    "pydantic-settings>=2.16.0",
+    "pypdf==6.21.4",
+    "pypdfium2==5.14.0",
+    "python-multipart>=0.0.32",
+    "uvicorn[standard]>=0.54.0",
+    "zxing-cpp==3.1.1",
+]
+
+[build-system]
+requires = ["uv_build>=0.13.3,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "httpx2>=2.15.1",
+    "imageio==2.38.0",
+    "iso3166==3.0.0",
+    "mypy>=2.4.0",
+    "pdf417gen==0.8.1",
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.17.1",
+    "scikit-image==0.26.0",
+    "tifffile==2026.9.20",
+]
+
+[tool.uv]
+# Every resolution takes only releases at least 14 days old (Phase 9 decision 62). A relative
+# span here is recorded in uv.lock as P14D and moves with time; never pass --exclude-newer on a
+# command line, which would write one absolute date into the lock, and add no per-package
+# exception (CLAUDE.md).
+exclude-newer = "14 days"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["src", "tests", "tools"]
+
+[tool.ruff.lint]
+select = [
+    "E", "W", "F",  # pycodestyle, pyflakes
+    "I",            # isort
+    "N",            # pep8-naming
+    "UP",           # pyupgrade
+    "B",            # bugbear
+    "S",            # bandit
+    "C4",           # comprehensions
+    "SIM",          # simplify
+    "PTH",          # pathlib
+    "RET",          # return
+    "PT",           # pytest style
+    "ASYNC",        # async pitfalls
+    "BLE",          # blind except
+    "PL",           # pylint
+    "RUF",          # ruff-specific
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["openverify_vision"]
+known-local-folder = ["synthetic"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = [
+    "S101",    # assert is how pytest works
+    "PLR2004", # literal expected values are clearer in tests
+    "S105",    # fake service tokens in tests are not secrets
+    "S106",
+]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_unreachable = true
+plugins = ["pydantic.mypy"]
+mypy_path = "tools"
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
+
+[tool.pytest.ini_options]
+minversion = "9.0"
+testpaths = ["tests"]
+# tools/ holds the offline fixture generators (synthetic ID, fake camera, contract fixtures).
+pythonpath = ["tools"]
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "--cov=openverify_vision",
+    "--cov=tools",
+    "--cov-report=term-missing",
+    "--cov-fail-under=80",
+]
+filterwarnings = ["error"]
+
+[tool.coverage.run]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+exclude_also = ["if TYPE_CHECKING:"]

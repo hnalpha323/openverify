@@ -1,0 +1,23 @@
+{
+  "data": {
+    "type": "case-comment",
+    "id": "cscm_01M5CN00000000000000000008",
+    "attributes": {
+      "message": "Checked with @[usr_01M5CN00000000000000000011]: the document reads as issued.",
+      "created-at": "2026-10-20T12:05:00.000Z",
+      "updated-at": "2026-10-20T12:05:00.000Z",
+      "redacted-at": null,
+      "commenter-id": "usr_01M5CN00000000000000000010",
+      "commenter-type": "user",
+      "mentions": ["usr_01M5CN00000000000000000011"]
+    },
+    "relationships": {
+      "case": {
+        "data": {
+          "type": "case",
+          "id": "case_01M5CN00000000000000000001"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+# C213.3, KP10-42: every exception this module's main sources create, and every one they throw on.
+# The SDK's ExceptionCanaryTest (android/openverify-sdk, privacy/) holds this table to the sources, both
+# ways, and each row to the fixed-message rule (privacy/ModuleExceptions.kt says how a row is read):
+#
+#   file, relative to this module | the call that makes the exception, or rethrow | its message
+#
+# A message is one string literal with no value in it; a ChipReadException takes one ChipReadFailure
+# constant; no cause is passed; only a CancellationException or a ChipReadException that was caught is
+# thrown on. When a source gains or loses a throwing line, change this file in the same commit: the
+# failing test prints the table the sources give. Blank lines and lines starting with # are comments.
+
+src/main/kotlin/dev/openverify/face/FaceLog.kt | require | "FaceLog takes a constant code: lower case, dotted, at most 64 characters"
+src/main/kotlin/dev/openverify/face/OrtEnvironments.kt | IllegalStateException | "openverify-face: ONNX Runtime did not start"
+src/main/kotlin/dev/openverify/face/OrtEnvironments.kt | IllegalStateException | "openverify-face: ONNX Runtime did not start"
+src/main/kotlin/dev/openverify/face/OrtEnvironments.kt | IllegalStateException | "openverify-face: ONNX Runtime's native library did not load"
+src/main/kotlin/dev/openverify/face/OrtEnvironments.kt | IllegalStateException | "openverify-face: ONNX Runtime did not open the model"
+src/main/kotlin/dev/openverify/face/OrtFaceDetector.kt | check | "openverify-face: the detector is closed"
+src/main/kotlin/dev/openverify/face/OrtFaceDetector.kt | require | "openverify-face: the input's sides are multiples of 32"
+src/main/kotlin/dev/openverify/face/OrtFaceDetector.kt | require | "openverify-face: the input holds three planes of its size"
+src/main/kotlin/dev/openverify/face/OrtFaceDetector.kt | IllegalStateException | "openverify-face: ONNX Runtime did not run the model"
+src/main/kotlin/dev/openverify/face/OrtFaceDetector.kt | IllegalStateException | "openverify-face: ONNX Runtime did not take the input"
+src/main/kotlin/dev/openverify/face/YunetModel.kt | IllegalStateException | "openverify-face: the model cannot be read"
+src/main/kotlin/dev/openverify/face/YunetModel.kt | IllegalStateException | "openverify-face: the model does not have its pinned SHA-256"

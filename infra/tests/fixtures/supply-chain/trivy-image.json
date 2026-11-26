@@ -1,0 +1,22 @@
+{
+  "SchemaVersion": 2,
+  "Results": [
+    {
+      "Target": "openverify/synthetic",
+      "Vulnerabilities": [
+        {
+          "VulnerabilityID": "CVE-2099-0010",
+          "PkgName": "libsynthetic",
+          "InstalledVersion": "1.0",
+          "Severity": "HIGH"
+        },
+        {
+          "VulnerabilityID": "CVE-2099-0011",
+          "PkgName": "libsynthetic",
+          "InstalledVersion": "1.0",
+          "Severity": "MEDIUM"
+        }
+      ]
+    }
+  ]
+}

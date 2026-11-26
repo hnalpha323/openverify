@@ -1,0 +1,4159 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "url": "/api/v1/account-actions",
+      "scopes": "workflows:write",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/account-actions",
+      "scopes": "workflows:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/account-actions",
+      "scopes": "workflows:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/account-actions/:id",
+      "scopes": "workflows:write",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/account-actions/:id",
+      "scopes": "workflows:write",
+      "public": false
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/v1/account-actions/:id",
+      "scopes": "workflows:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/account-exports/:id",
+      "scopes": "account-access:export",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/account-exports/:id",
+      "scopes": "account-access:export",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/account-exports/:id/files/:fileId",
+      "scopes": "account-access:export",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/account-exports/:id/files/:fileId",
+      "scopes": "account-access:export",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/account-exports/:id/manifest",
+      "scopes": "account-access:export",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/account-exports/:id/manifest",
+      "scopes": "account-access:export",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/account-types",
+      "scopes": "accounts:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/account-types",
+      "scopes": "accounts:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/account-types",
+      "scopes": "accounts:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/account-types/:id",
+      "scopes": "accounts:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/account-types/:id",
+      "scopes": "accounts:read",
+      "public": false
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/v1/account-types/:id",
+      "scopes": "accounts:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/accounts",
+      "scopes": "accounts:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/accounts",
+      "scopes": "accounts:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/accounts",
+      "scopes": "accounts:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/accounts/:id",
+      "scopes": "accounts:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/accounts/:id",
+      "scopes": "accounts:read",
+      "public": false
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/v1/accounts/:id",
+      "scopes": "accounts:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/accounts/:id/add-objects",
+      "scopes": "accounts:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/accounts/:id/add-relation",
+      "scopes": "accounts:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/accounts/:id/add-tag",
+      "scopes": "accounts:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/accounts/:id/available-actions",
+      "scopes": "workflows:trigger accounts:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/accounts/:id/available-actions",
+      "scopes": "workflows:trigger accounts:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/accounts/:id/consolidate",
+      "scopes": "accounts:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/accounts/:id/export",
+      "scopes": "account-access:export",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/accounts/:id/graph-component",
+      "scopes": "graph:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/accounts/:id/graph-component",
+      "scopes": "graph:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/accounts/:id/redact",
+      "scopes": "accounts:redact",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/accounts/:id/relations",
+      "scopes": "accounts:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/accounts/:id/relations",
+      "scopes": "accounts:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/accounts/:id/remove-objects",
+      "scopes": "accounts:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/accounts/:id/remove-relation",
+      "scopes": "accounts:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/accounts/:id/remove-tag",
+      "scopes": "accounts:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/accounts/:id/run-action",
+      "scopes": "workflows:trigger accounts:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/accounts/:id/set-tags",
+      "scopes": "accounts:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/analytics/cases",
+      "scopes": "analytics:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/analytics/cases",
+      "scopes": "analytics:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/analytics/checks",
+      "scopes": "analytics:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/analytics/checks",
+      "scopes": "analytics:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/analytics/funnel",
+      "scopes": "analytics:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/analytics/funnel",
+      "scopes": "analytics:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/analytics/inquiries",
+      "scopes": "analytics:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/analytics/inquiries",
+      "scopes": "analytics:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/analytics/signals",
+      "scopes": "analytics:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/analytics/signals",
+      "scopes": "analytics:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/analytics/verifications",
+      "scopes": "analytics:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/analytics/verifications",
+      "scopes": "analytics:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/api-keys",
+      "scopes": "api-keys:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/api-keys",
+      "scopes": "api-keys:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/api-keys",
+      "scopes": "api-keys:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/api-keys/:id",
+      "scopes": "api-keys:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/api-keys/:id",
+      "scopes": "api-keys:read",
+      "public": false
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/v1/api-keys/:id",
+      "scopes": "api-keys:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/api-keys/:id/clone",
+      "scopes": "api-keys:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/api-keys/:id/expire",
+      "scopes": "api-keys:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/api-keys/:id/rotate",
+      "scopes": "api-keys:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/api-logs",
+      "scopes": "api-logs:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/api-logs",
+      "scopes": "api-logs:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/api-logs/:id",
+      "scopes": "api-logs:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/api-logs/:id",
+      "scopes": "api-logs:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/case-actions",
+      "scopes": "workflows:write",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/case-actions",
+      "scopes": "workflows:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/case-actions",
+      "scopes": "workflows:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/case-actions/:id",
+      "scopes": "workflows:write",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/case-actions/:id",
+      "scopes": "workflows:write",
+      "public": false
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/v1/case-actions/:id",
+      "scopes": "workflows:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/case-assignment-policies",
+      "scopes": "case-queues:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/case-assignment-policies",
+      "scopes": "case-queues:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/case-assignment-policies",
+      "scopes": "case-queues:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/case-assignment-policies/:id",
+      "scopes": "case-queues:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/case-assignment-policies/:id",
+      "scopes": "case-queues:read",
+      "public": false
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/v1/case-assignment-policies/:id",
+      "scopes": "case-queues:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/case-bulk-actions/:id",
+      "scopes": "cases:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/case-bulk-actions/:id",
+      "scopes": "cases:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/case-calendars",
+      "scopes": "case-queues:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/case-calendars",
+      "scopes": "case-queues:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/case-calendars",
+      "scopes": "case-queues:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/case-calendars/:id",
+      "scopes": "case-queues:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/case-calendars/:id",
+      "scopes": "case-queues:read",
+      "public": false
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/v1/case-calendars/:id",
+      "scopes": "case-queues:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/case-calendars/:id/holidays/import",
+      "scopes": "case-queues:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/case-comments/:id/redact",
+      "scopes": "cases:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/case-exports",
+      "scopes": "cases:export",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/case-exports",
+      "scopes": "cases:export",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/case-exports",
+      "scopes": "cases:export",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/case-exports/:id",
+      "scopes": "cases:export",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/case-exports/:id",
+      "scopes": "cases:export",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/case-exports/:id/download",
+      "scopes": "cases:export",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/case-exports/:id/download",
+      "scopes": "cases:export",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/case-queues",
+      "scopes": "case-queues:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/case-queues",
+      "scopes": "case-queues:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/case-queues",
+      "scopes": "case-queues:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/case-queues/:id",
+      "scopes": "case-queues:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/case-queues/:id",
+      "scopes": "case-queues:read",
+      "public": false
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/v1/case-queues/:id",
+      "scopes": "case-queues:write",
+      "public": false
+    },
+    {
+      "method": "PUT",
+      "url": "/api/v1/case-queues/:id/members",
+      "scopes": "case-queues:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/case-sla-policies",
+      "scopes": "case-queues:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/case-sla-policies",
+      "scopes": "case-queues:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/case-sla-policies",
+      "scopes": "case-queues:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/case-sla-policies/:id",
+      "scopes": "case-queues:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/case-sla-policies/:id",
+      "scopes": "case-queues:read",
+      "public": false
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/v1/case-sla-policies/:id",
+      "scopes": "case-queues:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/case-template-versions",
+      "scopes": "case-templates:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/case-template-versions",
+      "scopes": "case-templates:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/case-template-versions",
+      "scopes": "case-templates:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/case-template-versions/:id",
+      "scopes": "case-templates:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/case-template-versions/:id",
+      "scopes": "case-templates:read",
+      "public": false
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/v1/case-template-versions/:id",
+      "scopes": "case-templates:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/case-template-versions/:id/publish",
+      "scopes": "case-templates:publish",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/case-templates",
+      "scopes": "case-templates:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/case-templates",
+      "scopes": "case-templates:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/case-templates",
+      "scopes": "case-templates:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/case-templates/:id",
+      "scopes": "case-templates:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/case-templates/:id",
+      "scopes": "case-templates:read",
+      "public": false
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/v1/case-templates/:id",
+      "scopes": "case-templates:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/case-templates/:id/archive",
+      "scopes": "case-templates:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/cases",
+      "scopes": "cases:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/cases",
+      "scopes": "cases:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/cases",
+      "scopes": "cases:write",
+      "public": false
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/v1/cases/:id",
+      "scopes": "cases:redact",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/cases/:id",
+      "scopes": "cases:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/cases/:id",
+      "scopes": "cases:read",
+      "public": false
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/v1/cases/:id",
+      "scopes": "cases:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/cases/:id/add-comment",
+      "scopes": "cases:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/cases/:id/add-objects",
+      "scopes": "cases:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/cases/:id/add-tag",
+      "scopes": "cases:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/cases/:id/assign",
+      "scopes": "cases:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/cases/:id/attachments",
+      "scopes": "cases:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/cases/:id/attachments/:attachmentId/content",
+      "scopes": "cases:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/cases/:id/attachments/:attachmentId/content",
+      "scopes": "cases:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/cases/:id/attachments/:attachmentId/original",
+      "scopes": "cases:redact",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/cases/:id/attachments/:attachmentId/original",
+      "scopes": "cases:redact",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/cases/:id/available-actions",
+      "scopes": "workflows:trigger",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/cases/:id/available-actions",
+      "scopes": "workflows:trigger",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/cases/:id/checklist",
+      "scopes": "cases:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/cases/:id/checklist",
+      "scopes": "cases:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/cases/:id/checklist",
+      "scopes": "cases:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/cases/:id/comments",
+      "scopes": "cases:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/cases/:id/comments",
+      "scopes": "cases:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/cases/:id/history",
+      "scopes": "cases:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/cases/:id/history",
+      "scopes": "cases:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/cases/:id/objects",
+      "scopes": "cases:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/cases/:id/objects",
+      "scopes": "cases:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/cases/:id/print",
+      "scopes": "cases:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/cases/:id/remove-objects",
+      "scopes": "cases:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/cases/:id/remove-tag",
+      "scopes": "cases:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/cases/:id/run-action",
+      "scopes": "workflows:trigger",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/cases/:id/set-status",
+      "scopes": "cases:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/cases/:id/set-tags",
+      "scopes": "cases:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/cases/bulk",
+      "scopes": "cases:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/cases/next",
+      "scopes": "cases:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/cases/search",
+      "scopes": "cases:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/connect/connections",
+      "scopes": "connect-connections:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/connect/connections",
+      "scopes": "connect-connections:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/connect/connections",
+      "scopes": "connect-connections:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/connect/connections/:id",
+      "scopes": "connect-connections:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/connect/connections/:id",
+      "scopes": "connect-connections:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/connect/connections/:id/deactivate",
+      "scopes": "connect-connections:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/connect/connections/:id/reactivate",
+      "scopes": "connect-connections:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/connect/connections/:id/share-policy",
+      "scopes": "connect-connections:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/connect/consent-records",
+      "scopes": "connect-share-tokens:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/connect/consent-records",
+      "scopes": "connect-share-tokens:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/connect/consent-records",
+      "scopes": "connect-consent-records:attest",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/connect/consent-records/:id",
+      "scopes": "connect-share-tokens:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/connect/consent-records/:id",
+      "scopes": "connect-share-tokens:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/connect/consent-records/:id/withdraw",
+      "scopes": "connect-share-tokens:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/connect/share-tokens",
+      "scopes": "connect-share-tokens:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/connect/share-tokens",
+      "scopes": "connect-share-tokens:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/connect/share-tokens",
+      "scopes": "connect-share-tokens:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/connect/share-tokens/:id",
+      "scopes": "connect-share-tokens:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/connect/share-tokens/:id",
+      "scopes": "connect-share-tokens:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/connect/share-tokens/:id/expire",
+      "scopes": "connect-share-tokens:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/connect/share-tokens/:id/redeem",
+      "scopes": "connect-share-tokens:redeem",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/dashboard/audit-logs",
+      "scopes": "audit-logs:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/dashboard/audit-logs",
+      "scopes": "audit-logs:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/dashboard/audit-logs/:id",
+      "scopes": "audit-logs:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/dashboard/audit-logs/:id",
+      "scopes": "audit-logs:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/dashboard/connect/connections/:id/activate",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/dashboard/files/:id/content",
+      "scopes": "inquiries:read pii:view",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/dashboard/files/:id/content",
+      "scopes": "inquiries:read pii:view",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/dashboard/files/:id/rendition",
+      "scopes": "inquiries:read pii:view",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/dashboard/files/:id/rendition",
+      "scopes": "inquiries:read pii:view",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/dashboard/inquiries",
+      "scopes": "inquiries:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/dashboard/inquiries",
+      "scopes": "inquiries:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/dashboard/inquiries/:id",
+      "scopes": "inquiries:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/dashboard/inquiries/:id",
+      "scopes": "inquiries:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/dashboard/invitations/:id/resend",
+      "scopes": "users:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/dashboard/invitations/accept",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/dashboard/me",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/dashboard/me",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/dashboard/me/mfa-factors",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/dashboard/me/mfa-factors",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/v1/dashboard/me/mfa-factors/:id",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/dashboard/me/mfa-factors/totp",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/dashboard/me/mfa-factors/totp/confirm",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/dashboard/me/mfa-factors/webauthn/options",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/dashboard/me/mfa-factors/webauthn/verify",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/dashboard/me/recovery-codes",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/dashboard/network-sources",
+      "scopes": "settings:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/dashboard/network-sources",
+      "scopes": "settings:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/dashboard/notification-preferences",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/dashboard/notification-preferences",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "PUT",
+      "url": "/api/v1/dashboard/notification-preferences",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/dashboard/notifications",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/dashboard/notifications",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/dashboard/notifications/:id/read",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/dashboard/print-audits",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/dashboard/reports",
+      "scopes": "reports:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/dashboard/reports",
+      "scopes": "reports:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/dashboard/reports/:id",
+      "scopes": "reports:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/dashboard/reports/:id",
+      "scopes": "reports:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/dashboard/roles",
+      "scopes": "roles:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/dashboard/roles",
+      "scopes": "roles:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/dashboard/roles",
+      "scopes": "roles:write",
+      "public": false
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/v1/dashboard/roles/:id",
+      "scopes": "roles:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/dashboard/roles/:id",
+      "scopes": "roles:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/dashboard/roles/:id",
+      "scopes": "roles:read",
+      "public": false
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/v1/dashboard/roles/:id",
+      "scopes": "roles:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/dashboard/roles/grantable",
+      "scopes": "roles:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/dashboard/roles/grantable",
+      "scopes": "roles:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/dashboard/saved-views",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/dashboard/saved-views",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/dashboard/saved-views",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/v1/dashboard/saved-views/:id",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/v1/dashboard/saved-views/:id",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/dashboard/sessions",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/dashboard/sessions",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/dashboard/sessions",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/dashboard/sessions/:id/revoke",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/v1/dashboard/sessions/current",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "PUT",
+      "url": "/api/v1/dashboard/sessions/current/environment",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/dashboard/sessions/current/step-up",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/dashboard/sessions/current/step-up/sso",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/dashboard/sessions/current/step-up/webauthn/options",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/dashboard/sessions/mfa",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/dashboard/sessions/mfa/webauthn/options",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/dashboard/sessions/mfa/webauthn/verify",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/dashboard/sessions/revoke-others",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/dashboard/settings",
+      "scopes": "settings:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/dashboard/settings",
+      "scopes": "settings:read",
+      "public": false
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/v1/dashboard/settings",
+      "scopes": "settings:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/dashboard/simulation-presets",
+      "scopes": "inquiry-templates:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/dashboard/simulation-presets",
+      "scopes": "inquiry-templates:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/dashboard/simulation-presets",
+      "scopes": "inquiry-templates:read",
+      "public": false
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/v1/dashboard/simulation-presets/:id",
+      "scopes": "inquiry-templates:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/dashboard/sso-providers",
+      "scopes": "settings:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/dashboard/sso-providers",
+      "scopes": "settings:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/dashboard/sso-providers",
+      "scopes": "settings:write",
+      "public": false
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/v1/dashboard/sso-providers/:id",
+      "scopes": "settings:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/dashboard/sso-providers/:id",
+      "scopes": "settings:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/dashboard/sso-providers/:id",
+      "scopes": "settings:read",
+      "public": false
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/v1/dashboard/sso-providers/:id",
+      "scopes": "settings:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/dashboard/sso/:organizationSlug/start",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/dashboard/sso/:organizationSlug/start",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/dashboard/sso/callback/:providerId",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/dashboard/sso/callback/:providerId",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/dashboard/trust-anchors",
+      "scopes": "settings:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/dashboard/trust-anchors",
+      "scopes": "settings:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/dashboard/users",
+      "scopes": "users:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/dashboard/users",
+      "scopes": "users:read",
+      "public": false
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/v1/dashboard/users/:id",
+      "scopes": "users:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/dashboard/users/:id/end-sessions",
+      "scopes": "users:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/dashboard/users/:id/permissions",
+      "scopes": "users:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/dashboard/users/:id/permissions",
+      "scopes": "users:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/dashboard/users/:id/reactivate",
+      "scopes": "users:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/dashboard/users/:id/reset-mfa",
+      "scopes": "users:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/dashboard/users/:id/roles",
+      "scopes": "users:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/dashboard/users/:id/roles",
+      "scopes": "users:read",
+      "public": false
+    },
+    {
+      "method": "PUT",
+      "url": "/api/v1/dashboard/users/:id/roles",
+      "scopes": "users:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/dashboard/users/invitations",
+      "scopes": "users:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/dashboard/watchlist-sources",
+      "scopes": "watchlists:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/dashboard/watchlist-sources",
+      "scopes": "watchlists:read",
+      "public": false
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/v1/dashboard/watchlist-sources/:sourceId/opt-in",
+      "scopes": "settings:write settings:privacy",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/dashboard/watchlist-sources/:sourceId/opt-in",
+      "scopes": "settings:write settings:privacy",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/decisions",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/decisions",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/deployments",
+      "scopes": "deployments:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/deployments",
+      "scopes": "deployments:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/deployments/:id",
+      "scopes": "deployments:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/deployments/:id",
+      "scopes": "deployments:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/devices",
+      "scopes": "inquiry-sessions:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/devices",
+      "scopes": "inquiry-sessions:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/devices/:id",
+      "scopes": "inquiry-sessions:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/devices/:id",
+      "scopes": "inquiry-sessions:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/devices/:id/trust",
+      "scopes": "devices:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/events",
+      "scopes": "events:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/events",
+      "scopes": "events:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/events/:id",
+      "scopes": "events:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/events/:id",
+      "scopes": "events:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/exports",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/exports",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/exports",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/exports/:id",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/exports/:id",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/exports/:id/download",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/exports/:id/download",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/v1/flow*",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/flow/consent",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/flow/handoffs",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/flow/handoffs/continue-here",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/flow/handoffs/current",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/flow/handoffs/current",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/flow/handoffs/current/reject",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/flow/handoffs/decline",
+      "scopes": null,
+      "public": true
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/flow/handoffs/preview",
+      "scopes": null,
+      "public": true
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/flow/handoffs/redeem",
+      "scopes": null,
+      "public": true
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/flow/integrity-challenges",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/flow/integrity-tokens",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/flow/one-time-links/redeem",
+      "scopes": null,
+      "public": true
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/flow/screens/:stepId/submit",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/flow/selfie-captures/:id/extend",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/flow/session",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/flow/session",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/flow/share-consents/:stepId/accept",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/flow/share-consents/:stepId/decline",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/flow/share-consents/:stepId/withdraw",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/flow/signals",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/flow/theme-assets/:id",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/flow/theme-assets/:id",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/flow/verifications",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/flow/verifications/:id",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/flow/verifications/:id",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/flow/verifications/:id/chip-challenges",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/flow/verifications/:id/client-unable",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/flow/verifications/:id/crypto-challenges",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/flow/verifications/:id/files",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/flow/verifications/:id/inputs",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/flow/verifications/:id/otp",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/flow/verifications/:id/otp/confirm",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/flow/verifications/:id/sandbox-chip",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/flow/verifications/:id/selfies",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/flow/verifications/:id/submit",
+      "scopes": null,
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/graph-queries",
+      "scopes": "graph:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/graph-queries",
+      "scopes": "graph:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/graph-queries",
+      "scopes": "graph:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/graph-queries/:id",
+      "scopes": "graph:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/graph-queries/:id",
+      "scopes": "graph:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/graph-queries/:id/actions",
+      "scopes": "graph:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/graph-queries/:id/cancel",
+      "scopes": "graph:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/graph-queries/:id/nodes/:nodeId/expand",
+      "scopes": "graph:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/graph-queries/:id/nodes/:nodeId/value",
+      "scopes": "graph:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/graph-queries/:id/nodes/:nodeId/value",
+      "scopes": "graph:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/graph-queries/:id/rerun",
+      "scopes": "graph:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/graph-query-template-versions",
+      "scopes": "graph:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/graph-query-template-versions",
+      "scopes": "graph:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/graph-query-template-versions",
+      "scopes": "graph:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/graph-query-template-versions/:id",
+      "scopes": "graph:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/graph-query-template-versions/:id",
+      "scopes": "graph:read",
+      "public": false
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/v1/graph-query-template-versions/:id",
+      "scopes": "graph:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/graph-query-template-versions/:id/publish",
+      "scopes": "graph:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/graph-query-templates",
+      "scopes": "graph:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/graph-query-templates",
+      "scopes": "graph:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/graph-query-templates",
+      "scopes": "graph:write",
+      "public": false
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/v1/graph-query-templates/:id",
+      "scopes": "graph:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/graph-query-templates/:id",
+      "scopes": "graph:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/graph-query-templates/:id",
+      "scopes": "graph:read",
+      "public": false
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/v1/graph-query-templates/:id",
+      "scopes": "graph:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/importer/list-item/browser-fingerprints",
+      "scopes": "importers:write lists:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/importer/list-item/countries",
+      "scopes": "importers:write lists:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/importer/list-item/device-fingerprints",
+      "scopes": "importers:write lists:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/importer/list-item/email-addresses",
+      "scopes": "importers:write lists:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/importer/list-item/fields",
+      "scopes": "importers:write lists:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/importer/list-item/geolocations",
+      "scopes": "importers:write lists:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/importer/list-item/government-id-numbers",
+      "scopes": "importers:write lists:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/importer/list-item/ip-addresses",
+      "scopes": "importers:write lists:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/importer/list-item/names",
+      "scopes": "importers:write lists:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/importer/list-item/phone-numbers",
+      "scopes": "importers:write lists:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/importer/list-item/strings",
+      "scopes": "importers:write lists:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/importers",
+      "scopes": "importers:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/importers",
+      "scopes": "importers:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/importers/:id",
+      "scopes": "importers:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/importers/:id",
+      "scopes": "importers:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/importers/:id/errors",
+      "scopes": "importers:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/importers/:id/errors",
+      "scopes": "importers:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/inquiries",
+      "scopes": "inquiries:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/inquiries",
+      "scopes": "inquiries:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/inquiries",
+      "scopes": "inquiries:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/inquiries/:id",
+      "scopes": "inquiries:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/inquiries/:id",
+      "scopes": "inquiries:read",
+      "public": false
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/v1/inquiries/:id",
+      "scopes": "inquiries:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/inquiries/:id/add-tag",
+      "scopes": "inquiries:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/inquiries/:id/approve",
+      "scopes": "inquiries:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/inquiries/:id/decline",
+      "scopes": "inquiries:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/inquiries/:id/expire",
+      "scopes": "inquiries:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/inquiries/:id/generate-one-time-link",
+      "scopes": "inquiries:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/inquiries/:id/mark-for-review",
+      "scopes": "inquiries:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/inquiries/:id/perform-simulate-actions",
+      "scopes": "inquiries:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/inquiries/:id/redact",
+      "scopes": "inquiries:redact",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/inquiries/:id/remove-tag",
+      "scopes": "inquiries:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/inquiries/:id/reopen",
+      "scopes": "inquiries:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/inquiries/:id/resume",
+      "scopes": "inquiries:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/inquiries/:id/review-requests",
+      "scopes": "cases:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/inquiries/:id/set-tags",
+      "scopes": "inquiries:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/inquiry-sessions",
+      "scopes": "inquiry-sessions:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/inquiry-sessions",
+      "scopes": "inquiry-sessions:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/inquiry-sessions/:id",
+      "scopes": "inquiry-sessions:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/inquiry-sessions/:id",
+      "scopes": "inquiry-sessions:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/inquiry-sessions/:id/expire",
+      "scopes": "inquiry-sessions:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/inquiry-sessions/:id/generate-one-time-link",
+      "scopes": "inquiries:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/inquiry-sessions/expire-all",
+      "scopes": "inquiry-sessions:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/inquiry-template-versions",
+      "scopes": "inquiry-templates:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/inquiry-template-versions",
+      "scopes": "inquiry-templates:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/inquiry-template-versions",
+      "scopes": "inquiry-templates:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/inquiry-template-versions/:id",
+      "scopes": "inquiry-templates:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/inquiry-template-versions/:id",
+      "scopes": "inquiry-templates:read",
+      "public": false
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/v1/inquiry-template-versions/:id",
+      "scopes": "inquiry-templates:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/inquiry-template-versions/:id/diff",
+      "scopes": "inquiry-templates:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/inquiry-template-versions/:id/diff",
+      "scopes": "inquiry-templates:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/inquiry-template-versions/:id/preview",
+      "scopes": "inquiry-templates:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/inquiry-template-versions/:id/publish",
+      "scopes": "inquiry-templates:publish",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/inquiry-template-versions/:id/simulate",
+      "scopes": "inquiry-templates:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/inquiry-template-versions/:id/validate",
+      "scopes": "inquiry-templates:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/inquiry-templates",
+      "scopes": "inquiry-templates:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/inquiry-templates",
+      "scopes": "inquiry-templates:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/inquiry-templates",
+      "scopes": "inquiry-templates:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/inquiry-templates/:id",
+      "scopes": "inquiry-templates:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/inquiry-templates/:id",
+      "scopes": "inquiry-templates:read",
+      "public": false
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/v1/inquiry-templates/:id",
+      "scopes": "inquiry-templates:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/inquiry-templates/:id/copy",
+      "scopes": "inquiry-templates:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/inquiry-templates/:id/promote",
+      "scopes": "inquiry-templates:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/inquiry-templates/:id/restore",
+      "scopes": "inquiry-templates:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/inquiry-templates/:id/translations",
+      "scopes": "inquiry-templates:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/inquiry-templates/:id/translations",
+      "scopes": "inquiry-templates:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/inquiry-templates/:id/translations",
+      "scopes": "inquiry-templates:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/inquiry-templates/:id/translations.csv",
+      "scopes": "inquiry-templates:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/inquiry-templates/:id/translations.csv",
+      "scopes": "inquiry-templates:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/inquiry-templates/:id/translations.csv",
+      "scopes": "inquiry-templates:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/inquiry-templates/:id/used-by",
+      "scopes": "inquiry-templates:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/inquiry-templates/:id/used-by",
+      "scopes": "inquiry-templates:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/internal/embed-policies/:inquiryId",
+      "scopes": null,
+      "public": true
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/internal/embed-policies/:inquiryId",
+      "scopes": null,
+      "public": true
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/list-item/browser-fingerprints",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/v1/list-item/browser-fingerprints/:id",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/list-item/browser-fingerprints/:id",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/list-item/browser-fingerprints/:id",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/list-item/countries",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/v1/list-item/countries/:id",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/list-item/countries/:id",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/list-item/countries/:id",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/list-item/device-fingerprints",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/v1/list-item/device-fingerprints/:id",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/list-item/device-fingerprints/:id",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/list-item/device-fingerprints/:id",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/list-item/email-addresses",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/v1/list-item/email-addresses/:id",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/list-item/email-addresses/:id",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/list-item/email-addresses/:id",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/list-item/faces",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/v1/list-item/faces/:id",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/list-item/faces/:id",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/list-item/faces/:id",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/list-item/fields",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/v1/list-item/fields/:id",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/list-item/fields/:id",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/list-item/fields/:id",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/list-item/geolocations",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/v1/list-item/geolocations/:id",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/list-item/geolocations/:id",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/list-item/geolocations/:id",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/list-item/government-id-numbers",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/v1/list-item/government-id-numbers/:id",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/list-item/government-id-numbers/:id",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/list-item/government-id-numbers/:id",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/list-item/ip-addresses",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/v1/list-item/ip-addresses/:id",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/list-item/ip-addresses/:id",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/list-item/ip-addresses/:id",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/list-item/names",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/v1/list-item/names/:id",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/list-item/names/:id",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/list-item/names/:id",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/list-item/phone-numbers",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/v1/list-item/phone-numbers/:id",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/list-item/phone-numbers/:id",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/list-item/phone-numbers/:id",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/list-item/selfie-backgrounds",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/v1/list-item/selfie-backgrounds/:id",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/list-item/selfie-backgrounds/:id",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/list-item/selfie-backgrounds/:id",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/list-item/strings",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/v1/list-item/strings/:id",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/list-item/strings/:id",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/list-item/strings/:id",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/list-items",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/list-items",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/list-matches",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/list-matches",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/list-matches/:id",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/list-matches/:id",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/list-matches/:id/dismiss",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/list/browser-fingerprints",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/list/countries",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/list/device-fingerprints",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/list/email-addresses",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/list/faces",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/list/fields",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/list/geolocations",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/list/government-id-numbers",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/list/ip-addresses",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/list/names",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/list/phone-numbers",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/list/selfie-backgrounds",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/list/strings",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/lists",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/lists",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/v1/lists/:id",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/lists/:id",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/lists/:id",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/v1/lists/:id",
+      "scopes": "lists:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/lists/match",
+      "scopes": "lists:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/rate-limits",
+      "scopes": "",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/rate-limits",
+      "scopes": "",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/report-template-versions",
+      "scopes": "report-templates:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/report-template-versions",
+      "scopes": "report-templates:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/report-template-versions",
+      "scopes": "report-templates:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/report-template-versions/:id",
+      "scopes": "report-templates:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/report-template-versions/:id",
+      "scopes": "report-templates:read",
+      "public": false
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/v1/report-template-versions/:id",
+      "scopes": "report-templates:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/report-template-versions/:id/publish",
+      "scopes": "report-templates:publish",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/report-templates",
+      "scopes": "report-templates:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/report-templates",
+      "scopes": "report-templates:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/report-templates",
+      "scopes": "report-templates:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/report-templates/:id",
+      "scopes": "report-templates:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/report-templates/:id",
+      "scopes": "report-templates:read",
+      "public": false
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/v1/report-templates/:id",
+      "scopes": "report-templates:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/reports",
+      "scopes": "reports:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/reports",
+      "scopes": "reports:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/reports",
+      "scopes": "reports:write",
+      "public": false
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/v1/reports/:id",
+      "scopes": "reports:redact",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/reports/:id",
+      "scopes": "reports:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/reports/:id",
+      "scopes": "reports:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/reports/:id/add-tag",
+      "scopes": "reports:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/reports/:id/dismiss",
+      "scopes": "reports:review",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/reports/:id/history",
+      "scopes": "reports:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/reports/:id/history",
+      "scopes": "reports:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/reports/:id/pause",
+      "scopes": "reports:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/reports/:id/remove-tag",
+      "scopes": "reports:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/reports/:id/resume",
+      "scopes": "reports:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/reports/:id/review",
+      "scopes": "reports:review",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/reports/:id/run",
+      "scopes": "reports:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/reports/:id/set-tags",
+      "scopes": "reports:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/reports/bulk",
+      "scopes": "reports:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/reports/bulk/:id",
+      "scopes": "reports:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/reports/bulk/:id",
+      "scopes": "reports:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/sandbox/email-messages/search",
+      "scopes": "sandbox:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/sandbox/slack-messages/search",
+      "scopes": "sandbox:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/sandbox/sms-messages/search",
+      "scopes": "sandbox:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/sandbox/workflow-sms-messages/search",
+      "scopes": "sandbox:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/selfies/:id",
+      "scopes": "verifications:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/selfies/:id",
+      "scopes": "verifications:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/theme-sets",
+      "scopes": "theme-sets:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/theme-sets",
+      "scopes": "theme-sets:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/theme-sets",
+      "scopes": "theme-sets:write",
+      "public": false
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/v1/theme-sets/:id",
+      "scopes": "theme-sets:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/theme-sets/:id",
+      "scopes": "theme-sets:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/theme-sets/:id",
+      "scopes": "theme-sets:read",
+      "public": false
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/v1/theme-sets/:id",
+      "scopes": "theme-sets:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/theme-sets/:id/restore",
+      "scopes": "theme-sets:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/theme-sets/:id/revisions",
+      "scopes": "theme-sets:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/theme-sets/:id/revisions",
+      "scopes": "theme-sets:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/theme-sets/assets",
+      "scopes": "theme-sets:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/theme-sets/assets/:id/content",
+      "scopes": "theme-sets:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/theme-sets/assets/:id/content",
+      "scopes": "theme-sets:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/transaction-type-versions",
+      "scopes": "transactions:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/transaction-type-versions",
+      "scopes": "transactions:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/transaction-type-versions",
+      "scopes": "transaction-types:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/transaction-type-versions/:id",
+      "scopes": "transactions:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/transaction-type-versions/:id",
+      "scopes": "transactions:read",
+      "public": false
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/v1/transaction-type-versions/:id",
+      "scopes": "transaction-types:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/transaction-type-versions/:id/publish",
+      "scopes": "transaction-types:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/transaction-types",
+      "scopes": "transactions:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/transaction-types",
+      "scopes": "transactions:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/transaction-types",
+      "scopes": "transaction-types:write",
+      "public": false
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/v1/transaction-types/:id",
+      "scopes": "transaction-types:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/transaction-types/:id",
+      "scopes": "transactions:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/transaction-types/:id",
+      "scopes": "transactions:read",
+      "public": false
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/v1/transaction-types/:id",
+      "scopes": "transaction-types:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/transactions",
+      "scopes": "transactions:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/transactions",
+      "scopes": "transactions:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/transactions",
+      "scopes": "transactions:write",
+      "public": false
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/v1/transactions/:id",
+      "scopes": "transactions:redact",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/transactions/:id",
+      "scopes": "transactions:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/transactions/:id",
+      "scopes": "transactions:read",
+      "public": false
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/v1/transactions/:id",
+      "scopes": "transactions:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/transactions/:id/add-objects",
+      "scopes": "transactions:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/transactions/:id/add-relation",
+      "scopes": "transactions:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/transactions/:id/add-tag",
+      "scopes": "transactions:write",
+      "public": false
+    },
+    {
+      "method": "PUT",
+      "url": "/api/v1/transactions/:id/files/:fieldKey",
+      "scopes": "transactions:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/transactions/:id/files/:fileId/content",
+      "scopes": "transactions:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/transactions/:id/files/:fileId/content",
+      "scopes": "transactions:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/transactions/:id/label",
+      "scopes": "transactions:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/transactions/:id/labels",
+      "scopes": "transactions:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/transactions/:id/labels",
+      "scopes": "transactions:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/transactions/:id/redact-biometrics",
+      "scopes": "transactions:redact inquiries:redact",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/transactions/:id/relations",
+      "scopes": "transactions:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/transactions/:id/relations",
+      "scopes": "transactions:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/transactions/:id/remove-objects",
+      "scopes": "transactions:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/transactions/:id/remove-relation",
+      "scopes": "transactions:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/transactions/:id/remove-tag",
+      "scopes": "transactions:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/transactions/:id/set-tags",
+      "scopes": "transactions:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/transactions/:id/status-changes",
+      "scopes": "transactions:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/transactions/:id/status-changes",
+      "scopes": "transactions:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/user-audit-logs",
+      "scopes": "audit-logs:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/user-audit-logs",
+      "scopes": "audit-logs:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/user-audit-logs/:id",
+      "scopes": "audit-logs:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/user-audit-logs/:id",
+      "scopes": "audit-logs:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/verifications/:id",
+      "scopes": "verifications:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/verifications/:id",
+      "scopes": "verifications:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/webhook-deliveries",
+      "scopes": "webhooks:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/webhook-deliveries",
+      "scopes": "webhooks:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/webhook-deliveries/:id",
+      "scopes": "webhooks:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/webhook-deliveries/:id",
+      "scopes": "webhooks:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/webhook-deliveries/search",
+      "scopes": "webhooks:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/webhooks",
+      "scopes": "webhooks:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/webhooks",
+      "scopes": "webhooks:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/webhooks",
+      "scopes": "webhooks:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/webhooks/:id",
+      "scopes": "webhooks:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/webhooks/:id",
+      "scopes": "webhooks:read",
+      "public": false
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/v1/webhooks/:id",
+      "scopes": "webhooks:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/webhooks/:id/archive",
+      "scopes": "webhooks:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/webhooks/:id/clone",
+      "scopes": "webhooks:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/webhooks/:id/disable",
+      "scopes": "webhooks:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/webhooks/:id/enable",
+      "scopes": "webhooks:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/webhooks/:id/replay",
+      "scopes": "webhooks:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/webhooks/:id/rotate-secret",
+      "scopes": "webhooks:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/webhooks/:id/simulate",
+      "scopes": "webhooks:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/workflow-actions",
+      "scopes": "workflows:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/workflow-actions",
+      "scopes": "workflows:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/workflow-recipes",
+      "scopes": "workflows:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/workflow-recipes",
+      "scopes": "workflows:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/workflow-recipes/:key/install",
+      "scopes": "workflows:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/workflow-runs",
+      "scopes": "workflow-runs:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/workflow-runs",
+      "scopes": "workflow-runs:read",
+      "public": false
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/v1/workflow-runs/:id",
+      "scopes": "workflow-runs:redact",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/workflow-runs/:id",
+      "scopes": "workflow-runs:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/workflow-runs/:id",
+      "scopes": "workflow-runs:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/workflow-runs/:id/cancel",
+      "scopes": "workflow-runs:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/workflow-runs/:id/rerun",
+      "scopes": "workflow-runs:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/workflow-runs/:id/resume",
+      "scopes": "workflow-runs:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/workflow-runs/:id/steps",
+      "scopes": "workflow-runs:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/workflow-runs/:id/steps",
+      "scopes": "workflow-runs:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/workflow-secrets",
+      "scopes": "secrets:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/workflow-secrets",
+      "scopes": "secrets:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/workflow-secrets",
+      "scopes": "secrets:write",
+      "public": false
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/v1/workflow-secrets/:key",
+      "scopes": "secrets:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/workflow-secrets/:key",
+      "scopes": "secrets:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/workflow-secrets/:key",
+      "scopes": "secrets:read",
+      "public": false
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/v1/workflow-secrets/:key",
+      "scopes": "secrets:write",
+      "public": false
+    },
+    {
+      "method": "PUT",
+      "url": "/api/v1/workflow-secrets/:key/values/:environmentId",
+      "scopes": "secrets:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/workflow-secrets/:key/values/:environmentId/rotate",
+      "scopes": "secrets:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/workflow-trigger-deliveries",
+      "scopes": "workflow-runs:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/workflow-trigger-deliveries",
+      "scopes": "workflow-runs:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/workflow-versions",
+      "scopes": "workflows:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/workflow-versions",
+      "scopes": "workflows:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/workflow-versions/:id",
+      "scopes": "workflows:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/workflow-versions/:id",
+      "scopes": "workflows:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/workflow-versions/:id/diff",
+      "scopes": "workflows:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/workflow-versions/:id/diff",
+      "scopes": "workflows:read",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/workflows",
+      "scopes": "workflows:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/workflows",
+      "scopes": "workflows:read",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/workflows",
+      "scopes": "workflows:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/workflows/:id",
+      "scopes": "workflows:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/workflows/:id",
+      "scopes": "workflows:read",
+      "public": false
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/v1/workflows/:id",
+      "scopes": "workflows:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/workflows/:id/activate",
+      "scopes": "workflows:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/workflows/:id/archive",
+      "scopes": "workflows:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/workflows/:id/cancel-runs",
+      "scopes": "workflow-runs:write",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/v1/workflows/:id/draft",
+      "scopes": "workflows:read",
+      "public": false
+    },
+    {
+      "method": "HEAD",
+      "url": "/api/v1/workflows/:id/draft",
+      "scopes": "workflows:read",
+      "public": false
+    },
+    {
+      "method": "PUT",
+      "url": "/api/v1/workflows/:id/draft",
+      "scopes": "workflows:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/workflows/:id/draft/validate",
+      "scopes": "workflows:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/workflows/:id/manual-runs",
+      "scopes": "workflows:trigger",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/workflows/:id/pause",
+      "scopes": "workflows:write",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/workflows/:id/promote",
+      "scopes": "workflows:publish",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/workflows/:id/publish",
+      "scopes": "workflows:publish",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/workflows/:id/restore",
+      "scopes": "workflows:publish",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/workflows/:id/rollout",
+      "scopes": "workflows:publish",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/workflows/:id/test-runs",
+      "scopes": "workflows:trigger",
+      "public": false
+    },
+    {
+      "method": "POST",
+      "url": "/api/v1/workflows/:id/trigger",
+      "scopes": "workflows:trigger",
+      "public": false
+    },
+    {
+      "method": "GET",
+      "url": "/health",
+      "scopes": null,
+      "public": true
+    },
+    {
+      "method": "HEAD",
+      "url": "/health",
+      "scopes": null,
+      "public": true
+    },
+    {
+      "method": "GET",
+      "url": "/openapi.json",
+      "scopes": null,
+      "public": true
+    },
+    {
+      "method": "HEAD",
+      "url": "/openapi.json",
+      "scopes": null,
+      "public": true
+    },
+    {
+      "method": "GET",
+      "url": "/ready",
+      "scopes": null,
+      "public": true
+    },
+    {
+      "method": "HEAD",
+      "url": "/ready",
+      "scopes": null,
+      "public": true
+    }
+  ],
+  "constants": {
+    "flowPrefix": "/api/v1/flow/",
+    "oneTimeLinkRedeem": "/api/v1/flow/one-time-links/redeem",
+    "signals": "/api/v1/flow/signals",
+    "handoffs": "/api/v1/flow/handoffs",
+    "handoffTokenRoutes": "/api/v1/flow/handoffs/decline /api/v1/flow/handoffs/preview /api/v1/flow/handoffs/redeem",
+    "integrityRoutes": "/api/v1/flow/integrity-challenges /api/v1/flow/integrity-tokens",
+    "sandboxChip": "/api/v1/flow/verifications/:id/sandbox-chip"
+  }
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  C204.3, C204.5 (Workflow 10B, selfie-guidance): the selfie guidance's hints, one at a time and
+  announced once settled (C212.2), and the 2.2.1 warning with more time on a selfie capture. The
+  hints are the web flow's (apps/flow/src/i18n/locales/en.ts, selfie.guidance) and the warning its
+  screen.extend words; left and right are the person's own sides, never mirrored. Compose
+  Multiplatform resources: positional placeholders only, ' and " written as they are (ResourcesTest).
+-->
+<resources>
+    <!-- C204.3: one hint at a time; the shutter stays on screen (C202.4). -->
+    <string name="openverify_selfie_guidance_starting">Getting the face guide ready…</string>
+    <string name="openverify_selfie_guidance_manual">Hold the pose, then select Take photo.</string>
+    <string name="openverify_selfie_guidance_no_face">We cannot see your face. Fit your face inside the oval.</string>
+    <string name="openverify_selfie_guidance_multiple_faces">Make sure only your face is in the frame.</string>
+    <string name="openverify_selfie_guidance_too_far">Move closer to the camera.</string>
+    <string name="openverify_selfie_guidance_too_close">Move back a little.</string>
+    <string name="openverify_selfie_guidance_off_centre">Move your face to the middle of the oval.</string>
+    <string name="openverify_selfie_guidance_look_straight">Look straight at the camera.</string>
+    <string name="openverify_selfie_guidance_turn_left">Slowly turn your head to the left.</string>
+    <string name="openverify_selfie_guidance_turn_right">Slowly turn your head to the right.</string>
+    <string name="openverify_selfie_guidance_hold_still">Hold still…</string>
+    <!-- C204.5 (WCAG 2.2.1): 20 s before the capture ends, in a polite live region; the count is shown once. -->
+    <plurals name="openverify_selfie_extend_warning">
+        <item quantity="one">About %1$d second left to take your photos. Need more time?</item>
+        <item quantity="other">About %1$d seconds left to take your photos. Need more time?</item>
+    </plurals>
+    <string name="openverify_selfie_extend_more_time">More time</string>
+    <string name="openverify_selfie_extend_extended">You have more time.</string>
+    <string name="openverify_selfie_extend_failed">We could not add more time. Take your photos now, or start again if the time runs out.</string>
+    <string name="openverify_selfie_extend_already_sent">Your photos were already sent, so no more time is needed.</string>
+</resources>

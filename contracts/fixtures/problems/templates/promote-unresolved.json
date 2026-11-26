@@ -1,0 +1,23 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "A reference has no single match in the target environment.",
+  "instance": "/api/v1/inquiry-templates/itmpl_01M5CN00000000000000009A02/promote",
+  "requestId": "00000000-0000-4000-8000-000000009a0a",
+  "code": "promote_unresolved",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/flow/steps/5/action/workflowId",
+      "detail": "No workflow of this name in the target environment.",
+      "code": "reference_unresolved"
+    },
+    {
+      "location": "body",
+      "pointer": "/data/attributes/theme-set-id",
+      "detail": "Two theme sets of this name in the target environment.",
+      "code": "reference_unresolved"
+    }
+  ]
+}

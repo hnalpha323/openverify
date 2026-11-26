@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The resolution is not one of the template's resolutions.",
+  "instance": "/api/v1/cases/case_01M5CK3190XEVBM5ZXA76E1JSN/set-status",
+  "requestId": "00000000-0000-4000-8000-000000001203",
+  "code": "case_resolution_invalid",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/meta/resolution",
+      "detail": "is not a resolution of this template"
+    }
+  ]
+}

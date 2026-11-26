@@ -1,0 +1,32 @@
+{
+  "data": {
+    "type": "case-action",
+    "id": "cact_01M5CN00000000000000000009",
+    "attributes": {
+      "label": "Request a new document",
+      "status": "active",
+      "placement": "header",
+      "prefill": {
+        "reason": "case.fields.summary"
+      },
+      "created-at": "2026-10-20T12:00:00.000Z",
+      "updated-at": "2026-10-20T12:05:00.000Z"
+    },
+    "relationships": {
+      "workflow": {
+        "data": {
+          "type": "workflow",
+          "id": "wfl_01M5CM00000000000000000001"
+        }
+      },
+      "case-templates": {
+        "data": [
+          {
+            "type": "case-template",
+            "id": "ctmpl_01M5CN00000000000000000002"
+          }
+        ]
+      }
+    }
+  }
+}

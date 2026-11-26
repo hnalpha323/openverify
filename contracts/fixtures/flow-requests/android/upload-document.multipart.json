@@ -1,0 +1,12 @@
+{
+  "fields": {
+    "kind": "document",
+    "capture-method": "upload"
+  },
+  "file": {
+    "name": "file",
+    "filename": "document.pdf",
+    "content-type": "application/pdf",
+    "size": 36
+  }
+}

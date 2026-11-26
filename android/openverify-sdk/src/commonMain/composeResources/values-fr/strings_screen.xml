@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  French copy of values/strings_screen.xml, machine-drafted by android-screens (Workflow 10A,
+  C199.1; i18n/review-status.json): the web flow's French words where it has the same text
+  (contracts/fixtures/i18n/fr.json, screen.*), drafted here otherwise. Positional placeholders only,
+  ' and " written as they are, no isolate or other bidi control (ResourcesTest).
+-->
+<resources>
+    <string name="openverify_screen_heading">Vos informations</string>
+    <string name="openverify_screen_required">Les champs marqués d’un * sont obligatoires.</string>
+    <string name="openverify_screen_choose">Choisissez…</string>
+    <string name="openverify_screen_set">Déjà fourni. Saisissez une nouvelle valeur pour le modifier.</string>
+    <string name="openverify_screen_summary">Vérifiez ces réponses :</string>
+    <string name="openverify_screen_error_required">Saisissez ou choisissez une valeur.</string>
+    <string name="openverify_screen_error_too_short">Saisissez au moins %1$s caractères.</string>
+    <string name="openverify_screen_error_too_long">Saisissez au plus %1$s caractères.</string>
+    <string name="openverify_screen_error_pattern">Ce n’est pas au format attendu.</string>
+    <string name="openverify_screen_error_number">Saisissez un nombre.</string>
+    <string name="openverify_screen_error_too_small">Saisissez %1$s ou plus.</string>
+    <string name="openverify_screen_error_too_large">Saisissez %1$s ou moins.</string>
+    <string name="openverify_screen_error_date">Saisissez une date.</string>
+    <string name="openverify_screen_error_date_too_early">Saisissez le %1$s ou une date ultérieure.</string>
+    <string name="openverify_screen_error_date_too_late">Saisissez le %1$s ou une date antérieure.</string>
+    <string name="openverify_screen_error_email">Saisissez une adresse e-mail, par exemple nom@example.com.</string>
+    <string name="openverify_screen_error_phone">Saisissez un numéro de téléphone avec son indicatif de pays.</string>
+    <string name="openverify_screen_error_url">Saisissez une adresse web qui commence par https://.</string>
+    <string name="openverify_screen_error_option">Choisissez l’une des options.</string>
+    <string name="openverify_screen_error_country">Choisissez l’un des pays.</string>
+    <string name="openverify_screen_error_refused">Cette valeur n’a pas été acceptée. Vérifiez-la et réessayez.</string>
+    <string name="openverify_screen_address_street1">Adresse</string>
+    <string name="openverify_screen_address_street2">Appartement, bâtiment ou étage (facultatif)</string>
+    <string name="openverify_screen_address_city">Ville</string>
+    <string name="openverify_screen_address_subdivision">État, province ou région</string>
+    <string name="openverify_screen_address_postal_code">Code postal</string>
+    <string name="openverify_screen_address_country">Pays</string>
+    <string name="openverify_screen_saving">Enregistrement de vos réponses…</string>
+    <string name="openverify_screen_cancel_title">Vous arrêter pour le moment ?</string>
+    <string name="openverify_screen_cancel_message">Vos réponses sont conservées. Vous pouvez revenir avec le même lien pour continuer.</string>
+    <string name="openverify_screen_cancel_confirm">Oui, m’arrêter pour le moment</string>
+    <string name="openverify_screen_cancel_keep">Non, continuer</string>
+    <string name="openverify_screen_date_pick">Choisir une date</string>
+    <string name="openverify_screen_date_use">Utiliser cette date</string>
+    <string name="openverify_screen_required_mark">Obligatoire</string>
+    <string name="openverify_screen_stepper_current">Étape en cours</string>
+</resources>

@@ -1,0 +1,10 @@
+{
+  "type": "about:blank",
+  "title": "Forbidden",
+  "status": 403,
+  "detail": "The publisher lacks a scope the version needs.",
+  "instance": "/api/v1/workflows/wfl_01M5CK3190XEVBM5ZXA76E1JSN/publish",
+  "requestId": "00000000-0000-4000-8000-000000001106",
+  "code": "publish_grant_missing",
+  "missing-scopes": ["transactions:write"]
+}

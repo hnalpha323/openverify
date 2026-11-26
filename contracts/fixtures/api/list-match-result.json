@@ -1,0 +1,36 @@
+{
+  "data": {
+    "type": "list-match-result",
+    "attributes": {
+      "matches": [
+        {
+          "list-id": "lst_01M5CK3190XEVBM5ZXA76E1JSN",
+          "list-item": {
+            "type": "list-item/email-address",
+            "id": "liea_01M5CK3190XEVBM5ZXA76E1JSN"
+          },
+          "list-version": 2,
+          "source": "request",
+          "method": "exact",
+          "tier": "R",
+          "confidence": null,
+          "approximate": false,
+          "score": null,
+          "distance-meters": null
+        }
+      ],
+      "unscreened": [
+        {
+          "list-id": "lst_01M5CK3190XEVBM5ZXA76E1JSP",
+          "reason": "method_not_on_demand"
+        }
+      ],
+      "not-applicable": [
+        {
+          "list-id": "lst_01M5CK3190XEVBM5ZXA76E1JSQ",
+          "reason": "subject_has_no_value"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "No organisation that accepts connections has this id.",
+  "instance": "/api/v1/connect/connections",
+  "requestId": "00000000-0000-4000-8000-00000011a001",
+  "code": "destination_not_found",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/destination-organization-id",
+      "detail": "names no organisation that accepts connections"
+    }
+  ]
+}

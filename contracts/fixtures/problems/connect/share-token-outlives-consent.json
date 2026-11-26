@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The share token would outlive the consent it rests on.",
+  "instance": "/api/v1/connect/share-tokens",
+  "requestId": "00000000-0000-4000-8000-00000011a013",
+  "code": "share_token_outlives_consent",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/expires-in-seconds",
+      "detail": "ends after the consent record expires"
+    }
+  ]
+}

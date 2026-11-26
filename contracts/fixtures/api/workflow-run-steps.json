@@ -1,0 +1,101 @@
+{
+  "data": [
+    {
+      "type": "workflow-run-step",
+      "id": "wfst_01M5CM00000000000000000007",
+      "attributes": {
+        "node-id": "run_watchlist",
+        "iteration-path": "",
+        "node-type": "action",
+        "action-key": "run_report",
+        "action-version": 1,
+        "status": "succeeded",
+        "attempt": 1,
+        "due-at": null,
+        "started-at": "2026-10-20T12:00:00.000Z",
+        "completed-at": "2026-10-20T12:05:00.000Z",
+        "error-type": null,
+        "error-code": null,
+        "effect-status": "done",
+        "simulated": false,
+        "overridden": false,
+        "input": {
+          "report-template-id": "rptp_01M5CM00000000000000000003",
+          "inquiry-id": "{{ trigger.id }}"
+        },
+        "output": {
+          "report-id": "rep_01M5CM00000000000000000012",
+          "status": "ready",
+          "has-match": true,
+          "match-count": 1
+        },
+        "console": null
+      }
+    },
+    {
+      "type": "workflow-run-step",
+      "id": "wfst_01M5CM00000000000000000008",
+      "attributes": {
+        "node-id": "copy_tag",
+        "iteration-path": "loop[3]",
+        "node-type": "action",
+        "action-key": "tag_object",
+        "action-version": 1,
+        "status": "failed",
+        "attempt": 2,
+        "due-at": null,
+        "started-at": "2026-10-20T12:00:00.000Z",
+        "completed-at": "2026-10-20T12:05:00.000Z",
+        "error-type": "resource-error",
+        "error-code": "subject_redacted",
+        "effect-status": null,
+        "simulated": false,
+        "overridden": false,
+        "input": null,
+        "output": null,
+        "console": null
+      }
+    },
+    {
+      "type": "workflow-run-step",
+      "id": "wfst_01M5CM00000000000000000009",
+      "attributes": {
+        "node-id": "decide",
+        "iteration-path": "",
+        "node-type": "conditional",
+        "action-key": null,
+        "action-version": null,
+        "status": "succeeded",
+        "attempt": 1,
+        "due-at": null,
+        "started-at": "2026-10-20T12:00:00.000Z",
+        "completed-at": "2026-10-20T12:00:00.000Z",
+        "error-type": null,
+        "error-code": null,
+        "effect-status": null,
+        "simulated": false,
+        "overridden": false,
+        "input": null,
+        "output": {
+          "route": "matched"
+        },
+        "console": null
+      }
+    }
+  ],
+  "included": [
+    {
+      "type": "workflow-run-file",
+      "id": "wfrf_01M5CM00000000000000000014",
+      "attributes": {
+        "filename": "synthetic-statement.pdf",
+        "mime-type": "application/pdf",
+        "byte-size": 2048,
+        "created-at": "2026-10-20T12:00:00.000Z"
+      }
+    }
+  ],
+  "links": {
+    "next": null
+  }
+}

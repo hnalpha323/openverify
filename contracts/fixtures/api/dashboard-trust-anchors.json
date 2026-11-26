@@ -1,0 +1,86 @@
+{
+  "generated-at": "2026-10-23T12:00:00.000Z",
+  "has-production-anchor": true,
+  "settings": {
+    "refresh-enabled": true,
+    "icao-crls-allowed": false
+  },
+  "sources": [
+    {
+      "id": "bsi-de",
+      "enabled": true,
+      "last-synced-at": "2026-10-23T03:00:00.000Z",
+      "list-signing-time": "2026-10-01T08:30:00.000Z",
+      "list-sha256": "c1de5293030ec1f27fa867c5ab6004814d5d9e2fa6c60411927ddda7155ae964",
+      "anchors": 3,
+      "last-sync": {
+        "outcome": "accepted",
+        "reason": null,
+        "anchors-seen": 3,
+        "anchors-withdrawn": 1,
+        "crls-updated": 2,
+        "created-at": "2026-10-23T03:00:00.000Z"
+      }
+    },
+    {
+      "id": "npkd-nl",
+      "enabled": false,
+      "last-synced-at": null,
+      "list-signing-time": null,
+      "list-sha256": null,
+      "anchors": 0,
+      "last-sync": null
+    }
+  ],
+  "countries": [
+    {
+      "country": "DE",
+      "anchors": 2,
+      "link-certificates": 1,
+      "withdrawn-anchors": 1,
+      "next-expiry": "2031-03-01T00:00:00.000Z"
+    },
+    {
+      "country": "FR",
+      "anchors": 1,
+      "link-certificates": 0,
+      "withdrawn-anchors": 0,
+      "next-expiry": "2033-06-15T00:00:00.000Z"
+    }
+  ],
+  "withdrawn-anchors": [
+    {
+      "id": "bb9b8c61191bf1a09c7c365e76f5516e8ab5b8f963473d133243bb1a4c19d85d",
+      "country": "DE",
+      "subject-dn": "CN=Synthetic CSCA DE 2014,O=OpenVerify Fixtures,C=DE",
+      "withdrawn-at": "2026-10-23T03:00:00.000Z"
+    }
+  ],
+  "crls": [
+    {
+      "issuer-country": "DE",
+      "issuer-key-id": "c1a6768d52ffe089f24957595866485b03f9ef64",
+      "this-update": "2026-10-20T00:00:00.000Z",
+      "next-update": "2026-11-20T00:00:00.000Z",
+      "fetched-at": "2026-10-23T03:00:00.000Z",
+      "freshness": "current"
+    },
+    {
+      "issuer-country": "FR",
+      "issuer-key-id": "effc6fa0deb4a52ab41cae7aa7ebdab6c5b0dcc5",
+      "this-update": "2026-09-01T00:00:00.000Z",
+      "next-update": "2026-10-01T00:00:00.000Z",
+      "fetched-at": "2026-09-02T03:00:00.000Z",
+      "freshness": "expired"
+    }
+  ],
+  "sandbox-anchors": [
+    {
+      "id": "481be764d6a4b169b42741cffa31be6941613d10b83c2933685e6e03f658a66e",
+      "country": "UT",
+      "not-before": "2026-10-22T00:00:00.000Z",
+      "not-after": "2036-10-22T00:00:00.000Z",
+      "crl-next-update": "2027-01-21T12:00:00.000Z"
+    }
+  ]
+}

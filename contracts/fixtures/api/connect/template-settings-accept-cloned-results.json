@@ -1,0 +1,7 @@
+{
+  "retention-days": 365,
+  "accept-cloned-results": {
+    "verification-types": ["government-id", "database"],
+    "max-age-days": 90
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "This source cannot be redeemed into this destination.",
+  "instance": "/api/v1/connect/share-tokens/cnst_01M5CN0000000000000011A200/redeem",
+  "requestId": "00000000-0000-4000-8000-00000011a020",
+  "code": "share_redeem_mode_invalid",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/destination-id",
+      "detail": "cannot be filled from this kind of source"
+    }
+  ]
+}

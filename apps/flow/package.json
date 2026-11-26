@@ -1,0 +1,53 @@
+{
+  "name": "@openverify/flow",
+  "version": "0.0.0",
+  "private": true,
+  "description": "End-user verification flow (hosted, embedded or inline)",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p e2e && tsc --noEmit -p tsconfig.server.json && tsc --noEmit -p scripts",
+    "i18n:export": "node scripts/export-flow-locales.ts",
+    "test": "vitest run --coverage",
+    "e2e": "playwright test --config e2e/playwright.config.ts"
+  },
+  "dependencies": {
+    "@openverify/contracts": "workspace:*",
+    "@openverify/flow-spec": "workspace:*",
+    "@openverify/signals": "workspace:*",
+    "@openverify/ui": "workspace:*",
+    "i18next": "^26.5.2",
+    "lean-qr": "catalog:",
+    "libphonenumber-js": "catalog:",
+    "onnxruntime-web": "1.30.0",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-i18next": "^17.1.0",
+    "react-router": "^8.4.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "catalog:",
+    "@openverify/config": "workspace:*",
+    "@openverify/core": "workspace:*",
+    "@playwright/test": "catalog:",
+    "@tailwindcss/vite": "^4.3.3",
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.8",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vitejs/plugin-react": "catalog:",
+    "@vitest/coverage-v8": "catalog:",
+    "jsdom": "catalog:",
+    "tailwindcss": "^4.3.3",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vitest": "catalog:"
+  }
+}

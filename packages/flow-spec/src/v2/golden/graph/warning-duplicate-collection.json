@@ -1,0 +1,246 @@
+{
+  "rule": "C147.6 two steps collecting the same value without prefillFrom (review H22)",
+  "description": "The guardian screen asks for the nickname again, and a phone step follows a phone field.",
+  "flow": {
+    "metadata": {
+      "specVersion": 2,
+      "id": "graph-base",
+      "version": 1,
+      "name": "Graph base"
+    },
+    "entry": "consent",
+    "steps": [
+      {
+        "id": "consent",
+        "type": "consent",
+        "textKeys": ["consent.biometric"],
+        "required": true
+      },
+      {
+        "id": "details",
+        "type": "screen",
+        "components": [
+          {
+            "id": "title",
+            "kind": "text",
+            "variant": "title",
+            "copyKey": "details.title.title"
+          },
+          {
+            "id": "nickname",
+            "kind": "text_input",
+            "field": "nickname",
+            "labelKey": "nickname.label",
+            "pattern": "^[a-z]+$"
+          },
+          {
+            "id": "has_middle",
+            "kind": "checkbox",
+            "field": "has_middle",
+            "labelKey": "has_middle.label"
+          },
+          {
+            "id": "middle_name",
+            "kind": "text_input",
+            "field": "middle_name",
+            "labelKey": "middle_name.label",
+            "visibleWhen": {
+              "!!": [
+                {
+                  "var": "screen.has_middle"
+                }
+              ]
+            }
+          },
+          {
+            "id": "continue",
+            "kind": "button",
+            "labelKey": "continue.button",
+            "action": "submit"
+          },
+          {
+            "id": "skip",
+            "kind": "button",
+            "labelKey": "skip.button",
+            "action": "submit",
+            "port": "skip"
+          },
+          {
+            "id": "mobile",
+            "kind": "phone",
+            "field": "mobile",
+            "labelKey": "mobile.label"
+          }
+        ]
+      },
+      {
+        "id": "id_card",
+        "type": "government_id",
+        "sides": "front",
+        "maxAttempts": 2,
+        "captureMethods": ["camera"]
+      },
+      {
+        "id": "proof",
+        "type": "document",
+        "documentTypes": ["utility_bill"],
+        "captureMethods": ["upload"]
+      },
+      {
+        "id": "age_route",
+        "type": "branch",
+        "routes": [
+          {
+            "key": "minor",
+            "label": "Under 18",
+            "condition": {
+              "<": [
+                {
+                  "var": "verifications.id_card.age-years"
+                },
+                18
+              ]
+            },
+            "onNull": "review"
+          }
+        ]
+      },
+      {
+        "id": "guardian",
+        "type": "screen",
+        "components": [
+          {
+            "id": "nick",
+            "kind": "text_input",
+            "field": "nickname",
+            "labelKey": "nick.label"
+          },
+          {
+            "id": "guardian_name",
+            "kind": "text_input",
+            "field": "guardian_name",
+            "labelKey": "guardian_name.label"
+          },
+          {
+            "id": "continue",
+            "kind": "button",
+            "labelKey": "continue.button",
+            "action": "submit"
+          }
+        ]
+      },
+      {
+        "id": "face",
+        "type": "selfie",
+        "poses": ["center"],
+        "liveness": "passive",
+        "maxAttempts": 2
+      },
+      {
+        "id": "tag",
+        "type": "action",
+        "action": {
+          "kind": "tag_inquiry",
+          "add": ["checked"]
+        }
+      },
+      {
+        "id": "done",
+        "type": "completion"
+      },
+      {
+        "id": "rejected",
+        "type": "failure"
+      },
+      {
+        "id": "phone",
+        "type": "phone_otp",
+        "allowedCountries": ["US"]
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "consent",
+        "port": "next",
+        "to": "details"
+      },
+      {
+        "id": "e2",
+        "from": "details",
+        "port": "next",
+        "to": "id_card"
+      },
+      {
+        "id": "e3",
+        "from": "details",
+        "port": "button:skip",
+        "to": "id_card"
+      },
+      {
+        "id": "e4",
+        "from": "id_card",
+        "port": "next",
+        "to": "age_route"
+      },
+      {
+        "id": "e5",
+        "from": "id_card",
+        "port": "exhausted",
+        "to": "proof"
+      },
+      {
+        "id": "e6",
+        "from": "proof",
+        "port": "next",
+        "to": "age_route"
+      },
+      {
+        "id": "e7",
+        "from": "age_route",
+        "port": "route:minor",
+        "to": "guardian"
+      },
+      {
+        "id": "e8",
+        "from": "age_route",
+        "port": "else",
+        "to": "face"
+      },
+      {
+        "id": "e9",
+        "from": "guardian",
+        "port": "next",
+        "to": "face"
+      },
+      {
+        "id": "e10",
+        "from": "face",
+        "port": "next",
+        "to": "phone"
+      },
+      {
+        "id": "e11",
+        "from": "tag",
+        "port": "next",
+        "to": "done"
+      },
+      {
+        "id": "e12",
+        "from": "tag",
+        "port": "error",
+        "to": "rejected"
+      },
+      {
+        "id": "x13",
+        "from": "phone",
+        "port": "next",
+        "to": "tag"
+      }
+    ]
+  },
+  "added": [
+    ["warning", "duplicate_collection", "/steps/5/components/0"],
+    ["warning", "duplicate_collection", "/steps/10"]
+  ]
+}

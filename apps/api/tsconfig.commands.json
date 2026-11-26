@@ -1,0 +1,33 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "rootDir": "scripts",
+    "outDir": "dist/commands",
+    "customConditions": [],
+    "declaration": false,
+    "declarationMap": false
+  },
+  "include": [],
+  "files": [
+    "scripts/api-keys-pepper-status.ts",
+    "scripts/blind-index-rebuild.ts",
+    "scripts/db-grant-runtime.ts",
+    "scripts/db-migrate.ts",
+    "scripts/face-index-rebuild.ts",
+    "scripts/graph-reindex.ts",
+    "scripts/kek-rewrap.ts",
+    "scripts/network-sync.ts",
+    "scripts/org-create.ts",
+    "scripts/pep-sync.ts",
+    "scripts/retention-run.ts",
+    "scripts/seed-dev.ts",
+    "scripts/trust-anchors-sync.ts",
+    "scripts/trust-sandbox-utopia.ts",
+    "scripts/user-allow-password.ts",
+    "scripts/user-reset-mfa.ts",
+    "scripts/watchlists-rebuild-key-df.ts",
+    "scripts/watchlists-rekey.ts",
+    "scripts/watchlists-sync.ts"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "fields": {
+    "kind": "front",
+    "capture-method": "camera",
+    "capture-trigger": "manual"
+  },
+  "file": {
+    "name": "file",
+    "filename": "front.jpg",
+    "content-type": "image/jpeg",
+    "size": 6
+  }
+}

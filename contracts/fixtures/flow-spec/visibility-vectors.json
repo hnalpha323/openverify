@@ -1,0 +1,1452 @@
+{
+  "format": 1,
+  "description": "C148.4, C196.1: the strict visibility evaluator over a rule and its screen values. Each case gives the answer of evaluateVisibility (packages/flow-spec/src/v2/visibility.ts), a null rule being an absent one; each refusal is a rule it throws VisibilityRuleError for, which the Kotlin evaluator refuses with VisibilityRuleRefused. Written by packages/flow-spec/src/export-vectors.test.ts with UPDATE_CONTRACT_FIXTURES=1; never edited by hand.",
+  "cases": [
+    {
+      "name": "an absent rule holds",
+      "rule": null,
+      "values": {},
+      "result": true
+    },
+    {
+      "name": "=== on a string",
+      "rule": {
+        "===": [
+          {
+            "var": "screen.country"
+          },
+          "US"
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": true
+    },
+    {
+      "name": "== is ===, so a number is not its string",
+      "rule": {
+        "==": [
+          {
+            "var": "screen.age"
+          },
+          "0"
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": false
+    },
+    {
+      "name": "== on a number",
+      "rule": {
+        "==": [
+          {
+            "var": "screen.age"
+          },
+          0
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": true
+    },
+    {
+      "name": "!== on a string",
+      "rule": {
+        "!==": [
+          {
+            "var": "screen.country"
+          },
+          "CA"
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": true
+    },
+    {
+      "name": "two lists are never equal",
+      "rule": {
+        "===": [
+          {
+            "var": "screen.interests"
+          },
+          ["music", "art"]
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": false
+    },
+    {
+      "name": "a field with no value reads null",
+      "rule": {
+        "===": [
+          {
+            "var": "screen.missing"
+          },
+          null
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": true
+    },
+    {
+      "name": "! of a field with no value",
+      "rule": {
+        "!": [
+          {
+            "var": "screen.missing"
+          }
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": true
+    },
+    {
+      "name": "a field named like a prototype member reads null",
+      "rule": {
+        "===": [
+          {
+            "var": "screen.constructor"
+          },
+          null
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": true
+    },
+    {
+      "name": "!! of false",
+      "rule": {
+        "!!": [
+          {
+            "var": "screen.has_middle_name"
+          }
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": false
+    },
+    {
+      "name": "! with one operand not in a list",
+      "rule": {
+        "!": {
+          "var": "screen.age"
+        }
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": true
+    },
+    {
+      "name": "an empty list is false",
+      "rule": {
+        "!!": [[]]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": false
+    },
+    {
+      "name": "a list with an item is true",
+      "rule": {
+        "!!": [["x"]]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": true
+    },
+    {
+      "name": "and over truthy operands",
+      "rule": {
+        "and": [
+          true,
+          {
+            "var": "screen.country"
+          }
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": true
+    },
+    {
+      "name": "and with a falsy number",
+      "rule": {
+        "and": [
+          {
+            "var": "screen.age"
+          },
+          true
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": false
+    },
+    {
+      "name": "or finds the truthy operand",
+      "rule": {
+        "or": [
+          false,
+          "",
+          {
+            "var": "screen.country"
+          }
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": true
+    },
+    {
+      "name": "or over falsy operands",
+      "rule": {
+        "or": [false, 0]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": false
+    },
+    {
+      "name": "in a field list",
+      "rule": {
+        "in": [
+          "music",
+          {
+            "var": "screen.interests"
+          }
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": true
+    },
+    {
+      "name": "not in a field list",
+      "rule": {
+        "in": [
+          "sport",
+          {
+            "var": "screen.interests"
+          }
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": false
+    },
+    {
+      "name": "a field in a literal list",
+      "rule": {
+        "in": [
+          {
+            "var": "screen.country"
+          },
+          ["US", "CA"]
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": true
+    },
+    {
+      "name": "in inside a string",
+      "rule": {
+        "in": [
+          "S",
+          {
+            "var": "screen.country"
+          }
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": true
+    },
+    {
+      "name": "a number is never inside a string",
+      "rule": {
+        "in": [
+          1,
+          {
+            "var": "screen.country"
+          }
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": false
+    },
+    {
+      "name": "in a field with no value",
+      "rule": {
+        "in": [
+          "x",
+          {
+            "var": "screen.missing"
+          }
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": false
+    },
+    {
+      "name": "!== null",
+      "rule": {
+        "!==": [
+          {
+            "var": "screen.country"
+          },
+          null
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": true
+    },
+    {
+      "name": "and of !! and ===",
+      "rule": {
+        "and": [
+          {
+            "!!": [
+              {
+                "var": "screen.has_middle_name"
+              }
+            ]
+          },
+          {
+            "===": [
+              {
+                "var": "screen.age"
+              },
+              18
+            ]
+          }
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": false
+    },
+    {
+      "name": "or of two in",
+      "rule": {
+        "or": [
+          {
+            "in": [
+              "music",
+              {
+                "var": "screen.interests"
+              }
+            ]
+          },
+          {
+            "in": [
+              {
+                "var": "screen.country"
+              },
+              ["US", "CA"]
+            ]
+          }
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": true
+    },
+    {
+      "name": "a literal on the left",
+      "rule": {
+        "===": [
+          true,
+          {
+            "var": "screen.has_middle_name"
+          }
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": false
+    },
+    {
+      "name": "=== on an equal number",
+      "rule": {
+        "===": [
+          {
+            "var": "screen.age"
+          },
+          18
+        ]
+      },
+      "values": {
+        "age": 18
+      },
+      "result": true
+    },
+    {
+      "name": "=== on a decimal number",
+      "rule": {
+        "===": [
+          {
+            "var": "screen.amount"
+          },
+          2.5
+        ]
+      },
+      "values": {
+        "amount": 2.5
+      },
+      "result": true
+    },
+    {
+      "name": "=== on true",
+      "rule": {
+        "===": [
+          {
+            "var": "screen.agreed"
+          },
+          true
+        ]
+      },
+      "values": {
+        "agreed": true
+      },
+      "result": true
+    },
+    {
+      "name": "an explicit null value reads null",
+      "rule": {
+        "===": [
+          {
+            "var": "screen.middle"
+          },
+          null
+        ]
+      },
+      "values": {
+        "middle": null
+      },
+      "result": true
+    },
+    {
+      "name": "null === null",
+      "rule": {
+        "===": [
+          null,
+          {
+            "var": "screen.missing"
+          }
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": true
+    },
+    {
+      "name": "!== between two lists",
+      "rule": {
+        "!==": [
+          {
+            "var": "screen.interests"
+          },
+          ["music", "art"]
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": true
+    },
+    {
+      "name": "!! of an empty string",
+      "rule": {
+        "!!": [
+          {
+            "var": "screen.name"
+          }
+        ]
+      },
+      "values": {
+        "name": ""
+      },
+      "result": false
+    },
+    {
+      "name": "!! of a string",
+      "rule": {
+        "!!": [
+          {
+            "var": "screen.name"
+          }
+        ]
+      },
+      "values": {
+        "name": "Ada"
+      },
+      "result": true
+    },
+    {
+      "name": "!! of zero",
+      "rule": {
+        "!!": [
+          {
+            "var": "screen.age"
+          }
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": false
+    },
+    {
+      "name": "!! of null",
+      "rule": {
+        "!!": [null]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": false
+    },
+    {
+      "name": "! of a non-empty list",
+      "rule": {
+        "!": [
+          {
+            "var": "screen.interests"
+          }
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": false
+    },
+    {
+      "name": "and over three truthy operands",
+      "rule": {
+        "and": [true, "x", 1]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": true
+    },
+    {
+      "name": "and with one operand",
+      "rule": {
+        "and": [
+          {
+            "var": "screen.country"
+          }
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": true
+    },
+    {
+      "name": "or with one falsy operand",
+      "rule": {
+        "or": [
+          {
+            "var": "screen.has_middle_name"
+          }
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": false
+    },
+    {
+      "name": "a list needle is never in a list",
+      "rule": {
+        "in": [
+          {
+            "var": "screen.interests"
+          },
+          ["music"]
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": false
+    },
+    {
+      "name": "a string field in a list of numbers",
+      "rule": {
+        "in": [
+          {
+            "var": "screen.country"
+          },
+          [1, 2]
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": false
+    },
+    {
+      "name": "a number in a list of numbers",
+      "rule": {
+        "in": [
+          {
+            "var": "screen.age"
+          },
+          [0, 1]
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": true
+    },
+    {
+      "name": "in a literal string",
+      "rule": {
+        "in": ["U", "US"]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": true
+    },
+    {
+      "name": "a nested rule",
+      "rule": {
+        "!": [
+          {
+            "and": [
+              {
+                "===": [
+                  {
+                    "var": "screen.country"
+                  },
+                  "US"
+                ]
+              },
+              {
+                "!!": {
+                  "var": "screen.has_middle_name"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      },
+      "result": true
+    },
+    {
+      "name": "a rule over a field the values do not hold",
+      "rule": {
+        "===": [
+          {
+            "var": "screen.later"
+          },
+          "x"
+        ]
+      },
+      "values": {},
+      "result": false
+    }
+  ],
+  "refusals": [
+    {
+      "name": "an operator outside the subset (<)",
+      "rule": {
+        "<": [
+          {
+            "var": "screen.age"
+          },
+          1
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      }
+    },
+    {
+      "name": "a server fact",
+      "rule": {
+        "===": [
+          {
+            "var": "inquiry.status"
+          },
+          "x"
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      }
+    },
+    {
+      "name": "!= is not in the subset",
+      "rule": {
+        "!=": [
+          {
+            "var": "screen.age"
+          },
+          1
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      }
+    },
+    {
+      "name": "if is not in the subset",
+      "rule": {
+        "if": [true, true, false]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      }
+    },
+    {
+      "name": "var with a default",
+      "rule": {
+        "var": ["screen.age", 3]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      }
+    },
+    {
+      "name": "var of a number",
+      "rule": {
+        "var": 7
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      }
+    },
+    {
+      "name": "=== with one operand",
+      "rule": {
+        "===": [
+          {
+            "var": "screen.age"
+          }
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      }
+    },
+    {
+      "name": "! with two operands",
+      "rule": {
+        "!": [true, false]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      }
+    },
+    {
+      "name": "and with no operand",
+      "rule": {
+        "and": []
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      }
+    },
+    {
+      "name": "in looks in an operator",
+      "rule": {
+        "in": [
+          {
+            "var": "screen.age"
+          },
+          {
+            "!!": true
+          }
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      }
+    },
+    {
+      "name": "an object literal operand",
+      "rule": {
+        "===": [
+          {
+            "a": 1
+          },
+          1
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      }
+    },
+    {
+      "name": "two operators in one node",
+      "rule": {
+        "===": [
+          {
+            "var": "screen.age"
+          },
+          1
+        ],
+        "!": [true]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      }
+    },
+    {
+      "name": "a list holding a var",
+      "rule": {
+        "in": [
+          "a",
+          [
+            {
+              "var": "screen.age"
+            }
+          ]
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      }
+    },
+    {
+      "name": "the path verifications.id_card.status",
+      "rule": {
+        "and": [
+          true,
+          {
+            "!!": {
+              "var": "verifications.id_card.status"
+            }
+          }
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      }
+    },
+    {
+      "name": "the path signals.inquiry/bot_score",
+      "rule": {
+        "and": [
+          true,
+          {
+            "!!": {
+              "var": "signals.inquiry/bot_score"
+            }
+          }
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      }
+    },
+    {
+      "name": "the path inquiry.fields.country",
+      "rule": {
+        "and": [
+          true,
+          {
+            "!!": {
+              "var": "inquiry.fields.country"
+            }
+          }
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      }
+    },
+    {
+      "name": "the path screen",
+      "rule": {
+        "and": [
+          true,
+          {
+            "!!": {
+              "var": "screen"
+            }
+          }
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      }
+    },
+    {
+      "name": "the path screen.country.length",
+      "rule": {
+        "and": [
+          true,
+          {
+            "!!": {
+              "var": "screen.country.length"
+            }
+          }
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      }
+    },
+    {
+      "name": "the path country",
+      "rule": {
+        "and": [
+          true,
+          {
+            "!!": {
+              "var": "country"
+            }
+          }
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      }
+    },
+    {
+      "name": "a field name with a capital",
+      "rule": {
+        "!!": {
+          "var": "screen.Country"
+        }
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      }
+    },
+    {
+      "name": "a field name starting with a digit",
+      "rule": {
+        "!!": {
+          "var": "screen.1st"
+        }
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      }
+    },
+    {
+      "name": "a rule past the depth limit",
+      "rule": {
+        "!": [
+          {
+            "!": [
+              {
+                "!": [
+                  {
+                    "!": [
+                      {
+                        "!": [
+                          {
+                            "!": [
+                              {
+                                "!": [
+                                  {
+                                    "!": [
+                                      {
+                                        "!": [
+                                          {
+                                            "!": [
+                                              {
+                                                "!": [
+                                                  {
+                                                    "!": [
+                                                      {
+                                                        "!": [
+                                                          {
+                                                            "!": [
+                                                              {
+                                                                "!": [
+                                                                  {
+                                                                    "!": [
+                                                                      {
+                                                                        "!": [
+                                                                          {
+                                                                            "!!": {
+                                                                              "var": "screen.age"
+                                                                            }
+                                                                          }
+                                                                        ]
+                                                                      }
+                                                                    ]
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      }
+    },
+    {
+      "name": "a rule past the node limit",
+      "rule": {
+        "or": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "values": {
+        "country": "US",
+        "has_middle_name": false,
+        "interests": ["music", "art"],
+        "age": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "data": {
+    "type": "analytics-verifications",
+    "id": "04050f0cffb641a1a3dc9cdf4570db3c3e3feca3dfa68312b8c08d06fd340126",
+    "attributes": {
+      "time-zone": "Europe/Paris",
+      "time-zones": ["Europe/Paris"],
+      "from": "2026-10-27",
+      "to": "2026-10-29",
+      "bucket": "day",
+      "threshold": 11,
+      "suppressed-cells": 3,
+      "settle-days": 30,
+      "freshness": {
+        "rolled-up-through": "2026-10-29T13:55:00.000Z",
+        "outcomes-as-of": "2026-10-28T23:05:00.000Z"
+      },
+      "buckets": [
+        {
+          "start": "2026-10-27",
+          "end": "2026-10-27",
+          "time-zone": "Europe/Paris",
+          "live": false,
+          "counts": {
+            "created": 402,
+            "submitted": 391,
+            "passed": 322,
+            "failed": 41,
+            "requires-retry": 28,
+            "skipped": 0,
+            "needs-review": 13,
+            "canceled": {
+              "suppressed": "small-count"
+            }
+          }
+        },
+        {
+          "start": "2026-10-28",
+          "end": "2026-10-28",
+          "time-zone": "Europe/Paris",
+          "live": false,
+          "counts": {
+            "created": 397
+          }
+        },
+        {
+          "start": "2026-10-29",
+          "end": "2026-10-29",
+          "time-zone": "Europe/Paris",
+          "live": true,
+          "counts": {}
+        }
+      ],
+      "totals": {
+        "groups": [
+          {
+            "verification-type": "government-id",
+            "capture-method": "camera",
+            "country": "FR",
+            "counts": {
+              "created": 240,
+              "submitted": 236,
+              "passed": 201,
+              "failed": 19,
+              "requires-retry": 16,
+              "skipped": 0,
+              "needs-review": {
+                "suppressed": "small-count"
+              },
+              "canceled": {
+                "suppressed": "complementary"
+              }
+            },
+            "rates": {
+              "pass-rate-per-attempt": {
+                "value": 0.8516949152542372
+              }
+            }
+          },
+          {
+            "verification-type": "government-id",
+            "capture-method": null,
+            "country": null,
+            "counts": {
+              "created": 162,
+              "submitted": 155,
+              "passed": 121,
+              "failed": 22,
+              "requires-retry": 12,
+              "skipped": 0,
+              "needs-review": {
+                "suppressed": "small-count"
+              },
+              "canceled": 0
+            },
+            "rates": {
+              "pass-rate-per-attempt": {
+                "value": 0.7806451612903226
+              }
+            }
+          }
+        ],
+        "steps": [
+          {
+            "inquiry-template-version-id": "itmplv_01M5CN00000000000000009B20",
+            "step-id": "s_idcard01",
+            "verification-type": "government-id",
+            "counts": {
+              "step-entered": 362,
+              "step-passed": 309,
+              "step-failed-after-attempts": 33,
+              "step-needs-review": 20,
+              "step-skipped": 0
+            },
+            "rates": {
+              "pass-rate-per-person": {
+                "value": 0.8535911602209945
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

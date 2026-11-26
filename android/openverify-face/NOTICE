@@ -1,0 +1,59 @@
+OpenVerify face module (openverify-face)
+
+This module is shipped separately from the OpenVerify core Android SDK
+(openverify-sdk). The core SDK is licensed under the Apache License 2.0
+and does not depend on this module.
+
+This module's own code is licensed under the Apache License 2.0.
+
+
+Dependency (adopted in Phase 10, Workflow 10E, on 2026-11-11)
+
+  ONNX Runtime  (com.microsoft.onnxruntime:onnxruntime-android, 1.31.0)
+                https://github.com/microsoft/onnxruntime
+                License: MIT
+
+The module depends on ONNX Runtime by Maven coordinates. Its AAR holds none
+of ONNX Runtime's code: an app that adds the module receives Microsoft's
+official AAR, unmodified, through the module's POM.
+
+ONNX Runtime's licence and its third-party notices, copied from the v1.31.0
+tag (commit 402979ac1bef89dcd55add41eaa7277c407599eb), are in
+licenses/onnxruntime/LICENSE.txt and licenses/onnxruntime/ThirdPartyNotices.txt.
+The AAR on Maven Central carries no third-party notices file of its own.
+
+
+Eigen
+
+ONNX Runtime's native library has Eigen compiled in. Eigen is licensed
+under the Mozilla Public License 2.0, a file-level copyleft licence that
+OpenVerify's licence rule does not list. A narrow, recorded exception was
+granted on 2026-11-08 under the owner's delegation (Phase 10 owner item P2,
+docs/plans/phase-10.plan.md, "Orchestrator decisions before Workflow 10A"):
+Eigen, unmodified, as compiled into the official onnxruntime-android AAR,
+only inside this optional artifact.
+
+Source location of Eigen as ONNX Runtime 1.31.0 builds it (MPL-2.0, section
+3.2(a)), from cmake/deps.txt at the v1.31.0 tag:
+  https://github.com/eigen-mirror/eigen
+  revision 1d8b82b0740839c0de7f1242a3585e3390ff5f33
+  https://github.com/eigen-mirror/eigen/archive/1d8b82b0740839c0de7f1242a3585e3390ff5f33/eigen-1d8b82b0740839c0de7f1242a3585e3390ff5f33.zip
+Upstream: https://gitlab.com/libeigen/eigen
+
+The text of the MPL-2.0 is in licenses/onnxruntime/ThirdPartyNotices.txt,
+in Eigen's entry.
+
+
+The face-detection model
+
+The YuNet model (face_detection_yunet_2026may.onnx, MIT, OpenCV Zoo) is not
+in this repository. It is fetched by scripts/fetch_models.py with a pinned
+SHA-256 and reaches the artifact at build time. See THIRD_PARTY_LICENSES.md,
+section 3, for its licence and for the terms of the WIDER FACE dataset it
+was trained on.
+
+Its licence text, as published by OpenCV Zoo at commit
+47534e27c9851bb1128ccc0102f1145e27f23f98, and a notice of the training
+data's terms are in licenses/yunet/LICENSE.txt and licenses/yunet/NOTICE.txt.
+The AAR carries this file and the licenses/ directory among its assets, under
+assets/openverify-face/.

@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "A biometric consent text must state the retention through its placeholder.",
+  "instance": "/api/v1/inquiry-template-versions/itmplv_01M5CN00000000000000009A01",
+  "requestId": "00000000-0000-4000-8000-000000009a0d",
+  "code": "consent_copy_missing_placeholder",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/copy/messages/fr/consent.biometric-matching",
+      "detail": "The text must contain {days}."
+    }
+  ]
+}

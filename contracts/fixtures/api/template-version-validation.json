@@ -1,0 +1,21 @@
+{
+  "data": {
+    "type": "inquiry-template-version-validation",
+    "id": "itmplv_01M5CN00000000000000009A01",
+    "attributes": {
+      "validation": {
+        "status": "invalid",
+        "problems": [
+          {
+            "pointer": "/data/attributes/flow/steps/2/routes/0",
+            "code": "heuristic_acknowledgement_needed",
+            "detail": "A route that reads a heuristic needs its acknowledgement at publish.",
+            "severity": "warning"
+          }
+        ]
+      },
+      "flow-sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "acknowledgements-required": ["heuristic:age_route"]
+    }
+  }
+}

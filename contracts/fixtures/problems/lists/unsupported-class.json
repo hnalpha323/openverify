@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The ID class is not one this list takes.",
+  "instance": "/api/v1/list-item/government-id-numbers",
+  "requestId": "00000000-0000-4000-8000-000000000813",
+  "code": "unsupported_class",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/id-class",
+      "detail": "is not a supported class"
+    }
+  ]
+}

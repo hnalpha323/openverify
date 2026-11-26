@@ -1,0 +1,158 @@
+{
+  "data": {
+    "type": "report/watchlist",
+    "id": "rep_01M5Y5Z4002GV576EACWSHT2BK",
+    "attributes": {
+      "status": "ready",
+      "created-at": "2026-10-27T09:00:00.000Z",
+      "completed-at": "2026-10-27T09:00:01.250Z",
+      "redacted-at": null,
+      "report-template-version-name": "v1",
+      "has-match": true,
+      "is-continuous": false,
+      "is-recurring": true,
+      "tags": ["onboarding"],
+      "query": {
+        "name-first": "Avery",
+        "name-last": "Quillfeather",
+        "birthdate": "1980-04-12",
+        "address-country-code": "GB"
+      },
+      "origin": "bulk",
+      "errors": [],
+      "unavailable-fields": [],
+      "coverage": {
+        "complete": true,
+        "limits": []
+      },
+      "next-run-at": "2026-11-26T09:00:00.000Z",
+      "paused-at": null,
+      "paused-reason": null,
+      "sources": [
+        {
+          "source-id": "openverify-sandbox",
+          "sync-id": "wsync-sandbox-0001",
+          "published-at": "2026-10-26T00:00:00.000Z",
+          "checked-at": "2026-10-26T00:05:00.000Z",
+          "sha256": "a4573f9d21f9cfa8934b21aadf8165e2bbf2577ada0fbaba8736606128da6b48",
+          "origin": "import",
+          "attribution": "OpenVerify synthetic sandbox list (fictional entries, for tests only)"
+        }
+      ],
+      "query-sources": {
+        "name-first": "request",
+        "name-last": "request",
+        "birthdate": "request",
+        "address-country-code": "request"
+      },
+      "matcher-version": "openverify-watchlist/0.1.0+keys.1",
+      "provider": null,
+      "thresholds": {
+        "name-matching": "tolerant",
+        "min-score": 0.8,
+        "birthdate-matching": "year_plus_minus_one",
+        "country-filter": "penalty"
+      },
+      "notices": [],
+      "matched-lists": [
+        {
+          "source-id": "openverify-sandbox",
+          "name": "OpenVerify sandbox sanctions list",
+          "url": null,
+          "list-type": "sanction",
+          "list-types": ["sanction"],
+          "slug": "openverify-sandbox",
+          "flag-code": "ZZ",
+          "match-types": ["name_fuzzy", "birthdate_exact"],
+          "entities": [
+            {
+              "entity-id": "openverify-sandbox:SBX-1001",
+              "match-id": "rpm_01M5Y5Z4000JENGH3PCW0AWCA2",
+              "name": "QUILLFEATHER, Avery Sandbox",
+              "alias-type": "primary_name",
+              "birthdates": [
+                {
+                  "day": 12,
+                  "month": 4,
+                  "year": 1980,
+                  "granularity": "day"
+                }
+              ],
+              "countries": ["GB"],
+              "programs": ["SANDBOX-PROGRAM-1"],
+              "match-types": ["name_fuzzy", "birthdate_exact"],
+              "score": 0.93
+            }
+          ]
+        }
+      ],
+      "ignore-list": [],
+      "matches": [
+        {
+          "id": "rpm_01M5Y5Z4000JENGH3PCW0AWCA2",
+          "entity-id": "openverify-sandbox:SBX-1001",
+          "source-id": "openverify-sandbox",
+          "name": "QUILLFEATHER, Avery Sandbox",
+          "status": "open",
+          "review-status": "pending",
+          "risk-level": null,
+          "notify-on-change": false,
+          "present-in-last-run": true,
+          "score": 0.93,
+          "match-types": ["name_fuzzy", "birthdate_exact"],
+          "qualifiers": ["dob_exact"],
+          "lapsed-from": null,
+          "delisted-at": null,
+          "reviewed-at": null,
+          "created-at": "2026-10-27T09:00:01.250Z",
+          "updated-at": "2026-10-27T09:00:01.250Z",
+          "first-run": "rpr_01M5Y5Z400GEABT3VJDCS4CSVV",
+          "last-run": "rpr_01M5Y5Z400GEABT3VJDCS4CSVV",
+          "components": {
+            "subject-name": "Avery Quillfeather",
+            "list-name": "QUILLFEATHER, Avery Sandbox",
+            "name-level": "partial",
+            "methods": ["jaro-winkler"],
+            "preset": "tolerant",
+            "min-score": 0.8
+          }
+        }
+      ],
+      "latest-run-notes": ["report_match"]
+    },
+    "relationships": {
+      "inquiry": {
+        "data": null
+      },
+      "account": {
+        "data": {
+          "type": "account",
+          "id": "acc_01M5CJXJF84MR3PHJHBHKQ4ZC8"
+        }
+      },
+      "accounts": {
+        "data": [
+          {
+            "type": "account",
+            "id": "acc_01M5CJXJF84MR3PHJHBHKQ4ZC8"
+          }
+        ]
+      },
+      "report-template": {
+        "data": {
+          "type": "report-template",
+          "id": "rptp_01M5Y5Z400VF5JFP7ER3C45AY2"
+        }
+      },
+      "report-template-version": {
+        "data": {
+          "type": "report-template-version",
+          "id": "rptpv_01M5Y5Z400BSXX21JQ991CDRK5"
+        }
+      },
+      "transaction": {
+        "data": null
+      }
+    }
+  }
+}

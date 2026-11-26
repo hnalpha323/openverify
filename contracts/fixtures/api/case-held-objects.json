@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "type": "case-held-object",
+      "id": "case_01M5CN00000000000000000001:inq_01M5CJXHG07XPHF3HRM6NREDH7",
+      "attributes": {
+        "object-type": "inquiry",
+        "object-id": "inq_01M5CJXHG07XPHF3HRM6NREDH7",
+        "attached-at": "2026-10-20T12:00:00.000Z",
+        "attached-by-type": "workflow-run",
+        "attached-by-id": "wfr_01M5CM00000000000000000003",
+        "attached-state": {
+          "status": "needs_review",
+          "inquiry-template-id": "itmpl_01M5A0GTG0RSTVX9PHA0V7P3X6",
+          "completed-at": "2026-10-20T12:00:00.000Z",
+          "verification-ids": ["ver_01M5CJZC301G4JHXZQ3PZBYH3Q"]
+        }
+      }
+    }
+  ],
+  "links": {
+    "next": null
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Forbidden",
+  "status": 403,
+  "detail": "A parameter that identifies a person needs the personal data permission.",
+  "instance": "/api/v1/graph-queries",
+  "requestId": "00000000-0000-4000-8000-000000001003",
+  "code": "graph_parameter_not_allowed",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/parameter-map",
+      "detail": "identifies a person"
+    }
+  ]
+}

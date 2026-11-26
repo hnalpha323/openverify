@@ -1,0 +1,36 @@
+{
+  "data": {
+    "type": "report-bulk-job",
+    "id": "rbulk_01M5CN00000000000000009B36",
+    "attributes": {
+      "status": "completed",
+      "report-template-id": "rptp_01M5CN00000000000000009B32",
+      "row-count": 3,
+      "created-count": 2,
+      "failed-count": 1,
+      "rows": [
+        {
+          "row": 1,
+          "outcome": "created",
+          "report-id": "rep_01M5CN00000000000000009B37",
+          "error-code": null
+        },
+        {
+          "row": 2,
+          "outcome": "failed",
+          "report-id": null,
+          "error-code": "query_field_invalid"
+        },
+        {
+          "row": 3,
+          "outcome": "created",
+          "report-id": "rep_01M5CN00000000000000009B38",
+          "error-code": null
+        }
+      ],
+      "error-code": null,
+      "created-at": "2026-10-29T09:10:00.000Z",
+      "completed-at": "2026-10-29T09:10:04.000Z"
+    }
+  }
+}

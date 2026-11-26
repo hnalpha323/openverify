@@ -1,0 +1,103 @@
+{
+  "metadata": {
+    "specVersion": 2,
+    "id": "projection-branch-step",
+    "version": 1,
+    "name": "Projection: branch step"
+  },
+  "entry": "consent",
+  "steps": [
+    {
+      "id": "consent",
+      "type": "consent",
+      "textKeys": ["consent.biometric"],
+      "required": true
+    },
+    {
+      "id": "id_card",
+      "type": "government_id",
+      "sides": "front",
+      "maxAttempts": 1,
+      "captureMethods": ["camera"]
+    },
+    {
+      "id": "age_route",
+      "type": "branch",
+      "routes": [
+        {
+          "key": "minor",
+          "label": "Under 18",
+          "condition": {
+            "<": [
+              {
+                "var": "verifications.id_card.age-years"
+              },
+              18
+            ]
+          },
+          "onNull": "else"
+        }
+      ]
+    },
+    {
+      "id": "details",
+      "type": "screen",
+      "components": [
+        {
+          "id": "title",
+          "kind": "text",
+          "variant": "title",
+          "copyKey": "details.title.body"
+        },
+        {
+          "id": "nickname",
+          "kind": "text_input",
+          "field": "nickname",
+          "labelKey": "details.nickname.label"
+        },
+        {
+          "id": "continue",
+          "kind": "button",
+          "labelKey": "details.continue.button",
+          "action": "submit"
+        }
+      ]
+    },
+    {
+      "id": "done",
+      "type": "completion"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "from": "consent",
+      "port": "next",
+      "to": "id_card"
+    },
+    {
+      "id": "e2",
+      "from": "id_card",
+      "port": "next",
+      "to": "age_route"
+    },
+    {
+      "id": "e3",
+      "from": "age_route",
+      "port": "route:minor",
+      "to": "details"
+    },
+    {
+      "id": "e4",
+      "from": "age_route",
+      "port": "else",
+      "to": "details"
+    },
+    {
+      "id": "e5",
+      "from": "details",
+      "port": "next",
+      "to": "done"
+    }
+  ]
+}

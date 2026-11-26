@@ -1,0 +1,6 @@
+{
+  "kind": "redirect",
+  "authorization-url": "https://idp.example.com/oauth2/default/v1/authorize?client_id=synthetic-console-client&response_type=code&scope=openid%20email%20profile&redirect_uri=https%3A%2F%2Fconsole.example.com%2Fsso%2Fcallback%2Fssop_01M5CN0000000000000011B200&state=synthetic-state&nonce=synthetic-nonce&code_challenge=synthetic-challenge&code_challenge_method=S256",
+  "binding": "ovsb_syntheticBrowserBinding00000000000000000000",
+  "expires-at": "2026-11-13T12:10:00.000Z"
+}

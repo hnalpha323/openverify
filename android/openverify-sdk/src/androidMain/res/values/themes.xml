@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Window theme of the verification activity; Compose draws everything inside it. -->
+    <style name="OpenVerify.Theme" parent="android:Theme.Material.Light.NoActionBar" />
+</resources>

@@ -1,0 +1,13 @@
+{
+  "type": "connect/source-data/verification/email-address",
+  "attributes": {
+    "status": {
+      "visibility": "full",
+      "value": "passed"
+    },
+    "email-address": {
+      "visibility": "presence",
+      "value": true
+    }
+  }
+}

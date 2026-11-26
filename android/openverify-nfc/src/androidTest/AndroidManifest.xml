@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- C209.2, C219.5: the device tests' own app. It holds one empty screen for the reader to read for;
+     the SDK's flow activity is the one in a host app. Nothing here ships. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+        <activity
+            android:name="dev.openverify.nfc.DeviceTestScreen"
+            android:exported="false" />
+    </application>
+
+</manifest>

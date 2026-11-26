@@ -1,0 +1,94 @@
+# C268.1, C268.2 (Workflow 11D Stage 1a, contracts-11d): the HTTP load harness, a uv project of its own
+# with Python 3.12, so no load tool enters the vision image or any other (load/ is dev tooling and is
+# never shipped). httpx is the newest release dated on or before 2026-10-15 (0.28.1, 2024-12-06), read
+# on 2026-11-16; the dev tools are the versions services/vision/uv.lock pins. Every package uv.lock
+# resolves has a row in THIRD_PARTY_LICENSES.md (section 2.1.24; certifi and pathspec in section 5),
+# which packages/config/src/supply-chain-pins.test.ts holds. Locust is not adopted while Q12 is pending
+# (C289). Run: (cd load && uv run ruff check && uv run ruff format --check && uv run mypy . && uv run pytest)
+[project]
+name = "openverify-load"
+version = "0.0.0"
+description = "OpenVerify's HTTP load harness: the open-model driver, the scenarios, vegeta's targets, the sampler and the report"
+requires-python = ">=3.12,<3.13"
+dependencies = ["httpx==0.28.1"]
+
+[dependency-groups]
+dev = [
+    "mypy==2.4.0",
+    "pytest==9.1.1",
+    "pytest-cov==7.1.0",
+    "ruff==0.17.1",
+]
+
+[tool.uv]
+# Every resolution takes only releases at least 14 days old (Phase 9 decision 62), as
+# services/vision/pyproject.toml does; never an --exclude-newer on a command line.
+package = false
+exclude-newer = "14 days"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = ["results"]
+
+[tool.ruff.lint]
+select = [
+    "E", "W", "F",  # pycodestyle, pyflakes
+    "I",            # isort
+    "N",            # pep8-naming
+    "UP",           # pyupgrade
+    "B",            # bugbear
+    "S",            # bandit
+    "C4",           # comprehensions
+    "SIM",          # simplify
+    "PTH",          # pathlib
+    "RET",          # return
+    "PT",           # pytest style
+    "ASYNC",        # async pitfalls
+    "BLE",          # blind except
+    "PL",           # pylint
+    "RUF",          # ruff-specific
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["driver", "limits", "report", "sampler", "scenarios", "vegeta"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = [
+    "S101",    # assert is how pytest works
+    "PLR2004", # literal expected values are clearer in tests
+]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_unreachable = true
+exclude = ["^results/", "^\\.venv/"]
+
+[tool.pytest.ini_options]
+minversion = "9.0"
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "--cov=driver",
+    "--cov=limits",
+    "--cov=report",
+    "--cov=sampler",
+    "--cov=scenarios",
+    "--cov=vegeta",
+    "--cov-report=term-missing",
+    "--cov-fail-under=80",
+]
+filterwarnings = ["error"]
+
+[tool.coverage.run]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+exclude_also = ["if TYPE_CHECKING:"]

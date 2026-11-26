@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "This handoff method is not offered by the step.",
+  "instance": "/api/v1/flow/handoffs",
+  "requestId": "00000000-0000-4000-8000-000000000714",
+  "code": "handoff_method_not_allowed"
+}

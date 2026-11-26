@@ -1,0 +1,5 @@
+# The Kover exclusion of openverify-nfc (C209.3, C219.2; review F18): ONE class pattern, for the thin
+# JMRTD adapter, which needs a chip in the field and is proven by the JVM test against the synthetic
+# chip responder instead. nfc-reader writes the pattern on the line below and gives its reason in
+# docs/tdd/phase10-nfc-reader.tdd.md. The build refuses a second line. Comments start with #.
+dev.openverify.nfc.JmrtdChipSession*

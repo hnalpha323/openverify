@@ -1,0 +1,27 @@
+{{- /*
+C263.2, C263.4 (Workflow 11C Stage 2, chart-11c): a PodDisruptionBudget per component whose
+podDisruptionBudget.enabled is true (by default the API, the console and the flow server, which run
+two replicas), selecting its pods by the selector labels.
+*/ -}}
+{{- $components := list (list "api" $.Values.api) (list "worker" $.Values.worker) (list "dashboard" $.Values.dashboard) (list "flow" $.Values.flow) (list "vision" $.Values.vision) -}}
+{{- if $.Values.codeRunner.enabled -}}
+{{- $components = append $components (list "code-runner" $.Values.codeRunner) -}}
+{{- end -}}
+{{- range $pair := $components }}
+{{- $component := index $pair 0 }}
+{{- $c := index $pair 1 }}
+{{- if $c.podDisruptionBudget.enabled }}
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "openverify.componentName" (dict "root" $ "component" $component) }}
+  labels:
+    {{- include "openverify.labels" (dict "root" $ "component" $component) | nindent 4 }}
+spec:
+  minAvailable: {{ $c.podDisruptionBudget.minAvailable }}
+  selector:
+    matchLabels:
+      {{- include "openverify.selectorLabels" (dict "root" $ "component" $component) | nindent 6 }}
+{{- end }}
+{{- end }}

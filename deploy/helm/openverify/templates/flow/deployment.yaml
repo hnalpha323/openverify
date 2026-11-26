@@ -1,0 +1,13 @@
+{{- /*
+C263 (Workflow 11C Stage 2, chart-11c): the flow server (Phase 9 C157) with the built bundle. It reads
+the API's public origin at start (OPENVERIFY_FLOW_API_URL, C257.1), reaches the API's internal
+listener for each embed's frame-ancestors (OPENVERIFY_FLOW_SERVER_API_URL, the api-internal Service,
+C250.3) with its token as a file, and frames the preview for the console only
+(OPENVERIFY_DASHBOARD_PUBLIC_URL). No static frame-ancestors exists (C263.2). The image's own
+command serves port 4173 (flow.port names it).
+*/ -}}
+{{- include "openverify.checks" . -}}
+{{- $v := .Values.flow -}}
+{{- $ports := printf "- name: http\n  containerPort: %v\n  protocol: TCP" $v.port -}}
+{{- $probes := include "openverify.httpProbes" (dict "path" "/") -}}
+{{ include "openverify.deployment" (dict "root" . "component" "flow" "process" "flow" "c" $v "ports" $ports "probes" $probes "hpa" true) }}

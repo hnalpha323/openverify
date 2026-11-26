@@ -1,0 +1,12 @@
+{
+  "accepted": true,
+  "text-keys": ["consent.biometric", "consent.processing", "notice.session-integrity"],
+  "locale": "en",
+  "text-sha256": [
+    "78a182360e21191ea551274489c69cec6dc4ed14373e4f091f6335a37351a727",
+    "167d352cb6474341a430ea3bfa0ab8512cac57f75eaf9a44c641cb18d50a02c0",
+    "aebf9bbaec1a980976f0f759a8a8772fa69a2cdc6011ed3fb7d40542da7d7c08"
+  ],
+  "copy-source": "custom",
+  "catalog-version": "android-0.1.0-6ed3979d273c180e"
+}

@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "The transaction type has no such status.",
+  "instance": "/api/v1/transactions/txn_01M5CK3190XEVBM5ZXA76E1JSN",
+  "requestId": "00000000-0000-4000-8000-000000000901",
+  "code": "status_does_not_exist",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/data/attributes/status",
+      "detail": "is not a status of this type"
+    }
+  ]
+}

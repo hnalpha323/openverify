@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Too Many Requests",
+  "status": 429,
+  "detail": "Too many codes were asked for; continue to submit the verification for review.",
+  "instance": "/api/v1/flow/verifications/ver_01M5CK3190XEVBM5ZXA76E1JSM/otp",
+  "requestId": "00000000-0000-4000-8000-000000000106",
+  "code": "otp_rate_limited"
+}

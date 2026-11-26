@@ -1,0 +1,16 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "An origin is outside the allowed grammar.",
+  "instance": "/api/v1/dashboard/settings",
+  "requestId": "00000000-0000-4000-8000-000000009a0f",
+  "code": "embed_origin_invalid",
+  "errors": [
+    {
+      "location": "body",
+      "pointer": "/allowed-embed-origins/1",
+      "detail": "A wildcard needs two labels after it and no shared-hosting suffix."
+    }
+  ]
+}

@@ -1,0 +1,228 @@
+# Version catalog for the OpenVerify Android build.
+# Every version below was checked against Google Maven / Maven Central on 2026-10-20.
+# Licenses: AGP, AndroidX, Compose and CameraX are Apache-2.0 (camera-core also lists
+# BSD-3-Clause); Kotlin, kotlinx.serialization and kotlinx.coroutines are Apache-2.0;
+# OkHttp and MockWebServer are Apache-2.0; Robolectric is MIT; Kover is Apache-2.0. Compose
+# Multiplatform, the JetBrains lifecycle, Ktor and kotlin-test are Apache-2.0; Ktor brings
+# kotlinx-io (Apache-2.0) and, on Android, the SLF4J API (MIT).
+# Test scope only, never shipped: JUnit 5 and the JUnit Vintage engine are EPL-2.0,
+# and JUnit 4 (pulled in by Robolectric and compose-ui-test) is EPL-1.0.
+
+[versions]
+agp = "9.4.1"
+kotlin = "2.4.21"
+kover = "0.9.11"
+# C261.1 (Workflow 11C Stage 1a): the AAR SBOMs, 3.5.1 (2026-10-09), Apache-2.0, build tooling only.
+cyclonedx = "3.5.1"
+
+# Android SDK levels
+compileSdk = "36"
+targetSdk = "36"
+minSdk = "26"
+jvmToolchain = "21"
+
+# Compose BOM 2026.06.01 maps to Compose UI 1.11.4. It is the newest BOM that
+# works with compileSdk 36: BOM 2026.08.00+ ships Compose UI 1.12.x, whose AAR
+# metadata declares minCompileSdk=37.
+composeBom = "2026.06.01"
+# activity-compose 1.13.0 declares minCompileSdk=36 (newest stable).
+activityCompose = "1.13.0"
+
+junitJupiter = "5.14.4"
+
+# Phase 1 (checked on Maven Central / Google Maven on 2026-10-20).
+# kotlinx.serialization 1.12.0 was published on 2026-10-19; 1.11.0 (2026-04) is used
+# instead so that no dependency is younger than a few weeks.
+kotlinxSerialization = "1.11.0"
+kotlinxCoroutines = "1.11.0"
+# okhttp-android 5.5.0 declares minCompileSdk=37; 5.4.0 (2026-06) is the newest with 36.
+okhttp = "5.4.0"
+# CameraX 1.6.2 declares minCompileSdk=36. 1.7.0 is still alpha.
+camerax = "1.6.2"
+# C203.1 (decision 20): zxing-cpp's Android reader, the decoder family of the server's PDF417 checks.
+# Apache-2.0, released 2026-07-29 (Maven Central Last-Modified of its POM, read 2026-11-09); its AAR
+# bundles libzueci (BSD-3-Clause, with an MIT UTF-8 decoder) and librscpp (Apache-2.0), and no zint.
+zxingCpp = "3.1.1"
+robolectric = "4.17"
+# The version Compose BOM 2026.06.01 already resolves; declared because the SDK uses it directly.
+lifecycle = "2.9.4"
+androidxTestCore = "1.7.0"
+androidxTestExtJunit = "1.3.0"
+# Espresso 3.5.0 (what compose ui-test brings) calls InputManager.getInstance(), which Android 16 removed:
+# every Compose device test then fails at its first onIdle. 3.7.0 is the first release without the call.
+androidxTestEspresso = "3.7.0"
+
+# Kotlin Multiplatform (docs/plans/kmp-migration.plan.md K6), checked on Maven Central on
+# 2026-10-22; every one is Apache-2.0 and publishes iosArm64 and iosSimulatorArm64 variants.
+# Compose Multiplatform 1.11.1 (2026-06-01) maps to Jetpack Compose 1.11.2 on Android, where the BOM's
+# 1.11.4 wins. 1.12.x is built on Jetpack Compose 1.12, which needs compileSdk 37.
+composeMultiplatform = "1.11.1"
+# The stable CMP Material3 line (2025-10-13). Android keeps the BOM's material3 1.4.0; the 1.11 alpha
+# line would move it to 1.5.0-alpha17.
+composeMultiplatformMaterial3 = "1.9.0"
+# JetBrains' multiplatform lifecycle-viewmodel (2025-11-06), already pulled by CMP 1.11.1. It maps to
+# androidx lifecycle 2.9.4 on Android; the androidx coordinates in commonMain give KLIB "same
+# unique_name" warnings.
+jetbrainsLifecycle = "2.9.6"
+# Ktor 3.5.2 (2026-07-31): its OkHttp engine needs OkHttp 5.3.2, so the okhttp 5.4.0 above wins.
+# 3.6.0's engine needs OkHttp 5.5.0, whose AAR declares minCompileSdk=37.
+ktor = "3.5.2"
+
+# Workflow 10A Stage 1b (foundation-10a), chosen by spikes (b) and (c) (docs/tdd/phase10-foundation-10a.tdd.md).
+# Dates read from each artifact's publication metadata on 2026-11-08; each is at least 14 days old (C214.7).
+# Roborazzi 1.76.0 (2026-09-29, Apache-2.0): screenshots and, through its accessibility module, Google's
+# Accessibility Test Framework 4.1.1 (2024-03-29, Apache-2.0) under Robolectric. Test scope only; its Gradle
+# plugin is not applied (C219.3's runtime-library route: the screenshots run in their own tagged task).
+roborazzi = "1.76.0"
+# BCV 0.18.2 (2026-09-02, Apache-2.0): its tasks, wired by hand, dump the ABI of openverify-nfc, an AGP 9
+# built-in-Kotlin com.android.library that KGP's own ABI validation does not cover (spike (b)). Build only.
+binaryCompatibilityValidator = "0.18.2"
+# C214.1 (engineering K20): declared where the SDK uses them directly, at the versions the build already
+# resolved through Ktor and Compose Multiplatform (dates read on 2026-11-08 from their POMs):
+# kotlinx-io 0.9.1 (2026-06-26, Apache-2.0; kotlinx.io.Buffer and IOException in commonMain) and
+# skiko 0.144.6 (2026-04-23, Apache-2.0 bindings; org.jetbrains.skia.Image in iosMain).
+kotlinxIo = "0.9.1"
+skiko = "0.144.6"
+
+# Workflow 10C Stage 1a (contracts-10c), proved by spike (d) (docs/research/phase10-inventory.md, "Workflow 10C").
+# Dates read from each artifact's publication metadata on 2026-11-10 (Maven Central Last-Modified of its POM);
+# each is at least 14 days old (C214.7, decision 62). Build tooling only, never shipped:
+# com.vanniktech.maven.publish 0.37.0 (2026-06-21, Apache-2.0) publishes :openverify-sdk's root KMP module and
+# Android target and openverify-nfc with sources, the javadoc jar and the POM of C217.2; no signing here.
+# Dokka 2.2.0 (2026-03-26, Apache-2.0) builds the API docs the javadoc jar holds (decision 45).
+mavenPublish = "0.37.0"
+dokka = "2.2.0"
+
+# Workflow 10E Stage 1a (contracts-10e): the owner-gated artifacts' libraries (Phase 10 P1 and P2, granted
+# narrowly on 2026-11-08; docs/plans/phase-10.plan.md, "Orchestrator decisions before Workflow 10A", item 2).
+# Dates are the Maven Central Last-Modified of each POM, read on 2026-11-11; each is at least 14 days old
+# (C214.7, decision 62). Licences read from each artifact (POM, source-jar headers, the AAR's own files).
+#
+# P2, only in openverify-face (C205.1): ONNX Runtime's Android AAR 1.31.0 (2026-10-09, MIT; Eigen, MPL-2.0,
+# is compiled into its native library unmodified: the owner's exception). 1.31.1 (2026-10-26) exists; the
+# plan's pin stays, no withdrawal or advisory was found. The JVM artifact of the same version (2026-10-09,
+# MIT, the same Eigen) is test scope only, never shipped: the host twin of the device inference test.
+onnxruntime = "1.31.0"
+# P1, only in openverify-nfc (C209.1), by coordinates, never shaded or copied:
+# JMRTD 0.8.9 (2026-10-03, LGPL-2.1-or-later by its source headers);
+# SCUBA: scuba-sc-android 0.0.27 (2026-08-23) and scuba-smartcards 0.0.21 (2026-08-22), LGPL-2.1-or-later,
+# except CommandAPDU.java and ResponseAPDU.java, GPL-2.0-only WITH Classpath-exception-2.0 (the owner's exception);
+# cert-cvc 1.4.13 (2021-06-23, LGPL-2.1-or-later by its source headers), JMRTD's dependency, whose own
+# bcprov-jdk15on 1.68 is excluded (the same classes as bcprov-jdk18on);
+# Bouncy Castle 1.86 (2026-09-11, MIT: META-INF/LICENSE.md), the version JMRTD 0.8.9's POM names.
+jmrtd = "0.8.9"
+scubaScAndroid = "0.0.27"
+scubaSmartcards = "0.0.21"
+certCvc = "1.4.13"
+bouncyCastle = "1.86"
+# AGP 9.4.1's own manifest merger (2026-09-18, Apache-2.0), which every module's lint classpath already
+# resolves: openverify-face's host test merges manifests with it (C205.2's fourth layer). Test scope only.
+androidTools = "32.4.1"
+
+[libraries]
+# Not applied as a plugin: AGP 9 has built-in Kotlin support. This only lifts
+# the KGP version that AGP uses at runtime (2.2.10 by default) to `kotlin`,
+# as described in the AGP 9.0 release notes.
+kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+
+androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
+
+androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle" }
+androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+
+androidx-camera-core = { group = "androidx.camera", name = "camera-core", version.ref = "camerax" }
+androidx-camera-camera2 = { group = "androidx.camera", name = "camera-camera2", version.ref = "camerax" }
+androidx-camera-lifecycle = { group = "androidx.camera", name = "camera-lifecycle", version.ref = "camerax" }
+androidx-camera-compose = { group = "androidx.camera", name = "camera-compose", version.ref = "camerax" }
+zxing-cpp-android = { group = "io.github.zxing-cpp", name = "android", version.ref = "zxingCpp" }
+
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
+
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+okhttp-mockwebserver3 = { group = "com.squareup.okhttp3", name = "mockwebserver3", version.ref = "okhttp" }
+# C215.2 (review V01): the demo's minifiedSmoke device test serves its loopback MockWebServer over TLS with a
+# HeldCertificate generated at run time. At the OkHttp version above (2026-06-08, Apache-2.0). Test scope only.
+okhttp-tls = { group = "com.squareup.okhttp3", name = "okhttp-tls", version.ref = "okhttp" }
+
+robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
+androidx-test-core = { group = "androidx.test", name = "core-ktx", version.ref = "androidxTestCore" }
+androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "androidxTestExtJunit" }
+androidx-test-runner = { group = "androidx.test", name = "runner", version.ref = "androidxTestCore" }
+androidx-test-rules = { group = "androidx.test", name = "rules", version.ref = "androidxTestCore" }
+androidx-test-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidxTestEspresso" }
+
+junit-bom = { group = "org.junit", name = "junit-bom", version.ref = "junitJupiter" }
+junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter" }
+junit-vintage-engine = { group = "org.junit.vintage", name = "junit-vintage-engine" }
+junit-platform-launcher = { group = "org.junit.platform", name = "junit-platform-launcher" }
+
+# Kotlin Multiplatform (K6). commonMain: Compose Multiplatform, the JetBrains viewmodel, coroutines
+# and the Ktor client core. androidMain: the Ktor OkHttp engine over the okhttp client above.
+# iosMain: the Ktor Darwin engine (NSURLSession). commonTest: kotlin-test and Ktor's MockEngine.
+compose-mp-runtime = { group = "org.jetbrains.compose.runtime", name = "runtime", version.ref = "composeMultiplatform" }
+compose-mp-foundation = { group = "org.jetbrains.compose.foundation", name = "foundation", version.ref = "composeMultiplatform" }
+compose-mp-ui = { group = "org.jetbrains.compose.ui", name = "ui", version.ref = "composeMultiplatform" }
+compose-mp-material3 = { group = "org.jetbrains.compose.material3", name = "material3", version.ref = "composeMultiplatformMaterial3" }
+compose-mp-components-resources = { group = "org.jetbrains.compose.components", name = "components-resources", version.ref = "composeMultiplatform" }
+jetbrains-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "jetbrainsLifecycle" }
+kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
+ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
+ktor-client-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor" }
+ktor-client-darwin = { group = "io.ktor", name = "ktor-client-darwin", version.ref = "ktor" }
+ktor-client-mock = { group = "io.ktor", name = "ktor-client-mock", version.ref = "ktor" }
+kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
+
+# Workflow 10A Stage 1b (foundation-10a). androidHostTest: Roborazzi's runtime libraries and its accessibility
+# module. androidDeviceTest: Compose's accessibility checks (they raise nothing under Robolectric, spike (c)).
+# openverify-nfc's ABI dump: BCV's tasks with kotlin-metadata-jvm (2026-10-08, the catalog's Kotlin) on their worker.
+roborazzi = { group = "io.github.takahirom.roborazzi", name = "roborazzi", version.ref = "roborazzi" }
+roborazzi-compose = { group = "io.github.takahirom.roborazzi", name = "roborazzi-compose", version.ref = "roborazzi" }
+roborazzi-junit-rule = { group = "io.github.takahirom.roborazzi", name = "roborazzi-junit-rule", version.ref = "roborazzi" }
+roborazzi-accessibility-check = { group = "io.github.takahirom.roborazzi", name = "roborazzi-accessibility-check", version.ref = "roborazzi" }
+androidx-compose-ui-test-junit4-accessibility = { group = "androidx.compose.ui", name = "ui-test-junit4-accessibility" }
+binary-compatibility-validator = { group = "org.jetbrains.kotlinx", name = "binary-compatibility-validator", version.ref = "binaryCompatibilityValidator" }
+kotlin-metadata-jvm = { group = "org.jetbrains.kotlin", name = "kotlin-metadata-jvm", version.ref = "kotlin" }
+kotlinx-io-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-io-core", version.ref = "kotlinxIo" }
+skiko = { group = "org.jetbrains.skiko", name = "skiko", version.ref = "skiko" }
+
+# Workflow 10E Stage 1a (contracts-10e). openverify-face only: ONNX Runtime (P2). openverify-nfc only: the
+# reader's stack (P1). The boundary check refuses every one of these groups on :openverify-sdk (C214.6).
+onnxruntime-android = { group = "com.microsoft.onnxruntime", name = "onnxruntime-android", version.ref = "onnxruntime" }
+onnxruntime-jvm = { group = "com.microsoft.onnxruntime", name = "onnxruntime", version.ref = "onnxruntime" }
+jmrtd = { group = "org.jmrtd", name = "jmrtd", version.ref = "jmrtd" }
+scuba-sc-android = { group = "net.sf.scuba", name = "scuba-sc-android", version.ref = "scubaScAndroid" }
+scuba-smartcards = { group = "net.sf.scuba", name = "scuba-smartcards", version.ref = "scubaSmartcards" }
+cert-cvc = { group = "org.ejbca.cvc", name = "cert-cvc", version.ref = "certCvc" }
+bouncycastle-bcprov = { group = "org.bouncycastle", name = "bcprov-jdk18on", version.ref = "bouncyCastle" }
+bouncycastle-bcutil = { group = "org.bouncycastle", name = "bcutil-jdk18on", version.ref = "bouncyCastle" }
+android-tools-manifest-merger = { group = "com.android.tools.build", name = "manifest-merger", version.ref = "androidTools" }
+
+[plugins]
+# C261.1: `cyclonedxBom` on each published module (`:openverify-sdk`, `:openverify-nfc`, `:openverify-face`).
+cyclonedx = { id = "org.cyclonedx.bom", version.ref = "cyclonedx" }
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+# AGP 9's Kotlin Multiplatform library plugin: `androidTarget()` with com.android.library is
+# incompatible with AGP 9's new DSL. Lint reaches a KMP module only through com.android.lint.
+android-kotlin-multiplatform-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
+android-lint = { id = "com.android.lint", version.ref = "agp" }
+compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
+# Applied to openverify-nfc only for its task classes; it registers nothing on an AGP 9 built-in-Kotlin module.
+binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binaryCompatibilityValidator" }
+# C217.2 (Workflow 10C, spike (d)): the publications and their javadoc jars; applied to the published modules only.
+maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "mavenPublish" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }

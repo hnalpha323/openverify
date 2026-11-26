@@ -1,0 +1,9 @@
+{
+  "type": "about:blank",
+  "title": "Bad Gateway",
+  "status": 502,
+  "detail": "The code could not be sent. Check the destination or try again.",
+  "instance": "/api/v1/flow/verifications/ver_01M5CK3190XEVBM5ZXA76E1JSM/otp",
+  "requestId": "00000000-0000-4000-8000-000000000107",
+  "code": "otp_delivery_failed"
+}

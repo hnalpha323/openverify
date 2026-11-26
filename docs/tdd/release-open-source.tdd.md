@@ -43,3 +43,14 @@ release:check (default): 0 errors, 62 owner items      # 63 before: REL-VISIBILI
 - `CONTRIBUTING.md` (setup, the gates, the project's six rules from `CLAUDE.md`, conventions, Conventional Commits with DCO sign-off, documentation assets), `CODE_OF_CONDUCT.md` (Contributor Covenant 2.1, the official text with the private reporting form as its contact), `SUPPORT.md`, `CHANGELOG.md` (Keep a Changelog, `Unreleased`), `.github/ISSUE_TEMPLATE/` (bug and feature forms that refuse personal data; blank issues off; security and questions routed away), `.github/PULL_REQUEST_TEMPLATE.md`, `.github/CODEOWNERS`.
 - `docs/assets/`: the logo (light, dark, mark) and two illustrations, the architecture and a verification's five steps, each in a light and a dark variant chosen by `<picture>`. They were rendered with Playwright's Chromium on both backgrounds and checked by eye; the first render's overlaps (the webhook label, the data-store heading, the last card's margin) were fixed.
 - `docs/assets/screenshots/` and `e2e/tests/docs-screenshots.spec.ts`: `docs/tdd/release-docs-screenshots.tdd.md`.
+
+## The public history (2026-11-25)
+
+- The private history was pushed to its end (`4ea2493bf..53b10e65f`, fast-forward) and kept as a private archive; the public repository starts with `8fcf53211`, a single commit of the archive tip's tree (`git commit-tree 53b10e65f^{tree}`) under the GitHub noreply address.
+- C274.6 compares each checklist row's `reviewed_commit` with HEAD, and the archive's commits are not in the public history (`createGitEvidenceHistory` treats a missing commit as every cited file changed). At the archive's tip no row was stale (`release:check`: no `security/stale-evidence` finding), and the root holds the same tree, so every row's `reviewed_commit` now names the root; `reviewed_at` keeps each review's date.
+
+```text
+$ (re-point 253 ASVS and 24 MASVS rows to 8fcf53211); pnpm --filter @openverify/docs-tools docs:security
+$ pnpm release:check
+release:check (default): 0 errors, 62 owner items      # no stale-evidence finding
+```
